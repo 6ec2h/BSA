@@ -1,0 +1,58 @@
+"DOTAAbilities"
+{
+	"skywrath_mage_arcane_bolt_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_lua/skywrath_mage_arcane_bolt_lua"
+		"AbilityTextureName"			"skywrath_mage_arcane_bolt"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+		
+		"AbilityCooldown"				"9 7 5 3"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bolt_speed"			"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bolt_vision"			"325"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bolt_damage"			"60 100 140 180"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"int_multiplier"		"1.3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"3.34"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_radius"		"700"
+			}
+		}
+	}
+}

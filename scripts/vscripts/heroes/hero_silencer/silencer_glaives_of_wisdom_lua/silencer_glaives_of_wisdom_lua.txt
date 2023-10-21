@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"silencer_glaives_of_wisdom_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_silencer/silencer_glaives_of_wisdom_lua/silencer_glaives_of_wisdom_lua"
+		"AbilityTextureName"			"silencer_glaives_of_wisdom"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityDuration"				"0.0 0.0 0.0 0.0"
+		"AbilityCastRange"				"600"
+
+		"AbilityManaCost"				"40 80 120 160"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"intellect_damage_pct"	"15 25 35 45"
+			}
+		}
+	}
+}

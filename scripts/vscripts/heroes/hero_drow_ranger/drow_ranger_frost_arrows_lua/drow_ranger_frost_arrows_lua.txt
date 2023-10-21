@@ -1,0 +1,31 @@
+"DOTAAbilities"
+{
+	"drow_ranger_frost_arrows_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua"
+		"AbilityTextureName"			"drow_ranger_frost_arrows"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"625"
+
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"10"
+
+		"AbilityValues"
+		{
+			"frost_arrows_movement_speed"	"-10 -12 -14 -16"
+			"frost_arrows_duration_tooltip"	"1.5"
+			"damage"	"15 30 45 60"
+		}
+	}
+}

@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+	"huskar_inner_vitality_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_inner_vitality_lua/huskar_inner_vitality_lua"
+		"AbilityTextureName"			"huskar_inner_vitality"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"					   
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.1"
+		"AbilityDuration"				"16"
+
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"140"
+
+		"AbilityValues"
+		{
+			"heal"					"10 15 20 25"
+			"attrib_bonus"			
+			{
+				"value"					"6 9 12 15"
+				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_2"
+			}
+			"hurt_attrib_bonus"		
+			{
+				"value"					"18 27 36 45"
+				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_2"
+			}
+			"hurt_percent"			"35"
+		}
+	}
+}

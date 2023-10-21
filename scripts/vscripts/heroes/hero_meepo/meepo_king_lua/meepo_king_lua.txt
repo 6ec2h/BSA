@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+	"meepo_king_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_meepo/meepo_king_lua/meepo_king_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"meepo"
+		"AbilityCastAnimation"			"ACT_INVALID"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_exp"					"5 10 15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_dmg"					"15 25 35"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_all"					"10 20 30"
+			}
+			"04"
+			{
+				"var_type"			    	"FIELD_INTEGER"
+				"model_multiplier"	    	"20 35 50"
+			}
+		}
+	}
+}

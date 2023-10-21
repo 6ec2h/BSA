@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"wisp_spirits_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wisp/wisp_spirits/wisp_spirits_lua.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Wisp.Spirits.Cast"
+		"AbilityTextureName"			"wisp_spirits"
+		"MaxLevel"						"4"
+
+		"AbilityValues"
+		{
+			"creep_damage"				
+			{
+				"value"						"25 50 75 100"
+				"LinkedSpecialBonus"		"npc_dota_hero_wisp_agi9"
+			}
+			"min_range"					"300"
+			"collision_radius"			"50"
+			"spirit_movement_rate"		"250"
+			"spirit_summon_interval" 	"0.8"
+			"num_spirits"				"5"
+			"spirit_turn_rate"			"100"
+			"damage_interval"			"0.45"
+		}
+	}		
+}	
+	

@@ -1,0 +1,31 @@
+"DOTAAbilities"
+{
+	"zuus_passive"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_zuus/zuus_passive/zuus_passive.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"4"
+		"AbilityTextureName"			"zuus_static_field"
+		"AbilityCastRange"              "600"
+		
+		  "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                    "600"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "dmg_per_int"     		 	"0.3 0.4 0.5 0.6"
+            }
+            "03"
+            {   
+                "var_type"                  "FIELD_INTEGER"
+                "cast"      				"3"
+            }	
+        }
+	}
+}

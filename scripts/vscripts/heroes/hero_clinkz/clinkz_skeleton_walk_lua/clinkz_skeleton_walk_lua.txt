@@ -1,0 +1,27 @@
+"DOTAAbilities"
+{
+	"clinkz_skeleton_walk_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_clinkz/clinkz_skeleton_walk_lua/clinkz_skeleton_walk_lua"
+		"AbilityTextureName"			"clinkz_wind_walk"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastPoint"				"0.2"
+
+		"AbilityCooldown"				"20 16 12 8"
+		"AbilityManaCost"				"50 60 70 80"	
+
+		"AbilityValues"
+		{
+			"bonus_ms"					"10 15 20 25"
+			"duration"					"5 10 15 20"
+		}
+	}
+}

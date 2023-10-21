@@ -1,0 +1,112 @@
+"DOTAAbilities"
+{	
+	"venomancer_venomous_gale_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_venomancer/venomancer_venomous_gale_lua"
+		"AbilityTextureName"			"venomancer_venomous_gale"
+		"FightRecapLevel"				"1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"125"
+		"AbilityValues"
+		{
+			"duration"				"5"
+			"strike_damage"			
+			{
+				"value"					"50 100 150 200"
+				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_1"
+			}	
+			"tick_damage"			
+			{
+				"value"					"25 50 75 100"
+				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_1"
+			}	
+			"tick_interval"			"1"
+			"movement_slow"			"-50"
+			"radius"				"125"
+			"speed"					"1200"
+		}
+	}
+	
+"venomancer_poison_sting_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_venomancer/venomancer_poison_sting_lua"
+		"AbilityTextureName"			"venomancer_poison_sting"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+			"duration"				"3 4 5 6"
+			"damage"				
+			{
+				"value"					"15 30 45 60"
+				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_2"
+			}	
+			"movement_speed"		"4 6 8 10"
+		}
+	}
+
+"venomancer_poison_tick"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_venomancer/venomancer_poison_tick"
+		"AbilityTextureName"			"venomancer_noxious_plague"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"AbilityValues"
+		{
+			"count" "3 4 5 6"
+			"duration" "4"
+			"armor" "0.2 0.4 0.6 0.8"
+			"magic_armor" "1.0 1.5 2.0 2.5"
+			"damage" 
+			{
+				"value"					"1.0 1.5 2.0 2.5"
+				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_3"
+			}	
+		}
+	}	
+	
+"venomancer_poison_nova_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_venomancer/venomancer_poison_nova_lua"
+		"AbilityTextureName"			"venomancer_poison_nova"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCooldown"				"100 90 80"
+		"AbilityCastRange"				"600"
+		"AbilityManaCost"				"200 300 400"
+
+		"AbilityValues"
+		{
+			"radius"					"600"
+			"start_radius"				"255"
+			"duration"					"15"
+			"damage"					"300 400 500"
+			"speed"						"500"
+		}
+	}	
+}

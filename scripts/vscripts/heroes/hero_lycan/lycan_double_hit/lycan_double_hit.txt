@@ -1,0 +1,24 @@
+"DOTAAbilities"
+{
+	"lycan_double_hit"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lycan/lycan_double_hit/lycan_double_hit"
+		"AbilityTextureName"			"double_hit"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"AbilityCooldown"				"4 3 2 1"
+		
+		"AbilityValues"
+		{
+			"slow"						"10 20 30 40"
+			"slow_as"					"10 20 30 40"
+			"duration"					"1"
+		}
+		
+	}
+}

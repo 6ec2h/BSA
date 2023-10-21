@@ -1,0 +1,25 @@
+"DOTAAbilities"
+{
+	"muerta_gunslinger_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_muerta/muerta_gunslinger_lua/muerta_gunslinger_lua"
+		"AbilityTextureName"			"muerta_gunslinger"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityValues"
+		{
+			"double_shot_chance"
+			{
+				"value"					"20 30 40 50"
+				"LinkedSpecialBonus"	"npc_dota_hero_muerta_3"
+			}
+			"target_search_bonus_range"	"150"
+		}
+	}
+}

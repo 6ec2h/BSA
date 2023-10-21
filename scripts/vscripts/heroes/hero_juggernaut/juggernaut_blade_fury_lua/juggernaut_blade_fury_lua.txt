@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{
+	"juggernaut_blade_fury_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua"
+		"AbilityTextureName"			"juggernaut_blade_fury"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"250"
+
+		"AbilityCooldown"				"38 32 26 20"
+		"AbilityManaCost"				"100"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"blade_fury_damage_tick"	"0.2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blade_fury_radius"			"250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blade_fury_damage"			"80 110 140 170"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3.0"
+			}
+		}
+	}
+}

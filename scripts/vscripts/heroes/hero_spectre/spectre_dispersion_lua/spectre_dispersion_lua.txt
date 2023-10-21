@@ -1,0 +1,26 @@
+"DOTAAbilities"
+{	
+  "spectre_dispersion_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_spectre/spectre_dispersion_lua/spectre_dispersion_lua"
+        "AbilityTextureName"            "spectre_dispersion"
+        "AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityCastRange"				"500"
+
+		"AbilityValues"
+		{
+			"damage_reduction"			
+				{
+					"value"					"4 8 12 16"
+					"LinkedSpecialBonus"	"npc_dota_hero_spectre_tal1"
+					"CalculateSpellDamageTooltip" "0"
+				}
+			"damage_cleanse"			"500 750 1000 1250"
+			"damage_reset_interval"		"3"
+			"radius"					"500"	
+		}
+	}
+}	

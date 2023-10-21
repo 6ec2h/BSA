@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+	"earthshaker_aftershock_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_aftershock_lua/earthshaker_aftershock_lua"
+		"AbilityTextureName"			"earthshaker_aftershock"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"300"
+		"AbilityDuration"				"0.6 0.9 1.2 1.5"
+
+		"AbilityDamage"					"75 100 125 150"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aftershock_range"			"300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tooltip_duration"			"0.6 0.9 1.2 1.5"
+			}
+		}
+	}
+}

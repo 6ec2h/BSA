@@ -1,0 +1,21 @@
+"DOTAAbilities"
+{	
+"lion_soul_collector"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lion/lion_soul_collector/lion_soul_collector"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"soul_lion"
+		"MaxLevel"						"4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"stack_bonus_dmg"					"1.0 1.5 2.0 2.5"
+			}
+		}
+	}
+}

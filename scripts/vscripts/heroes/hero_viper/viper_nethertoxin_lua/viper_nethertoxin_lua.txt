@@ -1,0 +1,50 @@
+"DOTAAbilities"
+{
+	"viper_nethertoxin_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_viper/viper_nethertoxin_lua/viper_nethertoxin_lua"
+		"AbilityTextureName"			"viper_nethertoxin"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"900"
+
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"30 45 60 75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"380"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resistance"		"-8 -10 -12 -14"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"2000"
+			}
+		}
+	}
+}

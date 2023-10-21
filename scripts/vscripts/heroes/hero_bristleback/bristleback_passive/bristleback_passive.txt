@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+	"bristleback_passive"
+	{	
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bristleback/bristleback_passive/bristleback_passive.lua"
+		"AbilityTextureName"			"ult_bb"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_hp"						"2 4 6 8"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_hpr"						"0.2 0.4 0.6 0.8"
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{	
+"spectre_step"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spectre/spectre_step/spectre_step.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"MaxLevel"						"4"
+		"AbilityTextureName"			"spectre_spectral_dagger"
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"90"	
+
+		"AbilityValues"
+		{
+			"attackspeed_bonus"		
+			{
+				"value"					"20 40 60 80"
+				"LinkedSpecialBonus"	"npc_dota_hero_spectre_tal3"
+		
+			}	
+			"duration"				"6"
+		}
+	}
+}

@@ -1,0 +1,58 @@
+"DOTAAbilities"
+{
+
+"pugna_life_drain_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"AbilityType"						"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"			"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"					"1"
+		"AbilityTextureName"				"pugna_life_drain"
+		"MaxLevel"							"3"
+		"ScriptFile"						"heroes/hero_pugna/pugna_life_drain_lua/pugna_life_drain_lua"
+	
+		"AbilityCastRange"					"700"
+		"AbilityCastPoint"					"0.2"
+		
+		"AbilityChannelTime"				"10.0"
+
+		"AbilityCooldown"					"7"
+
+		"AbilityManaCost"					"125 175 225"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_drain"				"100 200 300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_slow_pct"				"5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_rate"					"0.25"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"break_distance_extend"		"200"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"700"
+			}
+		}
+	}
+}

@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"muerta_pierce_the_veil_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_muerta/muerta_pierce_the_veil_lua/muerta_pierce_the_veil_lua"
+		"AbilityTextureName"			"muerta_pierce_the_veil"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"90 80 70"
+		"AbilityManaCost"				"150 250 350"
+
+		"AbilityValues"
+		{
+			"duration"					"3 4 5"
+			"transform_duration"		"0.35"
+			"base_damage_pct"
+				{
+				"value"					"100"
+				"LinkedSpecialBonus"	"npc_dota_hero_muerta_4"
+				}
+			"modelscale"				"30"
+			"bonus_damage"				"50 75 100"
+		}
+	}
+}

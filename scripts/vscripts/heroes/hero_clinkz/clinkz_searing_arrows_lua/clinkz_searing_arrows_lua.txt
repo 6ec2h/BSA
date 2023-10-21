@@ -1,0 +1,27 @@
+"DOTAAbilities"
+{
+	"clinkz_searing_arrows_lua"
+	{
+		"BaseClass"                         "ability_lua"
+		"ScriptFile"						"heroes/hero_clinkz/clinkz_searing_arrows_lua/clinkz_searing_arrows_lua"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                "clinkz_searing_arrows"
+		"AbilityCastAnimation"              "ACT_DOTA_ATTACK"
+
+		"AbilityManaCost"                   "10"
+
+		"AbilityValues"
+		{
+			"bonus_damage"               
+			{
+				"value"					"24 36 48 60"   
+				"LinkedSpecialBonus"	"npc_dota_hero_clinkz_tal2"
+			}	
+		}
+	}
+}

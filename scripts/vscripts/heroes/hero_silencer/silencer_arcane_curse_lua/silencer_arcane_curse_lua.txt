@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+	"silencer_arcane_curse_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_silencer/silencer_arcane_curse_lua/silencer_arcane_curse_lua"
+		"AbilityTextureName"			"silencer_curse_of_the_silent"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"125 130 135 140"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"25 35 45 55"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"425"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"3"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"penalty_duration"			"2"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movespeed"			"-9 -12 -15 -18"
+			}
+		}
+	}
+}

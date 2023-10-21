@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"tidehunter_ravage_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tidehunter/tidehunter_ravage_lua/tidehunter_ravage_lua"
+		"AbilityTextureName"			"tidehunter_ravage"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+
+		"AbilityCooldown"				"180"
+		"AbilityManaCost"				"300"
+
+		"AbilityDamage"					"200 400 600"
+
+		"AbilityValues"
+		{
+			"radius"			"1250"
+			"speed"				"725"
+			"duration"			"2 3 4"
+		}
+	}
+}

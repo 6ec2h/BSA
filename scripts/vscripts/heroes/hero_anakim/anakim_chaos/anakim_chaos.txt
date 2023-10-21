@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+"anakim_chaos"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_anakim/anakim_chaos/anakim_chaos"
+		"AbilityTextureName"			"anakim_chaos"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"28 24 20 16"
+		
+		"AbilityValues"
+		{
+			"radius"					"350"
+			"duration"					"3"
+			"spell_amp"					
+			{
+				"value"					"6 12 18 24"
+				"LinkedSpecialBonus"	"npc_dota_hero_anakim_tal2"
+			}
+		}
+	}
+}	

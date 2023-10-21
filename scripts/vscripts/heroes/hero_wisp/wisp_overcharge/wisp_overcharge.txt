@@ -1,0 +1,58 @@
+"DOTAAbilities"
+{
+	"wisp_overcharge_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wisp/wisp_overcharge/wisp_overcharge.lua"
+		"AbilityTextureName"			"wisp_overcharge"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		
+		"AbilityManaCost"				"80 100 120 140"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"		"20 40 60 80"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_move_speed"			"10 20 30 40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hp_ampl"					"0.2 0.4 0.6 0.8"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"interval"					"0.2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hp_loss"					"0.4 0.8 1.2 1.6"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mp_loss"					"10 15 20 25"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"range"						"700"
+			}
+		}
+	}
+}

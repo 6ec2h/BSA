@@ -1,0 +1,23 @@
+"DOTAAbilities"
+{	
+	"spectre_desolate_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spectre/spectre_desolate_lua/spectre_desolate_lua"
+		"AbilityTextureName"			"spectre_desolate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"4"
+		
+		"AbilityValues"
+		{
+			"bonus_damage"
+			{
+				"value"					"5 9 13 17"
+				"LinkedSpecialBonus"	"npc_dota_hero_spectre_tal2"
+				"CalculateSpellDamageTooltip" "0"
+			}	
+		}
+	}
+}

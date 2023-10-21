@@ -1,0 +1,50 @@
+"DOTAAbilities"
+{
+	"lion_finger_of_death_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lion/lion_finger_of_death_lua/lion_finger_of_death_lua"
+		"AbilityTextureName"			"lion_finger_of_death"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"120 80 40"
+		
+		"AbilityManaCost"				"200 400 600"
+		
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"600 1000 1400"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_delay"				"0.25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cooldown_scepter"			"60 40 20"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"splash_radius_scepter"		"325"
+			}
+		}
+	}
+}

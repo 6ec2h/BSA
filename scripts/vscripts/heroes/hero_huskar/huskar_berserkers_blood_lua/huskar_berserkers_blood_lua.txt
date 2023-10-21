@@ -1,0 +1,24 @@
+"DOTAAbilities"
+{
+	"huskar_berserkers_blood_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_berserkers_blood_lua/huskar_berserkers_blood_lua"
+		"AbilityTextureName"			"huskar_berserkers_blood"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+			"maximum_attack_speed"			"220 260 300 340"
+			"maximum_resistance"			
+			{
+				"value"					"20 30 40 50"
+				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_4"
+			}
+			"hp_threshold_max"				"10"
+		}
+	}
+}

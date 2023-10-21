@@ -1,0 +1,54 @@
+"DOTAAbilities"
+{
+"custom_forest"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/fura/custom_forest"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"damage"						"1500"
+			"delay"							"0.4"
+			"range"							"700"
+			"duration"						"6.0"
+			"damage_radius"					"225"
+		}
+	}	
+	
+"custom_sprout"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/fura/custom_sprout"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"radius"						"700"
+			"duration"						"20.0"
+		}
+	}	
+	
+"custom_wrath"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/fura/custom_wrath"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"damage"					"2000"
+			"duration"					"5"
+			"tick_damage"				"300"
+		}
+	}		
+		
+}

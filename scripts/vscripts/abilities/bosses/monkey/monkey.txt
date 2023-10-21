@@ -1,0 +1,18 @@
+"DOTAAbilities"
+{
+"monkey_king_wukongs_command_custom"
+	{
+		"BaseClass"                                           "ability_lua"
+		"ScriptFile"                                          "abilities/bosses/monkey/monkey_command"
+		"AbilityTextureName"                                  "monkey_king_wukongs_command"
+		"AbilityBehavior"                                     "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"                               "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"                               "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"                               "DAMAGE_TYPE_PHYSICAL"
+		"AbilitySound"                                        "Hero_MonkeyKing.FurArmy"
+		"AbilityCastPoint"                                    "0"
+		"AbilityCastRange"                                    "800"
+		"AbilityCastAnimation"                                "ACT_DOTA_MK_FUR_ARMY"
+		"AbilityCooldown"                                     "30"
+	}
+}

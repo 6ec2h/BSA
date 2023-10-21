@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+	"faceless_void_chronosphere_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_faceless_void/faceless_void_chronosphere_lua/faceless_void_chronosphere_lua"
+		"AbilityTextureName"			"faceless_void_chronosphere"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.35"
+
+		"AbilityCooldown"				"140.0 120.0 100.0"
+		"AbilityManaCost"				"150 225 300"
+
+		"AbilityValues"
+		{
+			"radius"				"425"
+			"duration"				"4.0 4.5 5.0"
+			"vision_radius"			"475"
+		}
+	}
+}

@@ -1,0 +1,48 @@
+"DOTAAbilities"
+{
+	"earthshaker_echo_slam_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_echo_slam_lua/earthshaker_echo_slam_lua"
+		"AbilityTextureName"			"earthshaker_echo_slam"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+
+		"AbilityCooldown"				"150.0 130.0 110.0"
+		"AbilityManaCost"				"145 205 265"
+
+		"AbilityDamage"					"100 150 200"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"echo_slam_damage_range"	"600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"echo_slam_echo_search_range" "600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"echo_slam_echo_range"		"600"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"echo_slam_echo_damage"		"60 100 140"
+			}
+		}
+	}
+}

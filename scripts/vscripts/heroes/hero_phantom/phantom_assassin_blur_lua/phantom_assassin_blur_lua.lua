@@ -1,0 +1,161 @@
+phantom_assassin_blur_lua = phantom_assassin_blur_lua or class({})
+LinkLuaModifier("modifier_blur_aura", "heroes/hero_phantom/phantom_assassin_blur_lua/phantom_assassin_blur_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_blur_passive", "heroes/hero_phantom/phantom_assassin_blur_lua/phantom_assassin_blur_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_blur_active", "heroes/hero_phantom/phantom_assassin_blur_lua/phantom_assassin_blur_lua", LUA_MODIFIER_MOTION_NONE)
+
+
+function phantom_assassin_blur_lua:GetIntrinsicModifierName()
+	return "modifier_blur_aura"
+end
+
+function phantom_assassin_blur_lua:OnSpellStart()
+	if IsServer() then
+		ProjectileManager:ProjectileDodge(self:GetCaster())
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_blur_active", { duration = self:GetSpecialValueFor("duration")})
+		self:GetCaster():Purge(false, true, false, false, false)
+	end
+end
+
+---------------------------------------------------------------------------
+
+
+modifier_blur_active = class({})
+function modifier_blur_active:IsHidden()	return true end
+function modifier_blur_active:IsDebuff()	return false end
+function modifier_blur_active:IsPurgable() return false end
+
+function modifier_blur_active:GetEffectName()
+	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf"
+end
+
+function modifier_blur_active:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
+
+function modifier_blur_active:OnCreated()
+	if not self:GetAbility() then self:Destroy() return end
+	if IsServer() then
+		self:GetParent():EmitSound("Hero_PhantomAssassin.Blur")
+	end
+end
+
+function modifier_blur_active:CheckState()
+	return {
+		[MODIFIER_STATE_INVISIBLE] = true,
+		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true
+	}
+end
+
+function modifier_blur_active:GetPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+
+function modifier_blur_active:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+end
+
+function modifier_blur_active:GetModifierInvisibilityLevel()
+	return 1
+end
+
+function modifier_blur_active:OnAttackLanded(keys)
+	if keys.attacker == self:GetParent() then
+		self:Destroy()
+	end
+end
+
+---------------------------------------------------------------------------
+
+modifier_blur_aura = class({})
+
+function modifier_blur_aura:OnCreated()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.aura_radius = self.ability:GetSpecialValueFor("radius")
+end
+
+function modifier_blur_aura:GetAuraEntityReject(target)
+	if self.caster == target then
+		return false 
+	else
+	
+	if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_str11")~=nil then
+			if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_str11"):GetLevel() > 0 then 
+				return false
+			end
+		end
+	end
+
+	return true
+end
+
+function modifier_blur_aura:GetAuraRadius()
+	return self.aura_radius
+end
+
+function modifier_blur_aura:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+
+function modifier_blur_aura:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+function modifier_blur_aura:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+
+function modifier_blur_aura:GetModifierAura()
+	return "modifier_blur_passive"
+end
+
+function modifier_blur_aura:IsAura()
+	return true
+end
+
+function modifier_blur_aura:IsHidden()
+	return true
+end
+
+function modifier_blur_aura:IsPurgable()
+	return false
+end
+
+----------------------------------------------------
+
+modifier_blur_passive = class({})
+
+function modifier_blur_passive:IsHidden()
+	return false
+end
+
+function modifier_blur_passive:IsPurgable()
+	return false
+end
+
+function modifier_blur_passive:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_EVASION_CONSTANT,
+	}
+end
+
+function modifier_blur_passive:GetModifierEvasion_Constant(keys)
+	--if IsServer() and self:GetAbility() then
+		local caster = self:GetCaster()
+		local parent = self:GetParent()
+		local ability = self:GetAbility()
+		local bonus_evasion = ability:GetSpecialValueFor("bonus_evasion")
+		if self:GetCaster() == self:GetParent() then
+			return bonus_evasion
+		end
+		if self:GetCaster() ~= self:GetParent() then
+			return bonus_evasion/4
+		end
+	
+	--end
+end

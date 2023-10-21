@@ -1,0 +1,104 @@
+"DOTAAbilities"
+{
+	"shaman_hex"
+	{
+		"BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_shaman/shaman_hex/shaman_hex.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"MaxLevel"						"4"
+		"AbilityTextureName"			"shadow_shaman_voodoo"
+		
+		"AbilityCooldown"				"30"
+
+		"AbilityManaCost"				"100 200 300 400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"10 20 30 40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"count"						"10"
+			}
+		}
+	}
+	
+	
+	"hex_mine"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_shaman/shaman_hex/shaman_hex.lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"// | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"15"
+
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_techies/techies_land_mine.vpcf"
+            "particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "damage"            "10 20 30 40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "activation_radius"    "150"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_radius"     	"350"
+            }
+        }
+    }
+	
+		"kill_hex"
+			{
+			"BaseClass"                 "ability_datadriven"
+			"AbilityTextureName"      	"custom_folder/explosion"
+			"AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"	
+			
+			"OnCreated"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_kill_wolfs"
+					"Target"		"CASTER"
+				}
+			}
+			"Modifiers"
+			{
+				"modifier_kill_wolfs"
+				{
+					"IsHidden"			"1"
+					"Duration"			"15"
+					"ThinkInterval"		"15"
+					"OnIntervalThink"
+					{
+						"RunScript"
+						{
+									"ScriptFile"			"heroes/hero_skeleton/wraith_king_sceleton/wraith_king_sceleton"
+									"Function"				"boom"	
+						}
+					}
+				}
+			}	
+		}
+}

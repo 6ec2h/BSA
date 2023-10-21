@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"legion_courage"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_legion/legion_courage/legion_courage"
+		"AbilityTextureName"			"legion_commander_moment_of_courage"
+
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCooldown"				"8 6 4 2"
+
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"trigger_chance"			"25"
+			}			
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"25 30 35 40"
+			}
+		}
+	}
+}

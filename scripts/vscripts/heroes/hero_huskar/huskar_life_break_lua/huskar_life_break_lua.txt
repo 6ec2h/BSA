@@ -1,0 +1,48 @@
+"DOTAAbilities"
+{
+	"huskar_life_break_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua"
+		"AbilityTextureName"			"huskar_life_break"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"		
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"550"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"40 35 30"
+		
+		"AbilityValues"
+		{
+			"health_cost_percent"
+			{
+				"value"					"25 35 45"
+				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_3"
+				"CalculateSpellDamageTooltip" "0"
+			}
+			"health_damage"
+			{
+				"value"					"25 35 45"
+				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_3"
+				"CalculateSpellDamageTooltip" "0"
+			}
+			"charge_speed"				"1200"
+			"movespeed"
+			{
+				"value"					"25 35 45"
+				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_3"
+				"CalculateSpellDamageTooltip" "0"
+			}
+			"duraiton"					"4 5 6"
+		}
+	}
+}

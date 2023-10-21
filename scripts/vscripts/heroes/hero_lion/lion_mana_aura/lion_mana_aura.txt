@@ -1,0 +1,38 @@
+"DOTAAbilities"
+{
+	"lion_mana_aura"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lion/lion_mana_aura/lion_mana_aura"
+		"AbilityTextureName"			"lion_mana_drain"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aura_radius"				"700"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mana_loss"					"2 4 6 8" 
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"aura_mana_loss_interval"	"0.1" 
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"5 15 25 35"
+			}
+		}
+	}
+}

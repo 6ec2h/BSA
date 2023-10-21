@@ -1,0 +1,28 @@
+modifier_mg_resist_5 = class({})
+
+function modifier_mg_resist_5:IsHidden()
+	return true
+end
+
+function modifier_mg_resist_5:IsPurgable()
+	return false
+end
+
+function modifier_mg_resist_5:RemoveOnDeath()
+	return false
+end
+
+function modifier_mg_resist_5:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+function modifier_mg_resist_5:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
+	return funcs
+end
+
+function modifier_mg_resist_5:GetModifierMagicalResistanceBonus()
+	return 5
+end

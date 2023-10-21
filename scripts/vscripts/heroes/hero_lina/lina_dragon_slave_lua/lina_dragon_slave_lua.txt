@@ -1,0 +1,80 @@
+"DOTAAbilities"
+{
+	"lina_dragon_slave_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lina/lina_dragon_slave_lua/lina_dragon_slave_lua"
+		"AbilityTextureName"			"lina_dragon_slave"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"	"particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+			"particle"	"particles/units/heroes/hero_lina/lina_spell_dragon_slave_impact.vpcf"
+		}
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.45"
+		"AbilityDuration"				"0.6875"
+
+		"AbilityCooldown"				"8.0"
+		"AbilityManaCost"				"100 150 200 250"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_speed"		"1200"
+			}
+			
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_width_initial"	"275"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_width_end"		"200"
+			}
+			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_distance"			"1075"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"						"80 120 160 200"
+				"LinkedSpecialBonus"		"special_bonus_unique_lina_custom"
+			}
+		}
+	}
+	
+	"special_bonus_unique_lina_custom"
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"140"
+				"ad_linked_ability"			"lina_dragon_slave_lua"	
+			}
+		}
+	}
+}

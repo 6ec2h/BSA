@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+	"disruptor_teleport"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_disruptor/disruptor_teleport/disruptor_teleport"
+		"AbilityTextureName"			"disruptor_glimpse"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCooldown"				"60 50 40 30"
+		"AbilityManaCost"				"50 70 90 110"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"delay"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"350"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ampl"						"5 10 15 20"
+			}
+		}
+	}
+}

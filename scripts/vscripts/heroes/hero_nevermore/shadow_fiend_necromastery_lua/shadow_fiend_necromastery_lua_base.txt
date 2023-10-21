@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+
+	"shadow_fiend_necromastery_lua"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/shadow_fiend_necromastery_lua/shadow_fiend_necromastery_lua"
+		"AbilityTextureName"			"nevermore_necromastery"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"soul_damage"			"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"soul_release"			"0.2 0.4 0.6 0.8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tooltip_soul"			"80 60 40 20"
+			}
+		}
+	}
+}

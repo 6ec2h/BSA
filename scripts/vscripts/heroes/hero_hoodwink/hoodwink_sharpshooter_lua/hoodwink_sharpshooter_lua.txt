@@ -1,0 +1,39 @@
+"DOTAAbilities"
+{
+	"hoodwink_sharpshooter_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_hoodwink/hoodwink_sharpshooter_lua/hoodwink_sharpshooter_lua"
+		"AbilityTextureName"			"hoodwink_sharpshooter"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"1500"
+
+		"AbilityCooldown"				"80"
+		"AbilityManaCost"				"150"
+
+		"AbilityValues"
+		{
+			"arrow_speed"		"2200"
+			"arrow_width"		"125"
+			"arrow_range"		"1500"
+			"arrow_vision"		"350"
+			"max_charge_time"			"3"
+			"max_damage"				"800 1200 1600"
+			"recoil_distance"			"350"
+			"recoil_height"				"75"
+			"recoil_duration"			"0.4"
+			"max_slow_debuff_duration"	"6.0"
+			"misfire_time"				"3"
+			"slow_move_pct"				"50"
+			"turn_rate"					"60"
+		}
+	}
+}

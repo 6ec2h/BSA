@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+	"antimage_spell_shield_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_antimage/antimage_spell_shield_lua/antimage_spell_shield_lua"
+		"AbilityTextureName"			"antimage_spell_shield"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"400"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_resist_pct"		"15 25 35 45"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_resist_pct_enemy" "-4 -8 -12 -16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+		}
+	}
+}

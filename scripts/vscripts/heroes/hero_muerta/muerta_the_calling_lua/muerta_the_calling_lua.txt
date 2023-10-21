@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+	"muerta_the_calling_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_muerta/muerta_the_calling_lua/muerta_the_calling_lua"
+		"AbilityTextureName"			"muerta_the_calling"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0.1"
+
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"150 175 200 225"
+
+		"AbilityValues"
+		{
+			"spell_ampl"					
+				{
+				"value"					"10 15 20 25"
+				"LinkedSpecialBonus"	"npc_dota_hero_muerta_2"
+				}
+			"duration"						"5"
+			"radius"						"400"
+			"aura_movespeed_slow"			"-30"
+			"aura_attackspeed_slow"			"-10 -20 -30 -40"
+		}
+	}
+}

@@ -1,0 +1,38 @@
+"DOTAAbilities"
+{
+	"axe_counter_helix_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_counter_helix_lua/axe_counter_helix_lua"
+		"AbilityTextureName"			"axe_counter_helix"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"275"
+
+		"AbilityCooldown"				"1.0 0.8 0.6 0.4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"275"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"trigger_chance"			"10"
+			}			
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50 70 90 110"
+			}
+		}
+	}
+}

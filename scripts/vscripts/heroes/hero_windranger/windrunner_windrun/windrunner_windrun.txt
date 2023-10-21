@@ -1,0 +1,25 @@
+"DOTAAbilities"
+{
+	  "windrunner_windrun_lua"
+    {
+     	"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_windranger/windrunner_windrun/windrunner_windrun"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName" 			"windrunner_windrun"
+        "MaxLevel"                      "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"				"FIELD_INTEGER"
+                "speed"        			"30 60 90 120"
+            }
+			"02"
+            {
+                "var_type"				"FIELD_INTEGER"
+                "eva"            		"15 20 25 30"
+            }
+        }
+	}
+}

@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+"tinker_summon"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "heroes/hero_tinker/tinker_summon/tinker_summon.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"MaxLevel"						"4"
+		"AbilityTextureName"			"tinker_march_of_the_machines"
+		
+		"AbilityCooldown"				"60 50 40 30"
+
+		"AbilityManaCost"				"100 120 140 160"
+		
+		"AbilityCastRange"				"500"
+		
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"10"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"count"						"2"
+			}
+		}	
+	}	
+}

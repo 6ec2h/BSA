@@ -1,0 +1,50 @@
+"DOTAAbilities"
+{
+	"gyrocopter_flak_cannon_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyrocopter/gyrocopter_flak_cannon_lua/gyrocopter_flak_cannon_lua"
+		"AbilityTextureName"			"gyrocopter_flak_cannon"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Gyrocopter.FlackCannon"
+
+		"AbilityCastPoint"				"0 0 0 0"
+
+		"AbilityCooldown"				"18"
+		
+		"AbilityManaCost"				"50 50 50 50"
+		
+		"AbilityDuration"				"10"
+						
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"1250"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_attacks"					"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"projectile_speed"				"800"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"fire_rate"						"0.9"
+			}
+
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+}

@@ -1,0 +1,34 @@
+"DOTAAbilities"
+{
+	"marci_dispose_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_marci/marci_dispose_lua/marci_dispose_lua"
+		"AbilityTextureName"			"marci_grapple"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"325"
+
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"90"
+
+		"AbilityValues"
+		{
+			"radius" 					"325"
+			"stun_duration"				"1.2 1.5 1.8 2.1"
+			"impact_damage"
+			{
+				"value"					"70 140 210 280"
+				"LinkedSpecialBonus"	"npc_dota_hero_marci_1"
+			}		
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2_END"
+	}
+}
