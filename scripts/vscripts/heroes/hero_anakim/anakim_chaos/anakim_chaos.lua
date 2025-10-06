@@ -6,6 +6,11 @@ function anakim_chaos:GetAOERadius()
 	return self:GetSpecialValueFor( "radius" )
 end
 
+function anakim_chaos:Precache( context )
+	PrecacheResource( "particle", "particles/anakim/anakim_chaos.vpcf", context )
+end
+
+
 function anakim_chaos:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
@@ -24,7 +29,6 @@ function anakim_chaos:PlayEffects( point )
 	ParticleManager:SetParticleControl( effect_cast, 0, point )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, 0, 0 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-	-- EmitSoundOnLocationWithCaster( point, "Hero_Dazzle.Weave", self:GetCaster() )
 	self:GetCaster():EmitSound("DOTA_Item.VeilofDiscord.Activate")
 end
 
@@ -38,43 +42,19 @@ function modifier_anakim_chaos:IsPurgable() return false end
 
 function modifier_anakim_chaos:OnCreated()
 	if not IsServer() then return end
-	self.target = nil
-	allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
-	if #allies > 1 then
-		self.target = allies[RandomInt(1, #allies)]
-		while self:GetParent() == self.target do
-			self.target = allies[RandomInt(1, #allies)]
-		end
-		self:GetParent():SetForceAttackTargetAlly(self.target)
-	end
-	self.spell_amp = self:GetAbility():GetSpecialValueFor("spell_amp")
-	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal2")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.spell_amp = self.spell_amp + ability:GetSpecialValueFor("value")
-	end
-	
-	self:StartIntervalThink(0.1)
-end
 
-function modifier_anakim_chaos:OnIntervalThink()
-	if self.target and not self.target:IsAlive() then
-		self:GetParent():SetForceAttackTargetAlly( nil )
+	self.spell_amp = self:GetAbility():GetSpecialValueFor("spell_amp")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal2")
+	if ability ~= nil and ability:GetLevel() > 0 then 
+		self.spell_amp = self.spell_amp + 6--ability:GetSpecialValueFor("value")
 	end
 end
 
 function modifier_anakim_chaos:CheckState()
 	local state = {
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-		[MODIFIER_STATE_SPECIALLY_DENIABLE] = true,
+		[MODIFIER_STATE_BLIND] = true,
 	}
 	return state
-end
-
-function modifier_anakim_chaos:OnRemoved()
-	if IsServer() then
-		self:GetParent():SetForceAttackTargetAlly( nil )
-	end
 end
 
 function modifier_anakim_chaos:DeclareFunctions()

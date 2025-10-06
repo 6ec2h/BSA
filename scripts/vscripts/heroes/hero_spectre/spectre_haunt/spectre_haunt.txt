@@ -5,7 +5,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_spectre/spectre_haunt/spectre_haunt"
 		"AbilityTextureName"			"spectre_haunt"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"3"
 		"LinkedAbility"					"spectre_reality_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
@@ -15,34 +15,14 @@
 		"AbilityCooldown"				"90 60 30"
 		"AbilityManaCost"				"100"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"											"FIELD_FLOAT"
-				"illusion_duration"									"60.0"
-			}
-			"02"
-			{
-				"var_type"											"FIELD_FLOAT"
-				"illusion_outgoing_damage"							"-40 -20 0"		 
-			}
-			"03"
-			{	
-				"var_type"											"FIELD_FLOAT"
-				"illusion_outgoing_tooltip"							"60 80 100"
-			}
-			"04"
-			{	
-				"var_type"											"FIELD_FLOAT"
-				"illusion_incoming_damage"							"50.0"
-			}
-			"05"
-			{
-				"var_type"											"FIELD_FLOAT"
-				"illusion_incoming_damage_total_tooltip"			"150.0"
-			}
-		}
+		"AbilityValues"
+	{
+		"illusion_duration"	"60.0"
+			"illusion_outgoing_damage"	"-40 -20 0"
+			"illusion_outgoing_tooltip"	"60 80 100"
+			"illusion_incoming_damage"	"50.0"
+			"illusion_incoming_damage_total_tooltip"	"150.0"
+	}
 	}
 	
 	"spectre_reality_datadriven"

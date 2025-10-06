@@ -4,7 +4,14 @@ npc_dota_hero_queenofpain_spell3 = class({})
 
 function npc_dota_hero_queenofpain_spell3:OnSpellStart()
     local target = self:GetCursorTarget()
-    target:AddNewModifier(self:GetCaster(), self, "modifier_npc_dota_hero_queenofpain_spell3", {duration = self:GetSpecialValueFor("duration")})
+	
+	local duration = self:GetSpecialValueFor("duration")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_qop_tal_5")
+	if ability ~= nil and ability:GetLevel() > 0 then 
+		duration = duration + 1
+	end
+	
+    target:AddNewModifier(self:GetCaster(), self, "modifier_npc_dota_hero_queenofpain_spell3", {duration = duration})
     local effect_cast = ParticleManager:CreateParticle( "particles/items4_fx/bull_whip_enemy.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:SetParticleControlEnt(effect_cast, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(effect_cast, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -34,11 +41,21 @@ function modifier_npc_dota_hero_queenofpain_spell3:IsPurgable()
 end
 
 function modifier_npc_dota_hero_queenofpain_spell3:OnCreated()
-    self.damage = self:GetAbility():GetSpecialValueFor("burn_damage")
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_qop_tal_4")
+
+	
+	self.duration = self:GetAbility():GetSpecialValueFor("duration")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_qop_tal_5")
+	if ability ~= nil and ability:GetLevel() > 0 then 
+		self.duration = self.duration + 1
+	end
+	
+	if not IsServer() then return end
+    self.damage = self:GetAbility():GetSpecialValueFor("burn_damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_qop_tal_4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self.damage + 60
 	end
+	
     self:StartIntervalThink(1)
 end
 
@@ -47,7 +64,7 @@ function modifier_npc_dota_hero_queenofpain_spell3:OnIntervalThink()
 	local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("radius_flashback"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0,false)
     for _,unit in ipairs(units) do
         if unit ~= self:GetParent() and not unit:HasModifier("modifier_npc_dota_hero_queenofpain_spell3") then
-            unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_npc_dota_hero_queenofpain_spell3", {duration = self:GetAbility():GetSpecialValueFor("duration")})
+            unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_npc_dota_hero_queenofpain_spell3", {duration = self.duration})
             local effect_cast = ParticleManager:CreateParticle( "particles/econ/items/doom/doom_2021_immortal_weapon/doom_2021_immortal_weapon_infernalblade_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit )
             ParticleManager:ReleaseParticleIndex( effect_cast )
             EmitSoundOn( "Hero_DoomBringer.InfernalBlade.Target", unit )

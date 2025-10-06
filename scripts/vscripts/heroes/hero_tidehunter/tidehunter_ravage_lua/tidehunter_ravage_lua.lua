@@ -4,7 +4,7 @@ LinkLuaModifier( "modifier_generic_ring_lua", "heroes/generic/modifier_generic_r
 LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 
 function tidehunter_ravage_lua:GetCooldown( level )
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_tidehunter_3")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_tidehunter_3")
 	if talent and talent:GetLevel() > 0 then
 		return self.BaseClass.GetCooldown( self, level ) / 2
 	end

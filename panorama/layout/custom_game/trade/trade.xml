@@ -1,0 +1,153 @@
+<!-- xml reconstructed by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/trade/trade.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/trade/trade.js" />
+	</scripts>
+	<snippets>
+		<snippet name="items_for_trade">
+			<Panel class="trade_panel_element">
+				<Panel id="trade_panel_element_image" />
+				<Panel id="trade_panel_element_image_back" hittest="false" />
+				<Label id="trade_panel_element_item_name" text="item_name" />
+				<Panel id="name_data">
+					<DOTAUserName id="trade_panel_element_item_seller" steamid="" />
+					<Label id="name_data_label" text="" />
+				</Panel>
+				<Panel id="trade_panel_element_item_price">
+					<Panel id="trade_panel_element_item_price_image" />
+					<Label class="trade_panel_element_item_price_count" id="trade_panel_element_item_price_count" text="300" />
+				</Panel>
+				<Panel class="trade_panel_element_item_loading" id="trade_panel_element_item_loading" />
+				<Panel id="trade_panel_element_item_price_button_buy">
+					<Label class="trade_button_label" text="#buy" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="sell_snippet">
+			<Panel class="sell_item_panel" id="sell_item_panel">
+				<Label id="sell_item_panel_name" class="sell_item_panel_name" html="true" text="2222" />
+				<Image id="sell_item_panel_image" class="sell_item_panel_image" />
+				<Image class="sell_item_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
+				<Label id="sell_item_panel_base" class="sell_item_panel_base" html="true" text="2222" />
+				<Label id="SourceValueLine" />
+				<Panel id="sell_item_panel_bonus" class="sell_item_panel_bonus" />
+			</Panel>
+		</snippet>
+		<snippet name="sell_item_desc">
+			<Panel class="sell_item_panel_desc">
+				<TextEntry id="buy_text_input" ontextentrychange="InputCount()" text="1" textmode="numeric" />
+				<Label id="sell_item_panel_desc_button_label" html="true" text="#input_sell" />
+				<Panel id="sell_item_panel_price">
+					<Image id="sell_item_panel_price_image" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+					<Label id="sell_item_panel_price_label" html="true" text=" = 1" />
+				</Panel>
+				<Panel id="sell_item_panel_desc_button">
+					<Label id="sell_item_panel_desc_button_label" html="true" text="#sell" />
+				</Panel>
+				<Panel id="sell_item_panel_desc_loading" />
+			</Panel>
+		</snippet>
+		<snippet name="trade_panel_element_items_orders_sold">
+			<Panel>
+				<Panel id="trade_panel_element_items_orders_sold" class="trade_panel_element_items_orders_sold">
+					<Label id="" class="" text="#ui_trade_panel_element_items_orders_sold_label" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="trade_panel_element_items_orders_expired">
+			<Panel>
+				<Panel id="trade_panel_element_items_orders_expired" class="trade_panel_element_items_orders_expired">
+					<Label id="trade_panel_element_items_orders_expired_label" class="trade_panel_element_items_orders_expired_label" text="#ui_trade_panel_element_items_orders_expired_label" />
+					<Panel id="trade_panel_element_items_orders_expired_btn" class="trade_panel_element_items_orders_expired_btn">
+						<Label id="trade_panel_element_items_orders_expired_btn_label" class="trade_panel_element_items_orders_expired_btn_label" text="#ui_trade_panel_element_items_orders_expired_btn_label" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="trade_panel_element_items_orders_active">
+			<Panel>
+				<Panel id="trade_panel_element_items_orders_active" class="trade_panel_element_items_orders_active">
+					<Label id="trade_panel_element_items_orders_active_label" class="trade_panel_element_items_orders_active_label" text="#ui_trade_panel_element_items_orders_active_label" />
+					<Panel id="trade_panel_element_items_orders_active_btn" class="trade_panel_element_items_orders_active_btn">
+						<Label id="trade_panel_element_items_orders_active_btn_label" class="trade_panel_element_items_orders_active_btn_label" text="#ui_trade_panel_element_items_orders_active_btn_label" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="items_orders">
+			<Panel class="trade_panel_element">
+				<Panel id="trade_panel_element_image" />
+				<Panel id="trade_panel_element_image_back" hittest="false" />
+				<Label id="trade_panel_element_item_name" text="item_name" />
+				<Panel id="name_data">
+					<DOTAUserName id="trade_panel_element_item_seller" steamid="" />
+					<Label id="name_data_label" text="" />
+				</Panel>
+				<Panel id="trade_panel_element_item_price">
+					<Panel id="trade_panel_element_item_price_image" />
+					<Label class="trade_panel_element_item_price_count" id="trade_panel_element_item_price_count" text="300" />
+				</Panel>
+				<Panel class="trade_panel_element_item_loading" id="trade_panel_element_item_loading" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="trade_main" hittest="false">
+		<Panel id="trade_panel_main">
+			<Panel id="trade_panel_start">
+				<Panel id="trade_panel_close" onmouseactivate="close()" />
+				<Panel class="trade_buttons">
+					<Panel class="trade_button_start" onmouseactivate="buy_open()">
+						<Label id="trade_button_label" class="trade_button_label" text="#buy" />
+					</Panel>
+					<Panel class="trade_button_start" onmouseactivate="sell_open()">
+						<Label id="trade_button_label" class="trade_button_label" text="#sell" />
+					</Panel>
+					<Panel class="trade_button_start" onmouseactivate="order_open()">
+						<Label id="trade_button_label" class="trade_button_label" text="#orders" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="trade_panel_buy">
+				<Panel id="trade_panel_close" onmouseactivate="close()" />
+				<Panel id="trade_panel_back" onmouseactivate="open_back()" />
+				<Panel id="trade_panel_buy_container">
+					<Panel id="trade_panel_sort" />
+					<Panel id="trade_panel_content">
+						<Panel id="trade_panel_content_loading" />
+					</Panel>
+					<Panel id="trade_panel_filter">
+						<Panel id="trade_panel_filter_sets" />
+						<Panel id="trade_panel_filter_bonuses" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="trade_panel_sell">
+				<Panel id="trade_panel_close" onmouseactivate="close()" />
+				<Panel id="trade_panel_back" onmouseactivate="open_back()" />
+				<Panel id="trade_panel_sell_container">
+					<Panel id="trade_panel_content_sell">
+						<Panel id="trade_panel_content_sell_left" />
+						<Panel id="trade_panel_content_sell_center" />
+						<Panel id="trade_panel_content_sell_right">
+							<Label class="trade_button_label" html="true" text="#sell_desc" />
+						</Panel>
+					</Panel>
+					<Panel id="trade_panel_content_inventory" />
+				</Panel>
+			</Panel>
+			<Panel id="trade_panel_order">
+				<Panel id="trade_panel_close" onmouseactivate="close()" />
+				<Panel id="trade_panel_back" onmouseactivate="open_back()" />
+				<Panel id="trade_panel_order_container" />
+				<Panel id="trade_panel_order_state" class="trade_panel_order_state">
+					<Label id="trade_panel_order_sold_label" class="trade_panel_order_sold_label" text="#ui_trade_panel_order_sold_label" />
+					<Label id="trade_panel_order_active_label" class="" text="#ui_trade_panel_order_active_label" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

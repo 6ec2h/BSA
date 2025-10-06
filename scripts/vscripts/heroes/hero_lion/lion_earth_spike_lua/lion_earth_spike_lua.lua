@@ -19,7 +19,7 @@ function lion_earth_spike_lua:OnSpellStart()
 	local projectile_radius = self:GetSpecialValueFor( "width" )
 	local projectile_speed = self:GetSpecialValueFor( "speed" )
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int6")	
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lion_int6")	
 	if abil ~= nil and abil:GetLevel() > 0 then 
 	local left_QAngle = QAngle(0, 30, 0)
 	local right_QAngle = QAngle(0, -30, 0)
@@ -109,16 +109,28 @@ function lion_earth_spike_lua:OnProjectileHit( target, location )
 	if target:TriggerSpellAbsorb( self ) then return end
 	local caster = self:GetCaster()
 	local stun = self:GetSpecialValueFor( "duration" )
-	local damage = self:GetSpecialValueFor( "damage" )
+	
 	
 	local fleshHeapStackModifier = "modifier_lion_soul_collector"
     local currentStacks = caster:GetModifierStackCount(fleshHeapStackModifier, caster)
 	
+	if not IsServer() then return end 
+	local damage = self:GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
+	
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lion_1")	
+	if abil ~= nil and abil:GetLevel() > 0 then 
+		damage = damage + 120
+	end
+	
 	local ability = self:GetCaster():FindAbilityByName( "lion_soul_collector" )
-		if ability~=nil and ability:GetLevel()>=1 then
-			stack_damage = ability:GetSpecialValueFor( "stack_bonus_dmg" )
-			damage = damage + (currentStacks * stack_damage)
+	if ability~=nil and ability:GetLevel()>=1 then
+		stack_damage = ability:GetSpecialValueFor( "stack_bonus_dmg" )
+		local tal = self:GetCaster():FindAbilityByName( "special_bonus_lion_4" )
+		if tal~=nil and tal:GetLevel()>=1 then
+			stack_damage = stack_damage + 0.2
 		end
+		damage = damage + (currentStacks * stack_damage)
+	end
 
 	
 	local damageTable = {

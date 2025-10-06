@@ -8,10 +8,9 @@ function dragon_knight_elder_dragon_form_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local duration = self:GetSpecialValueFor("duration")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_dragon_knight_agi11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_dragon_knight_agi11"):GetLevel() > 0 then 
-			duration = 120
-		end
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_dragon_knight_3")
+	if talent and talent:GetLevel() > 0 then 
+		duration = duration + 60
 	end
 
 	caster:AddNewModifier(

@@ -97,7 +97,7 @@ end
 function modifier_templar_assassin_meld_lua_debuff:OnCreated()
 	self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_templar_assassin_tal1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_templar_assassin_tal1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.bonus_armor = self.bonus_armor - 6
 	end

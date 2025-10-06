@@ -98,7 +98,6 @@ end
 
 function modifier_boss_arc_spark_wraith_thinker:OnDestroy()
 	if not IsServer() then return end
-	
 	self:GetParent():StopSound("Hero_ArcWarden.SparkWraith.Loop")
 end
 

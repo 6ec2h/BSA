@@ -46,7 +46,7 @@ function brewmaster_cinder_brew_lua:OnProjectileHit(hTarget, vLocation)
     local duration = self:GetSpecialValueFor('duration')
     local total_damage = self:GetSpecialValueFor('total_damage')
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_brewmaster_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_brewmaster_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		total_damage = total_damage + 120
 	end

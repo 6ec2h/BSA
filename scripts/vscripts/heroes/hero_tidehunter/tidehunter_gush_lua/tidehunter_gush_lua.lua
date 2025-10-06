@@ -2,7 +2,7 @@ tidehunter_gush_lua = class({})
 LinkLuaModifier( "modifier_tidehunter_gush_lua", "heroes/hero_tidehunter/tidehunter_gush_lua/tidehunter_gush_lua", LUA_MODIFIER_MOTION_NONE )
 
 function tidehunter_gush_lua:GetBehavior()
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_tidehunter_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_tidehunter_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		return DOTA_ABILITY_BEHAVIOR_POINT
 	end
@@ -18,7 +18,7 @@ function tidehunter_gush_lua:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local point = self:GetCursorPosition()
 
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_tidehunter_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_tidehunter_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		if target then point = target:GetOrigin() end
 

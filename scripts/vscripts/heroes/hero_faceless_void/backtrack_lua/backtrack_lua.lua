@@ -40,7 +40,7 @@ function modifier_backtrack_lua:GetModifierIncomingDamage_Percentage()
 	local caster = self:GetCaster()
 	max_chance = self:GetAbility():GetSpecialValueFor( "chance" )
 	
-	local talent = caster:FindAbilityByName("npc_dota_hero_faceless_void_2")
+	local talent = caster:FindAbilityByName("special_bonus_faceless_void_2")
 	if talent and talent:GetLevel() > 0 then
 		max_chance = max_chance + 10
 	end

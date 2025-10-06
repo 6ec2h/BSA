@@ -24,5 +24,5 @@ function modifier_ms_30:DeclareFunctions()
 end
 
 function modifier_ms_30:GetModifierMoveSpeedBonus_Constant()
-	return 30
+	return 15
 end

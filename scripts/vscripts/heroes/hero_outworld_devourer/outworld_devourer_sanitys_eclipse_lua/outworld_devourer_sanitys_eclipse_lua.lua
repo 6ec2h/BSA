@@ -10,14 +10,16 @@ function outworld_devourer_sanitys_eclipse_lua:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	local radius = self:GetSpecialValueFor( "radius" )
-	local damage = self:GetSpecialValueFor( "damage" )
+
 	local mana_mult = self:GetSpecialValueFor( "mana_mult" )
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_outworld_devourer_tal4")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal4")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		mana_mult = self:GetSpecialValueFor( "mana_mult" ) + 0.1
 	end
-
+	if not IsServer() then return end
+	
+	local damage = self:GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
 	local try_damage = caster:GetMana() * mana_mult + damage
 	local damageTable = {
 		attacker = caster,
@@ -25,7 +27,7 @@ function outworld_devourer_sanitys_eclipse_lua:OnSpellStart()
 		ability = self, --Optional.
 	}
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, 0, false )
 	for _,enemy in pairs(enemies) do
 		local astral = enemy:HasModifier( "modifier_outworld_devourer_astral_imprisonment_lua" )
 		if enemy:IsOutOfGame() == astral then

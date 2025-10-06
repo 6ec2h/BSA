@@ -8,14 +8,16 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"soul_lion"
 		"MaxLevel"						"4"
+		"AbilityCastRange"				"700"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"radius"					"700"
+			"stack_bonus_dmg"					
 			{
-				"var_type"							"FIELD_FLOAT"
-				"stack_bonus_dmg"					"1.0 1.5 2.0 2.5"
-			}
+				"value"					"0.2 0.4 0.6 0.8"
+				"LinkedSpecialBonus"	"special_bonus_lion_4"
+			}		
 		}
 	}
 }

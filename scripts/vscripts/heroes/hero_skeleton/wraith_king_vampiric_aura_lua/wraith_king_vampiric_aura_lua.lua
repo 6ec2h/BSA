@@ -24,7 +24,7 @@ function modifier_wraith_king_vampiric_aura_lua:GetModifierAura()
 end
 
 function modifier_wraith_king_vampiric_aura_lua:GetAuraRadius()
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_skeleton_king_tal3")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_skeleton_king_tal3")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		return self.aura_radius
 	else

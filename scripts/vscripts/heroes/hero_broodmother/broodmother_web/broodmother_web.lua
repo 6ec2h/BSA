@@ -14,7 +14,7 @@ function broodmother_web:OnSpellStart(scream_damage_pct, source_unit, is_talent)
 		local duration = self:GetSpecialValueFor("duration")
 		local radius = self:GetSpecialValueFor("radius")
 		
-		local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_broodmother_1")
+		local ability = self:GetCaster():FindAbilityByName("special_bonus_broodmother_1")
 		if ability ~= nil and ability:GetLevel() > 0 then 
 			damage = damage + 175
 		end

@@ -16,23 +16,11 @@
 
 		"AbilityCooldown"				"1.0 0.8 0.6 0.4"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"275"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trigger_chance"			"10"
-			}			
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 70 90 110"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"275"
+			"trigger_chance"	"10"			
+			"damage"	"50 70 90 110"
+	}
 	}
 }

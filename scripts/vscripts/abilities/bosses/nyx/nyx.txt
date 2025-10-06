@@ -21,13 +21,9 @@
 
 		"AbilityManaCost"				"1000"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
 				"damage"						"25"
-			}
 		}
 	}
 	
@@ -51,43 +47,40 @@
 
 		"AbilityManaCost"				"500"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"width"					"125"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
 				"duration"				"1.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"length"				"1200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"speed"					"600"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
 				"air_time"				"0.5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"air_height"			"350"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"damage"				"15"
-			}
+		}
+	}	
+	
+	
+"boss_nyx_assassin_dispersion"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/nyx/boss_nyx_assassin_dispersion"
+		"AbilityTextureName"			"boss_nyx_assassin_dispersion"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"18"
+		
+		"AbilityValues"
+		{
+			"radius"					"600"
+			"damage"					"150"
+			"duration"					"6"
+			"speed"						"500"
 		}
 	}	
 }

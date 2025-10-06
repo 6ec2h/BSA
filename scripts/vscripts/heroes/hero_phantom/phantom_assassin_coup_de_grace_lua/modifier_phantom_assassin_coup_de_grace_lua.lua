@@ -44,14 +44,14 @@ end
 function modifier_phantom_assassin_coup_de_grace_lua:GetModifierPreAttack_CriticalStrike( params )
 	if IsServer() and (not self:GetParent():PassivesDisabled()) then
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_agi10")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_agi10"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_agi10")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_agi10"):GetLevel() > 0 then 
 			self.crit_chance = self:GetAbility():GetSpecialValueFor( "crit_chance" ) + 10
 		end
 	end
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_agi9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_agi9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_agi9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_agi9"):GetLevel() > 0 then 
 			self.crit_bonus = self:GetAbility():GetSpecialValueFor( "crit_bonus" ) + 200
 		end
 	end

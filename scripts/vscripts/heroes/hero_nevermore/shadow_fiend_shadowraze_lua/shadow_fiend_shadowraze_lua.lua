@@ -66,7 +66,7 @@ function shadowraze.OnSpellStart(self)
     local stack_duration = self:GetSpecialValueFor("duration")
 
 
-    local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_nevermore_int6")
+    local talent = self:GetCaster():FindAbilityByName("special_bonus_nevermore_int6")
     if talent ~= nil and talent:GetLevel() > 0 then
         local modifier = caster:FindModifierByNameAndCaster("modifier_shadow_fiend_necromastery_lua", caster)
         if modifier ~= nil then
@@ -74,7 +74,7 @@ function shadowraze.OnSpellStart(self)
         end
     end
 
-    local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_nevermore_int10")
+    local talent = self:GetCaster():FindAbilityByName("special_bonus_nevermore_int10")
     if talent ~= nil and talent:GetLevel() > 0 then
         if self:GetName() == "shadow_fiend_shadowraze_a_lua" or self:GetName() == "shadow_fiend_shadowraze_b_lua" or self:GetName() == "shadow_fiend_shadowraze_c_lua" then
             local target_pos1 = self:GetCaster():GetOrigin() + front * 200

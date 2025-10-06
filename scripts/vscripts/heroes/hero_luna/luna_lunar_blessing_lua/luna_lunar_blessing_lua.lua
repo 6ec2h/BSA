@@ -99,7 +99,7 @@ function modifier_luna_lunar_blessing_lua_effect:OnIntervalThink()
 		end
 	 
 	bonus = 0
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_luna_str10")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_luna_str10")
 	if talent ~= nil and talent:GetLevel() > 0 then 
 		bonus = 18
 	end

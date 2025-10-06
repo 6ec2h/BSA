@@ -18,7 +18,7 @@ function venomancer_poison_nova_lua:GetCastRange( pos, target )
 end
 
 function venomancer_poison_nova_lua:GetCooldown( level )
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_venomancer_4")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_venomancer_4")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		return self.BaseClass.GetCooldown( self, level ) - 40
 	end

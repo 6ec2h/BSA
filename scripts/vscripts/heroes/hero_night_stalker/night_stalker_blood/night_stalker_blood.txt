@@ -11,28 +11,12 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"night"
 		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"2.5 5.0 7.5 10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"heal"						"2.5 5.0 7.5 10"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tool"						"25 50 75 100"
-			}
-		}
+		"AbilityValues"
+	{
+		"duration"	"3.0"
+			"damage"	"2.5 5.0 7.5 10"
+			"heal"	"2.5 5.0 7.5 10"
+			"tool"	"25 50 75 100"
+	}
 	}
 }

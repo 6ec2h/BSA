@@ -24,5 +24,5 @@ function modifier_damage_40:DeclareFunctions()
 end
 
 function modifier_damage_40:GetModifierPreAttack_BonusDamage()
-	return 40
+	return 20
 end

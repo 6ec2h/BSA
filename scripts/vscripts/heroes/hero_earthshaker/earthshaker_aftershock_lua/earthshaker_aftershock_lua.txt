@@ -15,22 +15,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		"AbilityCastRange"				"300"
-		"AbilityDuration"				"0.6 0.9 1.2 1.5"
+		"AbilityDuration"				"0.3 0.4 0.5 0.6"
 
-		"AbilityDamage"					"75 100 125 150"
+		"AbilityDamage"					"80 120 160 200"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"aftershock_range"			"300"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tooltip_duration"			"0.6 0.9 1.2 1.5"
-			}
+			"aftershock_range"			"300"
+			"tooltip_duration"			"0.3 0.4 0.5 0.6"
 		}
 	}
 }

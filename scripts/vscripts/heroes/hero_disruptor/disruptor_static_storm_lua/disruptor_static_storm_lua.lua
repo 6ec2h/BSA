@@ -3,10 +3,9 @@ LinkLuaModifier( "modifier_disruptor_static_storm_lua", "heroes/hero_disruptor/d
 
 
 function disruptor_static_storm_lua:GetCooldown( level )
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi3")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi3"):GetLevel() > 0 then 
-			return self.BaseClass.GetCooldown( self, level ) - 20
-		end
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi3")
+	if talent and talent:GetLevel() > 0 then 
+		return self.BaseClass.GetCooldown( self, level ) - 20
 	end
 	return self.BaseClass.GetCooldown( self, level )
 end
@@ -60,35 +59,23 @@ function modifier_disruptor_static_storm_lua:IsPurgable()
 	return true
 end
 
---------------------------------------------------------------------------------
--- Initializations
 function modifier_disruptor_static_storm_lua:OnCreated( kv )
-
 	if not IsServer() then return end
-
-	-- check if it is thinker or aura targets
 	self.owner = kv.isProvidedByAura~=1
 	if not self.owner then return end
 
-	-- references
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	self.pulses = self:GetAbility():GetSpecialValueFor( "pulses" )
 	local duration = self:GetAbility():GetSpecialValueFor( "duration" )
-	local damage = self:GetAbility():GetSpecialValueFor( "damage_max" )
+	local damage = self:GetAbility():GetSpecialValueFor( "damage_max" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	
-	-- calculate interval
 	local interval = duration/self.pulses
-
-	-- calculate damage
 	local max_tick_damage = damage*interval
 	self.tick_damage = max_tick_damage/self.pulses
 	self.pulse = 0
 
-	-- precache damage
 	self.damageTable = {
-		-- victim = target,
 		attacker = self:GetCaster(),
-		-- damage = 500,
 		damage_type = self:GetAbility():GetAbilityDamageType(),
 		ability = self:GetAbility(), --Optional.
 	}

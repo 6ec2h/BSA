@@ -50,8 +50,8 @@ function modifier_omniknight_degen_aura_lua_effect:GetModifierAttackSpeedBonus_C
 end
 
 function modifier_omniknight_degen_aura_lua_effect:GetModifierDamageOutgoing_Percentage()
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int3")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int3"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int3")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int3"):GetLevel() > 0 then
 			return -5
 		end
 	end

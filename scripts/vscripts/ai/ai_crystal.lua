@@ -8,7 +8,7 @@ function Spawn( entityKeyValues )
 	end
 
 	Nova = thisEntity:FindAbilityByName( "crystal_maiden_crystal_nova" )
-	Field = thisEntity:FindAbilityByName( "crystal_maiden_freezing_field_lua" )
+	Field = thisEntity:FindAbilityByName( "creep_freezing_field" )
 
 	thisEntity:SetContextThink( "CrystalThink", CrystalThink, 0.5 )
 end
@@ -61,7 +61,7 @@ function CrystalThink()
 				hApproachTarget = unit
 			end
 		end
-		if thisEntity:GetTeamNumber() == unit:GetTeamNumber() and unit:IsAlive() and unit:GetHealthPercent() < 20 then 
+		if thisEntity:GetTeamNumber() == unit:GetTeamNumber() and unit:IsAlive() and unit:GetHealthPercent() < 25 then 
 			if thisEntity.Glimmer and thisEntity.Glimmer:IsFullyCastable() then
 				return UseGlimmer(unit)	
 			end	

@@ -38,9 +38,10 @@ end
 
 function muerta_dead_shot_lua:OnProjectileHitHandle( target, location, handle )
 	if target then
-		local damage = self:GetSpecialValueFor( "damage" )
+	if not IsServer() then return end
+		local damage = self:GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
 		
-		local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_muerta_1")
+		local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_1")
 		if ability ~= nil and ability:GetLevel() > 0 then 
 			damage = damage + 100
 		end

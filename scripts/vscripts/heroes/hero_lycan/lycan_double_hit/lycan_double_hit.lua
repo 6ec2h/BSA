@@ -78,7 +78,7 @@ function modifier_lycan_double_hit_haste:IsStunDebuff() return false end
 function modifier_lycan_double_hit_haste:RemoveOnDeath() return true end
 
 function modifier_lycan_double_hit_haste:OnCreated()
-	local current_speed = self:GetParent():GetIncreasedAttackSpeed()
+	local current_speed = self:GetParent():GetIncreasedAttackSpeed(true)
 	current_speed = current_speed * 2
 
 	local max_hits = 2
@@ -110,7 +110,7 @@ end
 function modifier_lycan_double_hit_haste:OnAttackLanded(keys)
 	if self:GetParent() == keys.attacker then
 		if self:GetStackCount() == 2 then
-			local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lycan_tal3")
+			local abil = self:GetCaster():FindAbilityByName("special_bonus_lycan_tal3")
 			if abil ~= nil and abil:GetLevel() > 0 then 
 				local damage = keys.original_damage
 				DoCleaveAttack( self:GetParent(), keys.target, self:GetAbility(), damage, 150, 360, 360, 'particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf')

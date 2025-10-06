@@ -77,7 +77,7 @@ function modifier_mars_atrophy_aura_lua_scepter:IsAura()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
-	local abil =  self:GetCaster():FindAbilityByName("npc_dota_hero_mars_agi8")
+	local abil =  self:GetCaster():FindAbilityByName("special_bonus_mars_agi8")
 		if abil == nil then return false end
 
 	-- only for original owner

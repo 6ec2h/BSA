@@ -49,8 +49,8 @@ if not IsServer() then return end
 
 	local damage = self:GetAbility():GetSpecialValueFor("damage_str")
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal1") ~= nil then 
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal1"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal1") ~= nil then 
+		if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal1"):GetLevel() > 0 then 
 			damage = damage + 10
 		end
 	end
@@ -60,8 +60,8 @@ if not IsServer() then return end
 	
 	local regen = self:GetAbility():GetSpecialValueFor("regen")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal2") ~= nil then 
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal2"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal2") ~= nil then 
+		if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal2"):GetLevel() > 0 then 
 			regen = regen + 1.5
 		end
 	end

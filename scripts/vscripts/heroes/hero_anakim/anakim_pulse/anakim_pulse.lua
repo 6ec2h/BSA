@@ -2,6 +2,11 @@ LinkLuaModifier( "modifier_shadow_fiend_anakim_pulse_lua", "heroes/hero_anakim/a
 
 anakim_pulse = class({})
 
+function anakim_pulse:Precache( context )
+	PrecacheResource( "particle", "particles/anakim/anakim_pulse.vpcf", context )
+end
+
+
 function anakim_pulse:OnSpellStart()
 	local caster = self:GetCaster()
 	local distance = self:GetSpecialValueFor("range")
@@ -14,7 +19,7 @@ function anakim_pulse:OnSpellStart()
 	local forward = self:GetCaster():GetForwardVector():Normalized()
 	local step = distance / count
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		damage = damage + ability:GetSpecialValueFor("value")
 	end

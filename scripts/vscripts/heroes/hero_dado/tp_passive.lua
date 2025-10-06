@@ -48,7 +48,6 @@ end
 
 function modifier_tp_passive:OnRemoved()
 if IsServer() then
-print("!")
     ParticleManager:DestroyParticle(self.particle_willful_fx, false)
 	ParticleManager:ReleaseParticleIndex(self.particle_willful_fx)
 	end

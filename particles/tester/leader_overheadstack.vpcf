@@ -1,17 +1,17 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf19:version{aafc65d8-7a5a-4e01-bd8d-3ac118422503} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 16
 	m_flConstantRadius = 10.000000
-	m_ConstantColor =
+	m_ConstantColor = 
 	[
 		150,
 		150,
 		150,
 		255,
 	]
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
@@ -21,7 +21,7 @@
 			m_hTexture = resource:"materials/particle/msg/msg_01.vtex"
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
@@ -30,7 +30,7 @@
 		{
 			_class = "C_OP_BasicMovement"
 			m_fDrag = 0.150000
-			m_Gravity =
+			m_Gravity = 
 			[
 				0.000000,
 				0.000000,
@@ -39,7 +39,7 @@
 		},
 		{
 			_class = "C_OP_SetToCP"
-			m_vecOffset =
+			m_vecOffset = 
 			[
 				-5.000000,
 				0.000000,
@@ -50,17 +50,17 @@
 			_class = "C_OP_RemapCPtoScalar"
 			m_flInputMax = 9.000000
 			m_nCPInput = 2
-			m_nFieldOutput = 9
+			m_nFieldOutput = "9"
 			m_flOutputMin = 10.000000
 			m_flOutputMax = 19.000000
 		},
 		{
 			_class = "C_OP_RemapCPtoScalar"
 			m_nCPInput = 2
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -71,14 +71,18 @@
 			m_fLifetimeMax = 1.000000
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 2
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.000000
+			}
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/leader/leader_overheadstack_b.vpcf"
@@ -87,4 +91,5 @@
 			m_ChildRef = resource:"particles/leader/leader_overheadstack_c.vpcf"
 		},
 	]
+	m_nBehaviorVersion = 5
 }

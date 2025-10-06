@@ -18,18 +18,26 @@
 
 		"AbilityValues"
 		{
-			"illusion_duration"									"25" 
+			"illusion_duration"					"25" 
 			"illusion_outgoing_tooltip"
+			
 			{
 				"value"					"40 60 80 100"
-				"LinkedSpecialBonus"	"npc_dota_hero_terrorblade_str8"
+				"special_bonus_unique_terrorblade_8"   "+50"
 			}
 			"illusion_incoming_damage_total_tooltip"
 			{
-				"value"								"200"
-				"LinkedSpecialBonus"	"npc_dota_hero_terrorblade_str8"
-				"LinkedSpecialBonusField"		"value2"
+				"value"					"200"
+				"special_bonus_unique_terrorblade_8"   "-50"
 			}
 		}
 	}
+	
+	
+	"special_bonus_unique_terrorblade_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
 }

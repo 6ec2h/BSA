@@ -1,7 +1,9 @@
+require("data")
+
 function spawn(keys)
 	local new_charges = keys.ability:GetCurrentCharges() - 1
 	if new_charges <= 0 then
-		keys.caster:RemoveItem(keys.ability)
+		UTIL_Remove(keys.ability)
 		Ran = RandomInt(1,6)
 		keys.caster:EmitSound("Aegis.Timer") 
 		
@@ -12,6 +14,8 @@ function spawn(keys)
 			prt('#golden_dragon1')		
 			local vPoint1 = Entities:FindByName( nil, array):GetAbsOrigin()
 			local unit = CreateUnitByName("GoldenMiner1", vPoint1 + RandomVector( RandomFloat( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			random_ability = passive[RandomInt(1,#passive)]	
+			rules:aura_dif(unit, random_ability)
 		end
 	
 		if Ran == 2 then	
@@ -21,6 +25,8 @@ function spawn(keys)
 			prt('#golden_dragon2')		
 			local vPoint1 = Entities:FindByName( nil, array):GetAbsOrigin()
 			local unit = CreateUnitByName("GoldenQueen1", vPoint1 + RandomVector( RandomFloat( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			random_ability = passive[RandomInt(1,#passive)]	
+			rules:aura_dif(unit, random_ability)
 		end
 		
 		if Ran == 3 then	
@@ -30,6 +36,8 @@ function spawn(keys)
 			prt('#golden_dragon3')		
 			local vPoint1 = Entities:FindByName( nil, array):GetAbsOrigin()
 			local unit = CreateUnitByName("GoldenWyvern1", vPoint1 + RandomVector( RandomFloat( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			random_ability = passive[RandomInt(1,#passive)]	
+			rules:aura_dif(unit, random_ability)
 		end
 		
 		if Ran == 4 then	
@@ -38,7 +46,9 @@ function spawn(keys)
 			Notifications:TopToAll({text="#golden_dragon4", duration=3})
 			prt('#golden_dragon4')
 			local vPoint1 = Entities:FindByName( nil, array):GetAbsOrigin()
-			local unit = CreateUnitByName("GoldenSea1", vPoint1 + RandomVector( RandomFloat( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)		
+			local unit = CreateUnitByName("GoldenSea1", vPoint1 + RandomVector( RandomFloat( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			random_ability = passive[RandomInt(1,#passive)]	
+			rules:aura_dif(unit, random_ability)
 		end
 		
 		if Ran == 5 then 	
@@ -48,6 +58,8 @@ function spawn(keys)
 			prt('#golden_dragon5')		
 			local vPoint1 = Entities:FindByName( nil, array):GetAbsOrigin()
 			local unit = CreateUnitByName("GoldenDragon1", vPoint1 + RandomVector( RandomFloat( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			random_ability = passive[RandomInt(1,#passive)]	
+			rules:aura_dif(unit, random_ability)
 		end		
 		
 		if Ran == 6 then	
@@ -57,6 +69,8 @@ function spawn(keys)
 			prt('#golden_dragon6')		
 			local vPoint1 = Entities:FindByName( nil, array):GetAbsOrigin()
 			local unit = CreateUnitByName("GoldenForest1", vPoint1 + RandomVector( RandomFloat( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			random_ability = passive[RandomInt(1,#passive)]	
+			rules:aura_dif(unit, random_ability)
 		end
 	end
 end

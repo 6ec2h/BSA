@@ -21,34 +21,18 @@
 		"AbilityCooldown"				"21 18 15 12"
 		"AbilityManaCost"				"70 80 90 100"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200 250 300 350"
-			}
+		"AbilityValues"
+	{
+		"radius"	"200 250 300 350"
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"50 100 150 200"
-				"LinkedSpecialBonus"								"npc_dota_hero_naga_siren_2"
+				"LinkedSpecialBonus"								"special_bonus_naga_siren_2"
 			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.0 3.0 4.0 5.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"net_speed"					"1500 1500 1500 1500"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fake_ensnare_distance"		"900 900 900 900"	
-			}
-		}
+			"duration"	"2.0 3.0 4.0 5.0"
+			"net_speed"	"1500 1500 1500 1500"
+			"fake_ensnare_distance"	"900 900 900 900"
+	}
 	}
 }

@@ -44,8 +44,8 @@ end
 
 function modifier_viper_corrosive_skin_lua:GetModifierMagicalResistanceBonus()
 	if not self:GetParent():PassivesDisabled() then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int4")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int4"):GetLevel() > 0 then
+		if self:GetCaster():FindAbilityByName("special_bonus_viper_int4")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_viper_int4"):GetLevel() > 0 then
 			return self.magic_resist * 2
 			end
 		end

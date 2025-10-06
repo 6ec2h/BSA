@@ -46,7 +46,7 @@ function modifier_imba_aether_lens_passive:DeclareFunctions()
 	local decFuns =
 		{
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-			MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+			-- MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
 			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 			MODIFIER_PROPERTY_MANA_BONUS,
 			MODIFIER_ATTRIBUTE_NONE
@@ -55,7 +55,7 @@ function modifier_imba_aether_lens_passive:DeclareFunctions()
 end
 
 function modifier_imba_aether_lens_passive:GetModifierSpellAmplify_Percentage()
-	dopdmg = self:GetCaster():GetIntellect()*self.mnoz
+	dopdmg = self:GetCaster():GetIntellect(true)*self.mnoz
 	local magarmor_increase = dopdmg + self.spell_power
 	return magarmor_increase	
 end
@@ -64,9 +64,9 @@ function modifier_imba_aether_lens_passive:GetModifierManaBonus()
 	return self.bonus_mana
 end
 
-function modifier_imba_aether_lens_passive:GetModifierCastRangeBonusStacking()
-	return self.cast_range_bonus
-end
+-- function modifier_imba_aether_lens_passive:GetModifierCastRangeBonusStacking()
+	-- return self.cast_range_bonus
+-- end
 
 function modifier_imba_aether_lens_passive:GetModifierBonusStats_Intellect()
 	return self.bonus_int

@@ -20,39 +20,15 @@
 		"AbilityCooldown"				"3"
 		"AbilityManaCost"				"35"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"700"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"quill_base_damage"		"25 35 45 55"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"quill_stack_damage"	"20 25 30 35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"quill_stack_duration"	"7.0"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"1000.0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"2400"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"700"
+			"quill_base_damage"	"25 35 45 55"
+			"quill_stack_damage"	"20 25 30 35"
+			"quill_stack_duration"	"7.0"
+			"max_damage"	"1000.0"
+			"projectile_speed"	"2400"
+	}
 	}
 	
 
@@ -73,48 +49,16 @@
 
 		"AbilityCastRange"				"600"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"goo_speed"				"1000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"goo_duration"			"5.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_per_stack"		"2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_move_slow"		"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow_per_stack"	"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stack_limit"			"5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"goo_duration_creep"	"2.0"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_scepter"		"750"
-			}
-		}
+		"AbilityValues"
+	{
+		"goo_speed"	"1000"
+			"goo_duration"	"5.0"
+			"armor_per_stack"	"2"
+			"base_move_slow"	"20"
+			"move_slow_per_stack"	"3"
+			"stack_limit"	"5"
+			"goo_duration_creep"	"2.0"
+			"radius_scepter"	"750"
+	}
 	}	
 }

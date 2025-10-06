@@ -27,8 +27,7 @@ function modifier_bristleback_warpath_lua:OnCreated()
 	self.ability	= self:GetAbility()
 	self.caster		= self:GetCaster()
 	self.parent		= self:GetParent()
-	
-	-- AbilitySpecials
+
 	self.damage_per_stack		= self.ability:GetSpecialValueFor("damage_per_stack")
 	self.move_speed_per_stack	= self.ability:GetSpecialValueFor("move_speed_per_stack")
 	self.stack_duration			= self.ability:GetSpecialValueFor("stack_duration")
@@ -81,8 +80,8 @@ function modifier_bristleback_warpath_lua:OnAttackLanded( params )
 			if self:GetParent():PassivesDisabled() then
 				return 0
 			end
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_agi9")~=nil then
-				if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_agi9"):GetLevel() > 0 then 
+			if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi9")~=nil then
+				if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi9"):GetLevel() > 0 then 
 				great_cleave_damage = self:GetStackCount()*10
 					local target = params.target
 					if target ~= nil and target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then

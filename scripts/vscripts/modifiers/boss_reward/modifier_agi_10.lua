@@ -24,5 +24,5 @@ function modifier_agi_10:DeclareFunctions()
 end
 
 function modifier_agi_10:GetModifierBonusStats_Agility()
-	return 10
+	return 5
 end

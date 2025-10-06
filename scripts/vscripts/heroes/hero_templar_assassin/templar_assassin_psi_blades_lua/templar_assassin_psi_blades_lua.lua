@@ -40,12 +40,11 @@ function modifier_templar_assassin_psi_blades_lua_damage:OnTakeDamage(keys)
 				
 				local prc = self:GetAbility():GetSpecialValueFor("attack_spill_pct")
 				
-				local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_templar_assassin_tal3")
+				local ability = self:GetCaster():FindAbilityByName("special_bonus_templar_assassin_tal3")
 				if ability ~= nil and ability:GetLevel() > 0 then 
 					prc = prc + 25
 				end
 
-				
 				ApplyDamage({
 					victim 			= enemy,
 					damage 			= damage_to_use * prc * 0.01,

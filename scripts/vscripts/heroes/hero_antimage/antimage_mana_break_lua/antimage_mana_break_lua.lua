@@ -47,7 +47,7 @@ function modifier_antimage_mana_break_lua:GetModifierProcAttack_BonusDamage_Phys
 	
 		if result == UF_SUCCESS then
 		
-			local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_antimage_int1")
+			local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_antimage_int1")
 			if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 				self.mana_damage_pct = self:GetAbility():GetSpecialValueFor( "damage_per_burn" ) * 2
 			end

@@ -85,7 +85,7 @@ end
 
 function modifier_nevermore_aura_effect:GetModifierPhysicalArmorBonus()
 	tal = 1
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_nevermore_agi6")             
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_nevermore_agi6")             
 	if abil ~= nil then 
 	tal = 1.5
 	end

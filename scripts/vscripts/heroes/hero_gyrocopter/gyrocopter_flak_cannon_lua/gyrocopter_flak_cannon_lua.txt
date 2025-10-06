@@ -13,37 +13,16 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Gyrocopter.FlackCannon"
 
-		"AbilityCastPoint"				"0 0 0 0"
-
-		"AbilityCooldown"				"18"
-		
-		"AbilityManaCost"				"50 50 50 50"
-		
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"50"
 		"AbilityDuration"				"10"
 						
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"1250"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_attacks"					"2 3 4 5"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"projectile_speed"				"800"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"fire_rate"						"0.9"
-			}
-
+			"radius"						"1250"
+			"max_attacks"					"4 5 6 7"
+			"projectile_speed"				"800"
+			"fire_rate"						"0.9"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}

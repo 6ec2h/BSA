@@ -45,7 +45,7 @@ function sven_storm_bolt_lua:OnProjectileHit( hTarget, vLocation )
 		local bolt_aoe = self:GetSpecialValueFor( "bolt_aoe" )
 		local bolt_damage = self:GetSpecialValueFor( "bolt_damage" )
 		
-		local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_sven_tal2")
+		local ability = self:GetCaster():FindAbilityByName("special_bonus_sven_tal2")
 		if ability ~= nil and ability:GetLevel() > 0 then 
 			bolt_damage =  bolt_damage + 175
 		end	

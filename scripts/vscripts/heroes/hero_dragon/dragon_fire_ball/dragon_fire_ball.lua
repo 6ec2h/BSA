@@ -1,27 +1,12 @@
+LinkLuaModifier( "modifier_dragon_fire_ball_lua_thinker", "heroes/hero_dragon/dragon_fire_ball/dragon_fire_ball", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_dragon_fire_ball_lua_slow", "heroes/hero_dragon/dragon_fire_ball/dragon_fire_ball", LUA_MODIFIER_MOTION_NONE )
+
 dragon_fire_ball_lua = class({})
-LinkLuaModifier( "modifier_dragon_fire_ball_lua_thinker", "heroes/hero_dragon/dragon_fire_ball/modifier_dragon_fire_ball_lua_thinker", LUA_MODIFIER_MOTION_NONE )
-
-function dragon_fire_ball_lua:GetManaCost(iLevel)
-    local caster = self:GetCaster()
-    if caster then
-        return caster:GetIntellect()
-    end
-end
-
 
 function dragon_fire_ball_lua:OnSpellStart()
-
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	
-	
-
 	local duration = self:GetSpecialValueFor("duration")
-	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_dragon_knight_int11")	
-	if abil ~= nil then 
-	duration = 10
-	end
 
 	CreateModifierThinker(
 		caster, -- player source
@@ -32,4 +17,115 @@ function dragon_fire_ball_lua:OnSpellStart()
 		caster:GetTeamNumber(),
 		false
 	)
+end
+
+------------------------------------------------------------------\
+
+modifier_dragon_fire_ball_lua_thinker = class({})
+
+function modifier_dragon_fire_ball_lua_thinker:IsHidden()
+	return true
+end
+
+function modifier_dragon_fire_ball_lua_thinker:OnCreated( kv )
+	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	self.burn_interval = self:GetAbility():GetSpecialValueFor( "burn_interval" )
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_dragon_knight_6")
+	if talent and talent:GetLevel() > 0 then 
+		self.damage = self.damage + 60
+	end
+	
+	if IsServer() then
+		GridNav:DestroyTreesAroundPoint( self:GetParent():GetOrigin(), self.radius, true )
+
+		self.damageTable = {
+			attacker = self:GetCaster(),
+			damage_type = self:GetAbility():GetAbilityDamageType(),
+			ability = self:GetAbility(), --Optional.
+		}
+
+		self:StartIntervalThink( self.burn_interval )
+		self:PlayEffects()
+	end
+end
+
+function modifier_dragon_fire_ball_lua_thinker:OnDestroy()
+	if IsServer() then
+
+		UTIL_Remove( self:GetParent() )
+	end
+end
+
+function modifier_dragon_fire_ball_lua_thinker:OnIntervalThink()
+	local enemies = FindUnitsInRadius(
+		self:GetCaster():GetTeamNumber(),	-- int, your team number
+		self:GetParent():GetOrigin(),	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
+		0,	-- int, order filter
+		false	-- bool, can grow cache
+	)
+	for _,enemy in pairs(enemies) do
+		self.damageTable.victim = enemy
+		self.damageTable.damage = self.damage/2
+		ApplyDamage( self.damageTable )
+		
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_dragon_knight_4")
+		if talent and talent:GetLevel() > 0 then 
+			enemy:AddNewModifier(
+				self:GetCaster(), -- player source
+				self:GetAbility(), -- ability source
+				"modifier_dragon_fire_ball_lua_slow", -- modifier name
+				{ duration = 1} -- kv
+			)
+		end
+	end
+end
+
+function modifier_dragon_fire_ball_lua_thinker:PlayEffects()
+	local effect_cast = ParticleManager:CreateParticle( "particles/dk.vpcf", PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 0, 0 ) )
+	self:AddParticle(
+		effect_cast,
+		false, -- bDestroyImmediately
+		false, -- bStatusEffect
+		-1, -- iPriority
+		false, -- bHeroEffect
+		false -- bOverheadEffect
+	)
+	EmitSoundOn("hero_jakiro.macropyre", self:GetParent() )
+end
+
+------------------------------------------------------------------------------
+
+
+modifier_dragon_fire_ball_lua_slow = class({})
+
+function modifier_dragon_fire_ball_lua_slow:IsHidden()
+	return false
+end
+
+function modifier_dragon_fire_ball_lua_slow:IsDebuff()
+	return false
+end
+
+function modifier_dragon_fire_ball_lua_slow:IsPurgable()
+	return true
+end
+
+function modifier_dragon_fire_ball_lua_slow:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+	return funcs
+end
+
+function modifier_dragon_fire_ball_lua_slow:GetModifierMoveSpeedBonus_Percentage()
+	return -15
 end

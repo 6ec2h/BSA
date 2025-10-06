@@ -85,7 +85,7 @@ brood_creeps = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbe
 ---------------------------------------------------------
 
 function talent(caster)
-	local ability = caster:FindAbilityByName("npc_dota_hero_broodmother_4")
+	local ability = caster:FindAbilityByName("special_bonus_broodmother_4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		return 0.2
 	end

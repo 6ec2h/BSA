@@ -61,8 +61,8 @@ function shadow_fiend_requiem_of_souls_lua:OnProjectileHit_ExtraData( hTarget, v
 			}
 			ApplyDamage( damage )
 			         
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_nevermore_str8")~=nil then
-				if self:GetCaster():FindAbilityByName("npc_dota_hero_nevermore_str8"):GetLevel() > 0 then 
+			if self:GetCaster():FindAbilityByName("special_bonus_nevermore_str8")~=nil then
+				if self:GetCaster():FindAbilityByName("special_bonus_nevermore_str8"):GetLevel() > 0 then 
 				hTarget:AddNewModifier(
 					self:GetCaster(),
 					self,

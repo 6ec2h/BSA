@@ -11,18 +11,10 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityCastRange"				"750"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"reduction"			"0.5 1.0 1.5 2.0"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"range"				"750"
-			}
-		}
+		"AbilityValues"
+	{
+		"reduction"	"0.5 1.0 1.5 2.0"
+			"range"	"750"
+	}
 	}
 }

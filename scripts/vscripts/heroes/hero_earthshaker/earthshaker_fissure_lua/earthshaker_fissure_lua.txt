@@ -24,28 +24,12 @@
 
 		"AbilityDamage"					"110 160 210 260"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fissure_range"				"800"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"fissure_duration"			"3"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fissure_radius"				"225"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.0 1.25 1.5 1.75"
-			}
-		}
+		"AbilityValues"
+	{
+		"fissure_range"	"800"
+			"fissure_duration"	"3"
+			"fissure_radius"	"225"
+			"stun_duration"	"1.0 1.25 1.5 1.75"
+	}
 	}
 }

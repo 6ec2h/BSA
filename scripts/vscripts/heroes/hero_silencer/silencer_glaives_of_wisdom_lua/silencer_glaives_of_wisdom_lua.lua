@@ -19,7 +19,7 @@ function silencer_glaives_of_wisdom_lua:OnOrbImpact( params )
 	local caster = self:GetCaster()
 
 	local int_mult = self:GetSpecialValueFor( "intellect_damage_pct" )
-	local damage = caster:GetIntellect() * int_mult/100
+	local damage = caster:GetIntellect(true) * int_mult/100
 
 
 	local damageTable = {

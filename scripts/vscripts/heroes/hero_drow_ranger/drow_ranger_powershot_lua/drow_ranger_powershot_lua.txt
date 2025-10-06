@@ -13,34 +13,14 @@
 		"AbilityCooldown"				"10"
 		"AbilityManaCost"				"100"
 		"AbilityCastRange"				"700"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"800"
-			}
-			"03"
-			{	
-				"var_type"				"FIELD_INTEGER"
-				"reduction"				"-100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"count"					"2"
-			}
-		}
+		"AbilityValues"
+	{
+		"speed"	"1500"
+			"distance"	"800"
+			"reduction"	"-100"
+			"damage"	"50 100 150 200"
+			"count"	"2"
+	}
 	}
 	
 }

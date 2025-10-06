@@ -1,9 +1,6 @@
 ogreseal_flop_by = class({})
 LinkLuaModifier( "modifier_ogreseal_flop", "abilities/creeps/ogreseal_flop", LUA_MODIFIER_MOTION_BOTH )
 
-function ogreseal_flop_by:ProcsMagicStick()
-	return false
-end
 
 function ogreseal_flop_by:OnAbilityPhaseStart()
 	if IsServer() then
@@ -175,7 +172,7 @@ end
 function modifier_ogreseal_flop:DeclareFunctions()
 	local funcs = 
 	{
-	--	MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 	}
 	return funcs
 end

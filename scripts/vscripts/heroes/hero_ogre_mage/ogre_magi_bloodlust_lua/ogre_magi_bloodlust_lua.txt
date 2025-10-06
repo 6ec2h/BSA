@@ -19,8 +19,8 @@
 		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.45"
 
-		"AbilityCooldown"				"26 24 22 20"
-		"AbilityManaCost"				"65"
+		"AbilityCooldown"				"40 36 32 28"
+		"AbilityHealthCost"				"65"
 
 		"AbilityValues"
 		{
@@ -29,14 +29,18 @@
 			"bonus_attack_speed"	
 				{
 				"value"					"30 40 50 60"
-				"LinkedSpecialBonus"	"npc_dota_hero_ogre_magi_3"
+				"LinkedSpecialBonus"	"special_bonus_ogre_magi_3"
 				}
 			"self_bonus"			
 				{
 				"value"					"30 50 70 90"
-				"LinkedSpecialBonus"	"npc_dota_hero_ogre_magi_3"
+				"LinkedSpecialBonus"	"special_bonus_ogre_magi_3"
 				}
-			"duration"				"30"
+			"duration"
+				{
+				"value"					"10"
+				"LinkedSpecialBonus"	"special_bonus_ogre_magi_7"
+				}
 		}
 	}
 }

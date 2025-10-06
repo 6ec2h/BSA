@@ -7,7 +7,7 @@ function faceless_void_chronosphere_lua:GetAOERadius()
 end
 
 function faceless_void_chronosphere_lua:GetCooldown( level )
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_faceless_void_4")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_faceless_void_4")
 	if talent and talent:GetLevel() > 0 then
 		return self.BaseClass.GetCooldown( self, level ) - 40
 	end

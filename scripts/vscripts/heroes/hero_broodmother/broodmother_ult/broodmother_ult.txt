@@ -6,24 +6,24 @@
 		"BaseClass"						"ability_lua"
 		"AbilityTextureName"			"broodmother_4"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityValues"
 		{
 			"damage"					
 			{
 				"value"					"0.5 0.75 1.0"
-				"LinkedSpecialBonus"	"npc_dota_hero_broodmother_4"
+				"LinkedSpecialBonus"	"special_bonus_broodmother_4"
 			}		
 			"regen"					
 			{
 				"value"					"0.1 0.2 0.3"
-				"LinkedSpecialBonus"	"npc_dota_hero_broodmother_4"
+				"LinkedSpecialBonus"	"special_bonus_broodmother_4"
 			}		
 			"ms"					
 			{
 				"value"					"0.1 0.2 0.3"
-				"LinkedSpecialBonus"	"npc_dota_hero_broodmother_4"
+				"LinkedSpecialBonus"	"special_bonus_broodmother_4"
 			}		
 		}
 	}

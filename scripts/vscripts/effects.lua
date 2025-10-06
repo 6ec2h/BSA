@@ -32,6 +32,12 @@ function effects:CastSpray(t)
 			local spray = ParticleManager:CreateParticle( tab.spray, PATTACH_WORLDORIGIN, nil )
 			ParticleManager:SetParticleControl( spray, 0, point )
 			ParticleManager:SetParticleControl( spray, 1, Vector( 196, 1, 0 ) )
+			
+			if _G.player_quest[t.PlayerID]['spray_quest'] == nil then
+				_G.player_quest[t.PlayerID]['spray_quest'] = 1
+			else
+				_G.player_quest[t.PlayerID]['spray_quest'] = _G.player_quest[t.PlayerID]['spray_quest'] + 1
+			end
 
 			EmitSoundOnLocationWithCaster( point, "Spraywheel.Paint", hero )
 			self.spray[t.PlayerID] = spray
@@ -46,15 +52,15 @@ function effects:HighFive(t)
 		if tab.highfive ~= nil then
 		local caster = PlayerResource:GetSelectedHeroEntity( t.PlayerID )
 		
-		-- targets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
-		-- for _,enemy in pairs(targets) do
-			-- if enemy ~= caster then 
-				-- enemy:AddNewModifier(enemy, nil, 'modifier_high_five_custom_search', {duration = 5})
-			-- end
-		-- end
 		if not caster:IsAlive() then return end
 			caster:AddNewModifier(caster, nil, 'modifier_high_five_custom_search', {duration = 5, particle = tab.highfive})
 			EmitSoundOn('high_five.cast', caster)
+			
+			if _G.player_quest[t.PlayerID]['highfive_quest'] == nil then
+				_G.player_quest[t.PlayerID]['highfive_quest'] = 1
+			else
+				_G.player_quest[t.PlayerID]['highfive_quest'] = _G.player_quest[t.PlayerID]['highfive_quest'] + 1
+			end
 		end
 	end
 end

@@ -44,8 +44,8 @@ function modifier_mars_bulwark_lua:OnRefresh( kv )
 	self.angle_front = self:GetAbility():GetSpecialValueFor( "forward_angle" )/2
 	self.angle_side = self:GetAbility():GetSpecialValueFor( "side_angle" )/2
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_str9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_str9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_mars_str9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_mars_str9"):GetLevel() > 0 then 
 			self.reduction_side = self.reduction_side + 20
 		end
 	end

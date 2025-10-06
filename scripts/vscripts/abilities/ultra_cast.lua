@@ -22,12 +22,11 @@ function modifier_ultra_cast:IsPurgable()
 end
 
 function modifier_ultra_cast:GetRandomInterval()
-	return RandomInt(90, 150)
+	return RandomInt(60, 120)
 end
 
 function modifier_ultra_cast:OnIntervalThink() 
 	if not IsServer() then return end
-
 	local caster = self:GetCaster()
 	local abilityNames = {
 		"silencer_global_silence",
@@ -35,15 +34,15 @@ function modifier_ultra_cast:OnIntervalThink()
 		"thundergods_wrath_datadriven",
 		"custom_statick",
 		"custom_mine",
-		"custom_rosh"
+		"custom_rosh",
+		"custom_stun"
 	}
 
-	local Rand = RandomInt(1, #abilityNames)
-	local ability = caster:FindAbilityByName(abilityNames[Rand])
-
+	local ability = caster:FindAbilityByName(abilityNames[RandomInt(1, #abilityNames)])
 	if ability then
 		ability:OnSpellStart()
 	end
+	
 	self:StartIntervalThink(-1)
 	self:StartIntervalThink(self:GetRandomInterval())
 end

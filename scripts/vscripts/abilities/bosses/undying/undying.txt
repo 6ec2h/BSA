@@ -19,33 +19,35 @@
 		"AbilityCooldown"				"20.0"
 		"AbilityManaCost"				"100"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"1.0"
-			}
+			"radius"				"500"
+			"duration"				"10"
+			"damage"				"2"
+			"armor_reduction"		"5"
+			"tick_rate"				"1.0"
+		}
+	}	
+	
+"undy_corrosive_skin_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/undying/undy_corrosive_skin_lua"
+		"AbilityTextureName"			"viper_corrosive_skin"
+		"FightRecapLevel"				"1"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+			"duration"					"4.0"
+			"bonus_attack_speed"		"16"
+			"damage"					"1"
+			"max_range_tooltip"			"1400"
 		}
 	}	
 }

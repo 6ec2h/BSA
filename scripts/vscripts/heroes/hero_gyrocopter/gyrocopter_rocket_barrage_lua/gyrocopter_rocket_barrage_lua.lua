@@ -27,8 +27,8 @@ function gyrocopter_rocket_barrage_lua:OnProjectileHit(target, location)
 	if target then
 		target:EmitSound("Hero_Gyrocopter.Rocket_Barrage.Impact")
 	
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi1")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi1"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi1")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi1"):GetLevel() > 0 then 
 				target:AddNewModifier(self:GetCaster(), self, "modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression", {duration = self:GetSpecialValueFor("ballistic_duration") * (1 - target:GetStatusResistance())})
 			end
 		end
@@ -88,7 +88,7 @@ function modifier_gyrocopter_rocket_barrage_lua:OnIntervalThink()
 					ParticleManager:SetParticleControlEnt(self.barrage_particle, 1, enemy, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
 					ParticleManager:ReleaseParticleIndex(self.barrage_particle)
 					
-					if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi1"):GetLevel() > 0 then 
+					if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi1"):GetLevel() > 0 then 
 					enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression", {duration = self.ballistic_duration * (1 - enemy:GetStatusResistance())})
 					end
 					
@@ -132,7 +132,9 @@ function modifier_gyrocopter_rocket_barrage_lua:OnIntervalThink()
 end
 
 function modifier_gyrocopter_rocket_barrage_lua:DeclareFunctions()
-	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
+	return {
+	MODIFIER_PROPERTY_OVERRIDE_ANIMATION
+	}
 end
 
 function modifier_gyrocopter_rocket_barrage_lua:GetOverrideAnimation()

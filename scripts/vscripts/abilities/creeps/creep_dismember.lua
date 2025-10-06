@@ -9,12 +9,14 @@ function creep_dismember:GetChannelTime()
 end
 
 function creep_dismember:OnSpellStart()
-	self.target = self:GetCursorTarget()
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_creep_dismember_buff", {})
-	self.target:AddNewModifier(self:GetCaster(), self, "modifier_creep_dismember", {duration = self:GetChannelTime() - FrameTime()})
+	if self:GetCaster():IsAlive() then
+		self.target = self:GetCursorTarget()
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_creep_dismember_buff", {})
+		self.target:AddNewModifier(self:GetCaster(), self, "modifier_creep_dismember", {duration = self:GetChannelTime() - FrameTime()})
 
-	self.pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_ABSORIGIN, self.target)
-	ParticleManager:SetParticleControlEnt(self.pfx, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
+		self.pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_ABSORIGIN, self.target)
+		ParticleManager:SetParticleControlEnt(self.pfx, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
+	end
 end
 
 function creep_dismember:OnChannelFinish(bInterrupted)
@@ -67,6 +69,9 @@ function modifier_creep_dismember:OnIntervalThink()
 		ability 		= self:GetAbility(),
 	}
 	ApplyDamage(damageTable)
+	if not self:GetCaster():IsAlive() then
+		self:Destroy()
+	end
 end
 
 function modifier_creep_dismember:OnDestroy()
@@ -84,7 +89,9 @@ function modifier_creep_dismember:CheckState()
 end
 
 function modifier_creep_dismember:DeclareFunctions()
-	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
+	return {
+	MODIFIER_PROPERTY_OVERRIDE_ANIMATION
+	}
 end
 
 function modifier_creep_dismember:GetOverrideAnimation()

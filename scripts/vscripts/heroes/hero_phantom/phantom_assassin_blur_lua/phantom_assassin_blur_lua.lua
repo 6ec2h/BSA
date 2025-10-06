@@ -84,8 +84,8 @@ function modifier_blur_aura:GetAuraEntityReject(target)
 		return false 
 	else
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_str11")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_str11"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_str11")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_str11"):GetLevel() > 0 then 
 				return false
 			end
 		end

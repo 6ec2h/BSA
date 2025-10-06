@@ -25,7 +25,7 @@ function modifier_magnus_empower_lua:OnCreated( kv )
 	self.radius_end = self:GetAbility():GetSpecialValueFor( "cleave_ending_width" )
 	self.radius_dist = self:GetAbility():GetSpecialValueFor( "cleave_distance" )
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi3")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_magnus_agi3")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		self.cleave = self.cleave + 20
 	end
@@ -46,7 +46,7 @@ function modifier_magnus_empower_lua:OnRefresh( kv )
 	self.radius_end = self:GetAbility():GetSpecialValueFor( "cleave_ending_width" )
 	self.radius_dist = self:GetAbility():GetSpecialValueFor( "cleave_distance" )
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi3")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_magnus_agi3")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		self.cleave = self.cleave + 20
 	end

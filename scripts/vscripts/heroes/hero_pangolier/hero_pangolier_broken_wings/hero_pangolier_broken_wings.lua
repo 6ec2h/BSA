@@ -55,7 +55,7 @@ function hero_pangolier_broken_wings:OnSpellStart()
 		
 		for i=1,#obs do
 			local dist = (point - obs[i]:GetAbsOrigin()):Length2D()
-			if dist < 50 then
+			if dist < 80 then
 				obstraction = true
 			end
 		end

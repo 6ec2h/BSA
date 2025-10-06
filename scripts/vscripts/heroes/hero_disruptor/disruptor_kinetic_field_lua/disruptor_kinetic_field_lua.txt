@@ -18,28 +18,12 @@
 		"AbilityCooldown"				"19 16 13 10"
 		"AbilityManaCost"				"70 90 110 130"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"340"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"formation_time"			"1.2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.5 2.0 2.5 3.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"resist"					"15 20 25 30"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"340"
+			"formation_time"	"1.2"
+			"duration"	"1.5 2.0 2.5 3.0"
+			"resist"	"15 20 25 30"
+	}
 	}
 }

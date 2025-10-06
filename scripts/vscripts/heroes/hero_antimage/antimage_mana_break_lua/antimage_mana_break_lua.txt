@@ -13,18 +13,10 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_per_burn"		"0.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_per_hit"			"20 50 80 110"
-			}
-		}
+		"AbilityValues"
+	{
+		"damage_per_burn"	"0.5"
+			"mana_per_hit"	"20 50 80 110"
+	}
 	}
 }

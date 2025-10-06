@@ -21,38 +21,14 @@
 		
 		"AbilityManaCost"				"120 130 140 150"
 		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"launch_radius"		"700"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"slow_radius"		"250"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"200"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"100 180 260 340"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1.0 1.5 2.0 2.5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_radius"		"700"
-			}
-		}
+		"AbilityValues"
+	{
+		"launch_radius"	"700"
+			"slow_radius"	"250"
+			"speed"	"200"
+			"damage"	"100 180 260 340"
+			"stun_duration"	"1.0 1.5 2.0 2.5"
+			"scepter_radius"	"700"
+	}
 	}
 }

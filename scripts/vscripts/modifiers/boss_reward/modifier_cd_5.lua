@@ -24,5 +24,5 @@ function modifier_cd_5:DeclareFunctions()
 end
 
 function modifier_cd_5:GetModifierPercentageCooldown()
-	return 5
+	return 2
 end

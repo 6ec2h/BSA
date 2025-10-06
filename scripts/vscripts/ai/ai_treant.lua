@@ -10,7 +10,7 @@ function Spawn( entityKeyValues )
 		return
 	end
 
-	TargetAbility = thisEntity:FindAbilityByName( "treant_leech_seed" )
+	TargetAbility = thisEntity:FindAbilityByName( "treant_seed" )
 	NoTargetAbility = thisEntity:FindAbilityByName( "treant_overgrowth" )
 
 	thisEntity:SetContextThink( "BanditArcherThink", BanditArcherThink, 0.5 )

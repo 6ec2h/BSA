@@ -14,8 +14,8 @@ function lifestealer_open_wounds_lua:OnSpellStart()
 	-- load data
 	local duration = self:GetSpecialValueFor("duration")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int4"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int4")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int4"):GetLevel() > 0 then
 			duration = self:GetSpecialValueFor("duration") + 2
 		end
 	end

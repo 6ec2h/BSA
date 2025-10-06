@@ -26,17 +26,18 @@ function modifier_tidehunter_kraken_shell_lua:AllowIllusionDuplicate()
 end
 
 function modifier_tidehunter_kraken_shell_lua:OnCreated( kv )
+	if not IsServer() then return end
 	self.parent = self:GetParent()
 	self.block = self:GetAbility():GetSpecialValueFor( "damage_reduction" )
 	self.purge = self:GetAbility():GetSpecialValueFor( "damage_cleanse" )
 	self.reset = self:GetAbility():GetSpecialValueFor( "damage_reset_interval" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_tidehunter_1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_tidehunter_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.block = self.block + 25
 	end
 
-	if not IsServer() then return end
+	-- if not IsServer() then return end
 	self.damage = 0
 end
 
@@ -45,7 +46,7 @@ function modifier_tidehunter_kraken_shell_lua:OnRefresh( kv )
 	self.purge = self:GetAbility():GetSpecialValueFor( "damage_cleanse" )
 	self.reset = self:GetAbility():GetSpecialValueFor( "damage_reset_interval" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_tidehunter_1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_tidehunter_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.block = self.block + 25
 	end

@@ -24,17 +24,7 @@ function traps_enabled(event)
 	thisEntity:SetContextThink( "shotright_2", shotright_2, 1.0 )
 	thisEntity:SetContextThink( "shotright_3", shotright_3, 1.0 )
 	thisEntity:SetContextThink( "shotright_4", shotright_4, 1.0 )
-	
-	thisEntity:SetContextThink( "venom_shotright_1", venom_shotright_1, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_2", venom_shotright_2, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_3", venom_shotright_3, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_4", venom_shotright_4, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_5", venom_shotright_5, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_6", venom_shotright_6, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_7", venom_shotright_7, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_8", venom_shotright_8, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_9", venom_shotright_9, 1.0 )
-	thisEntity:SetContextThink( "venom_shotright_10", venom_shotright_10, 1.0 )
+
 	spawn_circle()
 end
 
@@ -72,54 +62,66 @@ _G.last_zone_traps_active = true
 _G.last_zone_circle_traps_active = true
 
 function move_1()
-    	local unit = Entities:FindByName( nil, "6_venom_trap_oneshot_npc")
-    	local unit2 = Entities:FindByName( nil, "6_venom_trap_oneshot_model")
-		if unit:GetPhysicalArmorBaseValue() > 2500 then
-			local origin = unit:GetAbsOrigin()
-			local point = Vector(origin.x-11, origin.y, origin.z)
-			unit:SetAbsOrigin( point)
-			unit2:SetAbsOrigin( point)
-		else
-			local origin = unit:GetAbsOrigin()
-			local point = Vector(origin.x+11, origin.y, origin.z)
-			unit:SetAbsOrigin( point)
-			unit2:SetAbsOrigin( point)
-		end
-	return 0.03
+	local unit = Entities:FindByName(nil, "6_venom_trap_oneshot_npc")
+    local unit2 = Entities:FindByName(nil, "6_venom_trap_oneshot_model")
+    local origin = unit:GetAbsOrigin()
+    
+	if not direction then
+		direction = 1
+	end
+	if origin.x > 14912 then
+		direction = -1
+	elseif origin.x < 13500 then
+		direction = 1
+	end
+
+	local point = Vector(origin.x + (11 * direction), origin.y, 448)
+	unit:SetAbsOrigin(point)
+	unit2:SetAbsOrigin(point)
+
+    return 0.03
 end
 
 function move_2()
-    	local unit = Entities:FindByName( nil, "7_venom_trap_oneshot_npc")
-    	local unit2 = Entities:FindByName( nil, "7_venom_trap_oneshot_model")
-		if unit:GetPhysicalArmorBaseValue() > 2500 then
-			local origin = unit:GetAbsOrigin()
-			local point = Vector(origin.x-10, origin.y, origin.z)
-			unit:SetAbsOrigin( point)
-			unit2:SetAbsOrigin( point)
-		else
-			local origin = unit:GetAbsOrigin()
-			local point = Vector(origin.x+10, origin.y, origin.z)
-			unit:SetAbsOrigin( point)
-			unit2:SetAbsOrigin( point)
-		end
-	return 0.03
+	local unit = Entities:FindByName( nil, "7_venom_trap_oneshot_npc")
+	local unit2 = Entities:FindByName( nil, "7_venom_trap_oneshot_model")
+	local origin = unit:GetAbsOrigin()
+	
+	if not direction then
+		direction = -1
+	end
+	if origin.x > 14912 then
+		direction = -1
+	elseif origin.x < 13500 then
+		direction = 1
+	end
+
+	local point = Vector(origin.x + (10 * direction), origin.y, 448)
+	unit:SetAbsOrigin(point)
+	unit2:SetAbsOrigin(point)
+
+    return 0.03
 end
 
 function move_3()
-    	local unit = Entities:FindByName( nil, "5_venom_trap_oneshot_npc")
-    	local unit2 = Entities:FindByName( nil, "5_venom_trap_oneshot_model")
-		if unit:GetPhysicalArmorBaseValue() > 2500 then
-			local origin = unit:GetAbsOrigin()
-			local point = Vector(origin.x-12, origin.y, origin.z)
-			unit:SetAbsOrigin( point)
-			unit2:SetAbsOrigin( point)
-		else
-			local origin = unit:GetAbsOrigin()
-			local point = Vector(origin.x+12, origin.y, origin.z)
-			unit:SetAbsOrigin( point)
-			unit2:SetAbsOrigin( point)
-		end
-	return 0.03
+	local unit = Entities:FindByName( nil, "5_venom_trap_oneshot_npc")
+	local unit2 = Entities:FindByName( nil, "5_venom_trap_oneshot_model")
+	local origin = unit:GetAbsOrigin()
+	
+	if not direction then
+		direction = 1
+	end
+	if origin.x > 14912 then
+		direction = -1
+	elseif origin.x < 13500 then
+		direction = 1
+	end
+
+	local point = Vector(origin.x + (12 * direction), origin.y, 448)
+	unit:SetAbsOrigin(point)
+	unit2:SetAbsOrigin(point)
+
+    return 0.03
 end
 
 function shotright_5()
@@ -309,278 +311,6 @@ function shotright_4()
 		local model = "4_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
 		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )
-	end	
-	return 2
-end
-
----------------------------------------------------------------------------------
-
-function venom_shotright_1()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "1_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "1_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "1_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 3
-end
-
-function venom_shotright_2()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "2_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "2_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "2_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 1
-end
-
-function venom_shotright_3()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "3_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "3_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "3_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 1
-end
-
-function venom_shotright_4()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "4_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "4_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "4_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 2
-end
-
-function venom_shotright_5()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "5_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "5_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "5_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 3
-end
-
-function venom_shotright_6()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "6_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "6_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "6_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 2
-end
-
-function venom_shotright_7()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "7_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "7_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "7_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 2
-end
-
-function venom_shotright_8()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "8_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "8_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "8_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 1
-end
-
-function venom_shotright_9()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "9_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "9_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "9_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
-	end	
-	return 3
-end
-
-function venom_shotright_10()
-	if not IsServer() then
-		return
-	end
-
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not _G.last_zone_traps_active then
-		return -1
-	end	
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-		local npc = Entities:FindByName( nil, "10_final_venom_trap_npc" )
-		local target = Entities:FindByName( nil, "10_final_venom_trap_target" )
-	if npc ~= nil then
-		local venomTrap = npc:FindAbilityByName("breathe_poison_final")
-		local model = "10_final_venom_trap_model"
-		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "fang_attack", 0.4, self, self )
 	end	
 	return 2
 end

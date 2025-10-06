@@ -1,26 +1,7 @@
-require('essentials')
-require("data")
-
 function start_quest(data)
-	local activator = data.activator
-	local messageID = "#8_zone"
-	local zone_name = "#zone8"	
-	local description = "#zone8_des"
-	data.activator:EmitSound("Item.TomeOfKnowledge")
-	CustomGameEventManager:Send_ServerToAllClients("QuestMsgPanel_create_new_message", {messageName = zone_name, messageText = messageID})			
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 201, id =17})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =17})
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 201, id =18})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =18})
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = name, desc = description, max = 201, id =19})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = zone_name, current=0, id =19})
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 201, id =191})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =191})
+	quest_system:StartQuest('main', 16)
 end
 
-function xdes_open()
-
-end
 
 function creep_spawn()
 	for i = 1, 4 do
@@ -68,28 +49,17 @@ function creep_spawn()
 		end
 	end)	
 
-	if _G.Game_Difficulty > 5 then
+	if _G.Game_Difficulty >= 12 then
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
 		end)
-	end	
-	clear()
+	end
+	
+	rules:clear_zone('doom', 30)
 end
 
-
-function clear()
-	Timers:CreateTimer(5, function()
-		for i = 1, 30 do
-			local point = Entities:FindByName( nil, "doom"..i)
-			if point then
-				UTIL_Remove( point )
-			end
-		end	
-	end)
-end
-
-
+-- //////////////////////////
 
 lord_traps_shot = true
 

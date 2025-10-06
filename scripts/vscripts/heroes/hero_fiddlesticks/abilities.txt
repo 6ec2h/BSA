@@ -1,0 +1,183 @@
+"DOTAAbilities"
+{
+
+"hero_fiddlesticks_harvest"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_fiddlesticks/hero_fiddlesticks"
+		"AbilityTextureName"			"hero_fiddlesticks_harvest"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"400"
+		"AbilityCooldown"				"12 10 8 6"
+		"AbilityManaCost"				"40 60 80 100"
+
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"									"80 160 240 320"
+				"special_bonus_unique_fiddlesticks_1"   "+60"
+			}				
+			"splash_radius"				"400"
+			"duration"					"6"
+			"bonus_damage"
+			{
+				"value"									"4 8 12 16"
+				"special_bonus_unique_fiddlesticks_8"   "+8"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_5"
+	}
+
+"hero_fiddlesticks_rise"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_fiddlesticks/hero_fiddlesticks"
+		"AbilityTextureName"			"hero_fiddlesticks_rise"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityCooldown"				"24 22 20 18"
+		"AbilityManaCost"				"80 90 100 110"
+
+		"AbilityValues"
+		{
+			"count"
+			{
+				"value"									"3 4 5 6"
+				"special_bonus_unique_fiddlesticks_6"   "+2"
+			}				
+			"damage"					
+			{
+				"value"									"20 30 40 50"
+				"special_bonus_unique_fiddlesticks_7"   "+10"
+			}	
+			"attack_speed"								"100 150 200 250"
+			"duration"					"6"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+	
+"hero_fiddlesticks_chains"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_fiddlesticks/hero_fiddlesticks"
+		"AbilityTextureName"			"hero_fiddlesticks_chains"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		
+		"AbilityCooldown"				"18 17 16 15"
+		"AbilityManaCost"				"120"
+		"AbilityCastRange"				"600"
+
+		"AbilityValues"
+		{		
+			"damage"					
+			{
+				"value"									"80 160 240 320"
+				"special_bonus_unique_fiddlesticks_2"   "+80"
+			}
+			"disarm"				
+			{
+				"value"									"3 6 9 12"
+				"special_bonus_unique_fiddlesticks_5"   "+6"
+			}
+			"duration_disarm"			"6"
+			"duration"					"2"
+		}
+		"AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_2"
+	}
+
+"hero_fiddlesticks_scythe"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_fiddlesticks/hero_fiddlesticks"
+		"AbilityTextureName"			"hero_fiddlesticks_scythe"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+		"AbilityValues"
+		{		
+			"damage"					
+			{
+				"value"									"100 200 300"
+				"special_bonus_unique_fiddlesticks_4"   "+100"
+				"CalculateSpellDamageTooltip"  			"0"
+			}
+			"lifesteal" 								"20 30 40"
+			"chance"
+			{
+				"value"									"15"
+				"special_bonus_unique_fiddlesticks_3"   "+10"
+			}
+		}
+	}		
+	
+	
+	"special_bonus_unique_fiddlesticks_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_fiddlesticks_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_fiddlesticks_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_fiddlesticks_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_fiddlesticks_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_fiddlesticks_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_fiddlesticks_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_fiddlesticks_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

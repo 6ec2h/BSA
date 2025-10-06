@@ -9,8 +9,8 @@ function viper_poison_attack_lua:GetIntrinsicModifierName()
 end
 
 function viper_poison_attack_lua:GetManaCost(iLevel)
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int1")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int1"):GetLevel() > 0 then
+		if self:GetCaster():FindAbilityByName("special_bonus_viper_int1")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_viper_int1"):GetLevel() > 0 then
 				return 0
 			end
 		end

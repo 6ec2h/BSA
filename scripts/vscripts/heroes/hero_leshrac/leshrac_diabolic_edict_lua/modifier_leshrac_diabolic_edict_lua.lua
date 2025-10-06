@@ -31,12 +31,11 @@ function modifier_leshrac_diabolic_edict_lua:OnCreated( kv )
 	local duration = self:GetAbility():GetSpecialValueFor( "duration_tooltip" )
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	self.tower_bonus = self:GetAbility():GetSpecialValueFor( "tower_bonus" )/100 + 1
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi3")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi3"):GetLevel() > 0 then 
-			self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 22
-		end
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_leshrac_agi3")
+	if talent and talent:GetLevel() > 0 then 
+		self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 22
 	end
 
 	-- init data and precache

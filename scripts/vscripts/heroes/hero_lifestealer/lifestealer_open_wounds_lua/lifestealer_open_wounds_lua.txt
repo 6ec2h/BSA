@@ -22,33 +22,13 @@
 		"AbilityCooldown"				"24 22 20 18"
 		"AbilityManaCost"				"100 120 140 160"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_steps"			"-50 -40 -30 -20 -10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_tooltip"			"50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"200 250 300 350"
-			}
-		}
+		"AbilityValues"
+	{
+		"slow_steps"	"-50 -40 -30 -20 -10"
+			"heal_percent"	"25"
+			"slow_tooltip"	"50"
+			"duration"	"3"
+			"tooltip_range"	"200 250 300 350"
+	}
 	}
 }

@@ -34,7 +34,7 @@ function modifier_templar_assassin_refraction_lua_damage:OnCreated()
 	
 	count = self:GetAbility():GetSpecialValueFor("instances")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_templar_assassin_tal2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_templar_assassin_tal2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		count = count + 6
 	end

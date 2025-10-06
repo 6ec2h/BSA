@@ -1,120 +1,143 @@
-phoenix_skills = {"phoenix_nova","phoenix_telekinesis"}
-
-function Spawn( entityKeyValues )
-	if not IsServer() then
-		return
-	end
-
-	if thisEntity == nil then
-		return
-	end
-	thisEntity:SetContextThink( "CreepThink", CreepThink, 0.5 )
-end
-
---------------------------------------------------------------------------------
-
-function CreepThink()
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if not thisEntity.bSearchedForItems then
-		SearchForItems()
-		thisEntity.bSearchedForItems = true
-	end
-
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-	
-	if thisEntity:IsChanneling() then  
-        return 1 
+function Spawn(entityKeyValues)
+    if not IsServer() then
+        return
     end
 
-	local search_radius = thisEntity:GetAcquisitionRange()
-	local hp = thisEntity:GetHealthPercent()
-	local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, search_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
-	if #enemies > 0 then
-		if thisEntity.Discord and thisEntity.Discord:IsFullyCastable() then
-			UseDiscord( enemies[ RandomInt( 1, #enemies ) ] )	
-			return 0.5
-		end	
-		if thisEntity.GG and thisEntity.GG:IsFullyCastable() and hp < 15 then
-			UseGG()	
-			return 0.5
-		end	
-		enemy = enemies[1]
-		for _, T in ipairs(phoenix_skills) do
-			local Spell = thisEntity:FindAbilityByName(T)
-			if Spell then
-				local Behavior = Spell:GetBehaviorInt()
-				if bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET ) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
-					Spell.Behavior = "target"
-					Cast( Spell, enemy )
-				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET ) == DOTA_ABILITY_BEHAVIOR_NO_TARGET then
-					Spell.Behavior = "no_target"
-						Cast( Spell, enemy )
-				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_POINT ) == DOTA_ABILITY_BEHAVIOR_POINT then
-					Spell.Behavior = "point"
-					if hp < 70 then
-						Cast( Spell, enemy )
-					end
-				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE ) == DOTA_ABILITY_BEHAVIOR_POINT then
-					Spell.Behavior = "toggle"
-					if not Spell:GetToggleState() then 
-						Spell:ToggleAbility()
-					end
-				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_PASSIVE ) == DOTA_ABILITY_BEHAVIOR_PASSIVE then
-					Spell.Behavior = "passive"
-				end
-			end
-		end	
-	end	
-	return 2
+    if not thisEntity then
+        return
+    end
+	
+	thisEntity.refresh = 0
+
+    thisEntity:SetContextThink("NeutralThink", NeutralThink, 0.1)
+    thisEntity.bSearchedForItems = false
+    thisEntity.bSearchedForSpells = false
 end
 
---------------------------------------------------------------------------------
+function NeutralThink()
+    if not thisEntity.bSearchedForItems then
+        SearchForItems()
+        thisEntity.bSearchedForItems = true
+    end
 
-function SearchForItems()
-	for i = 0, 5 do
-		local item = thisEntity:GetItemInSlot( i )
-		if item then
-			if item:GetAbilityName() == "item_veil_of_discord_lua3" then
-				thisEntity.Discord = item
+    if not thisEntity.bSearchedForSpells then
+        SearchForSpells()
+        thisEntity.bSearchedForSpells = true
+    end
+
+    if not thisEntity:IsAlive() or GameRules:IsGamePaused() or thisEntity:IsChanneling() or thisEntity:IsDisarmed() then
+        return 0.5
+    end
+
+    local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+	
+	local target = enemies[RandomInt(1, #enemies)]
+	local abilities = {}
+
+    for _, abilityName in ipairs(thisEntity.spells) do
+        local ability = thisEntity:FindAbilityByName(abilityName)
+        if ability and ability:IsFullyCastable() then
+            table.insert(abilities, ability)
+        end
+    end
+
+    for _, itemName in ipairs(thisEntity.items) do
+        local item = thisEntity:FindItemInInventory(itemName)
+        if item and item:IsFullyCastable() then
+            table.insert(abilities, item)
+        end
+    end
+
+    if #abilities == 0 then
+        return 0.5
+    end
+
+    local ability = abilities[RandomInt(1, #abilities)]
+    if not ability or (ability:GetName() == 'item_octarine_core_lua3' and thisEntity.refresh < 4) then
+        return 0.5
+    end
+	
+	if ability:IsItem() then
+		if ability:GetName() == 'item_octarine_core_lua3' then
+			thisEntity.refresh = 0
+		end
+		behavior = ability:GetBehavior()
+	else
+		behavior = ability:GetBehaviorInt()
+	end
+	
+	if bit.band(behavior, DOTA_ABILITY_BEHAVIOR_PASSIVE) == DOTA_ABILITY_BEHAVIOR_PASSIVE then
+		return 0.1
+	elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_AUTOCAST) == DOTA_ABILITY_BEHAVIOR_AUTOCAST then
+		ability.Behavior = "auto"
+		if not ability:GetAutoCastState() then 
+			ability:ToggleAutoCast()
+		end
+		return 0.1
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
+		ability.Behavior = "target"
+		if ability:GetAbilityTargetTeam() == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
+			local friendly = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+			if #friendly > 0 then
+				local target = friendly[RandomInt(1, #friendly)]
+				if not target:GetName() == "npc_dummy_unit" then
+					Cast(ability, target)
+				end
 			end
-			
-			if item:GetAbilityName() == "item_guardian_greaves_lua3" then
-				thisEntity.GG = item
+		else
+			if target then
+				Cast(ability, target)
+			end
+		end
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) == DOTA_ABILITY_BEHAVIOR_NO_TARGET then
+		ability.Behavior = "no_target"
+		if target then
+			Cast(ability, target)
+		end
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_POINT) == DOTA_ABILITY_BEHAVIOR_POINT then
+		ability.Behavior = "point"
+		if target then
+			Cast(ability, target)
+		end
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE) == DOTA_ABILITY_BEHAVIOR_TOGGLE then
+		ability.Behavior = "toggle"		
+		if not ability:GetToggleState() then 
+			ability:ToggleAbility()
+		end
+    end
+
+    return 0.5
+end
+
+function SearchForSpells()
+	thisEntity.spells = {}
+	for i = 0, 20 do
+		local ability = thisEntity:GetAbilityByIndex(i)
+		if ability then
+			local abilityName = ability:GetName()
+			if abilityName ~= "attribute_bonus" and abilityName ~= "generic_hidden" and abilityName ~= "backdoor_protection" and abilityName ~= "twin_gate_portal_warp" and abilityName ~= "necronomicon_warrior_sight" then
+				table.insert(thisEntity.spells, abilityName)
 			end
 		end
 	end
 end
 
-function UseDiscord(unit)
-	local vTargetPos = unit:GetOrigin()
-	ExecuteOrderFromTable({
-		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-		Position = vTargetPos,
-		AbilityIndex = thisEntity.Discord:entindex(),
-		Queue = false,
-	})
-    return 1.5
+function SearchForItems()
+	thisEntity.items = {}
+	for i = 0, 5 do
+		local item = thisEntity:GetItemInSlot(i)
+		if item then
+			local itemName = item:GetName()
+			table.insert(thisEntity.items, itemName)
+		end
+	end
 end
 
-function UseGG(unit)
-	ExecuteOrderFromTable({
-		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-		AbilityIndex = thisEntity.GG:entindex(),
-		Queue = false,
-	})
-    return 0.1
-end
-
-function Cast( Spell , enemy )
+function Cast(Spell, enemy)
 	local order_type
 	local vTargetPos = enemy:GetOrigin()
+	thisEntity.refresh = thisEntity.refresh + 1
+
     if Spell.Behavior == "target" then
         order_type = DOTA_UNIT_ORDER_CAST_TARGET
     elseif Spell.Behavior == "no_target" then
@@ -124,7 +147,7 @@ function Cast( Spell , enemy )
     elseif Spell.Behavior == "passive" then
         return
     end
-
+	
 	ExecuteOrderFromTable({
 		UnitIndex = thisEntity:entindex(),
 		OrderType = order_type,

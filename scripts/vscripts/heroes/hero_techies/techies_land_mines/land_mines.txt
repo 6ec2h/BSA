@@ -16,23 +16,11 @@
         "MaxLevel"						    "4"
 		"AbilityManaCost"					"80 90 100 110"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 200 300 400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"small_radius"				"300"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"activation_time"			"1.0"
-			}
-		}
+		"AbilityValues"
+	{
+		"damage"	"100 200 300 400"
+			"small_radius"	"300"
+			"activation_time"	"1.0"
+	}
 	}
 }

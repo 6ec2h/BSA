@@ -28,12 +28,20 @@ end
 
 function modifier_item_rapier_lua_base:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
+		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
+		
 	}
 end
 
 function modifier_item_rapier_lua_base:GetModifierBaseAttack_BonusDamage()
 	if self:GetAbility() then
 		return self:GetAbility():GetSpecialValueFor("bonus_damage")
+	end
+end
+
+function modifier_item_rapier_lua_base:GetModifierSpellAmplify_Percentage()
+	if self:GetAbility() then
+		return self:GetAbility():GetSpecialValueFor("bonus_ampl")
 	end
 end

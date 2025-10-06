@@ -24,5 +24,5 @@ function modifier_exp_3:DeclareFunctions()
 end
 
 function modifier_exp_3:GetModifierPercentageExpRateBoost()
-	return 3
+	return 2
 end

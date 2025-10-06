@@ -11,28 +11,28 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_DEAD"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"mag_resist" 			
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mag_resist" 			"-8 -10 -12 -14"
+				"value"					"8 10 12 14"
+				"LinkedSpecialBonus"	"special_bonus_dragon_knight_1"
 			}
-			"02"
+			"duration"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration" 				"3"
+				"value"					"2"
+				"LinkedSpecialBonus"	"special_bonus_dragon_knight_8"
 			}
-			"03"
+			"damage"				
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"45 60 75 90"
+				"value"					"45 60 75 90"
+				"LinkedSpecialBonus"	"special_bonus_dragon_knight_5"
 			}
 		}
 	}

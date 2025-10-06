@@ -114,7 +114,7 @@ function modifier_naga_siren_rip_tide_lua:PlayEffects()
 			{ duration = self.duration }
 		)
 		self.damageTable.victim = enemy
-        if self:GetParent():FindAbilityByName("npc_dota_hero_naga_siren_5") ~= nil and self:GetParent():FindAbilityByName("npc_dota_hero_naga_siren_5"):GetLevel() > 0 then
+        if self:GetParent():FindAbilityByName("special_bonus_naga_siren_5") ~= nil and self:GetParent():FindAbilityByName("special_bonus_naga_siren_5"):GetLevel() > 0 then
             self.damageTable.damage = self.abilityDamageType + 110
         end
 		ApplyDamage( self.damageTable )
@@ -152,7 +152,7 @@ end
 
 function modifier_naga_siren_rip_tide_lua_debuff:OnCreated( kv )
     self.armor = self:GetAbility():GetSpecialValueFor( "armor_reduction" )
-    local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_naga_siren_1")
+    local talent = self:GetCaster():FindAbilityByName("special_bonus_naga_siren_1")
     if talent and talent:GetLevel() > 0 then
         self.armor = self.armor + talent:GetSpecialValueFor("value")
     end

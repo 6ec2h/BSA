@@ -2,8 +2,8 @@ omniknight_repel_lua = class({})
 LinkLuaModifier( "modifier_omniknight_repel_lua", "heroes/hero_omniknight/omniknight_repel_lua/modifier_omniknight_repel_lua", LUA_MODIFIER_MOTION_NONE )
 
 function omniknight_repel_lua:GetCooldown(level)
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int2")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int2"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int2")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int2"):GetLevel() > 0 then
 			return self.BaseClass.GetCooldown(self, level) - 5
 		end
 	end

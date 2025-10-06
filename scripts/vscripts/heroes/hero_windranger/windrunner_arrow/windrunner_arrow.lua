@@ -36,7 +36,7 @@ function windrunner_arrow:OnProjectileHit(hTarget, vLocation)
 		ApplyDamage({
 			victim = hTarget,
 			attacker = self:GetCaster(),
-			damage = self.damage * self:GetCaster():GetIntellect() * 0.01,
+			damage = self.damage * self:GetCaster():GetIntellect(true) * 0.01,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self
 		})

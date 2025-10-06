@@ -67,7 +67,7 @@ function modifier_remote_mines:OnDestroy()
 		local ampl = self:GetParent():GetOwner():GetSpellAmplification(false) + 1
 		local dmg = ability:GetSpecialValueFor("damage")
 		
-		local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_techies_int4")
+		local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_techies_int4")
 			if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			dmg = dmg + 200
 		end	

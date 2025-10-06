@@ -26,12 +26,11 @@ function modifier_broodmother_steal:GetModifierProcAttack_Feedback( params )
 	if IsServer() then
 		if params.attacker==self:GetParent() then
 			self.chance = self:GetAbility():GetSpecialValueFor("chance")
-			local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_broodmother_2")
+			local ability = self:GetCaster():FindAbilityByName("special_bonus_broodmother_2")
 			if ability ~= nil and ability:GetLevel() > 0 then 
 				self.chance = self.chance + 10
 			end
-			
-			if RandomInt(1,100) <= self.chance then
+			if RandomInt(1,100) <= self.chance and params.target:GetUnitName() ~= 'npc_dota_crate' and params.target:GetUnitName() ~= 'npc_dota_crate2' and params.target:GetUnitName() ~= 'npc_dota_hero_target_dummy' then
 				self:DebuffEnemy(params.target)
 				self:BuffCaster()    
 				self:GetCaster():EmitSound("Hero_Bane.BrainSap")

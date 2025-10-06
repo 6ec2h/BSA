@@ -21,7 +21,7 @@ function clinkz_searing_arrows_lua:OnOrbImpact( params )
 
 	local damage = self:GetSpecialValueFor( "bonus_damage" )
 	
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_clinkz_tal2")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_clinkz_tal2")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		damage = self:GetSpecialValueFor( "bonus_damage" ) + 50
 	end

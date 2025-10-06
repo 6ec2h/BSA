@@ -23,55 +23,17 @@
 		"AbilityManaCost"				"60"
 
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_width"					"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_speed"					"2000"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_range"					"650"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_damage"				"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movement_speed"			"40"
-				"LinkedSpecialBonus"		"special_bonus_imba_troll_warlord_2"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_spread"				"25"				
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_count"					"5"
-				"LinkedSpecialBonus"		"special_bonus_imba_troll_warlord_7"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"on_hit_pct"				"25 50 75 100"
-			}
+			"axe_width"	"100"
+			"axe_speed"	"2000"
+			"axe_range"	"650"
+			"axe_damage"	"50 100 150 200"
+			"duration"	"3"
+			"movement_speed"			"40"
+			"axe_spread"	"25"
+			"axe_count"					"5"
+			"on_hit_pct"	"25 50 75 100"
 		}
 	}
 	
@@ -96,49 +58,16 @@
 		
 		"AbilityManaCost"				"60"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 100 150 200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_radius"				"100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_range"					"350"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_movement_speed"		"277"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"blind_duration"			"3"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"blind_pct"					"60"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"blind_stacks"				"3"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"whirl_duration"			"3.0"
-			}
+			"damage"	"50 100 150 200"
+			"axe_radius"	"100"
+			"max_range"	"350"
+			"axe_movement_speed"	"277"
+			"blind_duration"	"3"
+			"blind_pct"	"60"
+			"blind_stacks"	"3"
+			"whirl_duration"	"3.0"
 		}
 	}
-
 }

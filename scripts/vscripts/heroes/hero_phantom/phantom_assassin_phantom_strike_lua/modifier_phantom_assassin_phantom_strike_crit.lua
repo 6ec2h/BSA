@@ -14,7 +14,7 @@ function modifier_phantom_assassin_phantom_strike_crit:OnCreated( kv )
 	self.crit_chance = 100
 	self.crit_bonus = self:GetAbility():GetSpecialValueFor( "crit_bonus" )
 	stats = 0
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_str10")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_str10")
 		if abil ~= nil then
 		stats = self:GetCaster():GetStrength() * 2
 		end
@@ -57,7 +57,7 @@ end
 
 function modifier_phantom_assassin_phantom_strike_crit:GetModifierAttackSpeedBonus_Constant( params )
 	if IsServer() and (not self:GetParent():PassivesDisabled()) then
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_agi8")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_agi8")
 		if abil ~= nil then
 		return 200
 		else

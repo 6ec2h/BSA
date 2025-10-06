@@ -18,49 +18,19 @@
 		"AbilityCooldown"				"19 16 13 10"
 		"AbilityManaCost"				"100 120 140 160"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 75 100 125"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"buffed_attacks"			"3 4 5 6"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_bonus"		"300"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_range_bonus"		"100"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"buff_duration_tooltip"		"8"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"base_attack_time"			"1.0"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"loss_armor"					"1 2 3 4"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"loss_duration"					"2.0"
-			}
+
+			"damage"					"50 75 100 125"
+		
+
+			"buffed_attacks"	"3 4 5 6"
+			"attack_speed_bonus"	"300"
+			"attack_range_bonus"	"100"
+			"buff_duration_tooltip"	"8"
+			"base_attack_time"	"1.0"
+			"loss_armor"	"1 2 3 4"
+			"loss_duration"	"2.0"
 		}
 	}
 }

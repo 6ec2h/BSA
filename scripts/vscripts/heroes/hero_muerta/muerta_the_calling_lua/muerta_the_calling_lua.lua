@@ -112,7 +112,7 @@ function modifier_muerta_the_calling_lua_slow:OnCreated( kv )
 	self.as_slow = self:GetAbility():GetSpecialValueFor( "aura_attackspeed_slow" )
 	self.spell_ampl = self:GetAbility():GetSpecialValueFor( "spell_ampl" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_muerta_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.spell_ampl = self.spell_ampl + 15
 	end

@@ -8,8 +8,8 @@ luna_moon = class({})
 
 function luna_moon:GetCooldown(level)
 	local caster = self:GetCaster()
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_luna_int9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_luna_int9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_luna_int9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_luna_int9"):GetLevel() > 0 then 
 			return self.BaseClass.GetCooldown( self, level ) - 60
 		end
 	end

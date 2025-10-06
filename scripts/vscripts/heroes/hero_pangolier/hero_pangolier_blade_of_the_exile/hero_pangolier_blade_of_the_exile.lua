@@ -57,7 +57,7 @@ function modifier_hero_pangolier_blade_of_the_exile:DeclareFunctions()
 end
 
 function modifier_hero_pangolier_blade_of_the_exile:GetModifierPercentageCooldown( params )
-	if not params.ability:IsItem() then
+	if not params.ability:IsItem() and not params.ability == self:GetAbility() then
 		return 100
 	end
 end

@@ -21,54 +21,17 @@
 		"AbilityCooldown"				"5.0"
 		"AbilityManaCost"				"35 40 45 50"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"totem_damage_percentage"	"100 150 200 250"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance_scepter"			"1100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"aftershock_range"			"300"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_height"			"950"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_height_arcbuffer"	"100"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_z"	"4000"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_horizontal"	"3000"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_leap_duration"		"1.0"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_range"		"75"
-			}
+			"totem_damage_percentage"	"100 150 200 250"
+			"distance_scepter"	"1100"
+			"aftershock_range"	"300"
+			"scepter_height"	"950"
+			"scepter_height_arcbuffer"	"100"
+			"scepter_acceleration_z"	"4000"
+			"scepter_acceleration_horizontal"	"3000"
+			"scepter_leap_duration"	"1.0"
+			"bonus_attack_range"	"75"
 		}
 	}
 }

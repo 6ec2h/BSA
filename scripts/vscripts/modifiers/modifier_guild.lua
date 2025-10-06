@@ -12,37 +12,27 @@ function modifier_guild:RemoveOnDeath()
     return false
 end
 
+function modifier_guild:SetupRewards(kv)
+    self.reward_1 = kv.reward_1 or 0
+    self.reward_2 = kv.reward_2 or 0
+    self.reward_3 = kv.reward_3 or 0
+    self.reward_4 = kv.reward_4 or 0
+    self.reward_5 = kv.reward_5 or 0
+    self.reward_6 = kv.reward_6 or 0
+    self.perm_reward_1 = kv.perm_reward_1 or 0
+    self.perm_reward_2 = kv.perm_reward_2 or 0
+end
+
 function modifier_guild:OnCreated(kv)
-	if not IsServer() then return end
-	print("create mod")
-	self.reward_1 = kv.reward_1 or 0
-	self.reward_2 = kv.reward_2 or 0
-	self.reward_3 = kv.reward_3 or 0
-	self.reward_4 = kv.reward_4 or 0
-	self.reward_5 = kv.reward_5 or 0
-	self.reward_6 = kv.reward_6 or 0
-	self.perm_reward_1 = kv.perm_reward_1 or 0
-	self.perm_reward_2 = kv.perm_reward_2 or 0
-	self:StartIntervalThink(1)
+    if not IsServer() then return end
+    self:SetupRewards(kv)
+    self:StartIntervalThink(1)
 end
 
 function modifier_guild:OnRefresh(kv)
-	if not IsServer() then return end
-	self.reward_1 = kv.reward_1 or 0
-	self.reward_2 = kv.reward_2 or 0
-	self.reward_3 = kv.reward_3 or 0
-	self.reward_4 = kv.reward_4 or 0
-	self.reward_5 = kv.reward_5 or 0
-	self.reward_6 = kv.reward_6 or 0
-	self.perm_reward_1 = kv.perm_reward_1 or 0
-	self.perm_reward_2 = kv.perm_reward_2 or 0
-    print("refresh")
+    if not IsServer() then return end
+    self:SetupRewards(kv)
 end
-
-function modifier_guild:OnRemove(data)
-    print("remove")
-end
-
 
 function modifier_guild:Spawn_bonus()
 	if not IsServer() then return end
@@ -67,26 +57,26 @@ end
 
 if IsServer() then 
 	function modifier_guild:GetModifierIncomingDamage_Percentage()
-		return -0.5*self.reward_2
+		return -0.25*self.reward_2
 	end
 
 	function modifier_guild:GetModifierPercentageExpRateBoost()
-		return self.reward_3
+		return 0.5 * self.reward_3
 	end
 
 	function modifier_guild:GetModifierDamageOutgoing_Percentage()
-		return 0.5*self.reward_5
+		return 0.25*self.reward_5
 	end
 
 	function modifier_guild:GetModifierBonusStats_Agility()
-		return self.reward_6 * 0.4 * self:GetCaster():GetLevel()
+		return self.reward_6 * 0.2 * self:GetCaster():GetLevel()
 	end
 
 	function modifier_guild:GetModifierBonusStats_Strength()
-		return self.reward_6 * 0.4 * self:GetCaster():GetLevel()
+		return self.reward_6 * 0.2 * self:GetCaster():GetLevel()
 	end
 
 	function modifier_guild:GetModifierBonusStats_Intellect()
-		return self.reward_6 * 0.4 * self:GetCaster():GetLevel()
+		return self.reward_6 * 0.2 * self:GetCaster():GetLevel()
 	end
 end

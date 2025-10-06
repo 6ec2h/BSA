@@ -20,7 +20,7 @@ function modifier_npc_dota_hero_clinkz_permanent_ability:OnCreated()
 	self:SetStackCount(1)
 	self.count = self:GetAbility():GetSpecialValueFor("count")
 	self.duration = self:GetAbility():GetSpecialValueFor("duration")
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_clinkz_tal4")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_clinkz_tal4")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		self.count = self:GetAbility():GetSpecialValueFor("count") - 1
 	end

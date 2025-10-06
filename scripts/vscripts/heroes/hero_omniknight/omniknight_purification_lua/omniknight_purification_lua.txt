@@ -21,21 +21,11 @@
 
 		"AbilityCooldown"				"11.0"
 		"AbilityManaCost"				"85 100 115 130"
-		
-		"AbilityDamage"					"100 200 300 400"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"90 160 230 300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"260"
-			}
+			"heal"	"90 160 230 300"
+			"radius"	"260"
 		}
 	}
 }

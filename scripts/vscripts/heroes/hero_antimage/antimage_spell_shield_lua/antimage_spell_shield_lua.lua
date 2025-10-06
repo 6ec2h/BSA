@@ -30,7 +30,7 @@ end
 
 function modifier_antimage_spell_shield_lua:OnRefresh( kv )
 	self.bonus = self:GetAbility():GetSpecialValueFor("bonus_resist_pct")
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_antimage_int3")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_antimage_int3")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.bonus = self:GetAbility():GetSpecialValueFor("bonus_resist_pct") * 1.5
 	end
@@ -96,7 +96,7 @@ end
 
 function modifier_antimage_spell_shield_lua_effect:OnRefresh( kv )
 	self.bonus_resist_pct_enemy = self:GetAbility():GetSpecialValueFor( "bonus_resist_pct_enemy" )
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_antimage_int3")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_antimage_int3")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.bonus_resist_pct_enemy = self:GetAbility():GetSpecialValueFor("bonus_resist_pct_enemy") * 1.5
 	end

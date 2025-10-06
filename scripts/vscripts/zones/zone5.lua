@@ -1,15 +1,5 @@
-require('essentials')
-require("data")
-
 function quest_start(data)
-	local activator = data.activator
-	local messageID = "#5_zone"
-	local zone_name = "#zone5"
-	local description = "#zone5_des"
-	data.activator:EmitSound("Item.TomeOfKnowledge")
-	CustomGameEventManager:Send_ServerToAllClients("QuestMsgPanel_create_new_message", {messageName = zone_name, messageText = messageID})	
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 201, id =311})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =311})	
+	quest_system:StartQuest('main', 9)
 end
 
 function crate ( trigger )
@@ -47,25 +37,15 @@ function trapsspawn(trapspawn)
 		end
 	end)
 
-	if _G.Game_Difficulty > 5 then
+	if _G.Game_Difficulty >= 12 then
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
 		end)
-	end	
-	clear()
+	end
+	
+	rules:clear_zone('trapspawn', 15)
 end 
-
-function clear()
-	Timers:CreateTimer(5, function()
-		for i = 1, 15 do
-			local point = Entities:FindByName( nil, "trapspawn"..i)
-			if point then
-				UTIL_Remove( point )
-			end
-		end	
-	end)
-end
 
 -------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
@@ -155,7 +135,7 @@ end
 --------------------------------------------------------------------------------------------------------------------
 
 function sbtp1(event)
-   local unit = event.activator
+	local unit = event.activator
     ProjectileManager:ProjectileDodge(unit)
     ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, unit)
     unit:EmitSound("DOTA_Item.BlinkDagger.Activate")
@@ -164,7 +144,18 @@ function sbtp1(event)
 	local point = ent:GetAbsOrigin()
 	event.activator:SetAbsOrigin( point )
 	FindClearSpaceForUnit(event.activator, point, false)
-	event.activator:Stop() 
+	event.activator:Stop()
+	
+	local quest_9 = _G.players_quest_progress["additional"][106]
+	if quest_9 and not quest_9.completed then
+		quest_9.kill_count = (quest_9.kill_count or 0) + 1
+		quest_system:UpdateQuest("additional", 106, quest_9.kill_count)
+		if quest_9.kill_count >= _G.quest_data["additional"][106].goal then
+			quest_9.completed = true
+			quest_system:RemoveQuest("additional", 106, "success")
+		end
+	end
+	
 end
 
 function sbtp2(event)

@@ -24,5 +24,5 @@ function modifier_armor_5:DeclareFunctions()
 end
 
 function modifier_armor_5:GetModifierPhysicalArmorBonus()
-	return 5
+	return 2
 end

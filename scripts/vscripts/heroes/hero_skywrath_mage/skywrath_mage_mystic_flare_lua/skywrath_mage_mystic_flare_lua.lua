@@ -32,8 +32,8 @@ function skywrath_mage_mystic_flare_lua:OnSpellStart()
 	local sound_cast = "Hero_SkywrathMage.MysticFlare.Cast"
 	EmitSoundOn( sound_cast, caster )
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int11"):GetLevel() > 0 then  
+	if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int11")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int11"):GetLevel() > 0 then  
 			local scepter_radius = self:GetSpecialValueFor( "scepter_radius" )
 			
 			-- find nearby enemies

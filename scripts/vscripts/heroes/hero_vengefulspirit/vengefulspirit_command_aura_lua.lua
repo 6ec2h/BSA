@@ -127,7 +127,7 @@ function modifier_vengefulspirit_command_aura_effect_lua:GetModifierBaseDamageOu
 	end
 	
 	self.bonus_damage_pct = self:GetAbility():GetSpecialValueFor( "bonus_damage_pct" )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_vengefulspirit_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_vengefulspirit_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.bonus_damage_pct = self.bonus_damage_pct + 10
 	end

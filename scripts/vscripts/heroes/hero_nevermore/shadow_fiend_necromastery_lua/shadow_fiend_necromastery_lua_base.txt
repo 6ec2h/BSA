@@ -13,23 +13,11 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_damage"			"1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"soul_release"			"0.2 0.4 0.6 0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tooltip_soul"			"80 60 40 20"
-			}
-		}
+		"AbilityValues"
+	{
+		"soul_damage"	"1"
+			"soul_release"	"0.2 0.4 0.6 0.8"
+			"tooltip_soul"	"80 60 40 20"
+	}
 	}
 }

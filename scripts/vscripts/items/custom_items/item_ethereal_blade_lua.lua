@@ -17,7 +17,6 @@ end
 function item_ethereal_blade_lua1:OnSpellStart()
 	self:GetCaster()		= self:GetCaster()
 	
-	-- AbilitySpecials
 	self.blast_movement_slow		=	self:GetSpecialValueFor("blast_movement_slow")
 	self.duration					=	self:GetSpecialValueFor("duration")
 	self.blast_agility_multiplier	=	self:GetSpecialValueFor("blast_agility_multiplier")

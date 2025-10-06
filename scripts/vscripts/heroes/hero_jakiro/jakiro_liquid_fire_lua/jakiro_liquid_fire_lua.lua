@@ -11,7 +11,7 @@ function jakiro_liquid_fire_lua:OnSpellStart()
 end
 
 function jakiro_liquid_fire_lua:GetCooldown(level)
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_jakiro_int3")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_jakiro_int3")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		return self.BaseClass.GetCooldown( self, level ) -5	
 	end

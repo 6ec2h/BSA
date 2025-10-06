@@ -87,7 +87,7 @@ end
 
 function modifier_vengefulspirit_wave_of_terror_lua:GetModifierPhysicalArmorBonus( params )
 	self.armor_reduction = self:GetAbility():GetSpecialValueFor( "armor_reduction" )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_vengefulspirit_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_vengefulspirit_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.armor_reduction = self.armor_reduction - 3
 	end

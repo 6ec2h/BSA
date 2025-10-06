@@ -1,132 +1,159 @@
-AI = {}
-
-AI.Init = function( thisEntity )
-	thisEntity.aiState = {
-		hAggroTarget = nil,
-		flShoutRange = 100,
-		nWalkingMoveSpeed = 280,
-		nAggroMoveSpeed = 380,
-		flAcquisitionRange = 1000,
-		vTargetWaypoint = nil,
-		isAttacking = false,
-	}
-	thisEntity:SetContextThink( "init_think", function() 
-		thisEntity.HellbearThink = HellbearThink
-		thisEntity.CheckIfHasAggro = CheckIfHasAggro
-		thisEntity.RoamBetweenWaypoints = RoamBetweenWaypoints
-		thisEntity:SetAcquisitionRange( thisEntity.aiState.flAcquisitionRange )
-		thisEntity.bIsRoaring = false
-		
-		local tWaypoints = {}
-		local nWaypointsPerRoamNode = 3
-		local nMinWaypointSearchDistance = 0
-		local nMaxWaypointSearchDistance = 1048
-
-		while #tWaypoints < nWaypointsPerRoamNode do
-			local vWaypoint = thisEntity:GetAbsOrigin() + RandomVector( RandomFloat( nMinWaypointSearchDistance, nMaxWaypointSearchDistance ) )
-			if GridNav:CanFindPath( thisEntity:GetAbsOrigin(), vWaypoint ) then
-				table.insert( tWaypoints, vWaypoint )
-			end
-		end
-		thisEntity.aiState.tWaypoints = tWaypoints
-		
-		thisEntity.leshrac_pulse_nova = thisEntity:FindAbilityByName( "leshrac_pulse_nova" )
-		
-		thisEntity:SetContextThink( "ai_base_creature.HellbearThink", Dynamic_Wrap( thisEntity, "HellbearThink" ), 0 )
-	end, 0 )
-end
-
---------------------------------------------------------------------------------
-
-function HellbearThink()
-	if ( not thisEntity:IsAlive() ) then
-		return -1
-	end
-	
-	if GameRules:IsGamePaused() == true then
-		return 1
-	end
-	
-	if thisEntity:IsChanneling() then
-        return 1 
+function Spawn(entityKeyValues)
+    if not IsServer() then
+        return
     end
 
-	local enemies = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 700, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
-	if #enemies > 0 then
-			
-			if thisEntity.leshrac_pulse_nova ~= nil and thisEntity.leshrac_pulse_nova:IsFullyCastable() then
-			if not thisEntity.leshrac_pulse_nova:GetToggleState() then 
-					thisEntity.leshrac_pulse_nova:ToggleAbility()
-					end
-			--	return CastNova( hAttackTarget )
-			end
-			
-		end
-	local agro = thisEntity:CheckIfHasAggro()
-	if agro then
-		return agro
-	end
-	return thisEntity:RoamBetweenWaypoints()
+    if not thisEntity then
+        return
+    end
+	
+	thisEntity.refresh = 0
+
+    thisEntity:SetContextThink("NeutralThink", NeutralThink, 0.1)
+    thisEntity.bSearchedForItems = false
+    thisEntity.bSearchedForSpells = false
 end
 
---------------------------------------------------------------------------------
+function NeutralThink()
+    if not thisEntity.bSearchedForItems then
+        SearchForItems()
+        thisEntity.bSearchedForItems = true
+    end
 
-function CastNova( hEnemy )
-      ExecuteOrderFromTable({
-            UnitIndex = thisEntity:entindex(),
-            OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET, 
-            AbilityIndex = thisEntity.leshrac_pulse_nova:entindex(),
-            Queue = false,
-        })
-    return 1
-end
+    if not thisEntity.bSearchedForSpells then
+        SearchForSpells()
+        thisEntity.bSearchedForSpells = true
+    end
 
-------------------------------------------------------------------------------
-function CheckIfHasAggro( thisEntity )
-	if thisEntity:GetAggroTarget() ~= nil then
-		thisEntity:SetBaseMoveSpeed( thisEntity.aiState.nAggroMoveSpeed )
-		if thisEntity:GetAggroTarget() ~= thisEntity.aiState.hAggroTarget then
-			thisEntity.aiState.hAggroTarget = thisEntity:GetAggroTarget()
+    if not thisEntity:IsAlive() or GameRules:IsGamePaused() or thisEntity:IsChanneling() or thisEntity:IsDisarmed() then
+        return 0.5
+    end
+
+    local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+	
+	local target = enemies[RandomInt(1, #enemies)]
+	local abilities = {}
+
+    for _, abilityName in ipairs(thisEntity.spells) do
+        local ability = thisEntity:FindAbilityByName(abilityName)
+        if ability and ability:IsFullyCastable() then
+            table.insert(abilities, ability)
+        end
+    end
+
+    for _, itemName in ipairs(thisEntity.items) do
+        local item = thisEntity:FindItemInInventory(itemName)
+        if item and item:IsFullyCastable() then
+            table.insert(abilities, item)
+        end
+    end
+
+    if #abilities == 0 then
+        return 0.5
+    end
+
+    local ability = abilities[RandomInt(1, #abilities)]
+    if not ability or (ability:GetName() == 'item_octarine_core_lua3' and thisEntity.refresh < 4) then
+        return 0.5
+    end
+	
+	if ability:IsItem() then
+		if ability:GetName() == 'item_octarine_core_lua3' then
+			thisEntity.refresh = 0
 		end
-		 
-		if not thisEntity.aiState.isAttacking then
-			thisEntity.aiState.ChasingStartPos = thisEntity:GetAbsOrigin()
-	 		thisEntity.aiState.isAttacking = true
-	 	else
-	 		local distance = (thisEntity:GetAbsOrigin() - thisEntity.aiState.ChasingStartPos):Length2D()
-	 		if distance > 2000 then
-	 			thisEntity:MoveToPosition(thisEntity.aiState.ChasingStartPos)
-	 			return distance / 200
-	 		end
-		end
-
-	 	return 1
+		behavior = ability:GetBehavior()
 	else
-
-		thisEntity:SetBaseMoveSpeed( thisEntity.aiState.nWalkingMoveSpeed )
-		thisEntity.bIsRoaring = false
-		return nil
+		behavior = ability:GetBehaviorInt()
 	end
+	
+	if bit.band(behavior, DOTA_ABILITY_BEHAVIOR_PASSIVE) == DOTA_ABILITY_BEHAVIOR_PASSIVE then
+		return 0.1
+	elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_AUTOCAST) == DOTA_ABILITY_BEHAVIOR_AUTOCAST then
+		ability.Behavior = "auto"
+		if not ability:GetAutoCastState() then 
+			ability:ToggleAutoCast()
+		end
+		return 0.1
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
+		ability.Behavior = "target"
+		if ability:GetAbilityTargetTeam() == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
+			local friendly = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+			if #friendly > 0 then
+				local target = friendly[RandomInt(1, #friendly)]
+				if not target:GetName() == "npc_dummy_unit" then
+					Cast(ability, target)
+				end
+			end
+		else
+			if target then
+				Cast(ability, target)
+			end
+		end
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) == DOTA_ABILITY_BEHAVIOR_NO_TARGET and not bit.band(behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE) == DOTA_ABILITY_BEHAVIOR_TOGGLE then
+		ability.Behavior = "no_target"
+		if target then
+			Cast(ability, target)
+		end
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_POINT) == DOTA_ABILITY_BEHAVIOR_POINT then
+		ability.Behavior = "point"
+		if target then
+			Cast(ability, target)
+		end
+    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE) == DOTA_ABILITY_BEHAVIOR_TOGGLE then
+		ability.Behavior = "toggle"		
+		if not ability:GetToggleState() then 
+			ability:ToggleAbility()
+		end
+    end
+
+    return 0.5
 end
 
-
-function RoamBetweenWaypoints( thisEntity )
-	local gameTime = GameRules:GetGameTime()
-	local aiState = thisEntity.aiState
-	if aiState.vWaypoint ~= nil then
-		local flRoamTimeLeft = aiState.flNextWaypointTime - gameTime
-		if flRoamTimeLeft <= 0 then
-			aiState.vWaypoint = nil
+function SearchForSpells()
+	thisEntity.spells = {}
+	for i = 0, 20 do
+		local ability = thisEntity:GetAbilityByIndex(i)
+		if ability then
+			local abilityName = ability:GetName()
+			if abilityName ~= "attribute_bonus" and abilityName ~= "generic_hidden" and abilityName ~= "backdoor_protection" and abilityName ~= "twin_gate_portal_warp" and abilityName ~= "necronomicon_warrior_sight" then
+				table.insert(thisEntity.spells, abilityName)
+			end
 		end
 	end
-	if aiState.vWaypoint == nil then
-	 aiState.vWaypoint = aiState.tWaypoints[ RandomInt( 1, #aiState.tWaypoints ) ]
-	 aiState.flNextWaypointTime = gameTime + RandomFloat( 2, 4 )
-		thisEntity:MoveToPositionAggressive( aiState.vWaypoint )
-	end
-	return 1
 end
 
-function Spawn( entityKeyValues )
-    AI.Init( thisEntity )
+function SearchForItems()
+	thisEntity.items = {}
+	for i = 0, 5 do
+		local item = thisEntity:GetItemInSlot(i)
+		if item then
+			local itemName = item:GetName()
+			table.insert(thisEntity.items, itemName)
+		end
+	end
+end
+
+function Cast(Spell, enemy)
+	local order_type
+	local vTargetPos = enemy:GetOrigin()
+	thisEntity.refresh = thisEntity.refresh + 1
+
+    if Spell.Behavior == "target" then
+        order_type = DOTA_UNIT_ORDER_CAST_TARGET
+    elseif Spell.Behavior == "no_target" then
+        order_type = DOTA_UNIT_ORDER_CAST_NO_TARGET
+    elseif Spell.Behavior == "point" then
+        order_type = DOTA_UNIT_ORDER_CAST_POSITION
+    elseif Spell.Behavior == "passive" then
+        return
+    end
+	
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = order_type,
+		Position = vTargetPos,
+		TargetIndex = enemy:entindex(),  
+		AbilityIndex = Spell:entindex(),
+		Queue = false,
+	})
 end

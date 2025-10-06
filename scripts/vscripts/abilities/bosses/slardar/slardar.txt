@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+	"slardar_slithereen_crush_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/slardar/slardar_slithereen_crush_lua"
+		"AbilityTextureName"			"slardar_slithereen_crush"
+		"FightRecapLevel"				"1"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"0.35"
+		"AbilityDuration"				"2"
+
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"0"
+
+		"AbilityDamage"					"2000"
+		
+		"AbilityValues"
+		{
+			"crush_radius"					"600"
+			"crush_extra_slow"				"-40"
+			"crush_attack_slow_tooltip"		"-40"
+			"crush_extra_slow_duration"		"2.0"
+			"stun_duration"					"2"
+		}
+	}
+}

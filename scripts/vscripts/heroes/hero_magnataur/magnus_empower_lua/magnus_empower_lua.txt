@@ -21,58 +21,18 @@
 		"AbilityCooldown"				"30"
 		"AbilityManaCost"				"45 60 75 90"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"empower_duration"		"30 35 40 45"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_pct"		"10 14 18 22"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cleave_damage_pct"		"10 20 30 40"
-			}			
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cleave_starting_width"			"150"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cleave_ending_width"			"360"
-			}			
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cleave_distance"			"650"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"splash_damage_pct"		"10 15 20 25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"splash_radius"			"240"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"900"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"self_multiplier"		"1.75"
-			}
-		}
+		"AbilityValues"
+	{
+		"empower_duration"	"30 35 40 45"
+			"bonus_damage_pct"	"10 14 18 22"
+			"cleave_damage_pct"	"10 20 30 40"			
+			"cleave_starting_width"	"150"			
+			"cleave_ending_width"	"360"			
+			"cleave_distance"	"650"
+			"splash_damage_pct"	"10 15 20 25"
+			"splash_radius"	"240"
+			"aura_radius"	"900"
+			"self_multiplier"	"1.75"
+	}
 	}
 }

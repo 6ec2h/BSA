@@ -20,7 +20,7 @@
 			"damage"					
 			{
 				"value"					"60 120 180 240"
-				"LinkedSpecialBonus"	"npc_dota_hero_brewmaster_1"
+				"LinkedSpecialBonus"	"special_bonus_brewmaster_1"
 			}	
 			"movement_slow"				"10 15 20 25"
 			"attack_speed_slow"			"10 20 30 40"
@@ -51,7 +51,7 @@
 			"total_damage"				
 			{
 				"value"					"100 160 220 280"
-				"LinkedSpecialBonus"	"npc_dota_hero_brewmaster_2"
+				"LinkedSpecialBonus"	"special_bonus_brewmaster_2"
 			}	
 			"movement_slow"				"10 15 20 25"
 			"radius"					"400"
@@ -83,7 +83,7 @@
 			"crit_multiplier"
 			{
 				"value"					"140 180 220 260"
-				"LinkedSpecialBonus"	"npc_dota_hero_brewmaster_3"
+				"LinkedSpecialBonus"	"special_bonus_brewmaster_3"
 			}	
 			"duration"				"5"
 		}
@@ -94,7 +94,7 @@
         "BaseClass"                     "ability_lua"
         "ScriptFile"                    "heroes/hero_brewmaster/brewmaster_ult"
         "AbilityTextureName"            "brewmaster_primal_companion"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -107,7 +107,7 @@
 			"duration"				
 			{
 				"value"					"12 16 20"
-				"LinkedSpecialBonus"	"npc_dota_hero_brewmaster_4"
+				"LinkedSpecialBonus"	"special_bonus_brewmaster_4"
 			}	
 			"model_scele"			"40"
 			"movespeed"				"25"

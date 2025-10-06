@@ -36,7 +36,7 @@ function naga_siren_song_of_the_siren_lua:OnSpellStart()
 end
 
 function naga_siren_song_of_the_siren_lua:GetCooldown( level )
-	local t = self:GetCaster():FindAbilityByName("npc_dota_hero_naga_siren_3")
+	local t = self:GetCaster():FindAbilityByName("special_bonus_naga_siren_3")
 	if t and t:GetLevel() > 0 then
 		return self.BaseClass.GetCooldown( self, level ) + t:GetSpecialValueFor("value")
 	end

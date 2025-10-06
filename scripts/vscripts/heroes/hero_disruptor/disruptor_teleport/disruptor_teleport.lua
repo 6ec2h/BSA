@@ -10,8 +10,8 @@ end
 
 
 function disruptor_teleport:GetAOERadius()
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi4"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4"):GetLevel() > 0 then 
 			return self:GetSpecialValueFor("radius")
 		end
 	end
@@ -19,8 +19,8 @@ function disruptor_teleport:GetAOERadius()
 end
 
 function disruptor_teleport:GetBehavior()
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi4"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4"):GetLevel() > 0 then 
 			return  DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
 		end
 	end
@@ -34,8 +34,8 @@ function disruptor_teleport:OnSpellStart()
 	self.delay = self:GetSpecialValueFor("delay")
 	
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi4"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4"):GetLevel() > 0 then 
 		local radius = self:GetSpecialValueFor("radius")
 			
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),
@@ -58,18 +58,18 @@ function disruptor_teleport:OnSpellStart()
 
 		
 		else
-			if caster ~= target then
-		target:AddNewModifier(
-			caster, -- player source
-			self, -- ability source
-			"modifier_disruptor_teleport", -- modifier name
-			{duration  = self.delay} -- kv
-		)
+		if caster ~= target then
+			target:AddNewModifier(
+				caster, -- player source
+				self, -- ability source
+				"modifier_disruptor_teleport", -- modifier name
+				{duration  = self.delay} -- kv
+			)
 
-		-- play effects
-		local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
-		EmitSoundOn( sound_cast, caster )
-		end
+			-- play effects
+			local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
+			EmitSoundOn( sound_cast, caster )
+			end
 		end
 	end	
 end
@@ -112,6 +112,10 @@ function modifier_disruptor_teleport:OnDestroy()
 			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_chen/chen_teleport_flash.vpcf", PATTACH_POINT, self:GetParent())
 			ParticleManager:ReleaseParticleIndex(particle)
 			
+			local hRelay = Entities:FindByName( nil, "tp_off" )
+			if hRelay == nil then return end
+			hRelay:Trigger(nil,nil)
+	
 			-- Teleport the parent to the caster's position + the teleport vector
 			--self:GetParent():SetAbsOrigin(self:GetCaster():GetAbsOrigin() + self:GetAbility().teleport_vector)
 			FindClearSpaceForUnit(self:GetParent(), self:GetCaster():GetAbsOrigin() + self:GetAbility().teleport_vector, false)
@@ -215,18 +219,13 @@ function modifier_disruptor_aura_effect:OnRefresh( kv )
 	self.ampl = self:GetAbility():GetSpecialValueFor( "ampl" )
 end
 
-function modifier_disruptor_aura_effect:OnDestroy( kv )
-
-end
-
 function modifier_disruptor_aura_effect:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
 	}
-
 	return funcs
 end
 
-function modifier_disruptor_aura_effect:ampl()
+function modifier_disruptor_aura_effect:GetModifierSpellAmplify_Percentage()
 	return self.ampl
 end

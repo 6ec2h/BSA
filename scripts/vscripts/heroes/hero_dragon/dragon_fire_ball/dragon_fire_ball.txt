@@ -16,31 +16,19 @@
 		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.2"
 
-		"AbilityCooldown"				"20 18 16 14"
+		"AbilityCooldown"				"18 16 14 12"
 		"AbilityManaCost"				"80 120 160 200"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 100 150 200"
+				"value"					"40 80 120 160"
+				"LinkedSpecialBonus"	"special_bonus_dragon_knight_6"
 			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"350"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"4"
-			}	
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"burn_interval"				"0.5"
-			}
+			"radius"					"350"
+			"duration"					"4"
+			"burn_interval"				"0.5"
 		}
 	}
 }

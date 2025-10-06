@@ -15,8 +15,8 @@ end
 
 
 function terrorblade_metamorphosis_lua:GetCooldown(level)
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_terrorblade_agi11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_terrorblade_agi11"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_terrorblade_agi11")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_terrorblade_agi11"):GetLevel() > 0 then 
 			return self.BaseClass.GetCooldown(self, level) - 60
 		end
 	end
@@ -40,8 +40,8 @@ function terrorblade_metamorphosis_lua:OnSpellStart()
 		{ duration = duration } -- kv
 	)
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_terrorblade_str7")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_terrorblade_str7"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_terrorblade_str7")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_terrorblade_str7"):GetLevel() > 0 then 
 			CreateModifierThinker(self:GetCaster(), self, "modifier_fear_thinker", {duration = 1600 / 1000}, self:GetCaster():GetAbsOrigin(), self:GetCaster():GetTeamNumber(), false)
 		end
 	end

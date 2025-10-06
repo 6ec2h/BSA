@@ -24,5 +24,5 @@ function modifier_hp_regen_10:DeclareFunctions()
 end
 
 function modifier_hp_regen_10:GetModifierConstantHealthRegen()
-	return 10
+	return 5
 end

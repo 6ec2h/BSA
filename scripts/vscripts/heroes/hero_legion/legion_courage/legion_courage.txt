@@ -15,18 +15,10 @@
 		"AbilityCooldown"				"8 6 4 2"
 
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trigger_chance"			"25"
-			}			
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"25 30 35 40"
-			}
-		}
+		"AbilityValues"
+	{
+		"trigger_chance"	"25"			
+			"damage"	"25 30 35 40"
+	}
 	}
 }

@@ -3,6 +3,11 @@ LinkLuaModifier( "modifier_anakim_wisp_handler", "heroes/hero_anakim/anakim_wisp
 
 anakim_realise = class({})
 
+function anakim_realise:Precache( context )
+	PrecacheResource( "particle", "particles/anakim/anakim_realise.vpcf", context )
+end
+
+
 function anakim_realise:CastFilterResultTarget( target )
 	if IsServer() then
 		self.stack = true
@@ -53,7 +58,7 @@ function anakim_realise:OnSpellStart()
 				modifier:DecrementStackCount()
 				local soul_defence = modifier:GetAbility():GetSpecialValueFor("soul_defense")	
 				
-				local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal3")
+				local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal3")
 				if ability ~= nil and ability:GetLevel() > 0 then 
 					soul_defence = soul_defence + ability:GetSpecialValueFor("value")
 				end
@@ -86,7 +91,7 @@ end
 function anakim_realise:OnProjectileHit_ExtraData( target, location, extra )
 	if not target then return end
 	local damage = self:GetSpecialValueFor( "damage" )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal7")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal7")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		damage = damage + ability:GetSpecialValueFor("value")
 	end
@@ -97,7 +102,7 @@ function anakim_realise:OnProjectileHit_ExtraData( target, location, extra )
 		ability = self,
 	}
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal8")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal8")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target:GetOrigin(), nil, 200, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _,enemy in pairs(enemies) do

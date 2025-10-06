@@ -1,5 +1,4 @@
 require('essentials')
-require( "libraries/timers")
 
 function tp_xdes_start(event)
 	local unit = event.activator  	
@@ -34,21 +33,26 @@ function teleport_roshan(event)
 	event.activator:Stop() 
 end
 
-function tp_necrolyte(event) -- финал
+function tp_necrolyte(event)
+	if GameRules:IsCheatMode() then return end
 	local unit = event.activator
 	ProjectileManager:ProjectileDodge(unit)
 	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, unit)
 	unit:EmitSound("DOTA_Item.BlinkDagger.Activate")
-	local ent = Entities:FindByName( nil, "point_final_boss")
-	local point = ent:GetAbsOrigin()
-	event.activator:SetAbsOrigin( point )
+	local point = Entities:FindByName( nil, "point_final_boss"):GetAbsOrigin()
+	
 	FindClearSpaceForUnit(event.activator, point, false)
 	event.activator:Stop()
 	
-
+	for boss, status in pairs(_G.bosses_counter) do
+		if status == false then
+			Shop:ban()
+			break
+		end
+	end	
+	
 	Notifications:TopToAll({"FINAL FIGHT"..count, duration=5})
 
-	
 	Timers:CreateTimer(5.5, function()
 		rules:boss_invulnerable("necrolyte")
 	end)
@@ -58,25 +62,19 @@ end
 --------------------------------------------------------------------------------------------------------------------------------
 
 function tpearth(event)
-   local unit = Entities:FindByName( nil, "npc_dota_creature_gaven_the_brute")
-   local wws= "pnt_earth"
-   local ent = Entities:FindByName( nil, wws)
-   local point = ent:GetAbsOrigin()
-   unit:SetAbsOrigin( point )
-   FindClearSpaceForUnit(unit, point, false)
-   unit:Stop()
-   essentials:createCustomHpBarFor(unit)
+	local unit = Entities:FindByName( nil, "npc_dota_creature_gaven_the_brute")
+	unit:RemoveModifierByName("modifier_invulnerable")
+	unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
+	unit:RemoveModifierByName("modifier_magic_immune")
+	essentials:createCustomHpBarFor(unit)
 end
 
 function tpsnow(event)
-   local unit = Entities:FindByName( nil, "npc_dota_creature_snow")
-   local wws= "pnt_snow"
-   local ent = Entities:FindByName( nil, wws)
-   local point = ent:GetAbsOrigin()
-   unit:SetAbsOrigin( point )
-   FindClearSpaceForUnit(unit, point, false)
-   unit:Stop()
-   essentials:createCustomHpBarFor(unit)
+	local unit = Entities:FindByName( nil, "npc_dota_creature_snow")
+	unit:RemoveModifierByName("modifier_invulnerable")
+	unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
+	unit:RemoveModifierByName("modifier_magic_immune")
+	essentials:createCustomHpBarFor(unit)
 end
 
 

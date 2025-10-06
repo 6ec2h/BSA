@@ -1,64 +1,36 @@
 "DOTAAbilities"
 {
-	"shaman_wards_custom"
-		{
-			"BaseClass"              		"ability_lua"
-			"ScriptFile"					"heroes/hero_shaman/shaman_wards/shaman_wards"
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT |DOTA_ABILITY_BEHAVIOR_AOE"
-			"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-			"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
-			"AbilityCastRange"				"500"
-			"MaxLevel"						"3"
-			"AbilityCooldown"				"100 80 60"
-			
-			"AbilityManaCost"				"200 350 500"
-			
-			"AbilitySpecial"
-			{
-				"01"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"count"						"2 5 7"
-				}
-				"02"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"duration"					"20"
-				}	
-				"03"
-				{
-					"var_type"					"FIELD_FLOAT"
-					"dmg_per_int"				"0.5 1.0 1.5"
-				}
-				"04"
-				{
-					"var_type"					"FIELD_FLOAT"
-					"as_per_agi"				"0.5 1.0 1.5"
-				}							
-			}
-		}
-			
-	"summon_buff"
+"shaman_wards_custom"
 	{
-		"BaseClass"							"ability_lua"
-		"ScriptFile"						"heroes/hero_shaman/shaman_wards/summon_buff"
-		"AbilityTextureName"				"summon"
-		"MaxLevel"							"1"
-		"AbilityType"						"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial"
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"					"heroes/hero_shaman/shaman_wards/shaman_wards"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT |DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
+		"AbilityCastRange"				"500"
+		"MaxLevel"						"3"
+		"AbilityCooldown"				"100 80 60"
+		
+		"AbilityManaCost"				"200 350 500"
+		
+		"AbilityValues"
 		{
-			"01"
+			"count"						
 			{
-				"var_type"					"FIELD_FLOAT"
-				"dmg_per_int"				"0.5"
-			}
-			"02"
+				"value"					"3 6 9"
+				"LinkedSpecialBonus"	"special_bonus_shadow_shaman_7"
+			}	
+			"duration"					"20"
+			"dmg_per_int"				
 			{
-				"var_type"					"FIELD_FLOAT"
-				"as_per_agi"				"0.5"
-			}
+				"value"					"0.5 1.0 1.5"
+				"LinkedSpecialBonus"	"special_bonus_shadow_shaman_8"
+			}	
+			"as_per_agi"
+			{
+				"value"					"0.5 1.0 1.5"
+				"LinkedSpecialBonus"	"special_bonus_shadow_shaman_8"
+			}					
 		}
 	}
 }

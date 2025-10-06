@@ -11,8 +11,6 @@ end
 
 modifier_golden_passive = class({})
 
---------------------------------------------------------------------------------
-
 function modifier_golden_passive:IsHidden()
 	return true
 end
@@ -44,8 +42,54 @@ end
 function modifier_golden_passive:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
+		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 	return funcs
+end
+
+function modifier_golden_passive:OnTakeDamage(keys)
+	if IsServer() then
+		local parent = self:GetParent()
+		local attacker = keys.attacker
+		local target = keys.unit	
+		local damage = keys.damage * 0.1
+		if attacker and attacker:GetTeamNumber() ~= parent:GetTeamNumber() and parent == target and not attacker:IsOther() and attacker:GetName() ~= "npc_dota_unit_undying_zombie" and not attacker:IsBuilding() then
+			
+			self:PlayEffects(attacker)
+			
+			ApplyDamage({
+				victim = attacker,
+				attacker = parent,
+				damage = damage,
+				damage_type = DAMAGE_TYPE_PURE,
+				damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+				ability = self:GetAbility()
+			})
+		end
+	end
+end
+
+function modifier_golden_passive:PlayEffects( target )
+	local effect_cast = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_POINT_FOLLOW, target)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
 
 function modifier_golden_passive:GetModifierProvidesFOWVision( params )

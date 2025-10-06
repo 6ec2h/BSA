@@ -1,0 +1,7995 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			
+			{
+				_class = "BoneMarkupList"
+				children = 
+				[
+				]
+				bone_cull_type = "None"
+			},
+			
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					
+					{
+						_class = "RenderMeshFile"
+						name = "flag"
+						filename = "models/flag_flag.dmx"
+					},
+				]
+			},
+			
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					
+					{
+						_class = "AnimFile"
+						name = "flag"
+						source_filename = "models/flag.dmx"
+						fade_in_time = 0.200000
+						fade_out_time = 0.200000
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+					},
+				]
+			},
+			
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint0"
+						origin = 
+						[
+							-0.003511,
+							-0.000186,
+							26.141960,
+						]
+						angles = 
+						[
+							-0.551266,
+							-179.286200,
+							177.396900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint1"
+						origin = 
+						[
+							-0.765459,
+							0.013421,
+							26.150340,
+						]
+						angles = 
+						[
+							0.576518,
+							-171.379500,
+							177.304000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint2"
+						origin = 
+						[
+							-1.482674,
+							-0.223026,
+							26.136900,
+						]
+						angles = 
+						[
+							-0.349583,
+							-178.568600,
+							-178.406500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint3"
+						origin = 
+						[
+							-2.227015,
+							-0.095179,
+							26.137340,
+						]
+						angles = 
+						[
+							4.219056,
+							154.217500,
+							-173.371500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint4"
+						origin = 
+						[
+							-2.796442,
+							0.390090,
+							26.061900,
+						]
+						angles = 
+						[
+							1.822322,
+							164.799100,
+							-178.626200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint5"
+						origin = 
+						[
+							-3.547764,
+							0.373664,
+							26.044080,
+						]
+						angles = 
+						[
+							11.160710,
+							-145.705600,
+							172.737900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint6"
+						origin = 
+						[
+							-3.912881,
+							-0.261328,
+							25.872550,
+						]
+						angles = 
+						[
+							7.567458,
+							-136.740900,
+							175.342200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint7"
+						origin = 
+						[
+							-4.533618,
+							-0.681373,
+							25.784080,
+						]
+						angles = 
+						[
+							12.880700,
+							165.787800,
+							-176.498400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint8"
+						origin = 
+						[
+							-5.036280,
+							-0.147022,
+							25.617880,
+						]
+						angles = 
+						[
+							16.709270,
+							117.371800,
+							-176.986200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint9"
+						origin = 
+						[
+							-5.167408,
+							0.565495,
+							25.398230,
+						]
+						angles = 
+						[
+							16.793080,
+							145.377400,
+							179.159700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint10"
+						origin = 
+						[
+							-5.888661,
+							0.641393,
+							25.200770,
+						]
+						angles = 
+						[
+							23.600240,
+							-141.561600,
+							179.860500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint11"
+						origin = 
+						[
+							-6.172307,
+							-0.003672,
+							24.927660,
+						]
+						angles = 
+						[
+							17.783740,
+							-119.917400,
+							-178.743400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint12"
+						origin = 
+						[
+							-6.549182,
+							-0.619225,
+							24.695770,
+						]
+						angles = 
+						[
+							20.953870,
+							-170.116000,
+							179.431900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint13"
+						origin = 
+						[
+							-7.214944,
+							-0.356698,
+							24.465810,
+						]
+						angles = 
+						[
+							23.428340,
+							124.869900,
+							174.151800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint14"
+						origin = 
+						[
+							-7.346297,
+							0.340459,
+							24.217870,
+						]
+						angles = 
+						[
+							17.584440,
+							133.545800,
+							174.329200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint15"
+						origin = 
+						[
+							-8.001511,
+							0.623392,
+							23.980670,
+						]
+						angles = 
+						[
+							28.112550,
+							-149.807500,
+							-173.261700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint16"
+						origin = 
+						[
+							-8.292790,
+							-0.021812,
+							23.727920,
+						]
+						angles = 
+						[
+							17.599790,
+							-130.450400,
+							-171.217500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint17"
+						origin = 
+						[
+							-8.852610,
+							-0.466156,
+							23.483120,
+						]
+						angles = 
+						[
+							25.969600,
+							170.630600,
+							178.718400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint18"
+						origin = 
+						[
+							-9.369026,
+							0.018072,
+							23.206310,
+						]
+						angles = 
+						[
+							20.131280,
+							129.342300,
+							174.077500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint19"
+						origin = 
+						[
+							-9.780074,
+							0.600505,
+							22.951350,
+						]
+						angles = 
+						[
+							21.407290,
+							142.008100,
+							-178.426600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint20"
+						origin = 
+						[
+							-10.441230,
+							0.846206,
+							22.694090,
+						]
+						angles = 
+						[
+							20.328870,
+							157.377000,
+							-172.546400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint21"
+						origin = 
+						[
+							-0.003455,
+							0.000232,
+							26.641870,
+						]
+						angles = 
+						[
+							-0.049592,
+							-177.919800,
+							177.918500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint22"
+						origin = 
+						[
+							-0.758909,
+							-0.032019,
+							26.642350,
+						]
+						angles = 
+						[
+							0.357712,
+							-171.593400,
+							178.242000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint23"
+						origin = 
+						[
+							-1.488467,
+							-0.226757,
+							26.635030,
+						]
+						angles = 
+						[
+							0.390868,
+							178.774200,
+							-177.498600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint24"
+						origin = 
+						[
+							-2.204540,
+							0.008255,
+							26.620520,
+						]
+						angles = 
+						[
+							3.646274,
+							153.992400,
+							-173.802300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint25"
+						origin = 
+						[
+							-2.816086,
+							0.439564,
+							26.560440,
+						]
+						angles = 
+						[
+							3.283717,
+							169.642900,
+							-179.682900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint26"
+						origin = 
+						[
+							-3.539805,
+							0.241663,
+							26.523440,
+						]
+						angles = 
+						[
+							11.023450,
+							-143.207200,
+							172.711000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint27"
+						origin = 
+						[
+							-3.907272,
+							-0.390147,
+							26.355140,
+						]
+						angles = 
+						[
+							8.156614,
+							-141.616500,
+							176.012600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint28"
+						origin = 
+						[
+							-4.626715,
+							-0.606670,
+							26.274560,
+						]
+						angles = 
+						[
+							15.763820,
+							159.055100,
+							-175.864500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint29"
+						origin = 
+						[
+							-4.993500,
+							0.016204,
+							26.081140,
+						]
+						angles = 
+						[
+							15.810430,
+							118.755100,
+							-177.032200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint30"
+						origin = 
+						[
+							-5.299011,
+							0.676686,
+							25.872880,
+						]
+						angles = 
+						[
+							19.801300,
+							154.509100,
+							179.176500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint31"
+						origin = 
+						[
+							-6.000171,
+							0.490269,
+							25.666710,
+						]
+						angles = 
+						[
+							24.260000,
+							-135.843800,
+							179.887400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint32"
+						origin = 
+						[
+							-6.198346,
+							-0.179211,
+							25.391710,
+						]
+						angles = 
+						[
+							17.962080,
+							-123.187800,
+							-178.921100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint33"
+						origin = 
+						[
+							-6.737557,
+							-0.659003,
+							25.162120,
+						]
+						angles = 
+						[
+							23.517080,
+							-178.779100,
+							179.034000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint34"
+						origin = 
+						[
+							-7.295678,
+							-0.207335,
+							24.931990,
+						]
+						angles = 
+						[
+							21.980450,
+							123.017400,
+							174.616600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint35"
+						origin = 
+						[
+							-7.470243,
+							0.480860,
+							24.683930,
+						]
+						angles = 
+						[
+							20.478890,
+							139.544200,
+							175.455300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint36"
+						origin = 
+						[
+							-8.179346,
+							0.525137,
+							24.435520,
+						]
+						angles = 
+						[
+							27.654900,
+							-144.353500,
+							-172.447100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint37"
+						origin = 
+						[
+							-8.409250,
+							-0.145749,
+							24.194280,
+						]
+						angles = 
+						[
+							18.736370,
+							-133.196100,
+							-171.677500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint38"
+						origin = 
+						[
+							-9.059716,
+							-0.422628,
+							23.930820,
+						]
+						angles = 
+						[
+							26.800870,
+							164.152300,
+							177.660400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint39"
+						origin = 
+						[
+							-9.484121,
+							0.142044,
+							23.666240,
+						]
+						angles = 
+						[
+							19.713120,
+							128.204700,
+							174.346000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint40"
+						origin = 
+						[
+							-9.925302,
+							0.700288,
+							23.411150,
+						]
+						angles = 
+						[
+							21.095730,
+							141.678400,
+							-178.613400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint41"
+						origin = 
+						[
+							-10.565560,
+							0.997530,
+							23.150520,
+						]
+						angles = 
+						[
+							20.323080,
+							154.562800,
+							-173.561500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint42"
+						origin = 
+						[
+							-0.003402,
+							0.000225,
+							27.141820,
+						]
+						angles = 
+						[
+							0.313257,
+							-175.517700,
+							178.469100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint43"
+						origin = 
+						[
+							-0.754015,
+							-0.058808,
+							27.137710,
+						]
+						angles = 
+						[
+							0.278583,
+							-172.511600,
+							179.533600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint44"
+						origin = 
+						[
+							-1.495214,
+							-0.201935,
+							27.133660,
+						]
+						angles = 
+						[
+							1.318079,
+							173.745100,
+							-176.001400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint45"
+						origin = 
+						[
+							-2.184252,
+							0.100524,
+							27.101390,
+						]
+						angles = 
+						[
+							2.811555,
+							154.840200,
+							-174.652200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint46"
+						origin = 
+						[
+							-2.851227,
+							0.454407,
+							27.060890,
+						]
+						angles = 
+						[
+							4.316482,
+							179.730900,
+							177.832300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint47"
+						origin = 
+						[
+							-3.512934,
+							0.106126,
+							26.997750,
+						]
+						angles = 
+						[
+							10.319600,
+							-139.788000,
+							172.518800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint48"
+						origin = 
+						[
+							-3.937101,
+							-0.496495,
+							26.843050,
+						]
+						angles = 
+						[
+							8.330575,
+							-152.790700,
+							177.642500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint49"
+						origin = 
+						[
+							-4.684385,
+							-0.484039,
+							26.761240,
+						]
+						angles = 
+						[
+							17.319790,
+							146.835600,
+							-174.669600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint50"
+						origin = 
+						[
+							-4.968215,
+							0.175922,
+							26.535730,
+						]
+						angles = 
+						[
+							14.810270,
+							123.374300,
+							-177.081200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint51"
+						origin = 
+						[
+							-5.462070,
+							0.724719,
+							26.348580,
+						]
+						angles = 
+						[
+							20.619060,
+							173.333900,
+							178.748400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint52"
+						origin = 
+						[
+							-6.057947,
+							0.320803,
+							26.132550,
+						]
+						angles = 
+						[
+							22.786610,
+							-127.162200,
+							179.474200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint53"
+						origin = 
+						[
+							-6.258949,
+							-0.349345,
+							25.854760,
+						]
+						angles = 
+						[
+							18.701470,
+							-132.113800,
+							-179.527400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint54"
+						origin = 
+						[
+							-6.923529,
+							-0.629913,
+							25.630790,
+						]
+						angles = 
+						[
+							24.050830,
+							164.208400,
+							178.241100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint55"
+						origin = 
+						[
+							-7.347578,
+							-0.055036,
+							25.393590,
+						]
+						angles = 
+						[
+							19.981120,
+							121.017500,
+							175.399500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint56"
+						origin = 
+						[
+							-7.635033,
+							0.596743,
+							25.144290,
+						]
+						angles = 
+						[
+							23.147550,
+							153.832700,
+							177.995800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint57"
+						origin = 
+						[
+							-8.318748,
+							0.412496,
+							24.898940,
+						]
+						angles = 
+						[
+							25.040250,
+							-135.914700,
+							-171.795800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint58"
+						origin = 
+						[
+							-8.548854,
+							-0.260182,
+							24.654510,
+						]
+						angles = 
+						[
+							20.318850,
+							-140.483700,
+							-173.111300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint59"
+						origin = 
+						[
+							-9.244413,
+							-0.349144,
+							24.386650,
+						]
+						angles = 
+						[
+							26.296300,
+							152.215200,
+							175.495100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint60"
+						origin = 
+						[
+							-9.588135,
+							0.270247,
+							24.127790,
+						]
+						angles = 
+						[
+							19.368590,
+							127.000200,
+							174.119100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint61"
+						origin = 
+						[
+							-10.078520,
+							0.789067,
+							23.869720,
+						]
+						angles = 
+						[
+							20.531270,
+							140.875900,
+							179.556400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint62"
+						origin = 
+						[
+							-10.678860,
+							1.157433,
+							23.607470,
+						]
+						angles = 
+						[
+							20.443950,
+							147.962400,
+							-177.329400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint63"
+						origin = 
+						[
+							-0.003384,
+							0.000228,
+							27.641780,
+						]
+						angles = 
+						[
+							0.586433,
+							-173.544100,
+							178.557900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint64"
+						origin = 
+						[
+							-0.748826,
+							-0.084607,
+							27.634090,
+						]
+						angles = 
+						[
+							0.253477,
+							-174.300900,
+							-179.799300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint65"
+						origin = 
+						[
+							-1.498628,
+							-0.153377,
+							27.630760,
+						]
+						angles = 
+						[
+							2.204898,
+							169.290400,
+							-175.155500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint66"
+						origin = 
+						[
+							-2.166660,
+							0.188267,
+							27.585080,
+						]
+						angles = 
+						[
+							2.012016,
+							158.065900,
+							-175.786900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint67"
+						origin = 
+						[
+							-2.886223,
+							0.417663,
+							27.562760,
+						]
+						angles = 
+						[
+							5.810932,
+							-170.473700,
+							175.210500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint68"
+						origin = 
+						[
+							-3.479807,
+							-0.032511,
+							27.466480,
+						]
+						angles = 
+						[
+							9.133427,
+							-139.556400,
+							172.379800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint69"
+						origin = 
+						[
+							-3.998271,
+							-0.566267,
+							27.337900,
+						]
+						angles = 
+						[
+							9.289367,
+							-166.155300,
+							179.797200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint70"
+						origin = 
+						[
+							-4.702518,
+							-0.328644,
+							27.236800,
+						]
+						angles = 
+						[
+							17.724210,
+							137.749200,
+							-173.326300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint71"
+						origin = 
+						[
+							-4.970536,
+							0.333587,
+							26.993000,
+						]
+						angles = 
+						[
+							14.271190,
+							132.007600,
+							-176.854300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint72"
+						origin = 
+						[
+							-5.622010,
+							0.687651,
+							26.829200,
+						]
+						angles = 
+						[
+							21.527630,
+							-168.952300,
+							177.868200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint73"
+						origin = 
+						[
+							-6.082292,
+							0.143283,
+							26.591990,
+						]
+						angles = 
+						[
+							21.093770,
+							-123.065400,
+							178.590300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint74"
+						origin = 
+						[
+							-6.361687,
+							-0.502934,
+							26.321170,
+						]
+						angles = 
+						[
+							19.950740,
+							-145.066200,
+							179.545000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint75"
+						origin = 
+						[
+							-7.081607,
+							-0.541853,
+							26.102050,
+						]
+						angles = 
+						[
+							24.166530,
+							149.150100,
+							177.967100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint76"
+						origin = 
+						[
+							-7.395432,
+							0.097014,
+							25.849230,
+						]
+						angles = 
+						[
+							18.609290,
+							122.633600,
+							176.333600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint77"
+						origin = 
+						[
+							-7.828132,
+							0.669786,
+							25.604490,
+						]
+						angles = 
+						[
+							25.087650,
+							169.692000,
+							-179.696700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint78"
+						origin = 
+						[
+							-8.429821,
+							0.289884,
+							25.361990,
+						]
+						angles = 
+						[
+							22.567630,
+							-130.596000,
+							-172.065500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint79"
+						origin = 
+						[
+							-8.711409,
+							-0.363407,
+							25.111560,
+						]
+						angles = 
+						[
+							22.267430,
+							-150.531700,
+							-175.122900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint80"
+						origin = 
+						[
+							-9.402620,
+							-0.251064,
+							24.847430,
+						]
+						angles = 
+						[
+							25.123880,
+							142.189600,
+							173.919500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint81"
+						origin = 
+						[
+							-9.706277,
+							0.389532,
+							24.588400,
+						]
+						angles = 
+						[
+							19.693750,
+							128.283900,
+							173.633400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint82"
+						origin = 
+						[
+							-10.248620,
+							0.846179,
+							24.322900,
+						]
+						angles = 
+						[
+							19.238050,
+							139.859200,
+							176.553200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint83"
+						origin = 
+						[
+							-10.792020,
+							1.303360,
+							24.075040,
+						]
+						angles = 
+						[
+							19.219270,
+							139.408200,
+							177.271200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint84"
+						origin = 
+						[
+							-0.003388,
+							0.000198,
+							28.141780,
+						]
+						angles = 
+						[
+							0.705163,
+							-172.033300,
+							179.170100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint85"
+						origin = 
+						[
+							-0.745456,
+							-0.108380,
+							28.132490,
+						]
+						angles = 
+						[
+							0.424274,
+							-176.662300,
+							-178.892300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint86"
+						origin = 
+						[
+							-1.496977,
+							-0.087595,
+							28.125680,
+						]
+						angles = 
+						[
+							2.745753,
+							165.683700,
+							-174.883100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint87"
+						origin = 
+						[
+							-2.157474,
+							0.262308,
+							28.075070,
+						]
+						angles = 
+						[
+							1.702545,
+							163.414900,
+							-177.520100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint88"
+						origin = 
+						[
+							-2.907321,
+							0.336025,
+							28.059340,
+						]
+						angles = 
+						[
+							7.382854,
+							-161.618600,
+							172.914100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint89"
+						origin = 
+						[
+							-3.448327,
+							-0.170696,
+							27.933220,
+						]
+						angles = 
+						[
+							7.710254,
+							-142.864000,
+							172.846300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint90"
+						origin = 
+						[
+							-4.080389,
+							-0.579776,
+							27.838560,
+						]
+						angles = 
+						[
+							11.094540,
+							178.978700,
+							-177.178200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint91"
+						origin = 
+						[
+							-4.681476,
+							-0.153052,
+							27.698350,
+						]
+						angles = 
+						[
+							16.909930,
+							132.672600,
+							-172.240400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint92"
+						origin = 
+						[
+							-5.012653,
+							0.482796,
+							27.461280,
+						]
+						angles = 
+						[
+							14.665830,
+							144.850700,
+							-176.978300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint93"
+						origin = 
+						[
+							-5.747405,
+							0.579374,
+							27.308280,
+						]
+						angles = 
+						[
+							22.209520,
+							-153.338900,
+							176.766500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint94"
+						origin = 
+						[
+							-6.092678,
+							-0.036808,
+							27.045250,
+						]
+						angles = 
+						[
+							19.621850,
+							-123.639000,
+							177.777900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint95"
+						origin = 
+						[
+							-6.506433,
+							-0.620362,
+							26.791210,
+						]
+						angles = 
+						[
+							21.188750,
+							-161.246100,
+							179.136500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint96"
+						origin = 
+						[
+							-7.194973,
+							-0.408895,
+							26.571630,
+						]
+						angles = 
+						[
+							23.447740,
+							137.260400,
+							178.572700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint97"
+						origin = 
+						[
+							-7.449745,
+							0.249624,
+							26.305080,
+						]
+						angles = 
+						[
+							18.367570,
+							127.906500,
+							177.522200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint98"
+						origin = 
+						[
+							-8.028141,
+							0.678459,
+							26.065960,
+						]
+						angles = 
+						[
+							25.726180,
+							-174.643800,
+							-178.233600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint99"
+						origin = 
+						[
+							-8.524640,
+							0.165912,
+							25.820590,
+						]
+						angles = 
+						[
+							20.397470,
+							-128.615600,
+							-173.049700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint100"
+						origin = 
+						[
+							-8.898479,
+							-0.445489,
+							25.567840,
+						]
+						angles = 
+						[
+							24.245230,
+							-163.429700,
+							-177.185100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint101"
+						origin = 
+						[
+							-9.528997,
+							-0.133214,
+							25.309950,
+						]
+						angles = 
+						[
+							23.236600,
+							134.892800,
+							173.982200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint102"
+						origin = 
+						[
+							-9.843101,
+							0.502001,
+							25.047440,
+						]
+						angles = 
+						[
+							20.711150,
+							132.349400,
+							174.296500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint103"
+						origin = 
+						[
+							-10.434030,
+							0.878177,
+							24.772260,
+						]
+						angles = 
+						[
+							17.811470,
+							138.543600,
+							174.161000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint104"
+						origin = 
+						[
+							-10.894470,
+							1.431762,
+							24.555450,
+						]
+						angles = 
+						[
+							16.736180,
+							129.588300,
+							172.497800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint105"
+						origin = 
+						[
+							-0.003434,
+							0.000175,
+							28.641780,
+						]
+						angles = 
+						[
+							0.737871,
+							-171.442300,
+							179.938300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint106"
+						origin = 
+						[
+							-0.746203,
+							-0.113588,
+							28.632110,
+						]
+						angles = 
+						[
+							0.690372,
+							-179.236700,
+							-178.117400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint107"
+						origin = 
+						[
+							-1.492024,
+							-0.018373,
+							28.619670,
+						]
+						angles = 
+						[
+							2.918376,
+							163.540300,
+							-175.418200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint108"
+						origin = 
+						[
+							-2.161878,
+							0.317240,
+							28.571470,
+						]
+						angles = 
+						[
+							2.054828,
+							170.469700,
+							-179.993900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint109"
+						origin = 
+						[
+							-2.906371,
+							0.217302,
+							28.545760,
+						]
+						angles = 
+						[
+							8.362976,
+							-154.665700,
+							171.287800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint110"
+						origin = 
+						[
+							-3.431623,
+							-0.302520,
+							28.405330,
+						]
+						angles = 
+						[
+							6.684050,
+							-149.967700,
+							174.190100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint111"
+						origin = 
+						[
+							-4.156301,
+							-0.510605,
+							28.338280,
+						]
+						angles = 
+						[
+							13.462350,
+							164.566200,
+							-174.043700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint112"
+						origin = 
+						[
+							-4.645296,
+							0.027100,
+							28.149540,
+						]
+						angles = 
+						[
+							15.493450,
+							132.146100,
+							-172.040500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint113"
+						origin = 
+						[
+							-5.105004,
+							0.593933,
+							27.941800,
+						]
+						angles = 
+						[
+							15.560010,
+							161.108300,
+							-178.569400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint114"
+						origin = 
+						[
+							-5.820432,
+							0.421599,
+							27.779100,
+						]
+						angles = 
+						[
+							22.045300,
+							-141.218900,
+							175.216500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint115"
+						origin = 
+						[
+							-6.109927,
+							-0.216537,
+							27.497320,
+						]
+						angles = 
+						[
+							18.655920,
+							-129.110000,
+							177.083600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint116"
+						origin = 
+						[
+							-6.679752,
+							-0.663493,
+							27.267470,
+						]
+						angles = 
+						[
+							22.098900,
+							-178.735400,
+							179.584500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint117"
+						origin = 
+						[
+							-7.265448,
+							-0.251004,
+							27.036750,
+						]
+						angles = 
+						[
+							22.295030,
+							129.385300,
+							179.404400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint118"
+						origin = 
+						[
+							-7.529293,
+							0.400724,
+							26.763920,
+						]
+						angles = 
+						[
+							19.139440,
+							136.943200,
+							178.624200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint119"
+						origin = 
+						[
+							-8.212476,
+							0.626336,
+							26.529550,
+						]
+						angles = 
+						[
+							25.754200,
+							-160.003100,
+							-177.506300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint120"
+						origin = 
+						[
+							-8.601455,
+							0.033165,
+							26.275870,
+						]
+						angles = 
+						[
+							18.732280,
+							-130.065100,
+							-174.355200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint121"
+						origin = 
+						[
+							-9.106418,
+							-0.475881,
+							26.027390,
+						]
+						angles = 
+						[
+							26.499780,
+							-178.847000,
+							-179.372400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint122"
+						origin = 
+						[
+							-9.619876,
+							0.004406,
+							25.770270,
+						]
+						angles = 
+						[
+							21.253840,
+							130.430700,
+							174.657600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint123"
+						origin = 
+						[
+							-10.000200,
+							0.600686,
+							25.507560,
+						]
+						angles = 
+						[
+							21.881950,
+							138.709800,
+							175.263400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint124"
+						origin = 
+						[
+							-10.627280,
+							0.898377,
+							25.222440,
+						]
+						angles = 
+						[
+							16.537120,
+							136.668400,
+							171.987300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint125"
+						origin = 
+						[
+							-10.985890,
+							1.533893,
+							25.047260,
+						]
+						angles = 
+						[
+							13.508840,
+							119.478700,
+							168.680500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint126"
+						origin = 
+						[
+							-0.003480,
+							0.000147,
+							29.141770,
+						]
+						angles = 
+						[
+							0.750646,
+							-172.041000,
+							-179.040100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint127"
+						origin = 
+						[
+							-0.748569,
+							-0.111060,
+							29.132020,
+						]
+						angles = 
+						[
+							1.068942,
+							178.144500,
+							-177.049000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint128"
+						origin = 
+						[
+							-1.485943,
+							0.047306,
+							29.111240,
+						]
+						angles = 
+						[
+							2.400955,
+							163.492300,
+							-176.177100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint129"
+						origin = 
+						[
+							-2.182898,
+							0.336951,
+							29.074440,
+						]
+						angles = 
+						[
+							3.189493,
+							178.937100,
+							176.922600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint130"
+						origin = 
+						[
+							-2.885545,
+							0.073296,
+							29.020670,
+						]
+						angles = 
+						[
+							8.308180,
+							-150.644200,
+							170.448100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint131"
+						origin = 
+						[
+							-3.447519,
+							-0.409279,
+							28.889900,
+						]
+						angles = 
+						[
+							6.671832,
+							-160.850000,
+							176.621900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint132"
+						origin = 
+						[
+							-4.198068,
+							-0.378103,
+							28.824550,
+						]
+						angles = 
+						[
+							15.071410,
+							152.766900,
+							-171.364900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint133"
+						origin = 
+						[
+							-4.623410,
+							0.202927,
+							28.600470,
+						]
+						angles = 
+						[
+							13.969920,
+							136.622600,
+							-172.471600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint134"
+						origin = 
+						[
+							-5.230619,
+							0.630918,
+							28.432000,
+						]
+						angles = 
+						[
+							17.016450,
+							178.834600,
+							178.613400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint135"
+						origin = 
+						[
+							-5.840036,
+							0.234402,
+							28.237640,
+						]
+						angles = 
+						[
+							21.155910,
+							-133.580500,
+							173.973600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint136"
+						origin = 
+						[
+							-6.158953,
+							-0.388269,
+							27.955560,
+						]
+						angles = 
+						[
+							18.422550,
+							-139.429000,
+							176.744200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint137"
+						origin = 
+						[
+							-6.848147,
+							-0.623397,
+							27.746410,
+						]
+						angles = 
+						[
+							22.736310,
+							164.485800,
+							-179.641500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint138"
+						origin = 
+						[
+							-7.310503,
+							-0.083473,
+							27.496500,
+						]
+						angles = 
+						[
+							21.141360,
+							125.816000,
+							-179.922800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint139"
+						origin = 
+						[
+							-7.648043,
+							0.536330,
+							27.225640,
+						]
+						angles = 
+						[
+							20.403690,
+							149.481200,
+							179.661500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint140"
+						origin = 
+						[
+							-8.365620,
+							0.524719,
+							26.995550,
+						]
+						angles = 
+						[
+							25.089920,
+							-147.366200,
+							-176.975200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint141"
+						origin = 
+						[
+							-8.680888,
+							-0.105798,
+							26.733090,
+						]
+						angles = 
+						[
+							18.234050,
+							-134.971100,
+							-175.441400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint142"
+						origin = 
+						[
+							-9.313670,
+							-0.440296,
+							26.490060,
+						]
+						angles = 
+						[
+							28.117890,
+							164.923300,
+							178.009200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint143"
+						origin = 
+						[
+							-9.696990,
+							0.148161,
+							26.228950,
+						]
+						angles = 
+						[
+							19.943580,
+							129.042500,
+							174.365200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint144"
+						origin = 
+						[
+							-10.179290,
+							0.668593,
+							25.967140,
+						]
+						angles = 
+						[
+							22.345980,
+							145.843600,
+							175.038400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint145"
+						origin = 
+						[
+							-10.825500,
+							0.912359,
+							25.675940,
+						]
+						angles = 
+						[
+							15.586820,
+							133.700400,
+							169.456400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint146"
+						origin = 
+						[
+							-11.072670,
+							1.605918,
+							25.546500,
+						]
+						angles = 
+						[
+							10.016620,
+							109.798800,
+							165.998300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint147"
+						origin = 
+						[
+							-0.003497,
+							0.000123,
+							29.641700,
+						]
+						angles = 
+						[
+							0.819759,
+							-174.179900,
+							-177.737400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint148"
+						origin = 
+						[
+							-0.751992,
+							-0.080813,
+							29.631110,
+						]
+						angles = 
+						[
+							1.573193,
+							175.479600,
+							-175.787400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint149"
+						origin = 
+						[
+							-1.476343,
+							0.119460,
+							29.600350,
+						]
+						angles = 
+						[
+							1.684236,
+							166.109000,
+							-177.046900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint150"
+						origin = 
+						[
+							-2.209612,
+							0.295961,
+							29.578410,
+						]
+						angles = 
+						[
+							5.062450,
+							-172.054000,
+							174.130300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint151"
+						origin = 
+						[
+							-2.854512,
+							-0.077213,
+							29.488310,
+						]
+						angles = 
+						[
+							7.115577,
+							-150.647100,
+							171.211600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint152"
+						origin = 
+						[
+							-3.495940,
+							-0.469546,
+							29.390230,
+						]
+						angles = 
+						[
+							7.980568,
+							-174.628700,
+							-178.863300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint153"
+						origin = 
+						[
+							-4.193732,
+							-0.199617,
+							29.289670,
+						]
+						angles = 
+						[
+							15.175080,
+							145.059800,
+							-168.988900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint154"
+						origin = 
+						[
+							-4.633753,
+							0.368919,
+							29.060370,
+						]
+						angles = 
+						[
+							13.038140,
+							146.609200,
+							-173.387600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint155"
+						origin = 
+						[
+							-5.352944,
+							0.567581,
+							28.923380,
+						]
+						angles = 
+						[
+							18.674880,
+							-164.295600,
+							175.577200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint156"
+						origin = 
+						[
+							-5.838053,
+							0.042234,
+							28.686890,
+						]
+						angles = 
+						[
+							19.922120,
+							-130.912800,
+							173.310200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint157"
+						origin = 
+						[
+							-6.254085,
+							-0.532694,
+							28.422940,
+						]
+						angles = 
+						[
+							18.688580,
+							-153.693900,
+							177.156000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint158"
+						origin = 
+						[
+							-6.981364,
+							-0.516349,
+							28.222520,
+						]
+						angles = 
+						[
+							22.917890,
+							150.204800,
+							-178.378400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint159"
+						origin = 
+						[
+							-7.349337,
+							0.086450,
+							27.950420,
+						]
+						angles = 
+						[
+							20.050170,
+							126.761500,
+							-179.104400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint160"
+						origin = 
+						[
+							-7.804916,
+							0.637162,
+							27.690460,
+						]
+						angles = 
+						[
+							21.794330,
+							164.676800,
+							-179.481800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint161"
+						origin = 
+						[
+							-8.479600,
+							0.390278,
+							27.460440,
+						]
+						angles = 
+						[
+							23.469630,
+							-138.311000,
+							-176.861600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint162"
+						origin = 
+						[
+							-8.789156,
+							-0.241149,
+							27.193610,
+						]
+						angles = 
+						[
+							19.250790,
+							-143.642900,
+							-176.663300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint163"
+						origin = 
+						[
+							-9.493971,
+							-0.348519,
+							26.952690,
+						]
+						angles = 
+						[
+							27.596380,
+							151.044600,
+							175.772200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint164"
+						origin = 
+						[
+							-9.795141,
+							0.284745,
+							26.688750,
+						]
+						angles = 
+						[
+							19.939360,
+							131.171600,
+							173.770800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint165"
+						origin = 
+						[
+							-10.375910,
+							0.686770,
+							26.420240,
+						]
+						angles = 
+						[
+							21.804220,
+							152.149600,
+							174.045800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint166"
+						origin = 
+						[
+							-11.024080,
+							0.927207,
+							26.135890,
+						]
+						angles = 
+						[
+							14.919830,
+							129.017800,
+							166.839100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint167"
+						origin = 
+						[
+							-11.159940,
+							1.654578,
+							26.047790,
+						]
+						angles = 
+						[
+							6.898837,
+							100.978700,
+							164.633600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint168"
+						origin = 
+						[
+							-0.003471,
+							0.000133,
+							30.141660,
+						]
+						angles = 
+						[
+							0.969588,
+							-177.521600,
+							-177.255000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint169"
+						origin = 
+						[
+							-0.754095,
+							-0.032543,
+							30.128950,
+						]
+						angles = 
+						[
+							2.049894,
+							173.202800,
+							-175.928800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint170"
+						origin = 
+						[
+							-1.470387,
+							0.183033,
+							30.093390,
+						]
+						angles = 
+						[
+							1.426707,
+							171.204500,
+							-179.279300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint171"
+						origin = 
+						[
+							-2.224192,
+							0.203743,
+							30.075950,
+						]
+						angles = 
+						[
+							6.577894,
+							-164.330600,
+							171.696900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint172"
+						origin = 
+						[
+							-2.837935,
+							-0.215684,
+							29.959770,
+						]
+						angles = 
+						[
+							5.928196,
+							-155.523000,
+							173.187200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint173"
+						origin = 
+						[
+							-3.560254,
+							-0.429728,
+							29.894840,
+						]
+						angles = 
+						[
+							10.473550,
+							170.913000,
+							-173.871900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint174"
+						origin = 
+						[
+							-4.156904,
+							-0.001038,
+							29.737470,
+						]
+						angles = 
+						[
+							14.102830,
+							142.404900,
+							-168.414500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint175"
+						origin = 
+						[
+							-4.690636,
+							0.498293,
+							29.539900,
+						]
+						angles = 
+						[
+							12.997820,
+							161.211400,
+							-176.227800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint176"
+						origin = 
+						[
+							-5.432122,
+							0.427703,
+							29.403800,
+						]
+						angles = 
+						[
+							19.654200,
+							-150.897100,
+							172.451000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint177"
+						origin = 
+						[
+							-5.839207,
+							-0.149493,
+							29.133410,
+						]
+						angles = 
+						[
+							18.542550,
+							-133.668700,
+							172.967200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint178"
+						origin = 
+						[
+							-6.388680,
+							-0.623885,
+							28.900130,
+						]
+						angles = 
+						[
+							19.358460,
+							-170.350700,
+							178.957600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint179"
+						origin = 
+						[
+							-7.065002,
+							-0.359253,
+							28.688680,
+						]
+						angles = 
+						[
+							22.672000,
+							139.415400,
+							-176.535300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint180"
+						origin = 
+						[
+							-7.394908,
+							0.257165,
+							28.399850,
+						]
+						angles = 
+						[
+							19.417940,
+							132.352100,
+							-178.017600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint181"
+						origin = 
+						[
+							-7.986129,
+							0.671175,
+							28.157380,
+						]
+						angles = 
+						[
+							22.937980,
+							-179.003600,
+							-178.936400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint182"
+						origin = 
+						[
+							-8.561292,
+							0.242865,
+							27.919320,
+						]
+						angles = 
+						[
+							21.251470,
+							-133.628400,
+							-177.173400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint183"
+						origin = 
+						[
+							-8.936513,
+							-0.357240,
+							27.657250,
+						]
+						angles = 
+						[
+							21.103900,
+							-156.003600,
+							-178.057200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint184"
+						origin = 
+						[
+							-9.636061,
+							-0.225101,
+							27.416590,
+						]
+						angles = 
+						[
+							25.370970,
+							141.454100,
+							175.140200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint185"
+						origin = 
+						[
+							-9.926674,
+							0.413114,
+							27.150130,
+						]
+						angles = 
+						[
+							21.389640,
+							137.047700,
+							174.655200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint186"
+						origin = 
+						[
+							-10.578950,
+							0.660748,
+							26.870630,
+						]
+						angles = 
+						[
+							20.802460,
+							157.000000,
+							173.983200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint187"
+						origin = 
+						[
+							-11.213760,
+							0.947920,
+							26.607810,
+						]
+						angles = 
+						[
+							14.350710,
+							123.270700,
+							165.053900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint188"
+						origin = 
+						[
+							-11.252750,
+							1.689078,
+							26.546840,
+						]
+						angles = 
+						[
+							4.907429,
+							93.756740,
+							164.098800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint189"
+						origin = 
+						[
+							-0.003444,
+							-0.000250,
+							30.641690,
+						]
+						angles = 
+						[
+							1.174481,
+							178.964200,
+							-177.501100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint190"
+						origin = 
+						[
+							-0.753696,
+							0.015150,
+							30.626210,
+						]
+						angles = 
+						[
+							2.081091,
+							172.262800,
+							-177.564900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint191"
+						origin = 
+						[
+							-1.478044,
+							0.216442,
+							30.594790,
+						]
+						angles = 
+						[
+							2.268213,
+							178.130800,
+							176.944400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint192"
+						origin = 
+						[
+							-2.212947,
+							0.063069,
+							30.556440,
+						]
+						angles = 
+						[
+							6.573852,
+							-159.768800,
+							170.024800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint193"
+						origin = 
+						[
+							-2.847131,
+							-0.324904,
+							30.446780,
+						]
+						angles = 
+						[
+							5.704161,
+							-165.397500,
+							176.380600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint194"
+						origin = 
+						[
+							-3.601018,
+							-0.308788,
+							30.387400,
+						]
+						angles = 
+						[
+							12.649850,
+							159.027200,
+							-169.771600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint195"
+						origin = 
+						[
+							-4.133316,
+							0.187468,
+							30.185520,
+						]
+						angles = 
+						[
+							12.504960,
+							145.615200,
+							-169.574300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint196"
+						origin = 
+						[
+							-4.786902,
+							0.548297,
+							30.034130,
+						]
+						angles = 
+						[
+							13.903710,
+							178.103000,
+							178.548200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint197"
+						origin = 
+						[
+							-5.453421,
+							0.235113,
+							29.863050,
+						]
+						angles = 
+						[
+							19.627060,
+							-142.284300,
+							169.658800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint198"
+						origin = 
+						[
+							-5.865441,
+							-0.334539,
+							29.584080,
+						]
+						angles = 
+						[
+							17.547600,
+							-142.379200,
+							173.244600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint199"
+						origin = 
+						[
+							-6.543000,
+							-0.617349,
+							29.383330,
+						]
+						angles = 
+						[
+							20.458200,
+							172.441100,
+							-178.355300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint200"
+						origin = 
+						[
+							-7.105941,
+							-0.176261,
+							29.142400,
+						]
+						angles = 
+						[
+							22.178020,
+							132.902800,
+							-175.298800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint201"
+						origin = 
+						[
+							-7.464721,
+							0.422762,
+							28.851080,
+						]
+						angles = 
+						[
+							19.423250,
+							142.188600,
+							-177.345700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint202"
+						origin = 
+						[
+							-8.160341,
+							0.632956,
+							28.624650,
+						]
+						angles = 
+						[
+							23.562340,
+							-163.600000,
+							-178.868900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint203"
+						origin = 
+						[
+							-8.627897,
+							0.093937,
+							28.370970,
+						]
+						angles = 
+						[
+							19.114290,
+							-133.353900,
+							-177.585900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint204"
+						origin = 
+						[
+							-9.118801,
+							-0.429347,
+							28.122430,
+						]
+						angles = 
+						[
+							22.795780,
+							-171.166100,
+							-178.876900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint205"
+						origin = 
+						[
+							-9.738602,
+							-0.079227,
+							27.878230,
+						]
+						angles = 
+						[
+							22.610230,
+							135.890200,
+							176.182500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint206"
+						origin = 
+						[
+							-10.090430,
+							0.526440,
+							27.611190,
+						]
+						angles = 
+						[
+							23.321940,
+							146.174300,
+							177.228200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint207"
+						origin = 
+						[
+							-10.776940,
+							0.623273,
+							27.326150,
+						]
+						angles = 
+						[
+							19.723320,
+							160.234200,
+							174.903200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint208"
+						origin = 
+						[
+							-11.385280,
+							0.977196,
+							27.090080,
+						]
+						angles = 
+						[
+							13.742410,
+							118.147400,
+							164.253800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint209"
+						origin = 
+						[
+							-11.363360,
+							1.720414,
+							27.039720,
+						]
+						angles = 
+						[
+							4.164618,
+							89.287090,
+							163.445900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint210"
+						origin = 
+						[
+							-0.003462,
+							-0.000239,
+							31.141610,
+						]
+						angles = 
+						[
+							1.566796,
+							175.682600,
+							-177.586900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint211"
+						origin = 
+						[
+							-0.750347,
+							0.054701,
+							31.121190,
+						]
+						angles = 
+						[
+							1.644628,
+							173.501200,
+							-179.455200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint212"
+						origin = 
+						[
+							-1.494550,
+							0.186584,
+							31.099100,
+						]
+						angles = 
+						[
+							3.928854,
+							-174.356300,
+							173.563400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint213"
+						origin = 
+						[
+							-2.186422,
+							-0.094730,
+							31.025940,
+						]
+						angles = 
+						[
+							5.391805,
+							-159.965600,
+							171.312200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint214"
+						origin = 
+						[
+							-2.887936,
+							-0.370248,
+							30.951980,
+						]
+						angles = 
+						[
+							7.134961,
+							-179.003500,
+							-177.004100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint215"
+						origin = 
+						[
+							-3.593582,
+							-0.119636,
+							30.850350,
+						]
+						angles = 
+						[
+							12.808670,
+							152.019100,
+							-166.073600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint216"
+						origin = 
+						[
+							-4.144838,
+							0.354928,
+							30.648260,
+						]
+						angles = 
+						[
+							11.403210,
+							155.623000,
+							-171.784400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint217"
+						origin = 
+						[
+							-4.884953,
+							0.482463,
+							30.529560,
+						]
+						angles = 
+						[
+							15.961380,
+							-165.731600,
+							173.190300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint218"
+						origin = 
+						[
+							-5.439489,
+							0.021447,
+							30.304840,
+						]
+						angles = 
+						[
+							18.833090,
+							-139.271800,
+							168.532400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint219"
+						origin = 
+						[
+							-5.939269,
+							-0.487877,
+							30.049460,
+						]
+						angles = 
+						[
+							17.101990,
+							-156.165700,
+							174.952700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint220"
+						origin = 
+						[
+							-6.674247,
+							-0.521314,
+							29.863090,
+						]
+						angles = 
+						[
+							21.376540,
+							157.257500,
+							-175.495000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint221"
+						origin = 
+						[
+							-7.136984,
+							0.012388,
+							29.588770,
+						]
+						angles = 
+						[
+							21.607120,
+							131.172800,
+							-174.399700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint222"
+						origin = 
+						[
+							-7.574656,
+							0.564412,
+							29.306490,
+						]
+						angles = 
+						[
+							20.005720,
+							155.390000,
+							-177.126700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint223"
+						origin = 
+						[
+							-8.301154,
+							0.533555,
+							29.088340,
+						]
+						angles = 
+						[
+							23.270370,
+							-150.812200,
+							-179.250900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint224"
+						origin = 
+						[
+							-8.697027,
+							-0.053082,
+							28.821220,
+						]
+						angles = 
+						[
+							17.781740,
+							-137.461200,
+							-178.194900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint225"
+						origin = 
+						[
+							-9.316534,
+							-0.423459,
+							28.589700,
+						]
+						angles = 
+						[
+							24.470810,
+							172.622300,
+							-179.754100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint226"
+						origin = 
+						[
+							-9.811368,
+							0.080564,
+							28.334840,
+						]
+						angles = 
+						[
+							20.485830,
+							133.811200,
+							177.222300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint227"
+						origin = 
+						[
+							-10.276170,
+							0.609980,
+							28.073510,
+						]
+						angles = 
+						[
+							24.000690,
+							156.587200,
+							179.483900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint228"
+						origin = 
+						[
+							-10.967330,
+							0.592242,
+							27.791370,
+						]
+						angles = 
+						[
+							18.912820,
+							161.647000,
+							175.328500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint229"
+						origin = 
+						[
+							-11.538740,
+							1.014524,
+							27.579080,
+						]
+						angles = 
+						[
+							13.493510,
+							114.651700,
+							163.760300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint230"
+						origin = 
+						[
+							-11.505660,
+							1.757808,
+							27.522160,
+						]
+						angles = 
+						[
+							4.691134,
+							88.446410,
+							162.340900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint231"
+						origin = 
+						[
+							-0.003575,
+							-0.000192,
+							31.641570,
+						]
+						angles = 
+						[
+							1.845167,
+							173.053700,
+							-178.468800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint232"
+						origin = 
+						[
+							-0.745566,
+							0.098492,
+							31.617250,
+						]
+						angles = 
+						[
+							1.639066,
+							176.999200,
+							178.084700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint233"
+						origin = 
+						[
+							-1.500252,
+							0.091414,
+							31.594150,
+						]
+						angles = 
+						[
+							4.979607,
+							-168.505200,
+							171.455700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint234"
+						origin = 
+						[
+							-2.180327,
+							-0.220324,
+							31.505020,
+						]
+						angles = 
+						[
+							4.548870,
+							-166.173100,
+							175.182400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint235"
+						origin = 
+						[
+							-2.932568,
+							-0.291150,
+							31.454950,
+						]
+						angles = 
+						[
+							9.743104,
+							167.735700,
+							-170.224500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint236"
+						origin = 
+						[
+							-3.553540,
+							0.101573,
+							31.292390,
+						]
+						angles = 
+						[
+							11.681220,
+							151.411700,
+							-166.051700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint237"
+						origin = 
+						[
+							-4.202755,
+							0.461936,
+							31.137460,
+						]
+						angles = 
+						[
+							11.302170,
+							170.854800,
+							-177.736500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint238"
+						origin = 
+						[
+							-4.939852,
+							0.325592,
+							31.006490,
+						]
+						angles = 
+						[
+							17.434910,
+							-153.697600,
+							168.111800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint239"
+						origin = 
+						[
+							-5.436791,
+							-0.184751,
+							30.743180,
+						]
+						angles = 
+						[
+							17.291660,
+							-142.657800,
+							168.856300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint240"
+						origin = 
+						[
+							-6.056873,
+							-0.577932,
+							30.528580,
+						]
+						angles = 
+						[
+							17.218730,
+							-172.750200,
+							179.094000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint241"
+						origin = 
+						[
+							-6.755698,
+							-0.356035,
+							30.327510,
+						]
+						angles = 
+						[
+							21.914730,
+							145.815000,
+							-172.267700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint242"
+						origin = 
+						[
+							-7.168022,
+							0.206591,
+							30.028910,
+						]
+						angles = 
+						[
+							20.719860,
+							134.707700,
+							-173.523400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint243"
+						origin = 
+						[
+							-7.724647,
+							0.660794,
+							29.767930,
+						]
+						angles = 
+						[
+							21.046330,
+							170.962300,
+							-177.436800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint244"
+						origin = 
+						[
+							-8.400245,
+							0.396283,
+							29.544810,
+						]
+						angles = 
+						[
+							22.001840,
+							-141.813900,
+							-179.493700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint245"
+						origin = 
+						[
+							-8.788789,
+							-0.192461,
+							29.276450,
+						]
+						angles = 
+						[
+							18.032260,
+							-145.576200,
+							-178.875200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint246"
+						origin = 
+						[
+							-9.495526,
+							-0.348111,
+							29.052430,
+						]
+						angles = 
+						[
+							24.805320,
+							157.813100,
+							178.737300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint247"
+						origin = 
+						[
+							-9.888517,
+							0.236047,
+							28.791810,
+						]
+						angles = 
+						[
+							19.335720,
+							135.079700,
+							177.401800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint248"
+						origin = 
+						[
+							-10.466680,
+							0.648474,
+							28.540400,
+						]
+						angles = 
+						[
+							23.320010,
+							165.665800,
+							-179.804900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint249"
+						origin = 
+						[
+							-11.154260,
+							0.566519,
+							28.262860,
+						]
+						angles = 
+						[
+							18.586810,
+							160.863700,
+							174.927000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint250"
+						origin = 
+						[
+							-11.676820,
+							1.058033,
+							28.070140,
+						]
+						angles = 
+						[
+							13.464760,
+							113.231700,
+							163.655100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint251"
+						origin = 
+						[
+							-11.684730,
+							1.803038,
+							27.991900,
+						]
+						angles = 
+						[
+							6.373297,
+							91.722950,
+							161.178000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint252"
+						origin = 
+						[
+							-0.003631,
+							-0.000108,
+							32.141510,
+						]
+						angles = 
+						[
+							1.732373,
+							173.218400,
+							178.224300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint253"
+						origin = 
+						[
+							-0.749806,
+							0.109168,
+							32.119340,
+						]
+						angles = 
+						[
+							2.761579,
+							-178.347800,
+							174.680400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint254"
+						origin = 
+						[
+							-1.484571,
+							-0.053493,
+							32.070510,
+						]
+						angles = 
+						[
+							4.241041,
+							-167.024600,
+							172.474100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint255"
+						origin = 
+						[
+							-2.202389,
+							-0.281211,
+							32.006790,
+						]
+						angles = 
+						[
+							5.286914,
+							-177.502100,
+							-177.219300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint256"
+						origin = 
+						[
+							-2.940919,
+							-0.123609,
+							31.929910,
+						]
+						angles = 
+						[
+							10.756990,
+							159.381900,
+							-165.018300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint257"
+						origin = 
+						[
+							-3.551713,
+							0.284722,
+							31.748470,
+						]
+						angles = 
+						[
+							10.123890,
+							158.583800,
+							-169.510400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint258"
+						origin = 
+						[
+							-4.287792,
+							0.447694,
+							31.637510,
+						]
+						angles = 
+						[
+							12.972020,
+							-172.688600,
+							173.629500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint259"
+						origin = 
+						[
+							-4.934778,
+							0.101688,
+							31.449660,
+						]
+						angles = 
+						[
+							17.671010,
+							-147.560500,
+							164.545400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint260"
+						origin = 
+						[
+							-5.469843,
+							-0.370658,
+							31.192690,
+						]
+						angles = 
+						[
+							15.896900,
+							-152.994400,
+							170.790600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint261"
+						origin = 
+						[
+							-6.191238,
+							-0.550749,
+							31.014520,
+						]
+						angles = 
+						[
+							18.444970,
+							170.607400,
+							-175.626100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint262"
+						origin = 
+						[
+							-6.788719,
+							-0.152017,
+							30.772350,
+						]
+						angles = 
+						[
+							22.054560,
+							139.287300,
+							-170.062000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint263"
+						origin = 
+						[
+							-7.223855,
+							0.392450,
+							30.470470,
+						]
+						angles = 
+						[
+							20.051670,
+							143.311400,
+							-173.537800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint264"
+						origin = 
+						[
+							-7.893826,
+							0.674788,
+							30.233800,
+						]
+						angles = 
+						[
+							21.621710,
+							-173.455800,
+							-178.516200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint265"
+						origin = 
+						[
+							-8.477098,
+							0.250816,
+							29.994860,
+						]
+						angles = 
+						[
+							20.404300,
+							-137.156000,
+							-179.665700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint266"
+						origin = 
+						[
+							-8.915795,
+							-0.308934,
+							29.734310,
+						]
+						angles = 
+						[
+							19.200010,
+							-156.712800,
+							-179.629300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint267"
+						origin = 
+						[
+							-9.635103,
+							-0.233617,
+							29.512170,
+						]
+						angles = 
+						[
+							23.466470,
+							146.838800,
+							177.412600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint268"
+						origin = 
+						[
+							-9.990050,
+							0.376628,
+							29.253870,
+						]
+						angles = 
+						[
+							19.129910,
+							139.654900,
+							177.457200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint269"
+						origin = 
+						[
+							-10.648760,
+							0.641781,
+							29.009630,
+						]
+						angles = 
+						[
+							21.825160,
+							172.282000,
+							-179.758000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint270"
+						origin = 
+						[
+							-11.338890,
+							0.555104,
+							28.741220,
+						]
+						angles = 
+						[
+							19.060580,
+							157.650400,
+							174.368200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint271"
+						origin = 
+						[
+							-11.796440,
+							1.110662,
+							28.557480,
+						]
+						angles = 
+						[
+							13.358000,
+							114.321600,
+							163.802300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint272"
+						origin = 
+						[
+							-11.907080,
+							1.845223,
+							28.447960,
+						]
+						angles = 
+						[
+							8.798809,
+							99.687770,
+							159.799600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint273"
+						origin = 
+						[
+							-0.003650,
+							-0.000053,
+							32.641410,
+						]
+						angles = 
+						[
+							2.046340,
+							177.442700,
+							175.414300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint274"
+						origin = 
+						[
+							-0.755212,
+							0.038929,
+							32.614990,
+						]
+						angles = 
+						[
+							3.633882,
+							-174.680100,
+							173.598900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint275"
+						origin = 
+						[
+							-1.479007,
+							-0.158015,
+							32.553550,
+						]
+						angles = 
+						[
+							3.500392,
+							-171.709000,
+							177.706500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint276"
+						origin = 
+						[
+							-2.235492,
+							-0.207636,
+							32.509700,
+						]
+						angles = 
+						[
+							8.018173,
+							170.626100,
+							-168.676800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint277"
+						origin = 
+						[
+							-2.903580,
+							0.112050,
+							32.367770,
+						]
+						angles = 
+						[
+							9.675590,
+							158.408600,
+							-164.657600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint278"
+						origin = 
+						[
+							-3.593474,
+							0.401520,
+							32.235960,
+						]
+						angles = 
+						[
+							9.587232,
+							172.607100,
+							-177.804500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint279"
+						origin = 
+						[
+							-4.344042,
+							0.304074,
+							32.119890,
+						]
+						angles = 
+						[
+							15.219680,
+							-159.929200,
+							165.464000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint280"
+						origin = 
+						[
+							-4.918755,
+							-0.131844,
+							31.875310,
+						]
+						angles = 
+						[
+							16.476080,
+							-148.639000,
+							164.243200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint281"
+						origin = 
+						[
+							-5.554870,
+							-0.497967,
+							31.663710,
+						]
+						angles = 
+						[
+							15.078000,
+							-168.349900,
+							176.168300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint282"
+						origin = 
+						[
+							-6.293858,
+							-0.419758,
+							31.488640,
+						]
+						angles = 
+						[
+							19.825400,
+							156.922000,
+							-170.458800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint283"
+						origin = 
+						[
+							-6.812243,
+							0.060770,
+							31.206130,
+						]
+						angles = 
+						[
+							21.806180,
+							138.261600,
+							-168.900100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint284"
+						origin = 
+						[
+							-7.320278,
+							0.549614,
+							30.918610,
+						]
+						angles = 
+						[
+							19.565910,
+							155.659400,
+							-174.396500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint285"
+						origin = 
+						[
+							-8.046650,
+							0.616229,
+							30.698480,
+						]
+						angles = 
+						[
+							21.741570,
+							-159.914100,
+							179.872500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint286"
+						origin = 
+						[
+							-8.547512,
+							0.104492,
+							30.440090,
+						]
+						angles = 
+						[
+							18.986670,
+							-136.785800,
+							179.559200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint287"
+						origin = 
+						[
+							-9.073670,
+							-0.387547,
+							30.192270,
+						]
+						angles = 
+						[
+							20.877160,
+							-169.655900,
+							179.077900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint288"
+						origin = 
+						[
+							-9.740168,
+							-0.107888,
+							29.968130,
+						]
+						angles = 
+						[
+							20.989950,
+							140.006100,
+							176.114200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint289"
+						origin = 
+						[
+							-10.120460,
+							0.492891,
+							29.723920,
+						]
+						angles = 
+						[
+							19.563770,
+							146.553600,
+							177.450000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint290"
+						origin = 
+						[
+							-10.818890,
+							0.606213,
+							29.480900,
+						]
+						angles = 
+						[
+							20.067770,
+							176.154600,
+							-179.604800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint291"
+						origin = 
+						[
+							-11.518980,
+							0.571719,
+							29.227160,
+						]
+						angles = 
+						[
+							20.087580,
+							152.716200,
+							173.902400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint292"
+						origin = 
+						[
+							-11.911940,
+							1.172948,
+							29.038940,
+						]
+						angles = 
+						[
+							13.819030,
+							118.244400,
+							163.467500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint293"
+						origin = 
+						[
+							-12.181670,
+							1.858132,
+							28.885560,
+						]
+						angles = 
+						[
+							12.133910,
+							112.409300,
+							157.934700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint294"
+						origin = 
+						[
+							-0.003683,
+							0.000267,
+							33.141400,
+						]
+						angles = 
+						[
+							2.716404,
+							-177.081500,
+							176.382100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint295"
+						origin = 
+						[
+							-0.751579,
+							-0.049536,
+							33.105110,
+						]
+						angles = 
+						[
+							3.396238,
+							-174.262800,
+							177.703200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint296"
+						origin = 
+						[
+							-1.497565,
+							-0.187934,
+							33.057710,
+						]
+						angles = 
+						[
+							4.943767,
+							179.079400,
+							-173.472200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint297"
+						origin = 
+						[
+							-2.232538,
+							-0.023953,
+							32.976430,
+						]
+						angles = 
+						[
+							8.741042,
+							164.072500,
+							-164.378800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint298"
+						origin = 
+						[
+							-2.906894,
+							0.286099,
+							32.831670,
+						]
+						angles = 
+						[
+							8.364131,
+							166.325900,
+							-171.254900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint299"
+						origin = 
+						[
+							-3.663416,
+							0.364749,
+							32.736780,
+						]
+						angles = 
+						[
+							11.668190,
+							-171.797600,
+							169.973700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint300"
+						origin = 
+						[
+							-4.335933,
+							0.060684,
+							32.553360,
+						]
+						angles = 
+						[
+							15.901570,
+							-153.937300,
+							160.356500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint301"
+						origin = 
+						[
+							-4.941776,
+							-0.333863,
+							32.316180,
+						]
+						angles = 
+						[
+							14.432800,
+							-157.738600,
+							167.685000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint302"
+						origin = 
+						[
+							-5.671638,
+							-0.510364,
+							32.150600,
+						]
+						angles = 
+						[
+							15.757380,
+							175.166900,
+							-175.486500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint303"
+						origin = 
+						[
+							-6.341475,
+							-0.213786,
+							31.935620,
+						]
+						angles = 
+						[
+							20.737340,
+							148.244600,
+							-165.663700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint304"
+						origin = 
+						[
+							-6.848062,
+							0.270582,
+							31.636330,
+						]
+						angles = 
+						[
+							20.578490,
+							143.018300,
+							-168.514600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint305"
+						origin = 
+						[
+							-7.455926,
+							0.659126,
+							31.378270,
+						]
+						angles = 
+						[
+							19.433470,
+							170.297900,
+							-176.665900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint306"
+						origin = 
+						[
+							-8.165563,
+							0.497294,
+							31.158340,
+						]
+						angles = 
+						[
+							21.662560,
+							-149.323700,
+							177.708500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint307"
+						origin = 
+						[
+							-8.617354,
+							-0.047060,
+							30.883490,
+						]
+						angles = 
+						[
+							18.538630,
+							-140.425400,
+							178.116600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint308"
+						origin = 
+						[
+							-9.245066,
+							-0.408948,
+							30.648090,
+						]
+						angles = 
+						[
+							21.608360,
+							177.293800,
+							177.297900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint309"
+						origin = 
+						[
+							-9.839013,
+							0.002471,
+							30.424840,
+						]
+						angles = 
+						[
+							18.611550,
+							136.658500,
+							174.936300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint310"
+						origin = 
+						[
+							-10.273320,
+							0.573404,
+							30.197480,
+						]
+						angles = 
+						[
+							19.945530,
+							153.687900,
+							177.707100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint311"
+						origin = 
+						[
+							-10.980810,
+							0.564641,
+							29.955030,
+						]
+						angles = 
+						[
+							18.786270,
+							177.420600,
+							-178.861300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint312"
+						origin = 
+						[
+							-11.685320,
+							0.622280,
+							29.714210,
+						]
+						angles = 
+						[
+							20.960560,
+							148.256100,
+							173.613100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint313"
+						origin = 
+						[
+							-12.046280,
+							1.236980,
+							29.512620,
+						]
+						angles = 
+						[
+							15.773480,
+							125.636000,
+							162.163900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint314"
+						origin = 
+						[
+							-12.496650,
+							1.802141,
+							29.296460,
+						]
+						angles = 
+						[
+							17.037790,
+							129.432400,
+							155.572400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint315"
+						origin = 
+						[
+							-0.003876,
+							0.000143,
+							33.641310,
+						]
+						angles = 
+						[
+							3.212176,
+							-174.680600,
+							179.997500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint316"
+						origin = 
+						[
+							-0.751611,
+							-0.088197,
+							33.599070,
+						]
+						angles = 
+						[
+							3.568176,
+							-178.170200,
+							-175.355800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint317"
+						origin = 
+						[
+							-1.512551,
+							-0.074130,
+							33.548530,
+						]
+						angles = 
+						[
+							6.889546,
+							171.057300,
+							-166.191300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint318"
+						origin = 
+						[
+							-2.210208,
+							0.194497,
+							33.421380,
+						]
+						angles = 
+						[
+							7.241256,
+							166.393300,
+							-167.762300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint319"
+						origin = 
+						[
+							-2.956237,
+							0.349729,
+							33.329970,
+						]
+						angles = 
+						[
+							8.862233,
+							-179.334900,
+							175.146000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint320"
+						origin = 
+						[
+							-3.694094,
+							0.176962,
+							33.200550,
+						]
+						angles = 
+						[
+							13.912770,
+							-161.279900,
+							159.590000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint321"
+						origin = 
+						[
+							-4.322223,
+							-0.190837,
+							32.967660,
+						]
+						angles = 
+						[
+							14.350670,
+							-156.613300,
+							161.066700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint322"
+						origin = 
+						[
+							-5.018327,
+							-0.461376,
+							32.786650,
+						]
+						angles = 
+						[
+							13.214430,
+							-172.825400,
+							176.814100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint323"
+						origin = 
+						[
+							-5.765416,
+							-0.379833,
+							32.624950,
+						]
+						angles = 
+						[
+							17.770870,
+							161.598100,
+							-166.803900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint324"
+						origin = 
+						[
+							-6.355815,
+							0.024522,
+							32.355900,
+						]
+						angles = 
+						[
+							20.854370,
+							145.537700,
+							-163.163100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint325"
+						origin = 
+						[
+							-6.912151,
+							0.462775,
+							32.071610,
+						]
+						angles = 
+						[
+							18.825020,
+							152.866300,
+							-170.177700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint326"
+						origin = 
+						[
+							-7.613867,
+							0.675263,
+							31.849640,
+						]
+						angles = 
+						[
+							19.663800,
+							-174.731600,
+							179.725400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint327"
+						origin = 
+						[
+							-8.251476,
+							0.341536,
+							31.610430,
+						]
+						angles = 
+						[
+							21.396580,
+							-142.648600,
+							175.833300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint328"
+						origin = 
+						[
+							-8.705588,
+							-0.197084,
+							31.328990,
+						]
+						angles = 
+						[
+							18.973660,
+							-147.428800,
+							176.827700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint329"
+						origin = 
+						[
+							-9.405984,
+							-0.389896,
+							31.102930,
+						]
+						angles = 
+						[
+							20.963980,
+							166.196500,
+							175.577800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint330"
+						origin = 
+						[
+							-9.943395,
+							0.096927,
+							30.887020,
+						]
+						angles = 
+						[
+							17.187450,
+							135.611600,
+							174.078200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint331"
+						origin = 
+						[
+							-10.431790,
+							0.621459,
+							30.669190,
+						]
+						angles = 
+						[
+							20.208150,
+							158.497000,
+							179.468600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint332"
+						origin = 
+						[
+							-11.134690,
+							0.548048,
+							30.435130,
+						]
+						angles = 
+						[
+							18.314070,
+							175.946800,
+							-174.748900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint333"
+						origin = 
+						[
+							-11.833580,
+							0.694437,
+							30.191620,
+						]
+						angles = 
+						[
+							20.252690,
+							148.074500,
+							176.711500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint334"
+						origin = 
+						[
+							-12.228440,
+							1.292022,
+							29.969650,
+						]
+						angles = 
+						[
+							20.784220,
+							139.481900,
+							159.138600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint335"
+						origin = 
+						[
+							-12.825620,
+							1.637088,
+							29.661030,
+						]
+						angles = 
+						[
+							25.016500,
+							151.655000,
+							149.513300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint336"
+						origin = 
+						[
+							-0.004015,
+							-0.000012,
+							34.141110,
+						]
+						angles = 
+						[
+							3.588862,
+							-177.827100,
+							-175.203000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint337"
+						origin = 
+						[
+							-0.760836,
+							-0.053109,
+							34.095580,
+						]
+						angles = 
+						[
+							5.592034,
+							176.370200,
+							-171.372000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint338"
+						origin = 
+						[
+							-1.493752,
+							0.132123,
+							34.001720,
+						]
+						angles = 
+						[
+							6.475513,
+							169.763400,
+							-170.396100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint339"
+						origin = 
+						[
+							-2.236381,
+							0.296805,
+							33.910330,
+						]
+						angles = 
+						[
+							7.174522,
+							177.386600,
+							176.571000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint340"
+						origin = 
+						[
+							-2.999293,
+							0.203804,
+							33.807220,
+						]
+						angles = 
+						[
+							11.732300,
+							-167.093800,
+							159.220100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint341"
+						origin = 
+						[
+							-3.667405,
+							-0.108019,
+							33.597550,
+						]
+						angles = 
+						[
+							13.323240,
+							-159.724000,
+							156.507400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint342"
+						origin = 
+						[
+							-4.359615,
+							-0.382836,
+							33.413230,
+						]
+						angles = 
+						[
+							11.949180,
+							-168.216100,
+							170.329100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint343"
+						origin = 
+						[
+							-5.120182,
+							-0.429746,
+							33.272660,
+						]
+						angles = 
+						[
+							14.320690,
+							171.802600,
+							-169.735400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint344"
+						origin = 
+						[
+							-5.802568,
+							-0.149813,
+							33.056500,
+						]
+						angles = 
+						[
+							18.860970,
+							154.016500,
+							-159.935700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint345"
+						origin = 
+						[
+							-6.390334,
+							0.252202,
+							32.775740,
+						]
+						angles = 
+						[
+							19.722420,
+							149.115300,
+							-163.478500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint346"
+						origin = 
+						[
+							-7.016365,
+							0.608424,
+							32.522480,
+						]
+						angles = 
+						[
+							17.450480,
+							165.934700,
+							-173.971000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint347"
+						origin = 
+						[
+							-7.753232,
+							0.596260,
+							32.319900,
+						]
+						angles = 
+						[
+							20.018830,
+							-161.822300,
+							175.821400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint348"
+						origin = 
+						[
+							-8.324469,
+							0.170303,
+							32.056090,
+						]
+						angles = 
+						[
+							21.130980,
+							-140.352200,
+							174.157800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint349"
+						origin = 
+						[
+							-8.823681,
+							-0.328370,
+							31.777410,
+						]
+						angles = 
+						[
+							19.474500,
+							-156.774900,
+							175.643600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint350"
+						origin = 
+						[
+							-9.549965,
+							-0.349173,
+							31.560080,
+						]
+						angles = 
+						[
+							19.496320,
+							157.774800,
+							174.366900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint351"
+						origin = 
+						[
+							-10.061120,
+							0.167905,
+							31.353150,
+						]
+						angles = 
+						[
+							16.365960,
+							136.083900,
+							173.141400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint352"
+						origin = 
+						[
+							-10.585180,
+							0.661681,
+							31.140730,
+						]
+						angles = 
+						[
+							19.827520,
+							158.480300,
+							-179.027500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint353"
+						origin = 
+						[
+							-11.303010,
+							0.622863,
+							30.910490,
+						]
+						angles = 
+						[
+							20.093590,
+							172.252300,
+							-170.493300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint354"
+						origin = 
+						[
+							-11.915380,
+							0.865176,
+							30.648480,
+						]
+						angles = 
+						[
+							20.186180,
+							157.572400,
+							177.117700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint355"
+						origin = 
+						[
+							-12.513710,
+							1.254418,
+							30.397620,
+						]
+						angles = 
+						[
+							32.991370,
+							163.706700,
+							144.640500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint356"
+						origin = 
+						[
+							-13.092160,
+							1.259516,
+							29.903050,
+						]
+						angles = 
+						[
+							40.175530,
+							179.063400,
+							132.977800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint357"
+						origin = 
+						[
+							-0.004262,
+							-0.000255,
+							34.641030,
+						]
+						angles = 
+						[
+							4.809132,
+							176.630600,
+							-176.423100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint358"
+						origin = 
+						[
+							-0.756913,
+							0.073277,
+							34.575630,
+						]
+						angles = 
+						[
+							6.498530,
+							174.348800,
+							-177.087300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint359"
+						origin = 
+						[
+							-1.507858,
+							0.199867,
+							34.486400,
+						]
+						angles = 
+						[
+							6.625957,
+							176.697600,
+							174.446800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint360"
+						origin = 
+						[
+							-2.277684,
+							0.170310,
+							34.390090,
+						]
+						angles = 
+						[
+							10.401260,
+							-171.716000,
+							160.066900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint361"
+						origin = 
+						[
+							-2.975564,
+							-0.089977,
+							34.198540,
+						]
+						angles = 
+						[
+							11.872210,
+							-163.790700,
+							156.908200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint362"
+						origin = 
+						[
+							-3.683066,
+							-0.332070,
+							34.026280,
+						]
+						angles = 
+						[
+							10.647590,
+							-168.435900,
+							169.145900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint363"
+						origin = 
+						[
+							-4.448451,
+							-0.415155,
+							33.896250,
+						]
+						angles = 
+						[
+							11.836180,
+							176.472700,
+							-169.884600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint364"
+						origin = 
+						[
+							-5.176723,
+							-0.221154,
+							33.714270,
+						]
+						angles = 
+						[
+							15.951510,
+							161.742200,
+							-155.939300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint365"
+						origin = 
+						[
+							-5.819133,
+							0.109930,
+							33.457700,
+						]
+						angles = 
+						[
+							18.166270,
+							153.930800,
+							-156.577800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint366"
+						origin = 
+						[
+							-6.453370,
+							0.454724,
+							33.206920,
+						]
+						angles = 
+						[
+							17.281410,
+							157.903700,
+							-167.284900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint367"
+						origin = 
+						[
+							-7.155088,
+							0.671461,
+							32.994190,
+						]
+						angles = 
+						[
+							17.531800,
+							179.992100,
+							-179.772400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint368"
+						origin = 
+						[
+							-7.853308,
+							0.447022,
+							32.774570,
+						]
+						angles = 
+						[
+							20.230320,
+							-152.536900,
+							172.387900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint369"
+						origin = 
+						[
+							-8.397081,
+							-0.007902,
+							32.497670,
+						]
+						angles = 
+						[
+							20.855190,
+							-142.074600,
+							172.855000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint370"
+						origin = 
+						[
+							-8.962392,
+							-0.437012,
+							32.228520,
+						]
+						angles = 
+						[
+							19.066880,
+							-167.332300,
+							174.895200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint371"
+						origin = 
+						[
+							-9.683823,
+							-0.294956,
+							32.024050,
+						]
+						angles = 
+						[
+							17.352580,
+							150.520700,
+							176.398600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint372"
+						origin = 
+						[
+							-10.195000,
+							0.226324,
+							31.818160,
+						]
+						angles = 
+						[
+							15.619710,
+							137.943800,
+							176.946400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint373"
+						origin = 
+						[
+							-10.754030,
+							0.681364,
+							31.614910,
+						]
+						angles = 
+						[
+							20.500370,
+							158.866400,
+							179.487400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint374"
+						origin = 
+						[
+							-11.426920,
+							0.807264,
+							31.362040,
+						]
+						angles = 
+						[
+							20.791020,
+							174.998200,
+							176.995100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint375"
+						origin = 
+						[
+							-12.120400,
+							0.942471,
+							31.099430,
+						]
+						angles = 
+						[
+							30.768850,
+							178.081300,
+							150.743900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint376"
+						origin = 
+						[
+							-12.759390,
+							0.870534,
+							30.659830,
+						]
+						angles = 
+						[
+							50.373780,
+							-172.513000,
+							114.906900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint377"
+						origin = 
+						[
+							-13.049420,
+							0.737135,
+							29.972530,
+						]
+						angles = 
+						[
+							59.981330,
+							-159.873300,
+							110.438600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint378"
+						origin = 
+						[
+							-0.004770,
+							0.000003,
+							35.140810,
+						]
+						angles = 
+						[
+							5.720550,
+							175.479400,
+							178.145700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint379"
+						origin = 
+						[
+							-0.772872,
+							0.078552,
+							35.064050,
+						]
+						angles = 
+						[
+							7.671154,
+							177.189400,
+							174.242600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint380"
+						origin = 
+						[
+							-1.539620,
+							0.089378,
+							34.958110,
+						]
+						angles = 
+						[
+							10.003110,
+							-176.155500,
+							166.639400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint381"
+						origin = 
+						[
+							-2.268224,
+							-0.105746,
+							34.792410,
+						]
+						angles = 
+						[
+							10.873820,
+							-168.775700,
+							165.311500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint382"
+						origin = 
+						[
+							-3.001938,
+							-0.279083,
+							34.640430,
+						]
+						angles = 
+						[
+							10.033850,
+							-170.747500,
+							175.652300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint383"
+						origin = 
+						[
+							-3.769426,
+							-0.347920,
+							34.508720,
+						]
+						angles = 
+						[
+							11.608880,
+							178.345100,
+							-167.098300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint384"
+						origin = 
+						[
+							-4.501585,
+							-0.189563,
+							34.325380,
+						]
+						angles = 
+						[
+							14.513060,
+							166.595000,
+							-155.415400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint385"
+						origin = 
+						[
+							-5.169849,
+							0.088500,
+							34.085780,
+						]
+						angles = 
+						[
+							15.729590,
+							160.224200,
+							-155.616100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint386"
+						origin = 
+						[
+							-5.860810,
+							0.350014,
+							33.871940,
+						]
+						angles = 
+						[
+							16.153550,
+							159.817700,
+							-164.868500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint387"
+						origin = 
+						[
+							-6.554734,
+							0.587114,
+							33.664340,
+						]
+						angles = 
+						[
+							15.419710,
+							168.841400,
+							-176.744700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint388"
+						origin = 
+						[
+							-7.294214,
+							0.610894,
+							33.470050,
+						]
+						angles = 
+						[
+							18.626680,
+							-168.432600,
+							173.933900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint389"
+						origin = 
+						[
+							-7.928726,
+							0.271206,
+							33.214510,
+						]
+						angles = 
+						[
+							20.326950,
+							-147.820500,
+							171.530900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint390"
+						origin = 
+						[
+							-8.480068,
+							-0.176872,
+							32.939640,
+						]
+						angles = 
+						[
+							20.180080,
+							-146.486800,
+							174.278600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint391"
+						origin = 
+						[
+							-9.111897,
+							-0.518950,
+							32.683410,
+						]
+						angles = 
+						[
+							17.858580,
+							-178.547500,
+							176.856800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint392"
+						origin = 
+						[
+							-9.783577,
+							-0.203166,
+							32.488850,
+						]
+						angles = 
+						[
+							16.661060,
+							143.715800,
+							-179.888700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint393"
+						origin = 
+						[
+							-10.250800,
+							0.350845,
+							32.277690,
+						]
+						angles = 
+						[
+							14.715610,
+							143.902900,
+							177.356200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint394"
+						origin = 
+						[
+							-10.903000,
+							0.713758,
+							32.078760,
+						]
+						angles = 
+						[
+							18.706540,
+							168.653300,
+							163.613700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint395"
+						origin = 
+						[
+							-11.634070,
+							0.720796,
+							31.793070,
+						]
+						angles = 
+						[
+							29.420840,
+							-171.748800,
+							139.384200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint396"
+						origin = 
+						[
+							-12.258100,
+							0.534563,
+							31.336410,
+						]
+						angles = 
+						[
+							44.259910,
+							-164.628100,
+							109.543600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint397"
+						origin = 
+						[
+							-12.645720,
+							0.368457,
+							30.703480,
+						]
+						angles = 
+						[
+							60.656040,
+							-159.709300,
+							94.894320,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint398"
+						origin = 
+						[
+							-12.859170,
+							0.276299,
+							29.994550,
+						]
+						angles = 
+						[
+							69.169990,
+							-156.949500,
+							92.021600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint399"
+						origin = 
+						[
+							-0.005784,
+							-0.000009,
+							35.640640,
+						]
+						angles = 
+						[
+							6.858074,
+							178.074600,
+							177.720900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint400"
+						origin = 
+						[
+							-0.800502,
+							0.017738,
+							35.544670,
+						]
+						angles = 
+						[
+							9.666007,
+							-179.639200,
+							176.355700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint401"
+						origin = 
+						[
+							-1.570620,
+							-0.069540,
+							35.408100,
+						]
+						angles = 
+						[
+							10.567450,
+							-174.642700,
+							176.797500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint402"
+						origin = 
+						[
+							-2.332460,
+							-0.148777,
+							35.264770,
+						]
+						angles = 
+						[
+							11.105290,
+							-172.881300,
+							-176.710400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint403"
+						origin = 
+						[
+							-3.086848,
+							-0.215732,
+							35.114610,
+						]
+						angles = 
+						[
+							12.565270,
+							-178.341000,
+							-169.668200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint404"
+						origin = 
+						[
+							-3.819892,
+							-0.101858,
+							34.926810,
+						]
+						angles = 
+						[
+							13.829330,
+							172.437400,
+							-167.155400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint405"
+						origin = 
+						[
+							-4.526359,
+							0.084109,
+							34.726930,
+						]
+						angles = 
+						[
+							14.839560,
+							166.438600,
+							-171.503600,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint406"
+						origin = 
+						[
+							-5.241433,
+							0.266805,
+							34.529870,
+						]
+						angles = 
+						[
+							14.991040,
+							164.010500,
+							-178.845500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint407"
+						origin = 
+						[
+							-5.963998,
+							0.429557,
+							34.332760,
+						]
+						angles = 
+						[
+							14.112020,
+							165.000800,
+							176.426500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint408"
+						origin = 
+						[
+							-6.687413,
+							0.597450,
+							34.144540,
+						]
+						angles = 
+						[
+							15.515250,
+							177.523800,
+							172.505200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint409"
+						origin = 
+						[
+							-7.404215,
+							0.460158,
+							33.924400,
+						]
+						angles = 
+						[
+							18.989960,
+							-161.809500,
+							170.671400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint410"
+						origin = 
+						[
+							-8.027453,
+							0.117499,
+							33.661120,
+						]
+						angles = 
+						[
+							20.404380,
+							-147.227500,
+							173.468700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint411"
+						origin = 
+						[
+							-8.591309,
+							-0.312501,
+							33.391280,
+						]
+						angles = 
+						[
+							19.559260,
+							-152.023800,
+							176.912800,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint412"
+						origin = 
+						[
+							-9.271241,
+							-0.537269,
+							33.147370,
+						]
+						angles = 
+						[
+							20.512740,
+							170.334700,
+							175.351700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint413"
+						origin = 
+						[
+							-9.816897,
+							-0.056325,
+							32.949120,
+						]
+						angles = 
+						[
+							15.364450,
+							142.132400,
+							171.966200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint414"
+						origin = 
+						[
+							-10.375080,
+							0.424155,
+							32.752360,
+						]
+						angles = 
+						[
+							17.133470,
+							158.519100,
+							159.583400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint415"
+						origin = 
+						[
+							-11.105010,
+							0.456850,
+							32.447030,
+						]
+						angles = 
+						[
+							32.369630,
+							-171.434800,
+							131.097400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint416"
+						origin = 
+						[
+							-11.640200,
+							0.255496,
+							31.930450,
+						]
+						angles = 
+						[
+							44.504960,
+							-159.838000,
+							103.839700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint417"
+						origin = 
+						[
+							-12.064160,
+							0.073606,
+							31.337580,
+						]
+						angles = 
+						[
+							53.961040,
+							-156.325700,
+							90.145070,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint418"
+						origin = 
+						[
+							-12.407250,
+							-0.077042,
+							30.685520,
+						]
+						angles = 
+						[
+							63.882840,
+							-156.270900,
+							85.673030,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint419"
+						origin = 
+						[
+							-12.666900,
+							-0.186837,
+							29.991290,
+						]
+						angles = 
+						[
+							67.926100,
+							-157.084500,
+							85.119460,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint420"
+						origin = 
+						[
+							-0.007146,
+							0.000227,
+							36.140160,
+						]
+						angles = 
+						[
+							6.897670,
+							179.437800,
+							178.876400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint421"
+						origin = 
+						[
+							-0.877767,
+							-0.000272,
+							35.988100,
+						]
+						angles = 
+						[
+							10.091540,
+							-178.471800,
+							-179.288500,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint422"
+						origin = 
+						[
+							-1.657445,
+							-0.019074,
+							35.854150,
+						]
+						angles = 
+						[
+							10.761930,
+							-175.606700,
+							-174.010200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint423"
+						origin = 
+						[
+							-2.426789,
+							-0.067551,
+							35.714430,
+						]
+						angles = 
+						[
+							11.344760,
+							-175.612600,
+							-169.026200,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint424"
+						origin = 
+						[
+							-3.185159,
+							-0.101233,
+							35.567430,
+						]
+						angles = 
+						[
+							12.932210,
+							179.252400,
+							-169.849700,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint425"
+						origin = 
+						[
+							-3.935712,
+							-0.071510,
+							35.390790,
+						]
+						angles = 
+						[
+							15.280930,
+							172.078600,
+							-178.917100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint426"
+						origin = 
+						[
+							-4.674024,
+							0.011535,
+							35.182950,
+						]
+						angles = 
+						[
+							15.535280,
+							168.768000,
+							169.329400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint427"
+						origin = 
+						[
+							-5.395026,
+							0.133382,
+							34.967220,
+						]
+						angles = 
+						[
+							14.576450,
+							166.085700,
+							164.374400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint428"
+						origin = 
+						[
+							-6.097476,
+							0.380091,
+							34.793690,
+						]
+						angles = 
+						[
+							14.128880,
+							166.540500,
+							166.328000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint429"
+						origin = 
+						[
+							-6.819479,
+							0.492054,
+							34.610770,
+						]
+						angles = 
+						[
+							15.009460,
+							-178.989600,
+							168.052300,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint430"
+						origin = 
+						[
+							-7.511127,
+							0.310683,
+							34.375510,
+						]
+						angles = 
+						[
+							19.096830,
+							-159.960100,
+							170.126000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint431"
+						origin = 
+						[
+							-8.152208,
+							-0.007535,
+							34.117070,
+						]
+						angles = 
+						[
+							20.478050,
+							-147.759000,
+							174.847900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint432"
+						origin = 
+						[
+							-8.721596,
+							-0.427394,
+							33.849840,
+						]
+						angles = 
+						[
+							19.185530,
+							-154.887700,
+							177.769000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint433"
+						origin = 
+						[
+							-9.434795,
+							-0.527590,
+							33.611270,
+						]
+						angles = 
+						[
+							20.789040,
+							165.071600,
+							171.965000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint434"
+						origin = 
+						[
+							-9.980078,
+							-0.047087,
+							33.406930,
+						]
+						angles = 
+						[
+							16.227210,
+							143.323900,
+							162.499900,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint435"
+						origin = 
+						[
+							-10.625770,
+							0.223532,
+							33.143290,
+						]
+						angles = 
+						[
+							18.636320,
+							170.905000,
+							145.383100,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint436"
+						origin = 
+						[
+							-11.078520,
+							-0.036652,
+							32.565410,
+						]
+						angles = 
+						[
+							42.587700,
+							-159.032800,
+							117.669400,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint437"
+						origin = 
+						[
+							-11.420850,
+							-0.192415,
+							31.911460,
+						]
+						angles = 
+						[
+							51.824070,
+							-156.801900,
+							92.770160,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint438"
+						origin = 
+						[
+							-11.828800,
+							-0.370890,
+							31.313420,
+						]
+						angles = 
+						[
+							57.140800,
+							-155.754800,
+							84.836620,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint439"
+						origin = 
+						[
+							-12.143780,
+							-0.500924,
+							30.648480,
+						]
+						angles = 
+						[
+							63.786090,
+							-155.866500,
+							83.676090,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "pPlane1joint440"
+						origin = 
+						[
+							-12.442070,
+							-0.633359,
+							29.976240,
+						]
+						angles = 
+						[
+							66.003790,
+							-156.559400,
+							83.441890,
+						]
+						do_not_discard = true
+					},
+				]
+			},
+		]
+	}
+}

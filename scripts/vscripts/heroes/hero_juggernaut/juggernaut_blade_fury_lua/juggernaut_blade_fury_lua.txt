@@ -19,28 +19,12 @@
 		"AbilityCooldown"				"38 32 26 20"
 		"AbilityManaCost"				"100"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"blade_fury_damage_tick"	"0.2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"blade_fury_radius"			"250"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"blade_fury_damage"			"80 110 140 170"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3.0"
-			}
-		}
+		"AbilityValues"
+	{
+		"blade_fury_damage_tick"	"0.2"
+			"blade_fury_radius"	"250"
+			"blade_fury_damage"	"80 110 140 170"
+			"duration"	"3.0"
+	}
 	}
 }

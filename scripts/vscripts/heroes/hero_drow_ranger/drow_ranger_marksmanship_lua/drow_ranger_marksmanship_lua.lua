@@ -9,8 +9,6 @@ end
 
 function drow_ranger_marksmanship_lua:OnProjectileHit_ExtraData( target, location, data )
 	if not target then return end
-
-	-- perform attack
 	self.split = true
 	self.split_procs = data.procs==1
 	self:GetCaster():PerformAttack( target, true, true, true, false, false, false, false )

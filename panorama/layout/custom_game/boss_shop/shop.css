@@ -1,0 +1,733 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height:100%;
+	width:100%;
+}
+
+.DSPanel
+{
+	height:700px;
+	width:1300px;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	vertical-align:center;
+	horizontal-align:center;
+	padding: 10px;
+}
+
+.DSClose
+{
+	horizontal-align:right;
+	vertical-align:top;
+	height: 20px;
+	width: 20px;
+	background-image:url("s2r://panorama/images/shop/close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.DSClose:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#dis
+{
+	width: 85px;
+	height: 68px;
+}
+
+#dis:hover
+{
+	brightness: 1.2;
+}
+
+.lowPanel
+{
+	width: 100%;
+	vertical-align:bottom;
+	horizontal-align:center;
+	box-shadow: inset 2px 2px 4px 0px #00000080;
+	height: 600px;
+	padding:10px;
+}
+
+.money_panel
+{
+	height:65px;
+	width:170px;
+	flow-children:down;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-size: 100% 100%;
+	box-shadow: 2px 2px 4px 0px #00000080;
+	border-radius:2px;
+	padding: 5px;
+}
+
+.DNMoneyPanel,.MMMRPointsPanel
+{
+	margin-bottom: 5px;
+	flow-children: right;
+}
+
+.DNMoneyLogo
+{
+	vertical-align:center;
+	height:22px;
+	width:25px;
+	margin-left:10px;
+}
+
+.DNMoneyLabel
+{
+	color:gold;
+	font-size:20px;
+	margin-left:10px;
+	vertical-align:center;
+	text-shadow: 1px 1px 2px 0.5 #666066;
+}
+
+.DSContentPanel_bg
+{
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: right;
+	vertical-align: top;
+	height: 580px;
+	width: 1080px;
+	box-shadow: 0px 2px 4px 2px #00000080;
+	border-radius:2px;
+	brightness: 0.4;
+}
+
+.DSContentPanel
+{
+	horizontal-align: right;
+	vertical-align: top;
+	height: 580px;
+	width: 1080px;
+	overflow: clip scroll;
+	padding: 5px;
+}
+
+.DSTabsPanel
+{
+	margin-top:90px;
+	width:176px;
+	flow-children:down;
+}
+
+.TabPanel
+{
+	width:100%;
+	height:35px;
+	border-radius: 4px 0 0 4px;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	opacity: 0.2;
+	margin-bottom:6px;
+}
+
+.TabPanel:hover
+{
+	brightness: 2;
+}
+
+.TabLabel:hover
+{
+	color:gold;
+	sound: "ui_select_arrow";
+}
+
+.selected_bd
+{
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	opacity: 1;
+	brightness: 1.2;
+}
+
+.horizontal_panel
+{
+	width:100%;
+	flow-children:right;
+}
+
+.TabContent
+{
+	width:100%;
+	flow-children:down;
+	padding:5px;
+}
+
+.item_panel
+{
+	height: 170px;
+	width: 140px;
+	background-color: red;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 0.6px solid black;
+}
+
+.item_panel:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+.item_panel_image,.item_panel_image2,.item_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.item_panel_buy
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(26, 94, 39);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.item_panel_take
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(43, 59, 117);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.item_panel_return
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(150, 89, 42);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.item_panel_buy:hover,.item_panel_take:hover,.item_panel_return:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.item_panel_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.item_panel_name
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 38px;
+	text-overflow: shrink;
+	height:24px;
+}
+
+.item_panel_upgrade
+{
+	height: 40px;
+	width: 40px;
+	background-image:url("s2r://panorama/images/shop/upgrade_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: right;
+	z-index:10;
+}
+
+.BuyControl
+{
+	vertical-align:center;
+	horizontal-align:center;
+	width:300px;
+	height:380px;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+.item_buy_image,.item_buy_image2
+{
+	horizontal-align: center;
+	margin-top:40px;
+	width: 120px;
+	height: 87px;
+	box-shadow: inset 0px 0px 4px 0px #00000080;
+	border: 1px solid black;
+}
+
+.item_buy_label
+{
+	horizontal-align: center;
+	margin-top:140px;
+	font-size: 20px;
+}
+
+.buy_button
+{
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height: 40px;
+	width: 100px;
+	flow-children: right;
+}
+
+.buy_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	background-color: #414219;
+}
+
+#don_button
+{
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: 30px;
+	margin-bottom: 90px;
+}
+
+#rp_button
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 30px;
+	margin-bottom: 90px;
+}
+
+#close_button
+{
+	height: 30px;
+	width: 120px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+	background-color: red;
+}
+
+.close_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#buy_text_input
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 100px;
+	margin-top: 24px;
+}
+
+.consumable_panel
+{
+	height: 220px;
+	width: 164px;
+	background-color: red;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 0.6px solid black;
+}
+
+.consumable_panel:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+.consumable_panel_image,.consumable_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.consumable_panel_buy
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(26, 94, 39);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:63px;
+}
+
+.consumable_panel_take
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(43, 59, 117);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:34px;
+}
+
+.consumable_panel_return
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(150, 89, 42);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.consumable_panel_buy:hover,.consumable_panel_take:hover,.consumable_panel_return:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.consumable_panel_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.consumable_panel_name
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 90px;
+	text-overflow: shrink;
+	height:24px;
+}
+
+.consumable_panel_count
+{
+	horizontal-align: right;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/count_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-color: black;
+	padding:2px 5px 0px 5px;
+}
+
+.consumable_panel_count_label
+{
+	text-overflow: shrink;
+	height:24px;
+	horizontal-align: center;
+	vertical-align:center;
+}
+
+#smart_toggle
+{
+	horizontal-align:right;
+	vertical-align: top;
+	padding: 0;
+	height: 18px;
+	width: 18px;
+	margin-right: 6px;
+	margin-top: 5px;
+}
+
+.treasure_panel
+{
+	height: 200px;
+	width: 164px;
+	background-color: red;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 0.6px solid black;
+}
+
+.treasure_panel:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+.treasure_panel_image,.treasure_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.treasure_panel_buy
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(26, 94, 39);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:40px;
+}
+
+.treasure_panel_take
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(43, 59, 117);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.treasure_panel_return
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(150, 89, 42);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.treasure_panel_buy:hover,.treasure_panel_take:hover,.treasure_panel_return:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.treasure_panel_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.treasure_panel_name
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 70px;
+	text-overflow: shrink;
+	height:24px;
+}
+
+.treasure_panel_count
+{
+	horizontal-align: right;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/count_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-color: black;
+	padding:2px 5px 0px 5px;
+}
+
+.treasure_panel_count_label
+{
+	text-overflow: shrink;
+	height:24px;
+	horizontal-align: center;
+	vertical-align:center;
+}
+
+#smart_toggle
+{
+	horizontal-align:right;
+	vertical-align: top;
+	padding: 0;
+	height: 18px;
+	width: 18px;
+	margin-right: 6px;
+	margin-top: 5px;
+}
+
+.pet_panel
+{
+	height: 220px;
+	width: 164px;
+	background-color: red;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 0.6px solid black;
+}
+
+.pet_panel:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+.pet_panel_image,.pet_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.pet_panel_take
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(43, 59, 117);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.pet_panel_return
+{
+	width: 130px;
+	height: 25px;
+	background-color: rgb(150, 89, 42);
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom:5px;
+}
+
+.pet_panel_take:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.pet_panel_label
+{
+	horizontal-align: center;
+	vertical-align:center;
+	margin-top: 82px;
+	text-overflow: shrink;
+	height:65px;
+	text-align: center;
+}
+
+.pet_panel_name
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.openShop
+{
+	width:30px;
+	height:30px;
+	margin-left:250px;
+	margin-top:10px;
+	tooltip-position: bottom;
+	background-image: url("s2r://panorama/images/custom_game/ds/shopopen_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.openShop:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+.ScrollThumb
+{
+	visibility: collapse;
+}
+
+#don
+{
+	height: 100px;
+	width: 100px;
+	margin-top: 550px;
+	margin-left: 50px;
+}
+
+#don:hover
+{
+	brightness: 2.0;
+}
+
+.img_fr
+{
+	background-image: url("s2r://panorama/images/custom_game/ds/bd_png.vtex");
+	background-position: 10% center;
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+}
+
+.TabLabel
+{
+	letter-spacing: 1px;
+	font-size:18px;
+	color:white;
+	width:100%;
+	margin-left:20px;
+	vertical-align:center;
+}
+
+.selected_text
+{
+	color:#d76a00;
+}
+

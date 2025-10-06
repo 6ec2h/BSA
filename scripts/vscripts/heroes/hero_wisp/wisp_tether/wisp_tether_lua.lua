@@ -5,17 +5,10 @@ LinkLuaModifier("modifier_wisp_tether_lua_ally", "heroes/hero_wisp/wisp_tether/w
 LinkLuaModifier("modifier_wisp_tether_lua_latch", "heroes/hero_wisp/wisp_tether/wisp_tether_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_wisp_tether_lua_ally_attack", "heroes/hero_wisp/wisp_tether/wisp_tether_lua.lua", LUA_MODIFIER_MOTION_NONE)
 
-function wisp_tether_lua:GetManaCost(iLevel)
-    local caster = self:GetCaster()
-    if caster then
-        return caster:GetIntellect()
-    end
-end
-
 function wisp_tether_lua:GetCustomCastErrorTarget(target)
 	if target == self:GetCaster() then
 		return "dota_hud_error_cant_cast_on_self"
-	elseif target:HasModifier("modifier_imba_wisp_tether") and self:GetCaster():HasModifier("modifier_imba_wisp_tether_ally") then
+	elseif target:HasModifier("modifier_wisp_tether_lua") and self:GetCaster():HasModifier("modifier_wisp_tether_lua_ally") then
 		return "WHY WOULD YOU DO THIS"
 	end
 end
@@ -47,12 +40,14 @@ function wisp_tether_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	self.target = self:GetCursorTarget()
 	
+	if self.target:HasModifier("modifier_wisp_tether_lua_ally") then return rules:DisplayError(self:GetCaster():GetPlayerID(), "No") end
+	
 	caster:AddNewModifier(self.target, self, "modifier_wisp_tether_lua", {})
-
+	
 	self.target:AddNewModifier(caster, self, "modifier_wisp_tether_lua_ally", {})
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_int8")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_int8"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_wisp_int8")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_wisp_int8"):GetLevel() > 0 then 
 			self.target:AddNewModifier(caster, self, "modifier_wisp_tether_lua_ally_attack", {})
 		end
 	end
@@ -118,8 +113,8 @@ function modifier_wisp_tether_lua_ally:IsPurgable() return false end
 function modifier_wisp_tether_lua_ally:OnCreated()
 	self.regen = self:GetAbility():GetSpecialValueFor("tether_heal_amp")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_str9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_str9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_wisp_str9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_wisp_str9"):GetLevel() > 0 then 
 			self.regen = self.regen + 1.5
 		end
 	end

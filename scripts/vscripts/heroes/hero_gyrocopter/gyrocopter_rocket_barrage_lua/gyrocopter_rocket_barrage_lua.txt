@@ -17,39 +17,15 @@
 
 		"AbilityManaCost"				"90"
 		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"rockets_per_second"		"10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"rocket_damage"				"7 12 17 22"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"ballistic_duration"		"2"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"sniping_speed"				"2400"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"sniping_distance"			"600"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"400"
+			"rockets_per_second"	"10"
+			"rocket_damage"	"7 12 17 22"
+			"ballistic_duration"	"2"
+			"sniping_speed"	"2400"
+			"sniping_distance"	"600"
+	}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}	
 }

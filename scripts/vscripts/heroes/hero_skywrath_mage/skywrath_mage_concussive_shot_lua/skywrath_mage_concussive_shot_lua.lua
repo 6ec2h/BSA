@@ -63,8 +63,8 @@ function skywrath_mage_concussive_shot_lua:OnSpellStart()
 	self:PlayEffects1( target )
 
 	-- scepter effects
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int9"):GetLevel() > 0 then 
 			local scepter_radius = self:GetSpecialValueFor( "scepter_radius" )
 			
 			-- find nearby enemies
@@ -115,10 +115,14 @@ function skywrath_mage_concussive_shot_lua:OnProjectileHit( target, location, da
 
 	-- get data
 	local radius = self:GetSpecialValueFor( "slow_radius" )
-	local damage = self:GetSpecialValueFor( "damage" )
+	
 	local duration = self:GetSpecialValueFor( "slow_duration" )
 	local vision = self:GetSpecialValueFor( "shot_vision" )
 	local vision_duration = self:GetSpecialValueFor( "vision_duration" )
+	
+	
+	if not IsServer() then return end
+	local damage = self:GetSpecialValueFor( "damage" )+ self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
 
 	-- precache damage
 	local damageTable = {

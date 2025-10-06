@@ -23,28 +23,13 @@
 		"AbilityCooldown"				"9 9 9 9"
 		"AbilityManaCost"				"80 100 120 140"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"delay"				"0.35"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"200"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"1.0 1.5 2.0 2.5"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"120 180 240 300"
-			}
+			"delay"				"0.35"
+			"radius"			"200"
+			"duration"			"1.0 1.5 2.0 2.5"
+			"damage"			"120 180 240 300"
+			"ExtraIntelligenceDamage"			"0.2"
 		}
 	}
 }

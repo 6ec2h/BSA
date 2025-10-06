@@ -44,7 +44,6 @@ end
 
 function modifier_wisp_spirits_lua:OnRefresh(params)
 	if IsServer() then
-	
 		for k,spirit in pairs( self.spirits_spiritsSpawned ) do
 			if not spirit:IsNull() then
 				spirit:RemoveModifierByName("modifier_imba_wisp_spirit_handler")
@@ -73,7 +72,7 @@ end
 
 function modifier_wisp_spirits_lua:OnIntervalThink()
 	if IsServer() then
-		local caster 					= self:GetCaster()
+		local caster 					= self:GetParent()
 		local caster_position 			= caster:GetAbsOrigin()
 		local elapsedTime 				= GameRules:GetGameTime() - self.start_time
 		local idealNumSpiritsSpawned 	= elapsedTime / self.spirit_summon_interval
@@ -103,12 +102,10 @@ function modifier_wisp_spirits_lua:OnIntervalThink()
 		for k,spirit in pairs( self.spirits_spiritsSpawned ) do
 			if not spirit:IsNull() then
 				numSpiritsAlive = numSpiritsAlive + 1
-
 				local rotationAngle = currentRotationAngle - rotationAngleOffset * (k - 1)
 				local relPos 		= Vector(0, self.spirit_min_radius, 0)
 				relPos 				= RotatePosition(Vector(0,0,0), QAngle( 0, -rotationAngle, 0 ), relPos)
 				local absPos 		= GetGroundPosition( relPos + caster_position, spirit)
-
 				spirit:SetAbsOrigin(absPos)
 			end
 		end
@@ -124,6 +121,19 @@ function modifier_wisp_spirits_lua:OnIntervalThink()
 				end
 			end
 			self:GetCaster():StopSound("Hero_Wisp.Spirits.Loop")
+		end
+	end
+end
+
+function modifier_wisp_spirits_lua:OnRemoved()
+	if IsServer() then
+		if not self:GetParent():IsAlive() then
+			for k,spirit in pairs( self.spirits_spiritsSpawned ) do
+				if not spirit:IsNull() then
+					spirit:RemoveModifierByName("modifier_imba_wisp_spirit_handler")
+				end
+			end
+			self:GetParent():StopSound("Hero_Wisp.Spirits.Loop")
 		end
 	end
 end
@@ -168,14 +178,14 @@ end
 function modifier_imba_wisp_spirit_handler:OnIntervalThink()
 	if IsServer() then 
 		self.creep_damage = self:GetAbility():GetSpecialValueFor("creep_damage")
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_agi9")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_agi9"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_wisp_agi9")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_wisp_agi9"):GetLevel() > 0 then 
 				self.creep_damage = self.creep_damage * 2
 			end	
 		end
 		
 		local spirit = self:GetParent()
-		local enemies = FindUnitsInRadius( self.caster:GetTeam(), spirit:GetAbsOrigin(), nil, self.collision_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), spirit:GetAbsOrigin(), nil, self.collision_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		if enemies ~= nil and #enemies > 0 then
 			for _,enemy in pairs(enemies) do
 				if not enemy:HasModifier("modifier_wisp_spirits_lua_creep_hit") then

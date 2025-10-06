@@ -22,7 +22,7 @@ function modifier_troll_warlord_fervor_lua:IsPurgable() return false end
 function modifier_troll_warlord_fervor_lua:OnCreated()
 	self:SetStackCount(1)
 	self.count = self:GetAbility():GetSpecialValueFor("count")
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_troll_warlord_int3")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_troll_warlord_int3")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		self.count = self.count - 2
 	end

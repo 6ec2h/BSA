@@ -94,31 +94,15 @@ function modifier_undy_spray_lua:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_undy_spray_lua:OnIntervalThink()
-	local enemies = FindUnitsInRadius(
-		DOTA_TEAM_GOODGUYS,	-- int, your team number
-		self:GetParent():GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-		0,	-- int, flag filter
-		0,	-- int, order filter
-		false	-- bool, can grow cache
-	)
-
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0,	0, false)
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy
 		self.damageTable.damage = enemy:GetMaxHealth()/100*self.damage
-		
 		ApplyDamage( self.damageTable )
-
-		-- play effects
 		EmitSoundOn( self.sound_cast, enemy )
 	end
 end
 
---------------------------------------------------------------------------------
--- Aura Effects
 function modifier_undy_spray_lua:IsAura()
 	return self.thinker
 end

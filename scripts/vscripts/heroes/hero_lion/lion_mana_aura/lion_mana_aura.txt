@@ -11,28 +11,20 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"aura_radius"				"700"
+			"mana_loss"					
 			{
-				"var_type"					"FIELD_INTEGER"
-				"aura_radius"				"700"
-			}
-			"02"
+				"value"					"2 4 6 8" 
+				"LinkedSpecialBonus"	"special_bonus_lion_2"
+			}	
+			"aura_mana_loss_interval"	"0.1" 
+			"slow"				
 			{
-				"var_type"					"FIELD_INTEGER"
-				"mana_loss"					"2 4 6 8" 
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"aura_mana_loss_interval"	"0.1" 
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"5 15 25 35"
-			}
+				"value"					"5 10 15 20"
+				"LinkedSpecialBonus"	"special_bonus_lion_5"
+			}	
 		}
 	}
 }

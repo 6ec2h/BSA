@@ -1,15 +1,5 @@
-require('essentials')
-require("data")
-
 function quest_start(data)
-	local messageID = "#1_zone"
-	local zone_name = "#zone1"
-	local description = "#zone1_des"
-			
-	data.activator:EmitSound("Item.TomeOfKnowledge")	
-	CustomGameEventManager:Send_ServerToAllClients("QuestMsgPanel_create_new_message", {messageName = zone_name, messageText = messageID})	
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 11, id =11})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 11, current=0, id =11})	
+	quest_system:StartQuest('main', 1)
 end
 
 function creeps_spawn()		
@@ -68,34 +58,18 @@ function creeps_spawn()
 		end
 	end)
 	
-	if _G.Game_Difficulty > 5 then
+	if _G.Game_Difficulty >= 12 then
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
 		end)
 	end	
 	
-	clear()
-	if _G.Game_Difficulty >= 11 then
+	if _G.Game_Difficulty >= 16 then
 		local point = Entities:FindByName( nil, "easy_target"):GetAbsOrigin()
 		local hUnit = CreateUnitByName("ultra", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
 	end
-end
-
-function clear()
-	Timers:CreateTimer(5, function()
-		for i = 1, 15 do
-			local point = Entities:FindByName( nil, "wolf"..i)
-			if point then
-				UTIL_Remove( point )
-			end
-		end	
-		
-		for i = 1, 13 do
-			local point = Entities:FindByName( nil, "ursa"..i)
-			if point then
-				UTIL_Remove( point )
-			end
-		end	
-	end)
+	
+	rules:clear_zone('wolf', 15)
+	rules:clear_zone('ursa', 13)
 end

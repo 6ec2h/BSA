@@ -27,7 +27,7 @@ function outworld_devourer_arcane_orb_lua:OnOrbFire( params )
 	
 	local abil = self:GetCaster():FindAbilityByName("outworld_devourer_flux_lua")
 	if abil ~= nil and abil:GetLevel() > 0 then	
-		local abil2 = self:GetCaster():FindAbilityByName("npc_dota_hero_outworld_devourer_tal2")
+		local abil2 = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal2")
 		local chance = abil:GetSpecialValueFor("chance")
 		if abil2 ~= nil and abil2:GetLevel() > 0 then 
 			chance = abil:GetSpecialValueFor("chance") + 10
@@ -46,7 +46,7 @@ function outworld_devourer_arcane_orb_lua:OnOrbImpact( params )
 	local mana_pool = self:GetSpecialValueFor( "mana_pool_damage_pct" )
 	local radius = self:GetSpecialValueFor( "radius" )
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_outworld_devourer_tal3")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal3")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		mana_pool = self:GetSpecialValueFor( "mana_pool_damage_pct" ) + 2
 	end

@@ -7,7 +7,7 @@ function antimage_blink_lua:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local duration = self:GetSpecialValueFor("duration")	
 	count = 1
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_antimage_int2")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_antimage_int2")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		count = 2
 	end

@@ -7,9 +7,9 @@ function Spawn( entityKeyValues )
 		return
 	end
 
-	thisEntity.hBoundlessStrike = thisEntity:FindAbilityByName( "monkey_king_boundless_strike" )
-	thisEntity.hTreeDance = thisEntity:FindAbilityByName( "monkey_king_tree_dance" )
-	thisEntity.hPrimalSpring = thisEntity:FindAbilityByName( "monkey_king_primal_spring" )
+	-- thisEntity.hBoundlessStrike = thisEntity:FindAbilityByName( "monkey_king_boundless_strike" )
+	thisEntity.hTreeDance = thisEntity:FindAbilityByName( "monkey_king_tree_dance_lua" )
+	thisEntity.hPrimalSpring = thisEntity:FindAbilityByName( "monkey_king_primal_spring_lua" )
 	thisEntity.command = thisEntity:FindAbilityByName( "monkey_king_wukongs_command_custom" )
 
 	thisEntity.fSearchRadius = 600
@@ -29,6 +29,11 @@ function MonkeyKingThink()
 	
 	if GameRules:IsGamePaused() == true then
 		return 1
+	end
+	
+	if not thisEntity.bSearchedForItems then
+		SearchForItems()
+		thisEntity.bSearchedForItems = true
 	end
 
 	if thisEntity.hTreeDance ~= nil and thisEntity.hTreeDance:IsChanneling() then
@@ -69,6 +74,10 @@ function MonkeyKingThink()
 		return 1
 	end
 
+	if thisEntity.Blink and thisEntity.Blink:IsFullyCastable() then
+		return UseBlink(hEnemies[#hEnemies])	
+	end	
+
 	if thisEntity.command ~= nil and thisEntity.command:IsFullyCastable() then
 		return CastCommand()
 	end
@@ -88,6 +97,33 @@ function MonkeyKingThink()
 end
 
 --------------------------------------------------------------------------------
+
+function UseBlink( unit )
+	vTargetPos = unit:GetOrigin()
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+		Position = vTargetPos,
+		AbilityIndex = thisEntity.Blink:entindex(),
+		Queue = false,
+	})
+	return 0.3
+end
+
+function SearchForItems()
+	for i = 0, 5 do
+		local item = thisEntity:GetItemInSlot( i )
+		if item then
+			if item:GetAbilityName() == "item_shivas_guard" then
+				thisEntity.hBlademailAbility = item
+			end
+			if item:GetAbilityName() == "item_blink" then
+				thisEntity.Blink = item
+			end
+		end
+	end
+end
+
 
 function RetreatHome()
 	ExecuteOrderFromTable({

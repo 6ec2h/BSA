@@ -53,7 +53,7 @@ function modifier_lycan_howl_lua_buff:GetModifierMoveSpeedBonus_Percentage()
 end
 
 function modifier_lycan_howl_lua_buff:GetModifierBaseDamageOutgoing_Percentage()
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lycan_tal1")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lycan_tal1")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		return 25
 	end

@@ -26,7 +26,7 @@ if IsServer() then
 	self.damage_reduction = self:GetAbility():GetSpecialValueFor("damage_reduction")
 	self.bonus_str = self:GetAbility():GetSpecialValueFor("bonus_str") * (self.caster:GetStrength()/100)
 	self.damage = self:GetCaster():GetAttackDamage()--/2 
-	if HasTalent(self:GetCaster(),"npc_dota_hero_axe_3") then
+	if HasTalent(self:GetCaster(),"special_bonus_axe_3") then
 	self.bonus_str = self.bonus_str * 2
 	end
 end

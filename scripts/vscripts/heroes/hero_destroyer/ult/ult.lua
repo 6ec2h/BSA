@@ -6,8 +6,8 @@ function hero_destroyer_ult:OnSpellStart()
 	local damage = self:GetSpecialValueFor("damage")
 	local str_mult = self:GetSpecialValueFor("str_mult")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal4") ~= nil then 
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal4"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal4") ~= nil then 
+		if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal4"):GetLevel() > 0 then 
 			str_mult = 100
 		end
 	end
@@ -36,7 +36,8 @@ function hero_destroyer_ult:OnSpellStart()
 			ability = self, --Optional.
 		}
 		ApplyDamage(damageTable)
-		enemy:AddNewModifier(self:GetCaster(), self, "modifier_hero_destroyer_ult", {duration = self:GetSpecialValueFor("duration")})
+		enemy:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {duration = self:GetSpecialValueFor("duration")})
+		-- enemy:AddNewModifier(self:GetCaster(), self, "modifier_hero_destroyer_ult", {duration = self:GetSpecialValueFor("duration")})
 	end
 	self:PlayEffects( )
 end

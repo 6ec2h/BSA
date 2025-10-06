@@ -37,7 +37,7 @@ end
 
 function modifier_hero_pangolier_runic_blade:OnAbilityFullyCast( params )
 	if IsServer() then
-		if params.unit~=self:GetParent() or self:GetParent():PassivesDisabled() or params.ability:IsItem() then return end
+		if params.unit~=self:GetParent() or self:GetParent():PassivesDisabled() or params.ability:IsItem() or not params.unit:IsAlive() then return end
 		self:AddStack()
 	end
 end

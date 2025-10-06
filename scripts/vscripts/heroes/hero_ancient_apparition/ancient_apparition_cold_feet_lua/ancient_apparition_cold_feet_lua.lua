@@ -33,9 +33,9 @@ end
 function modifier_ancient_apparition_cold_feet_lua_freeze:OnCreated()
 	if not IsServer() then return end
 	self:GetParent():EmitSound("Hero_Ancient_Apparition.ColdFeetFreeze")
-	self.damage = self:GetAbility():GetSpecialValueFor("damage")
+	self.damage = self:GetAbility():GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ancient_apparition_tal2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ancient_apparition_tal2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self.damage + 100
 	end
@@ -64,7 +64,7 @@ end
 
 function modifier_ancient_apparition_cold_feet_lua_freeze:GetModifierMagicalResistanceBonus()
 	self.resist = self:GetAbility():GetSpecialValueFor( "resist" )	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ancient_apparition_tal4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ancient_apparition_tal4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.resist = self.resist * 2
 	end

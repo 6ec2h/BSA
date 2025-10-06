@@ -7,8 +7,100 @@ end
 
 function rules:init()
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( rules, 'OnGameStateChanged' ), self )
-	CustomGameEventManager:RegisterListener("golden_spawn", Dynamic_Wrap( rules, 'golden_spawn' ))	
+	-- CustomGameEventManager:RegisterListener("golden_spawn", Dynamic_Wrap( rules, 'golden_spawn' ))
+	CustomGameEventManager:RegisterListener("TryStartEvent", Dynamic_Wrap( rules, 'TryStartEvent' ))
+	CustomGameEventManager:RegisterListener("select_skill_lua", Dynamic_Wrap( rules, 'select_skill_lua'))
 end
+
+------------------------------------------------------ BOSS REWARDS -------------------------------------------------
+
+boss_reward_modifiers = {
+	"modifier_agi_10","modifier_armor_5","modifier_as_30",
+	"modifier_attack_range_50","modifier_cd_5","modifier_damage_40",
+	"modifier_evasion_10","modifier_exp_3","modifier_hp_regen_10",
+	"modifier_int_10","modifier_mg_resist_5","modifier_mp_regen_10",
+	"modifier_ms_30","modifier_spell_10","modifier_str_10"
+}
+
+function rules:skillsPreparation(t)
+    local result  = {}
+    local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
+    while #result < 3 do
+        local skill = boss_reward_modifiers[RandomInt(1,#boss_reward_modifiers)]
+        for i = 1, #result do
+		    if result[i] == skill then
+                break
+            end
+            if i == #result then
+                table.insert(result, skill)
+            end
+        end
+        if #result == 0 then
+            table.insert(result, skill)
+        end
+    end
+    return result
+end
+
+function rules:getPlayerSkills(t)
+    local result  = {}
+    local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
+    for _,plArr in pairs(HeroList.arr) do
+        for _,plAbi in pairs(plArr.skill_list) do
+            for _,abiName in pairs(plAbi) do
+                if hero:FindAbilityByName(abiName) then
+                    table.insert(result, plAbi)
+                    break
+                end
+            end
+        end
+    end
+    return result
+end
+
+function rules:show(t)
+    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( t.PlayerID ), "show_skills_js",  self:skillsPreparation(t))
+end
+
+function rules:select_skill_lua(t)
+    local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
+    for _, ability_name in pairs(t) do
+		if string.sub(ability_name, 0,8) == "modifier" then
+			LinkLuaModifier( ability_name, "modifiers/boss_reward/"..ability_name, LUA_MODIFIER_MOTION_NONE )
+			hero:AddNewModifier(hero, nil, ability_name, {})
+			EmitSoundOn( "hud.equip.agh_shard", hero)
+		end	
+    end
+end
+
+------------------------------------------------- CLEAR ZONE POINTS ---------------------------------------------------
+
+function rules:clear_zone(name, count)
+	Timers:CreateTimer(5, function()
+		for i = 1, count do
+			local point = Entities:FindByName( nil, name..i)
+			if point then
+				UTIL_Remove( point )
+			end
+		end	
+	end)
+end
+
+------------------------------------------------- GET PLAYER COUNT ------------------------------------------------------
+
+function rules:GetAllPlayers()
+	count = 0
+	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
+			if PlayerResource:HasSelectedHero( nPlayerID ) then
+				count = count + 1
+			end
+		end
+	end
+	return count
+end
+
+------------------------------------------------- DISPLAY ERROR ------------------------------------------------------
 
 function rules:DisplayError(playerID, message)
 	local player = PlayerResource:GetPlayer(playerID)
@@ -17,9 +109,11 @@ function rules:DisplayError(playerID, message)
 	end
 end
 
+------------------------------------------------- SPAWNS ------------------------------------------------------
+
 function rules:OnGameStateChanged()
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_STRATEGY_TIME then
-	elseif GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+	if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
+	-- if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		checkpoint()
 		box_spawn()
 		create_box_traps()
@@ -28,120 +122,7 @@ function rules:OnGameStateChanged()
 	end
 end
 
-function rules:golden_spawn(t)
-    local place = t.type
-	local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
-	local Key = hero:FindItemInInventory( "item_egg" )
-	if Key ~= nil then
-		hero:RemoveItem(Key)
-		hero:EmitSound("Aegis.Timer")
-		local point = Entities:FindByName( nil, 'golden_point'):GetAbsOrigin()
-		local unit = CreateUnitByName(t.type, point, true, nil, nil, DOTA_TEAM_NEUTRALS)		
-        CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( t.PlayerID ), "spawned", { successfully = true } )
-    else
-        CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( t.PlayerID ), "spawned", { successfully = false } )
-    end
-end
-
-function create_box_traps()
-	CreateRune(Vector(-4252,14776,256), DOTA_RUNE_ILLUSION)
-	count = 0
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-		if PlayerResource:HasSelectedHero( nPlayerID ) then
-		count = count + 1
-			end
-		end
-	end
-	for i = 1, 5 - count do
-		local point = Entities:FindByName( nil, "box_"..i):GetAbsOrigin()
-		if point ~= nil then
-			local hUnit = CreateUnitByName("npc_dota_crate2", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-		end
-	end
-end
-
-creeps_other = {"forest_fat_zombie","forest_zombie","skeleton","npc_dota_creature_big_bear","boss_undying","lich","npc_dota_creature_storegga","guard","NYX","NYX_2","npc_boss_slardar","npc_boss_monkey_king","npc_boss_fura","Lord","medusa","npc_boss_arc","necrolyte","troll_high_priest","npc_dota_creature_gaven_the_brute","npc_dota_creature_snow","big_bear","npc_dota_roshan","zombieTomb1"}
-
-big_units = {"npc_dota_creature_dire_hound_boss", "npc_dota_creature_hellbear", "satyr_hellcaller", "skeleton", "tusk", "npc_dota_creature_large_ogre_seal", "tank", "npc_slardar_unit", "npc_shaker", "treant", "warlock", "pudge", "npc_sniper", "npc_mars_creep"}
-
-function rules:aura_dif(unit,random_ability)
-	unit:AddNewModifier(unit, nil, "modifier_difficult", {}):SetStackCount(_G.Game_Difficulty)
-	local unit_name = unit:GetUnitName()
-	if random_ability then
-		if _G.Game_Difficulty > 5 and _G.Game_Difficulty < 9 then -- 6 7 8
-			if table.contains(big_units, unit_name) then
-				unit:AddAbility(random_ability):SetLevel(2)
-			end
-		end	
-		if _G.Game_Difficulty >= 9 and _G.Game_Difficulty < 11 then -- 9 10
-			if table.contains(big_units, unit_name) then
-				unit:AddAbility(random_ability):SetLevel(2)
-				random_ability2 = passive[RandomInt(1,#passive)]
-				unit:AddAbility(random_ability2):SetLevel(2)
-			end	
-		end	
-		if  _G.Game_Difficulty >= 11 then-- 11 12
-			if table.contains(big_units, unit_name) then
-				unit:AddAbility(random_ability):SetLevel(4)
-				random_ability2 = passive[RandomInt(1,#passive)]
-				unit:AddAbility(random_ability2):SetLevel(4)
-			end
-		end
-	end
-end
-
------------------------------------------------------------------------------------------------
-function dummy_spawn()
-	if not IsServer() then return end
-	
-	LinkLuaModifier( "modifier_custom_blacksmith", "modifiers/modifier_custom_blacksmith", LUA_MODIFIER_MOTION_NONE )
-	local blacksmith = CreateUnitByName("blacksmith", Vector(-5445,-14329,384), false, nil, nil, DOTA_TEAM_GOODGUYS)
-	blacksmith:AddNewModifier(blacksmith, nil, "modifier_custom_blacksmith", {})
-	blacksmith:SetModel("models/props_gameplay/shopkeeper_fountain/shopkeeper_fountain.vmdl")
-	blacksmith:SetOriginalModel("models/props_gameplay/shopkeeper_fountain/shopkeeper_fountain.vmdl")
-	blacksmith:StartGesture(ACT_DOTA_IDLE)
-	blacksmith:SetAngles(0,-90,0)
-	
-	local unit = CreateUnitByName( "npc_ua_statue", Vector(-6914,-15738,270), false, nil, nil, DOTA_TEAM_NEUTRALS)
-	unit:StartGesture(ACT_DOTA_ATTACK)
-	unit:AddNewModifier( unit, nil, "modifier_invulnerable", {} )
-	unit:AddNewModifier( unit, nil, "modifier_statue", {} )
-	unit:AddNewModifier( unit, nil, "modifier_magic_immune", {} )
-	set_angle(unit, 90)
-
-	local unit = CreateUnitByName( "npc_dota_hero_target_dummy", Vector(-4823,-14482,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
-	set_angle(unit, 240)
-	unit:SetAbilityPoints( 0 )
-	unit:Hold()
-	unit:SetIdleAcquire( false )
-	unit:SetAcquisitionRange( 0 )
-	
-	LinkLuaModifier( "modifier_statue", "modifiers/modifier_statue", LUA_MODIFIER_MOTION_NONE )
-	
-	local unit = CreateUnitByName( "npc_dota_hero_dado_statue", Vector(-4736,-15744,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
-	set_angle(unit, 120)
-	unit:AddNewModifier( unit, nil, "modifier_statue", {} )
-	
-	local unit = CreateUnitByName( "npc_dota_hero_triss_statue", Vector(-4992,-15933,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
-	set_angle(unit, 100)
-	unit:AddNewModifier( unit, nil, "modifier_statue", {} )
-
-	local unit = CreateUnitByName( "npc_dota_hero_destroyer_statue", Vector(-5301,-15933,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
-	set_angle(unit, 100)
-	unit:AddNewModifier( unit, nil, "modifier_statue", {} )
-	
-	local unit = CreateUnitByName( "npc_dota_hero_anakim_statue", Vector(-5632,-15933,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
-	set_angle(unit, 100)
-	unit:AddNewModifier( unit, nil, "modifier_statue", {} )
-end	
-
-function set_angle(unit, ang)
-	local angle = unit:GetAngles()
-	local new_angle = RotateOrientation(angle, QAngle(0,ang,0))
-	unit:SetAngles(new_angle[1], new_angle[2], new_angle[3])
-end
------------------------------------------------------------------------------------------------
+------------------------------------------------- SPAWNS ------------------------------------------------------
 
 function checkpoint()
 	local hBuilding = Entities:FindByName( nil, "checkpoint00_building" )
@@ -149,32 +130,12 @@ function checkpoint()
 	EmitGlobalSound( "DOTA_Item.Refresher.Activate" ) 
 end
 
------------------------------------------------------------------------------------------------
-
-function rules:bosses_upgrade()	
-	random_ability = passive[RandomInt(1,#passive)]	
-	local enemies = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,  Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE,  DOTA_UNIT_TARGET_TEAM_BOTH,  DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
-	 for _,unit in pairs(enemies) do
-		for _,t in ipairs(creeps_other) do
-			if t and t == unit:GetUnitName() then 
-				rules:aura_dif(unit,random_ability)
-			end
-		end			
-	end	
-	invulnerable()
-end
-
------------------------------------------------------------------------------------------------
-
 function box_spawn()
 	local Point = Entities:FindByName( nil, "invis_box_zone_1_"..RandomInt(1, 2)):GetAbsOrigin()
 	local hUnit = CreateUnitByName("invis_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
 
-	local Point = Entities:FindByName( nil, "zone_1_point_"..RandomInt(1,5)):GetAbsOrigin()
+	local Point = Entities:FindByName( nil, "zone_1_point_"..RandomInt(1,2)):GetAbsOrigin()
 	local hUnit = CreateUnitByName("small_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-
-	local Point = Entities:FindByName( nil, "zone_1_point_"..RandomInt(1,3)):GetAbsOrigin()
-	local hUnit = CreateUnitByName("wand_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
 
 	local Point = Entities:FindByName( nil, "zone_3_point_"..RandomInt(1,3)):GetAbsOrigin()
 	local hUnit = CreateUnitByName("invis_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
@@ -190,49 +151,100 @@ function box_spawn()
 	end
 end
 
------------------------------------------------------------------------------------------------
-
-function ursa()
-	rules:boss_invulnerable("npc_dota_creature_big_bear")
+function create_box_traps()
+	CreateRune(Vector(-4252,14776,256), DOTA_RUNE_ILLUSION)
+	count = rules:GetAllPlayers()
+	for i = 1, 5 - count do
+		local point = Entities:FindByName( nil, "box_"..i):GetAbsOrigin()
+		if point ~= nil then
+			local hUnit = CreateUnitByName("npc_dota_crate2", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+		end
+	end
 end
 
-function lich_off()
-	rules:boss_invulnerable("lich")
+function dummy_spawn()
+	if not IsServer() then return end
+
+	local blacksmith = CreateUnitByName("blacksmith", Vector(-5445,-14300, 384), false, nil, nil, DOTA_TEAM_GOODGUYS)
+	blacksmith:AddNewModifier(blacksmith, nil, "modifier_blacksmith_meepo", {})
+	blacksmith:SetAngles(0,-90,0)
+	
+	local trade = CreateUnitByName("blacksmith", Vector(-4800,-15424, 384), false, nil, nil, DOTA_TEAM_GOODGUYS)
+	trade:AddNewModifier(blacksmith, nil, "modifier_trade_meepo", {})
+	trade:SetAngles(0,180,0)
+
+	local unit = CreateUnitByName( "npc_dota_hero_target_dummy", Vector(-4823,-14482,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
+	local angle = unit:GetAngles()
+	local new_angle = RotateOrientation(angle, QAngle(0,240,0))
+	unit:SetAngles(new_angle[1], new_angle[2], new_angle[3])
+	unit:SetAbilityPoints( 0 )
+	unit:Hold()
+	unit:SetIdleAcquire( false )
+	unit:SetAcquisitionRange( 0 )
+	
+	_G.npc_creeps_passives = CreateUnitByName("npc_creeps_passives",Vector(-4823,-14380, 384), false, nil, nil, DOTA_TEAM_NEUTRALS)
+	npc_creeps_passives:AddNewModifier(npc_creeps_passives, nil, "modifier_dummy", {})
+end	
+
+--------------------------------------------------- 
+
+creeps_other = {
+	"forest_fat_zombie","forest_zombie","skeleton","npc_dota_creature_big_bear","boss_undying","lich",
+	"npc_dota_creature_storegga","guard","NYX","NYX_2","npc_boss_slardar","npc_boss_monkey_king","npc_boss_fura",
+	"Lord","medusa","npc_boss_arc","necrolyte","troll_high_priest","npc_dota_creature_gaven_the_brute",
+	"npc_dota_creature_snow","big_bear","npc_dota_roshan","zombieTomb1", "roshan_npc"
+	}
+	
+big_units = {
+	"npc_dota_creature_dire_hound_boss", "npc_dota_creature_hellbear", "satyr_hellcaller",
+	"skeleton", "tusk", "npc_dota_creature_large_ogre_seal", "tank", "npc_slardar_unit",
+	"npc_shaker", "treant", "warlock", "pudge", "npc_sniper", "npc_mars_creep"
+}
+
+bosses_invu = {
+	"guard","npc_dota_creature_big_bear","boss_undying","lich","npc_dota_creature_storegga",
+	"NYX","NYX_2","npc_boss_slardar","npc_boss_monkey_king","npc_boss_fura","Lord","medusa",
+	"npc_boss_arc", "storegga", "undy", "necrolyte", "npc_dota_creature_gaven_the_brute",
+	"npc_dota_creature_snow", "forest_zombie", "skeleton"
+}
+
+function rules:bosses_upgrade()	
+	random_ability = passive[RandomInt(1,#passive)]	
+	local enemies = FindUnitsInRadius(DOTA_TEAM_NEUTRALS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+	for _, unit in pairs(enemies) do
+		if table.contains(creeps_other, unit:GetUnitName()) then
+            rules:aura_dif(unit, random_ability)
+        end
+    end
+	invulnerable(enemies)
 end
 
-function slardar()
-	rules:boss_invulnerable("npc_boss_slardar")
+function invulnerable(enemies)
+    for _, unit in pairs(enemies) do
+		if table.contains(bosses_invu, unit:GetUnitName()) then
+            unit:AddNewModifier(unit, nil, "modifier_invulnerable", {})
+            unit:AddNewModifier(unit, nil, "modifier_medusa_stone_gaze_stone", {})
+            unit:AddNewModifier(unit, nil, "modifier_magic_immune", {})
+        end
+    end
 end
 
-function monkey()
-	rules:boss_invulnerable("npc_boss_monkey_king")
-end
-
-function fura()
-	rules:boss_invulnerable("npc_boss_fura")
-end
-
-function lord_off()
-	rules:boss_invulnerable("Lord")
-end
-
-function medusa_off()
-	rules:boss_invulnerable("medusa")
-end
-
-bosses_invu = {"guard","npc_dota_creature_big_bear","boss_undying","lich","npc_dota_creature_storegga","NYX","NYX_2","npc_boss_slardar","npc_boss_monkey_king","npc_boss_fura","Lord","medusa","npc_boss_arc", "storegga", "lich2", "undy", "necrolyte"}
-
-function invulnerable()
-	local enemies = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,  Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
-	 for _,unit in pairs(enemies) do
-		for _,key in ipairs(bosses_invu) do
-			if key and key == unit:GetUnitName() then 
-				unit:AddNewModifier( unit, nil, "modifier_invulnerable", {} )
-				unit:AddNewModifier( unit, nil, "modifier_medusa_stone_gaze_stone", {} )
-				unit:AddNewModifier( unit, nil, "modifier_magic_immune", {} )
-			end
-		end			
-	end		
+function rules:aura_dif(unit, random_ability)
+    unit:AddNewModifier(unit, nil, "modifier_difficult", {}):SetStackCount(_G.Game_Difficulty)
+    local abi = _G.npc_creeps_passives:FindAbilityByName(random_ability)
+    
+    if abi then
+        if _G.Game_Difficulty >= 12 then
+            unit:AddNewModifier(unit, abi, abi:GetIntrinsicModifierName(), {})
+        end
+        if _G.Game_Difficulty >= 16 then
+            local random_ability2 = passive[RandomInt(1, #passive)]
+            local abi2 = _G.npc_creeps_passives:FindAbilityByName(random_ability2)
+            if abi2 then
+                unit:AddNewModifier(unit, abi2, abi2:GetIntrinsicModifierName(), {})
+            end
+        end
+    end
 end
 
 function rules:boss_invulnerable(t)
@@ -243,29 +255,260 @@ function rules:boss_invulnerable(t)
 	essentials:createCustomHpBarFor(unit)
 end
 
--- function rules:GetItemValues(item_name, modifier)
-	-- local kv = LoadKeyValues("scripts/npc/npc_items_sets.txt")[item_name]
-	-- for k, v in pairs(kv.AbilitySpecial) do
-		-- for key, value in pairs(v) do
-			-- if modifier.result[key] then
-				-- modifier.result[key]= tonumber(value)
-			-- end
-		-- end
+
+
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+-- _G.can_guild_event = true
+
+-- function show_guild_event(t)
+	-- local hero = t.activator
+	-- local pid = hero:GetPlayerID()
+	-- if _G.can_guild_event then
+		-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "Guild_event_show", {})
 	-- end
 -- end
 
-function rules:GetItemValues(item_name, modifier, level)
-	level = modifier:GetAbility():GetLevel()
-    local kv = LoadKeyValues("scripts/npc/npc_items_sets.txt")[item_name]
-    for k, v in pairs(kv.AbilitySpecial) do
-        for key, value in pairs(v) do
-            if modifier.result[key] then
-                local values = {}
-                for val in string.gmatch(value, "%S+") do
-                    table.insert(values, tonumber(val))
-                end
-                modifier.result[key] = values[level] or modifier.result[key]
-            end
-        end
-    end
-end
+-- function hide_guild_event(t)
+	-- local hero = t.activator
+	-- local pid = hero:GetPlayerID()
+	-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "Guild_event_hide", {})
+-- end
+
+-- function rules:TryStartEvent(t)
+    -- if _G.can_guild_event then
+        -- _G.can_guild_event = false
+        -- local firstPlayerGuild = nil
+		-- if rules:GetAllPlayers() == 1 then
+			-- for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
+				-- if PlayerResource:GetTeam(nPlayerID) == DOTA_TEAM_GOODGUYS and PlayerResource:HasSelectedHero(nPlayerID) then
+					-- local sid = PlayerResource:GetSteamAccountID(nPlayerID)
+					-- local guild = Shop.pShop[sid] and Shop.pShop[sid].guild_id
+					
+					-- if guild == nil then
+						-- rules:DisplayError(t.PlayerID, "#need_one_guild")
+						-- _G.can_guild_event = true
+						-- return false
+					-- end
+
+					-- if firstPlayerGuild == nil then
+						-- firstPlayerGuild = guild
+					-- else
+						-- if guild ~= firstPlayerGuild then
+							-- rules:DisplayError(t.PlayerID, "#need_one_guild")
+							-- _G.can_guild_event = true
+							-- return false
+						-- end
+					-- end
+				-- end
+			-- end
+		-- else
+			-- _G.can_guild_event = true
+			-- rules:DisplayError(t.PlayerID, "#need_more_players")
+			-- return false
+		-- end
+		-- rules:send_event_request(firstPlayerGuild, t)
+		-- return true
+	-- end
+-- end
+
+-- function rules:send_event_request(guild, t)
+	-- arr = {
+		-- guild_id = guild,
+	-- }
+	-- arr = json.encode(arr)
+	-- local req = CreateHTTPRequestScriptVM( "POST", _G.host.."/api_get_guild_event/?key=".._G.key )
+	-- req:SetHTTPRequestGetOrPostParameter('arr',arr)
+	-- req:SetHTTPRequestAbsoluteTimeoutMS(100000)
+	-- req:Send(function(res)
+		-- if res.StatusCode == 200 then
+			-- rules:StartGuildTeleport(guild)
+		-- else
+			-- _G.can_guild_event = true
+			-- rules:DisplayError(t.PlayerID, "#need_more_tickets")
+		-- end
+	-- end)
+-- end
+
+-- function rules:send_event_request_exp(level, guild)
+	-- local valid_players = {}
+	-- for i = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		-- if PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
+			-- if PlayerResource:HasSelectedHero(i) then
+				-- local hero = PlayerResource:GetSelectedHeroEntity(i)
+				-- if not hero:HasModifier("modifier_wait") then
+					-- valid_players[i] = {sid = tostring(PlayerResource:GetSteamID(i))}
+				-- end
+			-- end
+		-- end
+	-- end
+
+	-- local arr = {
+		-- players = valid_players,
+		-- level = level,
+		-- guild_id = guild,
+	-- }
+	-- arr = json.encode(arr)
+	-- local req = CreateHTTPRequestScriptVM( "POST", _G.host.."/api_get_guild_event_exp/?key=".._G.key )
+	-- req:SetHTTPRequestGetOrPostParameter('arr',arr)
+	-- req:SetHTTPRequestAbsoluteTimeoutMS(100000)
+	-- req:Send(function(res)
+		-- if res.StatusCode == 200 then
+			-- print("ok")
+		-- else
+			-- print(res.StatusCode)
+		-- end
+	-- end)
+-- end
+
+-- function rules:StartGuildTeleport(guild)
+	-- _G.guild_event_alive = 1
+	-- for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		-- if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
+			-- if PlayerResource:HasSelectedHero( nPlayerID ) then
+				-- local unit = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+				-- unit:AddNewModifier(unit, nil, "modifier_teleport_event", {})
+				-- unit:AddNewModifier(unit, nil, "modifier_guild_event", {})
+				-- unit:EmitSound("Portal.Loop_Appear")
+				-- Timers:CreateTimer(3, function()
+					-- Notifications:TopToAll({text="#guild_event", duration=3})
+					-- local point = Entities:FindByName( nil, "guild_event_tp"):GetAbsOrigin()
+					-- unit:SetAbsOrigin( point )
+					-- FindClearSpaceForUnit(unit, point, false)
+					-- unit:Stop()
+					-- unit:StopSound("Portal.Loop_Appear")
+					-- unit:RemoveModifierByName("modifier_teleport_event")
+					-- PlayerResource:SetCameraTarget(unit:GetPlayerOwnerID(), unit)
+					-- Timers:CreateTimer(0.1, function()
+						-- PlayerResource:SetCameraTarget(unit:GetPlayerOwnerID(), nil)
+					-- return nil
+					-- end)
+				-- end)
+			-- end
+		-- end
+	-- end
+	-- Timers:CreateTimer(13, function()
+		-- rules:guild_event_start(guild)
+	-- end)
+-- end
+
+-- guild_spawn_step = 0
+-- guild_spawn_level = 1
+
+-- function rules:guild_event_stop()
+	-- print("event stop")
+	-- for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		-- if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
+			-- if PlayerResource:HasSelectedHero( nPlayerID ) then
+				-- local unit = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+				-- print("!")
+				-- unit:RemoveModifierByName("modifier_guild_event")
+				-- unit:RemoveModifierByName("modifier_wait")
+			-- end
+		-- end
+	-- end
+	-- for _,creep in ipairs(self.guild_creeps_table) do
+		-- UTIL_Remove(creep)
+	-- end
+-- end
+
+-- function rules:GetAllItems(hero)
+	-- local tab = {}
+    -- if hero:HasInventory() then
+		-- for i=0, 5 do
+			-- local item = hero:GetItemInSlot(i);
+			-- if item ~= nil then
+				-- table.insert(tab, item:GetAbilityName())
+			-- end
+		-- end
+	-- end
+    -- return tab
+-- end
+
+-- function rules:hero_die(hero)
+	-- _G.guild_event_alive = _G.guild_event_alive - 1
+	-- Timers:CreateTimer(0.1, function()
+		-- hero:RespawnHero(false, false)
+		-- hero:SetHealth(hero:GetMaxHealth())
+		-- hero:SetMana(hero:GetMaxMana())			
+		-- hero:AddNewModifier(event_unit, nil, "modifier_wait", {})
+		-- if _G.guild_event_alive == 0 then
+			-- rules:guild_event_stop()
+		-- end
+	-- end)
+-- end
+
+-- function rules:guild_event_start(guild)
+	-- local point = Entities:FindByName( nil, "guild_event_spawner"):GetAbsOrigin()
+	-- self.guild_creeps_table = {}
+	
+	
+	-- Timers:CreateTimer(1, function()
+		-- if _G.guild_event_alive > 0 then
+			-- AddFOWViewer(DOTA_TEAM_GOODGUYS, point, 1500, 3, false)
+			-- AddFOWViewer(DOTA_TEAM_NEUTRALS, point, 1500, 3, false)
+			
+			-- guild_spawn_step = guild_spawn_step + 1
+			-- if guild_spawn_step % 20 == 0 then
+				-- rules:send_event_request_exp(guild_spawn_level, guild)
+				-- guild_spawn_level = guild_spawn_level + 1
+				-- Notifications:TopToAll({text="#level", text2=tostring(" "..guild_spawn_level), duration=3})
+			-- end
+			-- for pid = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+				-- if PlayerResource:GetTeam(pid) == DOTA_TEAM_GOODGUYS then
+					-- if PlayerResource:HasSelectedHero(pid) then
+						-- local hero = PlayerResource:GetSelectedHeroEntity(pid)
+						
+						-- if (hero:GetOrigin() - point):Length2D() > 2500 then
+							-- hero:ForceKill(true)
+							-- rules:hero_die(hero)
+						-- end
+						
+						-- local start_damage = hero:GetAverageTrueAttackDamage(nil) --/ 10
+						-- local start_health = hero:GetMaxHealth() / 10
+						-- local start_health_regen = hero:GetHealthRegen() / 10
+						-- local start_mana = hero:GetMaxMana() / 10
+						-- local start_mana_regen = hero:GetManaRegen() / 10
+						-- local start_armor = hero:GetPhysicalArmorValue(false) / 10
+						-- local start_magic_resist = hero:GetBaseMagicalResistanceValue() / 10
+						-- local stacks = 0
+						-- local mod = hero:FindModifierByName("modifier_guild_event_buff_debuff")
+					
+						-- if mod then 
+							-- stacks = mod:GetStackCount()
+						-- end
+
+						-- local unit = CreateUnitByName("guild_creeps", point + RandomVector(RandomInt( 450, 450)), true, nil, nil, DOTA_TEAM_BADGUYS)
+						-- table.insert(self.guild_creeps_table, unit)
+						-- unit:SetBaseDamageMin(calculate_creep_stats(start_damage))
+						-- unit:SetBaseDamageMax(calculate_creep_stats(start_damage))
+						-- unit:SetMaxHealth(calculate_creep_stats(start_health))
+						-- unit:SetBaseMaxHealth(calculate_creep_stats(start_health))
+						-- unit:SetHealth(calculate_creep_stats(start_health))
+						-- unit:SetBaseHealthRegen(calculate_creep_stats(start_health_regen))
+						-- unit:SetMaxMana(calculate_creep_stats(start_mana))
+						-- unit:SetBaseManaRegen(calculate_creep_stats(start_mana_regen))
+						-- unit:SetPhysicalArmorBaseValue(calculate_creep_stats(start_armor) + stacks)
+						-- unit:SetBaseMagicalResistanceValue(calculate_creep_stats(start_magic_resist) + stacks)
+						
+						-- unit:AddNewModifier(unit, nil, "modifier_guild_event_buff", {}):SetStackCount(guild_spawn_step)
+						
+						-- for k,v in pairs(rules:GetAllItems(hero)) do
+							-- unit:AddItemByName(v)
+						-- end
+					-- end
+				-- end
+			-- end
+			-- return 2
+		-- else
+			-- return nil
+		-- end	
+	-- end)
+-- end
+
+-- function calculate_creep_stats(atr)
+	-- return atr * (1 + guild_spawn_step*2)
+-- end

@@ -61,39 +61,14 @@
 		
 		"AbilityManaCost"				"500"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"2000"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"interval"						"0.4"
-			}	
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"900"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"6.0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"delay"							"0.4"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_radius"					"225"
-			}
-			
+			"damage"						"2000"
+			"interval"						"0.4"
+			"range"							"900"
+			"duration"						"6.0"
+			"delay"							"0.4"
+			"damage_radius"					"225"
 		}
 		
 		"OnSpellStart"

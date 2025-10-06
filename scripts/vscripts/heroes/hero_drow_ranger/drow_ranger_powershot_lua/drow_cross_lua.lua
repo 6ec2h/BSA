@@ -19,8 +19,8 @@ function drow_cross_lua:OnSpellStart()
 	damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
 	
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_drow_ranger_int10")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_drow_ranger_int10"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_int10")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_int10"):GetLevel() > 0 then
 			self.count = 3
 		end
 	end

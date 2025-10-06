@@ -13,10 +13,28 @@ function huskar_burning_spear_lua:GetProjectileName()
 end
 
 function huskar_burning_spear_lua:OnOrbFire( params )
+	local hp = 1
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_8")
+	if talent and talent:GetLevel() > 0 then 
+		hp = 2
+		local radius = self:GetCaster():Script_GetAttackRange() + 100
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+		if self.split_shot then return end
+		for _,enemy in pairs(enemies) do
+			if enemy~=params.target then
+				self.split_shot = true
+				self:GetCaster():PerformAttack(enemy, false, true, true, false, true, false, false)
+				self.split_shot = false
+			end
+		end
+	end
+	
+
 	local damageTable = {
 		victim = self:GetCaster(),
 		attacker = self:GetCaster(),
-		damage = self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("health_cost") / 100,
+		damage = self:GetCaster():GetMaxHealth() * (self:GetSpecialValueFor("health_cost") * hp )/ 100,
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = self, --Optional.
 		damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS, --Optional.
@@ -26,16 +44,13 @@ end
 
 function huskar_burning_spear_lua:OnOrbImpact( params )
 	local duration = self:GetDuration()
-
 	params.target:AddNewModifier(
 		self:GetCaster(), -- player source
 		self, -- ability source
 		"modifier_huskar_burning_spear_lua", -- modifier name
 		{ duration = duration } -- kv
 	)
-
-	local sound_cast = "Hero_Huskar.Burning_Spear.Cast"
-	EmitSoundOn( sound_cast, self:GetCaster() )
+	EmitSoundOn( "Hero_Huskar.Burning_Spear.Cast", self:GetCaster() )
 end
 
 function huskar_burning_spear_lua:OnSpellStart()
@@ -64,8 +79,6 @@ end
 function modifier_huskar_burning_spear_lua:OnCreated( kv )
 	if IsServer() then
 		local duration = self:GetAbility():GetDuration()
-		
-		-- add stack modifier
 		local this = tempTable:AddATValue( self )
 		self:GetParent():AddNewModifier(
 			self:GetCaster(), -- player source
@@ -116,9 +129,9 @@ end
 
 function modifier_huskar_burning_spear_lua:OnIntervalThink()
 	self.dps = self:GetAbility():GetSpecialValueFor( "burn_damage" )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_huskar_tal_1")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.dps = self.dps + 15
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_1")
+	if talent ~= nil and talent:GetLevel() > 0 then 
+		self.dps = self.dps + 10
 	end
 
 	self.damageTable.damage = self:GetStackCount() * self.dps

@@ -90,7 +90,7 @@ function modifier_templar_assassin_trap_lua_slow:OnCreated(params)
 	self.slow = self:GetAbility():GetSpecialValueFor("slow") * (-1)
 	self.damage = self:GetAbility():GetSpecialValueFor("damage")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_templar_assassin_tal2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_templar_assassin_tal2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self.damage + 150
 	end
@@ -146,6 +146,9 @@ function templar_assassin_trap_lua_teleport:OnSpellStart()
 				for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
 					local slow_modifier = enemy:AddNewModifier(self:GetCaster(), trap_ability, "modifier_templar_assassin_trap_lua_slow", {duration = trap_ability:GetSpecialValueFor("slow_duration")})
 				end
+				local hRelay = Entities:FindByName( nil, "tp_off" )
+				if hRelay == nil then return end
+				hRelay:Trigger(nil,nil)
 				FindClearSpaceForUnit(self:GetCaster(), trap:GetAbsOrigin(), false)
 				trap:ForceKill(false)
 				break

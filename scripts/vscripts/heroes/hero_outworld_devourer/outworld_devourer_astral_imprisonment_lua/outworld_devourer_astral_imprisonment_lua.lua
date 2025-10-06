@@ -49,10 +49,11 @@ function modifier_outworld_devourer_astral_imprisonment_lua:RemoveOnDeath()
 end
 
 function modifier_outworld_devourer_astral_imprisonment_lua:OnCreated( kv )
-	local damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 
 	if not IsServer() then return end
+	local damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	self.damageTable = {
 		attacker = self:GetCaster(),
 		damage = damage,
@@ -63,20 +64,9 @@ function modifier_outworld_devourer_astral_imprisonment_lua:OnCreated( kv )
 	self:PlayEffects()
 end
 
-function modifier_outworld_devourer_astral_imprisonment_lua:OnRefresh( kv )
-	local damage = self:GetAbility():GetSpecialValueFor( "damage" )
-	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
-
-	if not IsServer() then return end
-	self.damageTable.damage = damage
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua:OnRemoved()
-end
-
 function modifier_outworld_devourer_astral_imprisonment_lua:OnDestroy()
 	if not IsServer() then return end
-	local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
 
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy
@@ -168,7 +158,7 @@ end
 
 function modifier_outworld_devourer_astral_imprisonment_lua_charges:OnCreated( kv )
 	self.max_charges = 1
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_outworld_devourer_tal1")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal1")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		self.max_charges = 2
 	end
@@ -181,7 +171,7 @@ end
 
 function modifier_outworld_devourer_astral_imprisonment_lua_charges:OnRefresh( kv )
 	self.max_charges = 1
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_outworld_devourer_tal1")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal1")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		self.max_charges = 2
 	end

@@ -3,7 +3,7 @@
 	"lina_laguna_blade_lua"
 	{
 		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -25,34 +25,18 @@
 		"AbilityCooldown"				"80 70 60"
 		"AbilityManaCost"				"300 600 900"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"radius"				"500"
+			"jump_count"			"0"
+			"jump_delay"			"0.25"
+			"count"					"3"
+			"damage"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"jump_count"			"0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"jump_delay"			"0.25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"count"					"3"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"					"600 1200 1800"
-				"LinkedSpecialBonus"		"special_bonus_unique_lina_custom3"
-			}
+				"value"					"600 1200 1800"
+				"LinkedSpecialBonus"	"special_bonus_lina_7"
+			}	
+			"ExtraIntelligenceDamage"			"0.2"
 		}
 
 		"OnSpellStart"

@@ -11,7 +11,14 @@ function dado_tp:OnSpellStart()
 	local position = self:GetCursorPosition()
 	EmitSoundOn("Hero_Enigma.Black_Hole.Stop", caster )
 	unit = CreateUnitByName("tp_in", position, true, caster, nil, caster:GetTeamNumber())
-	unit:AddNewModifier( unit, nil, "modifier_kill", {duration = self:GetSpecialValueFor("dur")})
+	
+	duration = self:GetSpecialValueFor("dur")
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_dado_tal5")
+	if talent ~= nil and talent:GetLevel() > 0 then 
+		duration = duration + 60
+	end
+	unit:AddNewModifier( unit, nil, "modifier_kill", {duration = duration})
 end
 
 -----------------------------
@@ -28,5 +35,10 @@ function modifier_dado_tp_mana:DeclareFunctions()
 end
 
 function modifier_dado_tp_mana:GetModifierManaBonus()
-	return self:GetAbility():GetSpecialValueFor("mana")
-end	
+	mana = self:GetAbility():GetSpecialValueFor("mana")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_dado_tal6")
+	if talent ~= nil and talent:GetLevel() > 0 then 
+		mana = mana + 300
+	end
+	return mana
+end	 

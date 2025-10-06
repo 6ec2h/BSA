@@ -112,7 +112,7 @@ function modifier_venomancer_venomous_gale_lua:OnCreated( kv )
 	self.slow = self:GetAbility():GetSpecialValueFor( "movement_slow" )
 	self.slow_tick = 0.3
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_venomancer_1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_venomancer_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.init_damage = self.init_damage + 100
 		self.tick_damage = self.tick_damage + 100

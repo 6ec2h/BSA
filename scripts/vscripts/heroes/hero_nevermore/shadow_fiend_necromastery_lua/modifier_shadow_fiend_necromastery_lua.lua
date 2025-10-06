@@ -74,8 +74,8 @@ function modifier_shadow_fiend_necromastery_lua:DeathLogic( params )
 
 	-- logic
 	if pass then           
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_nevermore_agi11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_nevermore_agi11"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_nevermore_agi11")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_nevermore_agi11"):GetLevel() > 0 then 
 		 
 		self.soul_release = self.soul_release + 0.10001
 			if self.soul_release > 1 then 

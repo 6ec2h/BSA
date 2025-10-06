@@ -17,12 +17,35 @@ function modifier_player_exp:GetTexture()
 end
 
 function modifier_player_exp:OnCreated()
+	self:SetHasCustomTransmitterData(true)
+	self:StartIntervalThink(0.3)
+end
+
+function modifier_player_exp:OnIntervalThink()
+	if not IsServer() then return end
+	if self:GetParent():GetPrimaryAttribute() == 2 then
+		self.ampl = self:GetParent():GetIntellect(true) * 0.05
+	else
+		self.ampl = 0
+	end
+	self:SendBuffRefreshToClients()
+end
+
+function modifier_player_exp:AddCustomTransmitterData()
+	return {
+		ampl = self.ampl,
+	}
+end
+
+function modifier_player_exp:HandleCustomTransmitterData(data)
+	self.ampl = tonumber(data.ampl)
 end
 
 function modifier_player_exp:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_EXP_RATE_BOOST,
-		MODIFIER_PROPERTY_TOOLTIP
+		MODIFIER_PROPERTY_TOOLTIP,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
 		}
 	return funcs
 end
@@ -33,4 +56,8 @@ end
 
 function modifier_player_exp:OnTooltip()
 	return self:GetStackCount()
+end
+
+function modifier_player_exp:GetModifierSpellAmplify_Percentage()
+	return self.ampl
 end

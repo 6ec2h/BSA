@@ -21,16 +21,16 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_jakiro_liquid_fire_lua:OnCreated( kv )
-	-- references
-	local damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	if not IsServer() then return end
+	local damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	self.slow = self:GetAbility():GetSpecialValueFor( "slow_attack_speed_pct" )
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_jakiro_int2")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_jakiro_int2")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 25
 	end
 
-	if not IsServer() then return end
+
 
 	-- precache damage
 	self.damageTable = {

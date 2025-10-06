@@ -38,7 +38,7 @@ function modifier_meepo_king_lua:OnRefresh( kv )
 	self.dmg = self:GetAbility():GetSpecialValueFor('bonus_dmg')
 	self.all = self:GetAbility():GetSpecialValueFor('bonus_all')
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_meepo_int4")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_meepo_int4")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.dmg = self:GetAbility():GetSpecialValueFor('bonus_dmg') + 15
 		self.all = self:GetAbility():GetSpecialValueFor('bonus_all') + 15
@@ -125,12 +125,12 @@ function modifier_meepo_king_lua:GetModifierBonusStats_Intellect( params )
 	if self:GetCaster()==self:GetParent() then
 		if self.lock1 then return end
 		self.lock1 = true
-		local int = self:GetCaster():GetIntellect()
+		local int = self:GetCaster():GetIntellect(true)
 		self.lock1 = false
 		local bonusint = self.all*int/100
 		return bonusint
 	else
-		local int = self:GetCaster():GetIntellect()
+		local int = self:GetCaster():GetIntellect(true)
 		int = 100/(100+self.all)*int
 		local bonusint = self.all*int/100
 		return bonusint

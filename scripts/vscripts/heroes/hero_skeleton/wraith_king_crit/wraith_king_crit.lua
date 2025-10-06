@@ -22,7 +22,7 @@ end
 function modifier_wraith_king_mortal_strike_lua:OnCreated( kv )
 	self.crit_chance = self:GetAbility():GetSpecialValueFor( "crit_chance" )
 	self.crit_mult = self:GetAbility():GetSpecialValueFor( "crit_mult" )
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_skeleton_king_tal2")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_skeleton_king_tal2")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.crit_chance = self.crit_chance * 2 
 	end
@@ -31,7 +31,7 @@ end
 function modifier_wraith_king_mortal_strike_lua:OnRefresh( kv )
 	self.crit_chance = self:GetAbility():GetSpecialValueFor( "crit_chance" )
 	self.crit_mult = self:GetAbility():GetSpecialValueFor( "crit_mult" )
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_skeleton_king_tal2")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_skeleton_king_tal2")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.crit_chance = self.crit_chance * 2 
 	end

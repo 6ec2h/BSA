@@ -49,9 +49,13 @@ function modifier_drow_ranger_marksmanship_lua:OnCreated( kv )
 
 		ExtraData = {},
 	}
-	-- ProjectileManager:CreateTrackingProjectile(info)
-
-	-- Start interval
+	
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi8")
+	if talent ~= nil and talent:GetLevel() > 0 then
+		self.chance = self.chance + 10
+	end
+	
 	self:StartIntervalThink( 0.1 )
 
 	-- play effects
@@ -64,6 +68,12 @@ function modifier_drow_ranger_marksmanship_lua:OnRefresh( kv )
 	self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 	self.disable = self:GetAbility():GetSpecialValueFor( "disable_range" )
 	self.radius = self:GetAbility():GetSpecialValueFor( "agility_range" )	
+	self.agility_multiplier = self:GetAbility():GetSpecialValueFor( "agility_multiplier" )	
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi8")
+	if talent ~= nil and talent:GetLevel() > 0 then
+		self.chance = self.chance + 10
+	end
 end
 
 function modifier_drow_ranger_marksmanship_lua:OnRemoved()
@@ -86,12 +96,16 @@ function modifier_drow_ranger_marksmanship_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS
 	}
 
 	return funcs
 end
 
 
+function modifier_drow_ranger_marksmanship_lua:GetModifierBonusStats_Agility()
+	return self.agility_multiplier
+end
 
 function modifier_drow_ranger_marksmanship_lua:GetModifierProcAttack_BonusDamage_Physical( params )
 	if IsServer() then
@@ -138,7 +152,7 @@ end
 function modifier_drow_ranger_marksmanship_lua:GetModifierProcAttack_Feedback( params )
 	if not IsServer() then return end
 
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_drow_ranger_agi11")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi11")
 	if abil	== nil or abil:GetLevel() == 0 then return end
 
 	-- check if this is split shot
@@ -222,41 +236,6 @@ function modifier_drow_ranger_marksmanship_lua:OnIntervalThink()
 		self.active = no_enemies
 	end
 end
-
---------------------------------------------------------------------------------
-
-function modifier_drow_ranger_marksmanship_lua:IsAura()
-	return (not self:GetCaster():PassivesDisabled() and self:GetAbility():GetLevel() > 0)
-end
-
-function modifier_drow_ranger_marksmanship_lua:GetModifierAura()
-	return "modifier_drow_ranger_marksmanship_lua_effect"
-end
-
-function modifier_drow_ranger_marksmanship_lua:GetAuraRadius()
-	return self.radius
-end
-
-function modifier_drow_ranger_marksmanship_lua:GetAuraDuration()
-	return 0.5
-end
-
-function modifier_drow_ranger_marksmanship_lua:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-
-function modifier_drow_ranger_marksmanship_lua:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-
-function modifier_drow_ranger_marksmanship_lua:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_RANGED_ONLY
-end
-
-function modifier_drow_ranger_marksmanship_lua:GetAuraEntityReject( hEntity )
-	return false
-end
-
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 function modifier_drow_ranger_marksmanship_lua:PlayEffects1()
@@ -269,27 +248,6 @@ function modifier_drow_ranger_marksmanship_lua:PlayEffects1()
 	-- set glowing
 	ParticleManager:SetParticleControl( self.effect_cast, 2, Vector(2,0,0) )
 
-	-- skip bow particle CP
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	3,
-	-- 	self:GetParent(),
-	-- 	PATTACH_POINT_FOLLOW,
-	-- 	"bow_top",
-	-- 	Vector(0,0,0), -- unknown
-	-- 	true -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	5,
-	-- 	self:GetParent(),
-	-- 	PATTACH_POINT_FOLLOW,
-	-- 	"bow_bot",
-	-- 	Vector(0,0,0), -- unknown
-	-- 	true -- unknown, true
-	-- )
-
-	-- buff particle
 	self:AddParticle(
 		self.effect_cast,
 		false, -- bDestroyImmediately

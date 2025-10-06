@@ -23,15 +23,14 @@ end
 function modifier_leshrac_pulse_nova_lua:OnCreated( kv )
 	if not IsServer() then return end
 	-- references
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	self.manacost = self:GetAbility():GetSpecialValueFor( "mana_cost_per_second" )
 	
 		
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi4"):GetLevel() > 0 then 
-			self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 60
-		end
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_leshrac_agi4")
+	if talent and talent:GetLevel() > 0 then 
+		self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 60
 	end
 	
 	local interval = 1

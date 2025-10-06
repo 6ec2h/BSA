@@ -26,7 +26,7 @@ function modifier_arc_flux_lua_debuff:OnCreated( kv )
 	self.movespeed = self:GetAbility():GetSpecialValueFor( "movespeed" ) * (-1)
 	self.attackspeed = self:GetAbility():GetSpecialValueFor( "attackspeed" ) * (-1)
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_arc_warden_str8")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_arc_warden_str8")
 	if abil ~= nil and abil:IsTrained() then
 	self.movespeed = self.movespeed*3
 	self.attackspeed = self.attackspeed*3

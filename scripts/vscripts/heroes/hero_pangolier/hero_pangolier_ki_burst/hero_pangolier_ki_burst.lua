@@ -8,28 +8,9 @@ function hero_pangolier_ki_burst:OnSpellStart()
 	local damage = self:GetSpecialValueFor( "damage" )
 	local radius = self:GetSpecialValueFor( "radius" )
 	local duration = self:GetSpecialValueFor( "jump_duration" )
-	local height = self:GetSpecialValueFor( "jump_height" )
 
 	caster:AddNewModifier(caster, self, "modifier_hero_pangolier_ki_burst", {duration = duration})
 	caster:StartGesture(ACT_DOTA_CAST_ABILITY_2)
-end
-
-function hero_pangolier_ki_burst:PlayEffects1( modifier )
-	local effect_cast = ParticleManager:CreateParticle( "particles/units/heroes/hero_pangolier/pangolier_tailthump_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
-	modifier:AddParticle( effect_cast, false, false, -1, false, false)
-	EmitSoundOn( "Hero_Pangolier.TailThump.Cast", self:GetCaster() )
-end
-
-function hero_pangolier_ki_burst:PlayEffects2()
-	local effect_cast = ParticleManager:CreateParticle( "particles/units/heroes/hero_pangolier/pangolier_tailthump.vpcf", PATTACH_WORLDORIGIN, self:GetCaster() )
-	ParticleManager:SetParticleControl( effect_cast, 0, self:GetCaster():GetOrigin() )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-	EmitSoundOn( "Hero_Pangolier.TailThump", self:GetCaster() )
-end
-
-function hero_pangolier_ki_burst:PlayEffects3( target )
-	local effect_cast = ParticleManager:CreateParticle( "particles/units/heroes/hero_pangolier/pangolier_tailthump_shield_impact.vpcf", PATTACH_ABSORIGIN, target )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
 
 ----------------------------------------------------------------------------------------
@@ -44,37 +25,19 @@ function modifier_hero_pangolier_ki_burst:OnCreated()
 	self.smash_sound = "Hero_Pangolier.TailThump"
 
 	self.damage = self:GetAbility():GetSpecialValueFor("damage")
-	self.buff_duration = self:GetAbility():GetSpecialValueFor("jump_duration")
 	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 
 	if IsServer() then
 		self.distance	= 1
 		self.direction	= self:GetCaster():GetForwardVector()
-		self.duration	= self:GetAbility():GetSpecialValueFor("jump_duration")
-		self.height		= self:GetAbility():GetSpecialValueFor("jump_height")
 		self.stun_duration		= self:GetAbility():GetSpecialValueFor("stun_duration")
 		
 		if self:GetParent():IsRooted() then return end
-
-		self.velocity = self.direction * self.distance / self.duration
-		self.vertical_velocity		= 4 * self.height / self.duration
-		self.vertical_acceleration	= -(8 * self.height) / (self.duration * self.duration)
-		self:GetParent():RemoveHorizontalMotionController(self)
-		if self:ApplyVerticalMotionController() == nil or self:ApplyVerticalMotionController() == false then 
-			self:Destroy()
-		end
-		
-		-- if not self:GetParent():HasModifier("modifier_pangolier_gyroshell") and self:ApplyHorizontalMotionController() == false then 
-			-- self:Destroy()
-		-- end
 	end
 end
 
 function modifier_hero_pangolier_ki_burst:OnDestroy()
 	if not IsServer() then return end
-	
-	self:GetParent():RemoveHorizontalMotionController(self)
-	self:GetParent():RemoveVerticalMotionController(self)
 	
 	local smash = ParticleManager:CreateParticle(self.smash_particle, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(smash, 0, self:GetCaster():GetAbsOrigin())
@@ -109,27 +72,6 @@ function modifier_hero_pangolier_ki_burst:OnDestroy()
 		end
 	end
 	ParticleManager:ReleaseParticleIndex(smash)
-end
-
-function modifier_hero_pangolier_ki_burst:UpdateHorizontalMotion(me, dt)
-	me:SetOrigin( me:GetOrigin() + self.velocity * dt )
-end
-
-function modifier_hero_pangolier_ki_burst:OnHorizontalMotionInterrupted()
-	self:Destroy()
-end
-
-function modifier_hero_pangolier_ki_burst:UpdateVerticalMotion(me, dt)
-	me:SetOrigin( me:GetOrigin() + Vector(0, 0, self.vertical_velocity) * dt )
-	if GetGroundHeight(self:GetParent():GetAbsOrigin(), nil) > self:GetParent():GetAbsOrigin().z then
-		self:Destroy()
-	else
-		self.vertical_velocity = self.vertical_velocity + (self.vertical_acceleration * dt)
-	end
-end
-
-function modifier_hero_pangolier_ki_burst:OnVerticalMotionInterrupted()
-	self:Destroy()
 end
 
 function modifier_hero_pangolier_ki_burst:CheckState()

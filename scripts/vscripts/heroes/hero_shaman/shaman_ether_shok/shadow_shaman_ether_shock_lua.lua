@@ -6,12 +6,21 @@ shadow_shaman_ether_shock_lua = class({})
 function shadow_shaman_ether_shock_lua:OnSpellStart()
 	local target = self:GetCursorTarget()
 	count = self:GetSpecialValueFor("targets")
-	damage = self:GetSpecialValueFor("damage")
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_shadow_shaman_int8")
-	if abil ~= nil and abil:GetLevel() > 0 then 
-	count = count + 3
+	
+	if not IsServer() then return end
+	damage = self:GetSpecialValueFor("damage")+ self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
+	
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_shadow_shaman_1")
+	if abil and abil:GetLevel() > 0 then 
+		count = count + 3
 	end
+	
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_shadow_shaman_2")
+	if abil and abil:GetLevel() > 0 then 
+		damage = damage + 100
+	end
+	
 	
 	if target:TriggerSpellAbsorb(self) then return end
 
@@ -21,7 +30,6 @@ function shadow_shaman_ether_shock_lua:OnSpellStart()
 		self:GetCaster():EmitSound("shadowshaman_shad_ability_ether_0"..RandomInt(1, 4))
 	end
 
-	-- Helper function in vscripts\internal\util.lua
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),
 		target:GetAbsOrigin(),

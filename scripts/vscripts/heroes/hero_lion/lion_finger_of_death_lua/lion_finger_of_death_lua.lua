@@ -3,8 +3,8 @@ LinkLuaModifier( "modifier_lion_finger_of_death_lua", "heroes/hero_lion/lion_fin
 
 
 function lion_finger_of_death_lua:GetAOERadius() 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int11"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_lion_int11")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_lion_int11"):GetLevel() > 0 then 
 			return self:GetSpecialValueFor( "splash_radius_scepter" )
 		end
 	end
@@ -12,8 +12,8 @@ function lion_finger_of_death_lua:GetAOERadius()
 end
 
 function lion_finger_of_death_lua:GetCooldown( level )
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int11"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_lion_int11")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_lion_int11"):GetLevel() > 0 then 
 			return self:GetSpecialValueFor( "cooldown_scepter" )
 		end
 	end
@@ -35,7 +35,7 @@ function lion_finger_of_death_lua:OnSpellStart()
 	local search = self:GetSpecialValueFor("splash_radius_scepter")
 
 	local targets = {}
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int11")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_lion_int11")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		targets = FindUnitsInRadius(caster:GetTeamNumber(), target:GetOrigin(), nil, search, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	else

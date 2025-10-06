@@ -6,7 +6,7 @@
 		"ScriptFile"					"heroes/hero_templar_assassin/templar_assassin_trap_lua/templar_assassin_trap_lua"
 		"AbilityTextureName"			"templar_assassin_psionic_trap"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_TemplarAssassin.Trap"
@@ -21,7 +21,7 @@
 			"damage"					
 				{
 					"value"						"100 200 300"
-					"LinkedSpecialBonus"		"npc_dota_hero_templar_assassin_tal4"
+					"LinkedSpecialBonus"		"special_bonus_templar_assassin_tal4"
 				}
 			"trap_radius"				"200"
 			"slow_duration"				"5"
@@ -35,7 +35,7 @@
 		"ScriptFile"					"heroes/hero_templar_assassin/templar_assassin_trap_lua/templar_assassin_trap_lua"
 		"AbilityTextureName"			"templar_assassin_trap_teleport"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityCooldown"				"10"
 		"MaxLevel"						"3"
 		"AbilityDraftPreAbility"		"templar_assassin_trap_lua"

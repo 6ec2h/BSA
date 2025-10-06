@@ -1,5 +1,130 @@
 ﻿"DOTAUnits"
 {	
+
+"npc_hero_fiddlesticks_rise_unit"
+	{	
+		"vscripts"       			"ai/ai_fiddlesticks_unit.lua"
+		"BaseClass" 				"npc_dota_creature"
+		"Model" 					"models/events/crownfall/survivors/undying_minion/undying_minion_enemy.vmdl" 
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRate"				"1.0"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"700"
+		"AttackRange"				"150"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"
+		"StatusHealth"				"1"
+		"VisionDaytimeRange"		"1"
+		"VisionNighttimeRange"		"1"
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+	
+"npc_dota_monkey_clone_hero"
+    {
+        "BaseClass"                                   "npc_dota_creature"
+        "Model"                                       "models/heroes/monkey_king/monkey_king.vmdl"
+        "ModelScale"                                  "1"
+        "SoundSet"                                    "Hero_MonkeyKing"
+        "Level"                                       "1"
+        "UnitLabel"                                   "monkey_clone"
+
+        "CanBeDominated"                              "0"
+        "ConsideredHero"                              "0"
+
+        "AutoAttacksByDefault"                        "1"
+        "IgnoreAddSummonedToSelection"                "1"
+
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"                          "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackAnimationPoint"                        "0.45"
+        "AttackSpeedActivityModifiers"
+        {
+            "fast"      "170"
+            "faster"    "275"
+            "fastest"   "350"
+        }
+        "AttackAcquisitionRange"                      "800"
+        "AttackRange"                                 "300"
+        "AttackRangeActivityModifiers"
+        {
+            "attack_normal_range"   "0"
+            "attack_long_range"     "200"
+        }
+
+        // Bounty
+        //----------------------------------------------------------------
+        "BountyXP"                                    "0"
+        "BountyGoldMin"                               "0"
+        "BountyGoldMax"                               "0"
+
+        // Bounds
+        //----------------------------------------------------------------
+        "BoundsHullName"                              "DOTA_HULL_SIZE_SMALL"
+
+        // Movement
+        //----------------------------------------------------------------
+        "MovementCapabilities"                        "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"                               "300"
+        "MovementTurnRate"                            "0.6"
+
+        // Vision
+        //----------------------------------------------------------------
+        "VisionDaytimeRange"                          "600"
+        "VisionNighttimeRange"                        "600"
+
+        "HasInventory"                                "1"
+        "WakesNeutrals"                               "0"
+		"Creature"
+        {
+        "AttachWearables"
+            {
+                "Wearable1" { "ItemDef" "594" }         // head
+                "Wearable2" { "ItemDef" "608" }         // armor
+                "Wearable3" { "ItemDef" "609" }         // weapon
+                "Wearable4" { "ItemDef" "657" }         // shoulders
+            }
+        }
+    }
+	
+"npc_tomb_lua"
+	{
+		"Model"						"models/props_gameplay/tombstoneb01.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"ModelScale" 				"1.2"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"		
+		"AttackDamageMax"			"0"		
+		"AttackRate"				"0"		
+		"AttackAnimationPoint"		"0"		
+		"AttackAcquisitionRange"	"1000"		
+		"AttackRange"				"1"
+     
+		"RingRadius"				"60"
+		"HealthBarOffset"			"140"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"0"			
+		"MovementTurnRate"			"1"		
+		
+		"StatusHealth"				"99999"		
+		"StatusHealthRegen"			"999"		
+	
+		"VisionDaytimeRange"		"3000"		
+		"VisionNighttimeRange"		"3000"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}	
 	
 "npc_dota_clinkz_skeleton_archer"
 	{
@@ -87,8 +212,25 @@
 		"VisionDaytimeRange"		"1"		
 		"VisionNighttimeRange"		"1"		
 	}
+
+	"npc_dota_watch_tower_activation_point"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"Model"						""// Model.
+		"Level"						"1"
+		"ModelScale"				"1"
+		"ArmorPhysical"				"1110"			
+		"MagicalResistance"			"1133"		
+		"StatusHealth"				"20000"	
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"VisionDaytimeRange"		"1"		
+		"VisionNighttimeRange"		"1"		
+	}
 	
-"npc_dota_watch_tower"
+	"npc_dota_watch_tower"
 	{
 		"BaseClass"					"npc_dota_watch_tower"	
 		"Model"						"models/props_structures/outpost.vmdl"
@@ -209,7 +351,7 @@
 		"BaseClass" 				"npc_dota_creature"
 		"Model" 					"models/items/courier/mighty_chicken/mighty_chicken.vmdl" 
 		"Ability1"					"hex_mine"
-		"Ability2"					"kill_hex"
+		"Ability2"					""
 		"AttackCapabilities" 		"DOTA_UNIT_CAP_NO_ATTACK" 
 		"MovementCapabilities"   	"DOTA_UNIT_CAP_MOVE_GROUND"
         "MovementSpeed"       		"550"
@@ -367,7 +509,7 @@
 "blacksmith"
     {
         "BaseClass"         "npc_dota_creature" 
-        "Model"           "models/development/invisiblebox.vmdl"
+        "Model"           	"models/props_gameplay/shopkeeper_fountain/shopkeeper_fountain.vmdl"
         "SoundSet"          "Creep_Good_Range"          
         "Level"           "0"
      
@@ -479,14 +621,14 @@
 		"Ability4"					"generic_hidden"
 		"Ability5"					"generic_hidden"
 		"Ability6"					"anakim_realise"
-		"Ability10"					"npc_dota_hero_anakim_tal1" // + 40 урон anakim_pulse
-		"Ability11"					"npc_dota_hero_anakim_tal2" // +6% у усиению anakim_chaos
-		"Ability12"					"npc_dota_hero_anakim_tal3" // +60 к щиту
-		"Ability13"					"npc_dota_hero_anakim_tal4" // -1 крип до стака
-		"Ability14"					"npc_dota_hero_anakim_tal5" // +5 к урону + 2% уcиление
-		"Ability15"					"npc_dota_hero_anakim_tal6" // +3 стака
-		"Ability16"					"npc_dota_hero_anakim_tal7" // +50 у базовому урону ульты
-		"Ability17"					"npc_dota_hero_anakim_tal8" // ульт по области 200 вокруг цели
+		"Ability10"					"special_bonus_anakim_tal1" // + 40 урон anakim_pulse
+		"Ability11"					"special_bonus_anakim_tal2" // +6% у усиению anakim_chaos
+		"Ability12"					"special_bonus_anakim_tal3" // +60 к щиту
+		"Ability13"					"special_bonus_anakim_tal4" // -1 крип до стака
+		"Ability14"					"special_bonus_anakim_tal5" // +5 к урону + 2% уcиление
+		"Ability15"					"special_bonus_anakim_tal6" // +3 стака
+		"Ability16"					"special_bonus_anakim_tal7" // +50 у базовому урону ульты
+		"Ability17"					"special_bonus_anakim_tal8" // ульт по области 200 вокруг цели
 		
 		"AttributeStrengthGain"		"4"
 		"AttributeAgilityGain"		"4"
@@ -534,10 +676,10 @@
 		"Ability11"					"special_bonus_attack_damage_20"
 		"Ability12"					"special_bonus_strength_10"
 		"Ability13"					"special_bonus_hp_300"
-		"Ability14"					"npc_dota_hero_destroyer_tal1"
-		"Ability15"					"npc_dota_hero_destroyer_tal2"
-		"Ability16"					"npc_dota_hero_destroyer_tal3"
-		"Ability17"					"npc_dota_hero_destroyer_tal4"
+		"Ability14"					"special_bonus_destroyer_tal1"
+		"Ability15"					"special_bonus_destroyer_tal2"
+		"Ability16"					"special_bonus_destroyer_tal3"
+		"Ability17"					"special_bonus_destroyer_tal4"
 		
 		"AttributeStrengthGain"		"6.5"
 		"AttributeAgilityGain"		"0.5"
@@ -583,10 +725,10 @@
 		"Ability11"					"special_bonus_attack_speed_20"
 		"Ability12"					"special_bonus_hp_400"
 		"Ability13"					"special_bonus_armor_10"
-		"Ability14"					"npc_dota_hero_dado_tal1"
-		"Ability15"					"npc_dota_hero_dado_tal2"
-		"Ability16"					"npc_dota_hero_dado_tal3"
-		"Ability17"					"npc_dota_hero_dado_tal4"
+		"Ability14"					"special_bonus_dado_tal1"
+		"Ability15"					"special_bonus_dado_tal2"
+		"Ability16"					"special_bonus_dado_tal3"
+		"Ability17"					"special_bonus_dado_tal4"
 		"ProjectileModel"			"particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
 		"ProjectileSpeed"			"900"
 		"SoundSet"					"Hero_Enigma"
@@ -649,10 +791,10 @@
 		"Ability11"					"special_bonus_movement_speed_20"
 		"Ability12"					"special_bonus_attack_speed_20"
 		"Ability13"					"special_bonus_attack_base_damage_45"
-		"Ability14"					"npc_dota_hero_triss_tal1"
-		"Ability15"					"npc_dota_hero_triss_tal2"
-		"Ability16"					"npc_dota_hero_triss_tal3"
-		"Ability17"					"npc_dota_hero_triss_tal4"
+		"Ability14"					"special_bonus_triss_tal1"
+		"Ability15"					"special_bonus_triss_tal2"
+		"Ability16"					"special_bonus_triss_tal3"
+		"Ability17"					"special_bonus_triss_tal4"
 			
 		"VisionDaytimeRange"		"1100"
 	}	

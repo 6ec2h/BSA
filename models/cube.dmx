@@ -1,0 +1,60 @@
+<!-- dmx encoding keyvalues2 4 format model 22 -->
+"DmElement"
+{
+    "id" "elementid" "6092ff32-105c-41db-9f38-dc1c98167c99"
+    "name" "string" "root"
+    "skeleton" "DmeModel"
+    {
+        "id" "elementid" "8e8591bf-719d-4330-89ec-8c66151d12d5"
+        "transform" "DmeTransform"
+        {
+            "id" "elementid" "52300ce1-62db-4664-aa1e-67edd3f09c97"
+            "position" "vector3" "0 0 0"
+            "orientation" "quaternion" "0 0 0 1"
+        }
+        "visible" "bool" "1"
+        "children" "element_array" [ ]
+        "jointList" "element_array" [ ]
+        "baseStates" "element_array" [ ]
+        "axisSystem" "DmeAxisSystem"
+        {
+            "id" "elementid" "a96b6e6b-c242-4100-9886-b3e80a7ceea9"
+            "upAxis" "int" "3"
+            "forwardParity" "int" "1"
+            "coordSys" "int" "0"
+        }
+    }
+    "animationList" "DmeAnimationList"
+    {
+        "id" "elementid" "c2401148-ff2d-4f99-a8f7-9001074f8535"
+        "animations" "element_array"
+        [
+            "DmeChannelsClip"
+            {
+                "id" "elementid" "3e13ce76-f65b-4562-aabc-ad3e08facf5a"
+                "timeFrame" "DmeTimeFrame"
+                {
+                    "id" "elementid" "9d2d0229-2812-4882-994a-df8970f15d8d"
+                    "start" "time" "0"
+                    "duration" "time" "0.9583333"
+                    "offset" "time" "0"
+                    "scale" "float" "1"
+                }
+                "color" "color" "0 0 0 0"
+                "text" "string" ""
+                "mute" "bool" "0"
+                "trackGroups" "element_array" [ ]
+                "displayScale" "float" "1"
+                "channels" "element_array" [ ]
+                "frameRate" "float" "24"
+            }
+        ]
+    }
+    "exportTags" "DmeExportTags"
+    {
+        "id" "elementid" "369f6f46-ad0f-4e8b-b2f2-5e3cf57285a9"
+        "name" "string" "exportTags"
+        "app" "string" "sfm"
+        "source" "string" "Generated with Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io"
+    }
+}

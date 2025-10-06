@@ -1,35 +1,18 @@
 disruptor_thunder_strike_lua = class({})
 LinkLuaModifier( "modifier_disruptor_thunder_strike_lua", "heroes/hero_disruptor/disruptor_thunder_strike_lua/disruptor_thunder_strike_lua", LUA_MODIFIER_MOTION_NONE )
 
---------------------------------------------------------------------------------
--- Ability Start
 function disruptor_thunder_strike_lua:OnSpellStart()
-	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	-- add modifier
-	target:AddNewModifier(
-		caster, -- player source
-		self, -- ability source
-		"modifier_disruptor_thunder_strike_lua", -- modifier name
-		{} -- kv
-	)
-
-	-- play effects
-	local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
-	EmitSoundOn( sound_cast, caster )
+	target:AddNewModifier(caster, self, "modifier_disruptor_thunder_strike_lua", {})
+	EmitSoundOn( "Hero_Disruptor.ThunderStrike.Cast", caster )
 end
 
 -------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------
-
 
 modifier_disruptor_thunder_strike_lua = class({})
 
---------------------------------------------------------------------------------
--- Classifications
 function modifier_disruptor_thunder_strike_lua:IsHidden()
 	return false
 end
@@ -53,60 +36,46 @@ end
 function modifier_disruptor_thunder_strike_lua:DestroyOnExpire()
 	return false
 end
---------------------------------------------------------------------------------
--- Initializations
+
 function modifier_disruptor_thunder_strike_lua:OnCreated( kv )
-	-- references
 	self.count = self:GetAbility():GetSpecialValueFor( "strikes" )
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	local interval = self:GetAbility():GetSpecialValueFor( "strike_interval" )
-	local damage = self:GetAbility():GetSpecialValueFor( "strike_damage" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi1")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi1"):GetLevel() > 0 then 
-			self.count = self:GetAbility():GetSpecialValueFor( "strikes" ) * 2
-		end
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi1")
+	if talent and talent:GetLevel() > 0 then 
+		self.count = self:GetAbility():GetSpecialValueFor( "strikes" ) * 2
 	end
+	if not IsServer() then return end
+	local damage = self:GetAbility():GetSpecialValueFor( "strike_damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 
 	if IsServer() then
-		-- precache damage
 		self.damageTable = {
-			-- victim = target,
 			attacker = self:GetCaster(),
 			damage = damage,
 			damage_type = self:GetAbility():GetAbilityDamageType(),
-			ability = self:GetAbility(), --Optional.
+			ability = self:GetAbility(),
 		}
 
-		-- add duration info
 		local duration = (self.count-1) * interval
 		self:SetDuration( duration, true )
-
-		-- Start interval
 		self:StartIntervalThink( interval )
 		self:OnIntervalThink()
 
-		-- play effects
 		self.sound_loop = "Hero_Disruptor.ThunderStrike.Thunderator"
 		EmitSoundOn( self.sound_loop, self:GetParent() )
 	end
 end
 
 function modifier_disruptor_thunder_strike_lua:OnRefresh( kv )
-	local damage = self:GetAbility():GetSpecialValueFor( "strike_damage" )
 	self.count = self:GetAbility():GetSpecialValueFor( "strikes" )
 	local interval = self:GetAbility():GetSpecialValueFor( "strike_interval" )
-	
-
 
 	if IsServer() then
+		local damage = self:GetAbility():GetSpecialValueFor( "strike_damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 		self.damageTable.damage = damage
-
-		-- add duration info
 		local duration = (self.count-1) * interval
 		self:SetDuration( duration, true )
-
-		-- Start interval
 		self:StartIntervalThink( interval )
 		self:OnIntervalThink()
 	end

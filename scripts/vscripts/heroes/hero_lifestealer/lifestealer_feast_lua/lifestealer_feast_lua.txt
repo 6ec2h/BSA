@@ -12,13 +12,9 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_leech_percent"		"1.0 1.5 2.0 2.5"
-			}
-		}
+		"AbilityValues"
+	{
+		"hp_leech_percent"	"1.0 1.5 2.0 2.5"
+	}
 	}
 }

@@ -20,43 +20,16 @@
 		"AbilityCooldown"				"22 20 18 16"
 		"AbilityManaCost"				"120"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"brew_time"					"5.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"brew_explosion"			"5.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"min_stun"					"0.25"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_stun"					"1.0 1.75 2.5 3.25"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"min_damage"				"0"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_damage"				"150 220 290 360"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200"
-			}
+			"brew_time"					"5.0"
+			"brew_explosion"			"5.5"
+			"min_stun"					"0.25"
+			"max_stun"					"1.0 1.75 2.5 3.25"
+			"min_damage"				"0"
+			"max_damage"				"150 220 290 360"
+			"radius"					"200"
+			"disarm"					"2 4 6 8"
 		}
 	}
 
@@ -78,53 +51,18 @@
 		"AbilityCastRange"				"650"
 		"AbilityCastPoint"				"0.2"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"brew_time"					"5.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"min_stun"					"0.25"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_stun"					"1.0 1.75 2.5 3.25"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"min_damage"				"0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_damage"				"150 220 290 360"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movement_speed"			"900"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"vision_range"				"300"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"midair_explosion_radius"	"200"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"brew_explosion"			"7.0"
-			}
+			"brew_time"					"5.0"
+			"min_stun"					"0.25"
+			"max_stun"					"1.0 1.75 2.5 3.25"
+			"min_damage"				"0"
+			"max_damage"				"150 220 290 360"
+			"movement_speed"			"900"
+			"vision_range"				"300"
+			"midair_explosion_radius"	"200"
+			"brew_explosion"			"7.0"
+			"disarm"					"2 4 6 8"
 		}
 	}
 }

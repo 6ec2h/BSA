@@ -1,5 +1,6 @@
 local triggerActive = true
 function OnStartTouch(trigger)
+	print(trigger.activator)
 	local triggerName = thisEntity:GetName()
 	local level = trigger.activator:GetLevel()
 	if not triggerActive then

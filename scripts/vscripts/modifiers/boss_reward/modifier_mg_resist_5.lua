@@ -24,5 +24,5 @@ function modifier_mg_resist_5:DeclareFunctions()
 end
 
 function modifier_mg_resist_5:GetModifierMagicalResistanceBonus()
-	return 5
+	return 2
 end

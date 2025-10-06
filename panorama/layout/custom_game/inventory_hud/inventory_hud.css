@@ -1,0 +1,508 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.InventoryButtonHud
+{
+	width: 57px;
+	height: 57px;
+	vertical-align: bottom;
+	margin-bottom: 29px;
+	background-image: url("s2r://panorama/images/topbar/armory_icon_off_png.vtex");
+	background-size: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	border: 1px solid black;
+	transition-property: brightness;
+	transition-duration: 0.25s;
+	margin-left:6px;
+}
+
+.InventoryButtonHud:hover
+{
+	opacity: 1;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), color-stop( .1, #000000), to( #25282a ) );
+	background-image: url("s2r://panorama/images/topbar/armory_icon_on_png.vtex");
+}
+
+.CloseInventory
+{
+	opacity: 0;
+}
+
+.InventoryPanel
+{
+	width: 600px;
+	height: 710px;
+	margin-bottom: 100px;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	align: center center;
+	flow-children: down;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+#CloseButtonIcon
+{
+	vertical-align:top;
+	horizontal-align: right;
+	margin:5px;
+	width:20px;
+	height:20px;
+}
+
+#CloseButtonIcon:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.8;
+}
+
+#CloseButtonIcon:active
+{
+	pre-transform-scale2d: 0.8;
+}
+
+.InventorySlots
+{
+	width: 485px;
+	vertical-align: bottom;
+	margin: 5px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.inventory_slot
+{
+	width: 45px;
+	height: 45px;
+	background-color: black;
+	margin: 1px;
+	tooltip-position: bottom;
+}
+
+.item_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.dragImage
+{
+	width: 45px;
+	height: 45px;
+}
+
+.InventoryMain
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom:20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.InventoryHeaderSlots
+{
+	horizontal-align: center;
+	margin-bottom: 10px;
+}
+
+.InventoryHeaderSlotsLabel
+{
+	font-size: 26px;
+	align: center center;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 0px 0px 3px 2.0 #000000b0;
+}
+
+.EquipMain
+{
+	height: 500px;
+	width:95%;
+	horizontal-align: center;
+}
+
+.EquipMainHeader
+{
+	horizontal-align: center;
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+
+.EquipMainHeaderLabel
+{
+	font-size: 26px;
+	align: center center;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: 0px 0px 3px 2.0 #000000b0;
+}
+
+.HeroModelPanel
+{
+	width: 200px;
+	height: 300px;
+	border: 1px solid black;
+}
+
+.hero_model
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HideInventory
+{
+	visibility: collapse;
+}
+
+#QuipDescriptionPanel
+{
+	flow-children: down;
+	height: 100%;
+}
+
+#QuipDescription
+{
+	height: 100%;
+	flow-children: down;
+	horizontal-align: left;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	width: 220px;
+	overflow: clip scroll;
+	z-index:100;
+	padding: 5px;
+}
+
+#DustPanel
+{
+	flow-children: right;
+}
+
+#DustPanelImage
+{
+	vertical-align:center;
+	width: 40px;
+	height: 40px;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#DustPaneLabel
+{
+	vertical-align: center;
+	color: white;
+}
+
+.font_desr
+{
+	font-size: 15px;
+}
+
+.QuipCenter
+{
+	height: 100%;
+	flow-children: right;
+	horizontal-align: right;
+	margin-bottom: 20px;
+}
+
+.ItemsColumn
+{
+	width: 350px;
+	height: 100%;
+	margin-right: 20px;
+	background-image: url("s2r://panorama/images/hero_back_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 110%;
+}
+
+.equip_slot_main
+{
+	height: 80px;
+	margin: 5px;
+}
+
+.equip_slot_label
+{
+	horizontal-align: center;
+	font-weight: semi-bold;
+	color: white;
+	font-size: 14px;
+}
+
+.equip_slot
+{
+	width: 65px;
+	height: 65px;
+	background-color: #121212;
+	horizontal-align: center;
+	margin-top: 17px;
+	border: 1px solid gray;
+}
+
+.upgrade_inventory
+{
+	width: 45px;
+	height: 45px;
+	background-color: black;
+	background-image: url("s2r://panorama/images/control_icons/plus_png.vtex");
+	background-position: 50% 50%;
+	background-size: 80% 80%;
+	background-repeat: no-repeat;
+	margin: 1px;
+	border: 1px solid gray;
+}
+
+#head
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-left:90px;
+}
+
+#armor
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 115px;
+	margin-left:90px;
+}
+
+#legs
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 115px;
+	margin-left:90px;
+}
+
+#boots
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-top: 240px;
+	margin-left:90px;
+}
+
+#weapon
+{
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-bottom: 80px;
+	margin-left:40px;
+}
+
+#shield
+{
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 140px;
+}
+
+#hr
+{
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
+	width: 100%;
+	horizontal-align: center;
+	height: 5px;
+	margin-bottom:5px;
+}
+
+#item_reward_panel_image
+{
+	horizontal-align: center;
+	height: 120px;
+	width: 120px;
+}
+
+#InventoryDust
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	width: 50px;
+	height: 50px;
+	background-color: blue;
+	margin: 5px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#item_reward_panel
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#MainInfo
+{
+	flow-children: down;
+	width: 100%;
+}
+
+#TooltipImage
+{
+	height: 120px;
+	width: 120px;
+	margin-bottom: 10px;
+	horizontal-align: center;
+	align: center top;
+	box-shadow: fill #000000aa 0px 0px 2px 2px;
+	pre-transform-scale2d: 1;
+	border: 2px solid black;
+	wash-color: #899aa944;
+	saturation: 0.9;
+}
+
+#TooltipName
+{
+	width: 100%;
+	height: 40px;
+	font-size: 350px;
+	text-overflow: shrink;
+	padding: 0px 9px 4px 18px;
+	margin: 5px 0 5px 0;
+	text-align:center;
+	font-weight: bold;
+}
+
+#SourceValueLine
+{
+	width: 100%;
+	height: 1px;
+	background-color: #a8b0a5;
+	vertical-align: center;
+	margin: 6px 5px 0px 15px;
+}
+
+#BaseAttribute
+{
+	margin-top: 10px;
+	width: 100%;
+	font-size: 17px;
+	text-overflow: shrink;
+	padding: 0px 9px 4px 9px;
+	text-align:center;
+	background-color:#171717;
+	opacity: 0.5;
+	font-weight: bold;
+	color: gold;
+}
+
+#Descr
+{
+	width: 100%;
+	font-size: 17px;
+	text-overflow: shrink;
+	padding: 0px 9px 4px 9px;
+	text-align:center;
+	background-color:#171717;
+	opacity: 0.5;
+	color: red;
+}
+
+#BonusAttribute
+{
+	flow-children: down;
+	margin-top: 10px;
+	width: 100%;
+	font-size: 17px;
+	text-overflow: shrink;
+	padding: 0px 9px 4px 9px;
+	text-align:center;
+	background-color:#171717;
+	opacity: 0.5;
+}
+
+.bonus_label
+{
+	text-align: center;
+	color: #00f704;
+	width:100%;
+	font-size: 16px;
+}
+
+#hr
+{
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
+	width: 100%;
+	horizontal-align: center;
+	height: 5px;
+	margin-bottom:5px;
+}
+
+.content
+{
+	width: 300px;
+	flow-children: down;
+	border: 2px solid BorderColor;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 5px;
+}
+
+.equipped_item_shadow_level_1
+{
+	box-shadow: inset #b0c3d9d0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_2
+{
+	box-shadow: inset #b0c3d9c9 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_3
+{
+	box-shadow: inset #5e97d9c5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_4
+{
+	box-shadow: inset #5e97d9cb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_5
+{
+	box-shadow: inset #4b69ffd5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_6
+{
+	box-shadow: inset #4b69ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_7
+{
+	box-shadow: inset #8747ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_8
+{
+	box-shadow: inset #8747ffd0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_9
+{
+	box-shadow: inset #d32ce6cc 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_10
+{
+	box-shadow: inset #e4ae39de 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_11
+{
+	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
+}
+

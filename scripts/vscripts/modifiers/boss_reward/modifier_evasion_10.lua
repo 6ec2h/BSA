@@ -24,5 +24,5 @@ function modifier_evasion_10:DeclareFunctions()
 end
 
 function modifier_evasion_10:GetModifierEvasion_Constant()
-	return 10
+	return 5
 end

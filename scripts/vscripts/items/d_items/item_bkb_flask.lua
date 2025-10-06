@@ -25,7 +25,7 @@ if GameRules:IsCheatMode() and not IsInToolsMode() then return end
 	ProjectileManager:CreateTrackingProjectile(info)
 	EmitSoundOn( "Hero_Alchemist.UnstableConcoction.Throw", self:GetCaster() )
 	local playerID = self:GetCaster():GetPlayerID()
-	self:SpendCharge()
+	self:SpendCharge(0)
 end
 
 function item_bkb_flask:OnProjectileHit( target, location )

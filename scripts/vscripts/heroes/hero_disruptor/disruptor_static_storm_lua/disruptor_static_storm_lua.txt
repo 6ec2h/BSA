@@ -8,7 +8,7 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
 
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
@@ -20,28 +20,13 @@
 		"AbilityCooldown"				"120 110 100"
 		"AbilityManaCost"				"200 300 400"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"pulses"					"20"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_max"				"200 250 300"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5.0"
-			}
+			"radius"					"400"
+			"pulses"					"20"
+			"damage_max"				"200 400 600"
+			"duration"					"5.0"
+			"ExtraIntelligenceDamage"	"0.2"
 		}
 	}
 }

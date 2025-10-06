@@ -18,14 +18,14 @@ function modifier_luna_moon_glaive_lua_thinker:OnCreated( kv )
 	self.range = self:GetAbility():GetSpecialValueFor( "range" )
 	self.reduction = self:GetAbility():GetSpecialValueFor( "damage_reduction_percent" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_luna_agi10")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_luna_agi10"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_luna_agi10")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_luna_agi10"):GetLevel() > 0 then 
 			self.bounces = self.bounces + 3
 		end
 	end
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_luna_agi9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_luna_agi9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_luna_agi9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_luna_agi9"):GetLevel() > 0 then 
 			self.reduction = self.reduction - 16
 		end
 	end

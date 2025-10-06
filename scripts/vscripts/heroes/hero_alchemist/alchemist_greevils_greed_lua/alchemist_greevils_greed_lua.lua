@@ -67,7 +67,7 @@ function modifier_alchemist_greevils_greed_lua:OnDeath(params)
     if table.contains(excludedUnits, params.unit:GetUnitName()) then 
 		local heroBonus = self:GetAbility():GetSpecialValueFor("bonus_gold")
 
-		local agiAbility = self:GetCaster():FindAbilityByName("npc_dota_hero_alchemist_agi1")
+		local agiAbility = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi1")
 		if agiAbility and agiAbility:GetLevel() > 0 then
 			heroBonus = heroBonus * 2
 		end

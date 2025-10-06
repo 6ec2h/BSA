@@ -28,6 +28,16 @@ function gyrocopter_flak_cannon_lua:OnSpellStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_gyrocopter_flak_cannon_lua", {duration = self:GetDuration()})
 end
 
+function gyrocopter_flak_cannon_lua:GetCooldown(level)
+	local cooldown = self.BaseClass.GetCooldown(self, level)
+	if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi3")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi3"):GetLevel() > 0 then 
+			cooldown = cooldown - 4
+		end
+	end
+	return cooldown
+end
+
 ------------------------------------------
 ------------------------------------------
 
@@ -45,12 +55,6 @@ function modifier_gyrocopter_flak_cannon_lua:OnCreated()
 	self.projectile_speed	= self:GetAbility():GetSpecialValueFor("projectile_speed")
 	self.fresh_rounds		= self:GetAbility():GetSpecialValueFor("fresh_rounds")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi2")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi2"):GetLevel() > 0 then 
-			self.max_attacks = self:GetAbility():GetSpecialValueFor("max_attacks") + 3
-		end
-	end
-	
 	if not IsServer() then return end
 	
 	self.weapons			= {"attach_attack1", "attach_attack2"}
@@ -63,7 +67,7 @@ function modifier_gyrocopter_flak_cannon_lua:DeclareFunctions()
 end
 
 function modifier_gyrocopter_flak_cannon_lua:OnAttack(keys)
-	if keys.attacker == self:GetParent() and not self:GetParent():PassivesDisabled() and not keys.no_attack_cooldown then
+	if keys.attacker == self:GetParent() and not keys.no_attack_cooldown then
 		self:GetParent():EmitSound("Hero_Gyrocopter.FlackCannon")
 		
 		-- "Does not target couriers, wards, buildings, invisible units, or units inside the Fog of War."
@@ -71,7 +75,7 @@ function modifier_gyrocopter_flak_cannon_lua:OnAttack(keys)
 			if enemy ~= keys.target and not enemy:IsCourier() then
 				self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_gyrocopter_flak_cannon_lua_speed_handler", {projectile_speed = self.projectile_speed})
 				-- IMBAfication: Fresh Rounds
-				self:GetParent():PerformAttack(enemy, false, self:GetStackCount() > self.max_attacks - self.fresh_rounds, true, true, true, false, false)
+				self:GetParent():PerformAttack(enemy, true, self:GetStackCount() > self.max_attacks - self.fresh_rounds, true, true, true, false, false)
 				self:GetParent():RemoveModifierByName("modifier_gyrocopter_flak_cannon_lua_speed_handler")
 			end
 		end

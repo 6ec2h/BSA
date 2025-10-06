@@ -15,7 +15,11 @@ function item_aegis_lua:OnSpellStart()
                 local hModifierAegis = hCaster:AddNewModifier(hCaster, nil, "modifier_aegis", {})
                 hModifierAegis:SetStackCount(1)
 		    end
-		    self:SpendCharge()
+		    self:SpendCharge(0)
+			local new_charges = self:GetCurrentCharges()
+			if new_charges <= 0 then
+				UTIL_Remove(self)
+			end
 		    EmitSoundOn("DOTA_Item.Refresher.Activate", hCaster)
 		    local nParticle = ParticleManager:CreateParticle("particles/items_fx/aegis_respawn_timer.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
 			ParticleManager:ReleaseParticleIndex( nParticle );
@@ -57,18 +61,22 @@ function modifier_aegis:GetPriority()
 end
 
 function modifier_aegis:ReincarnateTime()
-	return 3
+	if not self:GetParent():HasModifier("modifier_guild_event") then
+		return 3
+	end
 end
 
 function modifier_aegis:OnDeath(keys)
 	if keys.unit == self:GetParent() or keys.unit:GetCloneSource() == self:GetParent() then
-		Timers:CreateTimer(FrameTime(), function()
-			local nStackCount = self:GetStackCount()
-			if nStackCount>=2 then
-				self:SetStackCount(nStackCount-1)
-			else
-				self:Destroy()
-			end
-		end)
+		if not self:GetParent():HasModifier("modifier_guild_event") then
+			Timers:CreateTimer(FrameTime(), function()
+				local nStackCount = self:GetStackCount()
+				if nStackCount>=2 then
+					self:SetStackCount(nStackCount-1)
+				else
+					self:Destroy()
+				end
+			end)
+		end
 	end
 end

@@ -37,6 +37,7 @@ function modifier_creep_midnight_thinker:OnCreated( kv )
 		self.damageTable = {
 			attacker = self:GetCaster(),
 			damage_type = self:GetAbility():GetAbilityDamageType(),
+			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 			ability = self:GetAbility(), --Optional.
 		}
 		self:StartIntervalThink( interval )

@@ -28,7 +28,12 @@
 			"width"						"125"
 			"duration"					"0.4 0.8 1.2 1.6"
 			"speed"						"1600"
-			"damage"					"140 200 260 320"
+			"damage"					
+			{
+				"value"					"80 140 200 260"
+				"LinkedSpecialBonus"	"special_bonus_lion_1"
+			}		
+			"ExtraIntelligenceDamage"			"0.2"
 		}
 	}
 }

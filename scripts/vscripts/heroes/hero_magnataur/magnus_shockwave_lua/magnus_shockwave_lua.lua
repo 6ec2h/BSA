@@ -52,8 +52,8 @@ function magnus_shockwave_lua:OnSpellStart()
 	local effect = ParticleManager:CreateParticle("particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_hit.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:ReleaseParticleIndex(effect)
 		
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi2")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi2"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_magnus_agi2")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_magnus_agi2"):GetLevel() > 0 then 
 			line = line + 2
 		end	
 	end

@@ -119,13 +119,13 @@ if not self:GetAbility() then self:Destroy() return end
 	if self:GetCaster():IsRealHero() then
 		local attribute = self:GetCaster():GetPrimaryAttribute()
 		if attribute == 3 then
-			self.bonus_damage = (self:GetCaster():GetAgility() + self:GetCaster():GetIntellect() + self:GetCaster():GetStrength()) / 30
+			self.bonus_damage = (self:GetCaster():GetAgility() + self:GetCaster():GetIntellect(true) + self:GetCaster():GetStrength()) / 30
 		elseif attribute == DOTA_ATTRIBUTE_AGILITY then
 			self.bonus_damage = self:GetCaster():GetAgility() / 10
 		elseif attribute == DOTA_ATTRIBUTE_STRENGTH then
 			self.bonus_damage = self:GetCaster():GetStrength() / 10
 		elseif attribute == DOTA_ATTRIBUTE_INTELLECT then
-			self.bonus_damage = self:GetCaster():GetIntellect() / 10
+			self.bonus_damage = self:GetCaster():GetIntellect(true) / 10
 		end
 	end
 	

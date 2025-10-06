@@ -36,7 +36,7 @@ function modifier_bristleback_bristleback_lua:OnRefresh( kv )
 	self.angle_side = self:GetAbility():GetSpecialValueFor( "side_angle" )
 	self.max_threshold = self:GetAbility():GetSpecialValueFor( "quill_release_threshold" )
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_str10")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_bristleback_str10")
 	if abil ~= nil then 
 		self.reduction_side = self.reduction_back
 	end
@@ -90,7 +90,7 @@ function modifier_bristleback_bristleback_lua:GetModifierIncomingDamage_Percenta
 			self:ThresholdLogic( params.damage )
 			self:PlayEffects( true, attacker_vector )
 			
-			local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_int6")
+			local abil = self:GetCaster():FindAbilityByName("special_bonus_bristleback_int6")
 			if abil ~= nil then 
 				local ability = self:GetParent():FindAbilityByName( "bristleback_quill_spray_lua" )
 					if ability ~= nil and ability:GetLevel()>=1 then

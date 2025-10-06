@@ -45,11 +45,11 @@ function HellbearThink()
 	end
 	
 	if GameRules:IsGamePaused() == true then
-		return 1
+		return 0.1
 	end
 	
 	if thisEntity:IsChanneling() then
-        return 1 
+        return 0.1
     end
 
 	local enemies = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 700, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
@@ -89,7 +89,7 @@ function CastGyroshell( hEnemy )
             AbilityIndex = thisEntity.pangolier_gyroshell:entindex(),
             Queue = false,
         })
-    return 1
+    return 0.1
 end
 
 
@@ -100,7 +100,7 @@ function CastCrash( hEnemy )
             AbilityIndex = thisEntity.pangolier_shield_crash:entindex(),
             Queue = false,
         })
-    return 1
+    return 0.1
 end
 
 ------------------------------------------------------------------------------
@@ -122,7 +122,7 @@ function CheckIfHasAggro( thisEntity )
 	 		end
 		end
 
-	 	return 1
+	 	return 0.1
 	else
 
 		thisEntity:SetBaseMoveSpeed( thisEntity.aiState.nWalkingMoveSpeed )
@@ -146,7 +146,7 @@ function RoamBetweenWaypoints( thisEntity )
 	 aiState.flNextWaypointTime = gameTime + RandomFloat( 2, 4 )
 		thisEntity:MoveToPositionAggressive( aiState.vWaypoint )
 	end
-	return 1
+	return 0.1
 end
 
 function Spawn( entityKeyValues )

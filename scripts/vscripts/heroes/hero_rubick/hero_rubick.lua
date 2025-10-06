@@ -10,6 +10,35 @@ function hero_rubick_ability:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 end
 
+local rubick_ability = {
+	"special_bonus_mp_600", "special_bonus_gold_income_60",
+	"special_bonus_mana_reduction_11", "special_bonus_cast_speed_30",
+	"special_bonus_spell_lifesteal_10", "special_bonus_cast_range_200",
+	"special_bonus_all_stats_20", "special_bonus_unique_rubick_5",
+	"ability_capture_lua", "hero_rubick_ability"
+}
+
+local invalid_ability_names = {
+    "special_bonus",
+    "ability_lamp_use",
+    "ability_pluck_famango",
+    "twin_gate_portal_warp",
+    "ability_capture",
+    "hero_rubick_ability",
+    "NoAbilityName",
+    "generic_hidden",
+    "abyssal_underlord_portal_warp"
+}
+
+function is_invalid_ability(ability_name)
+    for _, invalid_name in ipairs(invalid_ability_names) do
+        if string.find(ability_name, invalid_name) then
+            return true
+        end
+    end
+    return false
+end
+
 function hero_rubick_ability:OnSpellStart()
 	local hero = self:GetCaster()
 	self.ability_level = {}
@@ -19,13 +48,7 @@ function hero_rubick_ability:OnSpellStart()
 		local ability = hero:GetAbilityByIndex(i)
 		if ability and not ability:IsNull() then
 			local ability_name = ability:GetAbilityName()
-			if not string.find(ability_name, "special_bonus")
-			and not string.find(ability_name, "ability_lamp_use")
-			and not string.find(ability_name, "ability_pluck_famango")
-			and not string.find(ability_name, "twin_gate_portal_warp")
-			and not string.find(ability_name, "ability_capture")
-			and not string.find(ability_name, "hero_rubick_ability")
-			and not string.find(ability_name, "abyssal_underlord_portal_warp") then
+			if not table.contains(rubick_ability, ability_name) then
 				table.insert(self.ability_level, ability:GetLevel())
 				hero:RemoveAbility(ability_name)
 			end
@@ -41,15 +64,7 @@ function hero_rubick_ability:OnSpellStart()
 						local ability = unit:GetAbilityByIndex(i)
 						if ability and not ability:IsNull() and not ability:IsHidden() then
 							local ability_name = ability:GetAbilityName()
-							if not string.find(ability_name, "special_bonus")
-							and not string.find(ability_name, "ability_lamp_use")
-							and not string.find(ability_name, "ability_pluck_famango")
-							and not string.find(ability_name, "twin_gate_portal_warp")
-							and not string.find(ability_name, "ability_capture")
-							and not string.find(ability_name, "hero_rubick_ability")
-							and not string.find(ability_name, "NoAbilityName")
-							and not string.find(ability_name, "generic_hidden")
-							and not string.find(ability_name, "abyssal_underlord_portal_warp") then
+							if not is_invalid_ability(ability_name) and ability:GetAbilityType() ~= 2 then
 								if ability:GetAbilityType() == 1 then
 									table.insert(ability_list_ult, ability_name)
 								else
@@ -133,13 +148,7 @@ function modifier_hero_rubick:clear(hero)
 		local ability = hero:GetAbilityByIndex(i)
 		if ability and not ability:IsNull() then
 			local ability_name = ability:GetAbilityName()
-			if not string.find(ability_name, "special_bonus")
-			and not string.find(ability_name, "ability_lamp_use")
-			and not string.find(ability_name, "ability_pluck_famango")
-			and not string.find(ability_name, "twin_gate_portal_warp")
-			and not string.find(ability_name, "ability_capture")
-			and not string.find(ability_name, "hero_rubick_ability")
-			and not string.find(ability_name, "abyssal_underlord_portal_warp") then
+			if not table.contains(rubick_ability, ability_name) then
 				table.insert(self.ability_level, ability:GetLevel())
 				hero:RemoveAbility(ability_name)
 			end
@@ -160,21 +169,13 @@ function modifier_hero_rubick:OnIntervalThink()
 				for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
 					if PlayerResource:GetTeam(nPlayerID) == DOTA_TEAM_GOODGUYS then
 						if PlayerResource:HasSelectedHero(nPlayerID) then
-							local hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
-							if hero ~= caster then
+							local unit = PlayerResource:GetSelectedHeroEntity(nPlayerID)
+							if unit ~= hero then
 								for i = 0, 5 do
-									local ability = hero:GetAbilityByIndex(i)
+									local ability = unit:GetAbilityByIndex(i)
 									if ability and not ability:IsNull() and not ability:IsHidden() then
 										local ability_name = ability:GetAbilityName()
-										if not string.find(ability_name, "special_bonus")
-										and not string.find(ability_name, "ability_lamp_use")
-										and not string.find(ability_name, "ability_pluck_famango")
-										and not string.find(ability_name, "twin_gate_portal_warp")
-										and not string.find(ability_name, "ability_capture")
-										and not string.find(ability_name, "hero_rubick_ability")
-										and not string.find(ability_name, "NoAbilityName")
-										and not string.find(ability_name, "generic_hidden")
-										and not string.find(ability_name, "abyssal_underlord_portal_warp") then
+										if not is_invalid_ability(ability_name) and ability:GetAbilityType() ~= 2 then
 											if ability:GetAbilityType() == 1 then
 												table.insert(ability_list_ult, ability_name)
 											else

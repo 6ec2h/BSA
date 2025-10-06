@@ -42,7 +42,7 @@ function modifier_sven_gods_strength_lua:HeroEffectPriority()
 end
 
 function modifier_sven_gods_strength_lua:IsAura()
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_sven_tal3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_sven_tal3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		return true
 	end
@@ -82,7 +82,7 @@ end
 function modifier_sven_gods_strength_lua:OnCreated( kv )
 	self.gods_strength_damage = self:GetAbility():GetSpecialValueFor( "gods_strength_damage" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_sven_tal4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_sven_tal4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.gods_strength_damage = self.gods_strength_damage + 100
 	end
@@ -118,7 +118,7 @@ end
 function modifier_sven_gods_strength_child_lua:OnCreated( kv )
 	self.gods_strength_damage = self:GetAbility():GetSpecialValueFor( "gods_strength_damage" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_sven_tal4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_sven_tal4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.gods_strength_damage = self.gods_strength_damage + 100
 	end

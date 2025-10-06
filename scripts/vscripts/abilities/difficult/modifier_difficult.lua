@@ -14,21 +14,46 @@ function modifier_difficult:RemoveOnDeath()
 	return false
 end
 
-function modifier_difficult:OnCreated()
+function modifier_difficult:OnCreated(kv)
+	if not IsServer() then return end
+	self:SetupRewards(kv)
+	self:SetHasCustomTransmitterData(true)
+end
+
+function modifier_difficult:SetupRewards(kv)
 	if not IsServer() then return end
 	local unit = self:GetParent()
 	local start_health = unit:GetMaxHealth()
-	if unit:GetUnitName() == "NYX" then
-		print(0.4 + (_G.Game_Difficulty * 2) / 10)
-		print((0.4 + (_G.Game_Difficulty * 2) / 10) * 100)
-		print(((0.4 + (_G.Game_Difficulty * 2) / 10) * 100)-100)
-		print((start_health * (((0.4 + (_G.Game_Difficulty * 2) / 10) * 100)-100)) / 100)
-		print(start_health + (start_health * (((0.4 + (_G.Game_Difficulty * 2) / 10) * 100)-100)) / 100)
-	end
-	local set_health = start_health + (start_health * (((0.4 + (_G.Game_Difficulty * 2) / 10) * 100)-100)) / 100
+	local min_damage = unit:GetBaseDamageMin()
+	local max_damage = unit:GetBaseDamageMax()
+	local base_armor = unit:GetPhysicalArmorBaseValue()
+	local base_resist = unit:GetBaseMagicalResistanceValue()
+	
+	unit:SetBaseDamageMin(min_damage * (0.5 + ((_G.Game_Difficulty - 1) * 0.3)))
+	unit:SetBaseDamageMax(max_damage * (0.5 + ((_G.Game_Difficulty - 1) * 0.3)))
+	unit:SetPhysicalArmorBaseValue(base_armor * (0.5 + ((_G.Game_Difficulty - 1) * 0.2)))
+	unit:SetBaseMagicalResistanceValue(math.min(99, base_resist * (0.5 + ((_G.Game_Difficulty - 1) * 0.1))))
+		
+	self.cd = 100 - ((1.25 - _G.Game_Difficulty / 20) * 100)
+	self.speed = (_G.Game_Difficulty - 1) * 5
+
+	-- local set_health = start_health + (start_health * (((0.4 + (_G.Game_Difficulty * 2) / 10) * 100)-100)) / 100
+	local set_health = start_health * (0.5 + ((_G.Game_Difficulty - 1) * 0.3))
 	unit:SetMaxHealth(set_health)
 	unit:SetBaseMaxHealth(set_health)
 	unit:SetHealth(set_health)	
+end
+
+function modifier_difficult:AddCustomTransmitterData()
+	return {
+		cd = self.cd,
+		speed = self.speed,
+	}
+end
+
+function modifier_difficult:HandleCustomTransmitterData(data)
+	self.cd = data.cd
+	self.speed = data.speed
 end
 
 function modifier_difficult:GetTexture()
@@ -37,31 +62,16 @@ end
 
 function modifier_difficult:DeclareFunctions()
     local funcs = {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		-- MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
     }
     return funcs
 end
 
-function modifier_difficult:GetModifierDamageOutgoing_Percentage()	 		
-	return ((0.4 + (self:GetStackCount() * 2) / 10) * 100) - 100  
-end
-
-function modifier_difficult:GetModifierIncomingDamage_Percentage()	 		
-	return ((1.6 - self:GetStackCount()/10) * 100) - 100
-end
-
--- function modifier_difficult:GetModifierExtraHealthPercentage()
-	-- return ((0.4 + (self:GetStackCount() * 2) / 10) * 100) - 100
--- end
-
 function modifier_difficult:GetModifierPercentageCooldown()
-	return 100 - ((1.25 - self:GetStackCount() / 20) * 100)
+	return self.cd
 end
 
 function modifier_difficult:GetModifierAttackSpeedBonus_Constant()	
-	return self:GetStackCount() * 5
+	return self.speed
 end

@@ -41,8 +41,8 @@ function modifier_vengefulspirit_nether_swap_lua:OnCreated( kv )
 	count = ability:GetSpecialValueFor("count")
 	duration = ability:GetSpecialValueFor("duration")
 	
-	if caster:FindAbilityByName("npc_dota_hero_vengefulspirit_4")~=nil then
-		if caster:FindAbilityByName("npc_dota_hero_vengefulspirit_4"):GetLevel() > 0 then 
+	if caster:FindAbilityByName("special_bonus_vengefulspirit_4")~=nil then
+		if caster:FindAbilityByName("special_bonus_vengefulspirit_4"):GetLevel() > 0 then 
 			count = count + 1
 		end
 	end

@@ -39,22 +39,36 @@ function modifier_lion_mana_aura:OnRefresh( kv )
 	self.aura_mana_loss_interval = self:GetAbility():GetSpecialValueFor( "aura_mana_loss_interval" )
 	self.slow = self:GetAbility():GetSpecialValueFor( "slow" )
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int7")	
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lion_2")	
 	if abil ~= nil and abil:GetLevel() > 0 then 
-		self.mana_loss = self.mana_loss * 2
+		self.mana_loss = self.mana_loss + 6
 	end
 end
 
 function modifier_lion_mana_aura:OnIntervalThink()
 self:OnRefresh()
-  local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, self.aura_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+	if not IsServer() then return end
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, self.aura_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
     if #enemies > 0 then
 		for _,unit in pairs(enemies) do
 			if unit:GetMana() >= self.mana_loss then
+				local abil = self:GetCaster():FindAbilityByName("special_bonus_lion_3")	
+				if abil ~= nil and abil:GetLevel() > 0 then 
+					local damageTable = {
+						victim = unit,
+						attacker = self:GetCaster(),
+						damage = self.mana_loss/10,
+						damage_type = DAMAGE_TYPE_MAGICAL,
+						ability = self:GetAbility(), --Optional.
+					}
+					ApplyDamage(damageTable)
+				end
+			
+			
 			unit:Script_ReduceMana(self.mana_loss/10, nil)	
-			if self.caster:GetMana() < self.caster:GetMaxMana() then
-				self.caster:SetMana(self.caster:GetMana() + (self.mana_loss/10)*#enemies)	
-			end
+				if self.caster:GetMana() < self.caster:GetMaxMana() then
+					self.caster:SetMana(self.caster:GetMana() + (self.mana_loss/10)*#enemies)	
+				end
 			end
 		end
 	end
@@ -111,14 +125,14 @@ function modifier_aura_slow_effect:IsDebuff() return true end
 
 function modifier_aura_slow_effect:DeclareFunctions()
 	return {
-	MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+	MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 end
 
-function modifier_aura_slow_effect:GetModifierMoveSpeedBonus_Constant()
-local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lion_int7")	
-		if abil ~= nil and abil:GetLevel() > 0 then 
-	return self:GetAbility():GetSpecialValueFor("slow") *(-1) *2
+function modifier_aura_slow_effect:GetModifierMoveSpeedBonus_Percentage()
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lion_5")	
+	if abil ~= nil and abil:GetLevel() > 0 then 
+		return (self:GetAbility():GetSpecialValueFor("slow") + 10) * (-1)
 	end
 	return self:GetAbility():GetSpecialValueFor("slow") *(-1)
 end

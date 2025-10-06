@@ -6,7 +6,7 @@ function antimage_mana_time_lua:OnSpellStart()
 	local radius = self:GetSpecialValueFor("radius")
 	local duration = self:GetSpecialValueFor( "duration" )
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_antimage_int4")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_antimage_int4")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		duration = self:GetSpecialValueFor( "duration" ) + 1
 	end

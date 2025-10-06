@@ -42,8 +42,8 @@ function disruptor_kinetic_field_lua:OnSpellStart()
 			"modifier_resist", -- modifier name
 			{ duration = duration } )
 			
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi2")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_disruptor_agi2"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi2")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi2"):GetLevel() > 0 then 
 				local strike = self:GetCaster():FindAbilityByName("disruptor_thunder_strike_lua")
 					if strike ~= nil and strike:GetLevel() > 0 then
 					enemy:AddNewModifier(

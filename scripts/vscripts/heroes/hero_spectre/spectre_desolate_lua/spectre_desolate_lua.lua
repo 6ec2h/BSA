@@ -26,7 +26,7 @@ end
 
 function modifier_spectre_desolate_lua:OnAttackLanded( params )
 	if IsServer() and (not self:GetParent():PassivesDisabled()) and params.attacker == self:GetParent() and self:GetParent():GetTeamNumber() ~= params.target:GetTeamNumber() then
-		local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_spectre_tal2")
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_spectre_tal2")
 		if talent ~= nil and talent:GetLevel() > 0 then
 			self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" ) + 5
 		else

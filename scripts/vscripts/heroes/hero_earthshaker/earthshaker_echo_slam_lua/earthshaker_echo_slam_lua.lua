@@ -61,7 +61,7 @@ function earthshaker_echo_slam_lua:OnSpellStart()
 			}
 			ApplyDamage(damageTable)
 			
-			local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_earthshaker_tal3")
+			local talent = self:GetCaster():FindAbilityByName("special_bonus_earthshaker_tal3")
 				if talent ~= nil and talent:GetLevel() > 0 then
 				enemy:AddNewModifier(
 						caster, -- player source

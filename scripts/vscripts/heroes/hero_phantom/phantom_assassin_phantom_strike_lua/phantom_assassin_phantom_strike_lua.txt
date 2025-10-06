@@ -22,18 +22,10 @@
 		"AbilityCooldown"				"10"
 		"AbilityManaCost"				"50 70 90 110"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_bonus"				"120 160 200 240"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"1.0 1.5 2.0 2.5"
-			}
-		}
+		"AbilityValues"
+	{
+		"crit_bonus"	"120 160 200 240"
+			"duration"	"1.0 1.5 2.0 2.5"
+	}
 	}
 }

@@ -22,7 +22,7 @@ function item_health_potion:OnSpellStart()
 			ParticleManager:ReleaseParticleIndex( nFXIndex )
 		end
 
-		self:SpendCharge()
+		self:SpendCharge(0)
 	end
 end
 

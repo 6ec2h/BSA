@@ -73,7 +73,9 @@ function modifier_creep_rocket_barrage:OnIntervalThink()
 end
 
 function modifier_creep_rocket_barrage:DeclareFunctions()
-	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
+	return {
+	MODIFIER_PROPERTY_OVERRIDE_ANIMATION
+	}
 end
 
 function modifier_creep_rocket_barrage:GetOverrideAnimation()

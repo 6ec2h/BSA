@@ -4,7 +4,7 @@ LinkLuaModifier( "modifier_silencer_last_word_lua", "heroes/hero_silencer/silenc
 
 
 function silencer_last_word_lua:GetAOERadius()
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_silencer_int3")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_silencer_int3")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		return self:GetSpecialValueFor("radius")
 	end
@@ -12,7 +12,7 @@ function silencer_last_word_lua:GetAOERadius()
 end
 
 function silencer_last_word_lua:GetBehavior()
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_silencer_int3")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_silencer_int3")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		return  DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
 	end
@@ -24,7 +24,7 @@ function silencer_last_word_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local duration = self:GetSpecialValueFor( "debuff_duration" )
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_silencer_int3")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_silencer_int3")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		local radius = self:GetSpecialValueFor("radius")
 		local target_point = self:GetCursorPosition()

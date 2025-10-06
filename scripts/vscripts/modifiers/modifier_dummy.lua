@@ -4,10 +4,10 @@ function modifier_dummy:IsHidden()
     return true
 end
 
-
 function modifier_dummy:IsPurgable()
     return false
 end
+
 function modifier_dummy:CheckState()
 	local state = {
 		[MODIFIER_STATE_INVULNERABLE] = true,

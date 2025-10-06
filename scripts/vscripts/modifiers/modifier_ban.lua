@@ -4,10 +4,15 @@ function modifier_ban:IsHidden()
     return true
 end
 
-
 function modifier_ban:IsPurgable()
     return false
 end
+
+function modifier_ban:OnCreated()
+    self.pid = self:GetParent():GetPlayerOwnerID()
+	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"ban",{})
+end
+
 function modifier_ban:CheckState()
 	local state = {
 		[MODIFIER_STATE_INVULNERABLE] = true,

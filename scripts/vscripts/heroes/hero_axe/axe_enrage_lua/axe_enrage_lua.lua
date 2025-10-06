@@ -23,7 +23,7 @@ function axe_enrage_lua:OnSpellStart()
 		"modifier_axe_enrage_lua",
 		{ duration = bonus_duration }
 	)
-	if HasTalent(self:GetCaster(),"npc_dota_hero_axe_4") then
+	if HasTalent(self:GetCaster(),"special_bonus_axe_4") then
 			self:GetCaster():AddNewModifier(
 			self:GetCaster(),
 			self,

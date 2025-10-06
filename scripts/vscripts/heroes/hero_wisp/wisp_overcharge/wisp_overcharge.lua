@@ -47,7 +47,6 @@ function modifier_wisp_overcharge_lua:OnDestroy()
 end
 
 function modifier_wisp_overcharge_lua:OnIntervalThink()
-
 	if not self:GetAbility() or self:GetAbility():IsNull() then 
 			StopSoundEvent("Hero_Wisp.Overcharge", self:GetCaster()) 
 			self:Destroy() 
@@ -58,20 +57,23 @@ function modifier_wisp_overcharge_lua:OnIntervalThink()
 	local hAbility = self:GetAbility()
 	if not self:GetCaster():IsAlive() then return end
 		
-		if self:GetCaster():GetMana() >= hAbility:GetManaCost(-1) then
-			local current_health 	= self:GetCaster():GetHealth() 
-			local health_drain 		= current_health * hp_loss *0.01
-			
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_str10")~=nil then
-				if self:GetCaster():FindAbilityByName("npc_dota_hero_wisp_str10"):GetLevel() > 0 then 
-					health_drain = health_drain /2
-				end
+	if self:GetCaster():GetMana() >= hAbility:GetManaCost(-1) then
+		local current_health = self:GetCaster():GetHealth() 
+		local health_drain = current_health * hp_loss *0.01
+		
+		if self:GetCaster():FindAbilityByName("special_bonus_wisp_str10")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_wisp_str10"):GetLevel() > 0 then 
+				health_drain = health_drain /2
 			end
-			
-			self:GetCaster():ModifyHealth(current_health - health_drain, self.ability, true, 0)
-			self:GetCaster():ReduceMana(self.manacost)
+		end
+		if current_health - health_drain > 1 then 
+			self:GetCaster():ModifyHealth(current_health - health_drain, hAbility, false, 0)
 		else
 			hAbility:ToggleAbility()
+		end
+		self:GetCaster():Script_ReduceMana(self.manacost, nil)
+	else
+		hAbility:ToggleAbility()
 	end
 end
 
@@ -84,7 +86,7 @@ function modifier_wisp_overcharge_lua:IsAuraActiveOnDeath()
 end
 
 function modifier_wisp_overcharge_lua:GetAuraRadius()
-	return 700
+	return FIND_UNITS_EVERYWHERE
 end
 
 function modifier_wisp_overcharge_lua:GetAuraSearchTeam()

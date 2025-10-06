@@ -11,17 +11,18 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"bonus_health_regen"			
 			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_health_regen"			"2 4 6 8"
+				"value"						"2 4 6 8"
+				"LinkedSpecialBonus"		"special_bonus_dragon_knight_7"
 			}
-			"02"
+			"bonus_armor"					
 			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_armor"					"0.5 0.7 0.9 1.1"
+				"value"						"0.6 0.8 1.0 1.2"
+				"LinkedSpecialBonus"		"special_bonus_dragon_knight_7"
+				"LinkedSpecialBonusField"		"value2"
 			}
 		}
 	}

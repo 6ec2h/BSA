@@ -53,6 +53,12 @@ function ogre_magi_ignite_lua:OnProjectileHit( target, location )
 	if not target then return end
 	if target:TriggerSpellAbsorb( self ) then return end
 	local duration = self:GetSpecialValueFor( "duration" )
+	
+		local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_8")
+	if ability ~= nil and ability:GetLevel() > 0 then 
+		duration = duration + 3
+	end
+	
 	target:AddNewModifier(
 		self:GetCaster(), -- player source
 		self, -- ability source
@@ -89,7 +95,7 @@ function modifier_ogre_magi_ignite_lua:OnCreated( kv )
 	if not IsServer() then return end
 	local interval = 1
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ogre_magi_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		damage = damage + 20
 	end
@@ -108,7 +114,7 @@ function modifier_ogre_magi_ignite_lua:OnRefresh( kv )
 	self.slow = self:GetAbility():GetSpecialValueFor( "slow_movement_speed_pct" )
 	local damage = self:GetAbility():GetSpecialValueFor( "burn_damage" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ogre_magi_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		damage = damage + 20
 	end

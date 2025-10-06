@@ -24,5 +24,5 @@ function modifier_as_30:DeclareFunctions()
 end
 
 function modifier_as_30:GetModifierAttackSpeedBonus_Constant()
-	return 30
+	return 15
 end

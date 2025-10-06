@@ -27,15 +27,17 @@ end
 function modifier_silencer_last_word_lua:OnCreated( kv )
 	-- references
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+
+
+	if not IsServer() then return end
+	
+		self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_silencer_int2")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_silencer_int2")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 100
 	end
-
-	if not IsServer() then return end
 
 	-- Start interval
 	self:StartIntervalThink( kv.duration )

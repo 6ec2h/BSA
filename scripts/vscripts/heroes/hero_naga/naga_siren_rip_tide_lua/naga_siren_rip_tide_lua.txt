@@ -16,35 +16,13 @@
 
 		"AbilityCastPoint"				"0 0 0 0"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stacks"					 "4"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-1 -2 -3 -4"
-                "LinkedSpecialBonus"								"npc_dota_hero_naga_siren_1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"30 40 50 60"
-                "LinkedSpecialBonus"								"npc_dota_hero_naga_siren_5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.0"
-			}
+			"stacks"	"4"
+			"armor_reduction"			"-1 -2 -3 -4"
+			"damage"					"30 40 50 60"
+			"radius"	"300"
+			"duration"	"4.0"
 		}
 	}
 }

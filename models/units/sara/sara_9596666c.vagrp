@@ -1,0 +1,764 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	m_nFlags = 0
+	m_name = ""
+	m_localHAnimArray = 
+	[
+		resource:"models/units/sara/9596666c/stand.vanim",
+		resource:"models/units/sara/9596666c/stand_2.vanim",
+		resource:"models/units/sara/9596666c/walk.vanim",
+		resource:"models/units/sara/9596666c/stand_ready.vanim",
+		resource:"models/units/sara/9596666c/attack.vanim",
+		resource:"models/units/sara/9596666c/attack_2.vanim",
+		resource:"models/units/sara/9596666c/attack_slam.vanim",
+		resource:"models/units/sara/9596666c/spell.vanim",
+		resource:"models/units/sara/9596666c/death.vanim",
+		resource:"models/units/sara/9596666c/dissipate.vanim",
+	]
+	m_includedGroupArray = 
+	[
+	]
+	m_directHSeqGroup = resource:""
+	m_decodeKey = 
+	{
+		m_name = ""
+		m_boneArray = 
+		[
+			
+			{
+				m_name = "bone_null"
+				m_parent = -1
+				m_pos = 
+				[
+					0.140147,
+					-6.818750,
+					139.567001,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.707107,
+					0.707107,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Root"
+				m_parent = -1
+				m_pos = 
+				[
+					-2.761850,
+					-0.107719,
+					72.046997,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.707107,
+					0.707107,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Chest"
+				m_parent = 1
+				m_pos = 
+				[
+					0.176783,
+					-0.561370,
+					23.888306,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Arm_L1"
+				m_parent = 2
+				m_pos = 
+				[
+					10.397806,
+					0.758589,
+					18.553787,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Arm_L2"
+				m_parent = 3
+				m_pos = 
+				[
+					2.814182,
+					-0.232340,
+					-23.021896,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Hand_L"
+				m_parent = 4
+				m_pos = 
+				[
+					1.941477,
+					0.154560,
+					-14.818466,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Arm_R1"
+				m_parent = 2
+				m_pos = 
+				[
+					-11.466580,
+					0.715590,
+					18.134018,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Arm_R2"
+				m_parent = 6
+				m_pos = 
+				[
+					-1.583084,
+					-0.360960,
+					-22.773727,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Hand_R"
+				m_parent = 7
+				m_pos = 
+				[
+					-2.967789,
+					0.155791,
+					-16.222672,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Sword"
+				m_parent = 8
+				m_pos = 
+				[
+					0.311481,
+					0.153830,
+					-3.247299,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Head"
+				m_parent = 2
+				m_pos = 
+				[
+					-0.162292,
+					3.396480,
+					31.139694,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Polytail_B1"
+				m_parent = 10
+				m_pos = 
+				[
+					-0.370442,
+					3.633420,
+					7.049988,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Polytail_B2"
+				m_parent = 11
+				m_pos = 
+				[
+					0.731964,
+					6.746719,
+					-30.718971,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Polytail_B3"
+				m_parent = 12
+				m_pos = 
+				[
+					-0.332203,
+					3.184200,
+					-27.390015,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Pelvis"
+				m_parent = 1
+				m_pos = 
+				[
+					-0.217342,
+					-2.741573,
+					22.185196,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Leg_L1"
+				m_parent = 14
+				m_pos = 
+				[
+					9.108510,
+					-2.370627,
+					-10.415604,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Leg_L2"
+				m_parent = 15
+				m_pos = 
+				[
+					-2.273363,
+					5.118690,
+					-40.936543,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Foot_L"
+				m_parent = 16
+				m_pos = 
+				[
+					0.589417,
+					2.965020,
+					-32.527878,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Leg_R1"
+				m_parent = 14
+				m_pos = 
+				[
+					0.062951,
+					-2.011967,
+					-10.170593,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Leg_R2"
+				m_parent = 18
+				m_pos = 
+				[
+					-6.907218,
+					2.747129,
+					-41.263443,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+			
+			{
+				m_name = "Bone_Foot_R"
+				m_parent = 19
+				m_pos = 
+				[
+					-0.755950,
+					1.329611,
+					-32.688156,
+				]
+				m_quat = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					1.000000,
+				]
+				m_qAlignment = 
+				[
+					0.000000,
+					0.000000,
+					0.000000,
+					0.000000,
+				]
+				m_flags = 64
+			},
+		]
+		m_userArray = 
+		[
+		]
+		m_morphArray = 
+		[
+		]
+		m_nChannelElements = 42
+		m_dataChannelArray = 
+		[
+			
+			{
+				m_szChannelClass = "BoneChannel"
+				m_szVariableName = "Position"
+				m_nFlags = 0
+				m_nType = 3
+				m_szGrouping = ""
+				m_szDescription = ""
+				m_szElementNameArray = 
+				[
+					"bone_null",
+					"Bone_Root",
+					"Bone_Chest",
+					"Bone_Arm_L1",
+					"Bone_Arm_L2",
+					"Bone_Hand_L",
+					"Bone_Arm_R1",
+					"Bone_Arm_R2",
+					"Bone_Hand_R",
+					"Bone_Sword",
+					"Bone_Head",
+					"Bone_Polytail_B1",
+					"Bone_Polytail_B2",
+					"Bone_Polytail_B3",
+					"Bone_Pelvis",
+					"Bone_Leg_L1",
+					"Bone_Leg_L2",
+					"Bone_Foot_L",
+					"Bone_Leg_R1",
+					"Bone_Leg_R2",
+					"Bone_Foot_R",
+				]
+				m_nElementIndexArray = 
+				[
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15,
+					16,
+					17,
+					18,
+					19,
+					20,
+				]
+				m_nElementMaskArray = 
+				[
+					1,
+					2,
+					8,
+					16,
+					64,
+					128,
+					512,
+					1024,
+					4096,
+					8192,
+					32768,
+					65536,
+					262144,
+					524288,
+					2097152,
+					4194304,
+					16777216,
+					33554432,
+					134217728,
+					268435456,
+					1073741824,
+				]
+			},
+			
+			{
+				m_szChannelClass = "BoneChannel"
+				m_szVariableName = "Angle"
+				m_nFlags = 0
+				m_nType = 4
+				m_szGrouping = ""
+				m_szDescription = ""
+				m_szElementNameArray = 
+				[
+					"bone_null",
+					"Bone_Root",
+					"Bone_Chest",
+					"Bone_Arm_L1",
+					"Bone_Arm_L2",
+					"Bone_Hand_L",
+					"Bone_Arm_R1",
+					"Bone_Arm_R2",
+					"Bone_Hand_R",
+					"Bone_Sword",
+					"Bone_Head",
+					"Bone_Polytail_B1",
+					"Bone_Polytail_B2",
+					"Bone_Polytail_B3",
+					"Bone_Pelvis",
+					"Bone_Leg_L1",
+					"Bone_Leg_L2",
+					"Bone_Foot_L",
+					"Bone_Leg_R1",
+					"Bone_Leg_R2",
+					"Bone_Foot_R",
+				]
+				m_nElementIndexArray = 
+				[
+					21,
+					22,
+					23,
+					24,
+					25,
+					26,
+					27,
+					28,
+					29,
+					30,
+					31,
+					32,
+					33,
+					34,
+					35,
+					36,
+					37,
+					38,
+					39,
+					40,
+					41,
+				]
+				m_nElementMaskArray = 
+				[
+					1,
+					2,
+					8,
+					16,
+					64,
+					128,
+					512,
+					1024,
+					4096,
+					8192,
+					32768,
+					65536,
+					262144,
+					524288,
+					2097152,
+					4194304,
+					16777216,
+					33554432,
+					134217728,
+					268435456,
+					1073741824,
+				]
+			},
+		]
+	}
+	m_retarget = 
+	{
+		m_bEnableRetarget = 0
+		m_nRetargetStyle = 0
+		m_element = 
+		[
+		]
+		m_chain = 
+		[
+		]
+		m_replicated = 
+		[
+		]
+	}
+	m_szScripts = 
+	[
+	]
+}

@@ -10,7 +10,7 @@ function brewmaster_thunder_clap_lua:OnSpellStart()
     local movement_slow = self:GetSpecialValueFor("movement_slow")
     local attack_speed_slow = self:GetSpecialValueFor("attack_speed_slow")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_brewmaster_1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_brewmaster_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		damage = damage + 100
 	end

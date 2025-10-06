@@ -20,53 +20,18 @@
 		"AbilityCooldown"				"18 16 14 12" 
 		"AbilityManaCost"				"70 80 90 100" 
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"launch_radius"		"1000"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"slow_radius"		"250"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"800"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"100 180 260 340"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"slow_duration"		"1.0"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"movement_speed_pct"	"30"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"shot_vision"		"300"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"vision_duration"		"3.34"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_radius"		"700"
-			}
+			"launch_radius"		"1000"
+			"slow_radius"		"250"
+			"speed"				"800"
+			"damage"			"100 180 260 340"
+			"slow_duration"		"1.0"
+			"movement_speed_pct"	"30"
+			"shot_vision"		"300"
+			"vision_duration"		"3.34"
+			"scepter_radius"		"700"
+			"ExtraIntelligenceDamage"			"0.2"
 		}
 	}
 }

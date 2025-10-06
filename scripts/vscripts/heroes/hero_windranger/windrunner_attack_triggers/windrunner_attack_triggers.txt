@@ -7,19 +7,11 @@
         "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityTextureName" 			"windrunner_ult"
         "MaxLevel"                      "4"
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"				"FIELD_INTEGER"
-                "chance"                "12 14 16 18"
-            }
-			"02"
-            {
-                "var_type"				"FIELD_INTEGER"
-                "mana_prc"              "10 20 30 40"
-            }
-        }
+        "AbilityValues"
+	{
+		"chance"	"12 14 16 18"
+			"mana_prc"	"10 20 30 40"
+	}
         "Modifiers"
         {
             "modifier_windrunner_attack_triggers"

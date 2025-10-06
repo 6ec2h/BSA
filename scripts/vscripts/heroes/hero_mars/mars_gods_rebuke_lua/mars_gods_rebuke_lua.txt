@@ -21,43 +21,15 @@
 		"AbilityCooldown"				"18 16 14 12"
 		"AbilityManaCost"				"100 120 140 160"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_mult"					"130 160 190 220"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"angle"						"140"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"500"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"knockback_duration"		"0.3"
-			}			
-			"07"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"knockback_distance"		"150"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"activity_duration"			"2"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_vs_heroes"	"25"
-			}
-		}
+		"AbilityValues"
+	{
+		"crit_mult"	"130 160 190 220"
+			"angle"	"140"
+			"radius"	"500"
+			"knockback_duration"	"0.3"			
+			"knockback_distance"	"150"
+			"activity_duration"	"2"
+			"bonus_damage_vs_heroes"	"25"
+	}
 	}
 }

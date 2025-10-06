@@ -10,18 +10,10 @@
 	
 		"AbilityCastRange"				"400"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"              	"FIELD_INTEGER"
-				"radius"    				"400"
-			}
-			"02"
-			{
-				"var_type"             	 	"FIELD_INTEGER"
-				"damage_per_stack"          "1 2 3 4"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"400"
+			"damage_per_stack"	"1 2 3 4"
+	}
 	}
 }

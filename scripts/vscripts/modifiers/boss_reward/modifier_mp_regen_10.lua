@@ -24,5 +24,5 @@ function modifier_mp_regen_10:DeclareFunctions()
 end
 
 function modifier_mp_regen_10:GetModifierConstantManaRegen()
-	return 10
+	return 5
 end

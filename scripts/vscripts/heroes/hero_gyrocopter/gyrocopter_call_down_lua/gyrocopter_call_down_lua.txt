@@ -7,7 +7,7 @@
 		"AbilityTextureName"			"gyrocopter_call_down"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
@@ -22,53 +22,17 @@
 		
 		"AbilityManaCost"				"125 125 125"
 		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_duration_first"		"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_duration_second"		"3"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_first"				"250 350 450"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_second"				"350 450 550"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_first"				"30"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_second"				"60"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"500"
-			}			
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range_scepter"				"0"
-			}
-			"10"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"missile_delay_tooltip"		"2"
-			}
-		}
+		"AbilityValues"
+	{
+		"slow_duration_first"	"2"
+			"slow_duration_second"	"3"
+			"damage_first"	"250 350 450"
+			"damage_second"	"350 450 550"
+			"slow_first"	"30"
+			"slow_second"	"60"
+			"radius"	"500"			
+			"range_scepter"	"0"
+			"missile_delay_tooltip"	"2"
+	}
 	}
 }

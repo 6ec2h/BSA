@@ -72,8 +72,8 @@ function modifier_bristleback_quill_spray_lua:DeclareFunctions()
 end
 
 function modifier_bristleback_quill_spray_lua:GetModifierPhysicalArmorBonus()
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_agi8")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_agi8"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi8")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi8"):GetLevel() > 0 then 
 			return -self:GetStackCount()/2
 		end
 	end

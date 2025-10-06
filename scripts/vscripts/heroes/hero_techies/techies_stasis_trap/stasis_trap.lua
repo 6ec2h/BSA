@@ -92,7 +92,7 @@ function modifier_stasis_trap:OnDestroy()
 			end
 		)
 		self.duration = self:GetAbility():GetSpecialValueFor("root_duration")
-		local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_techies_int1")
+		local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_techies_int1")
 			if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			self.duration = self.duration * 2
 		end	
@@ -139,12 +139,12 @@ function modifier_stasis_trap_root_pfx:OnCreated()
 	self.debuff_armor = self:GetAbility():GetSpecialValueFor("debuff_armor")
 	self.debuff_resist = self:GetAbility():GetSpecialValueFor("debuff_resist")
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_techies_int1")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_techies_int1")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.debuff_armor = selfdebuff_armordebuff * 2
 	end	
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_techies_int1")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_techies_int1")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.debuff_resist = self.debuff_resist * 2
 	end	

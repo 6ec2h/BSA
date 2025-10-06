@@ -6,7 +6,7 @@ function legion_press_the_attack:IsHiddenWhenStolen()
 end
 
 function legion_press_the_attack:GetAOERadius()
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_legion_commander_str10")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_legion_commander_str10")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			return self:GetSpecialValueFor("radius")
 		end
@@ -14,7 +14,7 @@ function legion_press_the_attack:GetAOERadius()
 end
 
 function legion_press_the_attack:GetBehavior()
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_legion_commander_str10")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_legion_commander_str10")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		return  DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
 	end
@@ -25,7 +25,7 @@ function legion_press_the_attack:OnSpellStart()
 	local caster = self:GetCaster()
 	local ability = self
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_legion_commander_str10")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_legion_commander_str10")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		
 		local target_point = self:GetCursorPosition()

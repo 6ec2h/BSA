@@ -24,7 +24,7 @@ end
 
 function modifier_meepo_ransack_lua:OnRefresh( kv )
 	self.steal = self:GetAbility():GetSpecialValueFor( "steal" )	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_meepo_int3")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_meepo_int3")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self.steal = self:GetAbility():GetSpecialValueFor( "steal" ) * 2
 	end

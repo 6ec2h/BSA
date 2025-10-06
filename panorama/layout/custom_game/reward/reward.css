@@ -1,0 +1,123 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height: 100%;
+	width: 100%;
+}
+
+.ss_main_container
+{
+	horizontal-align:center;
+	vertical-align: center;
+}
+
+.ss_select_box
+{
+	flow-children:down;
+}
+
+.ss_abi
+{
+	width: 300px;
+	height: 300px;
+}
+
+.ss_select_box_cont
+{
+	margin-top: 34px;
+	flow-children:right;
+	horizontal-align:center;
+	vertical-align: center;
+}
+
+.ss_select_box_label
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 0px;
+	font-size: 25px;
+	color: #c8c8c8;
+	text-shadow: 2px 2px 4px 3.0 #000000b0;
+	background-image: url("s2r://panorama/images/custom_game/game_info/213_png.vtex");
+}
+
+#ss_select_box_1
+{
+	margin-left: 60px;
+	transition: transform 0.2s ease-in-out 0.0s;
+	transform: scale3d(0.9,0.9,1.0);
+	box-shadow:2px 2px 4px 3.0 #000000b0;
+	border: 3px solid #403004;
+}
+
+#ss_select_box_2
+{
+	margin-left: 60px;
+	transition: transform 0.2s ease-in-out 0.0s;
+	transform: scale3d(0.9,0.9,1.0);
+	box-shadow:2px 2px 4px 3.0 #000000b0;
+	border: 3px solid #403004;
+}
+
+#ss_select_box_3
+{
+	margin-left: 60px;
+	transition: transform 0.2s ease-in-out 0.0s;
+	transform: scale3d(0.9,0.9,1.0);
+	box-shadow:2px 2px 4px 3.0 #000000b0;
+	border: 3px solid #403004;
+}
+
+#ss_select_box_1:hover
+{
+	transform: scale3d(1.0,1.0,1.0);
+	sound: "ui_select_arrow";
+	border: 3px solid #9e7606;
+}
+
+#ss_select_box_2:hover
+{
+	transform: scale3d(1.0,1.0,1.0);
+	sound: "ui_select_arrow";
+	border: 3px solid #9e7606;
+}
+
+#ss_select_box_3:hover
+{
+	transform: scale3d(1.0,1.0,1.0);
+	sound: "ui_select_arrow";
+	border: 3px solid #9e7606;
+}
+
+.show_reward_notification
+{
+	horizontal-align:center;
+	vertical-align: top;
+	margin-top: 250px;
+	flow-children: right;
+}
+
+.image_not
+{
+	height: 50px;
+	width: 50px;
+}
+
+.not_container
+{
+	flow-children: right;
+	padding:10px;
+	align: center center;
+}
+
+.text_not
+{
+	align: center center;
+	margin-left: 5px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 2px 3.0 #000000b0;
+	font-size: 24px;
+}
+

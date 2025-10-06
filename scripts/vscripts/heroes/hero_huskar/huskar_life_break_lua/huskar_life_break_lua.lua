@@ -1,5 +1,6 @@
 LinkLuaModifier( "modifier_huskar_life_break_lua", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-LinkLuaModifier( "modifier_huskar_life_break_lua_debuff", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_huskar_life_break_lua_debuff_arg", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_huskar_life_break_lua_debuff_arg_arg", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_NONE )
 
 huskar_life_break_lua = class({})
 
@@ -36,9 +37,9 @@ function modifier_huskar_life_break_lua:OnCreated(data)
 	self.close_distance = 80
 	self.far_distance = 1450
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_huskar_tal_3")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.damage_pct = self.damage_pct + 25
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_3")
+	if talent and talent:GetLevel() > 0 then 
+		self.damage_pct = self.damage_pct + 20
 	end
 	
 	if IsServer() then
@@ -72,13 +73,29 @@ function modifier_huskar_life_break_lua:OnDestroy()
 			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 		}
 		ApplyDamage(damageTable)
+		
 		damageTable.victim = self:GetCaster()
 		damageTable.damage = damage
 		damageTable.damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
-		
 		ApplyDamage(damageTable)
 
-		self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_huskar_life_break_lua_debuff", { duration = self.duraiton })
+		self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_huskar_life_break_lua_debuff_arg", { duration = self.duraiton })
+		
+		
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_6")
+		if talent and talent:GetLevel() > 0 then 
+			self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_huskar_life_break_lua_debuff_arg_arg", { duration = self.duraiton })
+		end
+	
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_5")
+		if talent and talent:GetLevel() > 0 then 
+			local ability = self:GetCaster():FindAbilityByName("huskar_burning_spear_lua")
+			if ability and ability:GetLevel() > 0 then
+				for i =1, 10 do
+					self.target:AddNewModifier(self:GetCaster(), ability, "modifier_huskar_burning_spear_lua", { duration = ability:GetDuration()})
+				end
+			end
+		end
 		self:PlayEffects()
 	end
 end
@@ -136,53 +153,96 @@ end
 
 ----------------------------------------------------------------------------------------
 
-modifier_huskar_life_break_lua_debuff = class({})
+modifier_huskar_life_break_lua_debuff_arg = class({})
 
-function modifier_huskar_life_break_lua_debuff:IsHidden()
+function modifier_huskar_life_break_lua_debuff_arg:IsHidden()
 	return false
 end
 
-function modifier_huskar_life_break_lua_debuff:IsDebuff()
+function modifier_huskar_life_break_lua_debuff_arg:IsDebuff()
 	return true
 end
 
-function modifier_huskar_life_break_lua_debuff:IsStunDebuff()
+function modifier_huskar_life_break_lua_debuff_arg:IsStunDebuff()
 	return false
 end
 
-function modifier_huskar_life_break_lua_debuff:IsPurgable()
+function modifier_huskar_life_break_lua_debuff_arg:IsPurgable()
 	return true
 end
 
-function modifier_huskar_life_break_lua_debuff:OnCreated( kv )
+function modifier_huskar_life_break_lua_debuff_arg:OnCreated( kv )
 	self.slow = self:GetAbility():GetSpecialValueFor( "movespeed" )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_huskar_tal_3")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.slow = self.slow + 25
-	end
 end
 
-function modifier_huskar_life_break_lua_debuff:OnRefresh( kv )
+function modifier_huskar_life_break_lua_debuff_arg:OnRefresh( kv )
 	
 end
 
-function modifier_huskar_life_break_lua_debuff:OnRemoved()
+function modifier_huskar_life_break_lua_debuff_arg:OnRemoved()
 end
 
-function modifier_huskar_life_break_lua_debuff:OnDestroy()
+function modifier_huskar_life_break_lua_debuff_arg:OnDestroy()
 end
 
-function modifier_huskar_life_break_lua_debuff:DeclareFunctions()
+function modifier_huskar_life_break_lua_debuff_arg:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
-
 	return funcs
 end
-function modifier_huskar_life_break_lua_debuff:GetModifierMoveSpeedBonus_Percentage()
+
+function modifier_huskar_life_break_lua_debuff_arg:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow*(-1)
 end
 
-function modifier_huskar_life_break_lua_debuff:GetStatusEffectName()
+function modifier_huskar_life_break_lua_debuff_arg:GetStatusEffectName()
 	return "particles/status_fx/status_effect_huskar_lifebreak.vpcf"
+end
+
+
+----------------------------------------------------------
+modifier_axe_berserkers_call_lua_debuff = class({})
+
+function modifier_axe_berserkers_call_lua_debuff:IsHidden()
+	return false
+end
+
+function modifier_axe_berserkers_call_lua_debuff:IsDebuff()
+	return true
+end
+
+function modifier_axe_berserkers_call_lua_debuff:IsStunDebuff()
+	return false
+end
+
+function modifier_axe_berserkers_call_lua_debuff:IsPurgable()
+	return false
+end
+
+function modifier_axe_berserkers_call_lua_debuff:OnCreated( kv )
+	if IsServer() then
+		self:GetParent():SetForceAttackTarget( self:GetCaster() )
+		self:GetParent():MoveToTargetToAttack( self:GetCaster() )
+	end
+end
+
+function modifier_axe_berserkers_call_lua_debuff:OnRemoved()
+	if IsServer() then
+		self:GetParent():SetForceAttackTarget( nil )
+	end
+end
+
+function modifier_axe_berserkers_call_lua_debuff:OnDestroy()
+end
+
+function modifier_axe_berserkers_call_lua_debuff:CheckState()
+	local state = {
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+	}
+	return state
+end
+
+function modifier_axe_berserkers_call_lua_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_beserkers_call.vpcf"
 end

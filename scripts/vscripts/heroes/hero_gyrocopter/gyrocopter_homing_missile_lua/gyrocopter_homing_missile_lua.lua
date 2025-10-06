@@ -66,8 +66,8 @@ function gyrocopter_homing_missile_lua:OnSpellStart()
 	-- play effects
 --	self:PlayEffects1( target )
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi2")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi2"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi2")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi2"):GetLevel() > 0 then 
 			local scepter_radius = self:GetSpecialValueFor( "scepter_radius" )
 			
 			-- find nearby enemies

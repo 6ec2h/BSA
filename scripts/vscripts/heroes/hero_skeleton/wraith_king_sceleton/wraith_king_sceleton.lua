@@ -32,7 +32,7 @@ end
 
 function modifier_wraith_king_sceleton:GetModifierConstantHealthRegen(params)
 	silencer_bonus = self:GetAbility():GetSpecialValueFor( "stack_bonus" )
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_skeleton_king_tal1")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_skeleton_king_tal1")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			silencer_bonus = self:GetAbility():GetSpecialValueFor( "stack_bonus" ) + 0.2
 		end

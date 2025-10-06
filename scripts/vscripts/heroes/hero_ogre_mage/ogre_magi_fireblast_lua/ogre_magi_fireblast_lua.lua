@@ -6,6 +6,15 @@ function ogre_magi_fireblast_lua:GetIntrinsicModifierName()
 	return "modifier_ogre_magi_fireblast_lua_talent"
 end
 
+
+function ogre_magi_fireblast_lua:GetCooldown( level )
+	local tal = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_5")
+	if tal ~= nil and tal:GetLevel() > 0 then 
+		return self.BaseClass.GetCooldown( self, level ) - 2
+	end
+	return self.BaseClass.GetCooldown( self, level )
+end
+
 function ogre_magi_fireblast_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -17,9 +26,9 @@ function ogre_magi_fireblast_lua:OnSpellStart()
 	local duration = self:GetSpecialValueFor( "stun_duration" )
 	local damage = self:GetSpecialValueFor( "fireblast_damage" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ogre_magi_1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
-		damage = damage + 80
+		damage = damage + 240
 	end
 
 	local damageTable = {
@@ -101,7 +110,7 @@ function modifier_ogre_magi_fireblast_lua_talent:OnAttackLanded( params )
 	if params.target:GetTeamNumber()==params.attacker:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ogre_magi_4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		if RandomInt(1,100) <= 15 then
 			local damage = self:GetAbility():GetSpecialValueFor( "fireblast_damage" )

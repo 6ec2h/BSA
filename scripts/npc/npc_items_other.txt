@@ -2,19 +2,19 @@
 {
 "item_tombstone"
 	{
-		"AbilityName"					"item_tombstone"
+		"AbilityName"					"item_datadriven" // "item_tombstone"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"Model"							"models/props_gameplay/tombstoneb01.vmdl"
 		"PingOverrideText"				"DOTA_Chat_Tombstone_Pinged"
 		"AbilityCastRange"				"150"
 		"AbilityCastPoint"				"0.0"
-		"AbilityChannelTime"			"7.0"	
+		//"AbilityChannelTime"			"7.0"	
 		"ItemPurchasable"				"0"
 		"ItemStackable"					"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"1"
-		"ItemCastOnPickup"				"1"
+		//"ItemCastOnPickup"				"1"
 		"ItemKillable"					"0"
 	}
 	
@@ -206,8 +206,6 @@
 		"ItemPurchasable"				"0"
 		"ItemSellable"					"0"
 		"ItemKillable"					"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"AllowedInBackpack"				"0"
 	}
 
 "item_aegis_lua"
@@ -229,37 +227,37 @@
 		"ItemPermanent"					"0"		
 	}
 	
-"item_swap_lua"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"       
-        "BaseClass"						"item_lua"
-        "AbilityTextureName" 		    "swap"
-		"ScriptFile"					"items/item_swap_lua"
-		"ItemCost"						"1000"
-		"ItemShopTags"					"consumable"
-		"ItemQuality"					"consumable"
-		"ItemPurchasable"				"1"
-		"ItemSellable"		    		"0"
-		"ItemStackable"					"0"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemPermanent"					"0"
-	}
+//"item_swap_lua"
+//{
+//	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"       
+//      "BaseClass"						"item_lua"
+//      "AbilityTextureName" 		    "swap"
+//		"ScriptFile"					"items/item_swap_lua"
+//		"ItemCost"						"1000"
+//		"ItemShopTags"					"consumable"
+//		"ItemQuality"					"consumable"
+//		"ItemPurchasable"				"1"
+//		"ItemSellable"		    		"0"
+//		"ItemStackable"					"0"
+//		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+//		"ItemPermanent"					"0"
+//	}
 	
-"item_swap2_lua"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"       
-        "BaseClass"						"item_lua"
-        "AbilityTextureName" 		    "swap2"
-		"ScriptFile"					"items/item_swap2_lua"
-		"ItemCost"						"1000"
-		"ItemShopTags"					"consumable"
-		"ItemQuality"					"consumable"
-		"ItemPurchasable"				"1"
-		"ItemSellable"		    		"0"
-		"ItemStackable"					"0"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemPermanent"					"0"
-	}
+//"item_swap2_lua"
+//	{
+//		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"       
+//       "BaseClass"						"item_lua"
+//        "AbilityTextureName" 		    "swap2"
+//		"ScriptFile"					"items/item_swap2_lua"
+//		"ItemCost"						"1000"
+//		"ItemShopTags"					"consumable"
+//		"ItemQuality"					"consumable"
+//		"ItemPurchasable"				"1"
+//		"ItemSellable"		    		"0"
+//		"ItemStackable"					"0"
+//		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+//		"ItemPermanent"					"0"
+//	}
 
 "item_dado_stone"
 	{
@@ -309,6 +307,22 @@
 		"WorldDropSound"				"Item.DropGemWorld"
 	}		
 
+"item_fiddlesticks_stone"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"fiddlesticks"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/gameplay/orb_passage.vmdl"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemDroppable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"UIPickupSound"					"Item.PickUpGemShop"
+		"UIDropSound"					"Item.DropGemShop"
+		"WorldDropSound"				"Item.DropGemWorld"
+	}	
+	
 "item_krest"
 	{
 		"BaseClass"						"item_datadriven"
@@ -531,30 +545,18 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
 		"AoERadius"              		 "700"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_attack_speed_tooltip"			"30"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_attack_speed"			"10"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"700"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_attack_speed_tooltip"	"30"
+			"bonus_attack_speed"	"10"
+			"radius"	"700"
+	}
 	}
 	
 "item_speed_rare"
@@ -568,30 +570,18 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
 		"AoERadius"              		 "700"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_attack_speed_tooltip"			"60"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_attack_speed"			"20"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"700"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_attack_speed_tooltip"	"60"
+			"bonus_attack_speed"	"20"
+			"radius"	"700"
+	}
 	}
 	
 "item_speed_legendary"
@@ -605,30 +595,18 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
 		"AoERadius"              		 "700"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_attack_speed_tooltip"			"100"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_attack_speed"			"40"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"700"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_attack_speed_tooltip"	"100"
+			"bonus_attack_speed"	"40"
+			"radius"	"700"
+	}
 	}
 
 "item_boots_speed_common"
@@ -641,17 +619,13 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
 				"bonus_speed_tooltip"			"25"
-			}
 		}
 	}
 	
@@ -665,18 +639,14 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_speed_tooltip"			"25"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_speed_tooltip"	"25"
+	}
 	}
 
 "item_boots_speed_legendary"
@@ -689,18 +659,14 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_speed_tooltip"			"25"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_speed_tooltip"	"25"
+	}
 	}
 
 "item_crit_common"
@@ -713,23 +679,15 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"crit_chance"			"5"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"crit_mult"				"125"
-			}
-		}
+		"AbilityValues"
+	{
+		"crit_chance"	"5"
+			"crit_mult"	"125"
+	}
 	}
 	
 "item_crit_rare"
@@ -742,23 +700,15 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"crit_chance"			"10"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"crit_mult"				"225"
-			}
-		}
+		"AbilityValues"
+	{
+		"crit_chance"	"10"
+			"crit_mult"	"225"
+	}
 	}	
 
 "item_crit_legendary"
@@ -771,23 +721,15 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"crit_chance"			"15"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"crit_mult"				"325"
-			}
-		}
+		"AbilityValues"
+	{
+		"crit_chance"	"15"
+			"crit_mult"	"325"
+	}
 	}
 	
 "item_bolt_common"
@@ -801,33 +743,17 @@
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
 		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"700"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"lightnihg_chance"			"5"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"lightnihg_damage_pct"		"5"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"target_count"			"4"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"700"
+			"lightnihg_chance"	"5"
+			"lightnihg_damage_pct"	"5"
+			"target_count"	"4"
+	}
 		"Modifiers"
 		{
 			"modifier_bolt_common"
@@ -868,33 +794,17 @@
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
 		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"700"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"lightnihg_chance"			"5"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"lightnihg_damage_pct"		"7"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"target_count"			"8"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"700"
+			"lightnihg_chance"	"5"
+			"lightnihg_damage_pct"	"7"
+			"target_count"	"8"
+	}
 		"Modifiers"
 		{
 			"modifier_bolt_rare"
@@ -935,28 +845,16 @@
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
 		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"700"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"lightnihg_chance"			"5"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"lightnihg_damage_pct"		"9"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"700"
+			"lightnihg_chance"	"5"
+			"lightnihg_damage_pct"	"9"
+	}
 		"Modifiers"
 		{
 			"modifier_bolt_legendary"
@@ -995,29 +893,17 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"Model" "models/props_gameplay/treasure_chest_gold.vmdl"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_chance"			"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.1"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_damage"	"200"
+			"bash_chance"	"5"
+			"bash_duration"	"0.1"
+	}
 		"Modifiers"
 		{
 			"modifier_bash_common"
@@ -1081,29 +967,17 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"Model" "models/props_gameplay/treasure_chest_gold.vmdl"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_chance"			"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.2"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_damage"	"400"
+			"bash_chance"	"5"
+			"bash_duration"	"0.2"
+	}
 		"Modifiers"
 		{
 			"modifier_bash_rare"
@@ -1167,29 +1041,17 @@
 		//"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"Model" "models/props_gameplay/treasure_chest_gold.vmdl"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"600"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_chance"			"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.3"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_damage"	"600"
+			"bash_chance"	"5"
+			"bash_duration"	"0.3"
+	}
 		"Modifiers"
 		{
 			"modifier_bash_legendary"
@@ -1254,112 +1116,96 @@
 	//	"ItemDroppable" 				"0"
 		"ItemPurchasable" 				"0"
 		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
+		"ItemIsNeutralActiveDrop"				"1"
 		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus"				"50"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus"	"50"
+	}
 	}	
 	
 //=============================================================================================
 
 "item_str_atribute"
 	{
-	"BaseClass"						"item_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-	"AbilityTextureName"			"str"
-	"ItemCost"						"3000"
-	
-	"ItemDroppable"					"1"
-	"ItemSellable"					"0"
-	"ItemPurchasable" 				"0"
-	"ItemKillable"					"1"
-	"ItemShareability"				"ITEM_NOT_SHAREABLE"
-	"ItemDisassemblable"			"0"
-	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-	"UIPickupSound" 				"Item.PickUpRingShop"
-	"UIDropSound" 					"Item.DropRecipeShop"
-	"WorldDropSound" 				"Item.DropGemWorld"
-		"OnSpellStart"
-		{				
-		"RunScript"
-			{
-				"ScriptFile"            "items/item_atribute.lua"
-				"Function"              "str_atribute"
-			}
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/item_atribute"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"str"
+		"ItemCost"						"0"
+		
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemPurchasable" 				"0"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDisassemblable"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"AbilityValues"
+		{
+			"bonus"				"1"
 		}
 	}
 
 "item_agi_atribute"
 	{
-	"BaseClass"						"item_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-	"AbilityTextureName"			"agi"
-	"ItemCost"						"3000"
-	
-	"ItemDroppable"					"1"
-	"ItemSellable"					"0"
-	"ItemPurchasable" 				"0"
-	"ItemKillable"					"1"
-	"ItemShareability"				"ITEM_NOT_SHAREABLE"
-	"ItemDisassemblable"			"0"
-	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-	"UIPickupSound" 				"Item.PickUpRingShop"
-	"UIDropSound" 					"Item.DropRecipeShop"
-	"WorldDropSound" 				"Item.DropGemWorld"
-	
-		"OnSpellStart"
-		{				
-		"RunScript"
-			{
-				"ScriptFile"            "items/item_atribute.lua"
-				"Function"              "agi_atribute"
-			}
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/item_atribute"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"agi"
+		"ItemCost"						"0"
+		
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemPurchasable" 				"0"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDisassemblable"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"AbilityValues"
+		{
+			"bonus"				"1"
 		}
-	}	
+	}
 
 "item_int_atribute"
 	{
-	"BaseClass"						"item_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-	"AbilityTextureName"			"int"
-	"ItemCost"						"3000"
-	
-	"ItemDroppable"					"1"
-	"ItemSellable"					"0"
-	"ItemPurchasable" 				"0"
-	"ItemKillable"					"1"
-	"ItemShareability"				"ITEM_NOT_SHAREABLE"
-	"ItemDisassemblable"			"0"
-	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-	"UIPickupSound" 				"Item.PickUpRingShop"
-	"UIDropSound" 					"Item.DropRecipeShop"
-	"WorldDropSound" 				"Item.DropGemWorld"
-	
-		"OnSpellStart"
-		{				
-		"RunScript"
-			{
-				"ScriptFile"            "items/item_atribute.lua"
-				"Function"              "int_atribute"
-			}
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/item_atribute"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"int"
+		"ItemCost"						"0"
+		
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemPurchasable" 				"0"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDisassemblable"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"AbilityValues"
+		{
+			"bonus"				"1"
 		}
-	}		
-	
+	}
 //=============================================================================================================================
 
 "item_health_potion"
@@ -1381,14 +1227,10 @@
 		"ItemInitialCharges"			"1"
 		"ItemKillable"					"0"
 		"ItemCastOnPickup"				"1"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_restore_pct"		"20"
-			}
-		}
+		"AbilityValues"
+	{
+		"hp_restore_pct"	"20"
+	}
 	}
 
 "item_mana_potion"
@@ -1409,14 +1251,10 @@
 		"ItemInitialCharges"			"1"
 		"ItemKillable"					"0"
 		"ItemCastOnPickup"				"1"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_restore_pct"		"30"
-			}
-		}
+		"AbilityValues"
+	{
+		"mana_restore_pct"	"30"
+	}
 	}
 
 //============================================================================================================
@@ -1763,14 +1601,10 @@
 		"ItemDisplayCharges"			"1"
 		"ItemKillable"					"1"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_stat"			"3"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_stat"	"3"
+	}
 	}
 
 "item_book_of_agility"
@@ -1789,14 +1623,10 @@
 		"ItemDisplayCharges"			"1"
 		"ItemKillable"					"1"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_stat"			"3"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_stat"	"3"
+	}
 	}
 
 "item_book_of_intelligence"
@@ -1814,14 +1644,10 @@
 		"ItemDisplayCharges"			"1"
 		"ItemKillable"					"1"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_stat"			"3"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_stat"	"3"
+	}
 	}
 
 //========================================================================================================================
@@ -2034,11 +1860,11 @@
 		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
 		"AbilityTextureName"			"chest_5"
 		"ItemCost"						"0"
-		"ItemHideCharges"				"0"
-		"ItemStockTime"					"1"			  
-		"ItemStockInitial"				"0"
-		"ItemStockMax"					"1"
+		"ItemStackable"					"1"  
+		"ItemStockInitial"				"1"
 		"ItemInitialStockTime"			"1200.0"
+		"ItemPurchasable"				"0"
+		"AbilityCooldown"				"0.3"
 		"OnSpellStart"
 		{				
 			"RunScript"

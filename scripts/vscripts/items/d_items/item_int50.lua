@@ -40,7 +40,7 @@ function item_int_50:OnSpellStart()
 					end
 				end	
 				
-		       self:SpendCharge()    
+		       self:SpendCharge(0)    
 		       local nPlayerID = hPlayer:GetPlayerID()
 	           EmitSoundOnClient("Item.TomeOfKnowledge",hPlayer)
 	       end

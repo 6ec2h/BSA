@@ -8,8 +8,8 @@ function juggernaut_blade_fury_lua:OnSpellStart()
 	-- load data
 	local bDuration = self:GetSpecialValueFor("duration")
 	
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_agi2")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_agi2"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_agi2")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_agi2"):GetLevel() > 0 then 
 				bDuration = 4
 			end
 		end

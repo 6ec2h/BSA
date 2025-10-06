@@ -80,7 +80,7 @@ function modifier_meepo_earthbind_lua:GetPriority()
 end
 
 function modifier_meepo_earthbind_lua:OnCreated( kv )
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_meepo_int1")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_meepo_int1")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		self:StartIntervalThink(0.5)
 	end

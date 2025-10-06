@@ -8,7 +8,7 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"3"
 		
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -22,29 +22,13 @@
 		
 		"AbilityManaCost"				"200 400 600"
 		
-
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"600 1000 1400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_delay"				"0.25"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown_scepter"			"60 40 20"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"splash_radius_scepter"		"325"
-			}
+			"damage"					"600 1000 1400"
+			"damage_delay"				"0.25"
+			"cooldown_scepter"			"60 40 20"
+			"splash_radius_scepter"		"325"
+			"ExtraIntelligenceDamage"		"0.2"
 		}
 	}
 }

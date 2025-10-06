@@ -25,7 +25,7 @@ function item_shovel_dig:OnSpellStart()
 			local newItem = CreateItem( "item_gold_brus", nil, nil )
 			local drop = CreateItemOnPositionForLaunch( vTargetPosition, newItem )
 			local dropRadius = RandomFloat( 50, 50 )
-			self.caster:RemoveItem(self)			
+			UTIL_Remove(self)		
 		end
 		
 		end

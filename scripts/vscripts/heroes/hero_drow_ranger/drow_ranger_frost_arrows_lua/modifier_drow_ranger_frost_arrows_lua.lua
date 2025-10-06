@@ -39,8 +39,8 @@ function modifier_drow_ranger_frost_arrows_lua:DeclareFunctions()
 end
 
 function modifier_drow_ranger_frost_arrows_lua:GetModifierPhysicalArmorBonus()
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_drow_ranger_agi7")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_drow_ranger_agi7"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi7")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi7"):GetLevel() > 0 then 
 			return -5
 			end
 		end

@@ -10,18 +10,21 @@ function skywrath_mage_arcane_bolt_lua:OnSpellStart()
 	local projectile_name = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
 	local projectile_speed = self:GetSpecialValueFor( "bolt_speed" )
 	local projectile_vision = self:GetSpecialValueFor( "bolt_vision" )
-	local base_damage = self:GetSpecialValueFor( "bolt_damage" )
+
 	local multiplier = self:GetSpecialValueFor( "int_multiplier" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int6")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int6"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int6")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int6"):GetLevel() > 0 then 
 			multiplier = multiplier * 2
 		end
 	end	
+	
+	if not IsServer() then return end
+	local damage = self:GetSpecialValueFor( "bolt_damage" )+ self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
 
-	local damage = base_damage
+
 	if caster:IsHero() then
-		damage = damage + multiplier*caster:GetIntellect()
+		damage = damage + multiplier*caster:GetIntellect(true)
 	end
 
 	-- create projectile
@@ -47,8 +50,8 @@ function skywrath_mage_arcane_bolt_lua:OnSpellStart()
 	ProjectileManager:CreateTrackingProjectile(info)
 
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int9"):GetLevel() > 0 then 
 			local scepter_radius = self:GetSpecialValueFor( "scepter_radius" )
 			
 			-- find nearby enemies

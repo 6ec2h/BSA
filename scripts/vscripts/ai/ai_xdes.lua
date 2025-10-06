@@ -6,8 +6,10 @@ function Spawn(entityKeyValues)
     if not thisEntity then
         return
     end
+	
+	thisEntity.refresh = 0
 
-    thisEntity:SetContextThink("NeutralThink", NeutralThink, 1)
+    thisEntity:SetContextThink("NeutralThink", NeutralThink, 0.1)
     thisEntity.bSearchedForItems = false
     thisEntity.bSearchedForSpells = false
 end
@@ -26,8 +28,20 @@ function NeutralThink()
     if not thisEntity:IsAlive() or GameRules:IsGamePaused() or thisEntity:IsChanneling() or thisEntity:IsDisarmed() then
         return 0.5
     end
+	
+	if not thisEntity.bInitialized then
+		thisEntity.vInitialSpawnPos = Vector(8640, -3264, 268)
+		thisEntity.bInitialized = true
+	end
+	
+	local distanceToSpawn = (thisEntity:GetOrigin() - thisEntity.vInitialSpawnPos):Length2D()
+    if distanceToSpawn >= 1000 then
+		RetreatHome()
+        return 0.3
+    end
 
-    local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+
+    local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 	
 	local target = enemies[RandomInt(1, #enemies)]
 	local abilities = {}
@@ -51,30 +65,39 @@ function NeutralThink()
     end
 
     local ability = abilities[RandomInt(1, #abilities)]
-    if not ability then
+    if not ability or (ability:GetName() == 'item_octarine_core_lua3' and thisEntity.refresh < 4) then
         return 0.5
     end
 	
 	if ability:IsItem() then
+		if ability:GetName() == 'item_octarine_core_lua3' then
+			thisEntity.refresh = 0
+		end
 		behavior = ability:GetBehavior()
 	else
 		behavior = ability:GetBehaviorInt()
 	end
 	
-	if bit.band(behavior, DOTA_ABILITY_BEHAVIOR_AUTOCAST) == DOTA_ABILITY_BEHAVIOR_AUTOCAST then
+	if bit.band(behavior, DOTA_ABILITY_BEHAVIOR_PASSIVE) == DOTA_ABILITY_BEHAVIOR_PASSIVE then
+		return 0.1
+	elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_AUTOCAST) == DOTA_ABILITY_BEHAVIOR_AUTOCAST then
 		ability.Behavior = "auto"
 		if not ability:GetAutoCastState() then 
 			ability:ToggleAutoCast()
 		end
-		return 0.5
+		return 0.1
     elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
 		ability.Behavior = "target"
 		if ability:GetAbilityTargetTeam() == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
 			local friendly = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
-			local target = friendly[RandomInt(1, #friendly)]
-			Cast(ability, target)
+			if #friendly > 0 then
+				local target = friendly[RandomInt(1, #friendly)]
+				if not target:GetName() == "npc_dummy_unit" then
+					Cast(ability, target)
+				end
+			end
 		else
-			if target and not target:HasModifier("modifier_item_lotus_orb_active") then
+			if target then
 				Cast(ability, target)
 			end
 		end
@@ -94,7 +117,17 @@ function NeutralThink()
 			ability:ToggleAbility()
 		end
     end
+
     return 0.5
+end
+
+function RetreatHome()
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+		Position = thisEntity.vInitialSpawnPos,
+	})
+	return 0.3
 end
 
 function SearchForSpells()
@@ -124,6 +157,7 @@ end
 function Cast(Spell, enemy)
 	local order_type
 	local vTargetPos = enemy:GetOrigin()
+	thisEntity.refresh = thisEntity.refresh + 1
 
     if Spell.Behavior == "target" then
         order_type = DOTA_UNIT_ORDER_CAST_TARGET

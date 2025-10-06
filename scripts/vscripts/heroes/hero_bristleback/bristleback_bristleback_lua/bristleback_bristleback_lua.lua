@@ -32,8 +32,8 @@ function modifier_bristleback_bristleback_lua:OnRefresh()
 	self.back_angle					= self.ability:GetSpecialValueFor("back_angle")
 	self.quill_release_threshold	= self.ability:GetSpecialValueFor("quill_release_threshold")
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_str10")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_str10"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_bristleback_str10")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_bristleback_str10"):GetLevel() > 0 then 
 			self.side_damage_reduction = self.back_damage_reduction
 		end
 	end

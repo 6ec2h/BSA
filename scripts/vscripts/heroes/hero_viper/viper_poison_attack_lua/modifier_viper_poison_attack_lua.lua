@@ -25,8 +25,8 @@ function modifier_viper_poison_attack_lua:OnCreated( kv )
 	self.ms_slow = self:GetAbility():GetSpecialValueFor( "bonus_movement_speed" )
 	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	
-	 if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int3")~=nil then
-		 if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int3"):GetLevel() > 0 then
+	 if self:GetCaster():FindAbilityByName("special_bonus_viper_int3")~=nil then
+		 if self:GetCaster():FindAbilityByName("special_bonus_viper_int3"):GetLevel() > 0 then
 			self.damage = self.damage
 			else
 			self.damage = self.damage * 2
@@ -52,8 +52,8 @@ function modifier_viper_poison_attack_lua:OnRefresh( kv )
 	
 	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	
-	 if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int3")~=nil then
-		 if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int3"):GetLevel() > 0 then
+	 if self:GetCaster():FindAbilityByName("special_bonus_viper_int3")~=nil then
+		 if self:GetCaster():FindAbilityByName("special_bonus_viper_int3"):GetLevel() > 0 then
 			self.damage = self.damage
 			else
 			self.damage = self.damage * 2

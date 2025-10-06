@@ -177,8 +177,8 @@ function modifier_juggernaut_heling_ward_lua_aura:OnCreated()
 	local healing_ward_ability = self.caster:GetOwner():FindAbilityByName("juggernaut_heling_ward_lua")
 	self.heal_per_sec = healing_ward_ability:GetSpecialValueFor("health")
 	
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_agi1")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_agi1"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_agi1")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_agi1"):GetLevel() > 0 then 
 				self.heal_per_sec =  healing_ward_ability:GetSpecialValueFor("health") + 1
 			end
 		end

@@ -138,7 +138,6 @@ function modifier_phoenix_nova_egg_thinker:OnDestroy()
 		for _, enemy in pairs(enemies) do
 			enemy:AddNewModifier( self:GetCaster(), enemy, "modifier_stunned", {duration = self:GetAbility():GetSpecialValueFor("stun_duration")} )
 		end
-		
 		UTIL_Remove( self:GetParent() )
 	end
 end
@@ -161,11 +160,22 @@ function modifier_phoenix_nova_egg_thinker:OnIntervalThink()
 	end
 end
 
-function modifier_phoenix_nova_egg_thinker:OnDeath( keys )
+function modifier_phoenix_nova_egg_thinker:OnAttacked( keys )
 	if not IsServer() then return end
-	local killer = keys.attacker
-	if keys.unit == self:GetParent() then
+	local attacker = keys.attacker
+	if keys.target ~= self:GetParent() then return end
+	
+	self.current_attack = self.current_attack + 1
+	
+	local pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_supernova_hit.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+	local attach_point = self:GetParent():ScriptLookupAttachment( "attach_hitloc" )
+	ParticleManager:SetParticleControlEnt( pfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAttachmentOrigin(attach_point), true )
+	ParticleManager:SetParticleControlEnt( pfx, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAttachmentOrigin(attach_point), true )
+	
+	if self.current_attack == self.max_attack then
 		self.death = false
+		print("death")
+		
 		StopSoundEvent("Hero_Phoenix.SuperNova.Begin", self:GetParent())
 		StopSoundEvent( "Hero_Phoenix.SuperNova.Cast", self:GetParent())
 		StartSoundEventFromPosition( "Hero_Phoenix.SuperNova.Death", self:GetParent():GetAbsOrigin())
@@ -175,23 +185,10 @@ function modifier_phoenix_nova_egg_thinker:OnDeath( keys )
 		ParticleManager:SetParticleControl( pfx, 1, self:GetCaster():GetAttachmentOrigin(attach_point) )
 		ParticleManager:SetParticleControl( pfx, 3, self:GetCaster():GetAttachmentOrigin(attach_point) )
 		ParticleManager:ReleaseParticleIndex(pfx)
-	end
-end
-
-function modifier_phoenix_nova_egg_thinker:OnAttacked( keys )
-	if not IsServer() then return end
-	local attacker = keys.attacker
-	if keys.target ~= self:GetParent() then return end
-	
-	self.current_attack = self.current_attack + 1
-	
-	if self.current_attack >= self.max_attack then
-		self:GetParent():Kill(self:GetAbility(), attacker)
+		
+		self:GetParent():ForceKill(false)
+		UTIL_Remove(self:GetParent())
 	else
 		self:GetParent():SetHealth( (self:GetParent():GetMaxHealth() * ((self.max_attack-self.current_attack)/self.max_attack)) )
 	end
-	local pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_supernova_hit.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
-	local attach_point = self:GetParent():ScriptLookupAttachment( "attach_hitloc" )
-	ParticleManager:SetParticleControlEnt( pfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAttachmentOrigin(attach_point), true )
-	ParticleManager:SetParticleControlEnt( pfx, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAttachmentOrigin(attach_point), true )
 end

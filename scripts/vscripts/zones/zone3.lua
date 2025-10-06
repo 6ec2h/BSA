@@ -1,20 +1,5 @@
-require('essentials')
-require("data")
-
 function quest_start(data)
-	local activator = data.activator		
-	local messageID = "#3_zone"
-	local zone_name = "#zone3"
-	local description = "#zone3_des"
-			
-	data.activator:EmitSound("Item.TomeOfKnowledge")
-	CustomGameEventManager:Send_ServerToAllClients("QuestMsgPanel_create_new_message", {messageName = zone_name, messageText = messageID})				
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 201, id =13})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =13})
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 1, id =14})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =14})
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 1, id =15})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =15})
+	quest_system:StartQuest('main', 5)
 	
 	local unit2 = Entities:FindByName( nil, "npc_snow")
 	unit2:AddNewModifier( unit2, nil, "modifier_invulnerable", {} )
@@ -50,33 +35,23 @@ function snowspawn(snow)
 		end
 	end)
 
-	if _G.Game_Difficulty > 5 then
+	if _G.Game_Difficulty >= 12 then
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
 		end)
-	end	
-	clear()
+	end
+	
+	rules:clear_zone('snows', 23)
 end
 
-function crate ()
+function crate()
 	for i = 19, 28 do 
 		local point = Entities:FindByName( nil, "crate"..i):GetAbsOrigin()
 		 for i =1,RandomInt(3,4) do
 			local unit = CreateUnitByName("npc_dota_crate", point + RandomVector( RandomInt( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
 		end
 	end	
-end
-
-function clear()
-	Timers:CreateTimer(5, function()
-		for i = 1, 23 do
-			local point = Entities:FindByName( nil, "snows"..i)
-			if point then
-				UTIL_Remove( point )
-			end
-		end	
-	end)
 end
 
 ----------------------------------------------------------------------------------------------------------
@@ -103,36 +78,12 @@ end
 
 function snowsheep(trigger)
 	trigger.activator:AddNewModifier( trigger.activator, nil, "modifier_invulnerable", {} )
-	for i = 0, PlayerResource:GetPlayerCount() - 1 do
-		local gold = 200
-		local player = PlayerResource:GetSelectedHeroEntity(i)
-			player:ModifyGold( gold, true, 0 )
-			SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, player, gold, nil)
-			player:EmitSound("Item.LotusOrb.Activate")
-		end
-	CustomGameEventManager:Send_ServerToAllClients("quest_remove_quest", {id =13})
-end
+	local data = _G.players_quest_progress['main'][5]
+	data.kill_count = (data.kill_count or 0) + 1
+	quest_system:UpdateQuest('main', 5, data.kill_count)
 
-function snowsheep2(trigger)
-	trigger.activator:AddNewModifier( trigger.activator, nil, "modifier_invulnerable", {} )
-	for i = 0, PlayerResource:GetPlayerCount() - 1 do
-		local gold = 200
-		local player = PlayerResource:GetSelectedHeroEntity(i)
-			player:ModifyGold( gold, true, 0 )
-			SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, player, gold, nil)
-			player:EmitSound("Item.LotusOrb.Activate")
-		end
-	CustomGameEventManager:Send_ServerToAllClients("quest_remove_quest", {id =14})
-end
-
-function snowsheep3(trigger)
-	trigger.activator:AddNewModifier( trigger.activator, nil, "modifier_invulnerable", {} )
-	for i = 0, PlayerResource:GetPlayerCount() - 1 do
-		local gold = 200
-		local player = PlayerResource:GetSelectedHeroEntity(i)
-			player:ModifyGold( gold, true, 0 )
-			SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, player, gold, nil)
-			player:EmitSound("Item.LotusOrb.Activate")
-		end
-	CustomGameEventManager:Send_ServerToAllClients("quest_remove_quest", {id =15})
+	if data.kill_count >= _G.quest_data['main'][5].goal then
+		data.completed = true
+		quest_system:RemoveQuest('main', 5, 'success')
+	end
 end

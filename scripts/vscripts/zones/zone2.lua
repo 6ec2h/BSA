@@ -1,15 +1,5 @@
-require('essentials')
-require("data")
-
-function start_quest(data)
-local messageID = "#2_zone"
-local zone_name = "#zone2"
-local description = "#zone2_des"
-			
-data.activator:EmitSound("Item.TomeOfKnowledge")
-CustomGameEventManager:Send_ServerToAllClients("QuestMsgPanel_create_new_message", {messageName = zone_name, messageText = messageID})	
-CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 150, id =12})
-CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 150, current=0, id =12})		
+function quest_start(data)
+	quest_system:StartQuest('main', 3)
 end
 
 function creep_spawn()
@@ -17,19 +7,25 @@ function creep_spawn()
 	local units = Entities:FindAllByName("forest_zombie")
 	for _,unit in pairs(units) do
 		rules:aura_dif(unit,random_ability)
+		unit:RemoveModifierByName( "modifier_invulnerable")
+		unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
+		unit:RemoveModifierByName("modifier_magic_immune")
 	end
 	
 	local units = Entities:FindAllByName("skeleton")
 	for _,unit in pairs(units) do
 		rules:aura_dif(unit,random_ability)
+		unit:RemoveModifierByName( "modifier_invulnerable")
+		unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
+		unit:RemoveModifierByName("modifier_magic_immune")
 	end
 
-	if _G.Game_Difficulty > 5 then
+	if _G.Game_Difficulty >= 12 then
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
 		end)
-	end	
+	end
 	
 	for i = 9, 18 do 
 		local point = Entities:FindByName( nil, "crate"..i):GetAbsOrigin()
@@ -60,18 +56,18 @@ end
 function visions(trigger)
     local ent = trigger.activator
     if not ent then
-	return
+		return
 	end
     if ent:IsAlive() and ent:GetLevel() < 20 then
-	ent:AddNewModifier( ent, nil, "modifier_badvision", { duration = 20000 } )
-    ent:SetDayTimeVisionRange( 450 )
-	ent:SetNightTimeVisionRange	( 450 )
+		ent:AddNewModifier( ent, nil, "modifier_badvision", {} )
+		ent:SetDayTimeVisionRange( 450 )
+		ent:SetNightTimeVisionRange	( 450 )
         return
     end
 	if ent:IsAlive() and ent:GetLevel() > 20 then
-	ent:AddNewModifier( ent, nil, "modifier_badvision", { duration = 20000 } )
-    ent:SetDayTimeVisionRange( 350 )
-	ent:SetNightTimeVisionRange	( 350 )
+		ent:AddNewModifier( ent, nil, "modifier_badvision", {} )
+		ent:SetDayTimeVisionRange( 350 )
+		ent:SetNightTimeVisionRange	( 350 )
         return
     end
 	return 1
@@ -81,9 +77,9 @@ function visionsoff(trigger)
     local ent = trigger.activator
     if not ent then return end
     if ent:IsAlive() then
-	ent:RemoveModifierByName("modifier_badvision")
-    ent:SetDayTimeVisionRange( 1100 )
-	ent:SetNightTimeVisionRange	( 1100 )
+		ent:RemoveModifierByName("modifier_badvision")
+		ent:SetDayTimeVisionRange( 1100 )
+		ent:SetNightTimeVisionRange	( 1100 )
         return
     end
 end

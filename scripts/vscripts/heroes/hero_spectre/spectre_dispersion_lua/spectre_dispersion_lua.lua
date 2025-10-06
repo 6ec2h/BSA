@@ -48,7 +48,7 @@ function modifier_spectre_dispersion_lua:DeclareFunctions()
 end
 
 function modifier_spectre_dispersion_lua:GetModifierIncomingDamage_Percentage()
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_spectre_tal1")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_spectre_tal1")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		self.block = (self:GetAbility():GetSpecialValueFor("damage_reflection_pct") + 10) * -1
 	else

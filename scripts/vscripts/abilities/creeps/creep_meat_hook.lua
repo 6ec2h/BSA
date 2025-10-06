@@ -3,6 +3,10 @@ LinkLuaModifier( "modifier_creep_meat_hook_self", "abilities/creeps/creep_meat_h
 
 creep_meat_hook = class({})
 
+function creep_meat_hook:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_pudge/pudge_meathook.vpcf", context )
+end
+
 function creep_meat_hook:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
@@ -26,7 +30,7 @@ function creep_meat_hook:OnSpellStart()
 	
 		bDeleteOnHit = true,
 	
-		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_BOTH,
+		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 	

@@ -17,38 +17,14 @@
 		"AbilityCooldown"					"14 12 10 8"
 		"AbilityManaCost"					"80"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"activation_delay"			"1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"explosion_delay"			"1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"root_duration"				"1.5"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"debuff_armor"				"2 3 4 5"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"debuff_resist"				"4 6 8 10"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"300"
+			"activation_delay"	"1"
+			"explosion_delay"	"1"
+			"root_duration"	"1.5"
+			"debuff_armor"	"2 3 4 5"
+			"debuff_resist"	"4 6 8 10"
+	}
 	}
 }

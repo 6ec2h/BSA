@@ -1,0 +1,2343 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			
+			{
+				_class = "BoneMarkupList"
+				children = 
+				[
+				]
+				bone_cull_type = "None"
+			},
+			
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					
+					{
+						_class = "RenderMeshFile"
+						name = "nerubian_assassin_model_1c53ee07"
+						filename = "models/creeps/nyx_swarm/nerubian_assassin_model_1c53ee07.dmx"
+					},
+					
+					{
+						_class = "RenderMeshFile"
+						name = "nerubian_assassin_lod_model_1c53ee07"
+						filename = "models/creeps/nyx_swarm/nerubian_assassin_lod_model_1c53ee07.dmx"
+					},
+				]
+			},
+			
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					
+					{
+						_class = "Attachment"
+						name = "attach_attack2"
+						ignore_rotation = false
+						parent_bone = "ArachnidLeg_3_C_L1"
+						relative_origin = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						relative_angles = 
+						[
+							66.851010,
+							88.500020,
+							-39.970020,
+						]
+						weight = 1.000000
+					},
+					
+					{
+						_class = "Attachment"
+						name = "attach_mouth"
+						ignore_rotation = false
+						parent_bone = "jaw1_0"
+						relative_origin = 
+						[
+							8.538000,
+							0.000000,
+							0.233002,
+						]
+						relative_angles = 
+						[
+							0.000000,
+							0.000000,
+							90.000010,
+						]
+						weight = 1.000000
+					},
+					
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "ArachnidLeg_3_C_R1"
+						relative_origin = 
+						[
+							-0.000002,
+							0.000000,
+							0.000000,
+						]
+						relative_angles = 
+						[
+							66.851010,
+							-88.500020,
+							-140.030100,
+						]
+						weight = 1.000000
+					},
+					
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "spine2"
+						relative_origin = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						relative_angles = 
+						[
+							-0.000000,
+							0.000000,
+							0.000000,
+						]
+						weight = 1.000000
+					},
+				]
+			},
+			
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									8.230835,
+									-7.065757,
+									-1.522500,
+								]
+								hitbox_maxs = 
+								[
+									51.038250,
+									3.541593,
+									16.722630,
+								]
+								name = "ArachnidLeg_3_C_L"
+								parent_bone = "ArachnidLeg_3_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-12.058920,
+									-10.939870,
+									-8.760823,
+								]
+								hitbox_maxs = 
+								[
+									40.398510,
+									2.970515,
+									13.972860,
+								]
+								name = "ArachnidLeg_2_C_L"
+								parent_bone = "ArachnidLeg_2_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-3.532901,
+									-4.826302,
+									-6.839307,
+								]
+								hitbox_maxs = 
+								[
+									14.535110,
+									7.084550,
+									4.742666,
+								]
+								name = "ArachnidLeg_1_C_L"
+								parent_bone = "ArachnidLeg_1_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-11.088870,
+									-6.577015,
+									-10.427860,
+								]
+								hitbox_maxs = 
+								[
+									36.533490,
+									7.947336,
+									4.692529,
+								]
+								name = "ArachnidLeg_0_C_L"
+								parent_bone = "ArachnidLeg_0_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-8.109150,
+									-11.707130,
+									-11.365520,
+								]
+								hitbox_maxs = 
+								[
+									39.320190,
+									10.033700,
+									13.612450,
+								]
+								name = "ArachnidLeg_base_C_L"
+								parent_bone = "ArachnidLeg_base_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									8.231500,
+									-3.445142,
+									-1.522500,
+								]
+								hitbox_maxs = 
+								[
+									51.038500,
+									7.161859,
+									16.722500,
+								]
+								name = "ArachnidLeg_3_C_R"
+								parent_bone = "ArachnidLeg_3_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-10.730840,
+									-2.212946,
+									-3.810953,
+								]
+								hitbox_maxs = 
+								[
+									31.625690,
+									11.140720,
+									14.813900,
+								]
+								name = "ArachnidLeg_2_C_R"
+								parent_bone = "ArachnidLeg_2_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-3.532901,
+									-7.084554,
+									-6.839309,
+								]
+								hitbox_maxs = 
+								[
+									14.535110,
+									4.826301,
+									4.742675,
+								]
+								name = "ArachnidLeg_1_C_R"
+								parent_bone = "ArachnidLeg_1_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-11.088870,
+									-7.947337,
+									-10.427850,
+								]
+								hitbox_maxs = 
+								[
+									37.430030,
+									6.577012,
+									4.692534,
+								]
+								name = "ArachnidLeg_0_C_R"
+								parent_bone = "ArachnidLeg_0_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-7.581563,
+									-10.033700,
+									-11.365520,
+								]
+								hitbox_maxs = 
+								[
+									41.275120,
+									11.707130,
+									13.612450,
+								]
+								name = "ArachnidLeg_base_C_R"
+								parent_bone = "ArachnidLeg_base_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-27.927340,
+									-20.227960,
+									-0.134121,
+								]
+								hitbox_maxs = 
+								[
+									23.383940,
+									20.227960,
+									33.821570,
+								]
+								name = "spine3"
+								parent_bone = "spine3"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									15.831590,
+									-19.471130,
+									-23.012370,
+								]
+								hitbox_maxs = 
+								[
+									32.092300,
+									19.471130,
+									12.646360,
+								]
+								name = "spine1"
+								parent_bone = "spine1"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									0.087912,
+									-9.365078,
+									-3.123197,
+								]
+								hitbox_maxs = 
+								[
+									42.596080,
+									5.305619,
+									13.669400,
+								]
+								name = "ArachnidLeg_2_A_L"
+								parent_bone = "ArachnidLeg_2_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-3.897463,
+									-3.102289,
+									-7.341495,
+								]
+								hitbox_maxs = 
+								[
+									31.577620,
+									6.728073,
+									4.659355,
+								]
+								name = "ArachnidLeg_1_A_L"
+								parent_bone = "ArachnidLeg_1_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-53.973140,
+									-17.470610,
+									-6.188529,
+								]
+								hitbox_maxs = 
+								[
+									6.451384,
+									17.470610,
+									27.236820,
+								]
+								name = "tail0_0"
+								parent_bone = "tail0_0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-33.390550,
+									-5.829988,
+									-2.846702,
+								]
+								hitbox_maxs = 
+								[
+									2.222685,
+									4.716636,
+									10.893470,
+								]
+								name = "ArachnidLeg_2_R"
+								parent_bone = "ArachnidLeg_2_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-23.646340,
+									-5.786289,
+									-5.420076,
+								]
+								hitbox_maxs = 
+								[
+									6.486242,
+									5.081513,
+									2.654872,
+								]
+								name = "ArachnidLeg_1_R"
+								parent_bone = "ArachnidLeg_1_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									2.836202,
+									-7.140314,
+									-3.222136,
+								]
+								hitbox_maxs = 
+								[
+									37.032230,
+									4.387943,
+									10.034110,
+								]
+								name = "ArachnidLeg_2_B_L"
+								parent_bone = "ArachnidLeg_2_B_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-3.747084,
+									-4.805879,
+									-6.172531,
+								]
+								hitbox_maxs = 
+								[
+									31.935890,
+									6.982253,
+									4.689895,
+								]
+								name = "ArachnidLeg_1_B_L"
+								parent_bone = "ArachnidLeg_1_B_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-37.032230,
+									-7.140314,
+									-3.222136,
+								]
+								hitbox_maxs = 
+								[
+									-2.836202,
+									4.387943,
+									10.034110,
+								]
+								name = "ArachnidLeg_2_B_R"
+								parent_bone = "ArachnidLeg_2_B_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-30.086090,
+									-7.063178,
+									-4.777207,
+								]
+								hitbox_maxs = 
+								[
+									4.652884,
+									4.886805,
+									3.425734,
+								]
+								name = "ArachnidLeg_1_B_R"
+								parent_bone = "ArachnidLeg_1_B_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-2.222685,
+									-5.829988,
+									-2.846702,
+								]
+								hitbox_maxs = 
+								[
+									33.390550,
+									4.716636,
+									10.893470,
+								]
+								name = "ArachnidLeg_2_L"
+								parent_bone = "ArachnidLeg_2_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-8.881996,
+									-4.483011,
+									-6.630528,
+								]
+								hitbox_maxs = 
+								[
+									25.329110,
+									5.187787,
+									6.532275,
+								]
+								name = "ArachnidLeg_1_L"
+								parent_bone = "ArachnidLeg_1_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-42.596080,
+									-9.365078,
+									-3.123197,
+								]
+								hitbox_maxs = 
+								[
+									-0.087912,
+									5.305619,
+									13.669400,
+								]
+								name = "ArachnidLeg_2_A_R"
+								parent_bone = "ArachnidLeg_2_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-34.155070,
+									-8.116472,
+									-4.399981,
+								]
+								hitbox_maxs = 
+								[
+									5.393658,
+									4.490688,
+									7.082119,
+								]
+								name = "ArachnidLeg_1_A_R"
+								parent_bone = "ArachnidLeg_1_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-9.783198,
+									-18.327690,
+									-6.345389,
+								]
+								hitbox_maxs = 
+								[
+									30.295600,
+									18.327690,
+									31.540470,
+								]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					
+					{
+						_class = "HitboxSet"
+						name = "hands"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									8.230835,
+									-7.065757,
+									-1.522500,
+								]
+								hitbox_maxs = 
+								[
+									51.038250,
+									3.541593,
+									16.722630,
+								]
+								name = "ArachnidLeg_3_C_L"
+								parent_bone = "ArachnidLeg_3_C_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									8.231500,
+									-3.445142,
+									-1.522500,
+								]
+								hitbox_maxs = 
+								[
+									51.038500,
+									7.161859,
+									16.722500,
+								]
+								name = "ArachnidLeg_3_C_R"
+								parent_bone = "ArachnidLeg_3_C_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					
+					{
+						_class = "HitboxSet"
+						name = "head"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-2.295474,
+									-9.859627,
+									-14.916410,
+								]
+								hitbox_maxs = 
+								[
+									19.753510,
+									9.859627,
+									15.593220,
+								]
+								name = "head"
+								parent_bone = "head"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					
+					{
+						_class = "HitboxSet"
+						name = "feet"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									0.087912,
+									-9.365078,
+									-3.123197,
+								]
+								hitbox_maxs = 
+								[
+									42.596080,
+									5.305619,
+									13.669400,
+								]
+								name = "ArachnidLeg_2_A_L"
+								parent_bone = "ArachnidLeg_2_A_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-33.390550,
+									-5.829988,
+									-2.846702,
+								]
+								hitbox_maxs = 
+								[
+									2.222685,
+									4.716636,
+									10.893470,
+								]
+								name = "ArachnidLeg_2_R"
+								parent_bone = "ArachnidLeg_2_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									2.836202,
+									-7.140314,
+									-3.222136,
+								]
+								hitbox_maxs = 
+								[
+									37.032230,
+									4.387943,
+									10.034110,
+								]
+								name = "ArachnidLeg_2_B_L"
+								parent_bone = "ArachnidLeg_2_B_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-37.032230,
+									-7.140314,
+									-3.222136,
+								]
+								hitbox_maxs = 
+								[
+									-2.836202,
+									4.387943,
+									10.034110,
+								]
+								name = "ArachnidLeg_2_B_R"
+								parent_bone = "ArachnidLeg_2_B_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-2.222685,
+									-5.829988,
+									-2.846702,
+								]
+								hitbox_maxs = 
+								[
+									33.390550,
+									4.716636,
+									10.893470,
+								]
+								name = "ArachnidLeg_2_L"
+								parent_bone = "ArachnidLeg_2_L"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-42.596080,
+									-9.365078,
+									-3.123197,
+								]
+								hitbox_maxs = 
+								[
+									-0.087912,
+									5.305619,
+									13.669400,
+								]
+								name = "ArachnidLeg_2_A_R"
+								parent_bone = "ArachnidLeg_2_A_R"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-61.015430,
+									-77.486240,
+									-37.483200,
+								]
+								hitbox_maxs = 
+								[
+									96.699190,
+									77.647170,
+									86.650410,
+								]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-20.349100,
+									-34.864240,
+									-37.157140,
+								]
+								hitbox_maxs = 
+								[
+									55.619820,
+									34.654330,
+									53.952060,
+								]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					
+					{
+						_class = "Bone"
+						name = "root"
+						origin = 
+						[
+							-18.424140,
+							0.000000,
+							35.993500,
+						]
+						angles = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						do_not_discard = true
+						children = 
+						[
+							
+							{
+								_class = "Bone"
+								name = "spine1"
+								origin = 
+								[
+									15.224370,
+									0.000000,
+									16.116710,
+								]
+								angles = 
+								[
+									-84.963900,
+									-180.000000,
+									180.000000,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "spine2"
+										origin = 
+										[
+											21.104470,
+											0.000001,
+											0.000006,
+										]
+										angles = 
+										[
+											26.301320,
+											-0.000002,
+											-0.000001,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "spine3"
+												origin = 
+												[
+													16.239020,
+													0.000001,
+													-0.000015,
+												]
+												angles = 
+												[
+													54.093480,
+													-0.000001,
+													-0.000012,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "cloth6_R0C0"
+														origin = 
+														[
+															17.237040,
+															14.296880,
+															-20.354640,
+														]
+														angles = 
+														[
+															77.345340,
+															168.900100,
+															110.086600,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "cloth6_R1C0"
+																origin = 
+																[
+																	2.663086,
+																	-0.000005,
+																	0.000006,
+																]
+																angles = 
+																[
+																	3.436992,
+																	-0.000001,
+																	-0.000001,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "cloth6_R2C0"
+																		origin = 
+																		[
+																			16.772000,
+																			0.051309,
+																			0.017508,
+																		]
+																		angles = 
+																		[
+																			0.000001,
+																			0.000000,
+																			0.000000,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_base_C_L"
+														origin = 
+														[
+															-2.647133,
+															20.639940,
+															-6.820175,
+														]
+														angles = 
+														[
+															77.861490,
+															38.372400,
+															-5.839007,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_0_C_L"
+																origin = 
+																[
+																	39.511610,
+																	0.000000,
+																	-0.000011,
+																]
+																angles = 
+																[
+																	-69.096320,
+																	-134.315200,
+																	106.909000,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "ArachnidLeg_1_C_L"
+																		origin = 
+																		[
+																			36.323040,
+																			0.000023,
+																			-0.000021,
+																		]
+																		angles = 
+																		[
+																			28.379580,
+																			-11.224560,
+																			-16.117800,
+																		]
+																		do_not_discard = true
+																		children = 
+																		[
+																			
+																			{
+																				_class = "Bone"
+																				name = "ArachnidLeg_2_C_L"
+																				origin = 
+																				[
+																					13.921360,
+																					0.000012,
+																					-0.000023,
+																				]
+																				angles = 
+																				[
+																					58.491840,
+																					18.633020,
+																					-7.316530,
+																				]
+																				do_not_discard = true
+																				children = 
+																				[
+																					
+																					{
+																						_class = "Bone"
+																						name = "ArachnidLeg_3_C_L"
+																						origin = 
+																						[
+																							26.651180,
+																							0.000019,
+																							-0.000038,
+																						]
+																						angles = 
+																						[
+																							51.674480,
+																							8.463749,
+																							3.139971,
+																						]
+																						do_not_discard = true
+																						children = 
+																						[
+																							
+																							{
+																								_class = "Bone"
+																								name = "ArachnidLeg_3_C_L1"
+																								origin = 
+																								[
+																									47.950130,
+																									0.000015,
+																									-0.000046,
+																								]
+																								angles = 
+																								[
+																									-0.000000,
+																									-0.000000,
+																									0.000001,
+																								]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "cloth2_R0C0"
+														origin = 
+														[
+															-17.192740,
+															22.795640,
+															22.300570,
+														]
+														angles = 
+														[
+															70.664670,
+															175.086100,
+															132.166400,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "cloth2_R1C0"
+																origin = 
+																[
+																	2.250626,
+																	-0.000015,
+																	0.000003,
+																]
+																angles = 
+																[
+																	-1.412194,
+																	-3.883714,
+																	0.047893,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "cloth2_R2C0"
+																		origin = 
+																		[
+																			9.387756,
+																			-0.023056,
+																			0.041869,
+																		]
+																		angles = 
+																		[
+																			0.000000,
+																			-0.000000,
+																			-0.000004,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "cloth5_R0C0"
+														origin = 
+														[
+															16.674940,
+															-13.945110,
+															-20.892560,
+														]
+														angles = 
+														[
+															76.205050,
+															-160.495300,
+															68.982900,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "cloth5_R1C0"
+																origin = 
+																[
+																	2.042244,
+																	-0.000003,
+																	-0.000004,
+																]
+																angles = 
+																[
+																	-6.058732,
+																	-1.072387,
+																	0.056753,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "cloth5_R2C0"
+																		origin = 
+																		[
+																			17.653410,
+																			-0.049565,
+																			-0.119911,
+																		]
+																		angles = 
+																		[
+																			-0.000001,
+																			-0.000000,
+																			0.000000,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "cloth1_R0C0"
+														origin = 
+														[
+															-8.870838,
+															27.711450,
+															19.880280,
+														]
+														angles = 
+														[
+															75.465260,
+															-153.166500,
+															112.271200,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "cloth1_R1C0"
+																origin = 
+																[
+																	1.923195,
+																	0.000005,
+																	0.000015,
+																]
+																angles = 
+																[
+																	-8.891777,
+																	2.170246,
+																	0.473511,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "cloth1_R2C0"
+																		origin = 
+																		[
+																			17.924540,
+																			0.021231,
+																			0.042919,
+																		]
+																		angles = 
+																		[
+																			0.000000,
+																			-0.000000,
+																			-1.081923,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "neck1"
+														origin = 
+														[
+															8.794052,
+															-0.000000,
+															-0.000023,
+														]
+														angles = 
+														[
+															15.375670,
+															0.000006,
+															0.000538,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "head"
+																origin = 
+																[
+																	8.630602,
+																	-0.000001,
+																	-0.000008,
+																]
+																angles = 
+																[
+																	-0.734373,
+																	0.000000,
+																	-0.000533,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "jaw1_0"
+																		origin = 
+																		[
+																			3.063381,
+																			0.000000,
+																			-5.087631,
+																		]
+																		angles = 
+																		[
+																			0.000000,
+																			0.000000,
+																			0.000000,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_base_C_R"
+														origin = 
+														[
+															-2.647150,
+															-20.639950,
+															-6.820168,
+														]
+														angles = 
+														[
+															77.861500,
+															-38.372310,
+															5.839108,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_0_C_R"
+																origin = 
+																[
+																	39.511600,
+																	-0.000015,
+																	-0.000008,
+																]
+																angles = 
+																[
+																	-69.096350,
+																	134.315200,
+																	-106.909000,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "ArachnidLeg_1_C_R"
+																		origin = 
+																		[
+																			36.323060,
+																			-0.000030,
+																			0.000025,
+																		]
+																		angles = 
+																		[
+																			28.379580,
+																			11.224550,
+																			16.117820,
+																		]
+																		do_not_discard = true
+																		children = 
+																		[
+																			
+																			{
+																				_class = "Bone"
+																				name = "ArachnidLeg_2_C_R"
+																				origin = 
+																				[
+																					13.921340,
+																					0.000001,
+																					-0.000023,
+																				]
+																				angles = 
+																				[
+																					58.491870,
+																					-18.633060,
+																					7.316473,
+																				]
+																				do_not_discard = true
+																				children = 
+																				[
+																					
+																					{
+																						_class = "Bone"
+																						name = "ArachnidLeg_3_C_R"
+																						origin = 
+																						[
+																							26.651150,
+																							-0.000027,
+																							-0.000061,
+																						]
+																						angles = 
+																						[
+																							51.674470,
+																							-8.463722,
+																							-3.139945,
+																						]
+																						do_not_discard = true
+																						children = 
+																						[
+																							
+																							{
+																								_class = "Bone"
+																								name = "ArachnidLeg_3_C_R1"
+																								origin = 
+																								[
+																									47.950130,
+																									-0.000019,
+																									-0.000069,
+																								]
+																								angles = 
+																								[
+																									0.000011,
+																									-0.000000,
+																									-0.000001,
+																								]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "cloth3_R0C0"
+														origin = 
+														[
+															-16.620800,
+															-22.375130,
+															22.332400,
+														]
+														angles = 
+														[
+															76.659380,
+															177.867300,
+															151.223300,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "cloth3_R1C0"
+																origin = 
+																[
+																	1.921181,
+																	0.000001,
+																	0.000015,
+																]
+																angles = 
+																[
+																	3.913355,
+																	-0.000007,
+																	-0.000000,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "cloth3_R2C0"
+																		origin = 
+																		[
+																			8.796745,
+																			0.003036,
+																			0.051304,
+																		]
+																		angles = 
+																		[
+																			-0.000001,
+																			0.000007,
+																			-6.125550,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													
+													{
+														_class = "Bone"
+														name = "cloth4_R0C0"
+														origin = 
+														[
+															-8.382995,
+															-26.204040,
+															18.830060,
+														]
+														angles = 
+														[
+															69.437730,
+															-143.252500,
+															163.231100,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "cloth4_R1C0"
+																origin = 
+																[
+																	2.224396,
+																	0.000002,
+																	0.000008,
+																]
+																angles = 
+																[
+																	-7.890854,
+																	4.589719,
+																	-0.316716,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "cloth4_R2C0"
+																		origin = 
+																		[
+																			16.299000,
+																			0.088061,
+																			0.197891,
+																		]
+																		angles = 
+																		[
+																			-0.000001,
+																			0.000001,
+																			-0.000000,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_A_L"
+								origin = 
+								[
+									-10.541590,
+									9.896214,
+									-5.385653,
+								]
+								angles = 
+								[
+									33.040150,
+									90.023880,
+									89.999990,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_A_L"
+										origin = 
+										[
+											20.273630,
+											-0.000006,
+											0.000004,
+										]
+										angles = 
+										[
+											2.004185,
+											101.003800,
+											-83.583550,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_A_L"
+												origin = 
+												[
+													43.517340,
+													0.000004,
+													-0.000004,
+												]
+												angles = 
+												[
+													67.058200,
+													-180.000000,
+													-180.000000,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_A_L"
+														origin = 
+														[
+															31.203820,
+															-0.000002,
+															-0.000015,
+														]
+														angles = 
+														[
+															21.040070,
+															-23.569500,
+															-50.547000,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_A_L"
+																origin = 
+																[
+																	43.310410,
+																	-0.000008,
+																	-0.000023,
+																]
+																angles = 
+																[
+																	-0.000001,
+																	-0.000008,
+																	0.000000,
+																]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "tail0_0"
+								origin = 
+								[
+									-15.983870,
+									0.000000,
+									17.218190,
+								]
+								angles = 
+								[
+									-0.000003,
+									0.000000,
+									-0.000003,
+								]
+								do_not_discard = true
+							},
+							
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_R"
+								origin = 
+								[
+									9.587085,
+									-12.542630,
+									-11.739350,
+								]
+								angles = 
+								[
+									-22.032600,
+									109.495700,
+									-90.000050,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_R"
+										origin = 
+										[
+											-12.747580,
+											-0.000010,
+											0.000003,
+										]
+										angles = 
+										[
+											0.608668,
+											83.438260,
+											-89.941570,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_R"
+												origin = 
+												[
+													-30.272230,
+													0.000011,
+													-0.000004,
+												]
+												angles = 
+												[
+													77.354650,
+													-180.000000,
+													-180.000000,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_R"
+														origin = 
+														[
+															-24.794480,
+															0.000003,
+															-0.000027,
+														]
+														angles = 
+														[
+															21.999490,
+															-17.229780,
+															140.379400,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_R"
+																origin = 
+																[
+																	-34.025750,
+																	-0.000021,
+																	0.000038,
+																]
+																angles = 
+																[
+																	0.000005,
+																	0.000003,
+																	-0.000004,
+																]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_B_L"
+								origin = 
+								[
+									-26.695420,
+									7.909084,
+									4.056450,
+								]
+								angles = 
+								[
+									62.226910,
+									139.215900,
+									90.000010,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_B_L"
+										origin = 
+										[
+											15.880800,
+											0.000008,
+											-0.000010,
+										]
+										angles = 
+										[
+											-8.044684,
+											124.442700,
+											-94.792070,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_B_L"
+												origin = 
+												[
+													33.685330,
+													0.000019,
+													-0.000006,
+												]
+												angles = 
+												[
+													65.439800,
+													-179.999900,
+													-180.000000,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_B_L"
+														origin = 
+														[
+															27.087200,
+															0.000017,
+															0.000015,
+														]
+														angles = 
+														[
+															14.506100,
+															-16.805760,
+															-50.329830,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_B_L"
+																origin = 
+																[
+																	37.021300,
+																	0.000008,
+																	0.000015,
+																]
+																angles = 
+																[
+																	-0.000003,
+																	-0.000001,
+																	0.000006,
+																]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_B_R"
+								origin = 
+								[
+									-26.695420,
+									-7.909086,
+									4.056454,
+								]
+								angles = 
+								[
+									-62.226920,
+									40.784190,
+									-90.000020,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_B_R"
+										origin = 
+										[
+											-15.880790,
+											0.000008,
+											0.000015,
+										]
+										angles = 
+										[
+											-8.044675,
+											124.442700,
+											-94.792080,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_B_R"
+												origin = 
+												[
+													-33.685310,
+													-0.000010,
+													0.000008,
+												]
+												angles = 
+												[
+													65.439770,
+													-179.999900,
+													-180.000000,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_B_R"
+														origin = 
+														[
+															-27.087190,
+															-0.000038,
+															-0.000015,
+														]
+														angles = 
+														[
+															14.506090,
+															-16.805760,
+															129.670200,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_B_R"
+																origin = 
+																[
+																	-37.021270,
+																	0.000008,
+																	0.000015,
+																]
+																angles = 
+																[
+																	0.000003,
+																	0.000002,
+																	0.000003,
+																]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_L"
+								origin = 
+								[
+									9.587088,
+									12.542630,
+									-11.739350,
+								]
+								angles = 
+								[
+									22.032630,
+									70.504330,
+									90.000000,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_L"
+										origin = 
+										[
+											12.747570,
+											-0.000002,
+											-0.000001,
+										]
+										angles = 
+										[
+											0.608684,
+											83.438220,
+											-89.941540,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_L"
+												origin = 
+												[
+													30.272190,
+													-0.000002,
+													-0.000002,
+												]
+												angles = 
+												[
+													77.354770,
+													-179.999900,
+													-179.999900,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_L"
+														origin = 
+														[
+															24.794440,
+															0.000007,
+															-0.000004,
+														]
+														angles = 
+														[
+															21.999490,
+															-17.229780,
+															-39.620570,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_L"
+																origin = 
+																[
+																	34.025700,
+																	0.000013,
+																	-0.000011,
+																]
+																angles = 
+																[
+																	0.000002,
+																	-0.000001,
+																	-0.000004,
+																]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "ArachnidLeg_base_A_R"
+								origin = 
+								[
+									-10.541590,
+									-9.896214,
+									-5.385658,
+								]
+								angles = 
+								[
+									-33.040170,
+									89.976100,
+									-90.000000,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "ArachnidLeg_0_A_R"
+										origin = 
+										[
+											-20.273620,
+											0.000006,
+											0.000000,
+										]
+										angles = 
+										[
+											2.004195,
+											101.003800,
+											-83.583540,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "ArachnidLeg_1_A_R"
+												origin = 
+												[
+													-43.517340,
+													0.000013,
+													-0.000006,
+												]
+												angles = 
+												[
+													67.058230,
+													180.000000,
+													180.000000,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "ArachnidLeg_2_A_R"
+														origin = 
+														[
+															-31.203820,
+															0.000013,
+															0.000038,
+														]
+														angles = 
+														[
+															21.040070,
+															-23.569510,
+															129.453000,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "ArachnidLeg_3_A_R"
+																origin = 
+																[
+																	-43.310410,
+																	0.000011,
+																	-0.000023,
+																]
+																angles = 
+																[
+																	0.000000,
+																	0.000003,
+																	-0.000006,
+																]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

@@ -16,7 +16,7 @@ function ark_spark_lua:OnSpellStart()
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		for _,enemy in pairs(enemies) do
 
-		local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_arc_warden_int9")
+		local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_arc_warden_int9")
 		if talent_ability == nil or talent_ability:GetLevel() == 0 then
 			enemy = enemies[1]
 		end

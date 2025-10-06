@@ -24,8 +24,8 @@ function modifier_juggernaut_blade_dance_lua:OnRefresh( kv )
 	self.crit_chance = self:GetAbility():GetSpecialValueFor( "blade_dance_crit_chance" )
 	self.crit_mult = self:GetAbility():GetSpecialValueFor( "blade_dance_crit_mult" )
 		
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_agi11")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_agi11"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_agi11")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_agi11"):GetLevel() > 0 then 
 				self.crit_mult = 300
 			end
 		end

@@ -1,18 +1,6 @@
-require('essentials')
-require("data")
-
 function quest_start(data)
-	local activator = data.activator
-	local messageID = "#4_zone"
-	local zone_name = "#zone4"
-	local description = "#zone4_des"
-			
-	data.activator:EmitSound("Item.TomeOfKnowledge")
-	CustomGameEventManager:Send_ServerToAllClients("QuestMsgPanel_create_new_message", {messageName = zone_name, messageText = messageID})			
-	CustomGameEventManager:Send_ServerToAllClients("quest_create_quest", {name = zone_name, desc = description, max = 201, id =16})
-	CustomGameEventManager:Send_ServerToAllClients("quest_update_quest", { max = 201, current=0, id =16})
+	quest_system:StartQuest('main', 7, 'item_prison_cell_key')
 end
-
 
 function icespawn(iceq)
 	cold_enabled(iceq.activator)
@@ -44,13 +32,14 @@ function icespawn(iceq)
 		end
 	end)
 
-	if _G.Game_Difficulty > 5 then
+	if _G.Game_Difficulty >= 12 then
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
 		end)
-	end	
-	clear()
+	end
+	
+	rules:clear_zone('ice', 22)
 end
 
 function crate ( trigger )
@@ -62,19 +51,8 @@ function crate ( trigger )
 	end
 end
 
-function clear()
-	Timers:CreateTimer(5, function()
-		for i = 1, 22 do
-			local point = Entities:FindByName( nil, "ice"..i)
-			if point then
-				UTIL_Remove( point )
-			end
-		end	
-	end)
-end
-
 function randomspawnkey(trigger)
-local hActivatorHero = trigger.activator
+	local hActivatorHero = trigger.activator
 	if hActivatorHero ~= nil then
 		local item = CreateItem("item_prison_cell_key", nil, nil)
 		local pos = Entities:FindByName( nil, "rand"..RandomInt(1, 4)):GetAbsOrigin()
@@ -88,10 +66,7 @@ end
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
-LinkLuaModifier( "cold_map_ability_modifier", "zones/zone4", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_cold_aura", "zones/zone4", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_campfire_aura", "zones/zone4", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_campfire_aura_effect", "zones/zone4", LUA_MODIFIER_MOTION_NONE )
+
 
 cold_points = {
 	[1] = {-15040, 117761, 300}, 
@@ -212,7 +187,7 @@ function modifier_cold_aura:OnCreated(data)
 end
 
 function modifier_cold_aura:GetModifierAura()
-	return "cold_map_ability_modifier"
+	return "modifier_cold_map_ability"
 end
 
 function modifier_cold_aura:GetAuraRadius()
@@ -229,42 +204,40 @@ end
 
 -----------------
 
-cold_map_ability_modifier = class({})
+modifier_cold_map_ability = class({})
 
-function cold_map_ability_modifier:IsHidden() return false end
-function cold_map_ability_modifier:IsDebuff() return true end
-function cold_map_ability_modifier:IsPurgable()	return false end
-function cold_map_ability_modifier:GetTexture() return "cold" end
+function modifier_cold_map_ability:IsHidden() return false end
+function modifier_cold_map_ability:IsDebuff() return true end
+function modifier_cold_map_ability:IsPurgable()	return false end
+function modifier_cold_map_ability:GetTexture() return "cold" end
 
-function cold_map_ability_modifier:OnCreated( kv )  
+function modifier_cold_map_ability:OnCreated( kv )  
     if IsServer() then
         self:StartIntervalThink(0.5)
     end
 end
 
-function cold_map_ability_modifier:DeclareFunctions()
+function modifier_cold_map_ability:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_DISABLE_HEALING,
     }
     return funcs
 end
 
-function cold_map_ability_modifier:GetDisableHealing()
-	if self:GetParent():HasModifier("modifier_campfire_aura_effect") then return 0 end
+function modifier_cold_map_ability:GetDisableHealing()
+	if self:GetParent():HasModifier("modifier_campfire_aura_effect") or self:GetParent():HasModifier("modifier_item_lich_heart") then return 0 end
     return 1
 end
 
-function cold_map_ability_modifier:OnIntervalThink()
+function modifier_cold_map_ability:OnIntervalThink()
     if IsServer() then
-		if self:GetParent():HasModifier("modifier_campfire_aura_effect") then
-			return
-		end
+		if self:GetParent():HasModifier("modifier_campfire_aura_effect") or self:GetParent():HasModifier("modifier_item_lich_heart") then return end
         if self:GetParent():IsAlive() then
         local hAttacker = self:GetParent()
         local damageTable = {
             victim = self:GetParent(),
             attacker = hAttacker,
-            damage = 25,
+            damage = self:GetParent():GetMaxHealth() * 0.015,
             damage_type = DAMAGE_TYPE_PURE,
 			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
         }
@@ -273,10 +246,10 @@ function cold_map_ability_modifier:OnIntervalThink()
     end
 end
 
-function cold_map_ability_modifier:GetEffectName()
+function modifier_cold_map_ability:GetEffectName()
 	return "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_debuff.vpcf"
 end
 
-function cold_map_ability_modifier:GetStatusEffectName()
+function modifier_cold_map_ability:GetStatusEffectName()
 	return "particles/status_fx/status_effect_frost.vpcf"
 end

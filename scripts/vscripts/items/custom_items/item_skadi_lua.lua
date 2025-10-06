@@ -38,6 +38,8 @@ if not IsServer() then return end
 	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor("bonus_all_stats")
 	self.bonus_mana = self:GetAbility():GetSpecialValueFor("bonus_mana")
 	self.bonus_health = self:GetAbility():GetSpecialValueFor("bonus_health")
+	self.radius = self:GetAbility():GetSpecialValueFor("radius")
+	self.damage = self:GetAbility():GetSpecialValueFor("damage")
 end
 
 function modifier_item_skadi_lua:DeclareFunctions()
@@ -47,8 +49,60 @@ function modifier_item_skadi_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_DEATH,
 	}
+end
+
+function modifier_item_skadi_lua:OnDeath(params)
+    local parent = self:GetParent()
+	if (params.attacker == parent or params.attacker:GetOwner() == parent) then
+
+		local nearby_enemy_units = FindUnitsInRadius(parent:GetTeam(), params.unit:GetAbsOrigin(), nil, self.radius,  DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+
+		parent:EmitSound("Hero_Winter_Wyvern.SplinterBlast.Target");
+
+		for _,enemy in pairs(nearby_enemy_units) do 
+			if enemy ~= params.unit and enemy:IsAlive() then
+				local projectile =
+				{
+					Target 				= enemy,
+					Source 				= params.unit,
+					Ability 			= self:GetAbility(),
+					EffectName 			= "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf",
+					iMoveSpeed			= 600,
+					vSourceLoc 			= params.unit:GetAbsOrigin(),
+					bDrawsOnMinimap 	= false,
+					bDodgeable 			= true,
+					bIsAttack 			= false,
+					bVisibleToEnemies 	= true,
+					bReplaceExisting 	= false,
+					flExpireTime 		= GameRules:GetGameTime() + 10,
+					bProvidesVision 	= true,
+					iVisionRadius 		= 400,
+					iVisionTeamNumber 	= parent:GetTeamNumber(),
+				}
+
+				ProjectileManager:CreateTrackingProjectile(projectile);
+			end
+		end
+	end
+end
+
+function item_skadi_lua1:OnProjectileHit(target)
+	if target and target:IsAlive() then 
+		local caster = self:GetCaster()
+		target:AddNewModifier(caster, self, "modifier_stunned", {duration = 1 * (1 - target:GetStatusResistance())})
+		caster:EmitSound("Hero_Winter_Wyvern.SplinterBlast.Splinter")
+		local damage_table 			= {};
+		damage_table.attacker 		= caster;
+		damage_table.ability 		= self;
+		damage_table.damage_type 	= DAMAGE_TYPE_MAGICAL;
+		damage_table.damage	 		= self:GetSpecialValueFor("damage");
+		damage_table.victim  		= target;
+		ApplyDamage(damage_table)
+	end
 end
 
 function modifier_item_skadi_lua:GetModifierBonusStats_Strength()
@@ -72,31 +126,31 @@ function modifier_item_skadi_lua:GetModifierManaBonus()
 end
 
 function modifier_item_skadi_lua:OnAttackLanded(params)
-		local attacker = self:GetParent()
-		
-		if attacker ~= params.attacker then
-			return
-		end
+	local attacker = self:GetParent()
+	
+	if attacker ~= params.attacker then
+		return
+	end
 
-		if attacker:IsIllusion() then
-			return
+	if attacker:IsIllusion() then
+		return
+	end
+	
+	local target = params.target if target==nil then target = params.unit end
+		if target:GetTeamNumber()==self:GetParent():GetTeamNumber() then
+			return 0
 		end
-		
-		local target = params.target if target==nil then target = params.unit end
-			if target:GetTeamNumber()==self:GetParent():GetTeamNumber() then
-				return 0
-			end
-			local modifier = target:FindModifierByNameAndCaster("modifier_item_skadi_slow_lua", self:GetAbility():GetCaster())
-			if modifier==nil then
-				if not self:GetParent():PassivesDisabled() then
+		local modifier = target:FindModifierByNameAndCaster("modifier_item_skadi_slow_lua", self:GetAbility():GetCaster())
+		if modifier==nil then
+			if not self:GetParent():PassivesDisabled() then
 
-					target:AddNewModifier(
-						attacker,
-						self:GetAbility(),
-						"modifier_item_skadi_slow_lua",
-						{ duration = 3 }
-					)
-			end
+				target:AddNewModifier(
+					attacker,
+					self:GetAbility(),
+					"modifier_item_skadi_slow_lua",
+					{ duration = 3 }
+				)
+		end
 	end
 end
 

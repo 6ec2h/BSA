@@ -14,13 +14,10 @@ function item_battlemage:OnSpellStart()
 
     local caster = self:GetCaster()
 
-    local mod = caster:FindModifierByNameAndCaster("modifier_battlemage_arsenal_attack_buff", caster)
-    if mod == nil then
-        mod = caster:AddNewModifier(caster, self, "modifier_battlemage_arsenal_attack_buff", {
-            duration = self:GetSpecialValueFor("duration")
-        })
-    end
-    mod:ForceRefresh()
+	caster:AddNewModifier(caster, self, "modifier_battlemage_arsenal_attack_buff", {
+		duration = self:GetSpecialValueFor("duration")
+	}):SetStackCount(self:GetSpecialValueFor("hits"))
+		
     EmitSoundOn("Item.Brooch.Cast", caster)
 end
 
@@ -103,47 +100,34 @@ function modifier_battlemage_arsenal_attack_buff:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_PROJECTILE_NAME,
         MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL,
-        MODIFIER_PROPERTY_OVERRIDE_ATTACK_DAMAGE,
-        MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL,
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
     }
     return funcs
-end
-
-function modifier_battlemage_arsenal_attack_buff:GetModifierOverrideAttackDamage()
-	return 0
-end
-
-function modifier_battlemage_arsenal_attack_buff:OnTakeDamage( params )
-	if IsServer() then
-        if params.attacker ~= self:GetParent() then return end
-		if self:GetParent():GetTeamNumber() == params.unit:GetTeamNumber() then return end
-
-        if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
-			if params.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION then return end
-			ApplyDamage({
-				victim = params.unit,
-				attacker = params.attacker,
-				damage =  self.damage,
-				damage_type = DAMAGE_TYPE_MAGICAL,
-				damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
-			})
-			EmitSoundOn( "Hero_Muerta.PierceTheVeil.ProjectileImpact", params.unit )
-		end
-	end
-	return 0
 end
 
 function modifier_battlemage_arsenal_attack_buff:GetModifierTotalDamageOutgoing_Percentage( params )
 	if params.inflictor then return 0 end
 	if params.damage_category~=DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
 	if params.damage_type~=DAMAGE_TYPE_PHYSICAL then return 0 end
-	if not params.target:IsMagicImmune() then
-		self.damage = 0
-		self.damage =  params.original_damage
-	else
-		EmitSoundOn( "Hero_Muerta.PierceTheVeil.ProjectileImpact.MagicImmune", params.target )
+
+	if self:GetStackCount() > 0 then
+		self:DecrementStackCount()
+		if not params.target:IsMagicImmune() then
+			local damageTable = {
+				victim = params.target,
+				attacker = self:GetParent(),
+				damage = params.original_damage,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				damage_flag = DOTA_DAMAGE_FLAG_MAGIC_AUTO_ATTACK + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+			}
+			ApplyDamage( damageTable )
+			EmitSoundOn( "Hero_Muerta.PierceTheVeil.ProjectileImpact", params.target )
+		else
+			EmitSoundOn( "Hero_Muerta.PierceTheVeil.ProjectileImpact.MagicImmune", params.target )
+		end
+		if self:GetStackCount() == 0 then
+			self:Destroy()
+		end
 	end
 	return -200
 end

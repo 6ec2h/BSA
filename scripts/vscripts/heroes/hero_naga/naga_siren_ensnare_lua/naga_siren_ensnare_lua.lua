@@ -98,7 +98,7 @@ function naga_siren_ensnare_lua:OnProjectileHit_ExtraData( target, location, dat
 		damage_type = self:GetAbilityDamageType(),
 		ability = self, --Optional.
 	}
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_naga_siren_2")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_naga_siren_2")
 	if talent and talent:GetLevel() > 0 then
 		info.damage = info.damage + talent:GetSpecialValueFor("value")
 	end

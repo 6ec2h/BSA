@@ -89,8 +89,8 @@ function mars_gods_rebuke_lua:OnSpellStart()
 	self:PlayEffects1( caught, (point-origin):Normalized() )
 	
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_str7")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_str7"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_mars_str7")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_mars_str7"):GetLevel() > 0 then 
 			caster:AddNewModifier(
 				caster, -- player source
 				self, -- ability source

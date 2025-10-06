@@ -21,23 +21,11 @@
 		"AbilityCooldown"				"24"
 		"AbilityManaCost"				"80 100 120 140"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"resist_debuff"			"-15 -20 -25 -30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"seal_duration"			"1 2 3 4"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"450"
-			}
-		}
+		"AbilityValues"
+	{
+		"resist_debuff"	"-15 -20 -25 -30"
+			"seal_duration"	"1 2 3 4"
+			"radius"	"450"
+	}
 	}
 }

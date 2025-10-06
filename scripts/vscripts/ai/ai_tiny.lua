@@ -1,4 +1,4 @@
-boss_tiny_skills = {"custom_earth_splitter","tusk_snowball_meteor", "custom_shifting_quake2", "custom_stone_spire"}
+boss_tiny_skills = {"custom_earth_splitter","gavnina", "custom_shifting_quake2", "custom_stone_spire"}
 
 function Spawn( entityKeyValues )
 	if not IsServer() then

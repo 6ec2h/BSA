@@ -30,16 +30,16 @@ function omniknight_guardian_angel_lua:OnSpellStart()
 			{ duration = buffDuration } -- kv
 		)
 		
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int4"):GetLevel() > 0 then
+		if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int4")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int4"):GetLevel() > 0 then
 			ability_heal = self:GetCaster():FindAbilityByName("omniknight_purification_lua")
 				if ability_heal:GetLevel() > 0 then
 					
 				local heal = ability_heal:GetSpecialValueFor("heal")
 				local radius = ability_heal:GetSpecialValueFor("radius")
 				
-				if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int1")~=nil then
-					if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int1"):GetLevel() > 0 then
+				if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int1")~=nil then
+					if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int1"):GetLevel() > 0 then
 						heal = ability_heal:GetSpecialValueFor("heal") * 2
 					end
 				end

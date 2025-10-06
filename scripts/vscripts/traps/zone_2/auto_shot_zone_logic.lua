@@ -5,10 +5,10 @@ function start_shot()
 	thisEntity:SetContextThink( "shot_2", shot_2, 1.5 )
 	thisEntity:SetContextThink( "shot_3", shot_3, 2.5 )
 	thisEntity:SetContextThink( "shot_4", shot_4, 2.5 )
-	thisEntity:SetContextThink( "shot_5", shot_5, 0.5 ) --oneshot
-	thisEntity:SetContextThink( "shot_6", shot_6, 0.5 ) --oneshot
+	thisEntity:SetContextThink( "shot_5", shot_5, 0.5 )
+	thisEntity:SetContextThink( "shot_6", shot_6, 0.5 )
 	thisEntity:SetContextThink( "shot_7", shot_7, 0.5 )
-	thisEntity:SetContextThink( "shot_8", shot_8, 0.5 ) --oneshotfast
+	thisEntity:SetContextThink( "shot_8", shot_8, 0.5 )
 	thisEntity:SetContextThink( "shot_9", shot_9, 0.5 )
 	thisEntity:SetContextThink( "shot_10", shot_10, 1.0 )
 	
@@ -70,15 +70,20 @@ trap_8_shots = 1
 trap_9_shots = 4
 trap_10_shots = 3
 
---------------------------------------------------------------------------------------------------------------
+
 
 _G.Fast_shot = true
 _G.All_traps_zone_2 = true
 
---------------------------------------------------------------------------------------------------------------
+
 
 function DisableAllTrap()
 	_G.All_traps_zone_2 = false
+	
+	if not _G.players_quest_progress['additional'][103].completed then
+		_G.players_quest_progress['additional'][103].completed = true
+		quest_system:RemoveQuest('additional', 103, 'success')
+	end
 	
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
@@ -98,7 +103,7 @@ function DisableFastTrap()
 	DoEntFire( button, "SetAnimation", "ancient_trigger001_down_idle", .35, self, self )
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_1()
 	if not IsServer() then
@@ -131,7 +136,7 @@ function shot_1()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_2()
 	if not IsServer() then
@@ -164,7 +169,7 @@ function shot_2()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_3()
 	if not IsServer() then
@@ -197,7 +202,7 @@ function shot_3()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_4()
 	if not IsServer() then
@@ -230,7 +235,7 @@ function shot_4()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_5()
 	if not IsServer() then
@@ -263,7 +268,7 @@ function shot_5()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_6()
 	if not IsServer() then
@@ -296,7 +301,7 @@ function shot_6()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_7()
 	if not IsServer() then
@@ -329,7 +334,7 @@ function shot_7()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------------
+
 
 function shot_8()
 	if not IsServer() then
@@ -366,7 +371,6 @@ function shot_8()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------
 
 function shot_9()
 	if not IsServer() then
@@ -399,7 +403,6 @@ function shot_9()
 	end	
 end
 
---------------------------------------------------------------------------------------------------------
 
 function shot_10()
 	if not IsServer() then
@@ -433,18 +436,16 @@ function shot_10()
 end
 
 
-------------------------------------------------------------------------------------------------------
-
 _G.buttons = {
-    trigger_box_1 = false,
-    trigger_box_2 = false,
-    trigger_box_3 = false,
-    trigger_box_4 = false
+    trigger_box_1 = {state = false, entity = nil},
+    trigger_box_2 = {state = false, entity = nil},
+    trigger_box_3 = {state = false, entity = nil},
+    trigger_box_4 = {state = false, entity = nil},
 }
 
 function CheckAllButtonsPressed()
-    for _, pressed in pairs(buttons) do
-        if not pressed then
+    for _, button in pairs(buttons) do
+        if not button.state then
             return false
         end
     end
@@ -453,32 +454,40 @@ end
 
 function OnButton(trigger)
     local triggerName = thisEntity:GetName()
-	if not trigger.activator:IsIllusion() then
-		local button = triggerName .. "_button"
-		DoEntFire(button, "SetAnimation", "ancient_trigger001_down", 0, self, self)
-		DoEntFire(button, "SetAnimation", "ancient_trigger001_down_idle", .35, self, self)
+    local entity = trigger.activator
+    
+    if not entity:IsIllusion() and buttons[triggerName].state == false then
+        local button = triggerName .. "_button"
+        DoEntFire(button, "SetAnimation", "ancient_trigger001_down", 0, self, self)
+        DoEntFire(button, "SetAnimation", "ancient_trigger001_down_idle", .35, self, self)
+		local npc = Entities:FindByName( nil, button)
+		npc:SetSkin(1)
 		
-		buttons[triggerName] = true
-		DeepPrintTable(buttons)
-		if CheckAllButtonsPressed() then
-			local hRelay = Entities:FindByName( nil, "trap_2_logic" )
-			hRelay:Trigger(nil,nil)
-		end
-	end
+        buttons[triggerName].state = true
+        buttons[triggerName].entity = entity
+
+        if CheckAllButtonsPressed() then
+            local hRelay = Entities:FindByName(nil, "trap_2_logic")
+            hRelay:Trigger(nil, nil)
+        end
+    end
 end
 
 function OffButton(trigger)
     local triggerName = thisEntity:GetName()
-	if not trigger.activator:IsIllusion() then
-		local button = triggerName .. "_button"
-		DoEntFire(button, "SetAnimation", "ancient_trigger001_up", 0.5, self, self)
-		DoEntFire(button, "SetAnimation", "ancient_trigger001_idle", 0.6, self, self)
-		buttons[triggerName] = false
-		DeepPrintTable(buttons)
-	end
+    local entity = trigger.activator
+    
+    if not entity:IsIllusion() and buttons[triggerName].state == true and buttons[triggerName].entity == entity then
+        local button = triggerName .. "_button"
+        DoEntFire(button, "SetAnimation", "ancient_trigger001_up", 0.5, self, self)
+        DoEntFire(button, "SetAnimation", "ancient_trigger001_idle", 0.6, self, self)
+		local npc = Entities:FindByName( nil, button)
+		npc:SetSkin(2)
+		
+        buttons[triggerName].state = false
+        buttons[triggerName].entity = nil
+    end
 end
-
-------------------------------------------------------------------------------------------------------
 
 local triggerActive = true
 

@@ -68,11 +68,13 @@ function modifier_ogre_magi_multicast_lua:OnAbilityFullyCast( params )
 	if RandomInt( 0,100 ) < self.chance_2 then casts = 2 end
 	if RandomInt( 0,100 ) < self.chance_3 then casts = 3 end
 	if RandomInt( 0,100 ) < self.chance_4 then casts = 4 end
+	
+	if params.ability:GetName() == "hero_pangolier_blade_of_the_exile" then return end
 
-	local delay = params.ability:GetSpecialValueFor( "multicast_delay" ) or 0
+	local delay = params.ability:GetSpecialValueFor( "multicast_delay" ) or 0.5
 
 	local single = self.singles[params.ability:GetAbilityName()] or false
-
+	
 	self:GetCaster():AddNewModifier(
 		self:GetCaster(),
 		self:GetAbility(),

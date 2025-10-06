@@ -18,23 +18,11 @@
 		"AbilityCooldown"				"60 50 40 30"
 		"AbilityManaCost"				"50 70 90 110"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"delay"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"350"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"ampl"						"5 10 15 20"
-			}
-		}
+		"AbilityValues"
+	{
+		"delay"	"2"
+			"radius"	"350"
+			"ampl"	"5 10 15 20"
+	}
 	}
 }

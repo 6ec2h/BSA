@@ -22,45 +22,16 @@
 		"AbilityManaCost"				"140 150 160 170"
 		
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
 				"tick_interval"		"0.1"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
 				"total_damage"		"50 100 150 200"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
 				"channel_time"		"3"
-			}
-			
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
 				"stronghold_width"	"600"
-			}
-			
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
 				"chariot_break_distance"	"425"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_INTEGER"
 				"chariot_channel_multiplier"	"3"
-			}
-			"08"
-			{
-				"var_type"			"FIELD_INTEGER"
 				"chariot_bonus_move_speed"	"60"
-			}
+				"ExtraIntelligenceDamage"			"0.2"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}

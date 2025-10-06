@@ -13,23 +13,11 @@
 
 		"AbilityCastRange"				"400"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_resist_pct"		"15 25 35 45"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_resist_pct_enemy" "-4 -8 -12 -16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_resist_pct"	"15 25 35 45"
+			"bonus_resist_pct_enemy"	"-4 -8 -12 -16"
+			"radius"	"400"
+	}
 	}
 }

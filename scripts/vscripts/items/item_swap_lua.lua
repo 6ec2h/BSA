@@ -19,7 +19,7 @@ function item_swap_lua:OnSpellStart()
                 local hModifierAegis = hCaster:AddNewModifier(hCaster, nil, "modifier_swap", {})
                 hModifierAegis:SetStackCount(1)
 		    end
-		    self:SpendCharge()
+		    self:SpendCharge(0)
 		    EmitSoundOn("DOTA_Item.Refresher.Activate", hCaster)
 		    local nParticle = ParticleManager:CreateParticle("particles/items_fx/aegis_respawn_timer.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
 			ParticleManager:ReleaseParticleIndex( nParticle );

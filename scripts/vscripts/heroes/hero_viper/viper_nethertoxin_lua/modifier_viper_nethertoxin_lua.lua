@@ -27,8 +27,8 @@ function modifier_viper_nethertoxin_lua:OnCreated( kv )
 	self.magic_resist = self:GetAbility():GetSpecialValueFor( "magic_resistance" )
 	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int2")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int2"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_viper_int2")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_viper_int2"):GetLevel() > 0 then
 			self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 55
 		end
 	end
@@ -61,8 +61,8 @@ function modifier_viper_nethertoxin_lua:OnRefresh( kv )
 	self.magic_resist = self:GetAbility():GetSpecialValueFor( "magic_resistance" )
 	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int2")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_viper_int2"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_viper_int2")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_viper_int2"):GetLevel() > 0 then
 			self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 55			
 		end
 	end

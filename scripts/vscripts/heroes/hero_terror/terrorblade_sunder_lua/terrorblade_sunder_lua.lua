@@ -9,7 +9,7 @@ function terrorblade_sunder_lua:OnSpellStart()
 	local duration = self:GetSpecialValueFor( "duration" )
 	local sunderdamage = self:GetSpecialValueFor( "damage" )
 	
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_terrorblade_tal5")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_terrorblade_tal5")
 	if talent ~= nil and talent:GetLevel() > 0 then 
 		duration = duration + 5
 	end

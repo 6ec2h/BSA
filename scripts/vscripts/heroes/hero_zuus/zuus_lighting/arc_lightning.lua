@@ -3,6 +3,13 @@ LinkLuaModifier("modifier_zuus_arc_lightning_lua", "heroes/hero_zuus/zuus_lighti
 zuus_arc_lightning_lua = class({})
 modifier_zuus_arc_lightning_lua	= class({})
 
+function zuus_arc_lightning_lua:GetCooldown( level )
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_zuus_6")
+	if talent and talent:GetLevel() > 0 then 
+		return self.BaseClass.GetCooldown( self, level ) - 0.4
+	end
+	return self.BaseClass.GetCooldown( self, level )
+end
 
 function zuus_arc_lightning_lua:OnSpellStart()
 	local target = self:GetCursorTarget()
@@ -36,11 +43,16 @@ function modifier_zuus_arc_lightning_lua:GetAttributes()	return MODIFIER_ATTRIBU
 function modifier_zuus_arc_lightning_lua:OnCreated(keys)
 	if not IsServer() or not self:GetAbility() then return end
 
-	self.arc_damage			= self:GetAbility():GetSpecialValueFor("arc_damage")
+	self.arc_damage			= self:GetAbility():GetSpecialValueFor("arc_damage")+ self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	self.radius				= self:GetAbility():GetSpecialValueFor("radius")
 	self.jump_count			= self:GetAbility():GetSpecialValueFor("jump_count")
 	self.jump_delay			= self:GetAbility():GetSpecialValueFor("jump_delay")
 	self.static_chain_mult	= self:GetAbility():GetSpecialValueFor("static_chain_mult")
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_zuus_8")
+	if talent and talent:GetLevel() > 0 then 
+		self.arc_damage = self.arc_damage + 60
+	end
 	
 	self.starting_unit_entindex	= keys.starting_unit_entindex
 	

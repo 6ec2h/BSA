@@ -10,7 +10,7 @@ function spectre_haunt_lua:OnSpellStart()
 	local distance = 72
 	count = 1
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_spectre_tal4")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_spectre_tal4")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 	count = 2
 	end
@@ -51,40 +51,6 @@ function RealityCast (keys)
 	local ability = keys.ability
 	local target = keys.target
 	local name = target:GetUnitName()
-	
-	-- local abil = caster:FindAbilityByName("npc_dota_hero_spectre_int9")
-		-- if abil ~= nil then 
-		-- local enemies = FindUnitsInRadius(caster:GetTeamNumber(),caster:GetOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
-			-- if #enemies > 0 then        
-				-- for _,unit in pairs(enemies) do
-					-- ApplyDamage({ victim = unit, attacker = caster, damage = caster:GetIntellect(), damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})		
-				-- end
-			-- end	
-		-- end
-	
-	-- local abil = caster:FindAbilityByName("npc_dota_hero_spectre_str9")
-	-- if abil ~= nil then 
-				-- local point = target:GetAbsOrigin()
-				-- local point_closed_zone = Entities:FindByName( nil, "closed_zone") 
-				-- local closed_zone_point = point_closed_zone:GetAbsOrigin()
-				
-				-- local point_closed_zone2 = Entities:FindByName( nil, "silent") 
-				-- local closed_zone_point2 = point_closed_zone2:GetAbsOrigin()
-				
-				-- local flDist = (point - closed_zone_point2):Length2D()
-				-- if flDist < 3500 then return end
-					
-				-- local flDist = (point - closed_zone_point):Length2D()
-				-- if flDist < 3500 then return end
-				-- caster:SetAbsOrigin( point )
-				-- FindClearSpaceForUnit(caster, point, false)
-				-- caster:Stop() 
-				-- PlayerResource:SetCameraTarget(caster:GetPlayerOwnerID(), caster)
-				-- Timers:CreateTimer(0.1, function()
-				-- PlayerResource:SetCameraTarget(caster:GetPlayerOwnerID(), nil)
-				-- end)
-				-- EmitSoundOn("Hero_Spectre.Reality", caster)
-	-- end
 	
 	if name == "npc_dota_hero_spectre" and target:IsIllusion() and target:IsAlive() then		
 	local vPoint = target:GetOrigin() 

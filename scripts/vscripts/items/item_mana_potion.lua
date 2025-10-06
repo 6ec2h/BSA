@@ -31,7 +31,7 @@ function item_mana_potion:OnSpellStart()
 			end
 		end
 
-		self:SpendCharge()
+		self:SpendCharge(0)
 	end
 end
 

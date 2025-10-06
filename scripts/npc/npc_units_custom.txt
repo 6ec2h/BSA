@@ -1,12 +1,121 @@
 ﻿"DOTAUnits"
 {
 
-//===================================================== NECRO SPAWN ============================================================================
+"npc_creeps_passives"
+    {
+        "BaseClass"                    "npc_dota_creature"
+		"Level"						"10"
+        "Model"                        "models/development/invisiblebox.vmdl"  
+        "Ability1"                   "axe_counter_helix_lua"            
+        "Ability2"                    "antimage_mana_break_lua"            
+        "Ability3"                    "omniknight_degen_aura_lua"            
+        "Ability4"                    "centaur_return_lua"            
+        "Ability5"                    "creep_poison_sting_lua"            
+        "Ability6"                    "wraith_king_vampiric_aura_lua"            
+        "Ability7"                    "mars_bulwark_lua"            
+        "Ability8"                    "phantom_assassin_blur_lua"            
+        "Ability9"                    "phantom_assassin_coup_de_grace_lua"            
+        "Ability10"                    "sniper_headshot_lua"            
+        "Ability11"                    "time_lock_lua"            
+        "Ability12"                    "backtrack_lua"            
+        "Ability13"                    "lifestealer_feast_lua"            
+        "Ability14"                    "lycan_feral_lua"            
+        "Ability15"                    "legion_courage"                        
+        "Ability16"                    "luna_moon_glaive_lua"            
+        "Ability17"                    "night_stalker_blood"                    
+        "Ability18"                    "sven_great_cleave_lua"            
+        "Ability19"                    "tidehunter_kraken_shell_lua"            
+        "Ability20"                    "templar_assassin_psi_blades_lua"            
+        "Ability21"                    "troll_warlord_fervor_lua"                    
+        "Ability22"                    "muerta_gunslinger_lua"                    
+        "Ability23"                    "lycan_double_hit"                    
+        "Ability24"                    "magnataur_skin"                    
+        "Ability25"                    "sand_caustic"		
+        "Ability26"                    "creep_ursa_fury_swipes_lua"		
+        "PathfindingSearchDepthScale" "0"
+    }
 
+"guild_creeps"
+	{
+		"Model"						"models/creeps/thief/thief_01_leader.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"Level"						"10"
+		"ModelScale" 				"1.1"
+		"HasInventory"				"1"
+			
+		"Ability1"					""			
+		"Ability2"					""			
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			
+		"ArmorPhysical"				"40"			
+		"MagicalResistance"			"0"			
+				
+		"AttackDamageMin"			"850"		
+		"AttackDamageMax"			"850"		
+		"AttackRate"				"0.8"		
+		"AttackAnimationPoint"		"0.2"		
+		"AttackAcquisitionRange"	"700"		
+		"AttackRange"				"200"		
+				
+		"StatusHealth"				"9000"
+		"StatusHealthRegen"			"50"
+		"StatusMana"				"200"
+		"StatusManaRegen"			"2.0"
+
+		"RingRadius"				"60"
+		"HealthBarOffset"			"190"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"		
+
+		"VisionDaytimeRange"		"900"		
+		"VisionNighttimeRange"		"900"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"						
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"Creature"
+		{
+			"DisableResistance"			"75"
+			"EquippedItems"
+			{
+				"PowerTreads"
+				{
+					"Item"					"item_desolator_lua3"
+				}
+				"Assault"
+				{
+					"Item"					"item_dagon_lua_5"
+				}
+				"Assault"
+				{
+					"Item"					"item_skadi_lua3"
+				}
+				"Shivas"
+				{
+					"Item"					"item_blink"
+				}
+				"mkb"
+				{
+					"Item"					"item_monkey_king_bar_lua3"
+				}
+				"ddd"
+				{
+					"Item"					"item_sheepstick"
+				}
+			}
+		}
+	}
+	
+//===================================================== NECRO SPAWN ============================================================================
 
 "raid_boss"
 	{	
-		"vscripts"					"ai/raid_boss.lua"
+		"vscripts"					"ai/ai_aghanim.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/heroes/aghanim/aghanim_model.vmdl"
 		"SoundSet"					"Hero_Oracle"
@@ -20,11 +129,17 @@
 	    "Ability2"					"fire_raze"     
 	    "Ability3"					"fire_storm"     
 	    "Ability4"					"raid_aura"   
-	    "Ability5"					""  
-	    "Ability6"					""    
-		"Ability7"                 	""
-		"Ability8"                 	""
-		"Ability9"                 	""
+	    "Ability5"					"boss_ursa_fury_swipes_lua"  
+	    "Ability6"					"undying_tombstone"    
+		"Ability7"                 	"boss_lich_chain_frost_lua"
+		"Ability8"                 	"custom_earth_splitter"
+		"Ability9"                 	"boss_nyx_assassin_dispersion"
+		"Ability10"                 "custom_torrential_waters"
+		"Ability11"                 "monkey_king_boundless_strike"
+		"Ability12"                 "custom_forest"
+		"Ability13"                 "custom_doom"
+		"Ability14"                 "boss_arc_flux"
+		"Ability15"                 "necro_firestorm"
 
 		"ArmorPhysical"				"0"
 		"MagicalResistance"			"0"
@@ -32,7 +147,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"5000"
 		"AttackDamageMax"			"5000"
-		"AttackRate"				"0.8"
+		"AttackRate"				"0.6"
 		"AttackAnimationPoint"		"0.1"
 		"AttackAcquisitionRange"	"1200"
 		"AttackRange"				"1000"
@@ -47,6 +162,7 @@
 		"MovementTurnRate"			"0.5"
 
 		"StatusHealth"				"1000000"
+		"StatusHealthRegen"			"200"
 		"StatusMana"				"60000"
 		"StatusManaRegen"			"1000.0"
 		
@@ -96,11 +212,11 @@
 
 "npc_necro_bear"
 	{										
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"Model"						"models/heroes/ursa/ursa.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Ursa"
-		"Level"						"25"
+		"Level"						"75"
 		"ModelScale" 				"1.9"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -111,6 +227,7 @@
 		"Ability4"                  "boss_ursa_skill"
 		"Ability5"                  "necronomicon_warrior_sight"
 		"Ability6"  				"boss_ursa_fury_swipes_lua"
+		"Ability18"					"boss_status_resist"
 	
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -145,7 +262,6 @@
 		
 		"Creature"
 		{
-			"DisableResistance"			"75"
 			"EquippedItems"
 			{
 				"PowerTreads"
@@ -185,11 +301,11 @@
 
 "npc_necro_undy"	
 	{
-		"vscripts"					"ai/ai_necr.lua"
-		"Model"						"models/heroes/undying/undying_flesh_golem.vmdl"
+		"vscripts"					"ai/ai_bosses.lua"
+		"Model"						"models/items/undying/flesh_golem/incurable_pestilence_golem/incurable_pestilence_golem.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Undying"
-		"Level"						"30"
+		"Level"						"75"
 		"ModelScale" 				"1.5"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -201,6 +317,8 @@
 		"Ability5"  				"boss_ampl"
 		"Ability6"					"ogre_magi_multicast"
 		"Ability7"					"undy_spray_lua"
+		"Ability8"					"undy_corrosive_skin_lua"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -235,7 +353,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
 			"EquippedItems"
 			{
 				"PowerTreads"
@@ -268,11 +385,11 @@
 	
 "npc_necro_lich"	
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"Model"						"models/heroes/lich/lich.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Lich"
-		"Level"						"30"
+		"Level"						"75"
 		"ModelScale" 				"1.5"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -285,6 +402,7 @@
 		"Ability6"					"special_bonus_unique_treant_10"
 		"Ability7"					"lich_sinister_gaze"
 		"Ability8"					"ogre_magi_multicast"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -321,20 +439,19 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
-		"EquippedItems"
+			"EquippedItems"
 			{
 				"PowerTreads"
 				{
-					"Item"					"item_skadi_lua3"
-				}
-				"PowerTreads"
-				{
-					"Item"					"item_ultimate_scepter"
+					"Item"					"item_orchid"
 				}
 				"Assault"
 				{
-					"Item"					"item_sphere"
+					"Item"					"item_assault_lua3"
+				}
+				"Assault"
+				{
+					"Item"					"item_skadi_lua3"
 				}
 				"Shivas"
 				{
@@ -344,11 +461,12 @@
 				{
 					"Item"					"item_monkey_king_bar_lua3"
 				}
-				"mkbs"
+				"ddd"
 				{
-					"Item"					"item_mjollnir_lua3"
+					"Item"					"item_bfury_lua3"
 				}
 			}
+
 			"AttachWearables"
 			{
 				"Wearable1" { "ItemDef" "4851" }
@@ -363,16 +481,16 @@
 	
 "npc_necro_storegga"
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/creeps/ice_biome/storegga/storegga.vmdl"
 		"SoundSet"					"Hero_Tiny"
-		"Level"						"30"
+		"Level"						"75"
 		"HasInventory"				"1"
 		"ModelScale" 				"1.5"
 		"IsAncient"					"1"
 
-		"Ability1"					"tusk_snowball_meteor"			
+		"Ability1"					""			
 		"Ability2"					"custom_shifting_quake2"			
 		"Ability3"					"gavnina"			
 		"Ability4"					"custom_earth_splitter"
@@ -380,7 +498,8 @@
 		"Ability6"                  "necronomicon_warrior_sight"	
 		"Ability7"					"special_bonus_unique_treant_10"	
 		"Ability8"  				"boss_ampl"		
-		"Ability9"					"ogre_magi_multicast"		
+		"Ability9"					"ogre_magi_multicast"	
+"Ability18"					"boss_status_resist"		
 
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -415,7 +534,6 @@
 
 		"Creature"
 		{	
-		"DisableResistance"			"75"
 
 		"EquippedItems"
 			{
@@ -449,20 +567,21 @@
 	
 "npc_necro_nyx"
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"Model"						"models/heroes/nerubian_assassin/nerubian_assassin.vmdl"
 		"BaseClass"					"npc_dota_creature"	
 		"SoundSet"					"Hero_NyxAssassin"					
 		"ModelScale"				"2"
-		"Level"						"25"
+		"Level"						"75"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 		
 		"Ability1"					"boss_nyx_assassin_mana_burn"		
 		"Ability2"					"boss_nyx_assassin_impale"
-		"Ability3"					"frostivus2018_spectre_active_dispersion"
+		"Ability3"					"boss_nyx_assassin_dispersion"
 		"Ability4"					"pangolier_heartpiercer"
 		"Ability5"                  "necronomicon_warrior_sight"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -500,7 +619,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
 		"EquippedItems"
 				{
 				"PowerTreads"
@@ -533,22 +651,24 @@
 	
 "npc_necro_slardar"
 	{	
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"Model"						"models/heroes/slardar/slardar.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Slardar"
-		"Level"						"20"
+		"Level"						"75"
 		"ModelScale" 				"1.8"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 
-		"Ability1"					"slardar_slithereen_crush"
+		"Ability1"					"slardar_slithereen_crush_lua"
 		"Ability2"					"custom_slardar"
 		"Ability3"					"custom_torrential_waters"
 		"Ability4"					"slardar_bash"
 		"Ability5" 					"slardar_sprint"
 		"Ability6"                  "necronomicon_warrior_sight"
 		"Ability7"					"armor_reduction_aura"
+		"Ability18"					"boss_status_resist"
+
 
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -583,7 +703,7 @@
 		
 		"Creature"
 		{
-		"DisableResistance"			"75"
+
 		"EquippedItems"
 			{
 			"PowerTreads"
@@ -623,11 +743,11 @@
 	
 "npc_necro_monkey_king"
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/heroes/monkey_king/monkey_king.vmdl"
 		"SoundSet"					"Hero_MonkeyKing"
-		"Level"						"4"
+		"Level"						"75"
 		"ModelScale" 				"1.5"
 		"HasInventory"				"1"
 		
@@ -638,6 +758,7 @@
 		"Ability5"					"monkey_passive"
 		"Ability6"					"necronomicon_warrior_sight"
 		"Ability8"					"monkey_king_wukongs_command_custom"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -684,7 +805,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
 		"EquippedItems"
 			{
 				"PowerTreads"
@@ -725,11 +845,11 @@
 	
 "npc_necro_fura"
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"Model"						"models/heroes/furion/furion.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Furion"
-		"Level"						"30"
+		"Level"						"75"
 		"ModelScale" 				"1.8"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -740,6 +860,7 @@
 		"Ability6"                  "necronomicon_warrior_sight"
 		"Ability7"					"armor_reduction_aura"
 		"Ability8"  				"special_bonus_unique_treant_10"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -776,7 +897,7 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
+
 		"EquippedItems"
 			{
 				"PowerTreads"
@@ -820,11 +941,11 @@
 
 "npc_necro_lord"
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/heroes/doom/doom.vmdl"
 		"SoundSet"					"Roshan"
-		"Level"						"25"
+		"Level"						"75"
 		"ModelScale" 				"2"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -832,9 +953,10 @@
 		"Ability1"					"custom_solar_flare"			
 		"Ability2"					"custom_pit"				
 		"Ability3"					"armor_reduction_aura"
-		"Ability4"					"creature_fire_breath"
+	//	"Ability4"					"creature_fire_breath"
 		"Ability5"					"necronomicon_warrior_sight"
 		"Ability6"                  "custom_doom"
+		"Ability18"					"boss_status_resist"
 		
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -869,7 +991,6 @@
 
 		"Creature"
 		{	
-		"DisableResistance"			"75"
 
 		"EquippedItems"
 			{
@@ -914,11 +1035,11 @@
 	
 "npc_necro_medusa"	
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"Model"						"models/heroes/medusa/medusa.vmdl"
 		"SoundSet"					"Hero_Medusa"
 		"BaseClass"					"npc_dota_creature"
-		"Level"						"25"
+		"Level"						"75"
 		"ModelScale" 				"1.5"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -931,7 +1052,7 @@
 		"Ability7"                  "necronomicon_warrior_sight"
 		"Ability8"  				"axe_berserkers_call_medusa"
 		"Ability9"					"special_bonus_unique_medusa_4"
-		"Ability10"					"antimage_counterspell"
+		"Ability18"					"boss_status_resist"
 		
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -968,7 +1089,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
 			"EquippedItems"
 			{
 				"PowerTreads"
@@ -1010,18 +1130,20 @@
 
 "npc_necro_arc"
 	{
-		"vscripts"					"ai/ai_necr.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/heroes/arc_warden/arc_warden.vmdl"
 		"SoundSet"					"Hero_ArcWarden"
 		"ModelScale" 				"1.8"
 		"IsAncient"					"1"
+		"Level"						"75"
 
 		"Ability1"					"boss_arc_flux"
 		"Ability2"					"boss_arc_magnetic_field"
 		"Ability3"					"boss_arc_spark_wraith"
 		"Ability4"					"monkey_passive"
 		"Ability5"					"boss_arc_hide_lua"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -1059,7 +1181,6 @@
 
 		"Creature"
 		{
-			"DisableResistance" "75"
 			"EquippedItems"
 			{
 				"PowerTreads"
@@ -1103,11 +1224,11 @@
 	
 "necrolyte"	
 	{
-		"vscripts"       			"ai/ai_necr.lua"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"Model"						"models/heroes/necrolyte/necrolyte.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Necrolyte"
-		"Level"						"30"
+		"Level"						"80"
 		"ModelScale" 				"1.5"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -1122,9 +1243,10 @@
 		"Ability7"					"necro_glimps"
 		"Ability8"					"necrolyte_heartstopper_aura_lua"
 		"Ability9"					"necronomicon_warrior_sight"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"40"			
-		"MagicalResistance"         "40"
+		"ArmorPhysical"				"50"			
+		"MagicalResistance"         "50"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"1500"		
@@ -1158,7 +1280,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
 		
 			"EquippedItems"
 			{
@@ -1203,33 +1324,36 @@
 	
 "GoldenMiner"
 	{
-		"vscripts"       			"ai/ai_golden_miner.lua"
+		"MinimapIcon"        "minimap_death"
+		"MinimapIconSize"    "500"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/items/wraith_king/arcana/wk_arcana_skeleton.vmdl"
 		"ModelScale"				"1.7"
 		"SoundSet"					"Hero_Mars"
-		"Level"						"200"	
+		"Level"						"75"	
 		"HasInventory"				"1"
 		"CanBeDominated"			"0"
+		"IsAncient"					"1"
 		
-		"Ability1"					"mars_bulwark"	
+		"Ability1"					"mars_bulwark_lua"	
 		"Ability2"					"slardar_bash"		
 		"Ability3"					"golden_passive"
 		"Ability4"					"tiny_avalanche"
 		"Ability5"					"necronomicon_warrior_sight"
 		"Ability6"					"zombie_spawn"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"20"			
-		"MagicalResistance"			"20"	
+		"ArmorPhysical"				"40"			
+		"MagicalResistance"			"40"	
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"400"		
-		"AttackDamageMax"			"400"		
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.8"		
+		"AttackDamageMin"			"1000"		
+		"AttackDamageMax"			"1000"			
+		"AttackRate"				"0.5"		
 		"AttackAnimationPoint"		"0.1"		
 		"AttackAcquisitionRange"	"1200"		
-		"AttackRange"				"200"			
+		"AttackRange"				"250" 			
 
 		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"		
 		"HealthBarOffset"			"130"
@@ -1241,8 +1365,8 @@
 		"MovementSpeed"				"430"		
 		"MovementTurnRate"			"0.5"		
 
-		"StatusHealth"				"25000"		
-		"StatusHealthRegen"			"20.0"		
+		"StatusHealth"				"100000"		
+		"StatusHealthRegen"			"100.0"		
 		"StatusMana"				"10000"			
 		"StatusManaRegen"			"500.0"		
 
@@ -1253,28 +1377,20 @@
 	
 		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-		"EquippedItems"
-			{
-				"PowerTreads"
-				{
-					"Item"	"item_assault_lua1"
-				}
-			}
-		}
 	}
 		
 "GoldenQueen"
 	{
-		"vscripts"       			"ai/ai_queen.lua"
+		"MinimapIcon"        		"minimap_death"
+		"MinimapIconSize"    		"500"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.vmdl"
 		"ModelScale"				"1.8"
-		"Level"						"200"	
+		"Level"						"75"	
 		"HasInventory"				"1"
 		"CanBeDominated"			"0"
+		"IsAncient"					"1"
 		
 		"Ability1"					"golden_passive"
 		"Ability2"					"crystal_maiden_freezing_field"
@@ -1282,15 +1398,16 @@
 		"Ability4"					"boss_ampl"
 		"Ability5"					"arc_warden_spark_wraith"
 		"Ability6"					"queen_field"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"25"			
-		"MagicalResistance"			"25"	
+		"ArmorPhysical"				"40"			
+		"MagicalResistance"			"40"	
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"500"		
-		"AttackDamageMax"			"500"		
+		"AttackDamageMin"			"1000"		
+		"AttackDamageMax"			"1000"		
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.6"		
+		"AttackRate"				"0.5"		
 		"AttackAnimationPoint"		"0.1"		
 		"AttackAcquisitionRange"	"1200"		
 		"AttackRange"				"450"		
@@ -1307,8 +1424,8 @@
 		"MovementSpeed"				"430"		
 		"MovementTurnRate"			"0.5"		
 
-		"StatusHealth"				"50000"		
-		"StatusHealthRegen"			"40.0"		
+		"StatusHealth"				"100000"		
+		"StatusHealthRegen"			"100.0"		
 		"StatusMana"				"10000"			
 		"StatusManaRegen"			"500.0"		
 
@@ -1319,49 +1436,38 @@
 	
 		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-			"EquippedItems"
-				{
-					"PowerTreads"
-					{
-						"Item"					"item_shivas_guard_lua3"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_black_king_bar_lua1"
-					}
-				}
-		}
 	}
 	
 "GoldenWyvern"
 	{
-		"vscripts"       			"ai/ai_wyvern.lua"
+		"MinimapIcon"        "minimap_death"
+		"MinimapIconSize"    "500"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/heroes/winterwyvern/winterwyvern.vmdl"
 		"SoundSet"					"Hero_Winter_Wyvern"		
 		"ModelScale"				"1.8"
-		"Level"						"200"	
+		"Level"						"75"	
 		"HasInventory"				"1"
 		"CanBeDominated"			"0"
+		"IsAncient"					"1"
 		
 		"Ability1"					"golden_touch"	
-		"Ability2"					"winters_curse"		
+		"Ability2"					"winter_wyvern_winters_curse"		
 		"Ability3"					"golden_passive"
 		"Ability4"					"wyvern_cold"
 		"Ability5"					"necronomicon_warrior_sight"
 		"Ability6"					"golden_splinter_blast"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"30"			
-		"MagicalResistance"			"30"	
+		"ArmorPhysical"				"40"			
+		"MagicalResistance"			"40"	
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"600"		
-		"AttackDamageMax"			"600"		
+		"AttackDamageMin"			"1000"		
+		"AttackDamageMax"			"1000"		
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.6"		
+		"AttackRate"				"0.5"		
 		"AttackAnimationPoint"		"0.1"		
 		"AttackAcquisitionRange"	"1200"		
 		"AttackRange"				"450"		
@@ -1378,7 +1484,7 @@
 		"MovementSpeed"				"430"		
 		"MovementTurnRate"			"0.5"		
 
-		"StatusHealth"				"75000"		
+		"StatusHealth"				"100000"		
 		"StatusHealthRegen"			"100.0"		
 		"StatusMana"				"10000"			
 		"StatusManaRegen"			"500.0"		
@@ -1399,29 +1505,21 @@
 			"Wearable2" {"ItemDef" "8517"}
 			}
 		
-		"DisableResistance"			"75"
-		"EquippedItems"
-			{
-				"PowerTreads"
-				{
-					"Item"					"item_shivas_guard_lua3"
-				}
-				"PowerTreads"
-				{
-					"Item"					"item_skadi_lau3"
-				}
-			}
 		}
 	}	
 	
 "GoldenSea"
 	{
+		"MinimapIcon"        "minimap_death"
+		"MinimapIconSize"    "500"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/creeps/nian/nian_creep.vmdl"
 		"ModelScale"				"1"
-		"Level"						"200"	
+		"Level"						"75"	
 		"HasInventory"				"1"
 		"CanBeDominated"			"0"
+		"IsAncient"					"1"
 		
 		"Ability1"					"leshrac_diabolic_edict_lua"	
 		"Ability2"					"wyvern_cold"		
@@ -1430,14 +1528,15 @@
 		"Ability5"					"leshrac_split_earth"
 		"Ability6"					"necronomicon_warrior_sight"
 		"Ability7"					"boss_ampl"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"35"			
-		"MagicalResistance"			"35"	
+		"ArmorPhysical"				"40"			
+		"MagicalResistance"			"40"	
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"700"		
-		"AttackDamageMax"			"700"			
-		"AttackRate"				"0.7"		
+		"AttackDamageMin"			"1000"		
+		"AttackDamageMax"			"1000"			
+		"AttackRate"				"0.5"		
 		"AttackAnimationPoint"		"0.1"		
 		"AttackAcquisitionRange"	"1200"		
 		"AttackRange"				"250" 	
@@ -1453,386 +1552,6 @@
 		"MovementTurnRate"			"0.5"		
 
 		"StatusHealth"				"100000"		
-		"StatusHealthRegen"			"60.0"		
-		"StatusMana"				"10000"			
-		"StatusManaRegen"			"500.0"		
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"			
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-		"VisionDaytimeRange"		"1200"
-		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-		"OffensiveAbilities"
-			{		
-				"Ability1"				
-				{
-					"Name"				"leshrac_diabolic_edict_lua"
-				}
-				
-				"Ability1"				
-				{
-					"Name"				"leshrac_split_earth"
-				}
-				
-			}
-			"EquippedItems"
-				{
-					"PowerTreads"
-					{
-						"Item"					"item_monkey_king_bar_lua1"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_mjollnir_lua2"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_assault_lua1"
-					}
-				}
-		}
-	}
-	
-"GoldenDragon"
-	{
-		"vscripts"       			"ai/ai_golden_dragon.lua"
-		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl"
-		"ModelScale"				"1.5"
-		"Level"						"200"	
-		"HasInventory"				"1"
-		"CanBeDominated"			"0"
-		
-		"Ability1"					"creature_fire_breath"	
-		"Ability2"					"jakiro_liquid_fire"		
-		"Ability3"					"golden_passive"
-		"Ability4"					"lina_stun"
-		"Ability5"					"golden_sun"
-		"Ability6"					"necronomicon_warrior_sight"
-
-		"ArmorPhysical"				"40"			
-		"MagicalResistance"			"40"	
-
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"900"		
-		"AttackDamageMax"			"900"		
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.3"		
-		"AttackAnimationPoint"		"0.1"		
-		"AttackAcquisitionRange"	"1200"		
-		"AttackRange"				"450"		
-		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"
-		"ProjectileSpeed"			"900"		
-
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"		
-		"HealthBarOffset"			"130"
-		"RingRadius"				"50"
-		
-		"BountyXP"					"700"
-	
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"430"		
-		"MovementTurnRate"			"0.5"		
-
-		"StatusHealth"				"125000"		
-		"StatusHealthRegen"			"200.0"		
-		"StatusMana"				"10000"			
-		"StatusManaRegen"			"500.0"		
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"			
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-		"VisionDaytimeRange"		"1200"
-		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-			"EquippedItems"
-				{
-					"radiance"
-					{
-						"Item"					"item_radiance_lua3"
-					}
-					"core"
-					{
-						"Item"					"item_bloodstone_lua3"
-					}
-				}
-		}
-	}	
-	
-"GoldenForest"
-	{
-		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/items/warlock/golem/ti9_cache_warlock_tribal_warlock_golem/ti9_cache_warlock_tribal_golem_alt.vmdl"
-		"ModelScale"				"1"
-		"Level"						"200"	
-		"HasInventory"				"1"
-		"CanBeDominated"			"0"
-		
-		"Ability1"					"spectre_dispersion"	
-		"Ability2"					"mars_lil"		
-		"Ability3"					"golden_passive"
-		"Ability4"					"tusk_walrus_punch"
-		"Ability6"					"necronomicon_warrior_sight"
-
-		"ArmorPhysical"				"45"			
-		"MagicalResistance"			"45"	
-
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"850"		
-		"AttackDamageMax"			"850"			
-		"AttackRate"				"0.8"		
-		"AttackAnimationPoint"		"0.1"		
-		"AttackAcquisitionRange"	"1200"		
-		"AttackRange"				"250" 	
-
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"		
-		"HealthBarOffset"			"130"
-		"RingRadius"				"50"
-		
-		"BountyXP"					"800"
-	
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"550"		
-		"MovementTurnRate"			"0.5"		
-
-		"StatusHealth"				"150000"		
-		"StatusHealthRegen"			"130.0"		
-		"StatusMana"				"10000"			
-		"StatusManaRegen"			"500.0"		
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"			
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-		"VisionDaytimeRange"		"1200"
-		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-		"OffensiveAbilities"
-			{		
-				"Ability1"				
-				{
-					"Name"				"mars_lil"
-                    "Radius"            "1000"
-                    "MinimumTargets"    "1"
-				}
-			}
-			"EquippedItems"
-				{
-					"PowerTreads"
-					{
-						"Item"					"item_monkey_king_bar_lua2"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_monkey_king_bar_lua2"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_assault_lua2"
-					}
-							"PowerTreads"
-					{
-						"Item"					"item_desolator_lua2"
-					}
-					"PowerTreads"
-					{
-						"Item"					"item_bfury_lua3"
-					}
-			}
-		}
-	}
-	
-//=================================================================================================================================
-"GoldenMiner1"
-	{
-		"vscripts"       			"ai/ai_golden_miner.lua"
-		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/items/wraith_king/arcana/wk_arcana_skeleton.vmdl"
-		"ModelScale"				"1.7"
-		"SoundSet"					"Hero_Mars"
-		"Level"						"200"	
-		"HasInventory"				"1"
-		"CanBeDominated"			"0"
-		
-		"Ability1"					"mars_bulwark"	
-		"Ability2"					"slardar_bash"		
-		"Ability3"					"golden_passive"
-		"Ability4"					"tiny_avalanche"
-		"Ability5"					"necronomicon_warrior_sight"
-		"Ability6"					"zombie_spawn"
-
-		"ArmorPhysical"				"20"			
-		"MagicalResistance"			"20"	
-
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"400"		
-		"AttackDamageMax"			"400"		
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.8"		
-		"AttackAnimationPoint"		"0.1"		
-		"AttackAcquisitionRange"	"1200"		
-		"AttackRange"				"200"			
-
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"		
-		"HealthBarOffset"			"130"
-		"RingRadius"				"50"
-		
-		"BountyXP"					"300"
-	
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"430"		
-		"MovementTurnRate"			"0.5"		
-
-		"StatusHealth"				"25000"		
-		"StatusHealthRegen"			"20.0"		
-		"StatusMana"				"10000"			
-		"StatusManaRegen"			"500.0"		
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"			
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-		"VisionDaytimeRange"		"1200"
-		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-		"EquippedItems"
-			{
-				"PowerTreads"
-				{
-					"Item"	"item_assault_lua1"
-				}
-			}
-		}
-	}
-		
-"GoldenQueen1"
-	{
-		"vscripts"       			"ai/ai_queen.lua"
-		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.vmdl"
-		"ModelScale"				"1.8"
-		"Level"						"200"	
-		"HasInventory"				"1"
-		"CanBeDominated"			"0"
-		
-		"Ability1"					"golden_passive"
-		"Ability2"					"crystal_maiden_freezing_field"
-		"Ability3"					"necronomicon_warrior_sight"
-		"Ability4"					"boss_ampl"
-		"Ability5"					"arc_warden_spark_wraith"
-		"Ability6"					"queen_field"
-
-		"ArmorPhysical"				"25"			
-		"MagicalResistance"			"25"	
-
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"500"		
-		"AttackDamageMax"			"500"		
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.6"		
-		"AttackAnimationPoint"		"0.1"		
-		"AttackAcquisitionRange"	"1200"		
-		"AttackRange"				"450"		
-		"ProjectileModel"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_base_attack.vpcf"
-		"ProjectileSpeed"			"1250"	
-
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"		
-		"HealthBarOffset"			"130"
-		"RingRadius"				"50"
-		
-		"BountyXP"					"400"
-	
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"430"		
-		"MovementTurnRate"			"0.5"		
-
-		"StatusHealth"				"50000"		
-		"StatusHealthRegen"			"40.0"		
-		"StatusMana"				"10000"			
-		"StatusManaRegen"			"500.0"		
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"			
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-		"VisionDaytimeRange"		"1200"
-		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-			"EquippedItems"
-				{
-					"PowerTreads"
-					{
-						"Item"					"item_shivas_guard_lua3"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_black_king_bar_lua1"
-					}
-				}
-		}
-	}
-	
-"GoldenWyvern1"
-	{
-		"vscripts"       			"ai/ai_wyvern.lua"
-		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/heroes/winterwyvern/winterwyvern.vmdl"
-		"SoundSet"					"Hero_Winter_Wyvern"		
-		"ModelScale"				"1.8"
-		"Level"						"200"	
-		"HasInventory"				"1"
-		"CanBeDominated"			"0"
-		
-		"Ability1"					"golden_touch"	
-		"Ability2"					"winters_curse"		
-		"Ability3"					"golden_passive"
-		"Ability4"					"wyvern_cold"
-		"Ability5"					"necronomicon_warrior_sight"
-		"Ability6"					"golden_splinter_blast"
-
-		"ArmorPhysical"				"30"			
-		"MagicalResistance"			"30"	
-
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"600"		
-		"AttackDamageMax"			"600"		
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.6"		
-		"AttackAnimationPoint"		"0.1"		
-		"AttackAcquisitionRange"	"1200"		
-		"AttackRange"				"450"		
-		"ProjectileModel"			"particles/units/heroes/hero_winter_wyvern/winter_wyvern_base_attack.vpcf"
-		"ProjectileSpeed"			"700"
-
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"		
-		"HealthBarOffset"			"130"
-		"RingRadius"				"50"
-		
-		"BountyXP"					"500"
-	
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"430"		
-		"MovementTurnRate"			"0.5"		
-
-		"StatusHealth"				"75000"		
 		"StatusHealthRegen"			"100.0"		
 		"StatusMana"				"10000"			
 		"StatusManaRegen"			"500.0"		
@@ -1844,139 +1563,37 @@
 	
 		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		
-		"AttachWearables" 
-			{
-			"Wearable1" {"ItemDef" "8516"}
-			"Wearable2" {"ItemDef" "8517"}
-			}
-		
-		"DisableResistance"			"75"
-		"EquippedItems"
-			{
-				"PowerTreads"
-				{
-					"Item"					"item_shivas_guard_lua3"
-				}
-				"PowerTreads"
-				{
-					"Item"					"item_skadi_lau3"
-				}
-			}
-		}
-	}	
-	
-"GoldenSea1"
-	{
-		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/creeps/nian/nian_creep.vmdl"
-		"ModelScale"				"1"
-		"Level"						"200"	
-		"HasInventory"				"1"
-		"CanBeDominated"			"0"
-		
-		"Ability1"					"leshrac_diabolic_edict_lua"	
-		"Ability2"					"wyvern_cold"		
-		"Ability3"					"golden_passive"
-		"Ability4"					"anti_fervor"
-		"Ability5"					"leshrac_split_earth"
-		"Ability6"					"necronomicon_warrior_sight"
-		"Ability7"					"boss_ampl"
-
-		"ArmorPhysical"				"35"			
-		"MagicalResistance"			"35"	
-
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"700"		
-		"AttackDamageMax"			"700"			
-		"AttackRate"				"0.7"		
-		"AttackAnimationPoint"		"0.1"		
-		"AttackAcquisitionRange"	"1200"		
-		"AttackRange"				"250" 	
-
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"		
-		"HealthBarOffset"			"130"
-		"RingRadius"				"50"
-		
-		"BountyXP"					"600"
-	
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"550"		
-		"MovementTurnRate"			"0.5"		
-
-		"StatusHealth"				"100000"		
-		"StatusHealthRegen"			"60.0"		
-		"StatusMana"				"10000"			
-		"StatusManaRegen"			"500.0"		
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"			
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-		"VisionDaytimeRange"		"1200"
-		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-		"OffensiveAbilities"
-			{		
-				"Ability1"				
-				{
-					"Name"				"leshrac_diabolic_edict_lua"
-				}
-				
-				"Ability1"				
-				{
-					"Name"				"leshrac_split_earth"
-				}
-				
-			}
-			"EquippedItems"
-				{
-					"PowerTreads"
-					{
-						"Item"					"item_monkey_king_bar_lua1"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_mjollnir_lua2"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_assault_lua1"
-					}
-				}
-		}
 	}
 	
-"GoldenDragon1"
+"GoldenDragon"
 	{
-		"vscripts"       			"ai/ai_golden_dragon.lua"
+		"MinimapIcon"        "minimap_death"
+		"MinimapIconSize"    "500"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl"
 		"ModelScale"				"1.5"
-		"Level"						"200"	
+		"Level"						"75"	
 		"HasInventory"				"1"
 		"CanBeDominated"			"0"
+		"IsAncient"					"1"
 		
-		"Ability1"					"creature_fire_breath"	
+	//	"Ability1"					"creature_fire_breath"	
 		"Ability2"					"jakiro_liquid_fire"		
 		"Ability3"					"golden_passive"
 		"Ability4"					"lina_stun"
 		"Ability5"					"golden_sun"
 		"Ability6"					"necronomicon_warrior_sight"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"40"			
 		"MagicalResistance"			"40"	
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"900"		
-		"AttackDamageMax"			"900"		
+		"AttackDamageMin"			"1000"		
+		"AttackDamageMax"			"1000"		
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.3"		
+		"AttackRate"				"0.5"		
 		"AttackAnimationPoint"		"0.1"		
 		"AttackAcquisitionRange"	"1200"		
 		"AttackRange"				"450"		
@@ -1993,8 +1610,8 @@
 		"MovementSpeed"				"430"		
 		"MovementTurnRate"			"0.5"		
 
-		"StatusHealth"				"125000"		
-		"StatusHealthRegen"			"200.0"		
+		"StatusHealth"				"100000"		
+		"StatusHealthRegen"			"100.0"		
 		"StatusMana"				"10000"			
 		"StatusManaRegen"			"500.0"		
 
@@ -2005,49 +1622,35 @@
 	
 		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-			"EquippedItems"
-				{
-					"radiance"
-					{
-						"Item"					"item_radiance_lua3"
-					}
-					"core"
-					{
-						"Item"					"item_octarine_core_lua2"
-					}
-					"core"
-					{
-						"Item"					"item_bloodstone_lua1"
-					}
-				}
-		}
 	}	
 	
-"GoldenForest1"
+"GoldenForest"
 	{
+		"MinimapIcon"        "minimap_death"
+		"MinimapIconSize"    "500"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/items/warlock/golem/ti9_cache_warlock_tribal_warlock_golem/ti9_cache_warlock_tribal_golem_alt.vmdl"
 		"ModelScale"				"1"
-		"Level"						"200"	
+		"Level"						"75"	
 		"HasInventory"				"1"
 		"CanBeDominated"			"0"
+		"IsAncient"					"1"
 		
 		"Ability1"					"spectre_dispersion"	
 		"Ability2"					"mars_lil"		
 		"Ability3"					"golden_passive"
 		"Ability4"					"tusk_walrus_punch"
 		"Ability6"					"necronomicon_warrior_sight"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"45"			
-		"MagicalResistance"			"45"	
+		"ArmorPhysical"				"40"			
+		"MagicalResistance"			"40"	
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"850"		
-		"AttackDamageMax"			"850"			
-		"AttackRate"				"0.8"		
+		"AttackDamageMin"			"1000"		
+		"AttackDamageMax"			"1000"			
+		"AttackRate"				"0.5"		
 		"AttackAnimationPoint"		"0.1"		
 		"AttackAcquisitionRange"	"1200"		
 		"AttackRange"				"250" 	
@@ -2062,8 +1665,8 @@
 		"MovementSpeed"				"550"		
 		"MovementTurnRate"			"0.5"		
 
-		"StatusHealth"				"150000"		
-		"StatusHealthRegen"			"130.0"		
+		"StatusHealth"				"100000"		
+		"StatusHealthRegen"			"100.0"		
 		"StatusMana"				"10000"			
 		"StatusManaRegen"			"500.0"		
 
@@ -2074,69 +1677,35 @@
 	
 		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
-		"Creature"
-		{	
-		"DisableResistance"			"75"
-		"OffensiveAbilities"
-			{		
-				"Ability1"				
-				{
-					"Name"				"mars_lil"
-                    "Radius"            "1000"
-                    "MinimumTargets"    "1"
-				}
-			}
-			"EquippedItems"
-				{
-					"PowerTreads"
-					{
-						"Item"					"item_monkey_king_bar_lua2"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_mjollnir_lua2"
-					}
-						"PowerTreads"
-					{
-						"Item"					"item_assault_lua2"
-					}
-							"PowerTreads"
-					{
-						"Item"					"item_desolator_lua2"
-					}
-					"PowerTreads"
-					{
-						"Item"					"item_bfury_lua3"
-					}
-			}
-		}
 	}
+
 //=================================================================================================================================
 
 "npc_man"
 	{
-			"Model"						"models/props_gameplay/npc/shopkeeper_the_lost_meepo/shopkeeper_the_lost_meepo.vmdl"
-			"BaseClass"					"npc_dota_creature"
-			"ModelScale" 				"1"
-			"Ability1"					"rotatetrap"
-			"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-			"AttackDamageMin"			"0"
-			"AttackDamageMax"			"0"
-			"AttackRate"				"1.0"
-			"AttackAnimationPoint"		"0.1"
-			"AttackAcquisitionRange"	"0"
-			"AttackRange"				"100"
-			"RingRadius"				"70"
-			"HealthBarOffset"			"170"
-			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"25"
-			"StatusHealth"				"300000"
-			"VisionDaytimeRange"		"0"
-			"VisionNighttimeRange"		"0"
-			"TeamName"					"DOTA_TEAM_NEUTRALS"
-			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"vscripts"       			"ai/ai_quest.lua"
+		"Model"						"models/props_gameplay/npc/shopkeeper_the_lost_meepo/shopkeeper_the_lost_meepo.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"ModelScale" 				"1"
+		"Ability1"					"rotatetrap"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRate"				"1.0"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"				"100"
+		"RingRadius"				"70"
+		"HealthBarOffset"			"170"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"25"
+		"StatusHealth"				"300000"
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}
 
 "invis_box"	
@@ -2584,9 +2153,6 @@
 		"Ability1"					"auto_shot_zone_2"
 		"Ability2"					"auto_shot_zone_2_kill_arrow"
 		"Ability3"					"auto_shot_zone_3000"
-	//	"Ability4"					"auto_shot_zone_2_kill_arrow"
-	//	"Ability5"					"auto_shot_zone_2_kill_arrow"
-	//	"Ability6"					"auto_shot_zone_2_kill_arrow"
 		"Ability7"					"trap_unselectable"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
@@ -2832,11 +2398,11 @@
 
 		"Ability1"					"boss_ursa_earthshock_lua"
 		"Ability2"					"boss_ursa_overpower_lua"
-		"Ability3"					"gold_2000"
-		"Ability4"					"ursa_enrage"
-		"Ability5"                  "boss_ursa_skill"
-		"Ability6"                  "necronomicon_warrior_sight"
-		"Ability7"  				"boss_ursa_fury_swipes_lua"
+		"Ability3"					"ursa_enrage"
+		"Ability4"                  "boss_ursa_skill"
+		"Ability5"                  "necronomicon_warrior_sight"
+		"Ability6"  				"boss_ursa_fury_swipes_lua"
+		"Ability18"					"boss_status_resist"
 	
 		"ArmorPhysical"				"5"
 		"MagicalResistance"			"5"
@@ -2928,25 +2494,23 @@
 	}
 	
 //-----------------------------------------------------------------------------------
-	
-//-----------------------------------------------------------------------------------	
 
 "lich"	
 	{
-		"vscripts"       			"ai/ai_lich.lua"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"Model"						"models/heroes/lich/lich.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Lich"
-		"Level"						"4"
+		"Level"						"50"
 		"ModelScale" 				"1.9"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 
 		"Ability1"					"boss_lich_frost_blast_lua"			
 		"Ability2"					"boss_lich_chain_frost_lua"				
-		"Ability3"					"gold_3500"
-		"Ability4"					"necronomicon_warrior_sight"
-		"Ability5"					"lich_sinister_gaze"
+		"Ability3"					"necronomicon_warrior_sight"
+		"Ability4"					"lich_sinister_gaze"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"15"			
 		"MagicalResistance"         "15"
@@ -2985,7 +2549,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"50.0"
 			"ItemDrops"
             {
                 "Consumables"
@@ -3005,7 +2568,7 @@
                     }
                     "Chance"            "100"
 				}
-					"books"
+				"books"
 				{
 					"Item"
 					{	
@@ -3137,10 +2700,10 @@
 				{
 					"Item"					"item_butterfly_lua1"
 				}	
-				"item_sphere"
-				{
-					"Item"					"item_echo_sabre"
-				}
+			//	"item_sphere"
+			//	{
+			//		"Item"					"item_echo_sabre"
+			//	}
 			}
 			
 			"AttachWearables"
@@ -3159,32 +2722,36 @@
 		"vscripts"					"ai/ai_monkey_king.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/heroes/monkey_king/monkey_king.vmdl"
-		"SoundSet"					"Hero_MonkeyKing"
-		"Level"						"4"
-		"ModelScale" 				"1.5"
+		"SoundSet"					"Roshan"
+		"Level"						"75"
+		"ModelScale" 				"2"
 		"HasInventory"				"1"
-		
-		"Ability1"					"monkey_king_boundless_strike"
-		"Ability2"					"monkey_king_tree_dance"
-		"Ability3"					"monkey_king_primal_spring"
-		"Ability4"					"monkey_passive_2"
-		"Ability5"					"monkey_passive"
-		"Ability6"					"necronomicon_warrior_sight"
-		"Ability7"					"gold_3500"
-		"Ability8"					"monkey_king_wukongs_command_custom"
+		"IsAncient"					"1"
 
-		"ArmorPhysical"				"25"
-		"MagicalResistance"			"25"
+		"Ability1"					"monkey_king_boundless_strike"
+		"Ability2"					"monkey_king_tree_dance_lua"
+		"Ability3"					"monkey_king_primal_spring_lua"
+		"Ability4"					"monkey_king_primal_spring_early_lua"
+		"Ability5"					"monkey_passive_2"
+		"Ability6"					"monkey_passive"
+		"Ability7"					"necronomicon_warrior_sight"
+		"Ability8"					""
+		"Ability9"					"monkey_king_wukongs_command_custom"
+		"Ability18"					"boss_status_resist"
+
+		"ArmorPhysical"				"30"
+		"MagicalResistance"			"30"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"800"
-		"AttackDamageMax"			"800"
+		"AttackDamageMin"			"900"
+		"AttackDamageMax"			"900"
 		"AttackRate"				"0.5"
 		"AttackAnimationPoint"		"0.1"
 		"AttackAcquisitionRange"	"1000"
 		"AttackRange"				"400"
-		"ProjectileModel"			""
-		"ProjectileSpeed"			""
+
+		"RingRadius"				"60"
+		"HealthBarOffset"			"200"
 		
 		"AttackSpeedActivityModifiers"
 		{
@@ -3198,85 +2765,54 @@
 			"attack_long_range"		"200"
 		}
 
-		"RingRadius"				"70"
-		"HealthBarOffset"			"200"
-		
 		"BountyXP"					"2000"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"360"
+		"MovementSpeed"				"600"
 		"MovementTurnRate"			"0.5"
 
 		"StatusHealth"				"125000"
-		"StatusHealthRegen"			"50.0"
-		"StatusMana"				"30000"
-		"StatusManaRegen"			"10.0"
+		"StatusHealthRegen"			"80.0"
+		"StatusMana"				"60000"
+		"StatusManaRegen"			"90.0"
 		
-		"VisionDaytimeRange"		"1000"
-		"VisionNighttimeRange"		"1000"
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
 
-		"TeamName"					"DOTA_TEAM_BADGUYS"
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 
 		"Creature"
-		{
-			"EquippedItems"
+		{	
+
+			"DefaultState"			"Invade"
+			"AttachWearables"
 			{
-				"item_assault_lua1"
-				{
-					"Item"					"item_assault_lua2"
-				}
-				"item_monkey_king_bar_lua2"
-				{
-					"Item"					"item_monkey_king_bar_lua3"
-				}
-				"item_desolator_lua2"
-				{
-					"Item"					"item_desolator_lua2"
-				}
-				"item_vladmir_lua1"
-				{
-					"Item"					"item_vladmir_lua3"
-				}	
-				"item_butterfly_lua1"
-				{
-					"Item"					"item_butterfly_lua1"
-				}	
-				"item_sphere"
-				{
-					"Item"					"item_echo_sabre"
-				}
+				"Wearable1"	{ "ItemDef"	"594" }
+				"Wearable2"	{ "ItemDef" "608" }
+				"Wearable3" { "ItemDef" "609" } 
+				"Wearable4" { "ItemDef"	"657" }
 			}
 			"ItemDrops"
-            {
-                "Consumables"
+			{
+				 "Consumables"
                 {
                     "Item"
                     {
-                        "1"				"item_sange"
+                        "1"				"item_hyperstone"
 						"2"				"item_hyperstone"
-						"3"				"item_yasha"
+						"3"				"item_hyperstone"
 						"4"				"item_demon_edge"
-						"5"				"item_mekansm"
-						"6"				"item_lesser_crit"
-						"7"				"item_kaya"
-						"8"				"item_holy_locket"
-						"9"				"item_ultimate_orb"
+						"5"				"item_demon_edge"
+						"6"				"item_demon_edge"
+						"7"				"item_eagle"
+						"8"				"item_reaver"
+						"9"				"item_relic"
 						"10"			"item_mystic_staff"		
                     }
                     "Chance"            "100"
-				}
-				"books"
-				{
-					"Item"
-					{	
-						"1"				"item_book_of_strength"
-						"2"				"item_book_of_agility"
-						"3"				"item_book_of_intelligence"
-					}
-					"Chance"			"50"
 				}
 				"boss"
 				{
@@ -3287,18 +2823,35 @@
 					"Chance"			"100"
 				}
 			}
-			
-			"AttachWearables"
+			"EquippedItems"
 			{
-				"Wearable1"	{ "ItemDef"	"594" }
-				"Wearable2"	{ "ItemDef" "608" }
-				"Wearable3" { "ItemDef" "609" } 
-				"Wearable4" { "ItemDef"	"657" }
+				"PowerTreads"
+				{
+					"Item"					"item_desolator_lua2"
+				}
+				"Assault"
+				{
+					"Item"					"item_assault_lua2"
+				}
+				"Assault"
+				{
+					"Item"					"item_sphere"
+				}
+				"Shivas"
+				{
+					"Item"					"item_shivas_guard_lua2"
+				}
+				"mkb"
+				{
+					"Item"					"item_monkey_king_bar_lua2"
+				}
+				"item_mael"
+				{
+					"Item"					"item_bfury_lua2"
+				}	
 			}
-			
 		}
 	}
-	
 	
 //=======================================================================================================================================================================
 //==================================================================================ZONE 1===============================================================================
@@ -4077,7 +3630,7 @@
 		"HasInventory"				"1"
 
 		"Ability1"					"crystal_maiden_crystal_nova"
-		"Ability2"					"crystal_maiden_freezing_field_lua"
+		"Ability2"					"creep_freezing_field"
 
 		"ArmorPhysical"				"60"			
 		"MagicalResistance"			"5"			
@@ -4167,10 +3720,10 @@
 		"ArmorPhysical"				"0"			
 		
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"90"		
-		"AttackDamageMax"			"90"		
+		"AttackDamageMin"			"100"		
+		"AttackDamageMax"			"100"		
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.55"		
+		"AttackRate"				"0.5"		
 		"AttackAnimationPoint"		"0.1"		
 		"AttackAcquisitionRange"	"800"		
 		"AttackRange"				"610"		
@@ -4187,7 +3740,7 @@
 		"MovementSpeed"				"350"
 		"MovementTurnRate"			"0.7"		
 
-		"StatusHealth"				"1200"		
+		"StatusHealth"				"900"		
 		"StatusHealthRegen"			"3"		
 		"StatusMana"				"3000"			
 		"StatusManaRegen"			"5"
@@ -4205,7 +3758,7 @@
 			{
 			"item_maelstrom"
 				{
-					"Item"					"item_maelstrom"
+					"Item"					"item_skadi_lua1"
 				}
 			}
 			"AttachWearables"
@@ -4631,6 +4184,8 @@
 		}
 	}
 	
+	
+	
 "undying"	
 	{
 		"vscripts"					"ai/ai_undying_traps.lua"
@@ -4686,7 +4241,11 @@
 			{
 				"Assault"
 				{
-					"Item"					"item_assault_lua1"
+					"Item"					"item_shivas_guard_lua1"
+				}
+				"Assault"
+				{
+					"Item"					"item_glimmer_cape"
 				}
 			}				
 		}
@@ -4785,7 +4344,7 @@
 		"HasInventory"				"1"
 
 		"Ability1"					"kunkka_torrent"
-		"Ability2"					"slardar_slithereen_crush"
+		"Ability2"					"slardar_slithereen_crush_lua"
 
 		"ArmorPhysical"				"5"
 		"MagicalResistance"			"10"
@@ -5030,81 +4589,9 @@
 //==================================================================================ZONE 6_5 ===============================================================================
 //=======================================================================================================================================================================
 
-"npc_shaker"	
-	{
-		"vscripts"       			"ai/ai_shaker.lua"
-		"Model"						"models/heroes/earthshaker/earthshaker.vmdl"
-		"SoundSet"					"Hero_Enigma"
-		"BaseClass"					"npc_dota_creature"
-		"Level"						"4"
-		"ModelScale" 				"1"
-		"HasInventory"				"1"
-
-		"Ability1"					"necronomicon_warrior_sight"			
-		"Ability2"					"earthshaker_enchant_totem"				
-		"Ability3"					"earthshaker_aftershock"
-		"Ability4"					"earthshaker_echo_slam"
-
-		"ArmorPhysical"				"10"
-		"MagicalResistance"			"10"
-
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"500"
-		"AttackDamageMax"			"500"
-		"AttackRate"				"0.6"
-		"AttackAnimationPoint"		"0.1"
-		"AttackAcquisitionRange"	"750"
-		"AttackRange"				"150"
-
-		"RingRadius"				"20"
-		"HealthBarOffset"			"140"
-
-		"BountyXP"					"140"
-
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"300"
-
-		"StatusHealth"				"8000"
-		"StatusHealthRegen"			"50"
-		"StatusMana"				"1000"
-		"StatusManaRegen"			"30.0"
-		
-		"VisionDaytimeRange"		"900"
-		"VisionNighttimeRange"		"900"	
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"							
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-		"Creature"
-		{
-		"DisableResistance"			"75"
-			
-			"EquippedItems"
-			{
-				"shivas"
-					{
-						"Item"					"item_shivas_guard_lua2"
-					}
-				"shivas"
-					{
-						"Item"					"item_blink"
-					}		
-			}
-			"AttachWearables"
-			{
-				"Wearable1" {"ItemDef" "9730"}//("Totem of Tectonic Implications")
-				"Wearable2" {"ItemDef" "9738"}//head("Helm of Tectonic Implications")
-				"Wearable3" {"ItemDef" "9737"}//belt("Belt of Tectonic Implications")
-				"Wearable4" {"ItemDef" "9735"}//arms("Bracers of Tectonic Implications")
-			}		
-		}
-	}
-
 "npc_zone_jungle_1"
 	{
-		"vscripts"					"ai/ai_tu.lua"
+		"vscripts"					"ai/ai_jungle_creep.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/npc/tu/tu.vmdl"
 		"SoundSet"					"Hero_OgreMagi"
@@ -5113,6 +4600,9 @@
 		"HasInventory"				"1"
 
 		"Ability1"					"tiny_toss_creep_lua"
+		"Ability2"					"earthshaker_enchant_totem_lua"				
+		"Ability3"					"earthshaker_aftershock_lua"
+		"Ability4"					"earthshaker_echo_slam_lua"
 
 		"ArmorPhysical"				"10"
 		"MagicalResistance"			"10"
@@ -5149,14 +4639,18 @@
 		{
 			"EquippedItems"
 			{
-				"item_heart"
+				"shivas"
 				{
-					"Item"					"item_heart_lua2"
-				}
+					"Item"					"item_blink"
+				}	
 				"item_bfury_lua1"
 				{
 					"Item"					"item_bfury_lua2"
-				}	
+				}
+				"item_bfury_lua1"
+				{
+					"Item"					"item_sabre_blade_lua2"
+				}					
 			}
 		}
 	}
@@ -5225,6 +4719,7 @@
 
 "npc_zone_jungle_3"
 	{
+		"vscripts"					"ai/ai_jungle_creep.lua"
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/npc/babahooka/babahooka.vmdl"
 		"SoundSet"					"Hero_WitchDoctor"
@@ -5232,7 +4727,7 @@
 		"ModelScale" 				"6"
 		"HasInventory"				"1"
 
-		"Ability1"					""
+		"Ability1"					"witch_doctor_voodoo_restoration"
 
 		"ArmorPhysical"				"10"
 		"MagicalResistance"			"40"
@@ -5296,6 +4791,7 @@
 		"HasInventory"				"1"
 
 		"Ability1"					"leshrac_pulse_nova"
+		"Ability2"					"leshrac_lightning_storm"
 
 		"ArmorPhysical"				"5"
 		"MagicalResistance"			"40"
@@ -5346,7 +4842,7 @@
 				}
 				"item_bfury_lua1"
 				{
-					"Item"					"item_butterfly_lua2"
+					"Item"					"item_glimmer_cape"
 				}
 			}
 		}
@@ -5358,25 +4854,25 @@
 
 "npc_boss_fura"
 	{
-		"vscripts"       			"ai/ai_fura.lua"
+		"vscripts"       			"ai/ai_bosses.lua"
 		"Model"						"models/heroes/furion/furion.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Furion"
-		"Level"						"30"
+		"Level"						"75"
 		"ModelScale" 				"1.8"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 
 		"Ability1"					"custom_forest"			
 		"Ability2"					"custom_sprout"				
-		"Ability4"					"gold_4000"
-		"Ability5"					"custom_wrath"	
-		"Ability6"                  "necronomicon_warrior_sight"
-		"Ability7"					"armor_reduction_aura"
-		"Ability8"  				"special_bonus_unique_treant_10"
+		"Ability3"					"custom_wrath"	
+		"Ability4"                  "necronomicon_warrior_sight"
+		"Ability5"					"armor_reduction_aura"
+		"Ability6"  				"special_bonus_unique_treant_10"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"40"			
-		"MagicalResistance"         "40"
+		"ArmorPhysical"				"35"			
+		"MagicalResistance"         "35"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"900"		
@@ -5402,8 +4898,8 @@
 		"StatusMana"				"60000"			
 		"StatusManaRegen"			"50.0"			 
 		
-		"VisionDaytimeRange"		"1000"		
-		"VisionNighttimeRange"		"1000"		
+		"VisionDaytimeRange"		"1300"		
+		"VisionNighttimeRange"		"1300"		
 
 		"TeamName"					"DOTA_TEAM_NEUTRALS"							
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
@@ -5412,7 +4908,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
 
 			"ItemDrops"
             {
@@ -5464,7 +4959,7 @@
 				}
 				"mkb"
 				{
-					"Item"					"item_monkey_king_bar_lua2"
+					"Item"					"item_desolator_lua2"
 				}
 				"item_mael"
 				{
@@ -5760,7 +5255,7 @@
 		"ModelScale" 				"1"
 		"HasInventory"				"1"
 
-		"Ability1"					"keeper_of_the_light_illuminate"
+		"Ability1"					"cast_keeper"
 		"Ability2"					"neutral_spell_immunity"
 
 		"ArmorPhysical"				"15"
@@ -5838,10 +5333,9 @@
 		"ModelScale" 				"1.5"
 		"HasInventory"				"1"
 	
-		"Ability1"					"treant_leech_seed"				
+		"Ability1"					"treant_seed"				
 		"Ability2"					"treant_overgrowth"
 		"Ability3"					"armor_reduction_aura"
-		"Ability4"					"special_bonus_unique_treant_4"
 		"Ability5"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"10"			
@@ -5917,21 +5411,21 @@
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/heroes/doom/doom.vmdl"
 		"SoundSet"					"Roshan"
-		"Level"						"25"
+		"Level"						"75"
 		"ModelScale" 				"2"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 
 		"Ability1"					"custom_solar_flare"			
-		"Ability2"					"custom_pit"			
-		"Ability3"					"gold_4000"			
+		"Ability2"					"custom_pit"					
 		"Ability4"					"armor_reduction_aura"
-		"Ability5"					"creature_fire_breath"
+	//	"Ability5"					"creature_fire_breath"
 		"Ability6"					"necronomicon_warrior_sight"
 		"Ability7"                  "custom_doom"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"35"
-		"MagicalResistance"			"35"
+		"ArmorPhysical"				"40"
+		"MagicalResistance"			"40"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"900"
@@ -5965,7 +5459,6 @@
 
 		"Creature"
 		{	
-			"DisableResistance"			"75"
 
 			"DefaultState"			"Invade"
 			"ItemDrops"
@@ -6688,7 +6181,7 @@
 	
 "npc_lifestealer"
 	{
-		"vscripts"					"ai/ai_lifestealer.lua"
+		"vscripts"					"ai/ai_bosses.lua"
 		"Model"						"models/units/stegius/stegius.vmdl"//"models/heroes/life_stealer/life_stealer.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_LifeStealer"
@@ -6767,6 +6260,7 @@
 
 		"Ability1"					"creep_meat_hook"				
 		"Ability2"					"creep_dismember"
+		"Ability3"					"pudge_rot_lua"
 
 		"ArmorPhysical"				"10"			
 		"MagicalResistance"         "10"
@@ -7103,7 +6597,7 @@
 "spider"	
 	{
 		"vscripts"					"ai/ai_spider_boss.lua"
-		"Model"						"models/creeps/spiders/spider_kidnap.vmdl"
+		"Model"						"models/items/broodmother/spiderling/ti8_brood_the_great_arachne_spiderling/ti8_brood_the_great_arachne_spiderling.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Broodmother"
 		"Level"						"1"
@@ -7162,7 +6656,7 @@
 			    "RoamDistance" "2000.0"
 			  }
 			}
-				"AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1" { "ItemDef" "101" }
 				"Wearable2" { "ItemDef" "102" }
@@ -7184,15 +6678,17 @@
 		"SoundSet"					"Hero_ArcWarden"
 		"ModelScale" 				"1.8"
 		"IsAncient"					"1"
+		"Level"						"75"
 
 		"Ability1"					"boss_arc_flux"
 		"Ability2"					"boss_arc_magnetic_field"
 		"Ability3"					"boss_arc_spark_wraith"
 		"Ability4"					"monkey_passive"
 		"Ability5"					"boss_arc_hide_lua"
+		"Ability18"					"boss_status_resist"
 
-		"ArmorPhysical"				"25"
-		"MagicalResistance"			"25"
+		"ArmorPhysical"				"40"
+		"MagicalResistance"			"40"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"1250"
@@ -7230,8 +6726,6 @@
 
 		"Creature"
 		{
-		
-		"DisableResistance" "80"
 			"ItemDrops"
             {
                 "Consumables"
@@ -7275,7 +6769,7 @@
 			{
 				"Assault"
 				{
-					"Item"					"item_sphere"
+					"Item"					"item_dagon_lua_5"
 				}
 				"Shivas"
 				{
@@ -7287,7 +6781,7 @@
 				}
 				"item_mael"
 				{
-					"Item"					"item_skadi_lua3"
+					"Item"					"item_shivas_guard_lua3"
 				}
 				"item_maererl"
 				{
@@ -7323,6 +6817,7 @@
 		"Ability1"					"creep_rocket_barrage"			
 		"Ability2"					"creep_homing_missile"				
 		"Ability3"					"creep_call_down"
+		"Ability4"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -7412,6 +6907,7 @@
 		"Ability1"					"enigma_black_hole"			
 		"Ability2"					"spectre_dispersion"				
 		"Ability3"					"creep_midnight"
+		"Ability4"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -7421,7 +6917,7 @@
 		"AttackDamageMax"			"700"		
 		"AttackRate"				"0.7"		
 		"AttackAnimationPoint"		"0.1"		
-		"AttackAcquisitionRange"	"1000"		
+		"AttackAcquisitionRange"	"1200"		
 		"AttackRange"				"600"
 		"ProjectileModel"			"particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
 		"ProjectileSpeed"			"900"
@@ -7505,6 +7001,7 @@
 		"Ability2"					"sniper_take_aim"				
 		"Ability3"					"sniper_assassinate"
 		"Ability4"					"xdes_lua"
+		"Ability5"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -7596,6 +7093,7 @@
 		"Ability3"					"disruptor_thunder_strike"
 		"Ability4"					"disruptor_glimpse"
 		"Ability5"					"disruptor_static_storm"
+		"Ability6"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"20"			
 		"MagicalResistance"         "20"
@@ -7688,7 +7186,8 @@
 		"HasInventory"				"1"
 		
 		"Ability1"					"invoker_sun"			
-		"Ability2"					"invoker_meteor"				
+		"Ability2"					"invoker_meteor"	
+		"Ability4"					"necronomicon_warrior_sight"		
 		
 		"ArmorPhysical"				"15"
 		"MagicalResistance"			"20"
@@ -7752,6 +7251,10 @@
 				{
 					"Item"					"item_gungir"
 				}
+				"PowerTreads"
+				{
+					"Item"					"item_black_king_bar_lua3"
+				}
 			}
 		}
 	}	
@@ -7766,7 +7269,8 @@
 		"HasInventory"				"1"
 		
 		"Ability1"					"phoenix_nova"
-		"Ability2"					"phoenix_telekinesis"				
+		"Ability2"					"phoenix_telekinesis"		
+		"Ability4"					"necronomicon_warrior_sight"		
 		
 		"ArmorPhysical"				"10"
 		"MagicalResistance"			"45"
@@ -7825,7 +7329,7 @@
 				}
 				"PowerTreads"
 				{
-					"Item"					"item_monkey_king_bar_lua3"
+					"Item"					"item_black_king_bar_lua3"
 				}
 				"PowerTreads"
 				{
@@ -7851,10 +7355,11 @@
 		"CanBeDominated"			"0"
 
 		"Ability1"					"elder_titan_echo_stomp"
-		"Ability2"					"mars_bulwark"
+		"Ability2"					"mars_bulwark_lua"
 		"Ability3"					"elder_titan_ancestral_spirit"
 		"Ability4"					"mars_spear"
 		"Ability5"					"monkey_passive"
+		"Ability6"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"50"
 		"MagicalResistance"			"25"
@@ -7903,10 +7408,6 @@
 			"item_bfury_lua1"
 				{
 					"Item"					"item_bfury_lua3"
-				}	
-			"item_bfury_lua1"
-				{
-					"Item"					"item_blade_mail"
 				}	
 			"item_bfury_lua1"
 				{
@@ -8332,8 +7833,8 @@
         "Level"                     "30"
 		"HasInventory"				"1"
 
-        "Ability1"					"split_earth_datadriven"         
-        "Ability2"					"wisp_spirits_datadriven"         
+        "Ability1"					"brute_split_earth"         
+        "Ability2"					"brute_spirits"         
         "Ability3"					"gaven_create_stone"         
         "Ability4"					"gold_3500"
         "Ability5"					"necronomicon_warrior_sight"
@@ -8366,7 +7867,7 @@
         "StatusManaRegen"           "100"
 
         "TeamName"                  "DOTA_TEAM_NEUTRALS"
-      "CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
         "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
         
@@ -8423,12 +7924,12 @@
             {
              "Ability1"              
                {
-                   "Name"              "split_earth_datadriven"
+                   "Name"              "brute_split_earth"
                }
 
               "Ability2"
                 {
-                    "Name"              "wisp_spirits_datadriven"
+                    "Name"              "brute_spirits"
                 }
 
                 "Ability3"
@@ -8452,6 +7953,7 @@
 	
 "npc_dota_gaven_stone"
     {
+		"vscripts"       			"ai/ai_bosses.lua"
         "BaseClass"                 "npc_dota_creature"
         "Model"                     "models/items/earth_spirit/demon_stone_summon/demon_stone_summon.vmdl"  
         "SoundSet"                  "n_creep_Ranged"
@@ -8487,29 +7989,12 @@
         "StatusManaRegen"           "100"
 
         "TeamName"                  "DOTA_TEAM_NEUTRALS"
-     "CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
         "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
         
         "VisionDaytimeRange"        "1400"
         "VisionNighttimeRange"      "1400"
-
-        "Creature"
-        {     
-            "OffensiveAbilities"
-            {
-                "Ability1"              
-                {
-                    "Name"              "earthshaker_fissure_datadriven"
-                    "MinimumTargets"    "1"
-                }
-                "Ability2"             
-                {
-                    "Name"              "earth_spirit_magnetize_datadriven"
-                    "MinimumTargets"    "1"
-                }
-            }
-        }
     }
 	
 
@@ -8628,20 +8113,20 @@
 	"boss_undying"	
 	{
 		"vscripts"       			"ai/ai_undying.lua"
-		"Model"						"models/items/undying/flesh_golem/incurable_pestilence_golem/incurable_pestilence_golem.vmdl"//"models/heroes/undying/undying_flesh_golem.vmdl"
+		"Model"						"models/items/undying/flesh_golem/incurable_pestilence_golem/incurable_pestilence_golem.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Undying"
-		"Level"						"4"
+		"Level"						"25"
 		"ModelScale" 				"1.9"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 		
 		"Ability1"					"undying_tombstone"			
 		"Ability2"					"necrolyte_heartstopper_aura_lua"				
-		"Ability3"					"spectre_dispersion"
-		"Ability4"					"gold_3000"	
-		"Ability5"                  "necronomicon_warrior_sight"
-		"Ability6"  				"undy_spray_lua"
+		"Ability3"					"undy_corrosive_skin_lua"
+		"Ability4"                  "necronomicon_warrior_sight"
+		"Ability5"  				"undy_spray_lua"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"10"			
 		"MagicalResistance"         "10"
@@ -8712,15 +8197,11 @@
 			{
 				"PowerTreads"
 				{
-					"Item"					"item_power_treads"
+					"Item"					"item_phase_boots"
 				}
 				"Assault"
 				{
-					"Item"					"item_assault_lua1"
-				}
-				"item_bfury_lua1"
-				{
-					"Item"					"item_bfury_lua1"
+					"Item"					"item_crimson_guard_lua1"
 				}
 			}				
 		}
@@ -8736,16 +8217,17 @@
 		"BaseClass"					"npc_dota_creature"	
 		"SoundSet"					"Hero_NyxAssassin"					
 		"ModelScale"				"2"
-		"Level"						"25"
+		"Level"						"50"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 		
 		"Ability1"					"boss_nyx_assassin_mana_burn"		
 		"Ability2"					"boss_nyx_assassin_impale"
-		"Ability3"					"gold_3000"
-		"Ability4"					"frostivus2018_spectre_active_dispersion"
+		"Ability3"					""
+		"Ability4"					"boss_nyx_assassin_dispersion"
 		"Ability5"					"pangolier_heartpiercer"
 		"Ability6"                  "necronomicon_warrior_sight"	
+		"Ability18"					"boss_status_resist"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"400"		
@@ -8780,9 +8262,7 @@
 		"VisionNighttimeRange"		"1800"		
 
 		"Creature"
-		{
-			"DisableResistance"			"50.0"
-			
+		{	
 			"EquippedItems"
 			{
 				"desol"
@@ -8861,16 +8341,17 @@
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_NyxAssassin"					
 		"ModelScale"				"2"
-		"Level"						"2"
+		"Level"						"50"
 		"IsAncient"					"1"
 		"HasInventory"				"1"
 
 		"Ability1"					"boss_nyx_assassin_mana_burn"		
 		"Ability2"					"boss_nyx_assassin_impale"
-		"Ability3"					"gold_3000"
-		"Ability4"					"frostivus2018_spectre_active_dispersion"
+		"Ability3"					""
+		"Ability4"					"boss_nyx_assassin_dispersion"
 		"Ability5"					"pangolier_heartpiercer"
 		"Ability6"                  "necronomicon_warrior_sight"
+		"Ability18"					"boss_status_resist"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"400"		
@@ -8906,7 +8387,6 @@
 
 		"Creature"
 		{
-			"DisableResistance"			"50.0"
 			"ItemDrops"
             {
                 "Consumables"
@@ -8977,25 +8457,26 @@
 
 
 //========================================================BOSS Slardar
-	"npc_boss_slardar"
+
+"npc_boss_slardar"
 	{
 		"vscripts"					"ai/ai_slardar.lua"
 		"Model"						"models/heroes/slardar/slardar.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Slardar"
-		"Level"						"20"
+		"Level"						"75"
 		"ModelScale" 				"1.8"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 
-		"Ability1"					"slardar_slithereen_crush"
+		"Ability1"					"slardar_slithereen_crush_lua"
 		"Ability2"					"custom_slardar"
 		"Ability3"					"custom_torrential_waters"
 		"Ability4"					"slardar_bash"
-		"Ability5"					"gold_3500"
-		"Ability6" 					"slardar_sprint"
-		"Ability7"                  "necronomicon_warrior_sight"
-		"Ability8"					"armor_reduction_aura"
+		"Ability5" 					"slardar_sprint"
+		"Ability6"                  "necronomicon_warrior_sight"
+		"Ability7"					"armor_reduction_aura"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"25"
 		"MagicalResistance"			"25"
@@ -9032,12 +8513,11 @@
 		
 		"Creature"
 		{
-		"DisableResistance"			"75"
 			"OffensiveAbilities"
 			{
 				"Ability1"
 				{
-					"Name"				 "slardar_slithereen_crush"
+					"Name"				 "slardar_slithereen_crush_lua"
 					"AOE"                "1"
 					"Radius"             "300"
 					"MinimumTargets"     "1"
@@ -9137,7 +8617,7 @@
 		"HasInventory"				"1"
 		"IsAncient"					"1"
 
-		"Ability1"					"slardar_slithereen_crush"
+		"Ability1"					"slardar_slithereen_crush_lua"
 		"Ability2"					"slardar_bash"
 		"Ability3" 					"necronomicon_warrior_sight"
 		
@@ -9182,7 +8662,7 @@
 			{
 				"Ability1"
 				{
-					"Name"				 "slardar_slithereen_crush"
+					"Name"				 "slardar_slithereen_crush_lua"
 					"AOE"                "1"
 					"Radius"             "300"
 					"MinimumTargets"     "1"
@@ -9343,18 +8823,18 @@
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/creeps/ice_biome/storegga/storegga.vmdl"
 		"SoundSet"					"Hero_Tiny"
-		"Level"						"1"
+		"Level"						"50"
 		"HasInventory"				"1"
 		"ModelScale" 				"2.3"
 		"IsAncient"					"1"
 
-		"Ability1"					"tusk_snowball_meteor"			
+		"Ability1"					""			
 		"Ability2"					"custom_shifting_quake2"			
 		"Ability3"					"gavnina"			
 		"Ability4"					"custom_earth_splitter"
 		"Ability5"					"custom_stone_spire"
-		"Ability6"					"gold_3500"
-		"Ability7"                  "necronomicon_warrior_sight"
+		"Ability6"                  "necronomicon_warrior_sight"
+		"Ability18"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -9393,7 +8873,6 @@
 
 		"Creature"
 		{	
-		"DisableResistance"			"60.0"
 			"ItemDrops"
             {
                 "Consumables"
@@ -9503,10 +8982,11 @@
 	
 "medusa"	
 	{
+		"vscripts"       			"ai/ai_bosses.lua"
 		"Model"						"models/heroes/medusa/medusa.vmdl"
 		"SoundSet"					"Hero_Medusa"
 		"BaseClass"					"npc_dota_creature"
-		"Level"						"25"
+		"Level"						"75"
 		"ModelScale" 				"1.5"
 		"HasInventory"				"1"
 		"IsAncient"					"1"
@@ -9514,16 +8994,16 @@
 		"Ability1"					"medusa_split_shot_lua"			
 		"Ability2"					"medusa_mystic_snake"				
 		"Ability3"					"medusa_stone_gaze"
-		"Ability4"					"gold_4000"
+		"Ability4"					""
 		"Ability5"					"special_bonus_unique_medusa_2"
 		"Ability6"					"medusa_spirit_lance"
 		"Ability7"                  "necronomicon_warrior_sight"
 		"Ability8"  				"axe_berserkers_call_medusa"
 		"Ability9"					"special_bonus_unique_medusa_4"
-		"Ability10"					"antimage_counterspell"
+		"Ability18"					"boss_status_resist"
 		
-		"ArmorPhysical"				"20"			
-		"MagicalResistance"         "20"
+		"ArmorPhysical"				"40"			
+		"MagicalResistance"         "40"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"700"		
@@ -9559,7 +9039,6 @@
 
 		"Creature"
 		{
-		"DisableResistance"			"75"
 		"ItemDrops"
 			{
 				 "Consumables"
@@ -9597,40 +9076,13 @@
 				}
 			}
 			
-		"OffensiveAbilities"
-			{
-				"Ability2"				
-				{
-					"Name"				"medusa_mystic_snake"
-				}
-				"Ability3"				
-				{
-					"Name"				"medusa_stone_gaze"
-				}
-					"Ability4"				
-				{
-					"Name"				"medusa_spirit_lance"
-				}
-					"Ability4"				
-				{
-					"Name"				"antimage_counterspell"
-				}
-					"Ability4"				
-				{
-					"Name"				"axe_berserkers_call_medusa"
-				}
-			}
 		"EquippedItems"
 			{
-				"PowerTreads"
-				{
-					"Item"					"item_ultimate_scepter"
-				}
-				"PowerTreads"
+				"desol"
 				{
 					"Item"					"item_desolator_lua2"
 				}
-				"Assault"
+				"satsnic"
 				{
 					"Item"					"item_satanic_lua2"
 				}
@@ -9638,15 +9090,15 @@
 				{
 					"Item"					"item_shivas_guard_lua2"
 				}
-				"mkb"
+				"mjolnir"
 				{
-					"Item"					"item_monkey_king_bar_lua2"
+					"Item"					"item_mjollnir_lua2"
 				}
-				"mkw3b"
+				"bloodthorn"
 				{
-					"Item"					"item_butterfly_lua2"
+					"Item"					"item_bloodthorn"
 				}
-					"mkw3eb"
+				"skadi"
 				{
 					"Item"					"item_skadi_lua2"
 				}
@@ -9837,9 +9289,8 @@
 	
 
 
-"obelisk"	
+"npc_obelisk"	
 	{
-
 		"Model"						"models/props_structures/tower_upgrade/tower_upgrade_dest.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Hero_Pudge"
@@ -9891,7 +9342,7 @@
 		"SelectionGroup"			"Shaman_Wards"
 		"wearable"					"8371"
 		
-		"Ability6"					"summon_buff"
+		"Ability6"					""
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"50"			
@@ -9939,7 +9390,7 @@
 		"SelectionGroup"			"Shaman_Wards"
 		"wearable"					"8371"
 		
-		"Ability6"					"summon_buff"
+		"Ability6"					""
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"125"			
@@ -9987,7 +9438,7 @@
 		"SelectionGroup"			"Shaman_Wards"
 		"wearable"					"8371"
 		
-		"Ability6"					"summon_buff"
+		"Ability6"					""
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"200"			
@@ -10028,7 +9479,7 @@
 	
 "npc_dota_witch_doctor_death_ward" 
 	{ 
-		"Ability6" "summon_buff" 
+		"Ability6" "" 
 	}
 
 	
@@ -10210,6 +9661,7 @@
 		"Ability5"					"custom_rosh"
 		"Ability6"					"custom_statick"
 		"Ability7"					"custom_mine"
+		"Ability7"					"custom_stun"
 
 		"ArmorPhysical"				"3000"			
 		"MagicalResistance"         "3000"
@@ -10386,11 +9838,12 @@
 	{
 		"vscripts"       			"pets/pets_ai.lua"
 		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/courier/lockjaw/lockjaw_flying.vmdl"// Model.
+		"Model"						"models/courier/baby_rosh/babyroshan_alt_flying.vmdl"
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+		"Ability2"					"pet_dagon"
+		"Ability3"					"pet_medallion_of_courage"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10399,10 +9852,109 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}
 	
-	//================================================================
+"d2_pet"
+	{
+		"vscripts"       			"pets/pets_ai.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/courier/baby_rosh/babyroshan_ti10_dire_flying.vmdl"
+		"Level"						"10"
+		"ModelScale"				"0.9"
+		"wearable"					"669"
+		"Ability2"					"pet_block_aura"
+		"Ability3"					"pet_orchid"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"			"200"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"VisionDaytimeRange"		"0"		
+		"VisionNighttimeRange"		"0"		
+	}	
+	
+"d3_pet"
+	{
+		"vscripts"       			"pets/pets_ai.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/courier/baby_rosh/babyroshan_ti10_flying.vmdl"
+		"Level"						"10"
+		"ModelScale"				"0.9"
+		"wearable"					"669"
+		"Ability2"					"pet_magic_block_aura"
+		"Ability3"					"pet_dagon"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"			"200"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"VisionDaytimeRange"		"0"		
+		"VisionNighttimeRange"		"0"		
+	}	
+
+"d4_pet"
+	{
+		"vscripts"       			"pets/pets_ai.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/courier/baby_rosh/babyroshan_ti9_flying.vmdl"
+		"Level"						"10"
+		"ModelScale"				"0.9"
+		"wearable"					"669"
+		"Ability2"					"pet_orchid"
+		"Ability3"					"pet_magic_block_aura"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"			"200"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"VisionDaytimeRange"		"0"		
+		"VisionNighttimeRange"		"0"		
+	}	
+
+"d5_pet"
+	{
+		"vscripts"       			"pets/pets_ai.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/courier/baby_rosh/babyroshan_winter18_flying.vmdl"
+		"Level"						"10"
+		"ModelScale"				"0.9"
+		"wearable"					"669"
+		"Ability2"					"pet_health_bag"
+		"Ability3"					"pet_block_aura"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"			"200"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"VisionDaytimeRange"		"0"		
+		"VisionNighttimeRange"		"0"		
+	}	
+
+"d6_pet"
+	{
+		"vscripts"       			"pets/pets_ai.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/courier/baby_winter_wyvern/baby_winter_wyvern_flying.vmdl"
+		"Level"						"10"
+		"ModelScale"				"0.9"
+		"wearable"					"669"
+		"Ability2"					"pet_medallion_of_courage"
+		"Ability3"					"pet_health_bag"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"			"200"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"VisionDaytimeRange"		"0"		
+		"VisionNighttimeRange"		"0"		
+	}		
+	
+//================================================================
 
 "armor_pet"
 	{
@@ -10412,7 +9964,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10421,7 +9973,6 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}
 	
 "armor_pet2"
@@ -10432,7 +9983,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10441,7 +9992,6 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"
 	}
 	
 "armor_pet3"
@@ -10452,7 +10002,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10460,8 +10010,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"	
 	}
 	
 "armor_pet4"
@@ -10472,7 +10021,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10480,8 +10029,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"	
 	}
 	
 "armor_pet5"
@@ -10493,7 +10041,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_dagon"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10507,7 +10055,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}
 	
 "armor_pet6"
@@ -10519,7 +10066,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_dagon"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10533,7 +10080,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}
 
 //==========================================================================================================================	
@@ -10545,7 +10091,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10553,8 +10099,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}
 	
 "attackspeed_pet2"
@@ -10565,7 +10110,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10573,8 +10118,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}	
 	
 "attackspeed_pet3"
@@ -10585,7 +10129,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10593,8 +10137,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}	
 	
 "attackspeed_pet4"
@@ -10605,7 +10148,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10614,7 +10157,6 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"
 	}	
 
 "attackspeed_pet5"
@@ -10626,7 +10168,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_block_aura"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10640,7 +10182,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 
 "attackspeed_pet6"
@@ -10652,7 +10193,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_block_aura"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10666,7 +10207,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 	
 //==========================================================================================================================	
@@ -10678,7 +10218,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10686,8 +10226,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}
 	
 "spell_pet2"
@@ -10698,7 +10237,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10706,8 +10245,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}		
 	
 "spell_pet3"
@@ -10718,7 +10256,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10727,7 +10265,6 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 
 "spell_pet4"
@@ -10738,7 +10275,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10747,7 +10284,6 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 	
 "spell_pet5"
@@ -10759,7 +10295,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_magic_block_aura"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10773,7 +10309,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 
 "spell_pet6"
@@ -10785,7 +10320,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_magic_block_aura"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10799,7 +10334,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 	
 //==========================================================================================================================================	
@@ -10812,7 +10346,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10821,7 +10355,6 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}
 	
 "hpmp_pet2"
@@ -10832,7 +10365,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10840,8 +10373,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}
 
 "hpmp_pet3"
@@ -10852,7 +10384,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10860,8 +10392,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}
 
 "hpmp_pet4"
@@ -10872,7 +10403,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10880,8 +10411,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}
 
 "hpmp_pet5"
@@ -10893,7 +10423,7 @@
 		"Level"						"10"
 		"ModelScale"				"1"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_orchid"		
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10907,7 +10437,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}
 	
 "hpmp_pet6"
@@ -10919,7 +10448,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_orchid"	
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -10933,7 +10462,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 
 //==========================================================================================================================	
@@ -10946,7 +10474,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10954,8 +10482,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"				
 	}	
 
 "stats_pet2"
@@ -10966,7 +10493,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10974,8 +10501,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}	
 
 "stats_pet3"
@@ -10986,7 +10512,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -10994,8 +10520,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"	
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"			
 	}	
 
 "stats_pet4"
@@ -11006,7 +10531,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -11014,8 +10539,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"	
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"			
 	}	
 
 "stats_pet5"
@@ -11027,7 +10551,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_health_bag"	
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -11041,7 +10565,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 	
 "stats_pet6"
@@ -11053,7 +10576,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_health_bag"	
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -11067,7 +10590,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 	
 //==========================================================================================================================		
@@ -11079,7 +10601,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -11087,8 +10609,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}	
 
 "dmg_pet2"
@@ -11099,7 +10620,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -11108,7 +10629,6 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 
 "dmg_pet3"
@@ -11119,7 +10639,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -11127,8 +10647,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"	
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"			
 	}	
 
 "dmg_pet4"
@@ -11139,7 +10658,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
@@ -11147,8 +10666,7 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"TeamName"					"DOTA_TEAM_GOODGUYS"
 		"VisionDaytimeRange"		"0"		
-		"VisionNighttimeRange"		"0"
-		"HasInventory"				"1"		
+		"VisionNighttimeRange"		"0"		
 	}	
 	
 "dmg_pet5"
@@ -11160,7 +10678,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_medallion_of_courage"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -11174,7 +10692,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 	
 "dmg_pet6"
@@ -11186,7 +10703,7 @@
 		"Level"						"10"
 		"ModelScale"				"0.9"
 		"wearable"					"669"
-		"Ability1"					"pet"
+
 		"Ability2"					"pet_medallion_of_courage"		
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -11200,7 +10717,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"VisionDaytimeRange"		"0"		
 		"VisionNighttimeRange"		"0"		
-		"HasInventory"				"1"
 	}	
 
 //==========================================================================================================================
@@ -11350,7 +10866,7 @@
 		"Level"						"1"
 		"ModelScale"				"1"
 
-		"Ability1"					"pet"
+
 		"Ability2"					"visage_summon_familiars_stone_form"			// Ability 2.
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -11406,7 +10922,7 @@
 		"SoundSet"					"Hero_Treant"
 		"ModelScale" 				"2.5"
 
-		"Ability1"					"pet"		
+		
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"0"		
@@ -11505,7 +11021,7 @@
 		"Model"						"models/items/lone_druid/viciouskraitpanda/viciouskrait_panda.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
-		"Level"						"999"
+		"Level"						"85"
 		"ModelScale" 				"2"
 		"HasInventory"				"1"
 		
@@ -11516,7 +11032,7 @@
 		"Ability5"					"undying_tombstone"
 		"Ability6"					"boss_lich_chain_frost_lua"
 		"Ability7"					"custom_earth_splitter"
-		"Ability8"					"frostivus2018_spectre_active_dispersion"
+		"Ability8"					"boss_nyx_assassin_dispersion"
 		"Ability9"					"custom_torrential_waters"
 		"Ability10"					"custom_wrath"
 		"Ability11"					"custom_doom"
@@ -11525,7 +11041,8 @@
 		"Ability14"					"invoker_sun"
 		"Ability15"					"phoenix_telekinesis"
 		"Ability16"					"mars_spear"
-		"Ability16"					"omniknight_degen_aura"
+		"Ability17"					"omniknight_degen_aura"
+		"Ability18"					"boss_status_resist"
 		
 		"ArmorPhysical"				"65"
 		"MagicalResistance"			"65"
@@ -11558,7 +11075,6 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Creature"
 		{
-		"DisableResistance"			"85"
 		"EquippedItems"
 			{
 				"hex"
@@ -11597,7 +11113,7 @@
 		"Level"						"99"
 		"ModelScale" 				"2"
 		
-		"Ability1"					"boom_copy"
+		"Ability1"					""
 		"Ability2"					""
 
 		"ArmorPhysical"				"0"
@@ -11811,7 +11327,7 @@
 		"AttackDamageMax"			"600"
 		"AttackRate"				"0.6"
 		"AttackAnimationPoint"		"0.1"
-		"AttackAcquisitionRange"	"1000"
+		"AttackAcquisitionRange"	"200"
 		"AttackRange"				"200"
 
         "BountyXP"                  "1000"
@@ -11840,20 +11356,95 @@
         "Creature"
         {
             "DisableResistance"			"50.0"
-				
-            "OffensiveAbilities"
-            {
-             "Ability1"              
-               {
-                   "Name"              "roshan_slam"
-				   	"AOE"                "1"
-					"Radius"             "300"
-					"MinimumTargets"     "2"
-               }
-            } 
         }
 	}
 //====================================================================
+
+"npc_mini_monkey"
+	{
+		"vscripts"					"ai/ai_mini_monkey.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/heroes/monkey_king/monkey_king.vmdl"
+		"SoundSet"					"Hero_MonkeyKing"
+		"Level"						"4"
+		"ModelScale" 				"0.5"
+		"HasInventory"				"1"
+		
+		"Ability1"					"monkey_passive"
+		"Ability2"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"15"
+		"MagicalResistance"			"15"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"1000"
+		"AttackDamageMax"			"1000"
+		"AttackRate"				"0.8"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"1800"
+		"AttackRange"				"200"
+		
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"170"
+			"faster"	"275"
+			"fastest"	"350"
+		}
+		"AttackRangeActivityModifiers"
+		{
+			"attack_normal_range"	"0"
+			"attack_long_range"		"200"
+		}
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"200"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"550"
+		"MovementTurnRate"			"0.5"
+
+		"StatusHealth"				"30000"
+		"StatusHealthRegen"			"100"
+		"StatusMana"				"60000"
+		"StatusManaRegen"			"200.0"
+		
+		"VisionDaytimeRange"		"2800"
+		"VisionNighttimeRange"		"2800"
+
+		"TeamName"					"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+		"DisableResistance"			"75"
+		"EquippedItems"
+			{
+				"Sphere"
+				{
+					"Item"					"item_sphere"
+				}
+				"Mirror"
+				{
+					"Item"					"item_mirror_shield"
+				}
+				"BKB"
+				{
+					"Item"					"item_glimmer_cape"
+				}
+			
+			}
+			"AttachWearables"
+			{
+				"Wearable1"	{ "ItemDef"	"594" }
+				"Wearable2"	{ "ItemDef" "608" }
+				"Wearable3" { "ItemDef" "609" } 
+				"Wearable4" { "ItemDef"	"657" }
+			}
+			
+		}
+	}	
 	
 
 }	

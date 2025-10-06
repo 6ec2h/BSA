@@ -30,10 +30,10 @@ end
 
 function modifier_pet_block_aura_passive:DeclareFunctions()
 	return{
-		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK
+		MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK
 	}
 end
 
-function modifier_pet_block_aura_passive:GetModifierPhysical_ConstantBlock()
+function modifier_pet_block_aura_passive:GetModifierTotal_ConstantBlock()
 	return self.block
 end

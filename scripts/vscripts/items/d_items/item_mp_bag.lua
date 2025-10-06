@@ -45,7 +45,7 @@ function item_mp_bag:OnSpellStart()
 	damagehp = maxhp / 100 * self_damage
 	
 local damageType = DAMAGE_TYPE_PURE	
-	ApplyDamage({ victim = caster, attacker = caster, damage = damagehp,	damage_type = damageType, damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL })
+	ApplyDamage({ victim = caster, attacker = caster, damage = damagehp,	damage_type = damageType, damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
 end
 
 -------------------------------------------------------------------------------------------------------------------

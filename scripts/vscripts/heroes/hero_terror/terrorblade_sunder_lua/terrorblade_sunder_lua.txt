@@ -7,7 +7,7 @@
 		"AbilityTextureName"				"terrorblade_sunder"
 		"MaxLevel"							"3"
 
-		"AbilityType"						"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"						"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellDispellableType"				"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
@@ -26,7 +26,7 @@
 			"duration"
 			{
 				"value"					"15"
-				"LinkedSpecialBonus"	"npc_dota_hero_terrorblade_tal5"
+				"LinkedSpecialBonus"	"special_bonus_terrorblade_tal5"
 			}
 			"range"						"600"
 		}

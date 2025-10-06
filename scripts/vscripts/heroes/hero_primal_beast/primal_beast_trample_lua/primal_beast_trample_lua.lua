@@ -31,7 +31,7 @@ function modifier_primal_beast_trample_lua:OnCreated( kv )
 	self.step_distance = self:GetAbility():GetSpecialValueFor( "step_distance" )
 	self.base_damage = self:GetAbility():GetSpecialValueFor( "base_damage" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_primal_beast_1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_primal_beast_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.attack_damage = (self:GetAbility():GetSpecialValueFor( "attack_damage" ) + 20) / 100
 	else
@@ -52,7 +52,7 @@ function modifier_primal_beast_trample_lua:OnRefresh( kv )
 	self.distance = self:GetAbility():GetSpecialValueFor( "step_distance" )
 	self.base_damage = self:GetAbility():GetSpecialValueFor( "base_damage" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_primal_beast_1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_primal_beast_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.attack_damage = (self:GetAbility():GetSpecialValueFor( "attack_damage" ) + 20) / 100
 	else

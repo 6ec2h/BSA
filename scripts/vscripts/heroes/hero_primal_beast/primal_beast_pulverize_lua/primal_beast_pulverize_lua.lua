@@ -142,7 +142,7 @@ function modifier_primal_beast_pulverize_lua_debuff:OnCreated( kv )
 	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	self.animrate = self:GetAbility():GetSpecialValueFor( "animation_rate" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_primal_beast_4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_primal_beast_4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self.damage + 250
 	end

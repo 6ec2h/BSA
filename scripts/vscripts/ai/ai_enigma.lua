@@ -13,113 +13,38 @@ function Spawn(entityKeyValues)
 end
 
 function NeutralThink()
-    if not thisEntity.bSearchedForItems then
-        SearchForItems()
-        thisEntity.bSearchedForItems = true
-    end
-
-    if not thisEntity.bSearchedForSpells then
-        SearchForSpells()
-        thisEntity.bSearchedForSpells = true
-    end
-
     if not thisEntity:IsAlive() or GameRules:IsGamePaused() or thisEntity:IsChanneling() or thisEntity:IsDisarmed() then
         return 1
     end
 
     local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
-	
 	local target = enemies[RandomInt(1, #enemies)]
-	local abilities = {}
-
-    for _, abilityName in ipairs(thisEntity.spells) do
-        local ability = thisEntity:FindAbilityByName(abilityName)
-        if ability and ability:IsFullyCastable() then
-            table.insert(abilities, ability)
-        end
-    end
-
-    for _, itemName in ipairs(thisEntity.items) do
-        local item = thisEntity:FindItemInInventory(itemName)
-        if item and item:IsFullyCastable() then
-            table.insert(abilities, item)
-        end
-    end
-
-    if #abilities == 0 then
-        return 1
-    end
-
-    local ability = abilities[RandomInt(1, #abilities)]
-    if not ability then
-        return 1
-    end
 	
-	if ability:IsItem() then
-		behavior = ability:GetBehavior()
-	else
-		behavior = ability:GetBehaviorInt()
-	end
-	
-	if bit.band(behavior, DOTA_ABILITY_BEHAVIOR_AUTOCAST) == DOTA_ABILITY_BEHAVIOR_AUTOCAST then
-		ability.Behavior = "auto"
-		if not ability:GetAutoCastState() then 
-			ability:ToggleAutoCast()
-		end
-		return 0.5
-    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
-		ability.Behavior = "target"
-		if ability:GetAbilityTargetTeam() == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
-			local friendly = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
-			local target = friendly[RandomInt(1, #friendly)]
-			Cast(ability, target)
-		else
-			if target then
-				Cast(ability, target)
-			end
-		end
-    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) == DOTA_ABILITY_BEHAVIOR_NO_TARGET then
+	if target then
+		ability = thisEntity:FindItemInInventory('item_black_king_bar_lua2')
 		ability.Behavior = "no_target"
-		if target then
+		Cast(ability, target)
+		
+		Timers:CreateTimer(0.1, function()
+			ability = thisEntity:FindItemInInventory('item_blink')
+			ability.Behavior = "point"
 			Cast(ability, target)
-		end
-    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_POINT) == DOTA_ABILITY_BEHAVIOR_POINT then
-		ability.Behavior = "point"
-		if target then
+		
+		end)
+
+		Timers:CreateTimer(0.2, function()
+			ability = thisEntity:FindAbilityByName('creep_midnight')
+			ability.Behavior = "point"
 			Cast(ability, target)
-		end
-    elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE) == DOTA_ABILITY_BEHAVIOR_TOGGLE then
-		ability.Behavior = "toggle"		
-		if not ability:GetToggleState() then 
-			ability:ToggleAbility()
-		end
-    end
-
-    return 1
-end
-
-function SearchForSpells()
-	thisEntity.spells = {}
-	for i = 0, 10 do
-		local ability = thisEntity:GetAbilityByIndex(i)
-		if ability then
-			local abilityName = ability:GetName()
-			if abilityName ~= "attribute_bonus" and abilityName ~= "generic_hidden" and abilityName ~= "backdoor_protection" and abilityName ~= "twin_gate_portal_warp" and abilityName ~= "necronomicon_warrior_sight" then
-				table.insert(thisEntity.spells, abilityName)
-			end
-		end
+		end)
+		
+		Timers:CreateTimer(0.3, function()
+			ability = thisEntity:FindAbilityByName('enigma_black_hole')
+			ability.Behavior = "point"
+			Cast(ability, target)
+		end)
 	end
-end
-
-function SearchForItems()
-	thisEntity.items = {}
-	for i = 0, 5 do
-		local item = thisEntity:GetItemInSlot(i)
-		if item then
-			local itemName = item:GetName()
-			table.insert(thisEntity.items, itemName)
-		end
-	end
+    return 0.3
 end
 
 function Cast(Spell, enemy)

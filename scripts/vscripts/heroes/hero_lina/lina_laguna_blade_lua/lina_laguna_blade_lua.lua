@@ -4,11 +4,10 @@ function LightningJump(keys)
 	local ability = keys.ability
 	local jump_delay = ability:GetLevelSpecialValueFor("jump_delay", (ability:GetLevel() -1))
 	local radius = ability:GetLevelSpecialValueFor("radius", (ability:GetLevel() -1))
-	local damage_laguna = ability:GetLevelSpecialValueFor("damage", (ability:GetLevel() -1))
-	if caster:FindAbilityByName("npc_dota_hero_luna_3")~=nil then
-		if caster:FindAbilityByName("npc_dota_hero_luna_3"):GetLevel() > 0 then  
-			damage_laguna = damage_laguna + 1200
-		end
+	local damage_laguna = ability:GetLevelSpecialValueFor("damage", (ability:GetLevel() -1)) + caster:ExtraIntelligenceDamage() * ability:GetLevelSpecialValueFor("ExtraIntelligenceDamage", (ability:GetLevel() -1))
+	local talent = caster:FindAbilityByName("special_bonus_lina_7")
+	if talent and talent:GetLevel() > 0 then  
+		damage_laguna = damage_laguna + 1200
 	end
 	
 	-- Applies damage to the current target
@@ -99,10 +98,9 @@ function NewInstance(keys)
 	
 	ability.jump_count[ability.instance] = ability:GetLevelSpecialValueFor("jump_count", (ability:GetLevel() -1))
 	
-	if caster:FindAbilityByName("npc_dota_hero_luna_4")~=nil then
-		if caster:FindAbilityByName("npc_dota_hero_luna_4"):GetLevel() > 0 then  
-			ability.jump_count[ability.instance] = ability:GetLevelSpecialValueFor("jump_count", (ability:GetLevel() -1)) + 3
-		end
+	local talent = caster:FindAbilityByName("special_bonus_lina_8")
+	if talent and talent:GetLevel() > 0 then  
+		ability.jump_count[ability.instance] = ability:GetLevelSpecialValueFor("jump_count", (ability:GetLevel() -1)) + 3
 	end
 	
 	ability.target[ability.instance] = target

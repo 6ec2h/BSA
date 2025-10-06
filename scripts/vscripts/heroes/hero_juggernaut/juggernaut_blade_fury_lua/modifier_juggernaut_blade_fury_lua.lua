@@ -76,56 +76,25 @@ function modifier_juggernaut_blade_fury_lua:CheckState()
 end
 
 function modifier_juggernaut_blade_fury_lua:OnIntervalThink()
-	local enemies = FindUnitsInRadius(
-		self:GetCaster():GetTeamNumber(),	-- int, your team number
-		self:GetParent():GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-		0,	-- int, flag filter
-		0,	-- int, order filter
-		false	-- bool, can grow cache
-	)
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy
 		ApplyDamage( self.damageTable )
-
-		-- Play effects
 		self:PlayEffects2( enemy )
 	end
-
-	-- counter
 	self.count = self.count+1
 	if self.count>= self.max_count then
 		self:Destroy()
 	end
 end
 
---------------------------------------------------------------------------------
--- Graphics & Animations
 function modifier_juggernaut_blade_fury_lua:PlayEffects()
-		-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
-	local sound_cast = "Hero_Juggernaut.BladeFuryStart"
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	local effect_cast = ParticleManager:CreateParticle( "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 5, Vector( self.radius, 0, 0 ) )
 
-	-- buff particle
-	self:AddParticle(
-		effect_cast,
-		false,
-		false,
-		-1,
-		false,
-		false
-	)
-
-	-- Emit sound
-	EmitSoundOn( sound_cast, self:GetParent() )
+	self:AddParticle(effect_cast, false, false, -1, false, false)
+	EmitSoundOn( "Hero_Juggernaut.BladeFuryStart", self:GetParent() )
 end
 
 function modifier_juggernaut_blade_fury_lua:PlayEffects2( target )

@@ -20,8 +20,8 @@ function modifier_lifestealer_open_wounds_lua:OnCreated( kv )
 	self.heal = self:GetAbility():GetSpecialValueFor( "heal_percent" )/100 -- special value
 	self.step = 1
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int1")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int1"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int1")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int1"):GetLevel() > 0 then
 			self.heal = (self:GetAbility():GetSpecialValueFor( "heal_percent" ) + 25) /100
 		end
 	end
@@ -32,8 +32,8 @@ end
 function modifier_lifestealer_open_wounds_lua:OnRefresh( kv )
 	self.heal = self:GetAbility():GetSpecialValueFor( "heal_percent" )/100 -- special value
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int1")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int1"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int1")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int1"):GetLevel() > 0 then
 			self.heal = (self:GetAbility():GetSpecialValueFor( "heal_percent" ) + 25) /100
 		end
 	end

@@ -24,8 +24,8 @@ function modifier_mars_lil_debuff:OnCreated( kv )
 	-- references
 	self.loss = self:GetAbility():GetSpecialValueFor( "loss_armor" ) *(-1)
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_agi7")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_agi7"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_mars_agi7")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_mars_agi7"):GetLevel() > 0 then 
 			self.loss = self.loss - 1
 		end
 	end

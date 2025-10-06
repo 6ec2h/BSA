@@ -5,5 +5,5 @@ end
 function item_points_medium_self:OnSpellStart()
 	self:GetCaster():ChangeWood(self:GetSpecialValueFor("wood"))
 	self:GetCaster():EmitSoundParams( "DOTA_Item.InfusedRaindrop", 0, 0.5, 0)
-	self:SpendCharge()
+	self:SpendCharge(0)
 end

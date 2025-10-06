@@ -20,7 +20,7 @@ function modifier_arc_geminate_attack:OnAttack(keys)
 	if keys.attacker == self:GetParent() and self:GetAbility():IsFullyCastable() and not self:GetParent():IsIllusion() and not self:GetParent():PassivesDisabled() and not keys.no_attack_cooldown and keys.target:GetUnitName() ~= "npc_dota_observer_wards" and keys.target:GetUnitName() ~= "npc_dota_sentry_wards" then
 	local how_much = self:GetAbility():GetSpecialValueFor("tooltip_attack")
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_arc_warden_agi9")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_arc_warden_agi9")
 	if abil ~= nil and abil:IsTrained() then 
 	how_much = how_much + 1
 	end
@@ -42,7 +42,7 @@ function modifier_arc_geminate_attack_delay:OnCreated(params)
 	
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	
-	local abil = self:GetParent():FindAbilityByName("npc_dota_hero_arc_warden_str9")
+	local abil = self:GetParent():FindAbilityByName("special_bonus_arc_warden_str9")
 	if abil ~= nil and abil:IsTrained() then
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage") * 2
 	end

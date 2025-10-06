@@ -43,8 +43,8 @@ function modifier_hero_destroyer_third_skill:OnAttackLanded(keys)
 	
 	local block = self:GetAbility():GetSpecialValueFor("incom_damage")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal3") ~= nil then 
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_destroyer_tal3"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal3") ~= nil then 
+		if self:GetCaster():FindAbilityByName("special_bonus_destroyer_tal3"):GetLevel() > 0 then 
 			block = block + 6
 		end
 	end

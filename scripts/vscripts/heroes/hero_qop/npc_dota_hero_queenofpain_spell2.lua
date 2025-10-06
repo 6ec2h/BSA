@@ -1,5 +1,11 @@
 npc_dota_hero_queenofpain_spell2 = class({})
 
+function npc_dota_hero_queenofpain_spell2:Precache( context )
+	PrecacheResource( "particle", "particles/qop2.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_queenofpain/queen_scream_of_pain.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
+end
+
 function npc_dota_hero_queenofpain_spell2:OnSpellStart()
 	EmitSoundOn( "Hero_QueenOfPain.ScreamOfPain", self:GetCaster() )
     if not IsServer() then return end
@@ -24,10 +30,11 @@ function npc_dota_hero_queenofpain_spell2:OnSpellStart()
 end
 
 function npc_dota_hero_queenofpain_spell2:OnProjectileHit( target, location ) 
-	self.damage = self:GetSpecialValueFor("scream_damage")
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_qop_tal_3")
+if not IsServer() then return end
+	self.damage = self:GetSpecialValueFor("scream_damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_qop_tal_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.damage = self.damage + 250
+		self.damage = self.damage + 175
 	end
 	
 	ApplyDamage({victim = target,

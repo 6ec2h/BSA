@@ -56,7 +56,7 @@ function modifier_item_magic_amulet:DeclareFunctions()
 	local funcs =
 	{
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-		MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
+		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,
 		MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH,
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_ATTRIBUTE_NONE,
@@ -68,7 +68,7 @@ function modifier_item_magic_amulet:GetModifierPercentageCooldown( params )
 	return self.cooldown_reduction_pct
 end
 
-function modifier_item_magic_amulet:GetModifierPercentageManacost( params )
+function modifier_item_magic_amulet:GetModifierPercentageManacostStacking( params )
 	return self.mana_cost_reduction_pct
 end
 

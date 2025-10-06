@@ -13,23 +13,11 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed_bonus"			"-10 -18 -26 -34"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_bonus_tooltip"	"-10 -18 -26 -34"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
-			}
-		}
+		"AbilityValues"
+	{
+		"speed_bonus"	"-10 -18 -26 -34"
+			"attack_bonus_tooltip"	"-10 -18 -26 -34"
+			"radius"	"400"
+	}
 	}
 }

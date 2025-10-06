@@ -39,7 +39,7 @@ function modifier_brewmaster_drunken_brawler_lua_buff:OnCreated()
     self.crit_chance = ability:GetSpecialValueFor('crit_chance')
     self.crit_multiplier = ability:GetSpecialValueFor('crit_multiplier')
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_brewmaster_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_brewmaster_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		 self.crit_multiplier =  self.crit_multiplier + 80
 	end

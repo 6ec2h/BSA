@@ -1,0 +1,991 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			
+			{
+				_class = "BoneMarkupList"
+				children = 
+				[
+				]
+				bone_cull_type = "None"
+			},
+			
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					
+					{
+						_class = "RenderMeshFile"
+						name = "forest_golem_red"
+						filename = "models/npc/forest_golem/forest_golem_red.dmx"
+					},
+				]
+			},
+			
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "RigSpine4"
+						relative_origin = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						relative_angles = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						weight = 1.000000
+					},
+					
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "RigRArmThumb1"
+						relative_origin = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						relative_angles = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						weight = 1.000000
+					},
+				]
+			},
+			
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-80.758000,
+									-82.000000,
+									-83.154800,
+								]
+								hitbox_maxs = 
+								[
+									120.785000,
+									85.500000,
+									82.948300,
+								]
+								name = "RigPelvis"
+								parent_bone = "RigPelvis"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					
+					{
+						_class = "Bone"
+						name = "RigPelvis"
+						origin = 
+						[
+							-1.532128,
+							0.000001,
+							88.705580,
+						]
+						angles = 
+						[
+							-89.980210,
+							-26.565050,
+							-26.565050,
+						]
+						do_not_discard = true
+						children = 
+						[
+							
+							{
+								_class = "Bone"
+								name = "RigSpine1"
+								origin = 
+								[
+									0.448982,
+									-0.000077,
+									-0.000000,
+								]
+								angles = 
+								[
+									-0.270135,
+									6.419983,
+									0.513771,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "RigSpine2"
+										origin = 
+										[
+											17.529050,
+											-0.174693,
+											-0.081091,
+										]
+										angles = 
+										[
+											0.135353,
+											-14.251560,
+											-0.564463,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "RigSpine3"
+												origin = 
+												[
+													10.512600,
+													0.000004,
+													0.000001,
+												]
+												angles = 
+												[
+													0.000007,
+													-0.119203,
+													0.000006,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "RigSpine4"
+														origin = 
+														[
+															8.540581,
+															0.000003,
+															0.000001,
+														]
+														angles = 
+														[
+															-0.000004,
+															-11.557880,
+															0.000001,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "RigSpine5"
+																origin = 
+																[
+																	19.509280,
+																	-0.000004,
+																	0.000000,
+																]
+																angles = 
+																[
+																	1.072211,
+																	15.230980,
+																	4.807086,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "RigRibcage"
+																		origin = 
+																		[
+																			27.050840,
+																			-1.611036,
+																			0.643553,
+																		]
+																		angles = 
+																		[
+																			-0.363447,
+																			8.367871,
+																			-4.911540,
+																		]
+																		do_not_discard = true
+																		children = 
+																		[
+																			
+																			{
+																				_class = "Bone"
+																				name = "RigRArmCollarbone"
+																				origin = 
+																				[
+																					1.874176,
+																					26.591970,
+																					-23.657750,
+																				]
+																				angles = 
+																				[
+																					52.835840,
+																					-84.486470,
+																					-86.399280,
+																				]
+																				do_not_discard = true
+																				children = 
+																				[
+																					
+																					{
+																						_class = "Bone"
+																						name = "RigRArm1"
+																						origin = 
+																						[
+																							44.747750,
+																							-0.000004,
+																							-0.000031,
+																						]
+																						angles = 
+																						[
+																							3.170173,
+																							35.094170,
+																							6.581664,
+																						]
+																						do_not_discard = true
+																						children = 
+																						[
+																							
+																							{
+																								_class = "Bone"
+																								name = "RigRArm2"
+																								origin = 
+																								[
+																									37.819010,
+																									0.000009,
+																									-0.000015,
+																								]
+																								angles = 
+																								[
+																									0.435402,
+																									4.670965,
+																									-0.191653,
+																								]
+																								do_not_discard = true
+																								children = 
+																								[
+																									
+																									{
+																										_class = "Bone"
+																										name = "RigRArmPalm"
+																										origin = 
+																										[
+																											52.158170,
+																											0.000025,
+																											0.000000,
+																										]
+																										angles = 
+																										[
+																											4.940709,
+																											-0.977767,
+																											90.498700,
+																										]
+																										do_not_discard = true
+																										children = 
+																										[
+																											
+																											{
+																												_class = "Bone"
+																												name = "RigRArmThumb1"
+																												origin = 
+																												[
+																													7.875168,
+																													-3.259232,
+																													-21.484220,
+																												]
+																												angles = 
+																												[
+																													51.527980,
+																													-8.484977,
+																													-7.288393,
+																												]
+																												do_not_discard = true
+																												children = 
+																												[
+																													
+																													{
+																														_class = "Bone"
+																														name = "RigRArmThumb2"
+																														origin = 
+																														[
+																															12.074200,
+																															-0.000031,
+																															-0.000015,
+																														]
+																														angles = 
+																														[
+																															-5.922764,
+																															-4.286631,
+																															3.031979,
+																														]
+																														do_not_discard = true
+																													},
+																												]
+																											},
+																											
+																											{
+																												_class = "Bone"
+																												name = "RigRArmPoint1"
+																												origin = 
+																												[
+																													33.935670,
+																													0.077026,
+																													-14.376170,
+																												]
+																												angles = 
+																												[
+																													-1.449851,
+																													3.647588,
+																													0.054273,
+																												]
+																												do_not_discard = true
+																												children = 
+																												[
+																													
+																													{
+																														_class = "Bone"
+																														name = "RigRArmPoint2"
+																														origin = 
+																														[
+																															9.259705,
+																															-0.000061,
+																															-0.000034,
+																														]
+																														angles = 
+																														[
+																															-0.547732,
+																															-0.035908,
+																															0.083622,
+																														]
+																														do_not_discard = true
+																														children = 
+																														[
+																															
+																															{
+																																_class = "Bone"
+																																name = "RigRArmPoint3"
+																																origin = 
+																																[
+																																	9.117981,
+																																	0.000000,
+																																	-0.000039,
+																																]
+																																angles = 
+																																[
+																																	-2.002969,
+																																	-3.592100,
+																																	0.163718,
+																																]
+																																do_not_discard = true
+																															},
+																														]
+																													},
+																												]
+																											},
+																											
+																											{
+																												_class = "Bone"
+																												name = "RigRArmRest1"
+																												origin = 
+																												[
+																													33.824230,
+																													-0.058380,
+																													6.286154,
+																												]
+																												angles = 
+																												[
+																													-1.111550,
+																													3.379371,
+																													0.013675,
+																												]
+																												do_not_discard = true
+																												children = 
+																												[
+																													
+																													{
+																														_class = "Bone"
+																														name = "RigRArmRest2"
+																														origin = 
+																														[
+																															8.365204,
+																															-0.000046,
+																															-0.000031,
+																														]
+																														angles = 
+																														[
+																															-0.253574,
+																															-0.278082,
+																															0.039821,
+																														]
+																														do_not_discard = true
+																														children = 
+																														[
+																															
+																															{
+																																_class = "Bone"
+																																name = "RigRArmRest3"
+																																origin = 
+																																[
+																																	7.596497,
+																																	-0.000061,
+																																	-0.000042,
+																																]
+																																angles = 
+																																[
+																																	-0.431070,
+																																	-3.092580,
+																																	0.059567,
+																																]
+																																do_not_discard = true
+																															},
+																														]
+																													},
+																												]
+																											},
+																										]
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																			
+																			{
+																				_class = "Bone"
+																				name = "RigNeck"
+																				origin = 
+																				[
+																					0.000015,
+																					-0.000002,
+																					0.000001,
+																				]
+																				angles = 
+																				[
+																					0.000016,
+																					83.036420,
+																					0.000005,
+																				]
+																				do_not_discard = true
+																				children = 
+																				[
+																					
+																					{
+																						_class = "Bone"
+																						name = "RigHead"
+																						origin = 
+																						[
+																							43.214060,
+																							0.000031,
+																							-0.000007,
+																						]
+																						angles = 
+																						[
+																							-0.000009,
+																							-87.067880,
+																							0.000009,
+																						]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																			
+																			{
+																				_class = "Bone"
+																				name = "RigLArmCollarbone"
+																				origin = 
+																				[
+																					1.874222,
+																					26.591990,
+																					23.657740,
+																				]
+																				angles = 
+																				[
+																					-52.835880,
+																					-84.486430,
+																					86.399220,
+																				]
+																				do_not_discard = true
+																				children = 
+																				[
+																					
+																					{
+																						_class = "Bone"
+																						name = "RigLArm1"
+																						origin = 
+																						[
+																							44.747760,
+																							-0.000052,
+																							0.000061,
+																						]
+																						angles = 
+																						[
+																							-3.170199,
+																							35.094140,
+																							-6.581663,
+																						]
+																						do_not_discard = true
+																						children = 
+																						[
+																							
+																							{
+																								_class = "Bone"
+																								name = "RigLArm2"
+																								origin = 
+																								[
+																									37.819000,
+																									0.000002,
+																									0.000015,
+																								]
+																								angles = 
+																								[
+																									-0.435405,
+																									4.670973,
+																									0.191647,
+																								]
+																								do_not_discard = true
+																								children = 
+																								[
+																									
+																									{
+																										_class = "Bone"
+																										name = "RigLArmPalm"
+																										origin = 
+																										[
+																											52.158160,
+																											-0.000006,
+																											0.000046,
+																										]
+																										angles = 
+																										[
+																											-4.940462,
+																											-0.977775,
+																											-90.498620,
+																										]
+																										do_not_discard = true
+																										children = 
+																										[
+																											
+																											{
+																												_class = "Bone"
+																												name = "RigLArmThumb1"
+																												origin = 
+																												[
+																													7.875153,
+																													-3.259125,
+																													21.484210,
+																												]
+																												angles = 
+																												[
+																													-51.528050,
+																													-8.484639,
+																													7.288190,
+																												]
+																												do_not_discard = true
+																												children = 
+																												[
+																													
+																													{
+																														_class = "Bone"
+																														name = "RigLArmThumb2"
+																														origin = 
+																														[
+																															12.074120,
+																															-0.000015,
+																															0.000046,
+																														]
+																														angles = 
+																														[
+																															5.922698,
+																															-4.286378,
+																															-3.032445,
+																														]
+																														do_not_discard = true
+																													},
+																												]
+																											},
+																											
+																											{
+																												_class = "Bone"
+																												name = "RigLArmPoint1"
+																												origin = 
+																												[
+																													33.935640,
+																													0.077362,
+																													14.376100,
+																												]
+																												angles = 
+																												[
+																													1.449897,
+																													3.648103,
+																													-0.054386,
+																												]
+																												do_not_discard = true
+																												children = 
+																												[
+																													
+																													{
+																														_class = "Bone"
+																														name = "RigLArmPoint2"
+																														origin = 
+																														[
+																															9.259735,
+																															-0.000031,
+																															-0.000018,
+																														]
+																														angles = 
+																														[
+																															0.547773,
+																															-0.035403,
+																															-0.083717,
+																														]
+																														do_not_discard = true
+																														children = 
+																														[
+																															
+																															{
+																																_class = "Bone"
+																																name = "RigLArmPoint3"
+																																origin = 
+																																[
+																																	9.117966,
+																																	0.000000,
+																																	-0.000021,
+																																]
+																																angles = 
+																																[
+																																	2.003001,
+																																	-3.591578,
+																																	-0.163812,
+																																]
+																																do_not_discard = true
+																															},
+																														]
+																													},
+																												]
+																											},
+																											
+																											{
+																												_class = "Bone"
+																												name = "RigLArmRest1"
+																												origin = 
+																												[
+																													33.824260,
+																													-0.057983,
+																													-6.286218,
+																												]
+																												angles = 
+																												[
+																													1.111596,
+																													3.379868,
+																													-0.013791,
+																												]
+																												do_not_discard = true
+																												children = 
+																												[
+																													
+																													{
+																														_class = "Bone"
+																														name = "RigLArmRest2"
+																														origin = 
+																														[
+																															8.365265,
+																															0.000015,
+																															-0.000017,
+																														]
+																														angles = 
+																														[
+																															0.253617,
+																															-0.277563,
+																															-0.039926,
+																														]
+																														do_not_discard = true
+																														children = 
+																														[
+																															
+																															{
+																																_class = "Bone"
+																																name = "RigLArmRest3"
+																																origin = 
+																																[
+																																	7.596497,
+																																	0.000015,
+																																	-0.000015,
+																																]
+																																angles = 
+																																[
+																																	0.431107,
+																																	-3.092062,
+																																	-0.059662,
+																																]
+																																do_not_discard = true
+																															},
+																														]
+																													},
+																												]
+																											},
+																										]
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "RigLLeg1"
+								origin = 
+								[
+									0.000015,
+									-0.000004,
+									24.157570,
+								]
+								angles = 
+								[
+									-1.555099,
+									176.005500,
+									-178.715000,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "RigLLeg2"
+										origin = 
+										[
+											33.110830,
+											-0.000006,
+											-0.000002,
+										]
+										angles = 
+										[
+											0.141307,
+											-7.681777,
+											-3.799788,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "RigLLegAnkle"
+												origin = 
+												[
+													33.233970,
+													-0.000001,
+													-0.000010,
+												]
+												angles = 
+												[
+													-2.881844,
+													30.640890,
+													1.404493,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "RigLLegFoot1"
+														origin = 
+														[
+															23.130500,
+															5.740253,
+															-0.002850,
+														]
+														angles = 
+														[
+															-0.049875,
+															62.967030,
+															-0.095355,
+														]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							
+							{
+								_class = "Bone"
+								name = "RigRLeg1"
+								origin = 
+								[
+									0.000015,
+									0.000000,
+									-24.157570,
+								]
+								angles = 
+								[
+									1.555093,
+									176.005500,
+									178.715000,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "RigRLeg2"
+										origin = 
+										[
+											33.110820,
+											-0.000008,
+											0.000000,
+										]
+										angles = 
+										[
+											-0.141337,
+											-7.681824,
+											3.799784,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "RigRLegAnkle"
+												origin = 
+												[
+													33.233970,
+													0.000003,
+													0.000011,
+												]
+												angles = 
+												[
+													2.881870,
+													30.640930,
+													-1.404464,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "RigRLegFoot1"
+														origin = 
+														[
+															23.130490,
+															5.740250,
+															0.002848,
+														]
+														angles = 
+														[
+															0.049890,
+															62.967040,
+															0.095348,
+														]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+					
+					{
+						_class = "Bone"
+						name = "RigLLegPlatform"
+						origin = 
+						[
+							32.801190,
+							35.918460,
+							-0.000002,
+						]
+						angles = 
+						[
+							-89.972020,
+							0.000000,
+							0.000000,
+						]
+						do_not_discard = true
+					},
+					
+					{
+						_class = "Bone"
+						name = "RigRLegPlatform"
+						origin = 
+						[
+							-15.946480,
+							-38.228200,
+							0.000000,
+						]
+						angles = 
+						[
+							-90.000000,
+							0.000000,
+							0.000000,
+						]
+						do_not_discard = true
+					},
+				]
+			},
+		]
+	}
+}

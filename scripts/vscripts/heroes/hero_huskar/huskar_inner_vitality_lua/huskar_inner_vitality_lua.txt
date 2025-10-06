@@ -16,7 +16,7 @@
 		
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.1"
-		"AbilityDuration"				"16"
+		"AbilityDuration"				"8"
 
 		"AbilityCooldown"				"18 16 14 12"
 		"AbilityManaCost"				"140"
@@ -24,17 +24,17 @@
 		"AbilityValues"
 		{
 			"heal"					"10 15 20 25"
-			"attrib_bonus"			
+			"str_bonus"			
 			{
 				"value"					"6 9 12 15"
-				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_2"
-			}
-			"hurt_attrib_bonus"		
-			{
-				"value"					"18 27 36 45"
-				"LinkedSpecialBonus"	"npc_dota_hero_huskar_tal_2"
+				"LinkedSpecialBonus"	"special_bonus_huskar_tal_2"
 			}
 			"hurt_percent"			"35"
+			"str_heal"
+			{
+				"value"					"50"
+				"LinkedSpecialBonus"	"special_bonus_huskar_tal_7"
+			}
 		}
 	}
 }

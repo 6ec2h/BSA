@@ -24,5 +24,5 @@ function modifier_spell_10:DeclareFunctions()
 end
 
 function modifier_spell_10:GetModifierSpellAmplify_Percentage()
-	return 10
+	return 4
 end

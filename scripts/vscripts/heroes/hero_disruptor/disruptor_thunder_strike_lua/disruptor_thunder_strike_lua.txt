@@ -22,28 +22,13 @@
 		"AbilityCooldown"				"18 15 12 9"
 		"AbilityManaCost"				"100 110 120 130"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"240 240 240 240"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"strikes"					"4"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"strike_interval"			"1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"strike_damage"				"50 90 130 160"
-			}
+			"radius"					"240 240 240 240"
+			"strikes"					"4"
+			"strike_interval"			"1"
+			"strike_damage"				"50 90 130 160"
+			"ExtraIntelligenceDamage"			"0.2"
 		}
 	}
 }

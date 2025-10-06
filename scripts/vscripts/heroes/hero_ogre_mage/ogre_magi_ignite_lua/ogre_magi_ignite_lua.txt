@@ -20,15 +20,19 @@
 		"AbilityCastPoint"				"0.45"
 
 		"AbilityCooldown"				"15"
-		"AbilityManaCost"				"90"
+		"AbilityHealthCost"				"90"
 
 		"AbilityValues"
 		{
-			"duration"			"3 4 5 6"
+			"duration"			
+			{
+			"value"					"3 3.5 4 4.5"
+			"LinkedSpecialBonus"	"special_bonus_ogre_magi_8"
+			}
 			"burn_damage"		
 			{
 			"value"					"16 24 32 40"
-			"LinkedSpecialBonus"	"npc_dota_hero_ogre_magi_2"
+			"LinkedSpecialBonus"	"special_bonus_ogre_magi_2"
 			}
 			"slow_movement_speed_pct"		"-12 -14 -16 -18"
 			"projectile_speed"		"1000"

@@ -52,45 +52,46 @@ end
 
 function modifier_huskar_inner_vitality_lua:OnCreated( kv )
 	self.heal_base = self:GetAbility():GetSpecialValueFor( "heal" )
-	self.hurt_threshold = self:GetAbility():GetSpecialValueFor( "hurt_percent" )
+	self.str_bonus = self:GetAbility():GetSpecialValueFor( "str_bonus" )
+	self.str_heal = self:GetAbility():GetSpecialValueFor( "str_heal" )
+	self.hurt_percent = self:GetAbility():GetSpecialValueFor( "hurt_percent" )
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_2")
+	if talent and talent:GetLevel() > 0 then 
+		self.str_bonus = self.str_bonus + 10
+	end
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_7")
+	if talent and talent:GetLevel() > 0 then 
+		self.str_heal = 100
+	end
 end
 
 function modifier_huskar_inner_vitality_lua:OnRefresh( kv )
-	self.heal_base = self:GetAbility():GetSpecialValueFor( "heal" )
-	self.hurt_threshold = self:GetAbility():GetSpecialValueFor( "hurt_percent" )	
-end
-
-function modifier_huskar_inner_vitality_lua:OnRemoved()
-end
-
-function modifier_huskar_inner_vitality_lua:OnDestroy()
+	self:OnCreated()
 end
 
 function modifier_huskar_inner_vitality_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS
 	}
 	return funcs
 end
 
+function modifier_huskar_inner_vitality_lua:GetModifierBonusStats_Strength()
+	return self:GetParent():GetBaseStrength() * self.str_bonus / 100
+end
+
 function modifier_huskar_inner_vitality_lua:GetModifierConstantHealthRegen()
-	if IsServer() then
-		self.heal_attrib = self:GetAbility():GetSpecialValueFor( "attrib_bonus" )
-		self.heal_hurt = self:GetAbility():GetSpecialValueFor( "hurt_attrib_bonus" )
-		local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_huskar_tal_2")
-		if ability ~= nil and ability:GetLevel() > 0 then 
-			self.heal_attrib = self.heal_attrib + 12
-			self.heal_hurt = self.heal_hurt + 12
-		end
-		local heal = self.heal_base + self.heal_attrib * self:GetCaster():GetStrength() / 100
-		if self:GetParent():GetHealthPercent()<self.hurt_threshold then
-			heal = self.heal_base + self.heal_hurt * self:GetCaster():GetStrength() / 100
+	-- if IsServer() then
+		local heal = self.heal_base + self:GetCaster():GetStrength() / 100 * self.str_heal
+		if self:GetParent():GetHealthPercent() < self.hurt_percent then
+			heal = heal * 1.25
 		end
 		self:SetStackCount(heal)
 		return heal
-	else
-		return self:GetStackCount()
-	end
+	-- end
 end
 
 function modifier_huskar_inner_vitality_lua:GetEffectName()

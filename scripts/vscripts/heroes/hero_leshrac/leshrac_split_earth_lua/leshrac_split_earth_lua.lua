@@ -2,10 +2,6 @@ LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/generic/modifier_generi
 
 leshrac_split_earth_lua = class({})
 
-function leshrac_split_earth_lua:GetCastRange()
-	return self:GetSpecialValueFor("cast_range")
-end
-
 function leshrac_split_earth_lua:GetAOERadius()
 	return self:GetSpecialValueFor("main_blast_radius")
 end
@@ -27,19 +23,21 @@ function leshrac_split_earth_lua:OnSpellStart()
 
 	local mini_blast_count = 1
 	local delay = ability:GetSpecialValueFor("delay")
-	self.damage = ability:GetSpecialValueFor("damage")
+	
 	self.duration = ability:GetSpecialValueFor("duration")
 	local mini_blast_distance = 200
 	local mini_blast_radius = ability:GetSpecialValueFor("radius")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi1")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi1"):GetLevel() > 0 then 
+	if not IsServer() then return end
+	self.damage = ability:GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
+	if self:GetCaster():FindAbilityByName("special_bonus_leshrac_agi1")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_leshrac_agi1"):GetLevel() > 0 then 
 			self.damage = self:GetAbilityDamage() + 200
 		end
 	end
 		
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi2")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_leshrac_agi2"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_leshrac_agi2")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_leshrac_agi2"):GetLevel() > 0 then 
 			mini_blast_count = 3
 		end	
 	end

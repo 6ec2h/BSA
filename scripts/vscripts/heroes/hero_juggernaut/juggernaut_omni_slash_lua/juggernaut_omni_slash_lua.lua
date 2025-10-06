@@ -20,8 +20,8 @@ function juggernaut_omni_slash_lua:OnOwnerDied()
 end
 
 function juggernaut_omni_slash_lua:GetCooldown(level) 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_int8")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_juggernaut_int8"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_int8")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_juggernaut_int8"):GetLevel() > 0 then 
 			return self.BaseClass.GetCooldown(self, level) - 30
 		end
 	end

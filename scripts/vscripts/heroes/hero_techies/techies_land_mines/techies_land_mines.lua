@@ -46,7 +46,7 @@ function techies_land_mines_lua:OnSpellStart()
 	local pos = self:GetCursorPosition()
 	local count = 1
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_techies_int2")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_techies_int2")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		count = 2
 	end	

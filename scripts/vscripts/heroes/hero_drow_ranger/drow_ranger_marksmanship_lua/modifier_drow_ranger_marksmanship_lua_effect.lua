@@ -28,8 +28,8 @@ if not IsServer() then return end
 	self.agility = self:GetAbility():GetSpecialValueFor( "agility_multiplier" )
 	self.str = self:GetAbility():GetSpecialValueFor( "agility_multiplier" )
 	
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_drow_ranger_agi8")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_drow_ranger_agi8"):GetLevel() > 0 then
+		if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi8")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi8"):GetLevel() > 0 then
 				self.agility = self.agility + 10
 			end
 		end

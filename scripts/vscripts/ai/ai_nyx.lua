@@ -9,7 +9,7 @@ function Spawn( entityKeyValues )
 
 	TargetAbility = thisEntity:FindAbilityByName( "boss_nyx_assassin_mana_burn" )
 	PointAbility = thisEntity:FindAbilityByName( "boss_nyx_assassin_impale" )
-	NoTargetAbility = thisEntity:FindAbilityByName( "frostivus2018_spectre_active_dispersion" )
+	NoTargetAbility = thisEntity:FindAbilityByName( "boss_nyx_assassin_dispersion" )
 
 	thisEntity:SetContextThink( "NyxThink", NyxThink, 1 )
 end

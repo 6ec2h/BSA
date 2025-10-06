@@ -49,7 +49,7 @@ function modifier_time_lock_lua:OnAttackLanded(event)
 
 	local chance = ability:GetSpecialValueFor("chance")
 	
-	local talent = parent:FindAbilityByName("npc_dota_hero_faceless_void_1")
+	local talent = parent:FindAbilityByName("special_bonus_faceless_void_1")
 	if talent and talent:GetLevel() > 0 then
 		chance = chance + 15
 	end

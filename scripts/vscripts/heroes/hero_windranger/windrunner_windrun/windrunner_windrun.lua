@@ -73,8 +73,8 @@ end
 
 function modifier_windrunner_windrun_lua_effect:GetModifierEvasion_Constant()
 	if not self:GetParent():PassivesDisabled() then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_windrunner_int1")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_windrunner_int1"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_windrunner_int1")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_windrunner_int1"):GetLevel() > 0 then 
 				return self:GetAbility():GetSpecialValueFor( "eva" ) * 2
 			end
 		end

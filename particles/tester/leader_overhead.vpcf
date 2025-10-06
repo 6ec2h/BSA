@@ -1,14 +1,14 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf19:version{aafc65d8-7a5a-4e01-bd8d-3ac118422503} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 1
 	m_flConstantRadius = 0.500000
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderModels"
-			m_ModelList =
+			m_ModelList = 
 			[
 				{
 					m_model = resource:"models/props_gameplay/crown001.vmdl"
@@ -17,9 +17,10 @@
 			m_bAnimated = true
 			m_nLOD = 1
 			m_bOrientZ = true
+			m_bForceLoopingAnimation = true
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_FadeInSimple"
@@ -49,7 +50,7 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
-			m_nField = 12
+			m_nField = "12"
 			m_Rate = 2.000000
 			m_flEndTime = 99999.000000
 		},
@@ -59,7 +60,7 @@
 			m_nFirstControlPoint = 1
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
@@ -74,29 +75,29 @@
 		},
 		{
 			_class = "C_INIT_RandomVector"
-			m_vecMin =
+			m_vecMin = 
 			[
 				0.000000,
 				0.000000,
 				1.000000,
 			]
-			m_vecMax =
+			m_vecMax = 
 			[
 				0.000000,
 				0.000000,
 				1.000000,
 			]
-			m_nFieldOutput = 21
+			m_nFieldOutput = "21"
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin =
+			m_OffsetMin = 
 			[
 				0.000000,
 				0.000000,
 				50.000000,
 			]
-			m_OffsetMax =
+			m_OffsetMax = 
 			[
 				0.000000,
 				0.000000,
@@ -104,14 +105,18 @@
 			]
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 1
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.000000
+			}
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/hw_fx/candy_carrying_overhead_ember.vpcf"
@@ -129,4 +134,6 @@
 			m_ChildRef = resource:"particles/hw_fx/candy_carrying_overhead_start.vpcf"
 		},
 	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 4
 }

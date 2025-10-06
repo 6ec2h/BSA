@@ -46,7 +46,7 @@ function modifier_earthshaker_enchant_totem_lua:GetModifierProcAttack_Feedback( 
 	if IsServer() then
 		local sound_cast = "Hero_EarthShaker.Totem.Attack"
 		EmitSoundOn( sound_cast, params.target )
-		local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_earthshaker_tal4")
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_earthshaker_tal4")
 		if talent ~= nil and talent:GetLevel() > 0 then
 			if params.attacker == self:GetParent() and (not self:GetParent():IsIllusion()) and not self:GetParent():PassivesDisabled() then
 				if params.target ~= nil and params.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then

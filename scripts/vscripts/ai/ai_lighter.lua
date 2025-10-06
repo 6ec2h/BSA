@@ -22,14 +22,12 @@ function NecroLordThink()
 
     local enemies = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 150, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
     if #enemies > 0 and thisEntity:GetDayTimeVisionRange() < 1000 then
-		local hRelay = Entities:FindByName( nil, "last_zone_logic" )
-		hRelay:Trigger(nil, nil)
-	    thisEntity:SetDayTimeVisionRange( 1500 )
-		thisEntity:SetNightTimeVisionRange	( 1500 )
+	    thisEntity:SetDayTimeVisionRange(1500)
+		thisEntity:SetNightTimeVisionRange(1500)
+		quest_system:quest_23()
 		local particleLeader = ParticleManager:CreateParticle( "particles/dire_fx/fire_barracks.vpcf", PATTACH_OVERHEAD_FOLLOW, thisEntity ) 
 		ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, thisEntity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", thisEntity:GetAbsOrigin(), true )
-		thisEntity:Attribute_SetIntValue( "particleID", particleLeader )
+		thisEntity:Attribute_SetIntValue("particleID", particleLeader)
 		end
-	return 0.5
+	return 0.01
 end
-

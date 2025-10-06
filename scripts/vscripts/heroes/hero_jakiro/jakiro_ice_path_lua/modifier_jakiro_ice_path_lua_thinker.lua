@@ -25,13 +25,15 @@ function modifier_jakiro_ice_path_lua_thinker:OnCreated( kv )
 	self.caster = self:GetCaster()
 
 	-- references
-	local damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	
 	self.range = 700
 	self.delay = self:GetAbility():GetSpecialValueFor( "path_delay" )
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
 	self.radius = self:GetAbility():GetSpecialValueFor( "path_radius" )
 
 	if not IsServer() then return end
+	
+	local damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 
 	-- ability properties
 	self.abilityDamageType = self:GetAbility():GetAbilityDamageType()

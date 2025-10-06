@@ -12,6 +12,11 @@ function ogre_magi_bloodlust_lua:OnSpellStart()
 	local target = self:GetCursorTarget()
 
 	local duration = self:GetSpecialValueFor( "duration" )
+	
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_7")
+	if ability ~= nil and ability:GetLevel() > 0 then 
+		duration = duration + 5
+	end
 
 	target:AddNewModifier(caster, self, "modifier_ogre_magi_bloodlust_lua_buff", { duration = duration })
 	self:PlayEffects( target )
@@ -138,7 +143,7 @@ function modifier_ogre_magi_bloodlust_lua_buff:OnCreated( kv )
 		self.as_bonus = self.self_bonus
 	end
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ogre_magi_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.as_bonus = self.as_bonus + 40
 	end
@@ -146,7 +151,7 @@ function modifier_ogre_magi_bloodlust_lua_buff:OnCreated( kv )
 	local sound_cast = "Hero_OgreMagi.Bloodlust.Target"
 	EmitSoundOn( sound_cast, self:GetParent() )
 	local sound_player = "Hero_OgreMagi.Bloodlust.Target.FP"
-	EmitSoundOnClient( sound_player, self:GetParent():GetPlayerOwner() )
+	EmitSoundOnClient( sound_player, self:GetParent())
 end
 
 function modifier_ogre_magi_bloodlust_lua_buff:OnRefresh( kv )
@@ -164,8 +169,17 @@ function modifier_ogre_magi_bloodlust_lua_buff:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MODEL_SCALE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
 	}
 	return funcs
+end
+
+function modifier_ogre_magi_bloodlust_lua_buff:GetModifierConstantHealthRegen()
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ogre_magi_6")
+	if ability ~= nil and ability:GetLevel() > 0 then 
+		return self:GetCaster():GetStrength() * 0.5
+	end
+	return 0
 end
 
 function modifier_ogre_magi_bloodlust_lua_buff:GetModifierMoveSpeedBonus_Percentage()

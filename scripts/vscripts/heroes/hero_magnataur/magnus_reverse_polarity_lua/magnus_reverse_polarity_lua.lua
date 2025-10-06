@@ -19,8 +19,8 @@ function magnus_reverse_polarity_lua:OnAbilityPhaseInterrupted()
 end
 
 function magnus_reverse_polarity_lua:GetCooldown( level )
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi4"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_magnus_agi4")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_magnus_agi4"):GetLevel() > 0 then 
 			return self.BaseClass.GetCooldown( self, level ) - 60
 		end
 	end

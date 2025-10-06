@@ -7,7 +7,7 @@ function skywrath_mage_ancient_seal_lua:IsHiddenWhenStolen()
 end
 
 function skywrath_mage_ancient_seal_lua:GetAOERadius()
-local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int7")
+local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int7")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			return self:GetSpecialValueFor("radius")
 		end
@@ -15,7 +15,7 @@ local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_skywrat
 end
 
 function skywrath_mage_ancient_seal_lua:GetBehavior()
-local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int7")
+local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int7")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
 		end
@@ -28,7 +28,7 @@ function skywrath_mage_ancient_seal_lua:OnSpellStart()
 	local ability = self
 
 	
-local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_skywrath_mage_int7")
+local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_skywrath_mage_int7")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		local radius = ability:GetSpecialValueFor("radius")
 		local duration = ability:GetSpecialValueFor("seal_duration")

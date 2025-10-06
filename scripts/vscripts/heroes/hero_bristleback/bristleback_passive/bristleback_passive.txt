@@ -11,18 +11,10 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_hp"						"2 4 6 8"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_hpr"						"0.2 0.4 0.6 0.8"
-			}
-		}
+		"AbilityValues"
+	{
+		"bonus_hp"	"2 4 6 8"
+			"bonus_hpr"	"0.2 0.4 0.6 0.8"
+	}
 	}
 }

@@ -27,7 +27,7 @@ function modifier_lycan_feral_lua_buff:DeclareFunctions()
 end
 
 function modifier_lycan_feral_lua_buff:GetModifierBaseDamageOutgoing_Percentage()	 		
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lycan_tal2")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lycan_tal2")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		return self:GetAbility():GetSpecialValueFor( "damage" ) * 2
 	end
@@ -35,7 +35,7 @@ function modifier_lycan_feral_lua_buff:GetModifierBaseDamageOutgoing_Percentage(
 end
 
 function modifier_lycan_feral_lua_buff:GetModifierPhysicalArmorBonus()	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lycan_tal2")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lycan_tal2")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		return self:GetAbility():GetSpecialValueFor( "armor" ) * 2
 	end

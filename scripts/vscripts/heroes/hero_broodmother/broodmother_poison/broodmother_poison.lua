@@ -56,7 +56,7 @@ end
 
 function modifier_broodmother_poison_debuff:OnIntervalThink()
 	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_broodmother_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_broodmother_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self.damage + 40
 	end

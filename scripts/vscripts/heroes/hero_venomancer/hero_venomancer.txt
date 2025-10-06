@@ -21,12 +21,12 @@
 			"strike_damage"			
 			{
 				"value"					"50 100 150 200"
-				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_1"
+				"LinkedSpecialBonus"	"special_bonus_venomancer_1"
 			}	
 			"tick_damage"			
 			{
 				"value"					"25 50 75 100"
-				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_1"
+				"LinkedSpecialBonus"	"special_bonus_venomancer_1"
 			}	
 			"tick_interval"			"1"
 			"movement_slow"			"-50"
@@ -55,7 +55,7 @@
 			"damage"				
 			{
 				"value"					"15 30 45 60"
-				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_2"
+				"LinkedSpecialBonus"	"special_bonus_venomancer_2"
 			}	
 			"movement_speed"		"4 6 8 10"
 		}
@@ -81,7 +81,7 @@
 			"damage" 
 			{
 				"value"					"1.0 1.5 2.0 2.5"
-				"LinkedSpecialBonus"	"npc_dota_hero_venomancer_3"
+				"LinkedSpecialBonus"	"special_bonus_venomancer_3"
 			}	
 		}
 	}	
@@ -91,7 +91,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_venomancer/venomancer_poison_nova_lua"
 		"AbilityTextureName"			"venomancer_poison_nova"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"

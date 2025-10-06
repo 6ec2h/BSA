@@ -49,7 +49,7 @@ function modifier_primal_beast_uproar_lua_buff:IsPurgable()
 end
 
 function modifier_primal_beast_uproar_lua_buff:OnCreated( kv )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_primal_beast_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_primal_beast_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" ) + 10
 	else
@@ -60,7 +60,7 @@ function modifier_primal_beast_uproar_lua_buff:OnCreated( kv )
 end
 
 function modifier_primal_beast_uproar_lua_buff:OnRefresh( kv )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_primal_beast_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_primal_beast_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" ) + 10
 	else

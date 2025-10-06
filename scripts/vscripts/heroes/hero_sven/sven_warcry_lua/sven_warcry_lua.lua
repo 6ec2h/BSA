@@ -63,7 +63,7 @@ function modifier_sven_warcry_lua:GetActivityTranslationModifiers( params )
 end
 
 function modifier_sven_warcry_lua:GetModifierMagicalResistanceBonus()
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_sven_tal1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_sven_tal1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		return self.warcry_armor
 	end	

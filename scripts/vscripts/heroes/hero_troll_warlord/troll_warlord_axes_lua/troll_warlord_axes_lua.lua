@@ -22,7 +22,7 @@ function troll_warlord_whirling_axes_ranged_lua:OnUpgrade()
 		end
 
 		local rage_ability = self:GetCaster():FindAbilityByName("troll_warlord_rage_lua")
-		if rage_ability:GetLevel() < 1 then
+		if rage_ability and rage_ability:GetLevel() < 1 then
 			self:GetCaster():FindAbilityByName("troll_warlord_whirling_axes_melee_lua"):SetActivated(false)
 			self:GetCaster():FindAbilityByName("troll_warlord_whirling_axes_ranged_lua"):SetActivated(true)
 		end		
@@ -51,7 +51,7 @@ function troll_warlord_whirling_axes_ranged_lua:OnSpellStart()
 		local on_hit_pct = self:GetSpecialValueFor("on_hit_pct")
 		local direction
 		
-		local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_troll_warlord_int1")
+		local abil = self:GetCaster():FindAbilityByName("special_bonus_troll_warlord_int1")
 		if abil ~= nil and abil:GetLevel() > 0 then 
 			axe_damage = axe_damage + 150
 		end
@@ -128,7 +128,7 @@ function troll_warlord_whirling_axes_ranged_lua:OnProjectileHit_ExtraData(target
 			caster:PerformAttack(target, true, true, true, true, false, true, true)
 	--	end
 		target:AddNewModifier(caster, self, "modifier_imba_whirling_axes_ranged", {duration = ExtraData.duration * (1 - target:GetStatusResistance())})
-		local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_troll_warlord_int3")
+		local abil = self:GetCaster():FindAbilityByName("special_bonus_troll_warlord_int3")
 		if abil ~= nil and abil:GetLevel() > 0 then 
 			enemy:AddNewModifier(caster, self, "modifier_axes_debuff", {duration = blind_duration * (1 - enemy:GetStatusResistance()), blind_stacks = blind_stacks})
 		end
@@ -270,7 +270,7 @@ function troll_warlord_whirling_axes_melee_lua:DoAxeStuff(index,range,caster_loc
 	local caster = self:GetCaster()
 	local damage = self:GetSpecialValueFor("damage")
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_troll_warlord_int1")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_troll_warlord_int1")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		damage = damage + 150
 	end
@@ -295,7 +295,7 @@ function troll_warlord_whirling_axes_melee_lua:DoAxeStuff(index,range,caster_loc
 		-- Imbued Axes
 		caster:PerformAttack(enemy, true, true, true, true, false, true, true)
 		enemy:AddNewModifier(caster, self, "modifier_imba_whirling_axes_melee", {duration = blind_duration * (1 - enemy:GetStatusResistance()), blind_stacks = blind_stacks})
-		local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_troll_warlord_int3")
+		local abil = self:GetCaster():FindAbilityByName("special_bonus_troll_warlord_int3")
 		if abil ~= nil and abil:GetLevel() > 0 then 
 			enemy:AddNewModifier(caster, self, "modifier_axes_debuff", {duration = blind_duration * (1 - enemy:GetStatusResistance()), blind_stacks = blind_stacks})
 		end

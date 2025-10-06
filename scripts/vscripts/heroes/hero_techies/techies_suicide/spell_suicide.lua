@@ -44,7 +44,7 @@ function modifier_techies_suicide_stacks:OnDeath(params)
 		local caster = self:GetParent()
 		self.damage = self:GetAbility():GetSpecialValueFor("damage_per_stack") * self:GetParent():GetModifierStackCount("modifier_techies_suicide_stacks", self:GetParent())
 		
-		local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_techies_int3")
+		local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_techies_int3")
 			if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			self.damage = (self:GetAbility():GetSpecialValueFor("damage_per_stack") + 2) * self:GetParent():GetModifierStackCount("modifier_techies_suicide_stacks", self:GetParent())
 		end	

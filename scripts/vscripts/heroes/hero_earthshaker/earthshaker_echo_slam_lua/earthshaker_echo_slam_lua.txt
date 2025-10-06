@@ -8,7 +8,7 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
 
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -21,28 +21,12 @@
 
 		"AbilityDamage"					"100 150 200"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"echo_slam_damage_range"	"600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"echo_slam_echo_search_range" "600"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"echo_slam_echo_range"		"600"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"echo_slam_echo_damage"		"60 100 140"
-			}
-		}
+		"AbilityValues"
+	{
+		"echo_slam_damage_range"	"600"
+			"echo_slam_echo_search_range"	"600"
+			"echo_slam_echo_range"	"600"
+			"echo_slam_echo_damage"	"60 100 140"
+	}
 	}
 }

@@ -29,7 +29,7 @@ end
 
 function modifier_silencer_infinite_int_lua:GetModifierBonusStats_Intellect(params)
 	silencer_bonus_int = self:GetAbility():GetSpecialValueFor( "stack_bonus_int" )
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_silencer_int4")
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_silencer_int4")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			silencer_bonus_int = self:GetAbility():GetSpecialValueFor( "stack_bonus_int" ) + 0.1
 		end

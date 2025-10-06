@@ -111,7 +111,7 @@ function modifier_muerta_pierce_the_veil_lua:DeclareFunctions()
 end
 
 function modifier_muerta_pierce_the_veil_lua:GetModifierMagicalResistanceDecrepifyUnique()
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_muerta_4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		return 0
 	end

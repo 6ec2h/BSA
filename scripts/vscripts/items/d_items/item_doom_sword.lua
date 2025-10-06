@@ -168,14 +168,31 @@ function modifier_item_doom_sword:OnAttackLanded( params )
 		local Target = params.target
 		local Attacker = params.attacker
 		if Attacker ~= nil and Attacker == self:GetParent() and Target ~= nil then
+			local full_heal = params.damage * self.lifesteal_pct / 100
+
 			local allies = FindUnitsInRadius( Attacker:GetTeamNumber(), self:GetCaster():GetOrigin(), nil, 450, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
-			for _,ally in pairs( allies ) do
-				if ally ~= nil and ally:FindModifierByName( "modifier_item_doom_sword_effect" ) then
-					local heal = ( params.damage * self.lifesteal_pct / 100 ) / #allies
-					ally:Heal( heal, self:GetAbility() )
-					local nFXIndex = ParticleManager:CreateParticle( "particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, ally )
-					ParticleManager:ReleaseParticleIndex( nFXIndex )
-				end
+			
+			for i = #allies, 1, -1 do
+                if allies[i] == nil or not allies[i]:HasModifier( "modifier_item_doom_sword_effect" ) then
+                    table.remove(allies, i)
+                end
+            end
+
+			local total_missing_hp = 0
+    
+			for _, ally in ipairs(allies) do
+				local missing_hp = ally:GetHealth() / (ally:GetMaxHealth() / 100)
+				total_missing_hp = total_missing_hp + missing_hp
+			end
+
+			if total_missing_hp == 0 then return end
+
+			for _, ally in ipairs(allies) do
+				local missing_hp = ally:GetHealth() / (ally:GetMaxHealth() / 100)
+				local heal_amount = (missing_hp / total_missing_hp) * full_heal
+				ally:Heal( heal_amount, self:GetAbility() )
+				local nFXIndex = ParticleManager:CreateParticle( "particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, ally )
+				ParticleManager:ReleaseParticleIndex( nFXIndex )
 			end
 		end
 	end

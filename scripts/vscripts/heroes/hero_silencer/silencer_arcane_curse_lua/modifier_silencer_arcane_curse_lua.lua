@@ -28,14 +28,18 @@ function modifier_silencer_arcane_curse_lua:OnCreated( kv )
 	-- references
 	self.penalty = self:GetAbility():GetSpecialValueFor( "penalty_duration" )
 	self.slow = self:GetAbility():GetSpecialValueFor( "movespeed" )
-	local damage = self:GetAbility():GetSpecialValueFor( "damage" )
+
+
+	if not IsServer() then return end
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_silencer_int1")
+		local damage = self:GetAbility():GetSpecialValueFor( "damage" )+ self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
+	
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_silencer_int1")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 		damage = self:GetAbility():GetSpecialValueFor( "damage" ) + 45
 	end
-
-	if not IsServer() then return end
+	
+	
 	self.interval = 1
 
 	-- precache damage

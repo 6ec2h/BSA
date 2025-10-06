@@ -6,14 +6,12 @@ function Spawn( entityKeyValues )
 	if thisEntity == nil then
 		return
 	end
-
-	SmashAbility = nil
-	
-	thisEntity:SetContextThink( "HellbearThink", HellbearThink, 1 )
+	Ability = nil
+	thisEntity:SetContextThink( "Think", Think, 1 )
 end
 
 
-function HellbearThink()
+function Think()
 	if ( not thisEntity:IsAlive() ) then
 		return -1
 	end
@@ -22,7 +20,7 @@ function HellbearThink()
 		return 1
 	end
 	
-	SmashAbility = thisEntity:FindAbilityByName( "tinker_heat_seeking_missile_lua" )
+	Ability = thisEntity:FindAbilityByName( "tinker_heat_seeking_missile_lua" )
 
 	local enemies = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 700, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
 	if #enemies == 0 then
@@ -34,17 +32,17 @@ function HellbearThink()
 					
 	local flDist = (point - point_2):Length2D()
 	if flDist >= 500 then return 0.5 end
-		if SmashAbility ~= nil and SmashAbility:IsCooldownReady() then
-			return Smash()
+		if Ability ~= nil and Ability:IsCooldownReady() then
+			return Cast()
 		end
 	return 1
 end
 
-function Smash()
+function Cast()
 	ExecuteOrderFromTable({
 		UnitIndex = thisEntity:entindex(),
 		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-		AbilityIndex = SmashAbility:entindex(),
+		AbilityIndex = Ability:entindex(),
 		Queue = false,
 	})
 	thisEntity:FindAbilityByName( "tinker_heat_seeking_missile_lua" ):EndCooldown()

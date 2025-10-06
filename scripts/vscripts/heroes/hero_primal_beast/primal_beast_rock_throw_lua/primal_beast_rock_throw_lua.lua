@@ -23,7 +23,7 @@ function primal_beast_rock_throw_lua:OnProjectileHit(target, location)
 	local caster = self:GetCaster()
 	local rock_radius = self:GetSpecialValueFor("impact_radius")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_primal_beast_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_primal_beast_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		attack_damage = self:GetSpecialValueFor( "base_damage" ) + 240
 	else

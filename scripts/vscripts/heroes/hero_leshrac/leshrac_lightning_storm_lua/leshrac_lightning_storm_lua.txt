@@ -22,38 +22,15 @@
 		"AbilityCooldown"				"7 6 5 4"
 		"AbilityManaCost"				"80 100 120 140"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"jump_count"			"2 3 4 5"
-			}			
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"475"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"jump_delay"			"0.25 0.25 0.25 0.25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_movement_speed"	"-50"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1.0"
-			}	
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"			"80 120 160 200"
-			}	
+			"jump_count"			"2 3 4 5"
+			"radius"			"475"
+			"jump_delay"			"0.25 0.25 0.25 0.25"
+			"slow_movement_speed"	"-50"
+			"slow_duration"			"1.0"
+			"damage"			"80 120 160 200"
+			"ExtraIntelligenceDamage"			"0.2"
 		}
 	}
 }

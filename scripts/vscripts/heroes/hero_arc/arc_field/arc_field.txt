@@ -20,28 +20,12 @@
 
 		"AbilityCastRange"				"700"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2 3 4 5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_bonus"		"40 60 80 100"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"evasion_chance"			"100"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"300"
+			"duration"	"2 3 4 5"
+			"attack_speed_bonus"	"40 60 80 100"
+			"evasion_chance"	"100"
+	}
 	}
 }

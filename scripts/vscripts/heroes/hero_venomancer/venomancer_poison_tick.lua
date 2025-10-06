@@ -98,7 +98,7 @@ function modifier_venomancer_poison_tick_debuff:OnDestroy()
 		local ability = self:GetAbility()
 		local caster = ability:GetCaster()
 		local damage = self:GetAbility():GetSpecialValueFor("damage")
-		local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_venomancer_3")
+		local ability = self:GetCaster():FindAbilityByName("special_bonus_venomancer_3")
 		if ability ~= nil and ability:GetLevel() > 0 then 
 			damage = damage + 15
 		end

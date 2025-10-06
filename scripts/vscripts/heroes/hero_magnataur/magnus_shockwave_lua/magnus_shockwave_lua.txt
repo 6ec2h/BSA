@@ -15,38 +15,14 @@
 		"MaxLevel"									"4"
 		"AbilityManaCost"							"70 80 90 100"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					        "FIELD_INTEGER"
-				"damage"					        "50 100 150 200"
-			}
-			"02"
-			{
-				"var_type"					        "FIELD_INTEGER"
-				"line"								"1 2 3 4"
-			}
-			"03"
-			{
-				"var_type"					        "FIELD_INTEGER"
-				"lines_travel_speed"		        "1700"
-			}
-			"04"
-			{
-				"var_type"					        "FIELD_INTEGER"
-				"travel_distance"			        "700"
-			}
-			"05"
-			{
-				"var_type"					        "FIELD_INTEGER"
-				"lines_starting_width"		        "130"
-			}
-			"06"
-			{
-				"var_type"					        "FIELD_INTEGER"
-				"lines_end_width"			        "130"
-			}
-		}
+		"AbilityValues"
+	{
+		"damage"	"50 100 150 200"
+			"line"	"1 2 3 4"
+			"lines_travel_speed"	"1700"
+			"travel_distance"	"700"
+			"lines_starting_width"	"130"
+			"lines_end_width"	"130"
+	}
 	}	
 }

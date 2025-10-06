@@ -35,8 +35,8 @@ function modifier_magnataur_skin:OnRefresh( kv )
 	self.bonus_armor = self:GetAbility():GetSpecialValueFor( "bonus_armor" )
 	self.bonus_resist = self:GetAbility():GetSpecialValueFor( "bonus_resist" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi1")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_magnus_agi1"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_magnus_agi1")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_magnus_agi1"):GetLevel() > 0 then 
 			self.bonus_armor = self:GetAbility():GetSpecialValueFor( "bonus_armor" ) * 2
 			self.bonus_resist = self:GetAbility():GetSpecialValueFor( "bonus_resist" ) * 2
 		end

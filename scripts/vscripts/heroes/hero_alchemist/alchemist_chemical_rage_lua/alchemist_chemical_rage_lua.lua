@@ -3,11 +3,14 @@ LinkLuaModifier( "modifier_alchemist_chemical_rage_lua", "heroes/hero_alchemist/
 LinkLuaModifier( "modifier_alchemist_cleave", "heroes/hero_alchemist/alchemist_chemical_rage_lua/alchemist_chemical_rage_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_resist", "heroes/hero_alchemist/alchemist_chemical_rage_lua/alchemist_chemical_rage_lua", LUA_MODIFIER_MOTION_NONE )
 
+
+function alchemist_chemical_rage_lua:Precache( context )
+	PrecacheResource( "particle", "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf", context )
+end
+
 function alchemist_chemical_rage_lua:OnSpellStart()
 	local caster = self:GetCaster()
-
 	local duration = self:GetSpecialValueFor( "duration" )
-
 	caster:AddNewModifier(
 		caster, -- player source
 		self, -- ability source
@@ -15,25 +18,21 @@ function alchemist_chemical_rage_lua:OnSpellStart()
 		{ duration = duration } -- kv
 	)
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_alchemist_agi3")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_alchemist_agi3"):GetLevel() > 0 then 
-			self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_alchemist_cleave",{})
-		end
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi3")
+	if talent and talent:GetLevel() > 0 then 
+		self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_alchemist_cleave",{})
 	end
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_alchemist_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_alchemist_agi4"):GetLevel() > 0 then 
-			self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_alchemist_resist",{})
-		end
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi4")
+	if talent and talent:GetLevel() > 0 then 
+		self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_alchemist_resist",{})
 	end
 
 	local sound_cast = "Hero_Alchemist.ChemicalRage.Cast"
 	EmitSoundOn( sound_cast, self:GetCaster() )
 end
 
---------------------------------------------------------------------------------
 function alchemist_chemical_rage_lua:PlayEffects()
-	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
 	local sound_cast = "string"
 
@@ -52,7 +51,6 @@ function alchemist_chemical_rage_lua:PlayEffects()
 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	-- Create Sound
 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
 	EmitSoundOn( sound_target, target )
 end
@@ -85,31 +83,45 @@ end
 
 function modifier_alchemist_chemical_rage_lua:OnCreated( kv )
 	self.bat = self:GetAbility():GetSpecialValueFor( "base_attack_time" )
-	self.health = self:GetAbility():GetSpecialValueFor( "bonus_health" )
 	self.health_regen = self:GetAbility():GetSpecialValueFor( "bonus_health_regen" )
 	self.mana_regen = self:GetAbility():GetSpecialValueFor( "bonus_mana_regen" )
 	self.movespeed = self:GetAbility():GetSpecialValueFor( "bonus_movespeed" )
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi7")
+	if talent and talent:GetLevel() > 0 then 
+		self.bat = self.bat - 0.1
+	end
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi8")
+	if talent and talent:GetLevel() > 0 then 
+		self.health_regen = self.health_regen + 150
+	end
 
 	if not IsServer() then return end
-
 	ProjectileManager:ProjectileDodge( self:GetParent() )
 	self:GetParent():Purge( false, true, false, false, false )
-
-			if self:GetCaster():GetUnitName() == "npc_dota_hero_alchemist" then
-			self:GetCaster():StartGesture(ACT_DOTA_ALCHEMIST_CHEMICAL_RAGE_START)
-		end
-	
+	if self:GetCaster():GetUnitName() == "npc_dota_hero_alchemist" then
+		self:GetCaster():StartGesture(ACT_DOTA_ALCHEMIST_CHEMICAL_RAGE_START)
+	end
 end
 
 function modifier_alchemist_chemical_rage_lua:OnRefresh( kv )
 	self.bat = self:GetAbility():GetSpecialValueFor( "base_attack_time" )
-	self.health = self:GetAbility():GetSpecialValueFor( "bonus_health" )
 	self.health_regen = self:GetAbility():GetSpecialValueFor( "bonus_health_regen" )
 	self.mana_regen = self:GetAbility():GetSpecialValueFor( "bonus_mana_regen" )
 	self.movespeed = self:GetAbility():GetSpecialValueFor( "bonus_movespeed" )
+	
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi7")
+	if talent and talent:GetLevel() > 0 then 
+		self.bat = self.bat - 0.1
+	end
 
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi8")
+	if talent and talent:GetLevel() > 0 then 
+		self.health_regen = self.health_regen + 150
+	end
+	
 	if not IsServer() then return end
-
 	ProjectileManager:ProjectileDodge( self:GetParent() )
 	self:GetParent():Purge( false, true, false, false, false )
 end
@@ -136,13 +148,10 @@ function modifier_alchemist_chemical_rage_lua:OnDestroy()
 	StopSoundOn( sound_cast, self:GetParent() )
 end
 
---------------------------------------------------------------------------------
--- Modifier Effects
 function modifier_alchemist_chemical_rage_lua:DeclareFunctions()
 	local funcs = {
 	MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-	MODIFIER_PROPERTY_HEALTH_BONUS,
 	MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 	MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	}
@@ -154,9 +163,6 @@ function modifier_alchemist_chemical_rage_lua:GetModifierBaseAttackTimeConstant(
 end
 function modifier_alchemist_chemical_rage_lua:GetModifierConstantHealthRegen()
 	return self.health_regen
-end
-function modifier_alchemist_chemical_rage_lua:GetModifierHealthBonus()
-	return self.health
 end
 function modifier_alchemist_chemical_rage_lua:GetModifierConstantManaRegen()
 	return self.mana_regen
@@ -218,6 +224,8 @@ end
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 
+
+
 modifier_alchemist_cleave = class({})
 
 function modifier_alchemist_cleave:IsHidden()
@@ -250,7 +258,7 @@ function modifier_alchemist_cleave:OnAttackLanded(keys)
 	local ability = self:GetAbility()
 	local damage = keys.original_damage
 	local damageMod = 100
-	local radius = 300
+	local radius = 500
 	local particle_cast = 'particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf'
 	
 	damageMod = damageMod * 0.01

@@ -79,7 +79,13 @@ function modifier_dragon_knight_elder_dragon_form_lua:OnCreated( kv )
 	if not IsServer() then return end
 	-- set attack capability
 	-- TODO: Consider stacking other attack cap changing abilities
-	self.parent:SetAttackCapability( DOTA_UNIT_CAP_RANGED_ATTACK )
+	if not self.capabilityChanged then 
+		self.capabilityChanged = true
+		self.capabilityNative = self.parent:GetAttackCapability()
+		self.parent:SetAttackCapability( DOTA_UNIT_CAP_RANGED_ATTACK )
+	end
+
+	
 
 	-- set model change
 	self:StartIntervalThink( 0.03 ) -- set skin can only affect model after this frame
@@ -105,7 +111,9 @@ function modifier_dragon_knight_elder_dragon_form_lua:OnDestroy()
 
 	-- revert unit cap
 	-- TODO: Consider stacking other attack cap changing abilities
-	self.parent:SetAttackCapability( DOTA_UNIT_CAP_MELEE_ATTACK )
+
+	
+	self.parent:SetAttackCapability( self.capabilityNative )
 
 	-- Play effects
 	self:PlayEffects()

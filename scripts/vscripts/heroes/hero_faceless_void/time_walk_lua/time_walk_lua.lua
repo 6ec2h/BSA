@@ -12,7 +12,7 @@ function time_walk_lua:OnSpellStart()
 	self:remove_damage()
 	
 	
-	local talent = caster:FindAbilityByName("npc_dota_hero_faceless_void_3")
+	local talent = caster:FindAbilityByName("special_bonus_faceless_void_3")
 	local ability = caster:FindAbilityByName("time_lock_lua")
 	if talent and talent:GetLevel() > 0 then
 		 local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetOrigin(), nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
@@ -34,7 +34,7 @@ function time_walk_lua:ApplyTimeLock(ability, target, caster)
 	
 	local damage = ability:GetSpecialValueFor("damage")
 
-	local talent = caster:FindAbilityByName("npc_dota_hero_faceless_void_1")
+	local talent = caster:FindAbilityByName("special_bonus_faceless_void_1")
 	if talent and talent:GetLevel() > 0 then
 		damage = damage + 40
 	end

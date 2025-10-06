@@ -23,7 +23,6 @@ function creep_spawn()
 				return nil
 			end
 		end)
-		print("!")
 		if _G.Game_Difficulty > 5 then
 			Timers:CreateTimer(3, function()
 				Notifications:TopToAll({text="#usilenie", duration=3})

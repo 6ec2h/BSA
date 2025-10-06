@@ -15,8 +15,8 @@ function omniknight_purification_lua:OnSpellStart()
 	local heal = self:GetSpecialValueFor("heal")
 	local radius = self:GetSpecialValueFor("radius")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int1")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_omniknight_int1"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int1")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_omniknight_int1"):GetLevel() > 0 then
 			heal = self:GetSpecialValueFor("heal") * 2
 		end
 	end

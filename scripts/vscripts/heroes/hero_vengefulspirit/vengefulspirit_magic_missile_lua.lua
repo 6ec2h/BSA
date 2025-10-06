@@ -22,7 +22,7 @@ function vengefulspirit_magic_missile_lua:OnProjectileHit( hTarget, vLocation )
 		local magic_missile_stun = self:GetSpecialValueFor( "magic_missile_stun" )
 		local magic_missile_damage = self:GetSpecialValueFor( "magic_missile_damage" )
 		
-		local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_vengefulspirit_1")
+		local ability = self:GetCaster():FindAbilityByName("special_bonus_vengefulspirit_1")
 		if ability ~= nil and ability:GetLevel() > 0 then 
 			magic_missile_damage = magic_missile_damage + 175
 		end

@@ -70,7 +70,7 @@ function earthshaker_fissure_lua:OnSpellStart()
 		ability = self, --Optional.
 	}
 	
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_earthshaker_tal1")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_earthshaker_tal1")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		local count = 0
 		Timers:CreateTimer(1, function()

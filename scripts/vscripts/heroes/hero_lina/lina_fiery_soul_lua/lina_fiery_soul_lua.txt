@@ -7,37 +7,25 @@
 		"AbilityTextureName"			"lina_fiery_soul"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
-			"particle"	"particles/units/heroes/hero_lina/lina_fiery_soul.vpcf"
-		}
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"fiery_soul_attack_speed_bonus"	
 			{
-				"var_type"						"FIELD_INTEGER"
-				"fiery_soul_attack_speed_bonus"	"25 40 55 70"
+				"value"						"10 20 30 40"
+				"LinkedSpecialBonus"		"special_bonus_lina_4"
 			}
-			"02"
+			"fiery_soul_move_speed_bonus"	
 			{
-				"var_type"						"FIELD_INTEGER"
-				"fiery_soul_move_speed_bonus"	"5 6 7 8"
+				"value"						"1 2 3 4"
+				"LinkedSpecialBonus"		"special_bonus_lina_4"
+				"LinkedSpecialBonusField"	"value2"
 			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fiery_soul_max_stacks"		"4"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fiery_soul_stack_duration"			"10"
-			}
+			"fiery_soul_max_stacks"			"4"
+			"fiery_soul_stack_duration"		"10"
 		}
 	}
 }

@@ -1,7 +1,5 @@
 modifier_earthshaker_aftershock_lua = class({})
 
---------------------------------------------------------------------------------
--- Classifications
 function modifier_earthshaker_aftershock_lua:IsHidden()
 	return true
 end
@@ -10,17 +8,14 @@ function modifier_earthshaker_aftershock_lua:IsPurgable()
 	return false
 end
 
---------------------------------------------------------------------------------
--- Initializations
 function modifier_earthshaker_aftershock_lua:OnCreated( kv )
-	-- references
 	self.radius = self:GetAbility():GetSpecialValueFor( "aftershock_range" ) -- special value
 
 	if IsServer() then
 		local damage = self:GetAbility():GetAbilityDamage() -- special value
 		self.duration = self:GetAbility():GetDuration() -- special value
 		
-		local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_earthshaker_tal2")
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_earthshaker_tal2")
 		if talent ~= nil and talent:GetLevel() > 0 then
 			damage = damage + 50
 		else
@@ -39,7 +34,6 @@ function modifier_earthshaker_aftershock_lua:OnCreated( kv )
 end
 
 function modifier_earthshaker_aftershock_lua:OnRefresh( kv )
-	-- references
 	self.radius = self:GetAbility():GetSpecialValueFor( "aftershock_range" ) -- special value
 
 	if IsServer() then
@@ -50,12 +44,6 @@ function modifier_earthshaker_aftershock_lua:OnRefresh( kv )
 	end
 end
 
-function modifier_earthshaker_aftershock_lua:OnDestroy( kv )
-
-end
-
---------------------------------------------------------------------------------
--- Modifier Effects
 function modifier_earthshaker_aftershock_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
@@ -66,9 +54,8 @@ end
 
 function modifier_earthshaker_aftershock_lua:OnAbilityFullyCast( params )
 	if IsServer() then
-		if params.unit~=self:GetParent() or params.ability:IsItem() then return end
+		if params.unit~=self:GetParent() or params.ability:IsItem() or params.ability:GetName() == 'ability_capture_lua' or params.ability:GetName() == 'techies_focused_detonate_lua' then return end
 
-		-- Find enemies in radius
 		local enemies = FindUnitsInRadius(
 			self:GetCaster():GetTeamNumber(),	-- int, your team number
 			self:GetCaster():GetOrigin(),	-- point, center point
@@ -81,29 +68,23 @@ function modifier_earthshaker_aftershock_lua:OnAbilityFullyCast( params )
 			false	-- bool, can grow cache
 		)
 
-		-- apply stun and damage
 		for _,enemy in pairs(enemies) do
 			enemy:AddNewModifier(
 				self:GetParent(), -- player source
 				self:GetAbility(), -- ability source
-				"modifier_generic_stunned_lua", -- modifier name
-				{ duration = self.duration } -- kv
+				"modifier_stunned", -- modifier name
+				{duration = self.duration * (1 - enemy:GetStatusResistance())}
 			)
 
 			self.damageTable.victim = enemy
 			ApplyDamage(self.damageTable)
 		end
-
-		-- Effects
 		self:PlayEffects()
 	end
 end
 
 function modifier_earthshaker_aftershock_lua:PlayEffects()
-	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_earthshaker/earthshaker_aftershock.vpcf"
-
-	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, self.radius, self.radius ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )

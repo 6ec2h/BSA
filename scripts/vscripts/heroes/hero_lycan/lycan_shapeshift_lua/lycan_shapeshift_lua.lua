@@ -5,7 +5,7 @@ LinkLuaModifier("modifier_lycan_shapeshift_lua", "heroes/hero_lycan/lycan_shapes
 LinkLuaModifier("modifier_lycan_shapeshift_lua_certain_crit", "heroes/hero_lycan/lycan_shapeshift_lua/lycan_shapeshift_lua", LUA_MODIFIER_MOTION_NONE)
 
 function lycan_shapeshift_lua:GetBehavior()
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lycan_tal4")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lycan_tal4")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 	end
@@ -18,7 +18,7 @@ function lycan_shapeshift_lua:OnSpellStart()
 	local sound_cast = "Hero_Lycan.Shapeshift.Cast"
 	local response_cast = "lycan_lycan_ability_shapeshift_"	
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_lycan_tal4")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_lycan_tal4")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 		target = self:GetCursorTarget()
 	else

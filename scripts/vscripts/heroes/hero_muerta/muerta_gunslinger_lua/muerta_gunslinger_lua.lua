@@ -20,7 +20,7 @@ function modifier_muerta_gunslinger_lua:OnCreated( kv )
 	self.chance = self:GetAbility():GetSpecialValueFor( "double_shot_chance" )
 	self.bonus_range = self:GetAbility():GetSpecialValueFor( "target_search_bonus_range" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_muerta_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.chance = self.chance + 20
 	end
@@ -36,7 +36,7 @@ function modifier_muerta_gunslinger_lua:OnRefresh( kv )
 	self.chance = self:GetAbility():GetSpecialValueFor( "double_shot_chance" )
 	self.bonus_range = self:GetAbility():GetSpecialValueFor( "target_search_bonus_range" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_muerta_3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.chance = self.chance + 20
 	end

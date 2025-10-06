@@ -24,10 +24,10 @@ function naga_siren_mirror_image_lua:OnSpellStart()
 	local incoming = self:GetSpecialValueFor( "illusion_incoming_damage" )
 	local distance = 72
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_naga_siren_6") ~= nil and self:GetCaster():FindAbilityByName("npc_dota_hero_naga_siren_6"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_naga_siren_6") ~= nil and self:GetCaster():FindAbilityByName("special_bonus_naga_siren_6"):GetLevel() > 0 then
 		incoming = incoming - 50
 	end
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_naga_siren_4") ~= nil and self:GetCaster():FindAbilityByName("npc_dota_hero_naga_siren_4"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_naga_siren_4") ~= nil and self:GetCaster():FindAbilityByName("special_bonus_naga_siren_4"):GetLevel() > 0 then
 		outgoing = outgoing + 50
 	end
 
@@ -84,7 +84,7 @@ function modifier_illusion_naga_siren_mirror_image_lua:OnCreated()
 	if not IsServer() then return end
 	self.illusionMaxHealth = self:GetParent():GetMaxHealth()
 	self.illusionArmorBase = self:GetParent():GetPhysicalArmorBaseValue()
-	self.illusionAttackSpeed = self:GetParent():GetAttackSpeed()
+	self.illusionAttackSpeed = self:GetParent():GetAttackSpeed(true)
 	self.illusionDamageBase = (self:GetParent():GetBaseDamageMin() + self:GetParent():GetBaseDamageMax()) / 2
 	self.illusionMoveSpeed = self:GetParent():GetMoveSpeedModifier(self:GetParent():GetBaseMoveSpeed(), false)
 	self.illusionSpellAmplification = self:GetParent():GetSpellAmplification(false)
@@ -131,7 +131,7 @@ end
 
 function modifier_illusion_naga_siren_mirror_image_lua:GetModifierAttackSpeedBonus_Constant()
 	if self.illusionAttackSpeed then
-		return self:GetCaster():GetAttackSpeed() - self.illusionAttackSpeed
+		return self:GetCaster():GetAttackSpeed(true) - self.illusionAttackSpeed
 	end
 	return 0
 end
@@ -143,7 +143,9 @@ function modifier_illusion_naga_siren_mirror_image_lua:OnDestroy()
 			break
 		end
 	end
-	self:GetAbility():UseResources(false, false, false, true)
+	if self:GetAbility() then
+		self:GetAbility():UseResources(false, false, false, true)
+	end
 end
 
 local MODIFIER_PRIORITY_MONKAGIGA_EXTEME_HYPER_ULTRA_REINFORCED_V9 = 10001

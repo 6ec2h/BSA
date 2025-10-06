@@ -38,18 +38,18 @@ function modifier_axe_counter_helix_lua:OnAttackLanded( params )
 		self.chance = self:GetAbility():GetSpecialValueFor( "trigger_chance" )
 		self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 		
-	if self:GetAbility() and not self:GetCaster():PassivesDisabled() and ((params.target == self:GetParent() and not params.attacker:IsBuilding() and not params.attacker:IsOther() and params.attacker:GetTeamNumber() ~= params.target:GetTeamNumber()) or (params.attacker == self:GetCaster() and HasTalent(self:GetCaster(),"npc_dota_hero_axe_5") )) then
+	if self:GetAbility() and not self:GetCaster():PassivesDisabled() and ((params.target == self:GetParent() and not params.attacker:IsBuilding() and not params.attacker:IsOther() and params.attacker:GetTeamNumber() ~= params.target:GetTeamNumber()) or (params.attacker == self:GetCaster() and HasTalent(self:GetCaster(),"special_bonus_axe_5") )) then
 		
 	caster = self:GetCaster()
 	damage_type = DAMAGE_TYPE_PURE
 	damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
 	
-	if HasTalent(self:GetCaster(),"npc_dota_hero_axe_1") then
+	if HasTalent(self:GetCaster(),"special_bonus_axe_1") then
 		self.damage = self.damage + 90
 	end
 		
 		
-	if HasTalent(self:GetCaster(),"npc_dota_hero_axe_2") then
+	if HasTalent(self:GetCaster(),"special_bonus_axe_2") then
 		if caster:HasModifier("modifier_axe_berserkers_call_lua") then 
 			self.chance = 100
 		end

@@ -8,7 +8,7 @@ _G.spawn_count = 1
 spawn_lua = class({})
 
 function spawn_lua:OnSpellStart()
-	local position = Vector(7680, -7394, 235)
+	local position = Vector(9216, -7394, 235)
 	local index = spawn_index
 	local caster = self:GetCaster()
 	
@@ -17,7 +17,6 @@ function spawn_lua:OnSpellStart()
 	end
 	
 	local spawn_count = _G.spawn_count
-	print(index)
 	
 	for i = 1, spawn_count do
 		local angle = RandomInt(0, 360)

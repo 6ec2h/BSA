@@ -15,16 +15,25 @@ function modifier_lion_finger_of_death_lua:IsPurgable()
 end
 
 function modifier_lion_finger_of_death_lua:OnCreated( kv )
-	local caster = self:GetCaster()
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+if IsServer() then
+		local caster = self:GetCaster()
 
-	local fleshHeapStackModifier = "modifier_lion_soul_collector"
-    local currentStacks = caster:GetModifierStackCount(fleshHeapStackModifier, caster)
-	
-	local ability = self:GetCaster():FindAbilityByName( "lion_soul_collector" )
-	if ability ~= nil and ability:GetLevel() >= 1 then
-		stack_damage = ability:GetSpecialValueFor( "stack_bonus_dmg" )
-		self.damage = self.damage + (currentStacks * stack_damage)
+		self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
+
+		local fleshHeapStackModifier = "modifier_lion_soul_collector"
+		local currentStacks = caster:GetModifierStackCount(fleshHeapStackModifier, caster)
+		
+		local ability = self:GetCaster():FindAbilityByName( "lion_soul_collector" )
+		if ability ~= nil and ability:GetLevel() >= 1 then
+			stack_damage = ability:GetSpecialValueFor( "stack_bonus_dmg" )
+			
+			local tal = self:GetCaster():FindAbilityByName( "special_bonus_lion_4" )
+			if tal~=nil and tal:GetLevel()>=1 then
+				stack_damage = stack_damage + 0.2
+			end
+			
+			self.damage = self.damage + (currentStacks * stack_damage)
+		end
 	end
 end
 

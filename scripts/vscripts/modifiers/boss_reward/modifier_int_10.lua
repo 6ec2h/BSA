@@ -24,5 +24,5 @@ function modifier_int_10:DeclareFunctions()
 end
 
 function modifier_int_10:GetModifierBonusStats_Intellect()
-	return 10
+	return 5
 end

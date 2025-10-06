@@ -151,7 +151,7 @@ function modifier_tidehunter_anchor_smash_lua_talent:OnAttackLanded( params )
 	if params.target:GetTeamNumber()==params.attacker:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_tidehunter_4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_tidehunter_4")
 	if ability ~= nil and ability:GetLevel() > 0 and not self.parent:HasModifier('modifier_tidehunter_anchor_smash_lua_cd') then 
 		if RandomInt(1,100) <= 50 then
 			self.parent:AddNewModifier(self.parent, nil, "modifier_tidehunter_anchor_smash_lua_cd", { duration = 0.15 })

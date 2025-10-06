@@ -4,6 +4,11 @@ LinkLuaModifier( "modifier_anakim_wisp_debuff", "heroes/hero_anakim/anakim_wisp/
 
 anakim_wisp = class({})
 
+function anakim_wisp:Precache( context )
+	PrecacheResource( "particle", "particles/anakim/anakim_wisp.vpcf", context )
+end
+
+
 function anakim_wisp:GetIntrinsicModifierName()
 	return "modifier_anakim_wisp"
 end
@@ -59,23 +64,23 @@ function modifier_anakim_wisp:update_talents()
 	self.max_souls = self:GetAbility():GetSpecialValueFor("max_souls")
 	self.spirit_min_radius = self:GetAbility():GetSpecialValueFor("min_range")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal3")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.soul_defense = self.soul_defense + ability:GetSpecialValueFor("value")
 	end
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.kills = self.kills + ability:GetSpecialValueFor("value")
 	end
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal5")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal5")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.soul_damage = self.soul_damage + 5
 		self.soul_ampl = self.soul_ampl + 2
 	end
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_anakim_tal6")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_anakim_tal6")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.max_souls = self.max_souls + ability:GetSpecialValueFor("value")
 	end

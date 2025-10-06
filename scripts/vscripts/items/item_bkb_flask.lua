@@ -41,7 +41,7 @@ function item_bkb_flask:OnProjectileHit(target, location)
 	end
 	
 	EmitSoundOn("DOTA_Item.BlackKingBar.Activate", target)	
-	self:SpendCharge()
+	self:SpendCharge(0)
 end
 
 ----------------------------------------------------------------------------------

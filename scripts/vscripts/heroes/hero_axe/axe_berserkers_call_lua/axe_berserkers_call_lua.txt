@@ -18,23 +18,11 @@
 		"AbilityCooldown"				"20 18 16 14"
 		"AbilityManaCost"				"80 90 100 110"	
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"20 25 30 35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.0 2.4 2.8 3.2"
-			}
-		}
+		"AbilityValues"
+	{
+		"radius"	"300"
+			"bonus_armor"	"20 25 30 35"
+			"duration"	"2.0 2.4 2.8 3.2"
+	}
 	}
 }

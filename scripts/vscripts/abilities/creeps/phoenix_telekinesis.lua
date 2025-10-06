@@ -23,8 +23,8 @@ function phoenix_telekinesis:OnSpellStart( params )
 
 	local duration = self:GetSpecialValueFor("duration")
 
-	self.target:AddNewModifier(caster, self, "modifier_phoenix_telekinesis_root", { duration = 3})
-	self.target_modifier = self.target:AddNewModifier(caster, self, "modifier_phoenix_telekinesis", { duration = 3 })
+	self.target:AddNewModifier(caster, self, "modifier_phoenix_telekinesis_root", { duration = 3 * (1 - self.target:GetStatusResistance())})
+	self.target_modifier = self.target:AddNewModifier(caster, self, "modifier_phoenix_telekinesis", { duration = 3 * (1 - self.target:GetStatusResistance())})
 
 	self.target_modifier.tele_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_rubick/rubick_telekinesis.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	ParticleManager:SetParticleControlEnt(self.target_modifier.tele_pfx, 0, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target:GetAbsOrigin(), true)

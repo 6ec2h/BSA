@@ -12,33 +12,6 @@ function modifier_dragon_blood_lua:IsPurgable()
 	return false
 end
 
-function modifier_dragon_blood_lua:OnCreated( kv )
-	self.caster = self:GetCaster()
-	local level = self.caster:GetLevel()
-	self.armor = self:GetAbility():GetSpecialValueFor( "bonus_armor" ) * level
-	self.regen = self:GetAbility():GetSpecialValueFor( "bonus_health_regen" ) * level
-	self:StartIntervalThink(0.5)
-end
-
-function modifier_dragon_blood_lua:OnRefresh( kv )
-	self.caster = self:GetCaster()
-	local level = self.caster:GetLevel()
-	self.armor = self:GetAbility():GetSpecialValueFor( "bonus_armor" ) * level
-	self.regen = self:GetAbility():GetSpecialValueFor( "bonus_health_regen" ) * level
-	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_dragon_knight_str11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_dragon_knight_str11"):GetLevel() > 0 then 
-			self.regen = self.regen * 2
-			self.armor = self.armor * 2
-		end
-	end
-end
-
-function modifier_dragon_blood_lua:OnIntervalThink()
-self:OnRefresh()
-end
-
-
 function modifier_dragon_blood_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
@@ -49,16 +22,22 @@ end
 
 function modifier_dragon_blood_lua:GetModifierConstantHealthRegen()
 	if not self:GetParent():PassivesDisabled() then
-		return self.regen
+		self.regen = self:GetAbility():GetSpecialValueFor( "bonus_health_regen" )
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_dragon_knight_7")
+		if talent and talent:GetLevel() > 0 then 
+			self.regen = self.regen  + 4
+		end
+		return self.regen * self:GetCaster():GetLevel()
 	end
 end
 
 function modifier_dragon_blood_lua:GetModifierPhysicalArmorBonus()
 	if not self:GetParent():PassivesDisabled() then
-		return self.armor
+		self.armor = self:GetAbility():GetSpecialValueFor( "bonus_armor" )
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_dragon_knight_7")
+		if talent and talent:GetLevel() > 0 then 
+			self.armor = self.armor + 0.6
+		end
+		return self.armor * self:GetCaster():GetLevel()
 	end
 end
-
-
------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------

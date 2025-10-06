@@ -1,6 +1,3 @@
-
----------------------------------------------------------------------------
-
 function Spawn( entityKeyValues )
 	if thisEntity == nil then
 		return

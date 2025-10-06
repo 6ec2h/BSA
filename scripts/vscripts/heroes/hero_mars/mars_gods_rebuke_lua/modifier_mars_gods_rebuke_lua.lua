@@ -21,8 +21,8 @@ function modifier_mars_gods_rebuke_lua:OnCreated( kv )
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor( "bonus_damage_vs_heroes" )
 	self.bonus_crit = self:GetAbility():GetSpecialValueFor( "crit_mult" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_agi9")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_mars_agi9"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_mars_agi9")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_mars_agi9"):GetLevel() > 0 then 
 			self.bonus_crit = self.bonus_crit + 130
 		end
 	end

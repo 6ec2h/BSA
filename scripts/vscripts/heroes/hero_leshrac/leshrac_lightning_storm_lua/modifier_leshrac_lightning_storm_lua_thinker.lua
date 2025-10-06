@@ -21,7 +21,7 @@ function modifier_leshrac_lightning_storm_lua_thinker:OnCreated( kv )
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	self.duration = self:GetAbility():GetSpecialValueFor( "slow_duration" )
 	self.slow = self:GetAbility():GetSpecialValueFor( "slow_movement_speed" )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 
 	-- init and precache
 	self.targets = {}

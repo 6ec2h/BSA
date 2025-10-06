@@ -14,7 +14,7 @@ end
 
 function modifier_lina_laguna_blade_lua:OnCreated( kv )
 	if not IsServer() then return end
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	self.type = DAMAGE_TYPE_MAGICAL
 end
 

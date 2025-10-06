@@ -12,8 +12,8 @@ function gyrocopter_call_down_lua:GetCastRange(location, target)
 end
 
 function gyrocopter_call_down_lua:GetCooldown(level)
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_gyrocopter_agi4"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi4")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_gyrocopter_agi4"):GetLevel() > 0 then 
 			return self.BaseClass.GetCooldown(self, level) - 30
 		end
 	end

@@ -43,7 +43,7 @@ end
 
 function modifier_ancient_apparition_ice_blast_lua_slow:OnCreated()
 	self.move_speed_slow = self:GetAbility():GetSpecialValueFor("slow") * (-1)
-	self.damage = self:GetAbility():GetSpecialValueFor("damage")
+	self.damage = self:GetAbility():GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage")
 
 	self:StartIntervalThink(0.5)
 end

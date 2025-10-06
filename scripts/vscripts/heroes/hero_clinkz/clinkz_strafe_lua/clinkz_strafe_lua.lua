@@ -5,7 +5,7 @@ clinkz_strafe_lua = class({})
 function clinkz_strafe_lua:OnSpellStart()
 	if IsServer() then        
 	local duration = self:GetSpecialValueFor("duration")
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_clinkz_tal1")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_clinkz_tal1")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		duration = self:GetSpecialValueFor("duration") + 2
 	end
@@ -55,7 +55,7 @@ end
 
 function modifier_clinkz_strafe_lua:OnAttack( params )
 if IsServer() then
-	local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_clinkz_tal3")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_clinkz_tal3")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		pass = false
 		if params.attacker==self:GetParent() then

@@ -25,8 +25,8 @@ function modifier_lifestealer_monster_heart:OnRefresh( kv )
 	self.regen = self:GetAbility():GetSpecialValueFor( "regen" )
 	self.bonus_str = self:GetAbility():GetSpecialValueFor( "bonus_str" )
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int3")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_lifestealer_int3"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int3")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_lifestealer_int3"):GetLevel() > 0 then
 			self.regen = self:GetAbility():GetSpecialValueFor( "regen" ) + 1.5
 		end
 	end

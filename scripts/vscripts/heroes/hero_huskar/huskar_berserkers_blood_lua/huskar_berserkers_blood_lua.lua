@@ -55,8 +55,8 @@ end
 
 function modifier_huskar_berserkers_blood_lua:GetModifierMagicalResistanceBonus()
 	self.max_mr = self:GetAbility():GetSpecialValueFor( "maximum_resistance" )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_huskar_tal_4")
-	if ability ~= nil and ability:GetLevel() > 0 then 
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_4")
+	if talent ~= nil and talent:GetLevel() > 0 then 
 		self.max_mr = self.max_mr + 40
 	end
 

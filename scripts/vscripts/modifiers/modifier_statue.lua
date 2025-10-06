@@ -13,7 +13,7 @@ end
 
 function modifier_statue:CheckState()
 	local state = {
-		[MODIFIER_STATE_INVULNERABLE] = true,
+		-- [MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 		[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,

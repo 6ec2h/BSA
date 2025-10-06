@@ -24,5 +24,5 @@ function modifier_str_10:DeclareFunctions()
 end
 
 function modifier_str_10:GetModifierBonusStats_Strength()
-	return 10
+	return 5
 end

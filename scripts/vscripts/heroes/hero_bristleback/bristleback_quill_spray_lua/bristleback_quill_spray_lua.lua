@@ -30,8 +30,8 @@ function bristleback_quill_spray_lua:OnSpellStart()
 	damage_type = DAMAGE_TYPE_PHYSICAL
 	damage_flags = DOTA_DAMAGE_FLAG_NONE
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_int7")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_bristleback_int7"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_bristleback_int7")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_bristleback_int7"):GetLevel() > 0 then 
 		ra = RandomInt(1,100)
 			if ra <= 15 then
 			local ability = self:GetCaster():FindAbilityByName( "bristleback_viscous_nasal_goo_lua" )

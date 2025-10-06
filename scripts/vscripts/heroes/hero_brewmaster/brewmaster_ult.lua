@@ -4,7 +4,7 @@ brewmaster_ult = class({})
 
 function brewmaster_ult:OnSpellStart()
 	local duration = self:GetSpecialValueFor("duration")
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_brewmaster_4")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_brewmaster_4")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		duration = duration + 8
 	end

@@ -8,7 +8,7 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"3"
 
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -16,29 +16,12 @@
 		"AbilityCooldown"				"60 55 50"
 		"AbilityManaCost"				"200 300 400"	
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"30 35 40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_str"					"10 20 30"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"5"
-				"LinkedSpecialBonus"		"npc_dota_hero_axe_str8"
-			}	
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_str_tool"			"10 20 30"
-			}
+			"damage_reduction"		"30 35 40"
+			"bonus_str"				"10 20 30"
+			"duration"				"5"
+			"bonus_str_tool"		"10 20 30"
 		}
 	}
 }

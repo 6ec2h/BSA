@@ -20,12 +20,24 @@ if IsServer() then
 		local p_name = "particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
 		
 		
-		local talent = self:GetCaster():FindAbilityByName("npc_dota_hero_windrunner_int11")
+		local talent = self:GetCaster():FindAbilityByName("special_bonus_windrunner_int11")
 		if talent ~= nil and talent:GetLevel() > 0 then 
 			local direction_1 = RotatePosition(Vector(0,0,0), QAngle(0,10,0), caster:GetForwardVector())
 			local direction_11 = RotatePosition(Vector(0,0,0), QAngle(0,350,0), caster:GetForwardVector())
-			self:FireLinearProjectile(p_name, direction_1 * self:GetSpecialValueFor("arrow_speed"), distance, self:GetSpecialValueFor("arrow_width"), 
-			{ExtraData={ damage = self.damage }}, false, true, self:GetSpecialValueFor("vision_radius"))
+			
+			
+			self:FireLinearProjectile(
+			p_name, 
+			direction_1 * self:GetSpecialValueFor("arrow_speed"),
+			distance,
+			self:GetSpecialValueFor("arrow_width"), 
+			{ExtraData={ damage = self.damage }},
+			false,
+			true, 
+			self:GetSpecialValueFor("vision_radius"))
+			
+			
+			
 			self:FireLinearProjectile(p_name, direction_11 * self:GetSpecialValueFor("arrow_speed"), distance, self:GetSpecialValueFor("arrow_width"), 
 			{ExtraData={ damage = self.damage }}, false, true, self:GetSpecialValueFor("vision_radius"))
 		else
@@ -45,8 +57,8 @@ function windrunner_powershot_lua:OnProjectileHit(hTarget, vLocation)
 
 		local damage = GetTalentSpecialValueFor(ability, "attack_damage")	
 		         
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_windrunner_int6")~=nil then
-			if self:GetCaster():FindAbilityByName("npc_dota_hero_windrunner_int6"):GetLevel() > 0 then 
+		if self:GetCaster():FindAbilityByName("special_bonus_windrunner_int6")~=nil then
+			if self:GetCaster():FindAbilityByName("special_bonus_windrunner_int6"):GetLevel() > 0 then 
 				hTarget:AddNewModifier(caster, ability, "modifier_debuff_resist", {duration = 2})
 			end
 		end

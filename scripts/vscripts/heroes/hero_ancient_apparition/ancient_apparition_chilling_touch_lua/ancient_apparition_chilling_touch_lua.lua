@@ -8,7 +8,7 @@ function ancient_apparition_chilling_touch_lua:ProcsMagicStick()
 end
 
 function ancient_apparition_chilling_touch_lua:GetCooldown( level )
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ancient_apparition_tal3")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ancient_apparition_tal3")
 		if ability ~= nil and ability:GetLevel() > 0 then 
 		return self.BaseClass.GetCooldown( self, level ) - 2
 	end
@@ -35,10 +35,10 @@ function ancient_apparition_chilling_touch_lua:OnOrbImpact( keys )
 	if keys.target:IsMagicImmune() then return end
 	keys.target:EmitSound("Hero_Ancient_Apparition.ChillingTouch.Target")
 
-	self.damage = self:GetSpecialValueFor("damage") + self:GetCaster():GetIntellect() / 100 *  self:GetSpecialValueFor("int")
+	self.damage = self:GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage")
 	
 	count = 0
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_ancient_apparition_tal1")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_ancient_apparition_tal1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), keys.target:GetOrigin(), nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
 		if #enemies > 0 then

@@ -62,11 +62,14 @@ function modifier_item_overlord_helmet:GetModifierConstantHealthRegen()
 end
 
 function modifier_item_overlord_helmet:IsAura()
-  return true
+	if self:GetCaster():IsIllusion() then 
+		return false
+	end
+	return true
 end
 
 function modifier_item_overlord_helmet:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
+	return DOTA_UNIT_TARGET_ALL
 end
 
 function modifier_item_overlord_helmet:GetAuraSearchTeam()
@@ -82,7 +85,7 @@ function modifier_item_overlord_helmet:GetModifierAura()
 end
 
 function modifier_item_overlord_helmet:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
 end
 
 function modifier_item_overlord_helmet:GetAuraEntityReject(target)

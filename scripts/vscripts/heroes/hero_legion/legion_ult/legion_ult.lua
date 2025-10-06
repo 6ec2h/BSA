@@ -47,7 +47,7 @@ function modifier_legion_ult:OnIntervalThink()
 if IsServer() and self:GetAbility() and self:GetCaster():IsRealHero() and self:GetCaster():IsAlive() then
 	if self:GetAbility():IsCooldownReady() then
 	
-		local talent_ability = self:GetCaster():FindAbilityByName("npc_dota_hero_legion_commander_agi6")
+		local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_legion_commander_agi6")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
 			self.bonus_damage = 2
 		end

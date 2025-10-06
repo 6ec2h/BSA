@@ -6,46 +6,7 @@ function wraith_king_reincarnation_lua:GetIntrinsicModifierName()
 	return "modifier_wraith_king_reincarnation_lua"
 end
 
-function wraith_king_reincarnation_lua:TheWillOfTheKing( OnDeathKeys, BuffInfo )
-	local unit = OnDeathKeys.unit
-	local reincarnate = OnDeathKeys.reincarnate
-	self.slow_radius = BuffInfo.ability:GetSpecialValueFor( "slow_radius" )
-	self.slow_duration = BuffInfo.ability:GetSpecialValueFor( "reincarnate_time" )
-	
-	
-	if reincarnate and (not BuffInfo.caster:HasModifier("modifier_aegis")) then
-		BuffInfo.reincarnation_death = true
-		BuffInfo.ability:UseResources(true, false, false, true)
-
-		Timers:CreateTimer(3.1,function() 
-			unit:AddNewModifier( unit, BuffInfo.ability, "modifier_invulnerable", { duration = 3 } )
-		end)
-
-		local enemies = FindUnitsInRadius(unit:GetTeamNumber(), unit:GetOrigin(), nil, self.slow_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
-		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(
-				unit,
-				BuffInfo.ability,
-				"modifier_wraith_king_reincarnation_lua_debuff",
-				{ duration = self.slow_duration }
-			)
-	
-			local abil = unit:FindAbilityByName("npc_dota_hero_skeleton_king_tal4")
-			if abil ~= nil and abil:GetLevel() > 0 then 
-				-- ApplyDamage({attacker = unit, victim = enemy, ability = BuffInfo.ability, damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL})
-				
-				LaunchWraithblastProjectile(BuffInfo.caster, BuffInfo.ability, unit, enemy, true, true)
-				
-				unit:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
-			end
-		end
-		self:PlayEffects(unit)
-	else
-		BuffInfo.reincarnation_death = false     
-	end
-end
-
-function LaunchWraithblastProjectile(caster, ability, source, target)   
+function LaunchWraithblastProjectile(ability, source, target)   
 	local wraithblast_projectile
 	wraithblast_projectile = {Target = target,
 							  Source = source,
@@ -158,24 +119,12 @@ function modifier_wraith_king_reincarnation_lua:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()   
 	self.reincarnate_time = self:GetAbility():GetSpecialValueFor( "reincarnate_time" )
-
-	if IsServer() then
-		self.can_die = false
-		self:StartIntervalThink(FrameTime())
-	end
+	self.slow_radius = self:GetAbility():GetSpecialValueFor( "slow_radius" )
 end
 
-function modifier_wraith_king_reincarnation_lua:OnRefresh()
-	self:OnCreated()
-end
-
-
-function modifier_wraith_king_reincarnation_lua:OnIntervalThink()
-	if not self.ability or self.ability:IsNull() then self:Destroy() return end
-	if (self.ability:IsOwnersManaEnough()) and (self.ability:IsCooldownReady()) and (not self.caster:HasModifier("modifier_aegis")) then
-		self.can_die = false
-	else
-		self.can_die = true
+function modifier_wraith_king_reincarnation_lua:GetPriority()
+	if self:GetCaster():HasModifier("modifier_guild_event") then
+		return 101
 	end
 end
 
@@ -183,45 +132,42 @@ function modifier_wraith_king_reincarnation_lua:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_REINCARNATION,                      
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		MODIFIER_EVENT_ON_DEATH,
 	}
 end
 
 function modifier_wraith_king_reincarnation_lua:ReincarnateTime()
-	if IsServer() then
-		if not self.can_die and self.caster:IsRealHero() then
-			return self.reincarnate_time
+	self.reincarnation_death = true
+	local unit = self:GetParent()
+		if self:GetAbility():IsCooldownReady() then
+		self:GetAbility():UseResources(true, false, false, true)
+		Timers:CreateTimer(3.1,function() 
+			unit:AddNewModifier( unit, self:GetAbility(), "modifier_invulnerable", { duration = 3 } )
+		end)
+		local enemies = FindUnitsInRadius(unit:GetTeamNumber(), unit:GetOrigin(), nil, self.slow_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		for _,enemy in pairs(enemies) do
+			enemy:AddNewModifier(
+				unit,
+				self:GetAbility(),
+				"modifier_wraith_king_reincarnation_lua_debuff",
+				{ duration = self.reincarnate_time }
+			)
+			local talent = unit:FindAbilityByName("special_bonus_skeleton_king_tal4")
+			if talent and talent:GetLevel() > 0 then 
+				LaunchWraithblastProjectile(self:GetAbility(), unit, enemy, true, true)
+				unit:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
+			end
 		end
-		return nil
+		-- self:PlayEffects(unit)
+		return self.reincarnate_time
 	end
 end
 
 function modifier_wraith_king_reincarnation_lua:GetActivityTranslationModifiers()
-	if self.reincarnate_time then
+	if self.reincarnation_death then
 		return "reincarnate"
 	end
 	return nil
 end
-
-function modifier_wraith_king_reincarnation_lua:OnDeath(keys)
-	if IsServer() then
-		local unit = keys.unit
-		local reincarnate = keys.reincarnate
-		if self:GetParent() == unit then
-			wraith_king_reincarnation_lua:TheWillOfTheKing( keys, self )
-		end
-	end
-end
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -21,7 +21,7 @@ function troll_warlord_battle_trance_lua:OnSpellStart()
 		caster:Purge(false, true, false, false, false)
 		
 		
-		local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_troll_warlord_int4")
+		local abil = self:GetCaster():FindAbilityByName("special_bonus_troll_warlord_int4")
 		if abil ~= nil and abil:GetLevel() > 0	then 
 			local allies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 			for _,ally in ipairs(allies) do

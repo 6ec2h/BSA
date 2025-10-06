@@ -115,7 +115,7 @@ function modifier_venomancer_poison_sting_lua_debuff:OnCreated( kv )
 	local damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	self.slow = self:GetAbility():GetSpecialValueFor( "movement_speed" )
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_venomancer_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_venomancer_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		damage = damage + 50
 	end

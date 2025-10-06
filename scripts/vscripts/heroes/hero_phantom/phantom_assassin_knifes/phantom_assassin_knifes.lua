@@ -22,8 +22,8 @@ function phantom_assassin_knifes:OnSpellStart()
     local cast_direction = (point - caster_loc):Normalized()+1
 	local count = self:GetSpecialValueFor("count")
 	
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_int6")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_phantom_assassin_int6"):GetLevel() > 0 then 
+	if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_int6")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_phantom_assassin_int6"):GetLevel() > 0 then 
 			count = count + 2
 		end
 	end

@@ -24,7 +24,7 @@ function legion_odds:OnSpellStart()
 		local pierce_spellimmunity 	= false
 		
 		
-		local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_legion_commander_tal1")
+		local abil = self:GetCaster():FindAbilityByName("special_bonus_legion_commander_tal1")
 		if abil ~= nil and abil:GetLevel() > 0 then 
 			damage = damage + 150
 		end

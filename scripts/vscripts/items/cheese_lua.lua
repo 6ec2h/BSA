@@ -7,6 +7,6 @@ function item_cheese_lua:OnSpellStart()
 		self.caster:SetBaseStrength(self.caster:GetBaseStrength() + self.all)
 		self.caster:SetBaseAgility(self.caster:GetBaseAgility() + self.all)
 		self.caster:SetBaseIntellect(self.caster:GetBaseIntellect() + self.all)
-		self.caster:RemoveItem(self)
+		UTIL_Remove( self )
 	end
 end

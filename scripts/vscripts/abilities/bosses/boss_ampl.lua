@@ -29,5 +29,5 @@ function modifier_boss_ampl:DeclareFunctions()
 end
 
 function modifier_boss_ampl:GetModifierSpellAmplify_Percentage()
- return 150
+	return 150
 end

@@ -35,9 +35,9 @@ function shaman_shackles:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	
-	local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_shadow_shaman_str8")             
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_shadow_shaman_6")             
 	if abil ~= nil and abil:GetLevel() > 0 then 
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_magic_immune", {duration = self:GetChannelTime()})
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_magic_immune", {duration = self:GetChannelTime()})
 	end
 	
 
@@ -183,7 +183,7 @@ function modifier_shaman_shackles:OnCreated()
 	self:AddParticle(shackle_particle, true, false, -1, true, false)
 	
 	self.tick_interval			= self:GetAbility():GetSpecialValueFor("tick_interval")
-	self.total_damage			= self:GetAbility():GetSpecialValueFor("total_damage")
+	self.total_damage			= self:GetAbility():GetSpecialValueFor("total_damage")+ self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage") 
 	self.channel_time			= self:GetAbility():GetSpecialValueFor("channel_time")
 	
 	
@@ -217,7 +217,9 @@ function modifier_shaman_shackles:CheckState()
 end
 
 function modifier_shaman_shackles:DeclareFunctions()
-	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
+	return {
+	MODIFIER_PROPERTY_OVERRIDE_ANIMATION
+	}
 end
 
 function modifier_shaman_shackles:GetOverrideAnimation()

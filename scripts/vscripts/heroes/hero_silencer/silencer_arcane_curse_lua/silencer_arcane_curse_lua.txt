@@ -20,33 +20,14 @@
 		"AbilityCooldown"				"20 18 16 14"
 		"AbilityManaCost"				"125 130 135 140"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"25 35 45 55"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"425"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"duration"			"3"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"penalty_duration"			"2"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"movespeed"			"-9 -12 -15 -18"
-			}
+			"damage"			"25 35 45 55"
+			"radius"			"425"
+			"duration"			"3"
+			"penalty_duration"			"2"
+			"movespeed"			"-9 -12 -15 -18"
+			"ExtraIntelligenceDamage"			"0.1"
 		}
 	}
 }

@@ -6,7 +6,7 @@ function npc_dota_hero_queenofpain_spell1:OnSpellStart()
 	local point = self:GetCursorPosition()
 	local count = self:GetSpecialValueFor("count")
 	
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_qop_tal_2")
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_qop_tal_2")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		count = count + 3
 	end
@@ -49,9 +49,10 @@ function npc_dota_hero_queenofpain_spell1:OnSpellStart()
 end	
 			
 function npc_dota_hero_queenofpain_spell1:OnProjectileHitHandle( target, location, projectile )
+	if not IsServer() then return end
 	if not target then return end
-	self.damage = self:GetSpecialValueFor("damage")
-	local ability = self:GetCaster():FindAbilityByName("npc_dota_hero_qop_tal_1")
+	self.damage = self:GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
+	local ability = self:GetCaster():FindAbilityByName("special_bonus_qop_tal_1")
 	if ability ~= nil and ability:GetLevel() > 0 then 
 		self.damage = self.damage + 60
 	end

@@ -1,0 +1,687 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.trade_main
+{
+	height: 100%;
+	width: 100%;
+}
+
+#trade_panel_main
+{
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+#trade_panel_start
+{
+	height: 400px;
+	width: 400px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#trade_panel_close
+{
+	height: 20px;
+	width: 20px;
+	vertical-align: top;
+	horizontal-align: right;
+	margin: 16px;
+	background-image: url("s2r://panorama/images/custom_game/closeicon_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+# #trade_panel_back
+{
+	height: 20px;
+	width: 13px;
+	vertical-align: top;
+	horizontal-align: left;
+	margin: 16px;
+	background-image: url("s2r://panorama/images/elements/back_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#trade_panel_close:active,#trade_panel_back:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+#trade_panel_close:hover,#trade_panel_back:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.trade_buttons
+{
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.trade_button_start
+{
+	height: 40px;
+	width: 200px;
+	background-image: url("s2r://panorama/images/elements/buttom_blue_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 10px;
+	box-shadow: 2px 2px 4px 0px #00000080;
+}
+
+.trade_button_start:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.trade_button_label
+{
+	font-size:16px;
+	font-weight: bold;
+	align: center center;
+	color: white;
+}
+
+#trade_panel_buy,#trade_panel_sell,#trade_panel_order
+{
+	height: 550px;
+	width: 800px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#trade_panel_buy_container
+{
+	horizontal-align: center;
+	margin-top: 30px;
+	flow-children: down;
+}
+
+#trade_panel_sort
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#trade_panel_content
+{
+	horizontal-align: center;
+	height: 420px;
+	width: 750px;
+	box-shadow: inset 0px 0px 4px 4px #00000080;
+}
+
+.content
+{
+	height: 100%;
+	width: 100%;
+	flow-children: down;
+	padding: 5px;
+	overflow: clip scroll;
+}
+
+.tab_sort
+{
+	height: 30px;
+	width: 80px;
+	margin: 5px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/elements/buttom_blue_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.tab_sort:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.tab_text
+{
+	align: center center;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.trade_panel_element
+{
+	height: 60px;
+	width: 100%;
+	background-image: url("s2r://panorama/images/elements/blue_line_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 5px;
+	flow-children: right;
+}
+
+#trade_panel_element_image
+{
+	height: 50px;
+	width: 50px;
+	margin: 5px 5px 5px 15px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#trade_panel_element_image_back
+{
+	height: 50px;
+	width: 50px;
+	margin: 5px 5px 5px 15px;
+	background-image: url("s2r://panorama/images/elements/back_items_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-left: -55px;
+}
+
+#trade_panel_element_item_price
+{
+	vertical-align:center;
+	flow-children:right;
+}
+
+#trade_panel_element_item_price_image
+{
+	height: 35px;
+	width: 40px;
+	background-image: url("s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#trade_panel_element_item_price_count
+{
+	vertical-align: center;
+	align: center center;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin: 10px;
+	text-align:center;
+	text-overflow: shrink;
+}
+
+#trade_panel_element_item_name,#trade_panel_element_item_seller
+{
+	vertical-align: center;
+	align: center center;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+	width:150px;
+	text-align:center;
+	text-overflow: shrink;
+}
+
+#trade_panel_element_item_seller
+{
+	width:250px;
+}
+
+#name_data
+{
+	vertical-align:center;
+	flow-children: down;
+}
+
+#name_data_label
+{
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+	width:240px;
+	text-overflow: shrink;
+	font-size:14px;
+}
+
+.trade_panel_element_item_loading
+{
+	height: 40px;
+	width: 40px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/elements/loading_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	animation-name: spin;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes 'spin'
+{
+	0%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(-180deg);
+	}
+	
+}
+
+#trade_panel_element_item_price_button_buy
+{
+	vertical-align: center;
+	horizontal-align: right;
+	height: 40px;
+	width: 100px;
+	background-image: url("s2r://panorama/images/elements/buttom_blue_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 10px;
+}
+
+#trade_panel_element_item_price_button_buy:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+#trade_panel_sell_container
+{
+	horizontal-align: center;
+	margin-top: 60px;
+	width: 650px;
+}
+
+#trade_panel_content_sell
+{
+	width:100%;
+}
+
+#trade_panel_content_inventory
+{
+	width: 480px;
+	vertical-align: bottom;
+	margin: 5px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	margin-top: 300px;
+}
+
+.inventory_slot
+{
+	width: 45px;
+	height: 45px;
+	background-color: black;
+	margin: 1px;
+}
+
+.item_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.sell_item_panel
+{
+	height: 280px;
+	width: 200px;
+	background-image:url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	padding: 5px;
+	flow-children:down;
+}
+
+.sell_item_panel:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+.sell_item_panel_name
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: white;
+}
+
+.sell_item_panel_image
+{
+	height:80px;
+	width:80px;
+	horizontal-align: center;
+	margin-top:5px;
+}
+
+.sell_item_panel_image_back
+{
+	height:80px;
+	width:80px;
+	horizontal-align: center;
+	margin-top:-80px;
+}
+
+.sell_item_panel_base
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: gold;
+	margin-top: 5px;
+}
+
+.sell_item_panel_bonus
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 5px;
+	width: 100%;
+	flow-children: down;
+}
+
+#SourceValueLine
+{
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
+	width: 100%;
+	horizontal-align: center;
+	height: 5px;
+	margin-bottom:5px;
+}
+
+.bonus_label
+{
+	text-align: center;
+	color: #00f704;
+	width:100%;
+	font-size: 14px;
+	text-overflow: shrink;
+}
+
+#trade_panel_content_sell_center
+{
+	horizontal-align: center;
+}
+
+.sell_item_panel_desc
+{
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#buy_text_input
+{
+	margin-top: 60px;
+	background-color: #00000080;
+	width: 150px;
+	horizontal-align: center;
+	text-align: center;
+	font-size: 20px;
+	color: gold;
+}
+
+#sell_item_panel_price
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#sell_item_panel_price_image
+{
+	height: 40px;
+	width: 45px;
+	vertical-align: center;
+}
+
+#sell_item_panel_price_label
+{
+	vertical-align:center;
+	margin-left: 5px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #da3917;
+}
+
+#sell_item_panel_desc_button
+{
+	horizontal-align: center;
+	background-image:url("s2r://panorama/images/elements/buttom_blue_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 100px;
+	height: 40px;
+}
+
+#sell_item_panel_desc_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+#sell_item_panel_desc_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: white;
+	font-weight: bold;
+}
+
+#trade_panel_content_sell_right
+{
+	horizontal-align:right;
+	width: 245px;
+}
+
+#trade_panel_order_container
+{
+	horizontal-align: center;
+	margin-top: 80px;
+	height: 380px;
+	width: 750px;
+	box-shadow: inset 0px 0px 4px 4px #00000080;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+#trade_panel_filter
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#trade_panel_filter_sets,#trade_panel_filter_bonuses
+{
+	flow-children: right;
+	margin: 20px;
+}
+
+#trade_panel_content_loading
+{
+	height: 40px;
+	width: 40px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/elements/loading_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	animation-name: spin;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes 'spin'
+{
+	0%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(-180deg);
+	}
+	
+}
+
+.trade_panel_element_items_orders_sold,.trade_panel_element_items_orders_expired,.trade_panel_element_items_orders_active
+{
+	height: 100%;
+	width: 150px;
+	horizontal-align: right;
+}
+
+.trade_panel_element_items_orders_sold Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 18px;
+	color: rgb(252, 252, 252);
+	font-weight: bold;
+	text-shadow: 0px 0px 5px #000000;
+}
+
+.trade_panel_element_items_orders_expired_label
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	text-shadow: 0px 0px 5px #000000;
+}
+
+.trade_panel_element_items_orders_expired_btn,.trade_panel_element_items_orders_active_btn
+{
+	height: 35px;
+	width: 120px;
+	background-image: url("s2r://panorama/images/elements/buttom_blue_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+}
+
+.trade_panel_element_items_orders_expired_btn_label,.trade_panel_element_items_orders_active_btn_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	text-shadow: 0px 0px 5px #000000;
+}
+
+.trade_panel_element_items_orders_active_label
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: rgb(21, 190, 21);
+	font-weight: bold;
+	text-shadow: 0px 0px 5px #000000;
+}
+
+.trade_panel_order_state
+{
+	width: 300px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	flow-children: down;
+	margin-bottom: 25px;
+}
+
+.equipped_item_shadow_level_1
+{
+	box-shadow: inset #b0c3d9d0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_2
+{
+	box-shadow: inset #b0c3d9c9 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_3
+{
+	box-shadow: inset #5e97d9c5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_4
+{
+	box-shadow: inset #5e97d9cb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_5
+{
+	box-shadow: inset #4b69ffd5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_6
+{
+	box-shadow: inset #4b69ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_7
+{
+	box-shadow: inset #8747ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_8
+{
+	box-shadow: inset #8747ffd0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_9
+{
+	box-shadow: inset #d32ce6cc 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_10
+{
+	box-shadow: inset #e4ae39de 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_11
+{
+	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
+}
+

@@ -19,7 +19,7 @@ end
 
 function modifier_outworld_devourer_flux_lua:OnAbilityFullyCast(keys)
 	if keys.unit == self:GetParent() and not keys.ability:IsToggle() and not keys.ability:IsItem() then
-		local abil = self:GetCaster():FindAbilityByName("npc_dota_hero_outworld_devourer_tal2")
+		local abil = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal2")
 		local chance = self:GetAbility():GetSpecialValueFor("chance")
 		if abil ~= nil and abil:GetLevel() > 0 then 
 			chance = self:GetAbility():GetSpecialValueFor("chance") + 10

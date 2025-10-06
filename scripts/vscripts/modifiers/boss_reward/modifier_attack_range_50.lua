@@ -24,5 +24,5 @@ function modifier_attack_range_50:DeclareFunctions()
 end
 
 function modifier_attack_range_50:GetModifierAttackRangeBonus()
-	return 50
+	return 25
 end

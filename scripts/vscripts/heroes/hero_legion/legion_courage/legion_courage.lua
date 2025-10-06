@@ -44,8 +44,8 @@ function modifier_legion_courage:OnAttackLanded( params )
 
 	self.chance = self:GetAbility():GetSpecialValueFor( "trigger_chance" )
 
-	if self:GetCaster():FindAbilityByName("npc_dota_hero_legion_commander_agi11")~=nil then
-		if self:GetCaster():FindAbilityByName("npc_dota_hero_legion_commander_agi11"):GetLevel() > 0 then
+	if self:GetCaster():FindAbilityByName("special_bonus_legion_commander_agi11")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_legion_commander_agi11"):GetLevel() > 0 then
 			self.chance = 75 
 		end
 	end
@@ -87,7 +87,6 @@ function modifier_legion_courage:PlayEffects()
 	local particle_cast = "particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt_flash.vpcf"----"particles/units/heroes/hero_axe/axe_counterhelix.vpcf"
 	local particle_cast2 = "particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf"--"particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf"
 	
-	local sound_cast = "Hero_LegionCommander.Courage"
 	StartAnimation(self:GetParent(), {duration = 0.1, activity = ACT_DOTA_CAST3_STATUE})--ACT_DOTA_MOMENT_OF_COURAGE
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
@@ -95,5 +94,5 @@ function modifier_legion_courage:PlayEffects()
 	local effect_cast2 = ParticleManager:CreateParticle( particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:ReleaseParticleIndex( effect_cast2 )
 	
-	EmitSoundOn( sound_cast, self:GetParent() )
+	EmitSoundOn( "Hero_LegionCommander.Courage", self:GetParent() )
 end

@@ -1,0 +1,48 @@
+<!-- xml reconstructed by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/quest_system/quest_system.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/quest_system/quest_system.js" />
+	</scripts>
+	<snippets>
+		<snippet name="Quest">
+			<Panel class="Quest">
+				<Panel id="LeftSide">
+					<Image src="s2r://panorama/images/custom_game/quest/quest.png" />
+				</Panel>
+				<Panel id="RightSide">
+					<Panel id="TopSide">
+						<Label id="QuestTitle" text="Sample Quest Title" />
+					</Panel>
+					<Panel id="BottomSide">
+						<Panel id="Background" />
+						<Label id="QuestDiscription" text="Simple Quest Desc" />
+						<Label id="QuestProgress" text="0/1" />
+					</Panel>
+					<Panel id="Rewards">
+						<Panel id="GoldReward" class="rew">
+							<Image class="RewardImg" src="s2r://panorama/images/gold_png.vtex" />
+							<Label class="RewardTitle" id="GoldRewardTitle" text="100" />
+						</Panel>
+						<Panel id="ExpReward" class="rew">
+							<Image class="RewardImg" src="s2r://panorama/images/exp_png.vtex" />
+							<Label class="RewardTitle" id="ExpRewardTitle" text="200" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel id="quest_system" class="quest_system" hittest="false">
+			<Label class="quest_system_label" text="#quest_system" html="true" />
+			<Label id="SourceValueLine" />
+			<Panel class="quest_system_main" id="quest_system_main" />
+			<Label id="SourceValueLine" />
+			<Panel class="quest_system_additional" id="quest_system_additional" />
+		</Panel>
+		<Panel id="QuestMsgPanel" class="QuestMsgPanel" />
+	</Panel>
+</root>
