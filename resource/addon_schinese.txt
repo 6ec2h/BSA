@@ -102,7 +102,7 @@
 	"next_3" "每次升级都会使奖励增加<font color='#FF0000'>1%</font>"
 	"next_4" "每次升级都会使奖励增加 <font color='#FF0000'>1%</font>"
 	"next_5" "每次升级都会使奖励增加 <font color='#FF0000'>0.5%</font>"
-	"next_6" "每次升级都会增加<font color='#FF0000'>0.4属性</font>的奖励"
+	"next_6" "每次升级都会增加<font color='#FF0000'>0.2属性</font>的奖励"
 	
 	"win" "WIN!"
 	
@@ -5775,6 +5775,10 @@
 "DOTA_Tooltip_ability_item_battlemage_3_bonus_armor" "+$armor"
 "DOTA_Tooltip_ability_item_battlemage_3_bonus_mana_regen" "+$mana_regen"
 
+"DOTA_Tooltip_ability_item_battlemage_projectile_speed"		"+$projectile_speed"
+"DOTA_Tooltip_ability_item_battlemage_2_projectile_speed"		"+$projectile_speed"
+"DOTA_Tooltip_ability_item_battlemage_3_projectile_speed"		"+$projectile_speed"
+
 "dota_tooltip_ability_treant_natures_grasp_lua" "自然之握"
 "dota_tooltip_ability_treant_natures_grasp_lua_description" "将藤蔓延伸至目标区域。它们会减缓并伤害在其上行走的敌人。如果藤蔓接触到树木，则会造成 50% 以上的伤害。"
 "dota_tooltip_ability_treant_natures_grasp_lua_damage_per_second" "每秒伤害："
@@ -6370,5 +6374,13 @@
 "dota_tooltip_ability_hero_fiddlesticks_scythe_chance" "百分比机会："
 
 "guild_creeps" "1"
+
+"ui_unlock_difficulty"            "难度"
+"ui_unlock"                       "解锁"
+"blacksmith"                      "铁匠"
+"trade"                           "交易"
+"dungeon_master"                  "地下城大师"
+"ui_interaction"                  "互动"
+"auto_dismantling_tooltip"        "自动分解具有 0 个属性的新物品"
 }	
 }

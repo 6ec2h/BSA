@@ -168,7 +168,8 @@ function create_filters_toggle(){
 		toggle.AddClass("CheckBox")
 		toggle.checked = true
 		toggle.SetPanelEvent("onactivate", function() {
-            update_buy(current_filters);
+			show_items(current_filters.listings, current_filters.type)
+
         });
 		
 		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, "Set " + i )});
@@ -181,7 +182,8 @@ function create_filters_toggle(){
 		toggle.AddClass("CheckBox")
 		toggle.checked = true
 		toggle.SetPanelEvent("onactivate", function() {
-            update_buy(current_filters);
+			show_items(current_filters.listings, current_filters.type)
+
         });
 		
 		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, "Bonus count " + i )});

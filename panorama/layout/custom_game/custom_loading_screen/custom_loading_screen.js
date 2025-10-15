@@ -142,7 +142,7 @@ function select_diff(index, id){
 		var difIcons = parentPanel.FindChildrenWithClassTraverse("dif_icon");
 		for (var i = 0; i < difIcons.length; i++) {
 			var difIcon = difIcons[i];
-			difIcon.ClearPanelEvent("onmouseactivate")
+			// difIcon.ClearPanelEvent("onmouseactivate")
 		}
 		GameEvents.SendCustomGameEventToServer("choise_diff", {index, id})	
 	}
@@ -150,6 +150,16 @@ function select_diff(index, id){
 
 function update_diff(t){
 	panel = $("#"+t.id)
+
+    var parentPanel = $.GetContextPanel().FindChildTraverse("Diff_container");
+    var difIcons = parentPanel.FindChildrenWithClassTraverse("dif_icon");
+    for (var i = 0; i < difIcons.length; i++) {
+        difIcons[i].style.boxShadow = '0px 0px 0px transparent';
+        const Target = difIcons[i].GetParent().FindChildTraverse("Target");
+        if(Target){
+            Target.DeleteAsync(0)
+        }
+    }
 	panel.style.boxShadow = '0px 0px 20px green';
 	var TabPanel = $.CreatePanel("Panel", panel.GetParent(), "Target");
 }	

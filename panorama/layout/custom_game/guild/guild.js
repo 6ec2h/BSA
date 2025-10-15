@@ -235,7 +235,7 @@ function guild_window(t) {
 	
 	if (guild_master_permission) {	
 		$("#Guild_menu_reset").visible = true;
-		if(t.guild_max_members < 20){
+		if(t.guild_max_members < 40){
 			$("#Guild_menu_member_buy_slots").visible = true;
 		}
 		$("#Member_0").FindChildInLayoutFile("member_card_remove").visible = false;

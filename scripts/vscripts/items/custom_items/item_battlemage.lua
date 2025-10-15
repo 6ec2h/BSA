@@ -42,6 +42,7 @@ function modifier_battlemage_arsenal:DeclareFunctions()
         MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, --GetModifierAttackSpeedBonus_Constant
         MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, --GetModifierPhysicalArmorBonus
         MODIFIER_PROPERTY_MANA_REGEN_CONSTANT, --GetModifierConstantManaRegen
+		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
     }
     return funcs
 end
@@ -54,6 +55,7 @@ function modifier_battlemage_arsenal:OnCreated()
 	self.bonus_attack_speed = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
 	self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
 	self.bonus_mana_regen = self:GetAbility():GetSpecialValueFor("bonus_mana_regen")
+	self.projectile_speed = self:GetAbility():GetSpecialValueFor("projectile_speed")
 end
 
 function modifier_battlemage_arsenal:GetModifierHealthBonus()
@@ -82,6 +84,10 @@ end
 
 function modifier_battlemage_arsenal:GetModifierConstantManaRegen()
     return self.bonus_mana_regen
+end
+
+function modifier_battlemage_arsenal:GetModifierProjectileSpeedBonus()
+	return self.projectile_speed
 end
 
 -------------------------------------------------------------------------------------------

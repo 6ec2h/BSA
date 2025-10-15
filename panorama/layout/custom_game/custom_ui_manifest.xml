@@ -1,7 +1,9 @@
 <!-- xml reconstructed by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<scripts>
-		<include src="s2r://panorama/layout/custom_game/dota_hud/dota_hud.js" />
+		<include src="s2r://panorama/scripts/dota_hud.js" />
+		<include src="s2r://panorama/scripts/looptime.js" />
+		<include src="s2r://panorama/layout/custom_game/npc_overlay/npc_overlay.js" />
 	</scripts>
 	<Panel>
 		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/reward/reward.xml" />
@@ -27,5 +29,6 @@
 		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/blacksmith/blacksmith.vxml_c" />
 		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/trade/trade.vxml_c" />
 		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/discount/discount.vxml_c" />
+		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/unlock_difficulty/unlock_difficulty.vxml_c" />
 	</Panel>
 </root>

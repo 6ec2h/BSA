@@ -100,7 +100,7 @@
 	"next_3" "Each upgrade increases the reward by <font color='#FF0000'>1%</font>"
 	"next_4" "Each upgrade increases the reward by <font color='#FF0000'>1%</font>"
 	"next_5" "Each upgrade increases the reward by <font color='#FF0000'>0.5%</font>"
-	"next_6" "Each upgrade increases the reward by <font color='#FF0000'>0.4 attribute</font>"
+	"next_6" "Each upgrade increases the reward by <font color='#FF0000'>0.2 attribute</font>"
 	
 	"DOTA_Tooltip_modifier_guild" "%dMODIFIER_PROPERTY_TOOLTIP%"
 	"DOTA_Tooltip_modifier_guild_description" "%dMODIFIER_PROPERTY_TOOLTIP%"
@@ -6491,6 +6491,10 @@
 	"DOTA_Tooltip_ability_item_battlemage_3_bonus_armor" "+$armor"
 	"DOTA_Tooltip_ability_item_battlemage_3_bonus_mana_regen" "+$mana_regen"
 
+	"DOTA_Tooltip_ability_item_battlemage_projectile_speed"		"+$projectile_speed"
+	"DOTA_Tooltip_ability_item_battlemage_2_projectile_speed"		"+$projectile_speed"
+	"DOTA_Tooltip_ability_item_battlemage_3_projectile_speed"		"+$projectile_speed"
+
 ///////////////////////
 
 "dota_tooltip_ability_treant_natures_grasp_lua" "Nature's Grasp"
@@ -7145,6 +7149,13 @@
 
 "sell_desc"  "1) Select an item <br><br> 2) Enter the amount you want to receive (no more than 500) <br><br> 3) A 10% fee is charged to the seller <br><br> 4) The difference in payment is the fee <br><br> 5) After 7 days your listing will be removed if there is a free slot in your inventory"
 
+"ui_unlock_difficulty"            "Difficulties"
+"ui_unlock"                       "Unlock"
+"blacksmith"                      "Blacksmith"
+"trade"                           "Trade"
+"dungeon_master"                 "Dungeon Master"
+"ui_interaction"                 "INTERACTION"
+"auto_dismantling_tooltip"       "Automatically dismantles new items with 0 properties"
 
 
 }	

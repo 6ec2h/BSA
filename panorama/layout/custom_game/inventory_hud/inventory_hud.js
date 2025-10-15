@@ -855,6 +855,10 @@ function TipsOut()
     GameEvents.Subscribe("dota_player_update_query_unit", UpdateInventoryButton);
     GameEvents.Subscribe('dota_player_update_hero_selection', UpdateInventoryButton);
     GameEvents.Subscribe('dota_player_update_selected_unit', UpdateInventoryButton);
+    $("#AutoDismantlingToggle").SetPanelEvent("onactivate", ()=>{
+        const toggle_state = $("#AutoDismantlingToggle").checked 
+        GameEvents.SendCustomGameEventToServer( "auto_dismantling_toggle", {toggle_state : toggle_state} )
+    })
 })();
 
 

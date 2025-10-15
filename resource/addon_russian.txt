@@ -112,7 +112,7 @@
 	"next_3" "Каждое улучшение увеличивает награду на <font color='#FF0000'>1%</font>"
 	"next_4" "Каждое улучшение увеличивает награду на <font color='#FF0000'>1%</font>"
 	"next_5" "Каждое улучшение увеличивает награду на <font color='#FF0000'>0.5%</font>"
-	"next_6" "Каждое улучшение увеличивает награду на <font color='#FF0000'>0.4 атрибута</font>"
+	"next_6" "Каждое улучшение увеличивает награду на <font color='#FF0000'>0.2 атрибута</font>"
 	
 	"DOTA_Tooltip_modifier_guild" "%dMODIFIER_PROPERTY_TOOLTIP%"
 	"DOTA_Tooltip_modifier_guild_description" "%dMODIFIER_PROPERTY_TOOLTIP%"
@@ -6401,6 +6401,7 @@
         "DOTA_Tooltip_ability_item_battlemage_bonus_intellect"    "+$int"
         "DOTA_Tooltip_ability_item_battlemage_bonus_spell_amp"    "%+к урону от заклинаний"
         "DOTA_Tooltip_ability_item_battlemage_bonus_attack_speed"    "+$attack"
+		"DOTA_Tooltip_ability_item_battlemage_projectile_speed"		"+$projectile_speed"
         "DOTA_Tooltip_ability_item_battlemage_bonus_armor"    "+$armor"
         "DOTA_Tooltip_ability_item_battlemage_bonus_mana_regen"    "+$mana_regen"
 		
@@ -6411,6 +6412,7 @@
         "DOTA_Tooltip_ability_item_battlemage_2_bonus_intellect"    "+$int"
         "DOTA_Tooltip_ability_item_battlemage_2_bonus_spell_amp"    "%+к урону от заклинаний"
         "DOTA_Tooltip_ability_item_battlemage_2_bonus_attack_speed"    "+$attack"
+		"DOTA_Tooltip_ability_item_battlemage_2_projectile_speed"		"+$projectile_speed"
         "DOTA_Tooltip_ability_item_battlemage_2_bonus_armor"    "+$armor"
         "DOTA_Tooltip_ability_item_battlemage_2_bonus_mana_regen"    "+$mana_regen"
 		
@@ -6421,6 +6423,7 @@
         "DOTA_Tooltip_ability_item_battlemage_3_bonus_intellect"    "+$int"
         "DOTA_Tooltip_ability_item_battlemage_3_bonus_spell_amp"    "%+к урону от заклинаний"
         "DOTA_Tooltip_ability_item_battlemage_3_bonus_attack_speed"    "+$attack"
+		"DOTA_Tooltip_ability_item_battlemage_3_projectile_speed"		"+$projectile_speed"
         "DOTA_Tooltip_ability_item_battlemage_3_bonus_armor"    "+$armor"
         "DOTA_Tooltip_ability_item_battlemage_3_bonus_mana_regen"    "+$mana_regen"
 		
@@ -7098,5 +7101,13 @@
 		"ui_trade_panel_order_active_label"													"Активные торги: {s:active}/10"
 
 		"sell_desc"					"1) Выберите предмет <br><br> 2) Введите сумму которую хотите получить но не более 500 <br><br> 3) Комиссия 10% берется с продавца <br><br> 4) Разница в платеже - это комиссия <br><br> 5) Через 7 дней ваш лот будет снят с продажи при наличии слота в инвентаре"
+
+		"ui_unlock_difficulty"					"Сложности"
+		"ui_unlock"								"Разблокировать"
+		"blacksmith"							"Кузнец"
+		"trade"									"Торговля"
+		"dungeon_master"						"Данжен Мастер"
+		"ui_interaction"						"ВЗАИМОДЕЙСТВИЕ"
+		"auto_dismantling_tooltip"				"Автоматичиски разбирает новые предметы с 0 свойств"
 	}	
 }

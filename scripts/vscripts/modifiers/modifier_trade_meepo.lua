@@ -109,13 +109,13 @@ function modifier_trade_meepo_aura:OnCreated(t)
 	if IsServer() then
 		self.pid = self:GetParent():GetPlayerOwnerID()
 		if not _G.game_start then
-			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"ActivateTrade",{})
+			-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"ActivateTrade",{})
 		end
 	end
 end
 
 function modifier_trade_meepo_aura:OnDestroy(t)
 	if IsServer() then
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"DeactivateTrade",{})
+		-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"DeactivateTrade",{})
 	end
 end

@@ -61,8 +61,13 @@ function start_event()
 					EmitGlobalSound("tutorial_rockslide")			
 					Timers:CreateTimer(0.1, function()
 						PlayerResource:SetCameraTarget(unit:GetPlayerOwnerID(), nil)
-					return nil
+						return nil
 					end)
+
+					-- local itemsOnGround = Entities:FindAllByClassnameWithin( "dota_item_drop", point, 2500 )
+					-- for _, item in pairs(itemsOnGround) do
+					-- 	UTIL_Remove(item)
+					-- end
 				end)
 			end
 		end

@@ -96,10 +96,6 @@
 {
 	flow-children: right;
 	horizontal-align: center;
-	vertical-align: bottom;
-	margin-bottom:20px;
-	margin-left: 20px;
-	margin-right: 20px;
 }
 
 .InventoryHeaderSlots
@@ -504,5 +500,15 @@
 .equipped_item_shadow_level_11
 {
 	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
+}
+
+.AutoDismantling
+{
+	horizontal-align:right;
+}
+
+.AutoDismantlingToggle Label
+{
+	vertical-align: center;
 }
 

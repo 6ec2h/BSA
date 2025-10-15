@@ -51,7 +51,7 @@ function tp_necrolyte(event)
 		end
 	end	
 	
-	Notifications:TopToAll({"FINAL FIGHT"..count, duration=5})
+	Notifications:TopToAll({text = "sandgo", duration=5})
 
 	Timers:CreateTimer(5.5, function()
 		rules:boss_invulnerable("necrolyte")
@@ -148,4 +148,5 @@ function nyxoff2()
 	unit:RemoveModifierByName("modifier_invulnerable")
 	unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
 	unit:RemoveModifierByName("modifier_magic_immune")
+end
 end

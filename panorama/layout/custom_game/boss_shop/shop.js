@@ -93,7 +93,7 @@ function closeShop(){
 }
 
 function move_link(t){
-	if(isShopOpen){
+	if(DotaHUD.IsWindowOpen("shop")){
 		$.DispatchEvent( "DOTADisplayURL",  t);
 	}
 }

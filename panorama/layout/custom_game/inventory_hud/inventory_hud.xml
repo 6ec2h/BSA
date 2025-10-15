@@ -45,6 +45,9 @@
 				<Panel class="InventorySlots" id="InventorySlots" />
 				<Panel class="InventoryDust" id="InventoryDust" onmouseover="TipsOver(&apos;InventoryDust&apos;,&apos;InventoryDust&apos;)" onmouseout="TipsOut()" />
 			</Panel>
+			<Panel class="AutoDismantling" id="AutoDismantling">
+				<ToggleButton id="AutoDismantlingToggle" class="Toggle" text="Авто Разборка" onmouseover="DOTAShowTextTooltip(&apos;#auto_dismantling_tooltip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+			</Panel>
 		</Panel>
 	</Panel>
 </root>

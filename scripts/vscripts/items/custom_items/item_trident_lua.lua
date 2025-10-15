@@ -32,19 +32,21 @@ end
 
 
 function modifier_item_trident_lua:OnCreated()
-self.status_resistance = self:GetAbility():GetSpecialValueFor("status_resistance")
-self.movement_speed_percent_bonus = self:GetAbility():GetSpecialValueFor("movement_speed_percent_bonus")
-self.spell_amp = self:GetAbility():GetSpecialValueFor("spell_amp")
-self.mana_regen_multiplier = self:GetAbility():GetSpecialValueFor("mana_regen_multiplier")
-self.hp_regen_amp = self:GetAbility():GetSpecialValueFor("hp_regen_amp")
-self.spell_lifesteal_amp = self:GetAbility():GetSpecialValueFor("spell_lifesteal_amp")
-if not IsServer() then return end
-	self.bonus_strength = self:GetAbility():GetSpecialValueFor("bonus_strength")
-	self.bonus_intellect = self:GetAbility():GetSpecialValueFor("bonus_intellect")
-	self.bonus_agility = self:GetAbility():GetSpecialValueFor("bonus_agility")
-	self.bonus_attack_speed = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+    self.status_resistance = self:GetAbility():GetSpecialValueFor("status_resistance")
+    self.movement_speed_percent_bonus = self:GetAbility():GetSpecialValueFor("movement_speed_percent_bonus")
+    self.spell_amp = self:GetAbility():GetSpecialValueFor("spell_amp")
+    self.mana_regen_multiplier = self:GetAbility():GetSpecialValueFor("mana_regen_multiplier")
+    self.hp_regen_amp = self:GetAbility():GetSpecialValueFor("hp_regen_amp")
+    self.spell_lifesteal_amp = self:GetAbility():GetSpecialValueFor("spell_lifesteal_amp")
+    self.bonus_attack_speed = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
 
+    if not IsServer() then return end
+
+    self.bonus_strength = self:GetAbility():GetSpecialValueFor("bonus_strength")
+    self.bonus_intellect = self:GetAbility():GetSpecialValueFor("bonus_intellect")
+    self.bonus_agility = self:GetAbility():GetSpecialValueFor("bonus_agility")
 end
+
 
 function modifier_item_trident_lua:DeclareFunctions()
 	return {

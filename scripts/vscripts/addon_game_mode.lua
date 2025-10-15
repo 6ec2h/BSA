@@ -57,6 +57,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	ListenToGameEvent("player_chat", Dynamic_Wrap( CAddonAdvExGameMode, "OnChat" ), self )
 	ListenToGameEvent("game_rules_state_change", Dynamic_Wrap( CAddonAdvExGameMode, "OnGameStateChanged" ), self )
 	ListenToGameEvent("dota_rune_activated_server",Dynamic_Wrap(CAddonAdvExGameMode,"onRuneActivated"),self)
+	CustomGameEventManager:RegisterListener("npc_interact", Dynamic_Wrap( CAddonAdvExGameMode, 'OnNpcInteract' ))
 	
 	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockAmount(0)
 
@@ -143,7 +144,23 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 	if IsAdmin(steamID) and text == "test" then
 		local hero = PlayerResource:GetSelectedHeroEntity( pid )
-		CreateUnitByName("undying", hero:GetOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		inventory:add_new_item_in_inventory(0, data)
+	end
+	if IsAdmin(steamID) and text == "npc" then
+		local point = hero:GetOrigin()
+		local trade = CreateUnitByName("blacksmith", point, false, nil, nil, DOTA_TEAM_GOODGUYS)
+		-- trade:AddNewModifier(blacksmith, nil, "modifier_trade_meepo", {})
+		trade:SetAngles(0,180,0)
+		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "create_npc_button", {unit_id = trade:entindex()})
+	end
+	if IsAdmin(steamID) and text == "abs" then
+		local hero = PlayerResource:GetSelectedHeroEntity( pid )
+		print(hero:GetOrigin())
+	end
+	if IsAdmin(steamID) and text == "spgo" then
+		local hero = PlayerResource:GetSelectedHeroEntity( pid )
+		local unitname = table.random({"GoldenMiner", "GoldenQueen", "GoldenWyvern", "GoldenSea", "GoldenDragon", "GoldenForest"})
+		CreateUnitByName(unitname, hero:GetOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
 	end
 end
 
@@ -861,7 +878,7 @@ end
 function respawn_heroes()
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-			if PlayerResource:HasSelectedHero( nPlayerID ) then
+			if PlayerResource:IsValidPlayer(nPlayerID) and PlayerResource:HasSelectedHero( nPlayerID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 				rules:show({PlayerID = nPlayerID})
 				if not hero:IsAlive() then
@@ -896,5 +913,24 @@ function add_book(unit)
 				end
 			end
 		end
+	end
+end
+
+function CAddonAdvExGameMode:OnNpcInteract(data)
+	local pid = data.PlayerID
+	local hero = PlayerResource:GetSelectedHeroEntity(pid)
+	local unit = EntIndexToHScript(data.unit_id)
+	local name = data.name
+	local distance = 400
+	if (hero:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() < distance then
+		if name == "#blacksmith" then
+			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateBlacksmith",{})
+		elseif name == "#trade" then
+			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateTrade",{})
+		elseif name == "#dungeon_master" then
+			Shop:get_difficulty_data({PlayerID = pid})
+		end
+	else
+		rules:DisplayError(pid, "#to_far_away")
 	end
 end

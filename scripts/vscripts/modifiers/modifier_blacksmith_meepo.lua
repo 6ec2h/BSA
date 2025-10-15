@@ -87,12 +87,12 @@ end
 function modifier_blacksmith_meepo_aura:OnCreated(t)
 	if IsServer() then
 		self.pid = self:GetParent():GetPlayerOwnerID()
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"ActivateBlacksmith",{})
+		-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"ActivateBlacksmith",{})
 	end
 end
 
 function modifier_blacksmith_meepo_aura:OnDestroy(t)
 	if IsServer() then
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"DeactivateBlacksmith",{})
+		-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"DeactivateBlacksmith",{})
 	end
 end

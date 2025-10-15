@@ -5,8 +5,12 @@ if rules == nil then
     _G.rules = class({})
 end
 
+-- Таблица для хранения событий, которые нужно отправить при реконнекте
+_G.reconnect_events = {}
+
 function rules:init()
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( rules, 'OnGameStateChanged' ), self )
+	ListenToGameEvent( "player_connect", Dynamic_Wrap( rules, 'OnPlayerConnect' ), self )
 	-- CustomGameEventManager:RegisterListener("golden_spawn", Dynamic_Wrap( rules, 'golden_spawn' ))
 	CustomGameEventManager:RegisterListener("TryStartEvent", Dynamic_Wrap( rules, 'TryStartEvent' ))
 	CustomGameEventManager:RegisterListener("select_skill_lua", Dynamic_Wrap( rules, 'select_skill_lua'))
@@ -109,11 +113,51 @@ function rules:DisplayError(playerID, message)
 	end
 end
 
+------------------------------------------------- RECONNECT EVENTS ------------------------------------------------------
+
+-- Функция для сохранения события для последующей отправки при реконнекте
+function rules:SaveReconnectEvent(eventName, eventData)
+	table.insert(_G.reconnect_events, {
+		event = eventName,
+		data = eventData
+	})
+end
+
+-- Функция для отправки всех сохраненных событий игроку
+function rules:SendReconnectEvents(playerID)
+	local player = PlayerResource:GetPlayer(playerID)
+	if player then
+		for _, eventInfo in pairs(_G.reconnect_events) do
+			CustomGameEventManager:Send_ServerToPlayer(player, eventInfo.event, eventInfo.data)
+		end
+	end
+end
+
+-- Обработчик подключения игрока
+function rules:OnPlayerConnect(keys)
+	local playerID = keys.PlayerID
+	if playerID and PlayerResource:IsValidPlayerID(playerID) then
+		-- Небольшая задержка, чтобы убедиться, что игрок полностью подключился
+		Timers:CreateTimer(1.0, function()
+			if PlayerResource:GetPlayer(playerID) then
+				rules:SendReconnectEvents(playerID)
+			end
+		end)
+	end
+end
+
+-- Функция для очистки всех сохраненных событий (можно вызвать при перезапуске игры)
+function rules:ClearReconnectEvents()
+	_G.reconnect_events = {}
+end
+
 ------------------------------------------------- SPAWNS ------------------------------------------------------
 
 function rules:OnGameStateChanged()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
 	-- if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		-- Очищаем события реконнекта при начале новой игры
+		rules:ClearReconnectEvents()
 		checkpoint()
 		box_spawn()
 		create_box_traps()
@@ -168,10 +212,23 @@ function dummy_spawn()
 	local blacksmith = CreateUnitByName("blacksmith", Vector(-5445,-14300, 384), false, nil, nil, DOTA_TEAM_GOODGUYS)
 	blacksmith:AddNewModifier(blacksmith, nil, "modifier_blacksmith_meepo", {})
 	blacksmith:SetAngles(0,-90,0)
+	local blacksmithEvent = {unit_id = blacksmith:entindex(), distance = 400, name = "#blacksmith"}
+	CustomGameEventManager:Send_ServerToAllClients("create_npc_button", blacksmithEvent)
+	rules:SaveReconnectEvent("create_npc_button", blacksmithEvent)
 	
 	local trade = CreateUnitByName("blacksmith", Vector(-4800,-15424, 384), false, nil, nil, DOTA_TEAM_GOODGUYS)
 	trade:AddNewModifier(blacksmith, nil, "modifier_trade_meepo", {})
 	trade:SetAngles(0,180,0)
+	local tradeEvent = {unit_id = trade:entindex(), distance = 400, name = "#trade"}
+	CustomGameEventManager:Send_ServerToAllClients("create_npc_button", tradeEvent)
+	rules:SaveReconnectEvent("create_npc_button", tradeEvent)
+
+	local dungeon_master = CreateUnitByName("blacksmith", Vector(-5557.479980, -15719.900391, 256.000000), false, nil, nil, DOTA_TEAM_GOODGUYS)
+	dungeon_master:AddNewModifier(dungeon_master, nil, "modifier_trade_meepo", {})
+	dungeon_master:SetAngles(0,90,0)
+	local dungeonMasterEvent = {unit_id = dungeon_master:entindex(), distance = 400, name = "#dungeon_master"}
+	CustomGameEventManager:Send_ServerToAllClients("create_npc_button", dungeonMasterEvent)
+	rules:SaveReconnectEvent("create_npc_button", dungeonMasterEvent)
 
 	local unit = CreateUnitByName( "npc_dota_hero_target_dummy", Vector(-4823,-14482,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
 	local angle = unit:GetAngles()

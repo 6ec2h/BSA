@@ -153,7 +153,6 @@ var intNumAttributes = ['head', 'legs', 'weapon'];
 	
 function draw(inventory_key_slot) {
     var data = t[inventory_key_slot];
-    data.level = 1
     $.Msg("-------------------")
 	$.Msg("data:", data)
     $.Msg("inventory_key_slot:", inventory_key_slot)

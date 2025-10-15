@@ -80,6 +80,10 @@ function start_spin(tab) {
 	 
     slotsTypes = tab.results;
 
+    $.Msg("-----------------------")
+    $.Msg(slotsTypes)
+
+
     slots_names = [
         'item_armor_aura', 'item_base_damage_aura', 'item_expiriance_aura',
         'item_move_aura', 'item_attack_speed_aura', 'item_hp_aura', 
@@ -111,6 +115,7 @@ function start_spin(tab) {
         })(i);
     }
 }
+
 
 function createItem(itemName, parentPanel) {
     let item;
