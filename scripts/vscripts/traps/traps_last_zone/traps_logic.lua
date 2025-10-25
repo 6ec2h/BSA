@@ -61,9 +61,43 @@ end
 _G.last_zone_traps_active = true
 _G.last_zone_circle_traps_active = true
 
+local cache = {}
+
+local function getVenomTrapNPCAndModel(num)
+	num = tostring(num)
+
+	local npcName = num .. "_venom_trap_oneshot_npc"
+	local modelName = num .. "_venom_trap_oneshot_model"
+
+	if not cache[npcName] then
+		cache[npcName] = Entities:FindByName(nil, npcName)
+	end
+	if not cache[modelName] then
+		cache[modelName] = Entities:FindByName(nil, modelName)
+	end
+
+	return cache[npcName], cache[modelName]
+end
+
+local function getVenomTrapNPCAndTarget(num)
+	num = tostring(num)
+
+	local npcName = num .. "_venom_trap_oneshot_npc"
+	local targetName = num .. "_venom_trap_oneshot_target"
+
+	if not cache[npcName] then
+		cache[npcName] = Entities:FindByName(nil, npcName)
+	end
+	if not cache[targetName] then
+		cache[targetName] = Entities:FindByName(nil, targetName)
+	end
+
+	return cache[npcName], cache[targetName]
+end
+
 function move_1()
-	local unit = Entities:FindByName(nil, "6_venom_trap_oneshot_npc")
-    local unit2 = Entities:FindByName(nil, "6_venom_trap_oneshot_model")
+	local unit, unit2 = getVenomTrapNPCAndModel(6)
+
     local origin = unit:GetAbsOrigin()
     
 	if not direction then
@@ -83,8 +117,8 @@ function move_1()
 end
 
 function move_2()
-	local unit = Entities:FindByName( nil, "7_venom_trap_oneshot_npc")
-	local unit2 = Entities:FindByName( nil, "7_venom_trap_oneshot_model")
+	local unit, unit2 = getVenomTrapNPCAndModel(7)
+
 	local origin = unit:GetAbsOrigin()
 	
 	if not direction then
@@ -104,8 +138,8 @@ function move_2()
 end
 
 function move_3()
-	local unit = Entities:FindByName( nil, "5_venom_trap_oneshot_npc")
-	local unit2 = Entities:FindByName( nil, "5_venom_trap_oneshot_model")
+	local unit, unit2 = getVenomTrapNPCAndModel(5)
+
 	local origin = unit:GetAbsOrigin()
 	
 	if not direction then
@@ -140,14 +174,15 @@ function shotright_5()
 	if GameRules:IsGamePaused() == true then
 		return 1
 	end
-		local npc = Entities:FindByName( nil, "5_venom_trap_oneshot_npc" )
-		local target = Entities:FindByName( nil, "5_venom_trap_oneshot_target" )
-	if npc ~= nil then
+
+	local npc, target = getVenomTrapNPCAndTarget(5)
+
+	if npc then
 		local venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
-		local model = "5_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )
+		DoEntFire( "5_venom_trap_oneshot_model", "SetAnimation", "bark_attack", 0.4, self, self )
 	end	
+
 	return 2.0
 end
 
@@ -167,14 +202,15 @@ function shotright_6()
 	if GameRules:IsGamePaused() == true then
 		return 1
 	end
-		local npc = Entities:FindByName( nil, "6_venom_trap_oneshot_npc" )
-		local target = Entities:FindByName( nil, "6_venom_trap_oneshot_target" )
-	if npc ~= nil then
+
+	local npc, target = getVenomTrapNPCAndTarget(6)
+
+	if npc then
 		local venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
-		local model = "6_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )
-	end	
+		DoEntFire( "6_venom_trap_oneshot_model", "SetAnimation", "bark_attack", 0.4, self, self )
+	end
+
 	return 2.5
 end
 
@@ -194,14 +230,14 @@ function shotright_7()
 	if GameRules:IsGamePaused() == true then
 		return 1
 	end
-		local npc = Entities:FindByName( nil, "7_venom_trap_oneshot_npc" )
-		local target = Entities:FindByName( nil, "7_venom_trap_oneshot_target" )
-	if npc ~= nil then
+	local npc, target = getVenomTrapNPCAndTarget(7)
+
+	if npc then
 		local venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
-		local model = "7_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )
-	end	
+		DoEntFire( "7_venom_trap_oneshot_model", "SetAnimation", "bark_attack", 0.4, self, self )
+	end
+
 	return 2.0
 end
 
@@ -223,14 +259,15 @@ function shotright_1()
 	if GameRules:IsGamePaused() == true then
 		return 1
 	end
-		local npc = Entities:FindByName( nil, "1_venom_trap_oneshot_npc" )
-		local target = Entities:FindByName( nil, "1_venom_trap_oneshot_target" )
-	if npc ~= nil then
+
+	local npc, target = getVenomTrapNPCAndTarget(1)
+
+	if npc then
 		local venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
-		local model = "1_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )
-	end	
+		DoEntFire( "1_venom_trap_oneshot_model", "SetAnimation", "bark_attack", 0.4, self, self )
+	end
+
 	return 2
 end
 
@@ -250,14 +287,15 @@ function shotright_2()
 	if GameRules:IsGamePaused() == true then
 		return 1
 	end
-		local npc = Entities:FindByName( nil, "2_venom_trap_oneshot_npc" )
-		local target = Entities:FindByName( nil, "2_venom_trap_oneshot_target" )
-	if npc ~= nil then
+
+	local npc, target = getVenomTrapNPCAndTarget(2)
+
+	if npc then
 		local venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
-		local model = "2_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )
-	end	
+		DoEntFire( "2_venom_trap_oneshot_model", "SetAnimation", "bark_attack", 0.4, self, self )
+	end
+
 	return 3
 end
 
@@ -277,14 +315,15 @@ function shotright_3()
 	if GameRules:IsGamePaused() == true then
 		return 1
 	end
-		local npc = Entities:FindByName( nil, "3_venom_trap_oneshot_npc" )
-		local target = Entities:FindByName( nil, "3_venom_trap_oneshot_target" )
-	if npc ~= nil then
+
+	local npc, target = getVenomTrapNPCAndTarget(3)
+
+	if npc then
 		local venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
-		local model = "3_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
-		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )
-	end	
+		DoEntFire( "3_venom_trap_oneshot_model", "SetAnimation", "bark_attack", 0.4, self, self )
+	end
+
 	return 1
 end
 
@@ -304,10 +343,17 @@ function shotright_4()
 	if GameRules:IsGamePaused() == true then
 		return 1
 	end
-		local npc = Entities:FindByName( nil, "4_venom_trap_oneshot_npc" )
-		local target = Entities:FindByName( nil, "4_venom_trap_oneshot_target" )
-	if npc ~= nil then
+
+	local npc, target = getVenomTrapNPCAndTarget(4)
+
+	if npc then
 		local venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
+		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
+		DoEntFire( "4_venom_trap_oneshot_model", "SetAnimation", "bark_attack", 0.4, self, self )
+	end
+
+	return 2
+endocal venomTrap = npc:FindAbilityByName("breathe_poison_oneshot")
 		local model = "4_venom_trap_oneshot_model"
 		npc:CastAbilityOnPosition(target:GetOrigin(), venomTrap, -1 )
 		DoEntFire( model, "SetAnimation", "bark_attack", 0.4, self, self )

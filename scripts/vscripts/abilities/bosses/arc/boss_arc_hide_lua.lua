@@ -48,7 +48,7 @@ function boss_arc_hide_lua:Start()
 	caster:AddNoDraw()
 	caster:AddNewModifier( caster, nil, "modifier_rooted", { duration = 2 } )
 	caster:AddNewModifier( caster, nil, "modifier_disarmed", { duration = 2 } )
-	FindClearSpaceForUnit(caster, targetPoint, false)
+	FindClearSpaceForUnit(caster, targetPoint, true)
 	caster:SetContextThink(DoUniqueString("OnNue04SpellThink"), 
 		function()
 			if GameRules:IsGamePaused() then return 0.03 end
@@ -83,4 +83,4 @@ function boss_arc_hide_lua:Start()
 			return nil
 		end,
 	2.5)
-end
+endd

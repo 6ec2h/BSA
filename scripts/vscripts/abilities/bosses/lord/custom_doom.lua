@@ -29,6 +29,10 @@ function modifier_custom_doom:IsPurgable()
 	return false
 end
 
+function modifier_custom_doom:GetTexture()
+	return "doom"
+end
+
 function modifier_custom_doom:OnCreated( kv )
 	local damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	self.interval = 1

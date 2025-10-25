@@ -41,11 +41,11 @@ function blink(unit)
 					unit:AddNewModifier( unit, nil, "modifier_invulnerable", { duration = 0.1 } )	
 					unit:SetAbsOrigin( fDist + RandomVector( RandomFloat(50, 50 ))  )
 					unit:EmitSound("DOTA_Item.BlinkDagger.Activate") --Emit sound for the blink
-					FindClearSpaceForUnit(unit, fDist, false)
+					FindClearSpaceForUnit(unit, fDist, true)
 					unit:Stop()
 					return 1
 				end
 			end
 		end
 	end
-end
+endd

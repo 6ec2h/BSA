@@ -22,7 +22,7 @@ function meepo_poof_lua:OnSpellStart()
 
     caster:EmitSound("Hero_Meepo.Poof.End00")
 	caster:SetAbsOrigin( origin_target )
-	FindClearSpaceForUnit(caster, origin_target, false)
+	FindClearSpaceForUnit(caster, origin_target, true)
 	caster:Stop() 
 	local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target:GetOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
         for i,unit in ipairs(units) do
@@ -34,4 +34,4 @@ function meepo_poof_lua:OnSpellStart()
 		ProjectileManager:ProjectileDodge(caster) 
 		ParticleManager:CreateParticle("particles/units/heroes/hero_meepo/meepo_poof_end.vpcf", PATTACH_ABSORIGIN, caster) 	
     end})	
-end
+endd

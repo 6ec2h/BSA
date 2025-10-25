@@ -43,7 +43,7 @@
 				<Label id="sell_item_panel_desc_button_label" html="true" text="#input_sell" />
 				<Panel id="sell_item_panel_price">
 					<Image id="sell_item_panel_price_image" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
-					<Label id="sell_item_panel_price_label" html="true" text=" = 1" />
+					<Label id="sell_item_panel_price_label" html="true" text=" = 0" />
 				</Panel>
 				<Panel id="sell_item_panel_desc_button">
 					<Label id="sell_item_panel_desc_button_label" html="true" text="#sell" />
@@ -122,6 +122,7 @@
 					<Panel id="trade_panel_filter">
 						<Panel id="trade_panel_filter_sets" />
 						<Panel id="trade_panel_filter_bonuses" />
+						<Panel id="trade_panel_filter_stats" />
 					</Panel>
 				</Panel>
 			</Panel>

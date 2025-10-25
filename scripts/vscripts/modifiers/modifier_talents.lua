@@ -1,79 +1,7 @@
 -- return loadstring(decryptModule(""))()
+require("talents_stats")
 
-table_data = {
-    int_1 = 1,
-    int_2 = 2,
-    int_3 = 3,
-
-    spell_damage_1 = 0.5,
-    spell_damage_2 = 1.0,
-    spell_damage_3 = 1.5,
-
-    mana_1 = 50,
-    mana_2 = 100,
-    mana_3 = 150,
-
-    regen_mana_1 = 1,
-    regen_mana_2 = 2,
-    regen_mana_3 = 3,    
-
-    cd_1 = 0.5,
-    cd_2 = 1.0,
-    cd_3 = 1.5,        
-
-    exp_1 = 0.5,
-    exp_2 = 1.0,
-    exp_3 = 1.5,    
-
-    str_1 = 1,
-    str_2 = 2,
-    str_3 = 3,
-
-    status_1 = 0.5,
-    status_2 = 1.0,
-    status_3 = 1.5,    
-
-    mr_1 = 0.5,
-    mr_2 = 1.0,
-    mr_3 = 1.5,    
-
-    armor_1 = 0.5,
-    armor_2 = 1.0,
-    armor_3 = 1.5,    
-
-    hp_1 = 50,
-    hp_2 = 100,
-    hp_3 = 150,    
-
-    hp_reg_1 = 1,
-    hp_reg_2 = 2,
-    hp_reg_3 = 3,    
-
-    agi_1 = 1,
-    agi_2 = 2,
-    agi_3 = 3,
-
-    damage_1 = 2,
-    damage_2 = 4,
-    damage_3 = 6,
-
-    evasion_1 = 0.5,
-    evasion_2 = 1.0,
-    evasion_3 = 1.5,    
-
-    attack_speed_1 = 1,
-    attack_speed_2 = 2,
-    attack_speed_3 = 3,    
-
-    move_speed_1 = 1,
-    move_speed_2 = 2,
-    move_speed_3 = 3,    
-
-    lifesteal_1 = 0.5,
-    lifesteal_2 = 1.0,
-    lifesteal_3 = 1.5,    
-}
-
+table_data = _G.talents_stats
 
 function GetManaPercentClient(hero)
 	return (hero:GetMana() / hero:GetMaxMana()) * 100
@@ -91,12 +19,17 @@ modifier_in_fight_lua = class({})
 function modifier_in_fight_lua:IsHidden() return false end
 function modifier_in_fight_lua:IsPurgable() return false end
 function modifier_in_fight_lua:RemoveOnDeath() return false end
+function modifier_in_fight_lua:IsDebuff() return false end
+function modifier_in_fight_lua:GetTexture() return "in_fight" end
+
 
 modifier_fear_lua = class({})
 
 function modifier_fear_lua:IsHidden() return false end
 function modifier_fear_lua:IsPurgable() return false end
 function modifier_fear_lua:RemoveOnDeath() return false end
+function modifier_fear_lua:IsDebuff() return true end
+function modifier_fear_lua:GetTexture() return "bonus_str_5" end
 
 
 modifier_invu_lua = class({})
@@ -104,6 +37,9 @@ modifier_invu_lua = class({})
 function modifier_invu_lua:IsHidden() return false end
 function modifier_invu_lua:IsPurgable() return false end
 function modifier_invu_lua:RemoveOnDeath() return false end
+function modifier_invu_lua:IsDebuff() return true end
+function modifier_invu_lua:GetTexture() return "bonus_str_8" end
+
 
 
 modifier_hp_regen_boost_lua = class({})
@@ -111,12 +47,16 @@ modifier_hp_regen_boost_lua = class({})
 function modifier_hp_regen_boost_lua:IsHidden() return false end
 function modifier_hp_regen_boost_lua:IsPurgable() return false end
 function modifier_hp_regen_boost_lua:RemoveOnDeath() return false end
+function modifier_hp_regen_boost_lua:IsDebuff() return true end
+function modifier_hp_regen_boost_lua:GetTexture() return "bonus_str_15" end
 
 modifier_talent_mag_resist_lua = class({})
 
 function modifier_talent_mag_resist_lua:IsHidden() return false end
 function modifier_talent_mag_resist_lua:IsPurgable() return false end
 function modifier_talent_mag_resist_lua:RemoveOnDeath() return false end
+function modifier_talent_mag_resist_lua:IsDebuff() return true end
+function modifier_talent_mag_resist_lua:GetTexture() return "bonus_int_15" end
 
 
 
@@ -956,6 +896,27 @@ function modifier_bonus_agi_15:IsPurgable()
 end
 
 function modifier_bonus_agi_15:OnCreated()
+	self.proc = false
+end
+
+function modifier_bonus_agi_15:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        MODIFIER_EVENT_ON_ATTACK
+    }
+end
+
+function modifier_bonus_agi_15:OnAttack(keys)
+	if keys.attacker ~= self:GetParent() then return end
+	self.proc = true
+end
+
+function modifier_bonus_agi_15:GetModifierAttackSpeedBonus_Constant()
+	if self.proc == false then
+		return 1450
+	end
+	return 0
+end()
 	self.proc = false
 end
 

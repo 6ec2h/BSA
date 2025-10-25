@@ -40,15 +40,14 @@ end
 
 modifier_item_disperser_custom_lua_1 = class({})
 
-function modifier_item_disperser_custom_lua_1:IsHidden()		return true end
+function modifier_item_disperser_custom_lua_1:IsHidden() return true end
 function modifier_item_disperser_custom_lua_1:IsPurgable() return false end
 function modifier_item_disperser_custom_lua_1:IsPurgeException() return false end
-function modifier_item_disperser_custom_lua_1:RemoveOnDeath()	return false end
+function modifier_item_disperser_custom_lua_1:RemoveOnDeath() return false end
 function modifier_item_disperser_custom_lua_1:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_item_disperser_custom_lua_1:DeclareFunctions()
-	return 
-    {
+	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -81,39 +80,45 @@ function modifier_item_disperser_custom_lua_1:GetModifierPreAttack_BonusDamage()
 end
 
 function modifier_item_disperser_custom_lua_1:OnAttackLanded(params)
-    if params.attacker == self.parent then
-    	if params.no_attack_cooldown then return end
-    	if self.parent:PassivesDisabled() then return end
-    	local target_n = params.target
-    	if self.parent:FindAllModifiersByName("modifier_item_disperser_custom_lua_1")[1] ~= self then return end
-		local enemies = FindUnitsInRadius(params.attacker:GetTeamNumber(), target_n:GetAbsOrigin(), nil, self.burn_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_ANY_ORDER, false)
-		for _, target in pairs(enemies) do
-			local manaBurn = self.feedback_mana_burn
-			local manaDamage = self.damage_per_burn
-			local feedback_mana_burn_illusion = self.feedback_mana_burn_illusion_melee
-			local damageTable = {}
-			damageTable.attacker = self.parent
-			damageTable.victim = target
-			damageTable.damage_type = DAMAGE_TYPE_PHYSICAL
-			damageTable.ability = self.ability
-			if not target:IsMagicImmune() then
-				if(target:GetMana() >= manaBurn) then
-					damageTable.damage = manaBurn * manaDamage
-					if not self.parent:IsIllusion() then
-						target:Script_ReduceMana(manaBurn, self.ability)
-					else
-						target:Script_ReduceMana(feedback_mana_burn_illusion, self.ability)
-						damageTable.damage = feedback_mana_burn_illusion * manaDamage
-					end
+    if params.attacker ~= self.parent then return end
+	if params.no_attack_cooldown then return end
+	if self.parent:PassivesDisabled() then return end
+
+	local target_n = params.target
+	if self.parent:FindAllModifiersByName("modifier_item_disperser_custom_lua_1")[1] ~= self then return end
+
+	local enemies = FindUnitsInRadius(params.attacker:GetTeamNumber(), target_n:GetAbsOrigin(), nil, self.burn_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_ANY_ORDER, false)
+	for i = 1, #enemies do
+		local target = enemies[i]
+		local manaBurn = self.feedback_mana_burn
+		local manaDamage = self.damage_per_burn
+		local feedback_mana_burn_illusion = self.feedback_mana_burn_illusion_melee
+		local damageTable = {}
+		damageTable.attacker = self.parent
+		damageTable.victim = target
+		damageTable.damage_type = DAMAGE_TYPE_PHYSICAL
+		damageTable.ability = self.ability
+		if not target:IsMagicImmune() then
+			if(target:GetMana() >= manaBurn) then
+				damageTable.damage = manaBurn * manaDamage
+				if not self.parent:IsIllusion() then
+					target:Script_ReduceMana(manaBurn, self.ability)
 				else
-					damageTable.damage = target:GetMana() * manaDamage
-					if not self.parent:IsIllusion() then
-						target:Script_ReduceMana(manaBurn, self.ability)
-					else
-						target:Script_ReduceMana(feedback_mana_burn_illusion, self.ability)
-					end
+					target:Script_ReduceMana(feedback_mana_burn_illusion, self.ability)
+					damageTable.damage = feedback_mana_burn_illusion * manaDamage
 				end
-				ApplyDamage(damageTable)
+			else
+				damageTable.damage = target:GetMana() * manaDamage
+				if not self.parent:IsIllusion() then
+					target:Script_ReduceMana(manaBurn, self.ability)
+				else
+					target:Script_ReduceMana(feedback_mana_burn_illusion, self.ability)
+				end
+			end
+			ApplyDamage(damageTable)
+		end
+	end
+end)
 			end
 		end
     end

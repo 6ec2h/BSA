@@ -33,31 +33,28 @@ function disruptor_teleport:OnSpellStart()
 	local target_point = self:GetCursorPosition()
 	self.delay = self:GetSpecialValueFor("delay")
 	
+	local special_bonus_disruptor_agi4 = self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4")
 
-	if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4"):GetLevel() > 0 then 
+	if special_bonus_disruptor_agi4 and special_bonus_disruptor_agi4:GetLevel() > 0 then 
 		local radius = self:GetSpecialValueFor("radius")
-			
-			local units = FindUnitsInRadius(caster:GetTeamNumber(),
-			target_point,
-			nil,
-			radius,
-			DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-			DOTA_UNIT_TARGET_HERO,
-			DOTA_UNIT_TARGET_FLAG_NONE,
-			FIND_ANY_ORDER,
-			false)
-
-			for _,unit in pairs(units) do
-				if unit == caster then return end
-				unit:AddNewModifier(caster, self, "modifier_disruptor_teleport", {duration = self.delay})
-				local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
-				EmitSoundOn( sound_cast, caster )
-			end
 		
+		local units = FindUnitsInRadius(caster:GetTeamNumber(),
+		target_point,
+		nil,
+		radius,
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+		DOTA_UNIT_TARGET_HERO,
+		DOTA_UNIT_TARGET_FLAG_NONE,
+		FIND_ANY_ORDER,
+		false)
 
-		
-		else
+		for _,unit in pairs(units) do
+			if unit == caster then return end
+			unit:AddNewModifier(caster, self, "modifier_disruptor_teleport", {duration = self.delay})
+			local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
+			EmitSoundOn( sound_cast, caster )
+		end
+	else
 		if caster ~= target then
 			target:AddNewModifier(
 				caster, -- player source
@@ -69,9 +66,8 @@ function disruptor_teleport:OnSpellStart()
 			-- play effects
 			local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
 			EmitSoundOn( sound_cast, caster )
-			end
 		end
-	end	
+	end
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -118,7 +114,7 @@ function modifier_disruptor_teleport:OnDestroy()
 	
 			-- Teleport the parent to the caster's position + the teleport vector
 			--self:GetParent():SetAbsOrigin(self:GetCaster():GetAbsOrigin() + self:GetAbility().teleport_vector)
-			FindClearSpaceForUnit(self:GetParent(), self:GetCaster():GetAbsOrigin() + self:GetAbility().teleport_vector, false)
+			FindClearSpaceForUnit(self:GetParent(), self:GetCaster():GetAbsOrigin() + self:GetAbility().teleport_vector, true)
 			
 			EmitSoundOnLocationWithCaster(self:GetParent():GetAbsOrigin(), "Hero_Chen.TeleportIn", self:GetCaster())
 			
@@ -228,4 +224,5 @@ end
 
 function modifier_disruptor_aura_effect:GetModifierSpellAmplify_Percentage()
 	return self.ampl
+endturn self.ampl
 end

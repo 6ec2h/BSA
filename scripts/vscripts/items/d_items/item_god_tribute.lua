@@ -48,6 +48,7 @@ function modifier_item_god_tribute:IsPurgable()
 end
 
 function modifier_item_god_tribute:OnCreated( kv )
+	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	self.bonus_intellect = self:GetAbility():GetSpecialValueFor( "bonus_intellect" )
 	self.mana_regen_sec = self:GetAbility():GetSpecialValueFor( "mana_regen_sec" )
 	self.rupture_chance = self:GetAbility():GetSpecialValueFor( "rupture_chance" )
@@ -100,17 +101,19 @@ function modifier_item_god_tribute:OnAttackLanded( params )
 	if IsServer() then
 		if params.attacker == self:GetParent() and RollPercentage( self.rupture_chance ) then
 			if params.target ~= nil then
-            local damage_taken = 200
-            local return_damage = damage_taken * 1.25
-            ApplyDamage({ victim = params.target, attacker = params.attacker, damage = return_damage, damage_type = DAMAGE_TYPE_MAGICAL }) 
-		local Attacker = params.attacker
-		local Target = params.target
-		EmitSoundOn( "Dungeon.FireTrap", self:GetCaster() )
-			local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf", PATTACH_WORLDORIGIN, Attacker )
-			ParticleManager:SetParticleControl( nFXIndex, 0, Target:GetOrigin() )
-			ParticleManager:SetParticleControl( nFXIndex, 1, Vector( self.damage_radius, self.damage_radius, self.damage_radius ) )
-			ParticleManager:ReleaseParticleIndex( nFXIndex )
+				ApplyDamage({ victim = params.target, attacker = params.attacker, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL }) 
+				local Attacker = params.attacker
+				local Target = params.target
+				EmitSoundOn( "Dungeon.FireTrap", self:GetCaster() )
+				local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf", PATTACH_WORLDORIGIN, Attacker )
+				ParticleManager:SetParticleControl( nFXIndex, 0, Target:GetOrigin() )
+				ParticleManager:SetParticleControl( nFXIndex, 1, Vector( self.damage_radius, self.damage_radius, self.damage_radius ) )
+				ParticleManager:ReleaseParticleIndex( nFXIndex )
 			end
+		end
+	end
+	return 0
+end
 			end
 	end
 	return 0

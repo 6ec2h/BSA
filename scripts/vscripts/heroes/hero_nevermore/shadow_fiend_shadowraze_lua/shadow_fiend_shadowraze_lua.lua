@@ -1,4 +1,5 @@
-LinkLuaModifier( "modifier_shadow_fiend_shadowraze_lua", "heroes/hero_nevermore/shadow_fiend_shadowraze_lua/modifier_shadow_fiend_shadowraze_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_shadow_fiend_shadowraze_lua", "heroes/hero_nevermore/shadow_fiend_shadowraze_lua/modifier_shadow_fiend_shadowraze_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_field_shadowraze_lua_root", "heroes/hero_nevermore/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua", LUA_MODIFIER_MOTION_NONE)
 
 --------------------------------------------------------------------------------
 shadow_fiend_shadowraze_a_lua = class({})
@@ -24,9 +25,11 @@ end
 -----------------------------------------------------------------------------
 
 function shadowraze.ProcessRaze(self, target_pos, target_radius, base_damage, stack_damage, stack_duration)
-    local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), target_pos, nil, target_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local caster = self:GetCaster()
+
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), target_pos, nil, target_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
     for _, enemy in pairs(enemies) do
-        local modifier = enemy:FindModifierByNameAndCaster("modifier_shadow_fiend_shadowraze_lua", self:GetCaster())
+        local modifier = enemy:FindModifierByNameAndCaster("modifier_shadow_fiend_shadowraze_lua", caster)
         local stack = 0
         if modifier ~= nil then
             stack = modifier:GetStackCount()
@@ -34,15 +37,25 @@ function shadowraze.ProcessRaze(self, target_pos, target_radius, base_damage, st
 
         local damageTable = {
             victim = enemy,
-            attacker = self:GetCaster(),
+            attacker = caster,
             damage = base_damage + stack * stack_damage,
             damage_type = DAMAGE_TYPE_MAGICAL,
             ability = self,
         }
+
+		local special_bonus_unique_nevermore_3 = caster:FindAbilityByName("special_bonus_unique_nevermore_3")
+
+		if special_bonus_unique_nevermore_3 and special_bonus_unique_nevermore_3:GetLevel() > 0 then
+			damageTable.damage = damageTable.damage + caster:GetAverageTrueAttackDamage(nil)
+
+			enemy:Stop()
+			enemy:AddNewModifier(caster, self, "modifier_shadow_field_shadowraze_lua_root", {duration=1.5})
+		end
+
         ApplyDamage(damageTable)
         if modifier == nil then
             enemy:AddNewModifier(
-                self:GetCaster(),
+                caster,
                 self,
                 "modifier_shadow_fiend_shadowraze_lua",
                 { duration = stack_duration }
@@ -74,7 +87,7 @@ function shadowraze.OnSpellStart(self)
         end
     end
 
-    local talent = self:GetCaster():FindAbilityByName("special_bonus_nevermore_int10")
+    local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_nevermore_4")
     if talent ~= nil and talent:GetLevel() > 0 then
         if self:GetName() == "shadow_fiend_shadowraze_a_lua" or self:GetName() == "shadow_fiend_shadowraze_b_lua" or self:GetName() == "shadow_fiend_shadowraze_c_lua" then
             local target_pos1 = self:GetCaster():GetOrigin() + front * 200
@@ -105,4 +118,36 @@ function shadowraze.PlayEffects( self, position, radius )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, 1, 1 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 	EmitSoundOnLocationWithCaster( position, "Hero_Nevermore.Shadowraze", self:GetCaster() )
+end
+
+modifier_shadow_field_shadowraze_lua_root = class({})
+
+function modifier_shadow_field_shadowraze_lua_root:IsHidden()
+	return false
+end
+
+function modifier_shadow_field_shadowraze_lua_root:IsDebuff()
+	return true
+end
+
+function modifier_shadow_field_shadowraze_lua_root:IsStunDebuff()
+	return false
+end
+
+function modifier_shadow_field_shadowraze_lua_root:IsPurgable()
+	return true
+end
+
+function modifier_shadow_field_shadowraze_lua_root:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
+function modifier_shadow_field_shadowraze_lua_root:OnCreated()
+end
+
+function modifier_shadow_field_shadowraze_lua_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_INVISIBLE] = false,
+	}
 end

@@ -1,8 +1,6 @@
 LinkLuaModifier("modifier_assault_lua", "items/custom_items/item_assault_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_assault_lua_aura_positive", "items/custom_items/item_assault_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_assault_lua_aura_positive_effect", "items/custom_items/item_assault_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_assault_lua_aura_negative", "items/custom_items/item_assault_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_assault_lua_aura_negative_effect", "items/custom_items/item_assault_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_assault_lua_aura_buff", "items/custom_items/item_assault_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_assault_lua_aura_debuff", "items/custom_items/item_assault_lua", LUA_MODIFIER_MOTION_NONE)
 
 item_assault_lua1 = item_assault_lua1 or class({})
 item_assault_lua2 = item_assault_lua1 or class({})
@@ -12,6 +10,8 @@ function item_assault_lua1:GetIntrinsicModifierName()
 	return "modifier_assault_lua"
 end
 
+-------------------------------------------------------------------------------
+
 modifier_assault_lua = class({})
 
 function modifier_assault_lua:IsHidden()		return true end
@@ -20,16 +20,12 @@ function modifier_assault_lua:RemoveOnDeath()	return false end
 function modifier_assault_lua:GetAttributes()	return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_assault_lua:OnCreated()
-	if IsServer() then
-		if not self:GetAbility() then self:Destroy() end
-	end
+	local ability = self:GetAbility()
 
-	if not IsServer() then return end
-	
-	if not self:GetCaster():HasModifier("modifier_assault_lua_aura_positive") then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_assault_lua_aura_positive", {})
-		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_assault_lua_aura_negative", {})
-	end
+	self.bonus_attack_speed = ability:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_armor = ability:GetSpecialValueFor("bonus_armor")
+
+	self.auraRadius = ability:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_assault_lua:DeclareFunctions()
@@ -40,85 +36,96 @@ function modifier_assault_lua:DeclareFunctions()
 end
 
 function modifier_assault_lua:GetModifierAttackSpeedBonus_Constant()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
-	end
+	return self.bonus_attack_speed
 end
 
 function modifier_assault_lua:GetModifierPhysicalArmorBonus()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("bonus_armor")
-	end
+	return self.bonus_armor
 end
 
-function modifier_assault_lua:OnDestroy()
-	if IsServer() then
-		if not self:GetCaster():HasModifier("modifier_assault_lua") then
-			self:GetCaster():RemoveModifierByName("modifier_assault_lua_aura_positive")
-			self:GetCaster():RemoveModifierByName("modifier_assault_lua_aura_negative")
-		end
-	end
+function modifier_assault_lua:GetModifierAura()
+	return self.auraModifierName
 end
-
--------------------------------------------------------------------------------------------------------------------------------------
-
-modifier_assault_lua_aura_positive = class({})
-
-function modifier_assault_lua_aura_positive:IsDebuff() return false end
-function modifier_assault_lua_aura_positive:AllowIllusionDuplicate() return true end
-function modifier_assault_lua_aura_positive:IsHidden() return true end
-function modifier_assault_lua_aura_positive:IsPurgable() return false end
-
-function modifier_assault_lua_aura_positive:GetAuraRadius()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("aura_radius")
-	end
+function modifier_assault_lua:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
 end
-
-function modifier_assault_lua_aura_positive:GetAuraEntityReject(target)
-	return false
+function modifier_assault_lua:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING
 end
-
-function modifier_assault_lua_aura_positive:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_NONE
+function modifier_assault_lua:GetAuraRadius()
+	return self.auraRadius
 end
+function modifier_assault_lua:GetAuraEntityReject(target)
+	if target:GetTeamNumber() == self:GetCaster():GetTeamNumber() then
+        self.auraModifierName = "modifier_assault_lua_aura_buff"
+    else
+        self.auraModifierName = "modifier_assault_lua_aura_debuff"
+    end
 
-function modifier_assault_lua_aura_positive:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+    return false
 end
+function modifier_assault_lua:IsAura()
+	local caster = self:GetCaster()
 
-function modifier_assault_lua_aura_positive:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
-function modifier_assault_lua_aura_positive:GetModifierAura()
-	return "modifier_assault_lua_aura_positive_effect"
-end
-
-function modifier_assault_lua_aura_positive:IsAura()
-	return true
+	return not caster:PassivesDisabled() and not caster:IsIllusion()
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
-modifier_assault_lua_aura_positive_effect = class({})
+modifier_assault_lua_aura_buff = class({})
 
-function modifier_assault_lua_aura_positive_effect:OnCreated()
-	if not self:GetAbility() then
-		if IsServer() then
-			self:Destroy()
-		end
-
-		return
-	end
-
-	self.aura_as_ally = self:GetAbility():GetSpecialValueFor("aura_attack_speed")
-	self.aura_armor_ally = self:GetAbility():GetSpecialValueFor("aura_positive_armor")
+function modifier_assault_lua_aura_buff:OnCreated()
+	local ability = self:GetAbility()
+	
+	self.aura_attack_speed = ability:GetSpecialValueFor("aura_attack_speed")
+	self.aura_positive_armor = ability:GetSpecialValueFor("aura_positive_armor")
+end
+function modifier_assault_lua_aura_buff:OnRefresh()
+	self:OnCreated()
 end
 
-function modifier_assault_lua_aura_positive_effect:IsHidden() return false end
-function modifier_assault_lua_aura_positive_effect:IsPurgable() return false end
-function modifier_assault_lua_aura_positive_effect:IsDebuff() return false end
+function modifier_assault_lua_aura_buff:IsHidden() return false end
+function modifier_assault_lua_aura_buff:IsPurgable() return false end
+function modifier_assault_lua_aura_buff:IsDebuff() return false end
+
+function modifier_assault_lua_aura_buff:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
+	}
+end
+
+function modifier_assault_lua_aura_buff:GetModifierAttackSpeedBonus_Constant()
+	return self.aura_attack_speed
+end
+
+function modifier_assault_lua_aura_buff:GetModifierPhysicalArmorBonus()
+	return self.aura_positive_armor
+end
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+modifier_assault_lua_aura_debuff = class({})
+
+function modifier_assault_lua_aura_debuff:OnCreated()
+	self.aura_negative_armor = - self:GetAbility():GetSpecialValueFor("aura_negative_armor")
+end
+function modifier_assault_lua_aura_debuff:OnRefresh()
+	self:OnCreated()
+end
+
+function modifier_assault_lua_aura_debuff:IsHidden() return false end
+function modifier_assault_lua_aura_debuff:IsPurgable() return false end
+function modifier_assault_lua_aura_debuff:IsDebuff() return true end
+
+function modifier_assault_lua_aura_debuff:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+end
+
+function modifier_assault_lua_aura_debuff:GetModifierPhysicalArmorBonus()
+	return self.aura_negative_armor
+end
+ositive_effect:IsDebuff() return false end
 
 function modifier_assault_lua_aura_positive_effect:DeclareFunctions()
 	return {

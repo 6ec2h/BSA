@@ -267,7 +267,7 @@ function modifier_shaman_shackles_chariot:OnIntervalThink()
 		self.current_position	= self:GetParent():GetAbsOrigin()
 		
 		if (self:GetParent():GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D() > self.chariot_max_length then
-			FindClearSpaceForUnit(self:GetCaster(), self:GetParent():GetAbsOrigin() + self.vector:Normalized() * self.chariot_max_length, false)
+			FindClearSpaceForUnit(self:GetCaster(), self:GetParent():GetAbsOrigin() + self.vector:Normalized() * self.chariot_max_length, true)
 		end
 	end
 end
@@ -286,4 +286,4 @@ end
 
 function modifier_shaman_shackles_chariot:GetModifierMoveSpeedBonus_Constant()
 	return self.chariot_bonus_move_speed
-end
+endd

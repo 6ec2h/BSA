@@ -165,7 +165,6 @@ function modifier_item_skadi_slow_lua:IsPurgable()
 end
 
 function modifier_item_skadi_slow_lua:OnCreated( kv )
-
 	self.cold_slow_melee = self:GetAbility():GetSpecialValueFor("cold_slow_melee")
 	self.cold_slow_melee = self:GetAbility():GetSpecialValueFor("cold_slow_melee")
 	self.heal_reduction = self:GetAbility():GetSpecialValueFor("heal_reduction")
@@ -182,6 +181,7 @@ function modifier_item_skadi_slow_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
@@ -194,9 +194,9 @@ function modifier_item_skadi_slow_lua:GetModifierMoveSpeedBonus_Percentage()
 end
 
 function modifier_item_skadi_slow_lua:GetModifierHPRegenAmplify_Percentage()
-	return ( self.heal_reduction * (-1) )
+	return -self.heal_reduction
 end
 
 function modifier_item_skadi_slow_lua:GetModifierLifestealAmplify()
-	return ( self.heal_reduction * (-1) )
+	return -self.heal_reduction
 end

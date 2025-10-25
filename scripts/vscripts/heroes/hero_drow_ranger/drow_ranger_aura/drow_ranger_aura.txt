@@ -1,5 +1,12 @@
 "DOTAAbilities"
 {
+	"special_bonus_unique_drow_ranger_1"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"drow_ranger_aura"
 	{
 		"BaseClass"						"ability_lua"
@@ -9,12 +16,22 @@
 		"MaxLevel"						"4"
 		
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"700"
 
 		"AbilityValues"
 		{
-			"speed"	"6 9 12 15"
-			"range"	"700"
+			"attack_speed_pct_buff"		"6 9 12 15"
+			"move_speed_buff"			"5 7 9 12"
+
+			"attack_speed_debuff"		"10 15 20 25"
 		}
 	}
 }

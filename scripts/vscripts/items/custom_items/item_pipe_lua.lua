@@ -27,8 +27,6 @@ end
 modifier_item_pipe_active_lua = class({})
 
 function modifier_item_pipe_active_lua:OnCreated()
-
-
 	self.particle = ParticleManager:CreateParticle("particles/items2_fx/pipe_of_insight.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent())
 	ParticleManager:SetParticleControl(self.particle, 0, self:GetParent():GetAbsOrigin())
 	ParticleManager:SetParticleControlEnt(self.particle, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_origin", self:GetParent():GetAbsOrigin(), true)
@@ -39,7 +37,14 @@ function modifier_item_pipe_active_lua:OnCreated()
 end
 
 function modifier_item_pipe_active_lua:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT}
+	return {
+		MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT,
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
+end
+
+function modifier_item_pipe_active_lua:OnTooltip()
+	return self.barrier_block
 end
 
 function modifier_item_pipe_active_lua:GetModifierIncomingSpellDamageConstant(keys)
@@ -119,6 +124,9 @@ modifier_item_pipe_aura_lua = class({})
 function modifier_item_pipe_aura_lua:OnCreated()
 	self.aura_health_regen = self:GetAbility():GetSpecialValueFor("aura_health_regen")
 	self.magic_resistance_aura = self:GetAbility():GetSpecialValueFor("magic_resistance_aura")
+end
+function modifier_item_pipe_aura_lua:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_pipe_aura_lua:DeclareFunctions()

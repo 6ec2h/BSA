@@ -98,8 +98,20 @@ function modifier_creep_ursa_fury_swipes_debuff_lua:IsPurgable()
 	return false
 end
 
+function modifier_creep_ursa_fury_swipes_debuff_lua:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
+end
+
+function modifier_creep_ursa_fury_swipes_debuff_lua:OnTooltip()
+	return self:GetStackCount() * self.damagePerStack
+end
+
 function modifier_creep_ursa_fury_swipes_debuff_lua:OnCreated( kv )
 	self:SetStackCount(1)
+
+	self.damagePerStack = self:GetAbility():GetSpecialValueFor("damage_per_stack")
 end
 
 function modifier_creep_ursa_fury_swipes_debuff_lua:OnRefresh( kv )

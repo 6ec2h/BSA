@@ -7,7 +7,7 @@ function tp_xdes_start(event)
     unit:EmitSound("DOTA_Item.BlinkDagger.Activate")
 	local point = Entities:FindByName( nil, "point_tp_xdes" ):GetAbsOrigin() 
 	event.activator:SetAbsOrigin( point )
-	FindClearSpaceForUnit(event.activator, point, false)
+	FindClearSpaceForUnit(event.activator, point, true)
 	event.activator:Stop() 
 end
 
@@ -18,7 +18,7 @@ function tp_xdes_back(event)
     unit:EmitSound("DOTA_Item.BlinkDagger.Activate")
 	local point = Vector(-5521, -15122, 256)
 	event.activator:SetAbsOrigin( point )
-	FindClearSpaceForUnit(event.activator, point, false)
+	FindClearSpaceForUnit(event.activator, point, true)
 	event.activator:Stop() 
 end
 
@@ -29,9 +29,11 @@ function teleport_roshan(event)
     unit:EmitSound("DOTA_Item.BlinkDagger.Activate")
 	local point = Entities:FindByName( nil, "pnt5" ):GetAbsOrigin() 
 	event.activator:SetAbsOrigin( point )
-	FindClearSpaceForUnit(event.activator, point, false)
+	FindClearSpaceForUnit(event.activator, point, true)
 	event.activator:Stop() 
 end
+
+local necrolyteIsActivated = false
 
 function tp_necrolyte(event)
 	if GameRules:IsCheatMode() then return end
@@ -41,7 +43,7 @@ function tp_necrolyte(event)
 	unit:EmitSound("DOTA_Item.BlinkDagger.Activate")
 	local point = Entities:FindByName( nil, "point_final_boss"):GetAbsOrigin()
 	
-	FindClearSpaceForUnit(event.activator, point, false)
+	FindClearSpaceForUnit(event.activator, point, true)
 	event.activator:Stop()
 	
 	for boss, status in pairs(_G.bosses_counter) do
@@ -51,11 +53,15 @@ function tp_necrolyte(event)
 		end
 	end	
 	
-	Notifications:TopToAll({text = "sandgo", duration=5})
+	if not necrolyteIsActivated then
+		necrolyteIsActivated = true
+		
+		Notifications:TopToAll({text = "#sandgo", duration=5})
 
-	Timers:CreateTimer(5.5, function()
-		rules:boss_invulnerable("necrolyte")
-	end)
+		Timers:CreateTimer(5.5, function()
+			rules:boss_invulnerable("necrolyte")
+		end)
+	end
 end
 
 --------------------------------------------------------------------------------------------------------------------------------
@@ -84,7 +90,7 @@ function tpmedusa(event)
    local ent = Entities:FindByName( nil, wws)
    local point = ent:GetAbsOrigin()
    unit:SetAbsOrigin( point )
-   FindClearSpaceForUnit(unit, point, false)
+   FindClearSpaceForUnit(unit, point, true)
    unit:Stop()
    essentials:createCustomHpBarFor(unit)
 end
@@ -103,7 +109,7 @@ function teleportnyx(trigger)
 		local point = Entities:FindByName( nil, "tpnyx"..R5):GetAbsOrigin()
 		PlayerResource:SetCameraTarget(trigger.activator:GetPlayerOwnerID(), trigger.activator)
 		trigger.activator:SetAbsOrigin( point )
-		FindClearSpaceForUnit(trigger.activator, point, false)
+		FindClearSpaceForUnit(trigger.activator, point, true)
 		trigger.activator:Stop()
 		Timers:CreateTimer(0.1, function()
 			PlayerResource:SetCameraTarget(trigger.activator:GetPlayerOwnerID(), nil)
@@ -117,7 +123,7 @@ function skback(event)
    local ent = Entities:FindByName( nil, wws)
    local point = ent:GetAbsOrigin()
    unit:SetAbsOrigin( point )
-   FindClearSpaceForUnit(unit, point, false)
+   FindClearSpaceForUnit(unit, point, true)
    unit:Stop()
 end
 
@@ -130,7 +136,7 @@ function tpvod(event)  -- в конец ловушек
    local ent = Entities:FindByName( nil, wws)
    local point = ent:GetAbsOrigin()
    event.activator:SetAbsOrigin( point )
-   FindClearSpaceForUnit(event.activator, point, false)
+   FindClearSpaceForUnit(event.activator, point, true)
    event.activator:Stop()
 end
 
@@ -148,5 +154,4 @@ function nyxoff2()
 	unit:RemoveModifierByName("modifier_invulnerable")
 	unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
 	unit:RemoveModifierByName("modifier_magic_immune")
-end
 end

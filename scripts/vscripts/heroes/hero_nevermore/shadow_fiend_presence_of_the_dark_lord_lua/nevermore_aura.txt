@@ -9,12 +9,15 @@
 		
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityCastRange"				"750"
+		"AbilityCastRange"				"1200"
 
 		"AbilityValues"
-	{
-		"reduction"	"0.5 1.0 1.5 2.0"
-			"range"	"750"
-	}
+		{
+			"reduction"
+			{
+				"value"								"2 3 4 5"
+				"special_bonus_unique_nevermore_5"	"+1"
+			}
+		}
 	}
 }

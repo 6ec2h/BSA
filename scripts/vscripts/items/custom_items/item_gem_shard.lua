@@ -5,6 +5,7 @@ item_gem_shard = class({})
 function item_gem_shard:OnSpellStart()
 	if not IsServer() then return end
     local caster = self:GetCaster()
+	if (caster:HasModifier("modifier_item_gem_shard")) then return end
     local item = self
     caster:AddNewModifier(caster, nil, "modifier_item_gem_shard", {})
     item:SpendCharge(0)

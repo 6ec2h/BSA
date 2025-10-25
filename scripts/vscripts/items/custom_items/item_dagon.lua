@@ -92,25 +92,28 @@ end
 modifier_item_dagon_lua_passive = modifier_item_dagon_lua_passive or class({})
 
 function modifier_item_dagon_lua_passive:IsHidden() return true end
+function modifier_item_dagon_lua_passive:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
-function modifier_item_dagon_lua_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
+function modifier_item_dagon_lua_passive:OnCreated()
+	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor("bonus_all_stats")
 end
 
-function modifier_item_dagon_lua_passive:DeclareFunctions() return {
-	MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-	MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-	MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-} end
+function modifier_item_dagon_lua_passive:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+	}
+end
 
 function modifier_item_dagon_lua_passive:GetModifierBonusStats_Strength()
-	return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+	return self.bonus_all_stats
 end
 
 function modifier_item_dagon_lua_passive:GetModifierBonusStats_Agility()
-	return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+	return self.bonus_all_stats
 end
 
 function modifier_item_dagon_lua_passive:GetModifierBonusStats_Intellect()
-	return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+	return self.bonus_all_stats
 end

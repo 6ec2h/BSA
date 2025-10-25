@@ -187,7 +187,7 @@ function CheckFullSet() {
 }
 
 const can_use_sets = {
-	1: {min: 1},
+	1: {min: 0},
 	2: {min: 4},
 	3: {min: 8},
 	4: {min: 12},
@@ -802,7 +802,7 @@ function show_item_reward(data){
 		panel.FindChildTraverse("MainInfo").style.backgroundColor = "gradient(linear, 50% 0%, 50% 100%, from(" + color + "), to(transparent))";
 		panel.FindChildTraverse("BaseAttribute").text = $.Localize("#"+data.item_type+"_description") + (decription_attributes[[data.item_type]] * data.level * data.set_number) + perc
 		panel.FindChildTraverse("Descr").visible = true
-		panel.FindChildTraverse("Descr").text = $.Localize("#min_level_use") + can_use_sets[data.set_number].min
+		panel.FindChildTraverse("Descr").text = $.Localize("#min_level_use") + (can_use_sets[data.set_number].min + 1)
 	}
 	
 	bonus_attr = panel.FindChildTraverse("BonusAttribute")
@@ -823,7 +823,7 @@ function show_item_reward(data){
 			num = 1
 		}
 
-		label.text = $.Localize("#"+attrKey+"_description") + " " + (decription_attributes[attrKey] + (data.set_number * 0.1 * data.level) - data.set_number * 0.1).toFixed(num) + perc;
+		label.text = $.Localize("#"+attrKey+"_description") + " " + (decription_attributes[attrKey] * data.set_number +  boost_attributes[attrKey][data.set_number] * (data.level - 1)).toFixed(num) + perc 
 		let hr = $.CreatePanel("Panel", bonus_attr, "hr") 
 
 	}

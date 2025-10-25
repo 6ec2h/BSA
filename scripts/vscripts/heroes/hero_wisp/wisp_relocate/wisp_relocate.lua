@@ -42,7 +42,7 @@ function wisp_relocate_lua:OnSpellStart()
 				local point = unit:GetAbsOrigin()
 
 				self:GetCaster():SetAbsOrigin( point )
-				FindClearSpaceForUnit(self:GetCaster(), point, false)
+				FindClearSpaceForUnit(self:GetCaster(), point, true)
 				self:GetCaster():Stop() 
 				PlayerResource:SetCameraTarget(self:GetCaster():GetPlayerOwnerID(), self:GetCaster())
 				Timers:CreateTimer(0.1, function()
@@ -69,4 +69,4 @@ function wisp_relocate_lua:InterruptRelocate(caster, ability, tether_ability)
 		return true
 	end
 	return false
-end
+endd

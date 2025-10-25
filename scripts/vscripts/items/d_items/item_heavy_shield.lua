@@ -52,7 +52,7 @@ end
 
 function modifier_item_heavy_shield:OnCreated( kv )
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor( "dmg" )
-	self.bonus_move_speed = self:GetAbility():GetSpecialValueFor( "ms" )
+	self.bonus_move_speed = self:GetAbility():GetSpecialValueFor( "ms" ) / 100
 	self.bonus_str = self:GetAbility():GetSpecialValueFor( "str" )
 	self.bonus_agi = self:GetAbility():GetSpecialValueFor( "agi" )
 	self.bonus_int = self:GetAbility():GetSpecialValueFor( "int" )
@@ -65,7 +65,7 @@ function modifier_item_heavy_shield:DeclareFunctions()
 	local funcs =
 	{
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
         MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
         MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -80,7 +80,7 @@ function modifier_item_heavy_shield:GetModifierPreAttack_BonusDamage( params )
 	return self.bonus_damage
 end
 
-function modifier_item_heavy_shield:GetModifierMoveSpeedBonus_Constant( params )
+function modifier_item_heavy_shield:GetModifierMoveSpeedBonus_Percentage( params )
 	return self.bonus_move_speed
 end
 

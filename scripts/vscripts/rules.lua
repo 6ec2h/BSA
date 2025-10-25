@@ -66,7 +66,11 @@ function rules:show(t)
     CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( t.PlayerID ), "show_skills_js",  self:skillsPreparation(t))
 end
 
-function rules:select_skill_lua(t)
+function rules:select_skill_lua(t)	
+	if not _G.RewardPoints[t.PlayerID] or _G.RewardPoints[t.PlayerID] < 1 then
+		return
+	end
+
     local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
     for _, ability_name in pairs(t) do
 		if string.sub(ability_name, 0,8) == "modifier" then
@@ -241,6 +245,11 @@ function dummy_spawn()
 	
 	_G.npc_creeps_passives = CreateUnitByName("npc_creeps_passives",Vector(-4823,-14380, 384), false, nil, nil, DOTA_TEAM_NEUTRALS)
 	npc_creeps_passives:AddNewModifier(npc_creeps_passives, nil, "modifier_dummy", {})
+
+	LinkLuaModifier( "modifier_damage_challenge", "modifiers/modifier_damage_challenge", LUA_MODIFIER_MOTION_NONE )
+	local damage_challenge = CreateUnitByName("npc_unit_damage_challenge", Vector(-6915.544922, -14742.480469, 128.000000), false, nil, nil, DOTA_TEAM_NEUTRALS)
+	damage_challenge:AddNewModifier(damage_challenge, nil, "modifier_damage_challenge", {})
+	damage_challenge:SetAngles(0,-90,0)
 end	
 
 --------------------------------------------------- 
@@ -434,7 +443,7 @@ end
 					-- Notifications:TopToAll({text="#guild_event", duration=3})
 					-- local point = Entities:FindByName( nil, "guild_event_tp"):GetAbsOrigin()
 					-- unit:SetAbsOrigin( point )
-					-- FindClearSpaceForUnit(unit, point, false)
+					-- FindClearSpaceForUnit(unit, point, true)
 					-- unit:Stop()
 					-- unit:StopSound("Portal.Loop_Appear")
 					-- unit:RemoveModifierByName("modifier_teleport_event")

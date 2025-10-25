@@ -87,8 +87,20 @@ function modifier_item_lapa_ursa_debuff:IsPurgable()
 	return false
 end
 
+function modifier_item_lapa_ursa_debuff:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
+end
+
+function modifier_item_lapa_ursa_debuff:OnTooltip()
+	return self:GetStackCount() * self.damagePerStack
+end
+
 function modifier_item_lapa_ursa_debuff:OnCreated( kv )
 	self:SetStackCount(1)
+
+	self.damagePerStack = self:GetAbility():GetSpecialValueFor("damage")
 end
 
 function modifier_item_lapa_ursa_debuff:OnRefresh( kv )

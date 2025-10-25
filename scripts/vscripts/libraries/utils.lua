@@ -240,3 +240,20 @@ function CDOTA_BaseNPC:FindHotKeyForAbility(sAbilityName)
 		end
 	end)
 end
+
+local defaultRangedProjectileNames = {}
+
+CDOTA_BaseNPC_SetRangedProjectileName = CDOTA_BaseNPC_SetRangedProjectileName or CDOTA_BaseNPC.SetRangedProjectileName
+function CDOTA_BaseNPC:SetRangedProjectileName(projectileName)
+	if self:IsRealHero() and not defaultRangedProjectileNames[self] then
+		defaultRangedProjectileNames[self] = self:GetRangedProjectileName()
+	end
+
+	CDOTA_BaseNPC_SetRangedProjectileName(self, projectileName)
+end
+
+function CDOTA_BaseNPC:ResetRangedProjectileName()
+	if not defaultRangedProjectileNames[self] then return end
+
+	CDOTA_BaseNPC_SetRangedProjectileName(self, defaultRangedProjectileNames[self])
+end

@@ -65,7 +65,7 @@ end
 modifier_disruptor_kinetic_field_lua = class({})
 
 function modifier_disruptor_kinetic_field_lua:IsHidden()
-	return false
+	return true
 end
 
 function modifier_disruptor_kinetic_field_lua:IsDebuff()
@@ -326,4 +326,4 @@ end
 
 function modifier_resist:GetModifierMagicalResistanceBonus()
 	return self.resist
-end
+endd

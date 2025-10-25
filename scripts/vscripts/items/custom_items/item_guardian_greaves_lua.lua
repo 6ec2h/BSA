@@ -1,11 +1,11 @@
-item_guardian_greaves_lua1 = item_guardian_greaves_lua1  or class({})
-item_guardian_greaves_lua2 = item_guardian_greaves_lua1  or class({})
-item_guardian_greaves_lua3 = item_guardian_greaves_lua1  or class({})
-
 LinkLuaModifier( "modifier_item_guardian_greaves_lua", "items/custom_items/item_guardian_greaves_lua.lua", LUA_MODIFIER_MOTION_NONE )				
 LinkLuaModifier( "modifier_item_guardian_greaves_lua_aura_emitter", "items/custom_items/item_guardian_greaves_lua.lua", LUA_MODIFIER_MOTION_NONE )	
 LinkLuaModifier( "modifier_item_guardian_greaves_lua_aura", "items/custom_items/item_guardian_greaves_lua.lua", LUA_MODIFIER_MOTION_NONE )			
 LinkLuaModifier( "modifier_item_guardian_greaves_lua_heal", "items/custom_items/item_guardian_greaves_lua.lua", LUA_MODIFIER_MOTION_NONE )			
+
+item_guardian_greaves_lua1 = item_guardian_greaves_lua1  or class({})
+item_guardian_greaves_lua2 = item_guardian_greaves_lua1  or class({})
+item_guardian_greaves_lua3 = item_guardian_greaves_lua1  or class({})
 
 function item_guardian_greaves_lua1:GetIntrinsicModifierName()
 	return "modifier_item_guardian_greaves_lua"
@@ -28,7 +28,6 @@ function modifier_item_guardian_greaves_lua:IsHidden()			return true end
 function modifier_item_guardian_greaves_lua:IsPurgable()		return false end
 function modifier_item_guardian_greaves_lua:RemoveOnDeath()	return false end
 function modifier_item_guardian_greaves_lua:GetAttributes()	return MODIFIER_ATTRIBUTE_MULTIPLE end
-
 
 function modifier_item_guardian_greaves_lua:OnCreated(keys)
 	self.bonus_movement = self:GetAbility():GetSpecialValueFor("bonus_movement")
@@ -82,10 +81,6 @@ function modifier_item_guardian_greaves_lua_aura_emitter:IsDebuff() return false
 function modifier_item_guardian_greaves_lua_aura_emitter:IsPurgable() return false end
 
 function modifier_item_guardian_greaves_lua_aura_emitter:OnCreated()
-	if IsServer() then
-		if not self:GetAbility() then self:Destroy() end
-	end
-
 	self.aura_radius			= self:GetAbility():GetSpecialValueFor("aura_radius")
 	self.aura_bonus_threshold	= self:GetAbility():GetSpecialValueFor("aura_bonus_threshold")
 	self.replenish_health		= self:GetAbility():GetSpecialValueFor("replenish_health")
@@ -95,24 +90,22 @@ function modifier_item_guardian_greaves_lua_aura_emitter:OnCreated()
 end
 
 function modifier_item_guardian_greaves_lua_aura_emitter:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
 
 function modifier_item_guardian_greaves_lua_aura_emitter:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO end
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
 
 function modifier_item_guardian_greaves_lua_aura_emitter:GetModifierAura()
-	
-		if self:GetParent():IsAlive() then
-			return "modifier_item_guardian_greaves_lua_aura"
-		else
-			return nil
-		end
+	if self:GetParent():IsAlive() then
+		return "modifier_item_guardian_greaves_lua_aura"
+	else
+		return nil
 	end
-
+end
 
 function modifier_item_guardian_greaves_lua_aura_emitter:GetAuraRadius()
-	if not self:GetAbility() then return 0 end
-	
 	return self.aura_radius end
 
 function modifier_item_guardian_greaves_lua_aura_emitter:DeclareFunctions()
@@ -142,12 +135,7 @@ function modifier_item_guardian_greaves_lua_aura:IsHidden() return false end
 function modifier_item_guardian_greaves_lua_aura:IsDebuff() return false end
 function modifier_item_guardian_greaves_lua_aura:IsPurgable() return false end
 
-function modifier_item_guardian_greaves_lua_aura:GetTexture()
-	return "item_guardian_greaves" end
-
 function modifier_item_guardian_greaves_lua_aura:OnCreated(keys)
-	if not self:GetAbility() then self:Destroy() return end
-
 	local ability = self:GetAbility()
 	
 	self.aura_health_regen = ability:GetSpecialValueFor("aura_health_regen")
@@ -155,6 +143,9 @@ function modifier_item_guardian_greaves_lua_aura:OnCreated(keys)
 	self.aura_health_regen_bonus = ability:GetSpecialValueFor("aura_health_regen_bonus")
 	self.aura_armor_bonus = ability:GetSpecialValueFor("aura_armor_bonus")
 	self.aura_bonus_threshold = ability:GetSpecialValueFor("aura_bonus_threshold")
+end
+function modifier_item_guardian_greaves_lua_aura:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_guardian_greaves_lua_aura:DeclareFunctions()
@@ -191,29 +182,19 @@ function modifier_item_guardian_greaves_lua_heal:IsHidden() return false end
 function modifier_item_guardian_greaves_lua_heal:IsDebuff() return false end
 function modifier_item_guardian_greaves_lua_heal:IsPurgable() return true end
 
-function modifier_item_guardian_greaves_lua_heal:GetTexture()
-	return "item_guardian_greaves_lua"
-end
-
 function modifier_item_guardian_greaves_lua_heal:OnCreated(keys)
-	
-		if not self:GetAbility() then self:Destroy() end
-
-	
 	self.mend_regen = self:GetAbility():GetSpecialValueFor("mend_regen")
 end
 
 function modifier_item_guardian_greaves_lua_heal:DeclareFunctions()
-	local funcs = {
+	return {
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 	}
-	return funcs
 end
 
 function modifier_item_guardian_greaves_lua_heal:GetModifierHealthRegenPercentage()
 	return self.mend_regen
 end
-
 
 function GreavesActivate(caster, ability, heal_amount, mana_amount, heal_radius, heal_duration)
 	caster:Purge(false, true, false, false, false)
@@ -238,6 +219,19 @@ function GreavesActivate(caster, ability, heal_amount, mana_amount, heal_radius,
 
 		local particle_target = particle_name
 		if ally:IsHero() then
+			particle_target = particle_name_hero
+		end
+
+		local target_pfx = ParticleManager:CreateParticle(particle_target, PATTACH_ABSORIGIN_FOLLOW, ally)
+		ParticleManager:SetParticleControl(target_pfx, 0, ally:GetAbsOrigin())
+
+		ally:AddNewModifier(caster, ability, "modifier_item_guardian_greaves_lua_heal", {duration = 40})
+
+		ability:UseResources( true, false, false, true )
+	end
+end
+
+ero() then
 			particle_target = particle_name_hero
 		end
 

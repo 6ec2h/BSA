@@ -165,6 +165,72 @@ function SetClasses()
     $.Schedule(0.05, SetClasses);
 }
 
+function HideModifiersBar() {
+    let BuffContainer = DOTA_HUD_ROOT.FindChildTraverse("BuffContainer")
+
+    if (BuffContainer) {
+        BuffContainer.style.marginLeft = "0px"
+        BuffContainer.style.marginBottom = "0px"
+        BuffContainer.style.width = "100%"
+
+        BuffContainer.style.marginBottom = "30px"
+
+        let buffsContainer = DOTA_HUD_ROOT.FindChildTraverse("buffs")
+        if (buffsContainer) {
+            buffsContainer.style.visibility = "collapse";
+
+            if (!buffsContainer._customBuffsContainer) {
+                let buffsContainerParent = buffsContainer.GetParent();
+
+                let customBuffsContainer = $.CreatePanel('Panel', buffsContainerParent, '');
+                customBuffsContainer.SetHasClass("customBuffs", true);
+                customBuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/hud/dota_hud_buff_list.xml', false, false);
+                buffsContainerParent.MoveChildAfter(customBuffsContainer, buffsContainer);
+
+                buffsContainer._customBuffsContainer = customBuffsContainer;
+            }
+        } else {
+            $.Msg("Valve break something or did major changes to UI (can't find buffs container).");
+        }
+
+        let debuffsContainer = DOTA_HUD_ROOT.FindChildTraverse("debuffs");
+        if (debuffsContainer) {
+            debuffsContainer.style.visibility = "collapse";
+
+            if (!debuffsContainer._customDebuffsContainer) {
+                let debuffsContainerParent = debuffsContainer.GetParent();
+
+                let customDebuffsContainer = $.CreatePanel('Panel', debuffsContainerParent, '');
+                customDebuffsContainer.SetHasClass("customDebuffs", true);
+                customDebuffsContainer.BLoadLayout('file://{resources}/layout/custom_game/hud/dota_hud_buff_list.xml', false, false);
+                debuffsContainerParent.MoveChildAfter(customDebuffsContainer, debuffsContainer);
+
+                debuffsContainer._customDebuffsContainer = customDebuffsContainer;
+            }
+        } else {
+            $.Msg("Valve break something or did major changes to UI (can't find debuffs container).");
+        }
+    }
+}
+
+function GetLocalPlayerSelectedUnit() {
+	let selectedUnit = Players.GetQueryUnit(Game.GetLocalPlayerID())
+	if (selectedUnit < 0) {
+		selectedUnit = Players.GetLocalPlayerPortraitUnit()
+	}
+	return selectedUnit;
+}
+
+function FixNeutralItemSlot() {
+    const neutral = DOTA_HUD_ROOT.FindChildTraverse("inventory_neutral_slot")
+    neutral.SetPanelEvent('onmouseover', function(){
+        $.DispatchEvent("DOTAShowAbilityInventoryItemTooltip", neutral, GetLocalPlayerSelectedUnit(), 16)
+    })
+    neutral.SetPanelEvent('onmouseout', function(){
+        $.DispatchEvent('DOTAHideAbilityTooltip')
+    })
+}
+
 (function() {
     GameEvents.Subscribe('mountain_dota_hud_show_hud_error', function(data) {
         DotaHUD.ShowError(data.message);
@@ -179,4 +245,7 @@ function SetClasses()
     });
 
 	SetClasses();
+
+	HideModifiersBar();
+	FixNeutralItemSlot()
 })();

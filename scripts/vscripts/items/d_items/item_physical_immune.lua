@@ -20,6 +20,9 @@ function item_physical_immune:OnSpellStart()
 	if PlayerResource:IsDisableHelpSetForPlayerID(caster:GetPlayerOwnerID(), original_target:GetPlayerOwnerID() ) then
 		return 
 	end
+	if self:GetCaster():HasModifier("modifier_physical_immune_delay") then
+		return
+	end
 	original_target:AddNewModifier(caster, self, "modifier_physical_immune_active", { duration =  self:GetSpecialValueFor("duration")})
 	original_target:AddNewModifier(caster, self, "modifier_physical_immune_delay", { duration =  self:GetSpecialValueFor("tooltip_reapply_time")})
 end
@@ -59,6 +62,13 @@ end
 function modifier_physical_immune_delay:IsPurgable()
 	return false
 end
+function modifier_physical_immune_delay:IsDebuff()
+	return true
+end
+
+function modifier_physical_immune_delay:GetTexture()
+	return "physical_immune"
+end
 
 -------------------------------------------------------------------------------------------------
 
@@ -68,6 +78,9 @@ function modifier_physical_immune_active:IsHidden()
 	return false
 end
 
+function modifier_physical_immune_active:GetTexture()
+	return "physical_immune"
+end
 function modifier_physical_immune_active:RemoveOnDeath()
 	return true
 end

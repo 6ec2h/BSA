@@ -10,7 +10,7 @@ function spectre_haunt_lua:OnSpellStart()
 	local distance = 72
 	count = 1
 	
-	local abil = self:GetCaster():FindAbilityByName("special_bonus_spectre_tal4")
+	local abil = self:GetCaster():FindAbilityByName("special_bonus_unique_spectre_4")
 	if abil ~= nil and abil:GetLevel() > 0 then 
 	count = 2
 	end

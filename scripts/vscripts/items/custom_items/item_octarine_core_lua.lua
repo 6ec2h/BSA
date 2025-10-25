@@ -13,7 +13,13 @@ function item_octarine_core_lua1:OnSpellStart()
 end
 
 function item_octarine_core_lua1:GetManaCost(iLevel)
-	return self:GetCaster():GetMaxMana()/2
+	local caster = self:GetCaster()
+
+	if (not caster) then
+		return 0
+	end
+
+	return caster:GetMaxMana() / 2
 end
 
 function refresh(caster)

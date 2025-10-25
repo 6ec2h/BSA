@@ -1,7 +1,7 @@
 "DOTAAbilities"
 {
 
-"medusa_poison_arrow_lua"
+	"medusa_poison_arrow_lua"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_medusa/hero_medusa"
@@ -31,7 +31,7 @@
 		}
 	}
 	
-"medusa_mystic_snake_lua"
+	"medusa_mystic_snake_lua"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_medusa/hero_medusa"
@@ -74,7 +74,7 @@
 	}	
 	
 
-"medusa_mana_shield_lua"
+	"medusa_mana_shield_lua"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_medusa/hero_medusa"
@@ -97,7 +97,7 @@
 		}
 	}
 
-"medusa_split_shot_lua"
+	"medusa_split_shot_lua"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_medusa/hero_medusa"
@@ -120,7 +120,6 @@
 			"arrow_count"				
 			{
 				"value"								"2"
-				"special_bonus_unique_medusa_7"   	"+1"
 			}
 			"split_shot_bonus_range"	"100"
 		}
@@ -176,5 +175,8 @@
         "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "BaseClass"                     "special_bonus_base"
+    }
+}
+         "special_bonus_base"
     }
 }

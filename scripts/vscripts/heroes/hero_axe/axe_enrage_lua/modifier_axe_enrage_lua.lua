@@ -1,13 +1,5 @@
 modifier_axe_enrage_lua = class({})
 
-function HasTalent(unit, talentName)
-
-    if unit:HasAbility(talentName) then
-        if unit:FindAbilityByName(talentName):GetLevel() > 0 then return true end
-    end
-    return false
-end
-
 function modifier_axe_enrage_lua:IsHidden()
 	return false
 end
@@ -20,14 +12,34 @@ function modifier_axe_enrage_lua:IsPurgable()
 	return false
 end
 
-function modifier_axe_enrage_lua:OnCreated( kv )
-if IsServer() then
-	self.caster = self:GetCaster()
-	self.damage_reduction = self:GetAbility():GetSpecialValueFor("damage_reduction")
-	self.bonus_str = self:GetAbility():GetSpecialValueFor("bonus_str") * (self.caster:GetStrength()/100)
-	self.damage = self:GetCaster():GetAttackDamage()--/2 
-	if HasTalent(self:GetCaster(),"special_bonus_axe_3") then
-	self.bonus_str = self.bonus_str * 2
+function modifier_axe_enrage_lua:OnCreated()
+	if not IsServer() then return end
+	
+	self:GetCaster():FindAbilityByName("axe_counter_helix_lua"):EndCooldown()
+end
+
+function modifier_axe_enrage_lua:GetModifierModelScale()
+	return 45
+end
+
+function modifier_axe_enrage_lua:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MIN_HEALTH,
+	}
+end
+
+function modifier_axe_enrage_lua:GetMinHealth()
+	return 1
+end
+
+function modifier_axe_enrage_lua:GetEffectName()
+	return "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+end
+
+function modifier_axe_enrage_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+2
 	end
 end
 end

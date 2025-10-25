@@ -8,96 +8,98 @@ function modifier_axe_counter_helix_lua:IsPurgable()
 	return false
 end
 
-function modifier_axe_counter_helix_lua:OnCreated( kv )
-	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
-	if IsServer() then
-		local damage = self:GetAbility():GetSpecialValueFor( "damage" )
-	end
+function modifier_axe_counter_helix_lua:OnCreated()
+	self.radius = self:GetAbility():GetSpecialValueFor("AbilityCastRange")
+
+	if not IsServer() then return end
+	
+	self.chance = self:GetAbility():GetSpecialValueFor("trigger_chance")
+	self.damage = self:GetAbility():GetSpecialValueFor("damage")
 end
 
-function modifier_axe_counter_helix_lua:OnRefresh( kv )
-	if IsServer() then
-		local damage = self:GetAbility():GetSpecialValueFor( "damage" )
-
-	end
-end
-
-function modifier_axe_counter_helix_lua:OnDestroy( kv )
+function modifier_axe_counter_helix_lua:OnRefresh()
+	if not IsServer() then return end
+	
+	self.chance = self:GetAbility():GetSpecialValueFor("trigger_chance")
+	self.damage = self:GetAbility():GetSpecialValueFor("damage")
 end
 
 function modifier_axe_counter_helix_lua:DeclareFunctions()
-	local funcs = {
+	return {
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 	}
-	return funcs
 end
 
-function modifier_axe_counter_helix_lua:OnAttackLanded( params )
-	if IsServer() then
-	if self:GetAbility():IsFullyCastable() then
-		self.chance = self:GetAbility():GetSpecialValueFor( "trigger_chance" )
-		self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
-		
-	if self:GetAbility() and not self:GetCaster():PassivesDisabled() and ((params.target == self:GetParent() and not params.attacker:IsBuilding() and not params.attacker:IsOther() and params.attacker:GetTeamNumber() ~= params.target:GetTeamNumber()) or (params.attacker == self:GetCaster() and HasTalent(self:GetCaster(),"special_bonus_axe_5") )) then
-		
-	caster = self:GetCaster()
-	damage_type = DAMAGE_TYPE_PURE
-	damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
-	
-	if HasTalent(self:GetCaster(),"special_bonus_axe_1") then
-		self.damage = self.damage + 90
-	end
-		
-		
-	if HasTalent(self:GetCaster(),"special_bonus_axe_2") then
-		if caster:HasModifier("modifier_axe_berserkers_call_lua") then 
-			self.chance = 100
-		end
-	end
-			
-		local c = RandomInt(1,100)
-				
-		if c <= self.chance then 
+local function hasTalent(unit, talentName)
+	local talent = unit:FindAbilityByName(talentName)
 
+    return talent and talent:GetLevel() > 0 or false
+end
 
-		-- find enemies
-		local enemies = FindUnitsInRadius(
-			self:GetCaster():GetTeamNumber(),	-- int, your team number
-			self:GetCaster():GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
-			self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
-			0,	-- int, order filter
-			false	-- bool, can grow cache
-		)
+function modifier_axe_counter_helix_lua:OnAttackLanded(params)
+	if not IsServer() then return end
 	
+	local ability = self:GetAbility()
+
+	if not ability or not ability:IsFullyCastable() then return end
+
+	local caster = self:GetCaster()
+
+	if not caster or caster:PassivesDisabled() then return end
+
+	if params.attacker ~= caster or not hasTalent(caster, "special_bonus_unique_axe_4") then
+		if params.target ~= caster then return end
+		if params.attacker:IsBuilding() then return end
+		if params.attacker:IsOther() then return end
+		if params.attacker:GetTeamNumber() == params.target:GetTeamNumber() then return end
+	end
+	
+	if not hasTalent(caster, "special_bonus_unique_axe_1") or not caster:HasModifier("modifier_axe_berserkers_call_lua") then
+		if RandomInt(1, 100) > self.chance then return end
+	end
+
+	local damage = self.damage
+
+	if hasTalent(caster, "special_bonus_unique_axe_3") then
+		damage = damage + caster:GetBaseDamageMin() * self:GetAbility():GetSpecialValueFor("base_damage") / 100
+	end
+
+	-- find enemies
+	local enemies = FindUnitsInRadius(
+		caster:GetTeamNumber(),	-- int, your team number
+		caster:GetOrigin(),	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
+		0,	-- int, order filter
+		false	-- bool, can grow cache
+	)
+
 ---------------------------------------------------
-		self.damageTable = {
-			-- victim = target,
-			attacker = self:GetCaster(),
-			damage = self.damage,
-			damage_type = damage_type,
-			ability = self:GetAbility(), --Optional.
-			damage_flags = damage_flags, --Optional.
-		}
+	local damageTable = {
+		-- victim = target,
+		attacker = caster,
+		damage = damage,
+		damage_type = DAMAGE_TYPE_PURE,
+		ability = ability, --Optional.
+		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, --Optional.
+	}
 
-		-- damage
-		for _,enemy in pairs(enemies) do
-			self.damageTable.victim = enemy
-			ApplyDamage( self.damageTable )
-		end
-
-		-- cooldown
-		self:GetAbility():UseResources( false,false, false, true )
-
-		-- effects
-		self:PlayEffects()
+	-- damage
+	for i = 1, #enemies do
+		damageTable.victim = enemies[i]
+		ApplyDamage(damageTable)
 	end
+
+	-- cooldown
+	if not caster:HasModifier("modifier_axe_enrage_lua") then
+		ability:UseResources( false,false, false, true )
 	end
-end
-end
+
+	-- effects
+	self:PlayEffects()
 end
 
 --------------------------------------------------------------------------------
@@ -131,11 +133,7 @@ function modifier_axe_counter_helix_lua:PlayEffects()
 	-- Create Sound
 	EmitSoundOn( sound_cast, self:GetParent() )
 end
-
-
-function HasTalent(unit, talentName)
-    if unit:HasAbility(talentName) then
-        if unit:FindAbilityByName(talentName):GetLevel() > 0 then return true end
+ 0 then return true end
     end
     return false
 end

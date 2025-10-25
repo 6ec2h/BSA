@@ -1,6 +1,13 @@
 "DOTAAbilities"
-{	
-"spectre_step"
+{
+	"special_bonus_unique_spectre_3"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	
+	"spectre_step"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_spectre/spectre_step/spectre_step.lua"
@@ -18,8 +25,8 @@
 		{
 			"attackspeed_bonus"		
 			{
-				"value"					"20 40 60 80"
-				"LinkedSpecialBonus"	"special_bonus_spectre_tal3"
+				"value"								"20 40 60 80"
+				"special_bonus_unique_spectre_3"	"+30"
 		
 			}	
 			"duration"				"6"

@@ -453,15 +453,19 @@ function modifier_desolator_set:IsPurgable()
 	return true 
 end
 
+function modifier_desolator_set:GetTexture()
+	return "set_desolator"
+end
+
 function modifier_desolator_set:OnCreated(data)
 	if not IsServer() then
 		return
 	end
-	self.interval = false
 	self.armor_reduction = 0
 	if data.armor_reduction then
 		self.armor_reduction = data.armor_reduction
 	end
+	self.interval = false
 	self:SetHasCustomTransmitterData( true )
 end
 
@@ -524,15 +528,19 @@ function modifier_magic_desolator_set:IsPurgable()
 	return true 
 end
 
+function modifier_magic_desolator_set:GetTexture()
+	return "set_magic_desolator"
+end
+
 function modifier_magic_desolator_set:OnCreated(data)
 	if not IsServer() then
 		return
 	end
-	self.interval = false
 	self.armor_reduction = 0
 	if data.armor_reduction then
 		self.armor_reduction = data.armor_reduction
 	end
+	self.interval = false
 	self:SetHasCustomTransmitterData( true )
 end
 

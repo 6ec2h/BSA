@@ -30,6 +30,10 @@ function modifier_item_magethorn_lua:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
+function modifier_item_magethorn_lua:OnCreated()
+	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+end
+
 function modifier_item_magethorn_lua:DeclareFunctions() return {
 	MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 	MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -37,15 +41,15 @@ function modifier_item_magethorn_lua:DeclareFunctions() return {
 } end
 
 function modifier_item_magethorn_lua:GetModifierBonusStats_Strength()
-	return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+	return self.bonus_all_stats
 end
 
 function modifier_item_magethorn_lua:GetModifierBonusStats_Agility()
-	return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+	return self.bonus_all_stats
 end
 
 function modifier_item_magethorn_lua:GetModifierBonusStats_Intellect()
-	return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+	return self.bonus_all_stats
 end
 
 ------------------------------------------------------------------------

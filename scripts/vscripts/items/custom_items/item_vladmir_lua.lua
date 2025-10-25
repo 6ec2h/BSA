@@ -62,24 +62,32 @@ function modifier_item_vladmir_aura_lua:IsAuraActiveOnDeath() return false end
 
 function modifier_item_vladmir_aura_lua:OnCreated()
 --	if not IsServer() then return end
+
 	self.armor_aura = self:GetAbility():GetSpecialValueFor("armor_aura")
 	self.mana_regen_aura = self:GetAbility():GetSpecialValueFor("mana_regen_aura")
 	self.lifesteal_aura = self:GetAbility():GetSpecialValueFor("lifesteal_aura")
 	self.damage_aura = self:GetAbility():GetSpecialValueFor("damage_aura")
 	self.aura_radius = self:GetAbility():GetSpecialValueFor("aura_radius")
 end
+function modifier_item_vladmir_aura_lua:OnRefresh()
+	self:OnCreated()
+end
 
 function modifier_item_vladmir_aura_lua:DeclareFunctions()
 	return {
-
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_TOOLTIP,
 		MODIFIER_ATTRIBUTE_NONE
 	}
+end
+
+function modifier_item_vladmir_aura_lua:OnTooltip()
+	return self.lifesteal_aura
 end
 
 function modifier_item_vladmir_aura_lua:GetModifierBaseDamageOutgoing_Percentage()

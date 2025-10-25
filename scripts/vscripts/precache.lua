@@ -90,6 +90,8 @@ return function(context)
 		PrecacheResource( "particle_folder", "particles/hny/", context )
 		
 		
+		PrecacheResource( "particle", "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf", context )
 		
 		
 		PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf" , context)

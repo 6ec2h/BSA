@@ -1,5 +1,12 @@
 "DOTAAbilities"
-{	
+{
+	"special_bonus_unique_spectre_2"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"spectre_desolate_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -14,9 +21,9 @@
 		{
 			"bonus_damage"
 			{
-				"value"					"5 9 13 17"
-				"LinkedSpecialBonus"	"special_bonus_spectre_tal2"
-				"CalculateSpellDamageTooltip" "0"
+				"value"								"5 9 13 17"
+				"special_bonus_unique_spectre_2"	"+5"
+				"CalculateSpellDamageTooltip" 		"0"
 			}	
 		}
 	}

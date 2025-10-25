@@ -13,14 +13,10 @@ end
 
 modifier_item_descrit_lua = class({})
 
-function modifier_item_descrit_lua:IsHidden()
-	return true
-end
-
-function modifier_item_descrit_lua:IsPurgable()
-	return false
-end
-
+function modifier_item_descrit_lua:IsHidden() return true end
+function modifier_item_descrit_lua:IsPurgable()	return false end
+function modifier_item_descrit_lua:RemoveOnDeath() return false end
+function modifier_item_descrit_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_item_descrit_lua:OnCreated()
 	if IsServer() then
@@ -31,19 +27,16 @@ function modifier_item_descrit_lua:OnCreated()
 	end
 end
 
+function modifier_item_descrit_lua:OnDestroy()
+	if IsServer() then
+		self:GetParent():ResetRangedProjectileName()
+	end
+end
+
 function ChangeAttackProjectileImba(unit)
 	local particle_deso = "particles/items_fx/desolator_projectile.vpcf"
 	unit:SetRangedProjectileName(particle_deso)
-end	
-	
-function modifier_item_descrit_lua:RemoveOnDeath()	
-	return false 
 end
-
-function modifier_item_descrit_lua:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
 
 function modifier_item_descrit_lua:OnCreated()
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
@@ -60,26 +53,25 @@ function modifier_item_descrit_lua:DeclareFunctions()
 	}
 end
 
-
 function modifier_item_descrit_lua:OnAttackLanded( keys )
-	if IsServer() then
-		local owner = self:GetParent()
+	if not IsServer() then return end
 
-		if owner ~= keys.attacker then
-			return end
+	local owner = self:GetParent()
+	if owner ~= keys.attacker then return end
 
-		local target = keys.target
-		if owner:IsIllusion() then
-			return end
+	local target = keys.target
+	if owner:IsIllusion() then return end
 
-		target:AddNewModifier(keys.attacker, self:GetAbility(), "modifier_item_descrit_lua_debuff", {duration = self.duration * (1 - target:GetStatusResistance())})
-	end
+	target:AddNewModifier(keys.attacker, self:GetAbility(), "modifier_item_descrit_lua_debuff", {duration = self.duration * (1 - target:GetStatusResistance())})
 end
 
 function modifier_item_descrit_lua:GetModifierPreAttack_CriticalStrike(keys)
-	if self:GetAbility() and (keys.target and not keys.target:IsOther() and not keys.target:IsBuilding() and keys.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber()) and RollPseudoRandom(self:GetAbility():GetSpecialValueFor("crit_chance"), self) then
-		return self:GetAbility():GetSpecialValueFor("crit_multiplier")
-	end
+	if keys.target then return end
+	if keys.target:IsOther() or keys.target:IsBuilding() then return end
+	if keys.target:GetTeamNumber() == self:GetParent():GetTeamNumber() then return end
+	if not RollPseudoRandom(self.crit_chance, self) then return end
+
+	return self.crit_multiplier
 end
 
 function modifier_item_descrit_lua:GetModifierPreAttack_BonusDamage()
@@ -101,9 +93,13 @@ function modifier_item_descrit_lua_debuff:IsDebuff() return true end
 function modifier_item_descrit_lua_debuff:IsPurgable() return true end
 
 function modifier_item_descrit_lua_debuff:OnCreated()
-	if not self:GetAbility() then self:Destroy() return end
 	local ability = self:GetAbility()
-	self.armor_reduction = (-1) * ability:GetSpecialValueFor("corruption")
+	if not ability then
+		if IsServer() then self:Destroy() end
+		return
+	end
+
+	self.armor_reduction = - ability:GetSpecialValueFor("corruption")
 end
 
 function modifier_item_descrit_lua_debuff:DeclareFunctions()

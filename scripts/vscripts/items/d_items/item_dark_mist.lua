@@ -105,6 +105,10 @@ end
 
 modifier_item_dark_mist_aura_self = class({})
 
+function modifier_item_dark_mist_aura_self:IsHidden()
+	return true
+end
+
 function modifier_item_dark_mist_aura_self:DeclareFunctions ()
     local funcs = {
         MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,

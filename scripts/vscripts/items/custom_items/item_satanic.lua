@@ -26,7 +26,9 @@ function modifier_satanic_lua:RemoveOnDeath() return false end
 function modifier_satanic_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_satanic_lua:OnCreated()
-self.lifesteal_aura = self:GetAbility():GetSpecialValueFor("lifesteal_pct")
+	self.lifesteal_aura = self:GetAbility():GetSpecialValueFor("lifesteal_pct")
+	self.damage_bonus = self:GetAbility():GetSpecialValueFor("damage_bonus")
+	self.strength_bonus = self:GetAbility():GetSpecialValueFor("strength_bonus")
 end
 
 function modifier_satanic_lua:OnDestroy()
@@ -60,15 +62,11 @@ function modifier_satanic_lua:PlayEffects( target )
 end
 
 function modifier_satanic_lua:GetModifierPreAttack_BonusDamage()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("damage_bonus")
-	end
+	return self.damage_bonus
 end
 
 function modifier_satanic_lua:GetModifierBonusStats_Strength()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("strength_bonus")
-	end
+	return self.strength_bonus
 end
 
 ------------------------------------------------------------------------------------------------------
@@ -80,12 +78,17 @@ function modifier_satanic_lua_active:GetEffectName()
 end
 
 function modifier_satanic_lua_active:OnCreated()
-self.lifesteal_aura = self:GetAbility():GetSpecialValueFor("lifesteal_bonus")
+	self.lifesteal_aura = self:GetAbility():GetSpecialValueFor("lifesteal_bonus")
+end
+
+function modifier_satanic_lua_active:OnTooltip()
+	return self.lifesteal_aura
 end
 
 function modifier_satanic_lua_active:DeclareFunctions()
 	return {
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_TOOLTIP,
 	}
 end
 

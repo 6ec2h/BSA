@@ -30,6 +30,7 @@ function modifier_bristleback_warpath_lua:OnCreated()
 
 	self.damage_per_stack		= self.ability:GetSpecialValueFor("damage_per_stack")
 	self.move_speed_per_stack	= self.ability:GetSpecialValueFor("move_speed_per_stack")
+	self.hp_regen_amp_per_stack		= self.ability:GetSpecialValueFor("hp_regen_amp_per_stack")
 	self.stack_duration			= self.ability:GetSpecialValueFor("stack_duration")
 	self.max_stacks				= self.ability:GetSpecialValueFor("max_stacks")
 	
@@ -69,7 +70,8 @@ function modifier_bristleback_warpath_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
         MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
     }
 end
 
@@ -80,8 +82,8 @@ function modifier_bristleback_warpath_lua:OnAttackLanded( params )
 			if self:GetParent():PassivesDisabled() then
 				return 0
 			end
-			if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi9")~=nil then
-				if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi9"):GetLevel() > 0 then 
+			if self:GetCaster():FindAbilityByName("special_bonus_unique_bristleback_3")~=nil then
+				if self:GetCaster():FindAbilityByName("special_bonus_unique_bristleback_3"):GetLevel() > 0 then 
 				great_cleave_damage = self:GetStackCount()*10
 					local target = params.target
 					if target ~= nil and target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
@@ -103,6 +105,10 @@ end
 
 function modifier_bristleback_warpath_lua:GetModifierMoveSpeedBonus_Constant(keys)
 	return self.move_speed_per_stack * self:GetStackCount()
+end
+
+function modifier_bristleback_warpath_lua:GetModifierHPRegenAmplify_Percentage()
+	return self.hp_regen_amp_per_stack * self:GetStackCount()
 end
 
 -- Gonna ignore the mechanic that updates stacks for illusions too for now

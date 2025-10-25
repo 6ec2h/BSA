@@ -23,7 +23,7 @@ function weaver_time_lapse_custom:OnSpellStart()
         self:GetCaster():Stop()
         self:GetCaster():SetHealth(math.max(self.intrinsic_modifier.instances_health[1], 1))
         self:GetCaster():SetMana(self.intrinsic_modifier.instances_mana[1])
-        FindClearSpaceForUnit(self:GetCaster(), self.intrinsic_modifier.instances_position[1], false)
+        FindClearSpaceForUnit(self:GetCaster(), self.intrinsic_modifier.instances_position[1], true)
     end
 end
 
@@ -56,4 +56,4 @@ function modifier_weaver_time_lapse_custom:OnIntervalThink()
 			table.remove(self.instances_position, 1)
 		end
 	end
-end
+endd

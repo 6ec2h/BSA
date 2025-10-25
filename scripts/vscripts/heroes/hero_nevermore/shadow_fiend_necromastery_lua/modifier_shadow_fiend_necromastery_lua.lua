@@ -23,10 +23,6 @@ end
 function modifier_shadow_fiend_necromastery_lua:OnCreated( kv )
 	self.soul_release = self:GetAbility():GetSpecialValueFor("soul_release")
 	self.soul_damage = self:GetAbility():GetSpecialValueFor("soul_damage")
-
-	if IsServer() then
-		self:SetStackCount(0)
-	end
 end
 
 function modifier_shadow_fiend_necromastery_lua:OnRefresh( kv )
@@ -47,13 +43,19 @@ end
 
 function modifier_shadow_fiend_necromastery_lua:OnDeath( params )
 	if IsServer() then
-		self:DeathLogic( params )
-		self:KillLogic( params )
+		-- Проверяем, кто умер
+		if params.unit == self:GetParent() then
+			-- Умер сам герой - применяем DeathLogic
+			self:DeathLogic( params )
+		else
+			-- Умер враг - применяем KillLogic
+			self:KillLogic( params )
+		end
 	end
 end
 
 function modifier_shadow_fiend_necromastery_lua:GetModifierPreAttack_BonusDamage( params )
-	if not self:GetParent():IsIllusion() then        
+	if not self:GetParent():IsIllusion() then
 		return self:GetStackCount() * self.soul_damage
 	end
 end
@@ -67,44 +69,48 @@ never_creeps = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbe
 function modifier_shadow_fiend_necromastery_lua:DeathLogic( params )
 	local caster = self:GetCaster()
 	local unit = params.unit
-	local pass = false
-	if unit==self:GetParent() and params.reincarnate==false then
-		pass = true
-	end
+	
+	-- Проверяем, что умер именно этот герой и нет реинкарнации
+	if unit ~= self:GetParent() or params.reincarnate then return end
 
-	-- logic
-	if pass then           
-	if self:GetCaster():FindAbilityByName("special_bonus_nevermore_agi11")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_nevermore_agi11"):GetLevel() > 0 then 
-		 
-		self.soul_release = self.soul_release + 0.10001
-			if self.soul_release > 1 then 
-				self.soul_release = 1
-			end
-			print( self.soul_release)
-		 end
-	 end
-		local after_death = math.floor(self:GetStackCount() * self.soul_release)
-		self:SetStackCount(math.max(after_death,1))
-	end
+	local special_bonus_unique_nevermore_2 = caster:FindAbilityByName("special_bonus_unique_nevermore_2")
+
+	if special_bonus_unique_nevermore_2 and special_bonus_unique_nevermore_2:GetLevel() > 0 then return end
+
+	-- При смерти героя теряем часть душ
+	self:SetStackCount(math.max(1, math.floor(self:GetStackCount() * self.soul_release)))
 end
 
 function modifier_shadow_fiend_necromastery_lua:KillLogic( params )
 	local target = params.unit
 	local attacker = params.attacker
-	local unit_name = params.unit:GetUnitName()
+	local unit_name = target:GetUnitName()
+	
+	-- Проверяем базовые условия
+	if attacker ~= self:GetParent() or target == self:GetParent() or not attacker:IsAlive() then
+		return
+	end
+	
+	-- Проверяем, что цель не иллюзия и не здание
+	if target:IsIllusion() or target:IsBuilding() then
+		return
+	end
+	
+	-- Проверяем, что пассивка не отключена
+	if self:GetParent():PassivesDisabled() then
+		return
+	end
+	
+	-- Проверяем, что убитая цель в списке разрешенных
 	local pass = false
-	if attacker==self:GetParent() and target~=self:GetParent() and attacker:IsAlive() then
-		if (not target:IsIllusion()) and (not target:IsBuilding()) then
-			for _,current_name in pairs(never_creeps) do
-				if current_name == unit_name and self:GetParent() == attacker then
+	for _, current_name in pairs(never_creeps) do
+		if current_name == unit_name then
 			pass = true
-		end
-		end
+			break
 		end
 	end
-
-	if pass and (not self:GetParent():PassivesDisabled()) then
+	
+	if pass then
 		self:AddStack(1)
 	end
 end

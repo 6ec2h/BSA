@@ -26,17 +26,12 @@ end
 
 function modifier_spectre_desolate_lua:OnAttackLanded( params )
 	if IsServer() and (not self:GetParent():PassivesDisabled()) and params.attacker == self:GetParent() and self:GetParent():GetTeamNumber() ~= params.target:GetTeamNumber() then
-		local talent = self:GetCaster():FindAbilityByName("special_bonus_spectre_tal2")
-		if talent ~= nil and talent:GetLevel() > 0 then
-			self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" ) + 5
-		else
-			self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
-		end
+		self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 
 		local damageTable = {
 			victim = params.target,
 			attacker = self:GetParent(),
-			damage = self:GetParent():GetAttackDamage()/100*self.damage,
+			damage = self:GetParent():GetAttackDamage() / 100 * self.damage,
 			damage_type = DAMAGE_TYPE_PURE,
 			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 		}
@@ -46,6 +41,9 @@ function modifier_spectre_desolate_lua:OnAttackLanded( params )
     	local particle_name = "particles/units/heroes/hero_spectre/spectre_desolate.vpcf"
     	local particle = ParticleManager:CreateParticle(particle_name, PATTACH_POINT, params.target)
         ParticleManager:SetParticleControl(particle, 0, Vector( params.target:GetAbsOrigin().x, params.target:GetAbsOrigin().y, GetGroundPosition(params.target:GetAbsOrigin(), params.target).z + 140))                                                
+        ParticleManager:SetParticleControlForward(particle, 0, self:GetParent():GetForwardVector())
+	end
+endPosition(params.target:GetAbsOrigin(), params.target).z + 140))                                                
         ParticleManager:SetParticleControlForward(particle, 0, self:GetParent():GetForwardVector())
 	end
 end

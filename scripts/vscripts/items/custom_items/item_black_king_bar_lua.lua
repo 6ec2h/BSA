@@ -15,7 +15,7 @@ function item_black_king_bar_lua1:OnSpellStart()
     local modifier_bkb = "modifier_item_black_king_bar_lua_buff"
 	
 	if ability:GetName() == "item_black_king_bar_lua3" then
-	caster = self:GetCursorTarget()
+		caster = self:GetCursorTarget()
 	end
     local duration = ability:GetSpecialValueFor("duration")
     local max_level = ability:GetSpecialValueFor("max_level")
@@ -44,19 +44,15 @@ function modifier_item_black_king_bar_lua:RemoveOnDeath() return false end
 function modifier_item_black_king_bar_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_item_black_king_bar_lua:OnCreated()
-
-	
-    
-
     self.bonus_strength = self:GetAbility():GetSpecialValueFor("bonus_strength")
     self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")    
 end
 
 function modifier_item_black_king_bar_lua:DeclareFunctions()
-    local decFuncs = {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-                      MODIFIER_PROPERTY_STATS_STRENGTH_BONUS}
-
-    return decFuncs
+    return {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+        MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+	}
 end
 
 function modifier_item_black_king_bar_lua:GetModifierPreAttack_BonusDamage()
@@ -74,30 +70,34 @@ modifier_item_black_king_bar_lua_buff = class({})
 
 function modifier_item_black_king_bar_lua_buff:IsHidden() return false end
 function modifier_item_black_king_bar_lua_buff:IsPurgable() return false end
-function modifier_item_black_king_bar_lua_buff:IsDebuff() return false end
 
 function modifier_item_black_king_bar_lua_buff:GetEffectName()
     return "particles/items_fx/black_king_bar_avatar.vpcf"
 end
 
 function modifier_item_black_king_bar_lua_buff:OnCreated()
-    if IsServer() then
-        if not self:GetAbility() then self:Destroy() end
-    end
-
-    
-
     self.model_scale = self:GetAbility():GetSpecialValueFor("model_scale")
 end
-
 
 function modifier_item_black_king_bar_lua_buff:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
 end
 
 function modifier_item_black_king_bar_lua_buff:CheckState()
-    local state = {[MODIFIER_STATE_MAGIC_IMMUNE] = true}
-    return state
+    return {
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true
+	}
+end
+
+function modifier_item_black_king_bar_lua_buff:DeclareFunctions()
+    return {
+		MODIFIER_PROPERTY_MODEL_SCALE,
+	}
+end
+
+function modifier_item_black_king_bar_lua_buff:GetModifierModelScale()
+    return self.model_scale
+endurn state
 end
 
 function modifier_item_black_king_bar_lua_buff:DeclareFunctions()

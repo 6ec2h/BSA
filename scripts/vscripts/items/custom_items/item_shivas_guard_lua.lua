@@ -67,6 +67,9 @@ modifier_item_shivas_guard_slow_lua = class({})
 function modifier_item_shivas_guard_slow_lua:OnCreated()
 	self.blast_movement_speed = self:GetAbility():GetSpecialValueFor("blast_movement_speed")
 end
+function modifier_item_shivas_guard_slow_lua:OnRefresh()
+	self:OnCreated()
+end
 
 function modifier_item_shivas_guard_slow_lua:DeclareFunctions()
 	return{
@@ -94,6 +97,9 @@ function modifier_item_shivas_guard_aura_lua:IsAuraActiveOnDeath() return false 
 
 function modifier_item_shivas_guard_aura_lua:OnCreated()
 	self.hp_regen_degen_aura = self:GetAbility():GetSpecialValueFor("hp_regen_degen_aura")
+end
+function modifier_item_shivas_guard_aura_lua:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_shivas_guard_aura_lua:DeclareFunctions()
@@ -127,8 +133,12 @@ function modifier_item_shivas_guard_lua:GetAttributes()
 end
 
 function modifier_item_shivas_guard_lua:OnCreated()
+	self.aura_radius = self:GetAbility():GetSpecialValueFor("aura_radius")
 	self.bonus_intellect = self:GetAbility():GetSpecialValueFor("bonus_intellect")
 	self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
+end
+function modifier_item_shivas_guard_lua:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_shivas_guard_lua:DeclareFunctions()
@@ -149,7 +159,7 @@ end
 function modifier_item_shivas_guard_lua:IsAura()						return true end
 function modifier_item_shivas_guard_lua:IsAuraActiveOnDeath() 			return false end
 
-function modifier_item_shivas_guard_lua:GetAuraRadius()				return self:GetAbility():GetSpecialValueFor("aura_radius") end
+function modifier_item_shivas_guard_lua:GetAuraRadius()				return self.aura_radius end
 function modifier_item_shivas_guard_lua:GetAuraSearchFlags()			return DOTA_UNIT_TARGET_FLAG_NONE end
 function modifier_item_shivas_guard_lua:GetAuraSearchTeam()			return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_item_shivas_guard_lua:GetAuraSearchType()			return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end

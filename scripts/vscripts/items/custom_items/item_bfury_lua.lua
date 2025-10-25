@@ -10,30 +10,19 @@ function item_bfury_lua1:GetIntrinsicModifierName()
 	return "modifier_item_bfury_lua"
 end
 
-function modifier_item_bfury_lua:IsHidden()
-	return true
-end
-
-function modifier_item_bfury_lua:IsPurgable()
-	return false
-end
-
-function modifier_item_bfury_lua:DestroyOnExpire()
-	return false
-end
-
-function modifier_item_bfury_lua:RemoveOnDeath()	
-	return false 
-end
+function modifier_item_bfury_lua:IsHidden()	return true end
+function modifier_item_bfury_lua:IsPurgable() return false end
 
 function modifier_item_bfury_lua:OnCreated()
-	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
-	self.bonus_health_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
-	self.bonus_mana_regen = self:GetAbility():GetSpecialValueFor("bonus_mana_regen")
-	self.cleave_damage_percent = self:GetAbility():GetSpecialValueFor("cleave_damage_percent")
-	self.cleave_ending_width = self:GetAbility():GetSpecialValueFor("cleave_ending_width")
-	self.quelling_bonus = self:GetAbility():GetSpecialValueFor("quelling_bonus")
-	self.quelling_bonus_ranged = self:GetAbility():GetSpecialValueFor("quelling_bonus_ranged")
+	local ability = self:GetAbility()
+
+	self.bonus_damage = ability:GetSpecialValueFor("bonus_damage")
+	self.bonus_health_regen = ability:GetSpecialValueFor("bonus_health_regen")
+	self.bonus_mana_regen = ability:GetSpecialValueFor("bonus_mana_regen")
+	self.cleave_damage_percent = ability:GetSpecialValueFor("cleave_damage_percent")
+	self.cleave_ending_width = ability:GetSpecialValueFor("cleave_ending_width")
+	self.quelling_bonus = ability:GetSpecialValueFor("quelling_bonus")
+	self.quelling_bonus_ranged = ability:GetSpecialValueFor("quelling_bonus_ranged")
 end
 
 function modifier_item_bfury_lua:DeclareFunctions()
@@ -74,9 +63,9 @@ function modifier_item_bfury_lua:OnAttackLanded(keys)
     ) then return end
     
     local ability = self:GetAbility()
-    local damage = keys.original_damage
+    local damage = keys.damage
     local damageMod = ability:GetSpecialValueFor( "cleave_damage_percent" )
-    local radius = ability:GetSpecialValueFor( "cleave_distance" )
+    local radius = ability:GetSpecialValueFor( "cleave_distance" ) + (keys.attacker:Script_GetAttackRange() * ability:GetSpecialValueFor( "bonus_cleave_distance" ))
     local particle_cast = 'particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf'
     
     damageMod = damageMod * 0.01
@@ -97,7 +86,7 @@ function modifier_item_bfury_lua:OnAttackLanded(keys)
 					enemy:AddNewModifier(self:GetParent(), item, "modifier_item_bfury_lua_debuff", {duration = 5})
 				end
 			end
-			ApplyDamage({victim = enemy, attacker = self:GetParent(), damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+			ApplyDamage({victim = enemy, attacker = self:GetParent(), damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
 		end
 	end
 	self:PlayEffects1(direction )
@@ -195,5 +184,7 @@ function modifier_item_bfury_lua_debuff:DeclareFunctions()
 end
 
 function modifier_item_bfury_lua_debuff:GetModifierPhysicalArmorBonus()
+	return self.count
+end:GetModifierPhysicalArmorBonus()
 	return self.count
 end

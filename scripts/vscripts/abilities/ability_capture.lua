@@ -39,7 +39,7 @@ function ability_capture_lua:OnChannelFinish( bInterrupted )
 					hRelay:Trigger(nil,nil)	
 					hero:RespawnHero(false, false)
 					hero:SetAbsOrigin( point )
-					FindClearSpaceForUnit(hero, point, false) 
+					FindClearSpaceForUnit(hero, point, true) 
 					hero:Stop()
 					hero:RemoveModifierByName("modifier_fountain_invulnerability")
 					UTIL_Remove(item_ground)
@@ -79,3 +79,4 @@ end
 function modifier_magic_resist_lua:GetModifierMagicalResistanceDirectModification()
 	return -0.1 * self:GetParent():GetIntellect(true)
 end
+

@@ -86,7 +86,7 @@ end
 
 function modifier_item_des_blade_effect:OnDestroy()
 	if IsServer() then
-		ChangeAttackProjectileImba(self:GetParent())
+		self:GetParent():ResetRangedProjectileName()
 	end
 end
 
@@ -118,6 +118,7 @@ modifier_item_des_blade_debuff = class({})
 function modifier_item_des_blade_debuff:IsHidden() return false end
 function modifier_item_des_blade_debuff:IsDebuff() return true end
 function modifier_item_des_blade_debuff:IsPurgable() return true end
+function modifier_item_des_blade_debuff:GetTexture() return "ancient_amulet" end
 
 function modifier_item_des_blade_debuff:OnCreated()
 	if not self:GetAbility() then self:Destroy() return end

@@ -32,7 +32,7 @@ function modifier_nevermore_aura:GetModifierAura()
 end
 
 function modifier_nevermore_aura:GetAuraRadius()
-return 750
+	return self.radius
 end
 
 function modifier_nevermore_aura:GetAuraSearchTeam()
@@ -44,6 +44,7 @@ function modifier_nevermore_aura:GetAuraSearchType()
 end
 
 function modifier_nevermore_aura:OnCreated( kv )
+	self.radius = self:GetAbility():GetSpecialValueFor("AbilityCastRange")
 end
 
 ----------------------------------------------------------------------------------------------------
@@ -55,7 +56,7 @@ function modifier_nevermore_aura_effect:IsHidden()
 end
 
 function modifier_nevermore_aura_effect:IsDebuff()
-	return false
+	return true
 end
 
 function modifier_nevermore_aura_effect:IsPurgable()
@@ -71,21 +72,15 @@ function modifier_nevermore_aura_effect:OnRefresh( kv )
 	self.reduction = self:GetAbility():GetSpecialValueFor( "reduction" )
 end
 
-function modifier_nevermore_aura_effect:OnDestroy( kv )
-
-end
-
 function modifier_nevermore_aura_effect:DeclareFunctions()
-	local funcs = {
+	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 	}
-
-	return funcs
 end
 
 function modifier_nevermore_aura_effect:GetModifierPhysicalArmorBonus()
-	tal = 1
-	local abil = self:GetCaster():FindAbilityByName("special_bonus_nevermore_agi6")             
+	return -self.reduction
+endil = self:GetCaster():FindAbilityByName("special_bonus_nevermore_agi6")             
 	if abil ~= nil then 
 	tal = 1.5
 	end

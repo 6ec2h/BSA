@@ -1,5 +1,6 @@
 -- pcall(require, "encrypt")
 
+require("talents_stats")
 require('libraries/notifications')
 require("libraries/timers")
 require("libraries/animations")
@@ -21,7 +22,7 @@ require("hero_builder")
 
 
 _G.key = GetDedicatedServerKeyV3("BSAKEY")
-_G.host =  "http://boss-survival-adventure.com"
+_G.host = "http://boss-survival-adventure.com"
 
 if CAddonAdvExGameMode == nil then
 	CAddonAdvExGameMode = class({})
@@ -141,10 +142,17 @@ function CAddonAdvExGameMode:OnChat( event )
 		Timers:CreateTimer(6, function()
 			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end)
+		Shop:booster_game_end("WIN")
 	end
 	if IsAdmin(steamID) and text == "test" then
+		local player = PlayerResource:GetPlayer(pid)
 		local hero = PlayerResource:GetSelectedHeroEntity( pid )
-		inventory:add_new_item_in_inventory(0, data)
+		LinkLuaModifier( "modifier_damage_challenge", "modifiers/modifier_damage_challenge", LUA_MODIFIER_MOTION_NONE )
+		local unit = CreateUnitByName("npc_unit_damage_challenge", hero:GetOrigin(), false, nil, nil, DOTA_TEAM_BADGUYS)
+		unit:AddNewModifier(unit, nil, "modifier_damage_challenge", {})
+
+		-- local hero = PlayerResource:GetSelectedHeroEntity( pid )
+		-- Shop:get_booster_data({PlayerID = pid})
 	end
 	if IsAdmin(steamID) and text == "npc" then
 		local point = hero:GetOrigin()
@@ -604,6 +612,7 @@ function CAddonAdvExGameMode:_CheckForDefeat()
 					Shop:add_pr(0, 0, 0, 0, 2, playerID, "lose", 0)
 				end
 				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+				Shop:booster_game_end("LOSE")
 			else
 				self._defeatcounter = 5
 				self._ischeckingdefeat = false
@@ -839,6 +848,7 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 
 	if unitName == "npc_snow" or unitName == "npc_snow2" or unitName == "npc_snow3" then
 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		Shop:booster_game_end("LOSE")
 	end
 	
 ----------------------------------------------------------------------боксы
@@ -859,6 +869,7 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 		Timers:CreateTimer(6, function()
 			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end)
+		Shop:booster_game_end("WIN")
 	end
 
 ---------------------------------------------------------------------------------
@@ -928,7 +939,9 @@ function CAddonAdvExGameMode:OnNpcInteract(data)
 		elseif name == "#trade" then
 			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateTrade",{})
 		elseif name == "#dungeon_master" then
-			Shop:get_difficulty_data({PlayerID = pid})
+			-- Shop:get_difficulty_data({PlayerID = pid})
+			-- Shop:get_booster_profile({PlayerID = pid})
+			Shop:get_booster_data({PlayerID = pid})
 		end
 	else
 		rules:DisplayError(pid, "#to_far_away")

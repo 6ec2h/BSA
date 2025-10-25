@@ -1,10 +1,6 @@
 item_butterfly_lua1 = item_butterfly_lua1 or class({})
 item_butterfly_lua2 = item_butterfly_lua1 or class({})
 item_butterfly_lua3 = item_butterfly_lua1 or class({})
-item_butterfly_lua4 = item_butterfly_lua1 or class({})
-item_butterfly_lua5 = item_butterfly_lua1 or class({})
-item_butterfly_lua6 = item_butterfly_lua1 or class({})
-item_butterfly_lua7 = item_butterfly_lua1 or class({})
 
 LinkLuaModifier("modifier_item_butterfly_lua", 'items/custom_items/item_butterfly_lua.lua', LUA_MODIFIER_MOTION_NONE)
 
@@ -16,29 +12,19 @@ end
 
 modifier_item_butterfly_lua = class({})
 
-function modifier_item_butterfly_lua:IsHidden()
-	return true
-end
+function modifier_item_butterfly_lua:IsHidden() return true end
+function modifier_item_butterfly_lua:IsPurgable() return false end
+function modifier_item_butterfly_lua:RemoveOnDeath() return false end
 
-function modifier_item_butterfly_lua:IsPurgable()
-	return false
-end
-
-function modifier_item_butterfly_lua:RemoveOnDeath()	
-	return false 
-end
-
-function modifier_item_butterfly_lua:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
+function modifier_item_butterfly_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_item_butterfly_lua:OnCreated()
---if not IsServer() then return end
-	self.bonus_agility = self:GetAbility():GetSpecialValueFor("bonus_agility")
-	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
-	self.bonus_evasion = self:GetAbility():GetSpecialValueFor("bonus_evasion")
-	self.bonus_attack_speed = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+	local ability = self:GetAbility()
+
+	self.bonus_agility = ability:GetSpecialValueFor("bonus_agility")
+	self.bonus_damage = ability:GetSpecialValueFor("bonus_damage")
+	self.bonus_evasion = ability:GetSpecialValueFor("bonus_evasion")
+	self.bonus_attack_speed = ability:GetSpecialValueFor("bonus_attack_speed")
 end
 
 function modifier_item_butterfly_lua:DeclareFunctions()
@@ -55,6 +41,16 @@ function modifier_item_butterfly_lua:GetModifierBonusStats_Agility()
 end
 
 function modifier_item_butterfly_lua:GetModifierPreAttack_BonusDamage()
+	return self.bonus_damage
+end
+
+function modifier_item_butterfly_lua:GetModifierEvasion_Constant()
+	return self.bonus_evasion
+end
+
+function modifier_item_butterfly_lua:GetModifierAttackSpeedBonus_Constant()
+	return self.bonus_attack_speed
+endModifierPreAttack_BonusDamage()
 	return self.bonus_damage
 end
 

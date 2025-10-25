@@ -1,9 +1,7 @@
-LinkLuaModifier("modifier_hellmask_lua", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_hellmask_lua_aura_positive", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_hellmask_lua_aura_positive_effect", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_hellmask_lua_aura_negative", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_hellmask_lua_aura_negative_effect", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hellmask_lua_active", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hellmask_lua", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hellmask_lua_aura_buff", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hellmask_lua_aura_debuff", "items/custom_items/item_hellmask_lua", LUA_MODIFIER_MOTION_NONE)
 
 item_hellmask_lua_1 = item_hellmask_lua_1 or class({})
 item_hellmask_lua_2 = item_hellmask_lua_1 or class({})
@@ -16,10 +14,11 @@ end
 function item_hellmask_lua_1:OnSpellStart()
 	self:GetCaster():Purge(false, true, false, false, false)
 	EmitSoundOn("DOTA_Item.Satanic.Activate", self:GetCaster())
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_hellmask_lua_active", {duration = self:GetSpecialValueFor("unholy_duration")})
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_hellmask_lua_active", { duration = self:GetSpecialValueFor("unholy_duration") })
 end
 
----------------------------------------------------
+-------------------------------------------------------------------------------
+
 modifier_hellmask_lua_active = class({})
 
 function modifier_hellmask_lua_active:IsPurgable() return false end
@@ -32,27 +31,45 @@ function modifier_hellmask_lua_active:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
----------------------------------------------------
+function modifier_hellmask_lua_active:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
+end
+
+function modifier_hellmask_lua_active:OnCreated()
+	local ability = self:GetAbility()
+
+	self.unholy_lifesteal_percent = ability:GetSpecialValueFor("unholy_lifesteal_percent")
+end
+
+function modifier_hellmask_lua_active:OnTooltip()
+	return self.unholy_lifesteal_percent
+end
+
+-------------------------------------------------------------------------------
 
 modifier_hellmask_lua = class({})
 
-function modifier_hellmask_lua:IsHidden()		return true end
-function modifier_hellmask_lua:IsPurgable()		return false end
-function modifier_hellmask_lua:RemoveOnDeath()	return false end
-function modifier_hellmask_lua:GetAttributes()	return MODIFIER_ATTRIBUTE_MULTIPLE end
+function modifier_hellmask_lua:IsHidden() return true end
+function modifier_hellmask_lua:IsPurgable() return false end
+function modifier_hellmask_lua:RemoveOnDeath() return false end
+
+function modifier_hellmask_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+function modifier_hellmask_lua:OnTooltip() return self.lifesteal_percent end
 
 function modifier_hellmask_lua:OnCreated()
-	self.lifesteal_aura = self:GetAbility():GetSpecialValueFor("lifesteal_percent")
-	if IsServer() then
-		if not self:GetAbility() then self:Destroy() end
-	end
+	local ability = self:GetAbility()
 
-	if not IsServer() then return end
-	
-	if not self:GetCaster():HasModifier("modifier_hellmask_lua_aura_positive") then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_hellmask_lua_aura_positive", {})
-		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_hellmask_lua_aura_negative", {})
-	end
+	self.bonus_attack_speed = ability:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_armor = ability:GetSpecialValueFor("bonus_armor")
+	self.bonus_strength = ability:GetSpecialValueFor("bonus_strength")
+	self.bonus_damage = ability:GetSpecialValueFor("bonus_damage")
+	self.lifesteal_percent = ability:GetSpecialValueFor("lifesteal_percent")
+
+	self.unholy_lifesteal_percent = ability:GetSpecialValueFor("unholy_lifesteal_percent")
+
+	self.auraRadius = ability:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_hellmask_lua:DeclareFunctions()
@@ -62,9 +79,9 @@ function modifier_hellmask_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_TOOLTIP,
 	}
 end
-
 
 function modifier_hellmask_lua:PlayEffects( target )
 	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
@@ -73,132 +90,125 @@ function modifier_hellmask_lua:PlayEffects( target )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
 
-
 function modifier_hellmask_lua:OnAttackLanded( params )
-	if IsServer() then
-	local attacker = self:GetParent()	
-	if attacker ~= params.attacker then
-		return
+	if not IsServer() then return end
+
+	local parent = self:GetParent()
+	if parent ~= params.attacker then return end
+
+	if parent:HasModifier("modifier_hellmask_lua_active") then
+		heal = params.damage * self.unholy_lifesteal_percent / 100
+	else
+		heal = params.damage * self.lifesteal_percent / 100
 	end
-		if attacker:HasModifier("modifier_hellmask_lua_active") then
-			heal = params.damage * 2
-		else
-			heal = params.damage * self.lifesteal_aura/100
-		end
-		self:GetParent():Heal( heal, self:GetAbility() )
-		self:PlayEffects( self:GetParent() )
-	end
+
+	self:GetParent():Heal(heal, self:GetAbility())
+	self:PlayEffects(self:GetParent())
 end
 
 function modifier_hellmask_lua:GetModifierPreAttack_BonusDamage()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("bonus_damage")
-	end
+	return self.bonus_damage
 end
 
 function modifier_hellmask_lua:GetModifierBonusStats_Strength()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("bonus_strength")
-	end
+	return self.bonus_strength
 end
 
 function modifier_hellmask_lua:GetModifierAttackSpeedBonus_Constant()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
-	end
+	return self.bonus_attack_speed
 end
 
 function modifier_hellmask_lua:GetModifierPhysicalArmorBonus()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("bonus_armor")
-	end
+	return self.bonus_armor
 end
 
-function modifier_hellmask_lua:OnDestroy()
-	if IsServer() then
-		if not self:GetCaster():HasModifier("modifier_hellmask_lua") then
-			self:GetCaster():RemoveModifierByName("modifier_hellmask_lua_aura_positive")
-			self:GetCaster():RemoveModifierByName("modifier_hellmask_lua_aura_negative")
-		end
-	end
+function modifier_hellmask_lua:GetModifierAura()
+	return self.auraModifierName
+end
+function modifier_hellmask_lua:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
+end
+function modifier_hellmask_lua:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING
+end
+function modifier_hellmask_lua:GetAuraRadius()
+	return self.auraRadius
+end
+function modifier_hellmask_lua:GetAuraEntityReject(target)
+	if target:GetTeamNumber() == self:GetCaster():GetTeamNumber() then
+        self.auraModifierName = "modifier_hellmask_lua_aura_buff"
+    else
+        self.auraModifierName = "modifier_hellmask_lua_aura_debuff"
+    end
+
+    return false
+end
+function modifier_hellmask_lua:IsAura()
+	local caster = self:GetCaster()
+
+	return not caster:PassivesDisabled() and not caster:IsIllusion()
 end
 
--------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
-modifier_hellmask_lua_aura_positive = class({})
+modifier_hellmask_lua_aura_buff = class({})
 
-function modifier_hellmask_lua_aura_positive:IsDebuff() return false end
-function modifier_hellmask_lua_aura_positive:AllowIllusionDuplicate() return true end
-function modifier_hellmask_lua_aura_positive:IsHidden() return true end
-function modifier_hellmask_lua_aura_positive:IsPurgable() return false end
+function modifier_hellmask_lua_aura_buff:IsHidden() return false end
+function modifier_hellmask_lua_aura_buff:IsPurgable() return false end
+function modifier_hellmask_lua_aura_buff:IsDebuff() return false end
 
-function modifier_hellmask_lua_aura_positive:GetAuraRadius()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("aura_radius")
-	end
+function modifier_hellmask_lua_aura_buff:OnCreated()
+	local ability = self:GetAbility()
+
+	self.aura_attack_speed = ability:GetSpecialValueFor("aura_attack_speed")
+	self.aura_positive_armor = ability:GetSpecialValueFor("aura_positive_armor")
+end
+function modifier_hellmask_lua_aura_buff:OnRefresh()
+	self:OnCreated()
 end
 
-function modifier_hellmask_lua_aura_positive:GetAuraEntityReject(target)
-	return false
-end
-
-function modifier_hellmask_lua_aura_positive:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_NONE
-end
-
-function modifier_hellmask_lua_aura_positive:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-
-function modifier_hellmask_lua_aura_positive:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
-function modifier_hellmask_lua_aura_positive:GetModifierAura()
-	return "modifier_hellmask_lua_aura_positive_effect"
-end
-
-function modifier_hellmask_lua_aura_positive:IsAura()
-	return true
-end
-
----------------------------------------------------------------------------------------------------------------------------------------
-
-modifier_hellmask_lua_aura_positive_effect = class({})
-
-function modifier_hellmask_lua_aura_positive_effect:OnCreated()
-	if not self:GetAbility() then
-		if IsServer() then
-			self:Destroy()
-		end
-
-		return
-	end
-
-	self.aura_as_ally = self:GetAbility():GetSpecialValueFor("aura_attack_speed")
-	self.aura_armor_ally = self:GetAbility():GetSpecialValueFor("aura_positive_armor")
-end
-
-function modifier_hellmask_lua_aura_positive_effect:IsHidden() return false end
-function modifier_hellmask_lua_aura_positive_effect:IsPurgable() return false end
-function modifier_hellmask_lua_aura_positive_effect:IsDebuff() return false end
-
-function modifier_hellmask_lua_aura_positive_effect:DeclareFunctions()
+function modifier_hellmask_lua_aura_buff:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_hellmask_lua_aura_buff:GetModifierAttackSpeedBonus_Constant()
+	return self.aura_attack_speed
+end
+
+function modifier_hellmask_lua_aura_buff:GetModifierPhysicalArmorBonus()
+	return self.aura_positive_armor
+end
+
+-------------------------------------------------------------------------------
+
+modifier_hellmask_lua_aura_debuff = class({})
+
+function modifier_hellmask_lua_aura_debuff:OnCreated()
+	local ability = self:GetAbility()
+
+	self.aura_negative_armor = - ability:GetSpecialValueFor("aura_negative_armor")
+end
+function modifier_hellmask_lua_aura_debuff:OnRefresh()
+	self:OnCreated()
+end
+
+function modifier_hellmask_lua_aura_debuff:IsHidden() return false end
+function modifier_hellmask_lua_aura_debuff:IsPurgable() return false end
+function modifier_hellmask_lua_aura_debuff:IsDebuff() return true end
+
+function modifier_hellmask_lua_aura_debuff:DeclareFunctions()
+	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
 	}
 end
 
-function modifier_hellmask_lua_aura_positive_effect:GetModifierAttackSpeedBonus_Constant()
-	return self.aura_as_ally
+function modifier_hellmask_lua_aura_debuff:GetModifierPhysicalArmorBonus()
+	return self.aura_negative_armor
 end
-
-function modifier_hellmask_lua_aura_positive_effect:GetModifierPhysicalArmorBonus()
-	return self.aura_armor_ally
-end
-
--------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 
 modifier_hellmask_lua_aura_negative = class({})
 

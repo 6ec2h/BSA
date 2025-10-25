@@ -1,5 +1,12 @@
 "DOTAAbilities"
 {
+	"special_bonus_unique_bristleback_2"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"bristleback_warpath_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -15,11 +22,16 @@
 		"MaxLevel"						"3"
 				
 		"AbilityValues"
-	{
-		"damage_per_stack"	"20 30 40"
+		{
+			"damage_per_stack"		"20 30 40"
+			"hp_regen_amp_per_stack"	"4 6 8"
 			"move_speed_per_stack"	"3 4 5"
-			"stack_duration"	"10.0"
-			"max_stacks"	"5 7 9"
-	}
+			"stack_duration"		"10.0"
+			"max_stacks"			
+			{
+				"value"								"5 7 9"
+				"special_bonus_unique_bristleback_2"	"+6"
+			}
+		}
 	}
 }

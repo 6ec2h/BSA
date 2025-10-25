@@ -60,7 +60,7 @@ function modifier_item_veil_of_discord_active_lua:DeclareFunctions()
 end
 
 function modifier_item_veil_of_discord_active_lua:GetModifierIncomingDamage_Percentage(keys)
-	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+	if IsClient() or keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
 		return self.spell_amp
 	end
 end
@@ -73,10 +73,11 @@ end
 
 modifier_item_veil_of_discord_lua = class({})
 
-function modifier_item_veil_of_discord_lua:OnCreated()
-	
-	
+function modifier_item_veil_of_discord_lua:IsHidden()
+	return true
+end
 
+function modifier_item_veil_of_discord_lua:OnCreated()
 	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor("bonus_all_stats")
 end
 
@@ -143,10 +144,10 @@ function modifier_item_veil_of_discord_aura_lua:RemoveOnDeath() return false end
 function modifier_item_veil_of_discord_aura_lua:IsAuraActiveOnDeath() return false end
 
 function modifier_item_veil_of_discord_aura_lua:OnCreated()
-	
-	
-
 	self.aura_mana_regen = self:GetAbility():GetSpecialValueFor("aura_mana_regen")
+end
+function modifier_item_veil_of_discord_aura_lua:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_veil_of_discord_aura_lua:DeclareFunctions()

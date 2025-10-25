@@ -122,6 +122,9 @@
 	"DOTA_Tooltip_ability_item_lapa_ursa_damage" "每层伤害："
 	"DOTA_Tooltip_ability_item_lapa_ursa_duration" "持续时间："
 
+	"DOTA_Tooltip_modifier_item_lapa_ursa_debuff"	"熊爪"
+	"DOTA_Tooltip_modifier_item_lapa_ursa_debuff_description"	"受到熊掌持有者攻击的额外 %dMODIFIER_PROPERTY_TOOLTIP% 伤害。"
+	
 	"DOTA_Tooltip_ability_item_undying_skin" "不死皮肤"
 	"DOTA_Tooltip_ability_item_undying_skin_description" "有毒皮肤会毒害所有攻击你的敌人，减少他们的治疗、生命再生和吸血%hp_regen%%%，随着时间的推移造成伤害并减缓他们对物品所有者的攻击。如果你死了，就会被摧毁！"
 	"DOTA_Tooltip_ability_item_undying_skin_damage" "伤害："
@@ -315,7 +318,12 @@
 	"pants_set" 	 "裤子/手套"
 	"weapon_set" 	 "武器"
 	"boots_set" 	 "靴子"
-	
+
+	"DOTA_Tooltip_modifier_desolator_set"						"荒芜套装"
+	"DOTA_Tooltip_modifier_desolator_set_description"			"护甲降低 %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。"
+	"DOTA_Tooltip_modifier_magic_desolator_set"					"魔法荒芜套装"
+	"DOTA_Tooltip_modifier_magic_desolator_set_description"		"魔法抗性降低 %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%。"
+
 	"DOTA_Tooltip_ability_item_bkb_flask" "免疫瓶"
 	"DOTA_Tooltip_ability_item_bkb_flask_description" "<h1>主动：免疫药剂</h1>投掷此药剂将导致 %radius% 半径内的所有盟友在 %duration% 秒内变得对魔法免疫。<br><br>你无法获得 每 90 秒不止一次效果！"
 	"DOTA_Tooltip_ability_item_bkb_flask_radius" "半径："
@@ -502,22 +510,28 @@
 //========================================================================================================PETS===================================================================================================================================
 
 	"DOTA_Tooltip_ability_item_d_pet" "远古宠物"
-	"DOTA_Tooltip_ability_item_d_pet_description" "<h1>主动技能：大衮</h1>每 60 秒，对随机目标施放大衮！\n\n <h1>主动技能：护甲降低</h1>每 90 秒，随机降低一名敌人的护甲值 护甲提高 10，持续 10 秒！\n\n <h1>被动能力：</h1> 每级护甲提高 1，移动速度提高 2，伤害提高 10，生命恢复提高 3.3，攻击速度提高 3，强化加值 法术0.8%%，魔法抗性1%%，闪避1%%，法力和生命值40，并以2*英雄等级的几率获得造成210%暴击伤害的能力！"
+	"DOTA_Tooltip_ability_item_d_pet_Lore" "远古宠物 - 与主人一起成长，提升等级，增加加成！"
+	"DOTA_Tooltip_ability_item_d_pet_description" "<h1>主动：大衮</h1>每 60 秒对随机目标使用大衮！ \n\n<h1>主动：护甲降低</h1>每 90 秒随机降低敌人护甲 <b><font color='#AAB7C3'>10</font></b> 点，持续 <b><font color='#AAB7C3'>10</font></b> 秒！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 法术增强<br>• 每级 +<b><font color='#AAB7C3'>1%</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 
 	"DOTA_Tooltip_ability_item_d2_pet" "远古宠物"
-	"DOTA_Tooltip_ability_item_d2_pet_description" "<h1>主动技能：格挡</h1>每 90 秒，在 700 半径范围内施加持续 10 秒的增益，格挡 35 点所有传入伤害！\n\n <h1>主动技能：兰花</h1> h1> 每 90 秒对随机敌人施加兰花效果，持续 5 秒！\n\n <h1>被动能力：</h1> 每级增加护甲 1，移动速度 2，伤害 10，生命恢复 3.3%%，攻击速度提高3，法术提升加成0.8%%，魔法抗性提高1%%，闪避提高1%%，法力和生命值提高40，并以2的几率造成210%暴击伤害的能力* 英雄级别！"
+	"DOTA_Tooltip_ability_item_d2_pet_Lore" "远古宠物 - 与主人一起成长，提升等级，增加加成！"
+	"DOTA_Tooltip_ability_item_d2_pet_description" "<h1>主动：格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，格挡 <b><font color='#AAB7C3'>35</font></b> 点所有伤害！ \n\n<h1>主动：兰花</h1>每 90 秒对随机敌人施加兰花效果，持续 <b><font color='#AAB7C3'>5</font></b> 秒！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 法术增强<br>• 每级 +<b><font color='#AAB7C3'>1%</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 
 	"DOTA_Tooltip_ability_item_d3_pet" "远古宠物"
-	"DOTA_Tooltip_ability_item_d3_pet_description" "<h1>主动技能：魔法格挡</h1>每 90 秒，在 700 半径范围内施加持续 10 秒的增益，阻挡 50% 的魔法伤害！\n\n <h1>主动技能：大衮</h1> </h1> 每 60 秒，对随机目标施放大衮！\n\n <h1>被动能力：</h1> 每升一级，护甲提高 1，移动速度提高 2，伤害提高 10，生命恢复提高 3.3% %，攻击速度提高 3，法术强化加成 0.8%%，魔法抗性提高 1%%，闪避提高 1%%，法力和生命值提高 40，并获得以 2 几率造成 210% 暴击伤害的能力* 英雄级别！"
+	"DOTA_Tooltip_ability_item_d3_pet_Lore" "远古宠物 - 与主人一起成长，提升等级，增加加成！"
+	"DOTA_Tooltip_ability_item_d3_pet_description" "<h1>主动：魔法格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，阻挡 <b><font color='#AAB7C3'>50%</font></b> 魔法伤害！ \n\n<h1>主动：大衮</h1>每 60 秒对随机目标使用大衮！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 法术增强<br>• 每级 +<b><font color='#AAB7C3'>1%</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 
 	"DOTA_Tooltip_ability_item_d4_pet" "远古宠物"
-	"DOTA_Tooltip_ability_item_d4_pet_description" "<h1>主动技能：兰花</h1>每 90 秒，对随机敌人施加兰花效果，持续 5 秒！\n\n <h1>主动技能：魔法格挡</h1>每 90 秒 ，在半径700格内施加一个持续10秒的增益效果，魔法伤害为50%！\n\n <h1>被动能力：</h1>每级增加护甲1点，移动速度增加2点，伤害增加10点， 生命值恢复 3.3，攻击速度提高 3，法术提升加值提高 0.8%%，魔法抗性提高 1%%，闪避提高 1%%，法力和生命值提高 40，并有一定几率造成 210% 暴击伤害的能力 2 * 英雄等级！"
+	"DOTA_Tooltip_ability_item_d4_pet_Lore" "远古宠物 - 与主人一起成长，提升等级，增加加成！"
+	"DOTA_Tooltip_ability_item_d4_pet_description" "<h1>主动：兰花</h1>每 90 秒对随机敌人施加兰花效果，持续 <b><font color='#AAB7C3'>5</font></b> 秒！ \n\n<h1>主动：魔法格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，阻挡 <b><font color='#AAB7C3'>50%</font></b> 魔法伤害！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 法术增强<br>• 每级 +<b><font color='#AAB7C3'>1%</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 
 	"DOTA_Tooltip_ability_item_d5_pet" "远古宠物"
-	"DOTA_Tooltip_ability_item_d5_pet_description" "<h1>主动能力：治疗</h1>每 90 秒，如果生命值低于 50%，则治疗拥有者！\n\n <h1>主动能力：格挡</h1>每 90 秒，适用 700 半径范围内持续 10 秒的增益效果可阻挡 35 点所有传入伤害！\n\n <h1>被动能力：</h1> 每级增加护甲 1 点、移动速度增加 2 点、伤害增加 10 点、生命恢复增加 3.3%%，攻击速度提高3，法术提升加成0.8%%，魔法抗性提高1%%，闪避提高1%%，法力和生命值提高40，并以2的几率造成210%暴击伤害的能力* 英雄级别！"
+	"DOTA_Tooltip_ability_item_d5_pet_Lore" "远古宠物 - 与主人一起成长，提升等级，增加加成！"
+	"DOTA_Tooltip_ability_item_d5_pet_description" "<h1>主动：治疗</h1>每 90 秒如果生命值低于 <b><font color='#AAB7C3'>50%</font></b> 则治疗拥有者！ \n\n<h1>主动：格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，格挡 <b><font color='#AAB7C3'>35</font></b> 点所有伤害！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 法术增强<br>• 每级 +<b><font color='#AAB7C3'>1%</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 
 	"DOTA_Tooltip_ability_item_d6_pet" "远古宠物"
-	"DOTA_Tooltip_ability_item_d6_pet_description" "<h1>主动技能：护甲降低</h1>每 90 秒，随机敌人护甲降低 10 点，持续 10 秒！\n\n <h1>主动技能：治疗</h1>每 90 秒 秒，生命值低于 50% 时治疗主人！\n\n <h1>被动能力：</h1> 每级增加护甲 1、移动速度 2、伤害 10、生命恢复 3.3%%， 攻击速度提高 3，法术增幅加成 0.8%%，魔法抗性提高 1%%，闪避提高 1%%，法力和生命值提高 40，并有能力以 2 * 英雄等级的几率造成 210% 暴击伤害 ！"
+	"DOTA_Tooltip_ability_item_d6_pet_Lore" "远古宠物 - 与主人一起成长，提升等级，增加加成！"
+	"DOTA_Tooltip_ability_item_d6_pet_description" "<h1>主动：护甲降低</h1>每 90 秒随机降低敌人护甲 <b><font color='#AAB7C3'>10</font></b> 点，持续 <b><font color='#AAB7C3'>10</font></b> 秒！ \n\n<h1>主动：治疗</h1>每 90 秒如果生命值低于 <b><font color='#AAB7C3'>50%</font></b> 则治疗拥有者！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 法术增强<br>• 每级 +<b><font color='#AAB7C3'>1%</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 
 //============================================
 
@@ -543,11 +557,11 @@
 	"DOTA_Tooltip_ability_item_armor_pet4_Lore" 	 "驴驴机器人——和主人一起成长，等级提升，增加加成！"
 
 	"DOTA_Tooltip_ability_item_armor_pet5" 	 "嗡嗡机器人"
-	"DOTA_Tooltip_ability_item_armor_pet5_Description" 	 "<h1>主动：达贡</h1> 每 60 秒对一个随机目标施放达贡！\n\n <h1>被动：</h1> 每级增加 1 点护甲、2 点移动速度、10 点攻击力和3.3 生命恢复！\n\n在 30 级时，获得 30 护甲、60 移动速度、300 攻击力和 100 生命恢复！"
+	"DOTA_Tooltip_ability_item_armor_pet5_Description" 	 "<h1>主动：达贡</h1> 每 60 秒对随机目标使用达贡！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复"
 	"DOTA_Tooltip_ability_item_armor_pet5_Lore" 	 "嗡嗡机器人——与主人一起成长，等级提升，增加加成！"
 
 	"DOTA_Tooltip_ability_item_armor_pet6" 	 "机械杀手"
-	"DOTA_Tooltip_ability_item_armor_pet6_Description" 	 "<h1>主动：达贡</h1> 每 60 秒对一个随机目标施放达贡！\n\n <h1>被动：</h1> 每级增加 1 点护甲，2 点移动速度，10 点攻击力，生命恢复 3.3，并获得致命一击！\n\n在 30 级时，获得 30 点护甲，60 移动速度，300 点攻击力，100 点生命恢复，并有 20% 的几率造成 210% 的伤害!"
+	"DOTA_Tooltip_ability_item_armor_pet6_Description" 	 "<h1>主动：达贡</h1> 每 60 秒对随机目标使用达贡！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 	"DOTA_Tooltip_ability_item_armor_pet6_Lore" 	 "机械杀手——与主人一起成长，提升等级，增加加成！"
 
 //==================================================
@@ -575,11 +589,11 @@
 	"DOTA_Tooltip_ability_item_attackspeed_pet4_Lore" 	 "小爬虫——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_attackspeed_pet5" 	 "小亚龙"
-	"DOTA_Tooltip_ability_item_attackspeed_pet5_Description" 	 "<h1>主动能力：格挡</h1>每 90 秒，在 700 半径内施加一个持续 10 秒的增益，格挡 35 的所有伤害！\n\n <h1>被动能力：</h1> 每级增加主人的攻击速度提高 3，技能增强 0.8%，全属性提高 1，魔法抗性提高 1！\n\n在 30 级时，获得：90 攻击速度，24% 技能增强，30 全属性和 30 魔法抗性！"
+	"DOTA_Tooltip_ability_item_attackspeed_pet5_Description" 	 "<h1>主动：格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，格挡 <b><font color='#AAB7C3'>35</font></b> 点所有伤害！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 魔法伤害<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性"
 	"DOTA_Tooltip_ability_item_attackspeed_pet5_Lore" 	 "小亚龙——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_attackspeed_pet6" 	 "变色龙"
-	"DOTA_Tooltip_ability_item_attackspeed_pet6_Description" 	 "<h1>主动能力：格挡</h1>每 90 秒，在 700 半径内施加一个持续 10 秒的增益，格挡 35 的所有伤害！\n\n <h1>被动能力：</h1> 每级增加主人的攻击速度提高 3，技能增强提高 0.8%，全属性提高 1，魔法抗性提高 1，并获得暴击能力！\n\n在 30 级时获得：90 攻击速度，24% 额外技能增强，30 全属性，30 额外魔法抗性和 20% 的几率造成 210% 的伤害！"
+	"DOTA_Tooltip_ability_item_attackspeed_pet6_Description" 	 "<h1>主动：格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，格挡 <b><font color='#AAB7C3'>35</font></b> 点所有伤害！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 魔法伤害<br>• 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 	"DOTA_Tooltip_ability_item_attackspeed_pet6_Lore" 	 "变色龙——与主人一起成长，提升等级，增加加成！"
 
 //===================================================
@@ -609,11 +623,11 @@
 
 
 	"DOTA_Tooltip_ability_item_spell_pet5" 	 "骆驼"
-	"DOTA_Tooltip_ability_item_spell_pet5_Description" 	 "<h1>主动：魔法格挡</h1>每 90 秒，在 700 范围内施加一个持续 10 秒的增益，格挡 50% 的魔法伤害！\n\n <h1>被动：</h1> 每级增加技能增强 0.8%，护甲提高 1，移动速度提高 2，生命值和法力值提高 40！\n\n在 30 级时，获得：24% 技能增强，30 点护甲值，60 点移动速度，以及 1200 点生命值和法力值！ "
+	"DOTA_Tooltip_ability_item_spell_pet5_Description" 	 "<h1>主动：魔法格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，阻挡 <b><font color='#AAB7C3'>50%</font></b> 魔法伤害！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 魔法伤害<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力"
 	"DOTA_Tooltip_ability_item_spell_pet5_Lore" 	 "骆驼——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_spell_pet6" 	 "白虎"
-	"DOTA_Tooltip_ability_item_spell_pet6_Description" 	 "<h1>主动：魔法格挡</h1>每 90 秒，在 700 范围内施加一个持续 10 秒的增益，格挡 50% 的魔法伤害！\n\n <h1>被动：</h1> 每级增加技能增强 0.8%，护甲提高 1，移动速度提高 2，生命值和法力提高 40，并获得致命一击！\n\n在 30 级时获得：24% 技能增强，30 点护甲，60 点移动速度，1200 点生命值和法力，还有 20% 的几率造成 210% 的伤害！"
+	"DOTA_Tooltip_ability_item_spell_pet6_Description" 	 "<h1>主动：魔法格挡</h1>每 90 秒在 <b><font color='#AAB7C3'>700</font></b> 半径内施加持续 <b><font color='#AAB7C3'>10</font></b> 秒的增益，阻挡 <b><font color='#AAB7C3'>50%</font></b> 魔法伤害！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 魔法伤害<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 护甲<br>• 每级 +<b><font color='#AAB7C3'>2</font></b> 移动速度<br>• 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 	"DOTA_Tooltip_ability_item_spell_pet6_Lore" 	 "白虎——与主人一起成长，提升等级，增加加成！"
 	
 //====================================================
@@ -640,11 +654,11 @@
 	"DOTA_Tooltip_ability_item_hpmp_pet4_Lore" 	 "飞羚羊——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_hpmp_pet5" 	 "恶魔飞毯"
-	"DOTA_Tooltip_ability_item_hpmp_pet5_Description" 	 "<h1>主动：兰花</h1> 每 90 秒，对一个随机敌人施加兰花，持续 5 秒！\n\n <h1>被动：</h1> 每级增加 40 点生命值和法力值，减少技能冷却时间0.8%，魔法抗性 1，闪避 0.8！\n\n在 30 级时，获得：1200 生命值和法力值，技能冷却时间减少 24%，额外魔法抗性 30，闪避增加 24！"
+	"DOTA_Tooltip_ability_item_hpmp_pet5_Description" 	 "<h1>主动：兰花</h1> 每 90 秒对随机敌人施加兰花效果，持续 <b><font color='#AAB7C3'>5</font></b> 秒！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8</font></b> 闪避"
 	"DOTA_Tooltip_ability_item_hpmp_pet5_Lore" 	 "恶魔飞毯——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_hpmp_pet6" 	 "鳄鱼总裁"
-	"DOTA_Tooltip_ability_item_hpmp_pet6_Description" 	 "<h1>主动：兰花</h1> 每 90 秒，对一个随机敌人施加兰花，持续 5 秒！\n\n <h1>被动：</h1> 每级增加 40 生命值和法力值，减少技能冷却时间提高 0.8%，魔法抗性提高 1，闪避提高 0.8，并获得致命一击！\n\n在 30 级时获得：1200 生命值和法力，减少 24% 的冷却时间，30 额外魔法抗性，提高 24 闪避并给你20%的几率造成210%的伤害！"
+	"DOTA_Tooltip_ability_item_hpmp_pet6_Description" 	 "<h1>主动：兰花</h1> 每 90 秒对随机敌人施加兰花效果，持续 <b><font color='#AAB7C3'>5</font></b> 秒！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>40</font></b> 生命和法力<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8</font></b> 闪避<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 	"DOTA_Tooltip_ability_item_hpmp_pet6_Lore" 	 "鳄鱼总裁——与主人一起成长，提升等级，增加加成！！"
 
 //==================================================
@@ -672,11 +686,11 @@
 	"DOTA_Tooltip_ability_item_stats_pet4_Lore" 	 "抓抓熊——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_stats_pet5" 	 "金银"
-	"DOTA_Tooltip_ability_item_stats_pet5_Description" 	 "<h1>主动能力：治疗</h1> 每 90 秒，如果 HP 低于 50%，则治疗佩戴者！\n\n <h1>被动能力：</h1> 每级增加所有属性 1，魔法抗性提高 1，技能冷却时间减少 0.8%，主人的攻击速度提高 3！\n\n在 30 级时，获得：全属性 30，魔法抗性加成 30，技能冷却时间减少 24%，攻击速度提高 90！"
+	"DOTA_Tooltip_ability_item_stats_pet5_Description" 	 "<h1>主动：治疗</h1> 每 90 秒如果生命值低于 <b><font color='#AAB7C3'>50%</font></b> 则治疗拥有者！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度"
 	"DOTA_Tooltip_ability_item_stats_pet5_Lore" 	 "金银——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_stats_pet6" 	 "猴王"
-	"DOTA_Tooltip_ability_item_stats_pet6_Description" 	 "<h1>主动能力：治疗</h1> 每 90 秒，如果 HP 低于 50%，则治疗佩戴者！\n\n <h1>被动能力：</h1> 每级增加所有属性 1，魔法抗性提高 1，技能冷却时间减少 0.8%，攻击速度提高 3，并获得致命一击！\n\n在 30 级时获得：全属性 30，额外魔法抗性 30，技能冷却时间减少 24%， 90攻击速度并有 20% 的几率造成 210% 的伤害！"
+	"DOTA_Tooltip_ability_item_stats_pet6_Description" 	 "<h1>主动：治疗</h1> 每 90 秒如果生命值低于 <b><font color='#AAB7C3'>50%</font></b> 则治疗拥有者！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>0.5</font></b> 全属性<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性<br>• 每级 +<b><font color='#AAB7C3'>0.8%</font></b> 技能冷却减少<br>• 每级 +<b><font color='#AAB7C3'>3</font></b> 攻击速度<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 	"DOTA_Tooltip_ability_item_stats_pet6_Lore" 	 "猴王——与主人一起成长，提升等级，增加加成！"
 
 //==================================================
@@ -703,93 +717,93 @@
 	"DOTA_Tooltip_ability_item_dmg_pet4_Lore" 	 "吞噬——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_dmg_pet5" 	 "小血魔"
-	"DOTA_Tooltip_ability_item_dmg_pet5_Description" 	 "<h1>主动：护甲降低</h1> 每 90 秒，随机敌人的护甲降低 10 点，持续 10 秒！\n\n <h1>被动：</h1> 每级增加 10 点攻击力，生命恢复速度3.3，闪避0.8，魔法抗性1！\n\n30级时，获得：攻击力300，生命恢复100，闪避24，魔法抗性30！"
+	"DOTA_Tooltip_ability_item_dmg_pet5_Description" 	 "<h1>主动：护甲降低</h1> 每 90 秒随机降低敌人护甲 <b><font color='#AAB7C3'>10</font></b> 点，持续 <b><font color='#AAB7C3'>10</font></b> 秒！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>0.8</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性"
 	"DOTA_Tooltip_ability_item_dmg_pet5_Lore" 	 "小血魔——与主人一起成长，提升等级，增加加成！"
 
 	"DOTA_Tooltip_ability_item_dmg_pet6" 	 "虚空霸王龙"
-	"DOTA_Tooltip_ability_item_dmg_pet6_Description" 	 "<h1>主动：护甲降低</h1> 每 90 秒，随机敌人的护甲降低 10 点，持续 10 秒！\n\n <h1>被动：</h1> 每级增加 10 点攻击力，生命恢复速度3.3，闪避0.8，魔法抗性1，暴击！\n\n30级时，获得：300攻击力，100生命恢复，额外闪避24，额外魔法抗性30，20%几率命中210 ％ 伤害！"
+	"DOTA_Tooltip_ability_item_dmg_pet6_Description" 	 "<h1>主动：护甲降低</h1> 每 90 秒随机降低敌人护甲 <b><font color='#AAB7C3'>10</font></b> 点，持续 <b><font color='#AAB7C3'>10</font></b> 秒！ \n\n<h1>被动：</h1> • 每级 +<b><font color='#AAB7C3'>10</font></b> 伤害<br>• 每级 +<b><font color='#AAB7C3'>3.3</font></b> 生命恢复<br>• 每级 +<b><font color='#AAB7C3'>0.8</font></b> 闪避<br>• 每级 +<b><font color='#AAB7C3'>1</font></b> 魔法抗性<br>• <b><font color='#AAB7C3'>2%</font></b> × 英雄等级几率造成 <b><font color='#AAB7C3'>210%</font></b> 暴击伤害。"
 	"DOTA_Tooltip_ability_item_dmg_pet6_Lore" 	 "虚空霸王龙——与主人一起成长，提升等级，增加加成！"
 			
 //================================================================================================NEUTRAL ITEMS================================================================================================		
 
-	"DOTA_Tooltip_ability_item_speed_common" 	 "<font color='#80EBFF'>普通精灵之刃</font>"
+	"DOTA_Tooltip_ability_item_speed_common" 	 "普通精灵之刃"
 	"DOTA_Tooltip_ability_item_speed_common_Description" 	 "这把刀刃附有精灵的力量，提高你和附近队友的攻击速度。"
 	"DOTA_Tooltip_ability_item_speed_common_bonus_attack_speed" 	 "<font color='#80EBFF'>队友攻击速度加成：</font>"
 	"DOTA_Tooltip_ability_item_speed_common_bonus_attack_speed_tooltip" 	 "<font color='#80EBFF'>自我攻击速度加成：</font>"
 	"DOTA_Tooltip_ability_item_speed_common_radius" 	 "<font color='#80EBFF'>半径：</font>"
 			
-	"DOTA_Tooltip_ability_item_speed_rare" 	 "<font color='#00c700'>稀有精灵之刃</font>"
+	"DOTA_Tooltip_ability_item_speed_rare" 	 "稀有精灵之刃"
 	"DOTA_Tooltip_ability_item_speed_rare_Description" 	 "这把刀刃附有精灵的力量，提高你和附近队友的攻击速度。"
 	"DOTA_Tooltip_ability_item_speed_rare_bonus_attack_speed" 	 "<font color='#00c700'>队友攻击速度加成：</font>"
 	"DOTA_Tooltip_ability_item_speed_rare_bonus_attack_speed_tooltip" 	 "<font color='#00c700'>对自己的额外攻击速度：</font>"
 	"DOTA_Tooltip_ability_item_speed_rare_radius" 	 "<font color='#00c700'>半径：</font>"
 			
-	"DOTA_Tooltip_ability_item_speed_legendary" 	 "<font color='#ff8d03'>传奇精灵之刃</font>"
+	"DOTA_Tooltip_ability_item_speed_legendary" 	 "传奇精灵之刃"
 	"DOTA_Tooltip_ability_item_speed_legendary_Description" 	 "这把刀刃附有精灵的力量，大大提高你和附近队友的攻击速度。"
 	"DOTA_Tooltip_ability_item_speed_legendary_bonus_attack_speed" 	 "<font color='#ff8d03'>队友攻击速度加成：</font>"
 	"DOTA_Tooltip_ability_item_speed_legendary_bonus_attack_speed_tooltip" 	 "<font color='#ff8d03'>对自己的额外攻击速度：</font>"
 	"DOTA_Tooltip_ability_item_speed_legendary_radius" 	 "<font color='#ff8d03'>半径：</font>"
 				
-	"DOTA_Tooltip_ability_item_boots_speed_common" 	 "<font color='#80EBFF'>普通奥运靴子</font>"
+	"DOTA_Tooltip_ability_item_boots_speed_common" 	 "普通奥运靴子"
 	"DOTA_Tooltip_ability_item_boots_speed_common_Description" 	 "该地区最好的运动员的鞋子。增加你的移动速度。"
 	"DOTA_Tooltip_ability_item_boots_speed_common_bonus_speed_tooltip" 	 "%<font color='#80EBFF'>奖励移动速度：</font>"
 
-	"DOTA_Tooltip_ability_item_boots_speed_rare" 	 "<font color='#00c700'>稀有奥运靴子</font>"
+	"DOTA_Tooltip_ability_item_boots_speed_rare" 	 "稀有奥运靴子"
 	"DOTA_Tooltip_ability_item_boots_speed_rare_Description" 	 "该地区最好的运动员的鞋子。将你的移动速度提高到最大，并提高700范围内队友的移动速度。"
 	"DOTA_Tooltip_ability_item_boots_speed_rare_bonus_speed_tooltip" 	 "%<font color='#00c700'>奖励移动速度：</font>"
 			
-	"DOTA_Tooltip_ability_item_boots_speed_legendary" 	 "<font color='#ff8d03'>传奇奥林匹克之靴</font>"
+	"DOTA_Tooltip_ability_item_boots_speed_legendary" 	 "传奇奥林匹克之靴"
 	"DOTA_Tooltip_ability_item_boots_speed_legendary_Description" 	 "该地区最好的运动员的鞋子。将你的移动速度提高到最大值，使你能够无视碰撞体积，并提高 700 范围内盟友的移动速度。"
 	"DOTA_Tooltip_ability_item_boots_speed_legendary_bonus_speed_tooltip" 	 "%<font color='#ff8d03'>奖励移动速度：</font>"
 			
-	"DOTA_Tooltip_ability_item_crit_common" 	 "<font color='#80EBFF'>普通刽子手的镰刀</font>"
+	"DOTA_Tooltip_ability_item_crit_common" 	 "普通刽子手的镰刀"
 	"DOTA_Tooltip_ability_item_crit_common_Description" 	 "你的攻击有几率暴击。"
 	"DOTA_Tooltip_ability_item_crit_common_crit_chance" 	 "%<font color='#80EBFF'>暴击几率：</font>"
 	"DOTA_Tooltip_ability_item_crit_common_crit_mult" 	 "%<font color='#80EBFF'>暴击伤害：</font>"
 			
-	"DOTA_Tooltip_ability_item_crit_rare" 	 "<font color='#00c700'>稀有刽子手镰刀</font>"
+	"DOTA_Tooltip_ability_item_crit_rare" 	 "稀有刽子手镰刀"
 	"DOTA_Tooltip_ability_item_crit_rare_Description" 	 "你的攻击有几率暴击。"
 	"DOTA_Tooltip_ability_item_crit_rare_crit_chance" 	 "%<font color='#00c700'>暴击几率：</font>"
 	"DOTA_Tooltip_ability_item_crit_rare_crit_mult" 	 "%<font color='#00c700'>暴击伤害：</font>"
 
-	"DOTA_Tooltip_ability_item_crit_legendary" 	 "<font color='#ff8d03'>刽子手的传奇镰刀</font>"
+	"DOTA_Tooltip_ability_item_crit_legendary" 	 "刽子手的传奇镰刀"
 	"DOTA_Tooltip_ability_item_crit_legendary_Description" 	 "你的攻击有几率暴击。"
 	"DOTA_Tooltip_ability_item_crit_legendary_crit_chance" 	 "%<font color='#ff8d03'>暴击几率：</font>"
 	"DOTA_Tooltip_ability_item_crit_legendary_crit_mult" 	 "%<font color='#ff8d03'>暴击伤害：</font>"
 			
-	"DOTA_Tooltip_ability_item_bolt_common" 	 "<font color='#80EBFF'>普通法师之杖</font>"
+	"DOTA_Tooltip_ability_item_bolt_common" 	 "普通法师之杖"
 	"DOTA_Tooltip_ability_item_bolt_common_Description" 	 "当你攻击敌人时，有几率向他们发射正义光束，根据你的最大法力值在小范围内造成伤害。"
 	"DOTA_Tooltip_ability_item_bolt_common_radius" 	 "<font color='#80EBFF'>半径：</font>"
 	"DOTA_Tooltip_ability_item_bolt_common_lightnihg_chance" 	 "%<font color='#80EBFF'>机会：</font>"
 	"DOTA_Tooltip_ability_item_bolt_common_lightnihg_damage_pct" 	 "%<font color='#80EBFF'>魔法伤害：</font>"
 	"DOTA_Tooltip_ability_item_bolt_common_target_count" 	 "<font color='#80EBFF'>目标：</font>"
 
-	"DOTA_Tooltip_ability_item_bolt_rare" 	 "<font color='#00c700'>稀有法师杖</font>"
+	"DOTA_Tooltip_ability_item_bolt_rare" 	 "稀有法师杖"
 	"DOTA_Tooltip_ability_item_bolt_rare_Description" 	 "当你攻击敌人时，有几率向他们发射正义光束，根据你的最大法力值在小范围内造成伤害。"
 	"DOTA_Tooltip_ability_item_bolt_rare_radius" 	 "<font color='#00c700'>半径：</font>"
 	"DOTA_Tooltip_ability_item_bolt_rare_lightnihg_chance" 	 "%<font color='#00c700'>机会：</font>"
 	"DOTA_Tooltip_ability_item_bolt_rare_lightnihg_damage_pct" 	 "%<font color='#00c700'>魔法伤害：</font>"
 	"DOTA_Tooltip_ability_item_bolt_rare_target_count" 	 "<font color='#00c700'>目标：</font>"
 
-	"DOTA_Tooltip_ability_item_bolt_legendary" 	 "<font color='#ff8d03'>传奇法师之杖</font>"
+	"DOTA_Tooltip_ability_item_bolt_legendary" 	 "传奇法师之杖"
 	"DOTA_Tooltip_ability_item_bolt_legendary_Description" 	 "当你攻击敌人时，有几率向他们发射正义光束，根据你的最大法力值对小范围内的所有敌人造成伤害。"
 	"DOTA_Tooltip_ability_item_bolt_legendary_radius" 	 "<font color='#ff8d03'>半径：</font>"
 	"DOTA_Tooltip_ability_item_bolt_legendary_lightnihg_chance" 	 "%<font color='#ff8d03'>机会：</font>"
 	"DOTA_Tooltip_ability_item_bolt_legendary_lightnihg_damage_pct" 	 "%<font color='#ff8d03'>魔法伤害：</font>"
 			
-	"DOTA_Tooltip_ability_item_bash_common" 	 "<font color='#80EBFF'>普通野蛮人锤子</font>"
+	"DOTA_Tooltip_ability_item_bash_common" 	 "普通野蛮人锤子"
 	"DOTA_Tooltip_ability_item_bash_common_Description" 	 "能够阻止任何敌人的强大武器。"
 	"DOTA_Tooltip_ability_item_bash_common_bonus_damage" 	 "<font color='#80EBFF'>额外攻击力：</font>"
 	"DOTA_Tooltip_ability_item_bash_common_bash_chance" 	 "%<font color='#80EBFF'>击晕几率：</font>"
 	"DOTA_Tooltip_ability_item_bash_common_bash_duration" 	 "<font color='#80EBFF'>BASH 持续时间：</font>"
 			
-	"DOTA_Tooltip_ability_item_bash_rare" 	 "<font color='#00c700'>稀有野蛮人锤子</font>"
+	"DOTA_Tooltip_ability_item_bash_rare" 	 "稀有野蛮人锤子"
 	"DOTA_Tooltip_ability_item_bash_rare_Description" 	 "能够阻止任何敌人的强大武器。"
 	"DOTA_Tooltip_ability_item_bash_rare_bonus_damage" 	 "<font color='#00c700'>额外攻击力：</font>"
 	"DOTA_Tooltip_ability_item_bash_rare_bash_chance" 	 "%<font color='#00c700'>击晕几率：</font>"
 	"DOTA_Tooltip_ability_item_bash_rare_bash_duration" 	 "<font color='#00c700'>BASH 持续时间：</font>"
 			
-	"DOTA_Tooltip_ability_item_bash_legendary" 	 "<font color='#ff8d03'>野蛮人的传奇之锤</font>"
+	"DOTA_Tooltip_ability_item_bash_legendary" 	 "野蛮人的传奇之锤"
 	"DOTA_Tooltip_ability_item_bash_legendary_Description" 	 "能够阻止任何敌人的强大武器。"
 	"DOTA_Tooltip_ability_item_bash_legendary_bonus_damage" 	 "<font color='#ff8d03'>额外攻击力：</font>"
 	"DOTA_Tooltip_ability_item_bash_legendary_bash_chance" 	 "%<font color='#ff8d03'>击晕几率：</font>"
@@ -822,6 +836,11 @@
 	"DOTA_Tooltip_ability_item_assault_lua3_bonus_armor" 	 "+$armor"
 	"DOTA_Tooltip_ability_item_assault_lua3_bonus_all_stats" 	 "+$all"
 
+	"DOTA_Tooltip_modifier_assault_lua_aura_buff" "强袭胸甲",
+	"DOTA_Tooltip_modifier_assault_lua_aura_buff_Description" "护甲和攻击速度增加。",
+	"DOTA_Tooltip_modifier_assault_lua_aura_debuff" "强袭胸甲",
+	"DOTA_Tooltip_modifier_assault_lua_aura_debuff_Description" "护甲减少。"
+	
 //===========
 
 	"DOTA_Tooltip_ability_item_mjollnir_lua1" 	 "雷神之锤"
@@ -1091,7 +1110,7 @@
 //==========
 
 	"DOTA_Tooltip_ability_item_bfury_lua1" 	 "狂战斧"
-	"DOTA_Tooltip_ability_item_bfury_lua1_Description" 	 "<h1>主动：砍树</h1> 砍倒选定的树。<br><br>施法范围：%abilitycastrange%\n<h1>被动：镇压</h1> 增加对非英雄单位的攻击伤害... ) 战斗）。<br><br>• 对英雄的伤害：%cleave_damage_percent%%%<br>• 对小兵的伤害：%cleave_damage_percent_creep%%%"
+	"DOTA_Tooltip_ability_item_bfury_lua1_Description" 	 "<h1>主动：砍树（Chop Tree）</h1> 砍倒选定的树木。<br><br>施法距离：%abilitycastrange%\n<h1>被动：驱伐（Quell）</h1> 对非英雄单位的攻击伤害提高，近战英雄提高 %quelling_bonus%，远程英雄提高 %quelling_bonus_ranged%。\n<h1>被动：分裂（Cleave）</h1> 英雄的攻击会劈开目标，对半径为 %cleave_distance% + %bonus_cleave_distance% 的范围内敌人造成物理伤害（仅限近战）。<br><br> 分裂伤害：%cleave_damage_percent_creep%%% <br> <font color='#b000cf'>与“亵渎者之祸（Desolator）”同时使用时，会使非主要目标的护甲降低 Desolator 效果的 50%。</font>"
 	"DOTA_Tooltip_ability_item_bfury_lua1_Lore" 	 "这把强大的斧头的持有者可以成群结队地砍倒敌人。"
 	"DOTA_Tooltip_ability_item_bfury_lua1_Note0" 	 "顺劈伤害无视技能免疫。"
 	"DOTA_Tooltip_ability_item_bfury_lua1_Note1" 	 "每个赋予分裂的物品或能力都会单独造成伤害。"
@@ -1100,7 +1119,7 @@
 	"DOTA_Tooltip_ability_item_bfury_lua1_bonus_mana_regen" 	 "+$mana_regen"
 
 	"DOTA_Tooltip_ability_item_bfury_lua2" 	 "高级狂战斧"
-	"DOTA_Tooltip_ability_item_bfury_lua2_Description" 	 "<h1>主动：砍树</h1> 砍倒选定的树。<br><br>施法范围：%abilitycastrange%\n<h1>被动：镇压</h1> 增加对非英雄单位的攻击伤害... ) 战斗）。<br><br>• 对英雄的伤害：%cleave_damage_percent%%%<br>• 对小兵的伤害：%cleave_damage_percent_creep%%%"
+	"DOTA_Tooltip_ability_item_bfury_lua2_Description" 	 "<h1>主动：砍树（Chop Tree）</h1> 砍倒选定的树木。<br><br>施法距离：%abilitycastrange%\n<h1>被动：驱伐（Quell）</h1> 对非英雄单位的攻击伤害提高，近战英雄提高 %quelling_bonus%，远程英雄提高 %quelling_bonus_ranged%。\n<h1>被动：分裂（Cleave）</h1> 英雄的攻击会劈开目标，对半径为 %cleave_distance% + %bonus_cleave_distance% 的范围内敌人造成物理伤害（仅限近战）。<br><br> 分裂伤害：%cleave_damage_percent_creep%%% <br> <font color='#b000cf'>与“亵渎者之祸（Desolator）”同时使用时，会使非主要目标的护甲降低 Desolator 效果的 50%。</font>"
 	"DOTA_Tooltip_ability_item_bfury_lua2_Lore" 	 "这把强大的斧头的持有者可以成群结队地砍倒敌人。"
 	"DOTA_Tooltip_ability_item_bfury_lua2_Note0" 	 "顺劈伤害无视技能免疫。"
 	"DOTA_Tooltip_ability_item_bfury_lua2_Note1" 	 "每个赋予分裂的物品或能力都会单独造成伤害。"
@@ -1109,7 +1128,7 @@
 	"DOTA_Tooltip_ability_item_bfury_lua2_bonus_mana_regen" 	 "+$mana_regen"
 			
 	"DOTA_Tooltip_ability_item_bfury_lua3" 	 "拯救世界"
-	"DOTA_Tooltip_ability_item_bfury_lua3_Description" 	 "<h1>主动：砍树</h1> 砍倒选定的树。<br><br>施法范围：%abilitycastrange%\n<h1>被动：镇压</h1> 增加对非英雄单位的攻击伤害... ) 战斗）。<br><br>• 对英雄的伤害：%cleave_damage_percent%%%<br>• 对小兵的伤害：%cleave_damage_percent_creep%%%"
+	"DOTA_Tooltip_ability_item_bfury_lua3_Description" 	 "<h1>主动：砍树（Chop Tree）</h1> 砍倒选定的树木。<br><br>施法距离：%abilitycastrange%\n<h1>被动：驱伐（Quell）</h1> 对非英雄单位的攻击伤害提高，近战英雄提高 %quelling_bonus%，远程英雄提高 %quelling_bonus_ranged%。\n<h1>被动：分裂（Cleave）</h1> 英雄的攻击会劈开目标，对半径为 %cleave_distance% + %bonus_cleave_distance% 的范围内敌人造成物理伤害（仅限近战）。<br><br> 分裂伤害：%cleave_damage_percent_creep%%% <br> <font color='#b000cf'>与“亵渎者之祸（Desolator）”同时使用时，会使非主要目标的护甲降低 Desolator 效果的 50%。</font>"
 	"DOTA_Tooltip_ability_item_bfury_lua3_Lore" 	 "这把强大的斧头的持有者可以成群结队地砍倒敌人。"
 	"DOTA_Tooltip_ability_item_bfury_lua3_Note0" 	 "顺劈伤害无视技能免疫。"
 	"DOTA_Tooltip_ability_item_bfury_lua3_Note1" 	 "每个赋予分裂的物品或能力都会单独造成伤害。"
@@ -1224,12 +1243,12 @@
 "DOTA_Tooltip_ability_item_hellmask_lua_3_bonus_damage" "+$damage"
 "DOTA_Tooltip_ability_item_hellmask_lua_3_lifesteal_percent" "%+$lifesteal"
 
-"DOTA_Tooltip_modifier_hellmask_lua_aura_negative_effect" "地狱面具"
-"DOTA_Tooltip_modifier_hellmask_lua_aura_negative_effect_Description" "护甲减少 %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%"
-"DOTA_Tooltip_modifier_hellmask_lua_aura_positive_effect" "地狱面具"
-"DOTA_Tooltip_modifier_hellmask_lua_aura_positive_effect_Description" "护甲增加 %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。\n攻击速度增加 %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%。"
+"DOTA_Tooltip_modifier_hellmask_lua_aura_debuff" "地狱面具"
+"DOTA_Tooltip_modifier_hellmask_lua_aura_debuff_Description" "护甲减少 %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。"
+"DOTA_Tooltip_modifier_hellmask_lua_aura_buff" "地狱面具"
+"DOTA_Tooltip_modifier_hellmask_lua_aura_buff_Description" "护甲增加 %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。\n攻击速度增加 %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%。"
 "DOTA_Tooltip_modifier_hellmask_lua_active" "邪恶之怒"
-"DOTA_Tooltip_modifier_hellmask_lua_active_Description" "吸血鬼属性增加 200%%"
+"DOTA_Tooltip_modifier_hellmask_lua_active_Description" "吸血鬼属性增加 200%%。"
 
 //==========
 
@@ -1319,6 +1338,9 @@
 	"DOTA_Tooltip_ability_item_vladmir_lua3_Description" 	 "<h1>被动：弗拉基米尔的光环</h1>增加盟友的生命偷取%lifesteal_aura%%%，伤害增加%damage_aura%%%护甲%armor_aura%，法力回复增加%mana_regen_aura%。<br>< br>半径：%aura_radius%"
 	"DOTA_Tooltip_ability_item_vladmir_lua3_Lore" 	 "一个被堕落吸血鬼的恶意诅咒的可怕面具。"
 
+	"DOTA_Tooltip_modifier_item_vladmir_aura_lua" "弗拉基米尔的祭品",
+	"DOTA_Tooltip_modifier_item_vladmir_aura_lua_Description" "生命偷取、伤害、护甲和魔法恢复速度增加。"
+
 //==========
 
 	"DOTA_Tooltip_ability_item_crimson_guard_lua1" 	 "赤红甲"
@@ -1388,6 +1410,10 @@
 	"DOTA_Tooltip_ability_item_veil_of_discord_lua3_Lore" 	 "堕落法师的头盔。"
 	"DOTA_Tooltip_ability_item_veil_of_discord_lua3_bonus_all_stats" 	 "+$all"
 
+	"DOTA_Tooltip_modifier_item_veil_of_discord_active_lua"		"纷争面纱"
+	"DOTA_Tooltip_modifier_item_veil_of_discord_active_lua_Description"		"受到的魔法伤害增加。"
+	"DOTA_Tooltip_modifier_item_veil_of_discord_aura_lua"	"纷争面纱"
+	"DOTA_Tooltip_modifier_item_veil_of_discord_aura_lua_Description"	"魔法恢复速度增加。"
 //==========
 
 	"DOTA_Tooltip_ability_item_tranquil_lua1" 	 "静谧之靴"
@@ -2222,6 +2248,8 @@
 	"DOTA_Tooltip_ability_item_doom_sword5_bonus_damage_pct" 	 "% 增加攻击力："
 	"DOTA_Tooltip_ability_item_doom_sword5_radius" 	 "半径："
 						
+	"DOTA_Tooltip_modifier_item_doom_sword_effect"	"末日之剑光环"
+	"DOTA_Tooltip_modifier_item_doom_sword_effect_Description"	"生命恢复速度增加。"
 //==========				
 						
 	"DOTA_Tooltip_ability_item_doom_spear" 	 "末日之矛"
@@ -2395,6 +2423,8 @@
 	"DOTA_Tooltip_ability_item_magic_soul5_aura_mana_regen" 	 "光环魔法恢复："
 	"DOTA_Tooltip_ability_item_magic_soul5_radius" 	 "半径："
 
+	"DOTA_Tooltip_modifier_item_magic_soul_effect"	"魔法灵魂光环"
+	"DOTA_Tooltip_modifier_item_magic_soul_effect_Description"	"魔法恢复速度和冷却时间减少增加。"
 //==========
 
 	"DOTA_Tooltip_ability_item_critical_ring" 	 "魔力指环"
@@ -2693,6 +2723,8 @@
 "DOTA_Tooltip_ability_item_universal_lua5_aura" "对光环中的盟友造成%伤害："
 "DOTA_Tooltip_ability_item_universal_lua5_radius" "半径："
 
+"DOTA_Tooltip_modifier_item_universal_lua_effect" "通用光环",
+"DOTA_Tooltip_modifier_item_universal_lua_effect_Description" "基础伤害增加。"
 //================================================================================================CREEPS================================================================================================			
 		
 	"npc_dota_hero_dado" 	 "Dado"
@@ -2866,9 +2898,8 @@
 	"DOTA_Tooltip_ability_axe_counter_helix_lua" 	 "反击螺旋"
 	"DOTA_Tooltip_ability_axe_counter_helix_lua_Description" 	 "英雄有几率对敌人的攻击作出反击，对周围的所有敌人造成真实伤害。"
 	"DOTA_Tooltip_ability_axe_counter_helix_lua_damage" 	 "伤害："
-	"DOTA_Tooltip_ability_axe_counter_helix_lua_radius" 	 "半径："
+		"DOTA_Tooltip_ability_axe_counter_helix_lua_base_damage"	"%BASE DAMAGE:"
 	"DOTA_Tooltip_ability_axe_counter_helix_lua_trigger_chance" 	 "%CHANCE 反击："
-	"DOTA_Tooltip_ability_axe_counter_helix_lua_cooldown" 	 "冷却时间："
 		
 	"DOTA_Tooltip_ability_axe_blood_lua" 	 "强壮体格"
 	"DOTA_Tooltip_ability_axe_blood_lua_Description" 	 "在无尽的战斗中，斧王强壮的身体会增加生命恢复和护甲。"
@@ -2876,15 +2907,13 @@
 	"DOTA_Tooltip_ability_axe_blood_lua_mag_armor" 	 "% 魔法抗性加成："
 		
 	"DOTA_Tooltip_ability_axe_enrage_lua" 	 "暴怒"
-	"DOTA_Tooltip_ability_axe_enrage_lua_Description" 	 "斧王暴怒，获得伤害格挡效果并增加他的力量。移除所有减益效果。\n\n显示类型：强"
-	"DOTA_Tooltip_ability_axe_enrage_lua_damage_reduction" 	 "％减少伤害："
-	"DOTA_Tooltip_ability_axe_enrage_lua_bonus_str" 	 "%额外力量："
+	"DOTA_Tooltip_ability_axe_enrage_lua_Description" 	 "使英雄陷入狂暴状态，导致他无法死亡，并且反击螺旋没有冷却时间。"
 	"DOTA_Tooltip_ability_axe_enrage_lua_duration" 	 "持续时间："
 		
-	"DOTA_Tooltip_ability_special_bonus_axe_2" 	 "狂战士之吼期间100%触发反击螺旋"
-	"DOTA_Tooltip_ability_special_bonus_axe_3" 	 "暴怒力量加成X2"
-	"DOTA_Tooltip_ability_special_bonus_axe_4" 	 "在暴怒效果下，英雄获得分裂效果"
-	"DOTA_Tooltip_ability_special_bonus_axe_5" 	 "攻击时也可以触发反击螺旋"
+	"DOTA_Tooltip_ability_special_bonus_unique_axe_1" 	 "狂战士之吼期间100%触发反击螺旋"
+	"DOTA_Tooltip_ability_special_bonus_unique_axe_2" 	 "反击螺旋冷却时间减少0.2秒"
+	"DOTA_Tooltip_ability_special_bonus_unique_axe_3" 	 "反击螺旋造成60%的基础伤害。"
+	"DOTA_Tooltip_ability_special_bonus_unique_axe_4" 	 "攻击时也可以触发反击螺旋"
 		
 //===============================================================================================LEGION============================================================================================
 
@@ -2923,28 +2952,44 @@
 	"DOTA_Tooltip_ability_drow_ranger_frost_arrows_lua_frost_arrows_movement_speed" 	 "%缓慢的移动速度："
 	"DOTA_Tooltip_ability_drow_ranger_frost_arrows_lua_damage" "伤害:"
 		
-	"DOTA_Tooltip_ability_drow_cross_lua" 	 "连射"
-	"DOTA_Tooltip_ability_drow_cross_lua_description" 	 "英雄射出一连串箭矢，对敌人造成伤害。"
-	"DOTA_Tooltip_ability_drow_cross_lua_damage" 	 "伤害："
-	"DOTA_Tooltip_ability_drow_cross_lua_distance" 	 "射程："
-	"DOTA_Tooltip_ability_drow_cross_lua_count" 	 "箭："
-		
-	"DOTA_Tooltip_ability_drow_ranger_aura" 	 "攻速光环"
-	"DOTA_Tooltip_ability_drow_ranger_aura_description" 	 "英雄增加附近盟友的攻击速度。攻击速度的加成取决于英雄的敏捷。"
-	"DOTA_Tooltip_ability_drow_ranger_aura_speed" 	 "%敏捷增加攻击速度："
-	"DOTA_Tooltip_ability_drow_ranger_aura_range" 	 "半径："
-		
-	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua" "射击技巧"
-	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_description" "战斗经验让英雄射击更准确、更有效。每次攻击都有机会射出伤害力增加的箭。"
-	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_chance" "触发概率："
-	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_bonus_damage" "触发伤害："
-	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_agility_multiplier" "敏捷加成："
-		
-	"DOTA_Tooltip_ability_special_bonus_drow_ranger_agi7" 	 "冰霜之箭会使目标的护甲降低 5 点"
-	"DOTA_Tooltip_ability_special_bonus_drow_ranger_agi8" 	 "+10% 射击几率"
-	"DOTA_Tooltip_ability_special_bonus_drow_ranger_agi11" 	 "射手天赋获得分裂箭效果"
-	"DOTA_Tooltip_ability_special_bonus_drow_ranger_int10" 	 "连射增加4支箭矢"
-				
+	"DOTA_Tooltip_ability_drow_cross_lua" 																							"多重射击"
+	"DOTA_Tooltip_ability_drow_cross_lua_description" 																				"英雄发射一波箭矢，对敌人造成伤害。"
+	"DOTA_Tooltip_ability_drow_cross_lua_damage" 																					"伤害："
+	"DOTA_Tooltip_ability_drow_cross_lua_distance" 																					"射程："
+	"DOTA_Tooltip_ability_drow_cross_lua_armor_reduction" 																			"护甲降低："
+	"DOTA_Tooltip_ability_drow_cross_lua_count" 																					"箭矢数量："
+
+	"DOTA_Tooltip_modifier_drow_cross_lua_debuff" 																					"多重射击"
+	"DOTA_Tooltip_modifier_drow_cross_lua_debuff_description" 																		"护甲降低%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。"
+
+	"DOTA_Tooltip_ability_drow_ranger_aura" 																						"速度光环"
+	"DOTA_Tooltip_ability_drow_ranger_aura_description" 																			"英雄提升附近盟友的攻击速度和移动速度。攻击速度加成取决于黑弓射手的敏捷属性。<br><br>同时降低附近敌人的攻击速度。"
+	"DOTA_Tooltip_ability_drow_ranger_aura_attack_speed_pct_buff" 																	"%敏捷提供的攻击速度加成："
+	"DOTA_Tooltip_ability_drow_ranger_aura_move_speed_buff" 																		"%移动速度加成："
+	"DOTA_Tooltip_ability_drow_ranger_aura_attack_speed_debuff" 																	"攻击速度降低："
+
+	"DOTA_Tooltip_modifier_drow_ranger_aura_buff" 																					"速度光环"
+	"DOTA_Tooltip_modifier_drow_ranger_aura_buff_description" 																		"攻击速度提升%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%。攻击伤害提升%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%。移动速度提升%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%。"
+	"DOTA_Tooltip_modifier_drow_ranger_aura_debuff" 																				"速度光环"
+	"DOTA_Tooltip_modifier_drow_ranger_aura_debuff_description" 																	"攻击速度降低%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%。"
+
+	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua" 																			"射术精通"
+	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_description" 																"战斗经验使英雄射击更加精准和有效。每次攻击有几率发射一枚伤害更高的箭矢。<br><br>根据黑弓射手的敏捷属性提升附近盟友英雄的敏捷。"
+	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_chance" 																		"%触发几率："
+	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_bonus_damage" 																"触发伤害："
+	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_agility_bonus_pct" 															"%敏捷加成："
+	"DOTA_Tooltip_ability_drow_ranger_marksmanship_lua_agility_bonus_allies_pec"  													"%为盟友提供的敏捷："
+
+	"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_aura_buff" 																	"射术精通"
+	"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_aura_buff_description" 														"敏捷提升%dMODIFIER_PROPERTY_STATS_AGILITY_BONUS%。"
+	"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_effect" 																	"射术精通"
+	"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_effect_description" 														"敏捷提升%dMODIFIER_PROPERTY_TOOLTIP%。"
+
+	"DOTA_Tooltip_ability_special_bonus_unique_drow_ranger_1" 																		"速度光环除了提升攻击速度外，还增加伤害"
+	"DOTA_Tooltip_ability_special_bonus_unique_drow_ranger_2" 																		"射术精通的敏捷加成增加20%"
+	"DOTA_Tooltip_ability_special_bonus_unique_drow_ranger_3" 																		"射手天赋获得分裂箭效果"
+	"DOTA_Tooltip_ability_special_bonus_unique_drow_ranger_4" 																		"多重射击增加4支箭矢"
+
 //===============================================================================================CENTAUR===============================================================================================
 		
 "DOTA_Tooltip_ability_centaur_warrunner_hoof_stomp_lua" "蹄践踏"
@@ -3226,17 +3271,24 @@
 	"DOTA_Tooltip_ability_bristleback_bristleback_lua_back_damage_reduction" 	 "% 背部攻击伤害减少："
 	"DOTA_Tooltip_ability_bristleback_bristleback_lua_quill_release_threshold" 	 "伤害阈值："
 		
-	"DOTA_Tooltip_ability_bristleback_warpath_lua" 	 "战意"
-	"DOTA_Tooltip_ability_bristleback_warpath_lua_Description" 	 "英雄每次使用技能都会获得怒气，增加他的移动速度和伤害。"
-	"DOTA_Tooltip_ability_bristleback_warpath_lua_damage_per_stack" 	 "每个状态的额外攻击力："
-	"DOTA_Tooltip_ability_bristleback_warpath_lua_move_speed_per_stack" 	 "每个状态的移速提升："
-	"DOTA_Tooltip_ability_bristleback_warpath_lua_stack_duration" 	 "效果的持续时间："
-	"DOTA_Tooltip_ability_bristleback_warpath_lua_max_stacks" 	 "最大叠加层数："
-		
-	"DOTA_Tooltip_ability_special_bonus_bristleback_str10" 	 "从侧面减少伤害与从后面相同"
-	"DOTA_Tooltip_ability_special_bonus_bristleback_agi8" 	 "针刺扫射每层减少目标护甲 0.5"
-	"DOTA_Tooltip_ability_special_bonus_bristleback_agi9" 	 "每层战意获得 +10% 分裂伤害"
-	"DOTA_Tooltip_ability_special_bonus_bristleback_int7" 	 "使用针刺扫射时有 15% 的几率吐出粘液"
+	"DOTA_Tooltip_modifier_bristleback_bristleback_lua"				"刚毛护盾"
+	"DOTA_Tooltip_modifier_bristleback_bristleback_lua_description"	"伤害阈值。"
+
+	"DOTA_Tooltip_ability_bristleback_warpath_lua"					"战意"
+	"DOTA_Tooltip_ability_bristleback_warpath_lua_Description"		"英雄每次使用技能都会获得怒气，增加他的移动速度和伤害。"
+	"DOTA_Tooltip_ability_bristleback_warpath_lua_damage_per_stack"	"每层额外伤害："
+	"DOTA_Tooltip_ability_bristleback_warpath_lua_hp_regen_amp_per_stack"  "每层效果的生命恢复增强百分比："
+	"DOTA_Tooltip_ability_bristleback_warpath_lua_move_speed_per_stack"	"每层速度加成："
+	"DOTA_Tooltip_ability_bristleback_warpath_lua_stack_duration"	"单层持续时间："
+	"DOTA_Tooltip_ability_bristleback_warpath_lua_max_stacks"		"最大层数："
+
+	"DOTA_Tooltip_modifier_bristleback_warpath_lua"					"战意"
+	"DOTA_Tooltip_modifier_bristleback_warpath_lua_description"		"攻击伤害提升%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%。生命恢复速率提升%dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT%。移动速度提升%dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%。"
+
+	"DOTA_Tooltip_ability_special_bonus_unique_bristleback_1"		"来自侧面或正面的伤害减免与背面相同"
+	"DOTA_Tooltip_ability_special_bonus_unique_bristleback_2"		"+6 最大层数的战意之径"
+	"DOTA_Tooltip_ability_special_bonus_unique_bristleback_3"		"每层战意获得 +10% 分裂伤害"
+	"DOTA_Tooltip_ability_special_bonus_unique_bristleback_4"		"根据受到的伤害，每次刺针喷射激活增加1层战意"
 		
 //===============================================================================================WINDRANGER=============================================================================================================================================
 
@@ -3403,7 +3455,7 @@
 "DOTA_Tooltip_ability_special_bonus_unique_medusa_4" "神秘蛇使目标石化 1 秒"
 "DOTA_Tooltip_ability_special_bonus_unique_medusa_5" "-0.2 法力伤害吸收成本"
 "DOTA_Tooltip_ability_special_bonus_unique_medusa_6" "分裂射击伤害增加 10%"
-"DOTA_Tooltip_ability_special_bonus_unique_medusa_7" "分裂射击目标增加 1 个"
+"DOTA_Tooltip_ability_special_bonus_unique_medusa_7" "如果分裂箭范围内不超过1个敌人，攻击伤害+80%"
 "DOTA_Tooltip_ability_special_bonus_unique_medusa_8" "分裂射击目标受到修饰符的影响"
 
 //===============================================================================================ZUUS=============================================================================================================================================================
@@ -3639,12 +3691,17 @@
 	"DOTA_Tooltip_ability_shadow_fiend_necromastery_lua_Description" 	 "英雄窃取每一个被击杀的敌人的灵魂，获得攻击加成。"
 	"DOTA_Tooltip_ability_shadow_fiend_necromastery_lua_soul_damage" 	 "每个灵魂的伤害："
 	"DOTA_Tooltip_ability_shadow_fiend_necromastery_lua_tooltip_soul" 	 "%死亡损失灵魂百分比:"
-	"DOTA_Tooltip_modifier_shadow_fiend_necromastery_lua" 	 "灵魂累积"
+
+	"DOTA_Tooltip_modifier_shadow_fiend_necromastery_lua" 	 "支配死灵"
+	"DOTA_Tooltip_modifier_shadow_fiend_necromastery_lua_description" 	 "灵魂累积"
 		
 	"DOTA_Tooltip_ability_nevermore_aura" 	 "魔王降临"
 	"DOTA_Tooltip_ability_nevermore_aura_Description" 	 "英雄的存在会减少附近敌人的护甲。敌人越近，护甲减少的幅度越大。每 150 半径减少一个基数的护甲。"
 	"DOTA_Tooltip_ability_nevermore_aura_reduction" 	 "护甲削减："
 	
+	"DOTA_Tooltip_modifier_nevermore_aura"					"魔王降临"
+	"DOTA_Tooltip_modifier_nevermore_aura_description"				"护甲降低%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。"
+
 	"DOTA_Tooltip_ability_shadow_fiend_requiem_of_souls_lua" 	 "魂之挽歌"
 	"DOTA_Tooltip_ability_shadow_fiend_requiem_of_souls_lua_Description" 	 "英雄以一波恶魔能量的形式在他面前释放收集的灵魂。使敌人的移动速度减慢 %requiem_slow_duration% 秒。"
 	"DOTA_Tooltip_ability_shadow_fiend_requiem_of_souls_lua_abilitydraft_note" 	 "如果英雄没有掌握死灵能力，则不会造成伤害。"
@@ -3652,11 +3709,12 @@
 	"DOTA_Tooltip_ability_shadow_fiend_requiem_of_souls_lua_requiem_reduction_ms" 	 "%移动速度减缓："
 	"DOTA_Tooltip_ability_shadow_fiend_requiem_of_souls_lua_damage" 	 "每个灵魂的伤害："
 		
-	"DOTA_Tooltip_ability_special_bonus_nevermore_str8" 	 "魂之挽歌缴械敌人 2 秒"
-	"DOTA_Tooltip_ability_special_bonus_nevermore_agi11" 	 "死亡时 -10% 灵魂损失"
-	"DOTA_Tooltip_ability_special_bonus_nevermore_int6" 	 "毁灭阴影每个灵魂造成 2 点伤害"
-	"DOTA_Tooltip_ability_special_bonus_nevermore_int10" 	 "毁灭阴影同时释放三个"
-
+	"DOTA_Tooltip_ability_special_bonus_unique_nevermore_1"			"每灵魂增加1点伤害"
+	"DOTA_Tooltip_ability_special_bonus_unique_nevermore_2"			"死亡时不损失灵魂"
+	"DOTA_Tooltip_ability_special_bonus_unique_nevermore_3"			"暗影突袭造成攻击伤害并束缚目标1.5秒"
+	"DOTA_Tooltip_ability_special_bonus_unique_nevermore_4"			"毁灭阴影同时释放三个"
+	"DOTA_Tooltip_ability_special_bonus_unique_nevermore_5"			"黑暗之主额外降低1点护甲"
+	
 //===========================================================================================NIGHT============================================================================================
 			
 	"DOTA_Tooltip_ability_night_stalker_void_lua" 	 "虚空"
@@ -3922,14 +3980,20 @@
 	"DOTA_Tooltip_ability_disruptor_teleport_Description" "短暂延迟传送一个友方英雄。如果英雄受到伤害，传送将被取消。被动增加 700 范围内所有盟友的法术伤害。"
 	"DOTA_Tooltip_ability_disruptor_teleport_delay" "延迟："
 	"DOTA_Tooltip_ability_disruptor_teleport_ampl" "%技能增强:"
-		
+	
+	"DOTA_Tooltip_modifier_disruptor_aura_effect"				"传送"
+	"DOTA_Tooltip_modifier_disruptor_aura_effect_description" 	"法术伤害提升 %dMODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE%%%."
+
 	"DOTA_Tooltip_ability_disruptor_kinetic_field_lua" 	 "动力场"
 	"DOTA_Tooltip_ability_disruptor_kinetic_field_lua_Description" 	 "短暂延迟后，创造一个敌人无法通过的圆形动能屏障。所有被困在畜栏中的敌人都会获得魔法抗性减益效果。"
 	"DOTA_Tooltip_ability_disruptor_kinetic_field_lua_formation_time" 	 "延迟："
 	"DOTA_Tooltip_ability_disruptor_kinetic_field_lua_duration" 	 "持续时间："
 	"DOTA_Tooltip_ability_disruptor_kinetic_field_lua_radius" 	 "半径："
 	"DOTA_Tooltip_ability_disruptor_kinetic_field_lua_resist" 	 "减少 % 的魔法抗性："
-		
+	
+	"DOTA_Tooltip_modifier_resist"				"动力场"
+	"DOTA_Tooltip_modifier_resist_description"	"魔法抗性降低 %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%."
+
 	"DOTA_Tooltip_ability_disruptor_static_storm_lua" 	 "静态风暴"
 	"DOTA_Tooltip_ability_disruptor_static_storm_lua_Description" 	 "创造一场造成伤害的静态风暴，并阻止目标区域中的所有敌方生物施放技能。伤害会随着技能的持续时间而增加。"
 	"DOTA_Tooltip_ability_disruptor_static_storm_lua_radius" 	 "半径："
@@ -4251,9 +4315,8 @@
 	"DOTA_Tooltip_ability_spectre_desolate_lua_bonus_damage" "%DAMAGE："
 
 	"DOTA_Tooltip_ability_spectre_dispersion_lua" "分散"
-	"DOTA_Tooltip_ability_spectre_dispersion_lua_description" "阻挡 %damage_reflection_pct%% 伤害并在达到伤害阈值时累积它，释放它，对小范围内的所有敌人造成伤害。每 %damage_reset_interval% 秒不超过一次。"
-	"DOTA_Tooltip_ability_spectre_dispersion_lua_damage_reduction" "%DAMAGE BLOCK:"
-	"DOTA_Tooltip_ability_spectre_dispersion_lua_damage_cleanse" "伤害阈值："
+	"DOTA_Tooltip_ability_spectre_dispersion_lua_description" "阻挡并积累伤害，每隔 %damage_release_interval% 秒在小范围内释放。"
+	"DOTA_Tooltip_ability_spectre_dispersion_lua_damage_reflection_pct" "%DAMAGE:"
 	"DOTA_Tooltip_ability_spectre_dispersion_lua_radius" "半径："
 
 	"DOTA_Tooltip_ability_spectre_haunt_lua" "闹鬼"
@@ -4265,10 +4328,10 @@
 	"DOTA_Tooltip_ability_spectre_reality_datadriven" "现实"
 	"DOTA_Tooltip_ability_spectre_reality_datadriven_description" "英雄与鬼魂能力中选择的幻象交换位置。"
 
-	"DOTA_Tooltip_ability_special_bonus_spectre_tal1" "+10% 散布"
-	"DOTA_Tooltip_ability_special_bonus_spectre_tal2" "+5% 荒凉伤害"
-	"DOTA_Tooltip_ability_special_bonus_spectre_tal3" "+40 光谱窃取"
-	"DOTA_Tooltip_ability_special_bonus_spectre_tal4" "+1 出没幻象"
+	"DOTA_Tooltip_ability_special_bonus_unique_spectre_1" "+10% 散布"
+	"DOTA_Tooltip_ability_special_bonus_unique_spectre_2" "+5% 荒凉伤害"
+	"DOTA_Tooltip_ability_special_bonus_unique_spectre_3" "+30 光谱窃取"
+	"DOTA_Tooltip_ability_special_bonus_unique_spectre_4" "+1 个幽影 (Haunt) 幻象"
 
 		//============================================================================================EARTHSHAKER=============================================================================================
 		
@@ -4455,7 +4518,12 @@
 	"DOTA_Tooltip_ability_sven_gods_strength_lua" 	 "神之力量"
 	"DOTA_Tooltip_ability_sven_gods_strength_lua_Description" 	 "英雄集中他无法控制的力量，获得 %abilityduration% 秒的攻击力加成。"
 	"DOTA_Tooltip_ability_sven_gods_strength_lua_gods_strength_damage" 	 "%额外攻击力："
-		
+
+	"DOTA_Tooltip_modifier_sven_gods_strength_lua"										"神之力量"
+	"DOTA_Tooltip_modifier_sven_gods_strength_lua_description"							"基础攻击力提升%dMODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE%%%。"
+	"DOTA_Tooltip_modifier_sven_gods_strength_child_lua"								"神之力量"
+	"DOTA_Tooltip_modifier_sven_gods_strength_child_lua_description"					"基础攻击力提升%dMODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE%%%。"
+
 	"DOTA_Tooltip_ability_special_bonus_sven_tal1" 	 "战吼给予额外魔法抗性"
 	"DOTA_Tooltip_ability_special_bonus_sven_tal2" 	 "+175 风暴之锤伤害"
 	"DOTA_Tooltip_ability_special_bonus_sven_tal3" 	 "神之力量光环效果"
@@ -4833,7 +4901,7 @@
 "DOTA_Tooltip_ability_abaddon_curse_of_avernus_lua_lifesteal" "生命值窃取："
 "DOTA_Tooltip_ability_abaddon_curse_of_avernus_lua_bonus_as" "攻击速度加成："
 
-"DOTA_Tooltip_ability_abaddon_borrowed_time_lua" "借用"时间"
+"DOTA_Tooltip_ability_abaddon_borrowed_time_lua" "借用时间"
 "DOTA_Tooltip_ability_abaddon_borrowed_time_lua_description" "将所有受到的伤害转化为治疗。施放可消除大部分负面影响。如果技能准备就绪，一旦拥有者的生命值降至 400 以下，它将自动触发。"
 "DOTA_Tooltip_ability_abaddon_borrowed_time_lua_duration" "持续时间："
 "DOTA_Tooltip_ability_abaddon_borrowed_time_lua_hp_threshold" "生命阈值："
@@ -5613,7 +5681,13 @@
 
 	"DOTA_Tooltip_modifier_cold_map_ability" 	 "你冷吗"
 	"DOTA_Tooltip_modifier_cold_map_ability_Description" 	 "你无法在火堆之外的地方恢复生命值！"
-			
+		
+	"DOTA_Tooltip_modifier_campfire_aura_effect"                "你感到温暖"
+	"DOTA_Tooltip_modifier_campfire_aura_effect_description"    "连最强的严寒也奈何不了你！"
+
+	"DOTA_Tooltip_modifier_acid"				"酸"
+	"DOTA_Tooltip_modifier_acid_description"	"外来伤害 降低 %dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%。移动速度 降低 %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%。"
+
 	"DOTA_Tooltip_dmg_lava_map_ability_modifier" 	 "你中毒了！"
 	"DOTA_Tooltip_dmg_lava_map_ability_modifier_Description" 	 "你吸入了有毒沼泽的烟雾。你造成的伤害降低 40%%，移动速度降低 25%%。"
 				
@@ -5702,7 +5776,7 @@
 "DOTA_Tooltip_modifier_item_overlord_helmet_aura" "夜幕降临"
 "DOTA_Tooltip_modifier_item_overlord_helmet_aura_Description" "效果抵抗力降低。"
 "DOTA_Tooltip_modifier_item_overlord_helmet_aura_friendly" "群体心态"
-"DOTA_Tooltip_modifier_item_overlord_helmet_aura_friendly_Description" "守护之壳拥有者增加伤害。"
+"DOTA_Tooltip_modifier_item_overlord_helmet_aura_friendly_Description" "伤害增加 %dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%%。"
 
 "DOTA_Tooltip_ability_item_overlord_helmet2" "伟大的守护者外壳"
 "DOTA_Tooltip_ability_item_overlord_helmet2_Description" "<h1>光环：群体心态</h1>你获得伤害加成，相当于基础伤害的 %damage_share_pct%%%。所有受光环影响的盟友将平等分担额外伤害。\n<h1>光环：夜之死</h1>降低 %radius% 范围内敌人的效果抵抗力 %status_resistance%%%。"
@@ -5712,7 +5786,7 @@
 "DOTA_Tooltip_modifier_item_overlord_helmet2_aura" "夜幕降临"
 "DOTA_Tooltip_modifier_item_overlord_helmet2_aura_Description" "效果抵抗力降低。"
 "DOTA_Tooltip_modifier_item_overlord_helmet2_aura_friendly" "群体心态"
-"DOTA_Tooltip_modifier_item_overlord_helmet2_aura_friendly_Description" "守护之壳拥有者增加伤害。"
+"DOTA_Tooltip_modifier_item_overlord_helmet2_aura_friendly_Description" "伤害增加 %dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%%。"
 
 "DOTA_Tooltip_ability_item_overlord_helmet3" "超级守护者外壳"
 "DOTA_Tooltip_ability_item_overlord_helmet3_Description" "<h1>光环：群体心态</h1>你获得伤害加成，相当于基础伤害的 %damage_share_pct%%%。所有受光环影响的盟友将平等分担额外伤害。\n<h1>光环：夜之寂静</h1>降低 %radius% 范围内敌人的效果抵抗力 %status_resistance%%%。"
@@ -5722,7 +5796,7 @@
 "DOTA_Tooltip_modifier_item_overlord_helmet3_aura" "夜幕降临"
 "DOTA_Tooltip_modifier_item_overlord_helmet3_aura_Description" "效果抵抗力降低。"
 "DOTA_Tooltip_modifier_item_overlord_helmet3_aura_friendly" "群体心态"
-"DOTA_Tooltip_modifier_item_overlord_helmet3_aura_friendly_Description" "守护之壳持有者增加伤害。"
+"DOTA_Tooltip_modifier_item_overlord_helmet3_aura_friendly_Description" "伤害增加 %dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%%。"
 
 "DOTA_Tooltip_ability_item_aeon_of_tarrasque" "永恒之盾"
 "DOTA_Tooltip_ability_item_aeon_of_tarrasque_description" "<h1>被动：濒死体验</h1>当你受到伤害并低于 %health_threshold_pct%%% 时，会应用强力驱散，并获得第二个 %buff_duration% 增益，该增益可使你获得 +%status_resistance %%% 状态抗性和 %buff_health_regen_pct%%% 从最大生命值恢复，并将你造成的和受到的所有伤害减少到零。\n<h1>被动：活力之力</h1>你的攻击伤害增加 % damage_from_hp%%% 的当前生命值。"
@@ -6210,59 +6284,77 @@
 
 "order_open"			"订单打开:"
 
+"int_0" "+{value} 智力"
 "int_1" "+1 智力"
 "int_2" "+2 智力"
 "int_3" "+3 智力"
+"spell_damage_0" "+{value}% 法术伤害"
 "spell_damage_1" "+0.5% 法术伤害"
 "spell_damage_2" "+1.0% 法术伤害"
 "spell_damage_3" "+1.5% 法术伤害"
+"mana_0" "+{value} 法力"
 "mana_1" "+50 法力"
 "mana_2" "+100 法力"
 "mana_3" "+150 法力"
+"regen_mana_0" "+{value} 法力恢复"
 "regen_mana_1" "+1 法力恢复"
 "regen_mana_1" "+2 法力恢复"
 "regen_mana_1" "+3 法力恢复"
+"cd_0" "-{value}% 冷却时间"
 "cd_1" "-0.5% 冷却时间"
 "cd_2" "-1.0% 冷却时间"
 "cd_3" "-1.5% 冷却时间"
 
+"exp_0" "+{value}% 每个小兵经验"
 "exp_1" "+0.5% 每个小兵经验"
 "exp_2" "+1.0% 每个小兵经验"
 "exp_3" "+1.5% 每个小兵经验"
+"str_0" "+{value} 力量"
 "str_1" "+1 力量"
 "str_2" "+2 力量"
 "str_3" "+3 力量"
+"status_0" "+{value}% 状态抗性"
 "status_1" "+0.5% 状态抗性"
 "status_2" "+1.0% 状态抗性"
 "status_3" "+1.5% 状态抗性"
+"mr_0" "+{value}% 魔法抗性"
 "mr_1" "+0.5% 魔法抗性"
 "mr_2" "+1.0% 魔法抗性"
 "mr_3" "+1.5% 魔法抗性"
+"armor_0" "+{value} 护甲"
 "armor_1" "+0.5 护甲"
 "armor_2" "+1.0 护甲"
 "armor_3" "+1.5 护甲"
 
+"hp_0" "+{value}健康"
 "hp_1" "+50健康"
 "hp_2" "+100 健康"
 "hp_3" "+150 健康"
+"hp_reg_0" "+{value} 健康恢复"
 "hp_reg_1" "+1 健康恢复"
 "hp_reg_2" "+2 健康恢复"
 "hp_reg_3" "+3 健康恢复"
+"agi_0" "+{value} 敏捷"
 "agi_1" "+1 敏捷"
 "agi_2" "+2 敏捷"
 "agi_3" "+3 敏捷"
+"damage_0" "+{value} 伤害"
 "damage_1" "+2 伤害"
 "damage_2" "+4 伤害"
 "damage_3" "+5 伤害"
+"evasion_0" "+{value}% 闪避"
 "evasion_1" "+0.5% 闪避"
 "evasion_2" "+1.0% 闪避"
 "evasion_3" "+1.5% 闪避"
+"attack_speed_0" "+{value} 攻击速度"
 "attack_speed_1" "+1 攻击速度"
 "attack_speed_2" "+2 攻击速度"
 "attack_speed_3" "+3 攻击速度"
+"move_speed_0" "+{value} 移动速度"
 "move_speed_1" "+1 移动速度"
 "move_speed_2" "+2 移动速度"
 "move_speed_3" "+3 移动速度"
+"lifesteal_0" "+{value}% 吸血"
 "lifesteal_1" "+0.5% 吸血"
 "lifesteal_2" "+1.0% 吸血"
 "lifesteal_3" "+1.5% 吸血"
@@ -6382,5 +6474,23 @@
 "dungeon_master"                  "地下城大师"
 "ui_interaction"                  "互动"
 "auto_dismantling_tooltip"        "自动分解具有 0 个属性的新物品"
+
+"hide_total_talents_stats"				"隐藏"
+"show_total_talents_stats"				"显示"
+
+// 助推器通知系统本地化
+"ui_booster_notification_license_purchased"         "助推器许可证购买成功！"
+"ui_booster_notification_settings_updated"          "助推器设置已更新！"
+"ui_booster_notification_license_error"             "购买许可证时出错"
+"ui_booster_notification_settings_error"            "更新设置时出错"
+"ui_booster_notification_order_accepted"            "订单已接受！"
+"ui_booster_notification_order_rejected"            "订单已拒绝"
+"ui_booster_notification_order_accepted_title"      "订单已接受"
+"ui_booster_notification_order_rejected_title"      "订单已拒绝"
+"ui_booster_notification_license_purchased_title"   "许可证已购买"
+"ui_booster_notification_settings_updated_title"   "设置已更新"
+"ui_booster_notification_error_title"               "错误"
+"ui_booster_notification_info_title"                "信息"
+"ui_booster_notification_warning_title"             "警告"
 }	
 }

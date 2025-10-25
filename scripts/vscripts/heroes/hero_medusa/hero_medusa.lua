@@ -502,62 +502,94 @@ function modifier_medusa_split_shot_lua:GetPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
 
-function modifier_medusa_split_shot_lua:OnCreated( kv )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) - 100
-	self.count = self:GetAbility():GetSpecialValueFor( "arrow_count" )
-	self.bonus_range = self:GetAbility():GetSpecialValueFor( "split_shot_bonus_range" )
+function modifier_medusa_split_shot_lua:OnCreated()
+	local ability = self:GetAbility()
+
+	self.damage = ability:GetSpecialValueFor("damage") - 100
+	self.count = ability:GetSpecialValueFor("arrow_count")
+	self.bonus_range = ability:GetSpecialValueFor("split_shot_bonus_range")
 end
 
-function modifier_medusa_split_shot_lua:OnRefresh( kv )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) - 100
-	self.count = self:GetAbility():GetSpecialValueFor( "arrow_count" )
-	self.bonus_range = self:GetAbility():GetSpecialValueFor( "split_shot_bonus_range" )
+function modifier_medusa_split_shot_lua:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_medusa_split_shot_lua:DeclareFunctions()
-	local funcs = {
+	return {
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 	}
-	return funcs
+end
+
+function modifier_medusa_split_shot_lua:GetSplitShotTargets()
+	local parent = self:GetParent()
+	
+	return FindUnitsInRadius(
+		parent:GetTeamNumber(),
+		parent:GetAbsOrigin(),
+		nil,
+		parent:Script_GetAttackRange() + self.bonus_range,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE,
+		FIND_ANY_ORDER,
+		false
+	)
 end
 
 function modifier_medusa_split_shot_lua:OnAttack(keys)
 	if not IsServer() then return end
-	if keys.attacker == self:GetParent() and keys.target and keys.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and not keys.no_attack_cooldown and not self:GetParent():PassivesDisabled() and self:GetAbility():IsTrained() then	
-		local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetParent():Script_GetAttackRange() + self.bonus_range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_ANY_ORDER, false)
-		local target_number = 0
-		
-		self.use_modifier = false
-		local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_medusa_8")
-		if talent~=nil and talent:GetLevel() > 0 then 
-			self.use_modifier = true
-		end
-		
-		for _, enemy in pairs(enemies) do
-			if enemy ~= keys.target then
-				-- self.split_shot_target = true
-				
-				self:GetParent():PerformAttack(enemy, self.use_modifier, self.use_modifier, true, true, true, false, false)
-				
-				-- self.split_shot_target = false
-				
-				target_number = target_number + 1
-				
-				if target_number >= self.count then
-					break
-				end
+
+	if self.split_shot_target then return end
+
+	local parent = self:GetParent()
+
+	if keys.attacker ~= parent then return end
+	if not keys.target or keys.target:GetTeamNumber() == parent:GetTeamNumber() then return end
+	if keys.no_attack_cooldown then return end
+	if parent:PassivesDisabled() then return end
+	if not self:GetAbility():IsTrained() then return end
+
+	local applyModifiersTalent = parent:FindAbilityByName("special_bonus_unique_medusa_8")
+	local applyModifiers = applyModifiersTalent and applyModifiersTalent:GetLevel() > 0 or false
+
+	local targets = self:GetSplitShotTargets()
+
+	local target_number = 0
+	
+	for i = 1, #targets do
+		local target = targets[i]
+
+		if target ~= keys.target then
+			self.split_shot_target = true
+			
+			parent:PerformAttack(target, applyModifiers, applyModifiers, true, true, true, false, false)
+			
+			self.split_shot_target = false
+			
+			target_number = target_number + 1
+			
+			if target_number >= self.count then
+				break
 			end
 		end
 	end
 end
 
-function modifier_medusa_split_shot_lua:GetModifierDamageOutgoing_Percentage()
-	if not IsServer() then return end
-	
-	-- if self.split_shot_target then
-		return self.damage
-	-- else
-		-- return 0
-	-- end
+function modifier_medusa_split_shot_lua:GetModifierDamageOutgoing_Percentage(keys)
+	if IsServer() then
+		if keys.attacker == self:GetParent() and keys.target and not self.split_shot_target then 
+			self:SetStackCount(0)
+			local doubleDamageTalent = self:GetParent():FindAbilityByName("special_bonus_unique_medusa_7")
+
+			if not doubleDamageTalent or doubleDamageTalent:GetLevel() < 1 then return end
+
+			local targets = self:GetSplitShotTargets()
+
+			if #targets > 1 then return end
+
+			self:SetStackCount(80)
+		end
+	end
+	return self:GetStackCount()
 end

@@ -129,7 +129,7 @@ end
 
 function modifier_item_doom_sword:OnCreated( kv )
 	self.bonus_damage_pct = self:GetAbility():GetSpecialValueFor( "bonus_damage_pct" )
-	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
+	self.radius = self:GetAbility():GetSpecialValueFor( "AbilityCastRange" )
 	self.bonus_strength = self:GetAbility():GetSpecialValueFor( "bonus_all_stats" )
 	self.lifesteal_pct = self:GetAbility():GetSpecialValueFor( "lifesteal_pct" )
 end

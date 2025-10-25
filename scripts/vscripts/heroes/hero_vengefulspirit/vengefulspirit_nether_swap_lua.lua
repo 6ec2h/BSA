@@ -60,7 +60,7 @@ function modifier_vengefulspirit_nether_swap_lua:OnCreated( kv )
 	)
 
 	for _, illusion in pairs(illusions) do
-		FindClearSpaceForUnit(illusion, point + RandomVector( RandomInt(0, 100 )), false)
+		FindClearSpaceForUnit(illusion, point + RandomVector( RandomInt(0, 100 )), true)
 		illusion:AddNewModifier(caster, self, "modifier_vengefulspirit_nether_swap_lua_effect", {})
 	end
 
@@ -135,4 +135,4 @@ end
 
 function modifier_vengefulspirit_nether_swap_lua_effect:StatusEffectPriority()
 	return MODIFIER_PRIORITY_MONKAGIGA_EXTEME_HYPER_ULTRA_REINFORCED_V9
-end
+endd

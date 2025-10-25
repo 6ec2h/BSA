@@ -247,7 +247,6 @@
         "ScriptFile"                    "items/custom_items/item_hellmask_lua" 
         "AbilityTextureName"			"hellmask1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCastRange"				"1200"
 		"AbilityCooldown"				"30.0"
 		"ItemCost"						"5125"
 		"ItemShopTags"					"attack_speed;armor;hard_to_tag"
@@ -280,7 +279,6 @@
         "ScriptFile"                    "items/custom_items/item_hellmask_lua" 
         "AbilityTextureName"			"hellmask2"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCastRange"				"1200"
 		"AbilityCooldown"				"30.0"
 		"ItemCost"						"5125"
 		"ItemShopTags"					"attack_speed;armor;hard_to_tag"
@@ -313,7 +311,6 @@
         "ScriptFile"                    "items/custom_items/item_hellmask_lua" 
         "AbilityTextureName"			"hellmask3"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCastRange"				"1200"
 		"AbilityCooldown"				"30.0"
 		"ItemCost"						"5125"
 		"ItemShopTags"					"attack_speed;armor;hard_to_tag"
@@ -4392,6 +4389,8 @@
                 "cleave_ending_width"           "360"
 
                 "cleave_distance"           "650"
+
+				"bonus_cleave_distance"		"0.5"
             
 		}
 	}
@@ -4432,6 +4431,8 @@
                 "cleave_ending_width"           "360"
 
                 "cleave_distance"           "650"
+
+				"bonus_cleave_distance"		"0.5"
             
 		}
 	}	
@@ -4472,6 +4473,8 @@
                 "cleave_ending_width"           "360"
 
                 "cleave_distance"           "650"
+
+				"bonus_cleave_distance"		"0.5"
             
 		}
 	}

@@ -45,6 +45,10 @@ function modifier_badvision:IsHidden()
 	return false
 end
 
+function modifier_badvision:IsDebuff()
+	return true
+end
+
 function modifier_badvision:IsPurgable()
 	return false
 end

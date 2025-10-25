@@ -69,6 +69,9 @@ end
 
 function modifier_luna_moon_glaive_lua_thinker:OnDestroy()
 	if not IsServer() then return end
+	
+	self.parent:ResetRangedProjectileName()
+
 	UTIL_Remove( self:GetParent() )
 end
 

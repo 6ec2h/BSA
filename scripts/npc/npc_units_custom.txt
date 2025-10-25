@@ -11445,7 +11445,67 @@
 			
 		}
 	}	
-	
+
+	"npc_unit_damage_challenge"	
+	{
+		"Model"						"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_winter_ancient_hulk.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Ranged"
+		"Level"						"5"
+		"ModelScale" 				"1.0"
+		
+		"Ability1"					"zombie_ice_hit"		
+
+		"ArmorPhysical"				"80"			
+		"MagicalResistance"         "45"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackDamageMin"			"85"		
+		"AttackDamageMax"			"85"		
+		"AttackRate"				"0.7"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"1000"		
+		"AttackRange"				"100"
+	     
+		"RingRadius"				"40"
+		"HealthBarOffset"			"300"
+
+		"BountyXP"					"45"	
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"360"			
+		
+		"StatusHealth"				"450"		
+		"StatusHealthRegen"			"3"		
+		"StatusMana"				"200"			
+		"StatusManaRegen"			"2.0"			 
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"						
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+		
+		"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_mana_potion"
+						"2"				"item_health_potion"
+					}
+					"Chance"			"25"
+				}
+			}	
+		}
+	} 
 
 }	
 

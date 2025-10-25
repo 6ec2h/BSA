@@ -72,11 +72,6 @@ function modifier_bristleback_quill_spray_lua:DeclareFunctions()
 end
 
 function modifier_bristleback_quill_spray_lua:GetModifierPhysicalArmorBonus()
-	if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi8")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_bristleback_agi8"):GetLevel() > 0 then 
-			return -self:GetStackCount()/2
-		end
-	end
 	return 0
 end
 
@@ -92,6 +87,12 @@ end
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 function modifier_bristleback_quill_spray_lua:GetEffectName()
+	return "particles/units/heroes/hero_bristleback/bristleback_quill_spray_hit_creep.vpcf"
+end
+
+function modifier_bristleback_quill_spray_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+endray_lua:GetEffectName()
 	return "particles/units/heroes/hero_bristleback/bristleback_quill_spray_hit_creep.vpcf"
 end
 

@@ -25,6 +25,22 @@ DotaHUD.ListenToMouseEvent(
 );
 
 var tabs = ["head", "armor", "legs", "boots", "weapon", "shield"] //, "food", "jewell"]
+const attributes = [
+	{key: "crit", name: "Crit. Damage"},
+	{key: "mkb", name: "Pierce"},
+	{key: "desolator", name: "Decrease Armor on Attacks"},
+	{key: "magic_desolator", name: "Magic Resistance Reduction on Attacks"},
+	{key: "mjolnir", name: "Mjollnir"},
+	{key: "mjolnir_armor", name: "Lightning Armor"},
+	{key: "hp_regen", name: "Restores Health Equal to % of Health"},
+	{key: "hp_regen_amp", name: "Health Regeneration Boost"},
+	{key: "lifesteal", name: "Lifesteal"},
+	{key: "magic_lifesteal", name: "Spell Lifesteal"},
+	{key: "damage_block", name: "Chance to Block Damage"},
+	{key: "reflect", name: "Reflect Ramage"},
+	{key: "multicast", name: "Multicast Chance"},
+	{key: "manacost", name: "Mana Cost Reduction"},
+]
 
 function ActivateTrade(){
 	DotaHUD.WindowOpen("trade");
@@ -101,7 +117,7 @@ create_filters_toggle()
 
 function init_buy(data){
 	current_filters = data
-	show_items(data.listings, data.type)
+	show_items(data.listings, data.type, true)
 }	
 
 function update_buy(data){
@@ -121,7 +137,23 @@ function CreateTab(main, type_name) {
     equip_slot_label.AddClass("tab_text");
 }
 
-function show_items(data, type){
+let showItemsTimerId
+
+function show_items(data, type, isInitial) {
+	if (isInitial) {
+		_show_items(data, type)
+	} else {
+		if (showItemsTimerId)
+			$.CancelScheduled(showItemsTimerId)
+
+		showItemsTimerId = $.Schedule(1, () => {
+			showItemsTimerId = undefined
+			_show_items(data, type)
+		})
+	}
+}
+
+function _show_items(data, type) {
 	$("#trade_panel_content").RemoveAndDeleteChildren()
 	let tab_sort_content = $.CreatePanel("Panel", $("#trade_panel_content"), type + "_content");
     tab_sort_content.AddClass("content");
@@ -159,9 +191,12 @@ function show_items(data, type){
     }   
 }
 
+let a = 10
+
 function create_filters_toggle(){
 	$("#trade_panel_filter_sets").RemoveAndDeleteChildren()
 	$("#trade_panel_filter_bonuses").RemoveAndDeleteChildren()
+	$("#trade_panel_filter_stats").RemoveAndDeleteChildren()
 	for (let i = 1; i <= 5; i++)
     {
         let toggle = $.CreatePanel("ToggleButton", $("#trade_panel_filter_sets"), i)
@@ -189,6 +224,19 @@ function create_filters_toggle(){
 		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, "Bonus count " + i )});
 		toggle.SetPanelEvent("onmouseout", TipsOut)
 	}
+
+	for (let i = 0; i < attributes.length; i++)
+    {
+        let toggle = $.CreatePanel("ToggleButton", $("#trade_panel_filter_stats"), i)
+		toggle.AddClass("CheckBox")
+		toggle.checked = false
+		toggle.SetPanelEvent("onactivate", function() {
+			show_items(current_filters.listings, current_filters.type)
+        });
+		
+		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, attributes[i].name )});
+		toggle.SetPanelEvent("onmouseout", TipsOut)
+	}
 }
 
 function filterAndSortData(data, sortByPrice = true) {
@@ -214,6 +262,16 @@ function filterAndSortData(data, sortByPrice = true) {
         }
     }
 
+    var tradePanelFilterStats = $("#trade_panel_filter_stats");
+    var filterStats = [];
+
+    for (let i = 0; i < tradePanelFilterStats.GetChildCount(); i++) {
+        let child = tradePanelFilterStats.GetChild(i);
+        if (child && child.checked) {
+            filterStats.push(attributes[parseInt(child.id)].key);
+        }
+    }
+
 	let result = Object.values(data);
 
     if (filterSetNumbers.length > 0) {
@@ -232,6 +290,18 @@ function filterAndSortData(data, sortByPrice = true) {
             }
 			const bonusCount = Object.keys(item.item.bonus_attribute).length;
 			return filterBonusAttributeCounts.some(count => bonusCount === count);
+		});
+	}
+
+	if (filterStats.length > 0) {
+		result = result.filter(item => {
+			if (!item.item || !item.item.bonus_attribute) {
+				return false;
+			}
+
+			const itemStats = Object.keys(item.item.bonus_attribute)
+
+			return !filterStats.some((stat) => !itemStats.includes(stat))
 		});
 	}
 
@@ -424,17 +494,31 @@ function sell_item_request(item , number){
 }
 
 function InputCount() {
+	let text = textEntry.text
 
-	if (parseFloat(textEntry.text) < 0 || textEntry.text.includes('-')) {
-		textEntry.text = "1";
+	if (text.includes(".")) {
+		text = text.replaceAll(".", "")
+		textEntry.text = text;
 	}
-	
-	if (parseFloat(textEntry.text) > 500) {
+
+	let textInt = parseInt(text)
+
+	if (Number.isNaN(textInt)) {
+		price = 0;
+		textPrice.text =  "= " + price;
+		return
+	}
+
+	if (textInt < 0) {
+		textInt = 1
+		textEntry.text = "1"
+	} else if (textInt > 500) {
+		textInt = 500
 		textEntry.text = "500";
 	}
-	text = textEntry.text == "" ? "1" : textEntry.text
-	price = Math.floor(textEntry.text * 0.9)
-	price = Math.max(price, 1)
+
+	price = textInt - Math.ceil(textInt * 0.1)
+	price = Math.max(price, 0)
 	price = Math.min(price, 500)
 
 	textPrice.text =  "= " + price;

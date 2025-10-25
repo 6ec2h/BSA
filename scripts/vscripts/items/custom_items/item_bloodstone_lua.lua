@@ -40,12 +40,17 @@ function modifier_item_bloodstone_lua:GetAttributes()
 end
 
 function modifier_item_bloodstone_lua:OnCreated()
-	self.bonus_intellect = self:GetAbility():GetSpecialValueFor("bonus_intellect")
-	self.bonus_mana = self:GetAbility():GetSpecialValueFor("bonus_mana")
-	self.bonus_health = self:GetAbility():GetSpecialValueFor("bonus_health")
-	self.mana_regen_multiplier = self:GetAbility():GetSpecialValueFor("mana_regen_multiplier")
-	self.spell_amp = self:GetAbility():GetSpecialValueFor("spell_amp")
-	self.creep_lifesteal= self:GetAbility():GetSpecialValueFor("creep_lifesteal")
+	local ability = self:GetAbility()
+
+	self.bonus_intellect = ability:GetSpecialValueFor("bonus_intellect")
+	self.bonus_mana = ability:GetSpecialValueFor("bonus_mana")
+	self.bonus_health = ability:GetSpecialValueFor("bonus_health")
+	self.mana_regen_multiplier = ability:GetSpecialValueFor("mana_regen_multiplier")
+	self.spell_amp = ability:GetSpecialValueFor("spell_amp")
+	self.creep_lifesteal= ability:GetSpecialValueFor("creep_lifesteal")
+end
+function modifier_item_bloodstone_lua:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_bloodstone_lua:DeclareFunctions()
@@ -55,9 +60,7 @@ function modifier_item_bloodstone_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-
 		MODIFIER_EVENT_ON_TAKEDAMAGE
-
 	}
 end
 

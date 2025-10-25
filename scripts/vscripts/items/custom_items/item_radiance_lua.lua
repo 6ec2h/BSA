@@ -11,7 +11,9 @@ function item_radiance_lua1:GetIntrinsicModifierName()
 end
 
 function item_radiance_lua1:GetAbilityTextureName()
-	if self:GetCaster():HasModifier("modifier_item_radiance_aura_lua") then
+	local caster = self:GetCaster()
+
+	if caster and caster:HasModifier("modifier_item_radiance_aura_lua") then
 		if self:GetAbilityName() == 'item_radiance_lua1' then
 			return "radiance_lua1"
 		elseif self:GetAbilityName() == 'item_radiance_lua2' then
@@ -112,28 +114,38 @@ end
 modifier_item_radiance_burn_lua = class({})
 
 function modifier_item_radiance_burn_lua:OnCreated()
-if not self:GetAbility() then self:Destroy() return end
+	if not self:GetAbility() then self:Destroy() return end
+
 	self.damage = self:GetAbility():GetSpecialValueFor("aura_damage")
 	self.bonus_damage = 0
+
+	local caster = self:GetCaster()
 	
-	if self:GetCaster():IsRealHero() then
-		local attribute = self:GetCaster():GetPrimaryAttribute()
+	if IsServer() and caster:IsRealHero() then
+		local attribute = caster:GetPrimaryAttribute()
 		if attribute == 3 then
-			self.bonus_damage = (self:GetCaster():GetAgility() + self:GetCaster():GetIntellect(true) + self:GetCaster():GetStrength()) / 30
+			self.bonus_damage = (caster:GetAgility() + caster:GetIntellect(true) + caster:GetStrength()) / 30
 		elseif attribute == DOTA_ATTRIBUTE_AGILITY then
-			self.bonus_damage = self:GetCaster():GetAgility() / 10
+			self.bonus_damage = caster:GetAgility() / 10
 		elseif attribute == DOTA_ATTRIBUTE_STRENGTH then
-			self.bonus_damage = self:GetCaster():GetStrength() / 10
+			self.bonus_damage = caster:GetStrength() / 10
 		elseif attribute == DOTA_ATTRIBUTE_INTELLECT then
-			self.bonus_damage = self:GetCaster():GetIntellect(true) / 10
+			self.bonus_damage = caster:GetIntellect(true) / 10
 		end
 	end
 	
 	self.blind = self:GetAbility():GetSpecialValueFor("blind_pct")
-	if self.particle == nil and self:GetCaster():IsRealHero() then
+	if self.particle == nil and caster:IsRealHero() then
 		self.particle = ParticleManager:CreateParticle("particles/items2_fx/radiance.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 	end
-	self:StartIntervalThink(1)
+	
+	if IsServer() and not self.inited then
+		self.inited = true
+		self:StartIntervalThink(1)
+	end
+end
+function modifier_item_radiance_burn_lua:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_radiance_burn_lua:OnDestroy()
@@ -145,9 +157,7 @@ function modifier_item_radiance_burn_lua:OnDestroy()
 end
 
 function modifier_item_radiance_burn_lua:OnIntervalThink()
-	if IsServer() then
-		ApplyDamage({attacker = self:GetCaster(), victim = self:GetParent(), damage = self.damage + self.bonus_damage, ability = self:GetAbility(), damage_type = DAMAGE_TYPE_MAGICAL})
-	end
+	ApplyDamage({attacker = self:GetCaster(), victim = self:GetParent(), damage = self.damage + self.bonus_damage, ability = self:GetAbility(), damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_item_radiance_burn_lua:DeclareFunctions()

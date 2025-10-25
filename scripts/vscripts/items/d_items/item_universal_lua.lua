@@ -77,7 +77,7 @@ function modifier_item_universal_lua:GetAuraEntityReject( hEntity )
 end
 
 function modifier_item_universal_lua:OnCreated( kv )
-	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
+	self.radius = self:GetAbility():GetSpecialValueFor( "AbilityCastRange" )
 	self.bonus_all = self:GetAbility():GetSpecialValueFor( "bonus_all" )
 	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 end

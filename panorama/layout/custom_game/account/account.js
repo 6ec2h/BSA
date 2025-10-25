@@ -14,7 +14,7 @@ DotaHUD.windowControllers["account"] = {
     open: function(){
         current_offset_x = 0;
 		current_offset_y = 0;
-		parentPanel.SetPositionInPixels(current_offset_x, current_offset_y, 20);
+		parentPanel.SetPositionInPixels(current_offset_x, current_offset_y, -2);
 		parentPanel.RemoveAndDeleteChildren()
 		
 		let loading = $.CreatePanel("Panel", parentPanel, 'loading', {class:'loading'})
@@ -79,7 +79,7 @@ function fun(eventType, clickBehavior) {
         parentPanel.style.transform = "scale3D(" + (1 + offset) + ", " + (1 + offset) + ", " + (1 + offset) + ")";
 
         if (offset < -0.75) {
-            parentPanel.SetPositionInPixels(0, 0, 20);
+            parentPanel.SetPositionInPixels(0, 0, -2);
         }
     }
 }
@@ -105,7 +105,7 @@ function UpdatePosition() {
     new_offset_x = Math.max(min_offset_x * (0.8 + offset), Math.min(max_offset_x * (0.8 + offset), new_offset_x));
     new_offset_y = Math.max(min_offset_y * (0.8 + offset), Math.min(max_offset_y * (0.8 + offset), new_offset_y));
 
-    parentPanel.SetPositionInPixels(new_offset_x, new_offset_y, 20);
+    parentPanel.SetPositionInPixels(new_offset_x, new_offset_y, -2);
 
     current_offset_x = new_offset_x;
     current_offset_y = new_offset_y;
@@ -185,11 +185,11 @@ function createPattern(talents) {
 				fov: "10"
 			});
 			
-			if (skill_points > 0){
-				$.Msg("can upgrade")
-			}else{
-				$.Msg("can't upgrade")
-			}
+			// if (skill_points > 0){
+			// 	$.Msg("can upgrade")
+			// }else{
+			// 	$.Msg("can't upgrade")
+			// }
 			
 			panel.AddClass("very_rare_item_effect");
 	   }
@@ -213,6 +213,8 @@ function createParentInfo(data){
 	panel.FindChildTraverse('profname').steamid = plysteamid
 	panel.FindChildTraverse('profavatar').steamid = plysteamid
 	panel.FindChildTraverse('proflevel').text = $.Localize('#level') + ': ' + level
+	panel.FindChildTraverse('profbarback').need = need
+	panel.FindChildTraverse('profbarback').nexp = nexp
 	panel.FindChildTraverse('profbar').style.width = percent + '%'
 	panel.FindChildTraverse('skill_points').text = skill_points
 	if (data.free_reset == 0) {
@@ -222,7 +224,136 @@ function createParentInfo(data){
 	}
 }
 
-	
+// const talentsStatsOrder = [
+//     "exp_0",
+//     "hp_0",
+//     "hp_reg_0",
+//     "mana_0",
+//     "regen_mana_0",
+//     "armor_0",
+//     "mr_0",
+//     "damage_0",
+//     "attack_speed_0",
+//     "spell_damage_0",
+//     "move_speed_0",
+//     "status_0",
+//     "lifesteal_0",
+//     "evasion_0",
+//     "str_0",
+//     "int_0",
+//     "agi_0",
+//     "cd_0",
+// ]
+const talentsStatsOrder = [
+    "str_0",
+    "hp_0",
+    "hp_reg_0",
+    "armor_0",
+    "mr_0",
+    "status_0",
+
+    "agi_0",
+    "damage_0",
+    "attack_speed_0",
+    "lifesteal_0",
+    "move_speed_0",
+    "evasion_0",
+
+    "int_0",
+    "mana_0",
+    "regen_mana_0",
+    "spell_damage_0",
+    "cd_0",
+    "exp_0",
+]
+
+function summirizePlayerTalentsStats(data) {
+	const playerLearnedTalents = Object.values(data.player_talents.talents)
+
+	const talentIdToBonusMap = Object.values(data.talents_data).reduce((acc, talent) => {
+		acc[talent.id] = talent.bonus
+
+		return acc
+	}, {})
+
+	const talents_stats = data.talents_stats
+
+	const playerLearnedTalentsStats = playerLearnedTalents.reduce((acc, talentId) => {
+		const bonus = talentIdToBonusMap[talentId]
+        if (bonus && talents_stats && talents_stats[bonus]) {
+			const zeroBonus = bonus.slice(0, -1) + "0"
+            acc[zeroBonus] = (acc[zeroBonus] || 0) + talents_stats[bonus]
+        }
+
+		return acc
+	}, {})
+
+	return playerLearnedTalentsStats
+}
+
+function sortSummirizedTalentsStats(summirizedTalentsStats) {
+	return talentsStatsOrder
+		.map(statName => ({
+			stat: statName,
+			value: summirizedTalentsStats[statName] || 0,
+		}))
+		.filter(stat => !!stat.value)
+}
+
+function switchStatsInfoVisibility() {
+	const totalStatsInfoPanel = $("#TotalStatsInfo")
+
+	const headerHideButton = totalStatsInfoPanel.FindChildTraverse("StatInfoHeader")
+
+	const statInfoPanels = totalStatsInfoPanel.FindChildrenWithClassTraverse('StatInfo') || [];
+
+	if (headerHideButton.hidden) {
+		headerHideButton.hidden = false;
+		statInfoPanels.forEach((panel) => panel.visible = true);
+		headerHideButton.FindChildrenWithClassTraverse('StatInfoHeaderText')[0].text = $.Localize("#hide_total_talents_stats")
+	} else {
+		headerHideButton.hidden = true;
+		statInfoPanels.forEach((panel) => panel.visible = false);
+		headerHideButton.FindChildrenWithClassTraverse('StatInfoHeaderText')[0].text = $.Localize("#show_total_talents_stats")
+	}
+}
+
+function createTotalStatsInfo(data) {
+	const totalStatsInfoPanel = $("#AccountPanel").FindChildTraverse("TotalStatsInfo")
+
+	for (let i = totalStatsInfoPanel.GetChildCount() - 1; i >= 0; i--) {
+		const child = totalStatsInfoPanel.GetChild(i)
+
+		if (child?.IsValid() && child.id != "StatInfoHeader")
+			child.DeleteAsync(0)
+	}
+
+	const summirizedTalentsStats = sortSummirizedTalentsStats(summirizePlayerTalentsStats(data))
+
+	for (const statInfoNum in summirizedTalentsStats) {
+		const statInfo = summirizedTalentsStats[statInfoNum]
+
+		if (statInfo.value === 0)
+			continue
+
+		const statPanel = $.CreatePanel("Panel", $("#TotalStatsInfo"), statInfoNum + 1);
+		statPanel.BLoadLayoutSnippet("StatInfo");
+		statPanel.FindChildrenWithClassTraverse('StatImage')[0].SetImage("file://{images}/account/" + getTalentName(statInfo.stat) + ".png");
+		statPanel.FindChildrenWithClassTraverse('StatValue')[0].text = $.Localize("#" + statInfo.stat).replace("{value}", statInfo.value);
+
+		statPanel.style.padding = "3px";
+	}
+
+	const headerHideButton = totalStatsInfoPanel.FindChildTraverse("StatInfoHeader")
+
+	if (headerHideButton.hidden) {
+		totalStatsInfoPanel.FindChildrenWithClassTraverse('StatInfo').forEach((panel) => panel.visible = false);
+		headerHideButton.FindChildrenWithClassTraverse('StatInfoHeaderText')[0].text = $.Localize("#show_total_talents_stats")
+	} else {
+		headerHideButton.FindChildrenWithClassTraverse('StatInfoHeaderText')[0].text = $.Localize("#hide_total_talents_stats")
+	}
+}
+
 function init_account(data){
 	parentPanel.RemoveAndDeleteChildren()
 	var talents = data.talents_data
@@ -231,8 +362,9 @@ function init_account(data){
 	skill_points = player_data.skill_points
 	learnedTalents = Object.values(player_data.talents)
 	
-	createParentInfo(player_data)
+	createParentInfo(player_data);
 	createPattern(talents);
+	createTotalStatsInfo(data)
 }
 
 function GetHeroLevel(experience){
@@ -276,14 +408,14 @@ function acceptBuy(id) {
 	GameEvents.SendCustomGameEventToServer( "buy_account_progress", {id:id});
 }
 
-function TipsOver(message, pos)
-{
-     if ($("#"+pos) != undefined)
-    {
-		if (pos == "Exp_line"){
-			$.DispatchEvent( "DOTAShowTextTooltip", $("#"+pos), $.Localize(nexp_exp +" / "+need_exp));
+function TipsOver(message, pos) {
+	const el = $("#"+pos)
+
+    if (el != undefined) {
+		if (message === "Exp_line"){
+			$.DispatchEvent( "DOTAShowTextTooltip", el, $.Localize(el.nexp +" / " + el.need));
 		}else{
-			$.DispatchEvent( "DOTAShowTextTooltip", $("#"+pos), $.Localize('#'+message));
+			$.DispatchEvent( "DOTAShowTextTooltip", el, $.Localize('#'+message));
 		}
     }
 }

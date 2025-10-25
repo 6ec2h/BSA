@@ -1,26 +1,40 @@
 "DOTAAbilities"
-{	
-  "spectre_dispersion_lua"
-    {
-        "BaseClass"                     "ability_lua"
-        "ScriptFile"                    "heroes/hero_spectre/spectre_dispersion_lua/spectre_dispersion_lua"
-        "AbilityTextureName"            "spectre_dispersion"
-        "AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+{
+	"special_bonus_unique_spectre_1"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	
+	"spectre_dispersion_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "heroes/hero_spectre/spectre_dispersion_lua/spectre_dispersion_lua"
+
+		"AbilityTextureName"            "spectre_dispersion"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
 		"AbilityCastRange"				"500"
 
 		"AbilityValues"
 		{
-			"damage_reduction"			
-				{
-					"value"					"4 8 12 16"
-					"LinkedSpecialBonus"	"special_bonus_spectre_tal1"
-					"CalculateSpellDamageTooltip" "0"
-				}
-			"damage_cleanse"			"500 750 1000 1250"
-			"damage_reset_interval"		"3"
-			"radius"					"500"	
+			"damage_reflection_pct"			
+			{
+				"value"								"4 8 12 16"
+				"special_bonus_unique_spectre_1"	"+10"
+				"DamageTypeTooltip"     			"DAMAGE_TYPE_PURE"
+				"CalculateSpellDamageTooltip" 		"0"
+			}
+			
+			"damage_release_interval"				"0.3"
 		}
 	}
-}	
+}

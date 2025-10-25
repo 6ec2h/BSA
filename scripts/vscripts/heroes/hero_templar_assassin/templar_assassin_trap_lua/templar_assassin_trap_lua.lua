@@ -17,7 +17,7 @@ function templar_assassin_trap_lua:OnSpellStart()
 	end
 
 	local trap = CreateUnitByName("npc_dota_templar_assassin_psionic_trap", position, false, self:GetCaster(), self:GetCaster(), self:GetCaster():GetTeamNumber())
-	FindClearSpaceForUnit(trap, trap:GetAbsOrigin(), false)
+	FindClearSpaceForUnit(trap, trap:GetAbsOrigin(), true)
 	trap:SetControllableByPlayer(self:GetCaster():GetPlayerID(), true)
 	trap:AddNewModifier(self:GetCaster(), self, "modifier_kill", {duration = self:GetSpecialValueFor("duration")})
 	trap:AddNewModifier(self:GetCaster(), self, "modifier_templar_assassin_trap_lua", {})
@@ -149,10 +149,10 @@ function templar_assassin_trap_lua_teleport:OnSpellStart()
 				local hRelay = Entities:FindByName( nil, "tp_off" )
 				if hRelay == nil then return end
 				hRelay:Trigger(nil,nil)
-				FindClearSpaceForUnit(self:GetCaster(), trap:GetAbsOrigin(), false)
+				FindClearSpaceForUnit(self:GetCaster(), trap:GetAbsOrigin(), true)
 				trap:ForceKill(false)
 				break
 			end
 		end
 	end
-end
+endnd

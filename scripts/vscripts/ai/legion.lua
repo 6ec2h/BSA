@@ -86,7 +86,7 @@ function CastSpell( hEnemy )
 	local ent = Entities:FindByName( nil, "legion_point")
 	local point = ent:GetAbsOrigin() 
 	thisEntity:SetAbsOrigin( point )
-	FindClearSpaceForUnit(thisEntity, point, false)
+	FindClearSpaceForUnit(thisEntity, point, true)
 	thisEntity:Stop() 
       ExecuteOrderFromTable({
             UnitIndex = thisEntity:entindex(),    --индекс кастера
@@ -96,3 +96,4 @@ function CastSpell( hEnemy )
         })
     return 1
 end
+

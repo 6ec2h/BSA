@@ -16,10 +16,6 @@ function item_aegis_lua:OnSpellStart()
                 hModifierAegis:SetStackCount(1)
 		    end
 		    self:SpendCharge(0)
-			local new_charges = self:GetCurrentCharges()
-			if new_charges <= 0 then
-				UTIL_Remove(self)
-			end
 		    EmitSoundOn("DOTA_Item.Refresher.Activate", hCaster)
 		    local nParticle = ParticleManager:CreateParticle("particles/items_fx/aegis_respawn_timer.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
 			ParticleManager:ReleaseParticleIndex( nParticle );
@@ -72,6 +68,14 @@ function modifier_aegis:OnDeath(keys)
 			Timers:CreateTimer(FrameTime(), function()
 				local nStackCount = self:GetStackCount()
 				if nStackCount>=2 then
+					self:SetStackCount(nStackCount-1)
+				else
+					self:Destroy()
+				end
+			end)
+		end
+	end
+enden
 					self:SetStackCount(nStackCount-1)
 				else
 					self:Destroy()

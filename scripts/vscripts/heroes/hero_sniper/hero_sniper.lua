@@ -548,6 +548,10 @@ function modifier_sniper_ult:DeclareFunctions()
 	}
 end
 
+function modifier_sniper_ult:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+
 function modifier_sniper_ult:OnIntervalThink()
 	if IsServer() then
 		self:GetParent():SetHealth(math.max( self:GetParent():GetHealth() - (self:GetParent():GetHealth()/100*self.less), 1))

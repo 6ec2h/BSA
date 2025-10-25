@@ -73,7 +73,7 @@ function modifier_item_magic_soul:GetAuraRadius()
 end
 
 function modifier_item_magic_soul:OnCreated( kv )
-	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
+	self.radius = self:GetAbility():GetSpecialValueFor( "AbilityCastRange" )
 	self.bonus_intelligence = self:GetAbility():GetSpecialValueFor( "bonus_intelligence" )
 	self.cooldown_reduction_pct = self:GetAbility():GetSpecialValueFor( "cooldown_reduction_pct" )
 end

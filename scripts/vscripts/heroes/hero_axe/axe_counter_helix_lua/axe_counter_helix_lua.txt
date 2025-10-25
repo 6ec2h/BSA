@@ -1,5 +1,30 @@
 "DOTAAbilities"
 {
+	"special_bonus_unique_axe_1"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"special_bonus_unique_axe_2"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"special_bonus_unique_axe_3"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"special_bonus_unique_axe_4"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"axe_counter_helix_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -10,17 +35,35 @@
 
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		"AbilityCastRange"				"275"
 
-		"AbilityCooldown"				"1.0 0.8 0.6 0.4"
-
 		"AbilityValues"
-	{
-		"radius"	"275"
-			"trigger_chance"	"10"			
-			"damage"	"50 70 90 110"
-	}
+		{
+            "AbilityCooldown"
+            {
+                "value"             			"1.0 0.8 0.6 0.4"
+				"special_bonus_unique_axe_2"	"-0.2"
+            }
+
+			"trigger_chance"					"10"
+
+			"base_damage"
+			{
+				"value"							"0"
+				"special_bonus_unique_axe_3"	"+60"
+				"DamageTypeTooltip"     		"DAMAGE_TYPE_PURE"
+				"CalculateSpellDamageTooltip" 	"0"
+			}
+
+			"damage"
+			{
+				"value"							"50 70 90 110"
+				"DamageTypeTooltip"     		"DAMAGE_TYPE_PURE"
+				"CalculateSpellDamageTooltip" 	"0"
+			}
+		}
 	}
 }

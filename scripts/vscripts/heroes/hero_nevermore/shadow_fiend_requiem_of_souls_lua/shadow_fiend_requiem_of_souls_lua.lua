@@ -60,16 +60,6 @@ function shadow_fiend_requiem_of_souls_lua:OnProjectileHit_ExtraData( hTarget, v
 				ability = this,
 			}
 			ApplyDamage( damage )
-			         
-			if self:GetCaster():FindAbilityByName("special_bonus_nevermore_str8")~=nil then
-				if self:GetCaster():FindAbilityByName("special_bonus_nevermore_str8"):GetLevel() > 0 then 
-				hTarget:AddNewModifier(
-					self:GetCaster(),
-					self,
-					"modifier_disarm",
-					{ duration = 2 })
-				end
-			end			
 		end
 	end
 	return false
@@ -242,6 +232,21 @@ end
 function shadow_fiend_requiem_of_souls_lua:AddATValue( value )
 	local table = self:GetAT()
 	local i = self:GetATEmptyKey()
+	table[i] = value
+	return i
+end
+
+function shadow_fiend_requiem_of_souls_lua:RetATValue( key )
+	local table = self:GetAT()
+	local ret = table[key]
+	return ret
+end
+
+function shadow_fiend_requiem_of_souls_lua:DelATValue( key )
+	local table = self:GetAT()
+	local ret = table[key]
+	table[key] = nil
+endGetATEmptyKey()
 	table[i] = value
 	return i
 end

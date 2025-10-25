@@ -1,7 +1,8 @@
 drow_cross_lua = class({})
 
-LinkLuaModifier("modifier_drow_cross_lua","heroes/hero_drow_ranger/drow_ranger_powershot_lua/drow_cross_lua",LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_drow_cross_lua", "heroes/hero_drow_ranger/drow_ranger_powershot_lua/drow_cross_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drow_cross_lua_debuff", "heroes/hero_drow_ranger/drow_ranger_powershot_lua/drow_cross_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drow_cross_lua_autocast", "heroes/hero_drow_ranger/drow_ranger_powershot_lua/drow_cross_lua", LUA_MODIFIER_MOTION_NONE)
 
 function drow_cross_lua:OnSpellStart()
 	self.caster = self:GetCaster()
@@ -9,29 +10,13 @@ function drow_cross_lua:OnSpellStart()
 	self.width_end = 100
 	self.speed = self:GetSpecialValueFor("speed")
 	self.distance = self:GetSpecialValueFor("distance")
-	self.count = self:GetSpecialValueFor("count")-1
-	local shot_damage = self:GetSpecialValueFor( "damage" )
+	self.count = math.floor(self:GetSpecialValueFor("count") / 2)
+	self.armorReductionDuration = self:GetSpecialValueFor("armor_reduction_duration")
+	self.shot_damage = self:GetSpecialValueFor( "damage" )
 	
 	local front = self:GetCaster():GetForwardVector():Normalized()
 	local target_pos = self:GetCaster():GetOrigin() + front * 700
 	
-	damage_type = DAMAGE_TYPE_PHYSICAL
-	damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
-	
-
-	if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_int10")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_int10"):GetLevel() > 0 then
-			self.count = 3
-		end
-	end
-	
-	self.damage = {
-		attacker = self:GetCaster(),
-		damage = shot_damage,	
-		damage_type = damage_type,
-		damage_flags = damage_flags,
-		ability = self
-	}
 	local center_distance = {0,200,400,600,800}
 
 	local orso_distance = {100,200,300,400,500}
@@ -99,23 +84,98 @@ function drow_cross_lua:OnSpellStart()
 end
 
 function drow_cross_lua:OnProjectileHit( hTarget, vLocation )
+	if hTarget and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
+		local caster = self:GetCaster()
 
-	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
-		self.damage.victim = hTarget,
-		ApplyDamage( self.damage )
+		ApplyDamage({
+			attacker = caster,
+			victim = hTarget,
+			damage = self.shot_damage,	
+			damage_type = DAMAGE_TYPE_PHYSICAL,
+			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+			ability = self,
+		})
 
-		if self:GetAbilityName() == "drow_cross_lua" then
-			if hTarget:HasModifier("modifier_drow_cross_lua") and hTarget:IsAlive() then
-				ApplyDamage( self.damage )
-			end
-		end 
+		local armorReductionMod = hTarget:FindModifierByName("modifier_drow_cross_lua_debuff")
+
+		if armorReductionMod then
+			armorReductionMod:ForceRefresh()
+		else
+			hTarget:AddNewModifier(caster, self, "modifier_drow_cross_lua_debuff", {duration = self.armorReductionDuration} )
+		end
  	end
 end
 
-
-if modifier_drow_cross_lua == nil then
-    modifier_drow_cross_lua = class({})
+function drow_cross_lua:GetIntrinsicModifierName()
+    return "modifier_drow_cross_lua_autocast"
 end
+
+function drow_cross_lua:OnAttack(params)
+    if not IsServer() then return end
+    if params.attacker ~= self:GetCaster() then return end
+    if not self:GetAutoCastState() then return end
+    if not self:IsCooldownReady() then return end
+    if self:GetManaCost(-1) > self:GetCaster():GetMana() then return end
+
+    self:OnSpellStart()
+    self:UseResources(true, false, false, true)
+end
+
+modifier_drow_cross_lua_autocast = class({})
+
+function modifier_drow_cross_lua_autocast:IsHidden()
+    return true
+end
+
+function modifier_drow_cross_lua_autocast:IsPurgable()
+    return false
+end
+
+function modifier_drow_cross_lua_autocast:DeclareFunctions()
+    return {
+		MODIFIER_EVENT_ON_ATTACK,
+	}
+end
+
+function modifier_drow_cross_lua_autocast:OnAttack(params)
+    if not IsServer() then return end
+    if params.attacker ~= self:GetParent() then return end
+
+    local ability = self:GetAbility()
+    if not ability then return end
+
+	ability:OnAttack(params)
+end
+
+modifier_drow_cross_lua_debuff = class({})
+
+function modifier_drow_cross_lua_debuff:IsDebuff()
+	return true 
+end
+function modifier_drow_cross_lua_debuff:IsHidden()
+	return false
+end
+function modifier_drow_cross_lua_debuff:IsPurgable()
+	return true
+end
+function modifier_drow_cross_lua_debuff:GetTexture()
+	return "powershot"
+end
+function modifier_drow_cross_lua_debuff:DeclareFunctions()
+    return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+    }
+end
+function modifier_drow_cross_lua_debuff:OnCreated(kv)
+	local ability = self:GetAbility()
+
+	self.armorReduction = ability:GetSpecialValueFor("armor_reduction")
+end
+function modifier_drow_cross_lua_debuff:GetModifierPhysicalArmorBonus()
+	return -self.armorReduction
+end
+
+modifier_drow_cross_lua = class({})
 
 function modifier_drow_cross_lua:IsDebuff()
 	return false 
@@ -130,10 +190,10 @@ function modifier_drow_cross_lua:IsPurgeException()
 	return false
 end
 function modifier_drow_cross_lua:DeclareFunctions()
-    local funcs = {
+    return {
+		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
     }
-    return funcs
 end
 function modifier_drow_cross_lua:OnCreated(kv)
     if not IsServer() then

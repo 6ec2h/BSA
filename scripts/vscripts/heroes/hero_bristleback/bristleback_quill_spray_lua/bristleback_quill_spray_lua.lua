@@ -29,18 +29,6 @@ function bristleback_quill_spray_lua:OnSpellStart()
 
 	damage_type = DAMAGE_TYPE_PHYSICAL
 	damage_flags = DOTA_DAMAGE_FLAG_NONE
-	
-	if self:GetCaster():FindAbilityByName("special_bonus_bristleback_int7")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_bristleback_int7"):GetLevel() > 0 then 
-		ra = RandomInt(1,100)
-			if ra <= 15 then
-			local ability = self:GetCaster():FindAbilityByName( "bristleback_viscous_nasal_goo_lua" )
-					if ability~=nil then ability:SetLevel(1)
-						ability:OnSpellStart()
-					end
-			end
-		end
-	end
 
 	local damageTable = {
 		attacker = caster,
@@ -281,6 +269,18 @@ function modifier_bristleback_viscous_nasal_goo_lua:GetModifierPhysicalArmorBonu
 	return -self.armor_stack * self:GetStackCount()
 end
 function modifier_bristleback_viscous_nasal_goo_lua:GetModifierMoveSpeedBonus_Percentage()
+	return -self.slow_stack * self:GetStackCount()
+end
+
+function modifier_bristleback_viscous_nasal_goo_lua:GetEffectName()
+	return "particles/units/heroes/hero_bristleback/bristleback_viscous_nasal_goo_debuff.vpcf"
+end
+
+function modifier_bristleback_viscous_nasal_goo_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
+nction modifier_bristleback_viscous_nasal_goo_lua:GetModifierMoveSpeedBonus_Percentage()
 	return -self.slow_stack * self:GetStackCount()
 end
 

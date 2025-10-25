@@ -22,11 +22,8 @@ function item_talisman_of_evasion_lua:OnSpellStart()
 	end
 
 	original_target:AddNewModifier(caster, self, "modifier_talisman_of_evasion_active", 
-		{ 
-			
+		{
 			duration =  self:GetSpecialValueFor("duration"),
-			evasion  = 	self:GetSpecialValueFor("evasion"),
-			movespeed  = 	self:GetSpecialValueFor("bonus_movespeed") 
 		}
 	)
 end
@@ -92,8 +89,8 @@ function modifier_talisman_of_evasion_active:DeclareFunctions()
 	return funcs
 end
 
-function modifier_talisman_of_evasion_active:OnCreated( kv )
-	self.evasion = kv.evasion
+function modifier_talisman_of_evasion_active:OnCreated()
+	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
 	self.movespeed 	= self:GetAbility():GetSpecialValueFor("bonus_movespeed")
 end
 
@@ -158,5 +155,7 @@ function modifier_talisman_of_evasion:GetModifierBonusStats_Agility( params )
 end
 
 function modifier_talisman_of_evasion:GetModifierMoveSpeedBonus_Constant( params )
+	return self.movespeed
+endan_of_evasion:GetModifierMoveSpeedBonus_Constant( params )
 	return self.movespeed
 end

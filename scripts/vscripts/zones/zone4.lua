@@ -158,6 +158,10 @@ function modifier_campfire_aura_effect:IsPurgable()
 	return false
 end
 
+function modifier_campfire_aura_effect:GetTexture()
+	return "campfire"
+end
+
 -----------------
 
 modifier_cold_aura = class({})
@@ -184,6 +188,10 @@ function modifier_cold_aura:OnCreated(data)
 			self.radius = 3400/2
 		end
 	end
+end
+
+function modifier_cold_aura:GetAuraEntityReject(target)
+	return target:HasModifier("modifier_campfire_aura_effect")
 end
 
 function modifier_cold_aura:GetModifierAura()

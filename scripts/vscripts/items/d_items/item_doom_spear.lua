@@ -72,7 +72,7 @@ function modifier_item_doom_spear:GetAuraRadius()
 end
 
 function modifier_item_doom_spear:OnCreated( kv )
-	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
+	self.radius = self:GetAbility():GetSpecialValueFor( "AbilityCastRange" )
 	self.bonus_agility = self:GetAbility():GetSpecialValueFor( "bonus_agility" )
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 end

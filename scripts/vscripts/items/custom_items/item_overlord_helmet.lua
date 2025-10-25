@@ -101,23 +101,24 @@ end
 
 modifier_item_overlord_helmet_aura = class({})
 
-function modifier_item_overlord_helmet_aura:IsHidden()
-	return false
-end
+function modifier_item_overlord_helmet_aura:IsHidden() return false end
+function modifier_item_overlord_helmet_aura:IsPurgable() return false end
 
-function modifier_item_overlord_helmet_aura:IsPurgable()
-	return false
+function modifier_item_overlord_helmet_aura:OnCreated( kv )
+	self.status_resistance = self:GetAbility():GetSpecialValueFor("status_resistance")
+end
+function modifier_item_overlord_helmet_aura:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_overlord_helmet_aura:DeclareFunctions()
-    local funcs = {
+    return {
         MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
     }
-    return funcs
 end
 
 function modifier_item_overlord_helmet_aura:GetModifierStatusResistanceStacking()
-    return self:GetAbility():GetSpecialValueFor("status_resistance")
+    return self.status_resistance
 end
 
 ------------------------------------------------------------------------------------------
@@ -132,30 +133,58 @@ function modifier_item_overlord_helmet_aura_friendly:IsPurgable()
 	return false
 end
 
-function modifier_item_overlord_helmet_aura_friendly:OnCreated()
-    if not IsServer() then return end
-    self:StartIntervalThink(0.1)
+function modifier_item_overlord_helmet_aura_friendly:OnCreated( kv )
+	if not IsServer() then return end
+	
+	self.damage = 0
+	
+	if not self.inited then
+		self.inited = true
+		self:StartIntervalThink(0.25)
+	end
+end
+function modifier_item_overlord_helmet_aura_friendly:OnRefresh()
+	self:OnCreated()
 end
 
-function modifier_item_overlord_helmet_aura_friendly:OnIntervalThink()
-    if not IsServer() then return end
-    local damage = self:GetAbility():GetSpecialValueFor("damage_share_pct")
+function modifier_item_overlord_helmet_aura_friendly:OnIntervalThink()	
+	if not IsServer() then return end
 
-	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetOrigin(), nil, self:GetAbility():GetSpecialValueFor("radius"),DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
+	local ability = self:GetAbility()
+
+	if not ability then return end
+
+    local damage_share_pct = ability:GetSpecialValueFor("damage_share_pct")
+
+	local caster = self:GetCaster()
+
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
 	
-    local baseDamage = self:GetCaster():GetAttackDamage()
-    self.damage = ((baseDamage * (damage/100))/#enemies)
+    local baseDamage = math.floor((caster:GetBaseDamageMin() + caster:GetBaseDamageMax()) / 2)
+	
+    local damage = math.floor((baseDamage * (damage_share_pct / 100)) / #enemies)
 
-    self:SetStackCount(self.damage)
+	if (damage == self.damage) then return end
+
+	self.damage = damage
+
+	CustomNetTables:SetTableValue("overlord_helmet", tostring(self:GetParent():entindex()), { damage = damage })
 end
 
 function modifier_item_overlord_helmet_aura_friendly:DeclareFunctions()
-    local funcs = {
+    return {
         MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
     }
-    return funcs
 end
 
 function modifier_item_overlord_helmet_aura_friendly:GetModifierPreAttack_BonusDamage()
-    return self:GetStackCount()
+	if IsServer() then
+   		return self.damage
+	else
+		local netOverlordHelmet = CustomNetTables:GetTableValue("overlord_helmet", tostring(self:GetParent():entindex()))
+
+		if not netOverlordHelmet then return end
+
+		return netOverlordHelmet.damage
+	end
 end

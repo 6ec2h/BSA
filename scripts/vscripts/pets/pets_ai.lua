@@ -118,7 +118,7 @@ function blink(unit)
 		UnitIndex = thisEntity:entindex(),
 		thisEntity:SetAbsOrigin( unit:GetOrigin() + RandomVector( RandomFloat(50, 50 )))
 		})
-	FindClearSpaceForUnit(thisEntity, unit:GetOrigin()+ RandomVector( RandomFloat(50, 50 )), false)
+	FindClearSpaceForUnit(thisEntity, unit:GetOrigin()+ RandomVector( RandomFloat(50, 50 )), true)
 	return 1
 end
 
@@ -131,4 +131,4 @@ function Approach(unit)
 		Position = thisEntity:GetOrigin() + vToEnemy * thisEntity:GetIdealSpeed()
 	})
 	return 1
-end
+endd

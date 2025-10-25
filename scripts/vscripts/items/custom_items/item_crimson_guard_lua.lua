@@ -31,7 +31,7 @@ function modifier_item_crimson_guard_active_lua:OnCreated()
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
 	if self:GetParent():IsRangedAttacker() then
-		self.block_damage_active = self:GetAbility():GetSpecialValueFor("block_damablock_damage_ranged_activege_ranged")
+		self.block_damage_active = self:GetAbility():GetSpecialValueFor("block_damage_ranged_active")
 	else
 		self.block_damage_active = self:GetAbility():GetSpecialValueFor("block_damage_melee_active")
 	end
@@ -39,7 +39,7 @@ end
 
 function modifier_item_crimson_guard_active_lua:DeclareFunctions()
 	return{
-		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK
+		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
 	}
 end
 
@@ -51,37 +51,28 @@ end
 
 modifier_item_crimson_guard_lua = class({})
 
-function modifier_item_crimson_guard_lua:IsHidden()		
-	return true 
-end
-function modifier_item_crimson_guard_lua:IsPurgable()		
-	return false 
-end
-
-function modifier_item_crimson_guard_lua:RemoveOnDeath()	
-	return false 
-end
-
-function modifier_item_crimson_guard_lua:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
+function modifier_item_crimson_guard_lua:IsHidden()	return true end
+function modifier_item_crimson_guard_lua:IsPurgable() return false end
+function modifier_item_crimson_guard_lua:RemoveOnDeath() return false end
+function modifier_item_crimson_guard_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 
 function modifier_item_crimson_guard_lua:OnCreated()
-	self.bonus_health = self:GetAbility():GetSpecialValueFor("bonus_health")
-	self.bonus_health_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
-	self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
+	local ability = self:GetAbility()
+
+	self.bonus_health = ability:GetSpecialValueFor("bonus_health")
+	self.bonus_health_regen = ability:GetSpecialValueFor("bonus_health_regen")
+	self.bonus_armor = ability:GetSpecialValueFor("bonus_armor")
 
 	if self:GetParent():IsRangedAttacker() then
-		self.block_damage = self:GetAbility():GetSpecialValueFor("block_damage_ranged")
+		self.block_damage = ability:GetSpecialValueFor("block_damage_ranged")
 	else
-		self.block_damage = self:GetAbility():GetSpecialValueFor("block_damage_melee")
+		self.block_damage = ability:GetSpecialValueFor("block_damage_melee")
 	end
 end
 
 function modifier_item_crimson_guard_lua:DeclareFunctions()
 	return {
-
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -104,6 +95,10 @@ end
 function modifier_item_crimson_guard_lua:GetModifierPhysical_ConstantBlock()
 	if RandomInt(1, 2) == 1 then
 		return self.block_damage
+	else
+		return 0
+	end
+end 	return self.block_damage
 	else
 		return 0
 	end

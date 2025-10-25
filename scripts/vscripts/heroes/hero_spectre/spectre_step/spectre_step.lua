@@ -23,10 +23,6 @@ function modifier_spectre_step_buff:IsDebuff()	return false end
 
 function modifier_spectre_step_buff:OnCreated()
 	self.attackspeed_bonus = self:GetAbility():GetSpecialValueFor("attackspeed_bonus")
-	local talent = self:GetCaster():FindAbilityByName("special_bonus_spectre_tal3")
-	if talent ~= nil and talent:GetLevel() > 0 then
-		self.attackspeed_bonus = self.attackspeed_bonus + 40
-	end
 end
 
 function modifier_spectre_step_buff:DeclareFunctions()
@@ -56,6 +52,14 @@ function modifier_spectre_step_debuff:OnCreated()
 end
 
 function modifier_spectre_step_debuff:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	}
+end
+
+function modifier_spectre_step_debuff:GetModifierAttackSpeedBonus_Constant()
+	return self.attackspeed_bonus * (-1)
+end)
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 	}

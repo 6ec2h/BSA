@@ -53,17 +53,17 @@ function modifier_wisp_overcharge_lua:OnIntervalThink()
 		return 
 	end
 	
-	local hp_loss = self:GetAbility():GetSpecialValueFor("hp_loss") * 2
+	local hp_loss = self:GetAbility():GetSpecialValueFor("hp_loss")
 	local hAbility = self:GetAbility()
 	if not self:GetCaster():IsAlive() then return end
 		
 	if self:GetCaster():GetMana() >= hAbility:GetManaCost(-1) then
 		local current_health = self:GetCaster():GetHealth() 
-		local health_drain = current_health * hp_loss *0.01
+		local health_drain = current_health * hp_loss * 0.01
 		
 		if self:GetCaster():FindAbilityByName("special_bonus_wisp_str10")~=nil then
 			if self:GetCaster():FindAbilityByName("special_bonus_wisp_str10"):GetLevel() > 0 then 
-				health_drain = health_drain /2
+				health_drain = health_drain / 2
 			end
 		end
 		if current_health - health_drain > 1 then 
@@ -140,3 +140,4 @@ end
 function modifier_wisp_overcharge_lua_heal:GetModifierMoveSpeedBonus_Constant()
 return self.bonus_move_speed
 end
+

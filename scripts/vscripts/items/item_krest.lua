@@ -1,4 +1,5 @@
 function last_chance(keys)
+	print(1)
 	local wws= keys.caster
 	if not wws:IsRealHero() then return end
 	local new_charges = keys.ability:GetCurrentCharges() - 1
@@ -15,7 +16,8 @@ function last_chance(keys)
 					if not hero:IsAlive() then
 						local point = wws:GetAbsOrigin()
 						hero:RespawnHero(false, false)
-						FindClearSpaceForUnit(hero, point, false)
+						hero:SetAbsOrigin( point )
+						FindClearSpaceForUnit(hero, point, true)
 						hero:Stop()
 					end
 					hero:SetHealth( hero:GetMaxHealth() )

@@ -1,5 +1,13 @@
 "DOTAAbilities"
 {
+
+	"special_bonus_unique_drow_ranger_2"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"drow_ranger_marksmanship_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -19,13 +27,17 @@
 		{
 			"chance"						"15 25 35"
 			"bonus_damage"					"50 100 150"
-			"agility_multiplier"			"25 35 45"
-			"agility_range"					"700"
+			"agility_bonus_pct"
+			{
+				"value"									"15 25 35"
+				"special_bonus_unique_drow_ranger_2" 	"+20"
+			}
 			"split_count_scepter"			"2"
 			"scepter_range"					"275"
 			"damage_reduction_scepter"		"50"
 			"disable_range"					"400"
 			"tool_disarm"					"50"
+			"agility_bonus_allies_pec"		"50"
 		}
 	}
 }

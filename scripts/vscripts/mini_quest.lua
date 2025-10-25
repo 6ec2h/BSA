@@ -51,7 +51,7 @@ function start_event()
 				Timers:CreateTimer(3, function()
 					local point = Entities:FindByName( nil, "minepnt"):GetAbsOrigin()
 					unit:SetAbsOrigin( point )
-					FindClearSpaceForUnit(unit, point, false)
+					FindClearSpaceForUnit(unit, point, true)
 					unit:Stop()
 					unit:StopSound("Portal.Loop_Appear")
 					unit:RemoveModifierByName("modifier_teleport_event")
@@ -102,7 +102,7 @@ function mine_tp_out()
 					local ent = Entities:FindByName( nil, "pnt5")
 					local point = ent:GetAbsOrigin()
 					unit:SetAbsOrigin( point )
-					FindClearSpaceForUnit(unit, point, false)
+					FindClearSpaceForUnit(unit, point, true)
 					unit:Stop()
 					unit:StopSound("Portal.Loop_Appear")
 					unit:RemoveModifierByName("modifier_teleport_event")
@@ -110,7 +110,25 @@ function mine_tp_out()
 					PlayerResource:SetCameraTarget(unit:GetPlayerOwnerID(), unit)
 					Timers:CreateTimer(0.1, function()
 						PlayerResource:SetCameraTarget(unit:GetPlayerOwnerID(), nil)
-					return nil
+						return nil
+					end)
+					Timers:CreateTimer(3, function()
+						local removableEnts = {
+							["dota_item_drop"] = true,
+							["npc_dota_creature"] = true,
+						}
+
+						local mineCenterPoint = Entities:FindByName(nil, "minepnt"):GetAbsOrigin()
+
+						local entsInMine = Entities:FindAllInSphere(mineCenterPoint, 2500)
+
+						for _, ent in ipairs(entsInMine) do
+							local classname = ent:GetClassname()
+
+							if removableEnts[classname] then
+								ent:RemoveSelf()
+							end
+						end
 					end)
 				end)	
 			
@@ -133,7 +151,7 @@ function tp_out_mines(event)
 		local ent = Entities:FindByName( nil, "pnt5")
 		local point = ent:GetAbsOrigin()
 		unit:SetAbsOrigin( point )
-		FindClearSpaceForUnit(unit, point, false)
+		FindClearSpaceForUnit(unit, point, true)
 		unit:Stop()
 		PlayerResource:SetCameraTarget(event.activator:GetPlayerOwnerID(), event.activator)
 		Timers:CreateTimer(0.1, function()
