@@ -25,7 +25,9 @@ function modifier_breakable_container:OnCreated( kv )
 end
 
 function modifier_breakable_container:CheckState()
-	local state = {}
+	local state = {
+		[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
+	}
 	if IsServer()  then
 		state[MODIFIER_STATE_ROOTED] = true
 		state[MODIFIER_STATE_NO_HEALTH_BAR] = true

@@ -66,7 +66,7 @@ function modifier_item_descrit_lua:OnAttackLanded( keys )
 end
 
 function modifier_item_descrit_lua:GetModifierPreAttack_CriticalStrike(keys)
-	if keys.target then return end
+	if not keys.target then return end
 	if keys.target:IsOther() or keys.target:IsBuilding() then return end
 	if keys.target:GetTeamNumber() == self:GetParent():GetTeamNumber() then return end
 	if not RollPseudoRandom(self.crit_chance, self) then return end

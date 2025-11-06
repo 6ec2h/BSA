@@ -2,6 +2,10 @@ LinkLuaModifier( "modifier_sven_warcry_lua", "heroes/hero_sven/sven_warcry_lua/s
 
 sven_warcry_lua = class({})
 
+function sven_warcry_lua:GetCastRange()	
+	return self:GetSpecialValueFor("warcry_radius")
+end
+
 function sven_warcry_lua:OnSpellStart()
 	local warcry_radius = self:GetSpecialValueFor( "warcry_radius" ) 
 	local warcry_duration = self:GetSpecialValueFor(  "warcry_duration" )
@@ -27,7 +31,7 @@ end
 modifier_sven_warcry_lua = class({})
 
 function modifier_sven_warcry_lua:IsHidden()
-	return true
+	return false
 end
 
 function modifier_sven_warcry_lua:OnCreated( kv )

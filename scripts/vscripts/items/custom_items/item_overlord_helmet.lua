@@ -140,7 +140,11 @@ function modifier_item_overlord_helmet_aura_friendly:OnCreated( kv )
 	
 	if not self.inited then
 		self.inited = true
+
+    	self:SetHasCustomTransmitterData(true)
+
 		self:StartIntervalThink(0.25)
+		self:OnIntervalThink()
 	end
 end
 function modifier_item_overlord_helmet_aura_friendly:OnRefresh()
@@ -158,17 +162,21 @@ function modifier_item_overlord_helmet_aura_friendly:OnIntervalThink()
 
 	local caster = self:GetCaster()
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
+	local nearAllies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
 	
-    local baseDamage = math.floor((caster:GetBaseDamageMin() + caster:GetBaseDamageMax()) / 2)
-	
-    local damage = math.floor((baseDamage * (damage_share_pct / 100)) / #enemies)
+	if (#nearAllies == 0) then
+		self.damage = 0
+	else
+		local baseDamage = math.floor((caster:GetBaseDamageMin() + caster:GetBaseDamageMax()) / 2)
+		
+		local damage = math.floor((baseDamage * (damage_share_pct / 100)) / #nearAllies)
 
-	if (damage == self.damage) then return end
+		if (damage == self.damage) then return end
 
-	self.damage = damage
+		self.damage = damage
+	end
 
-	CustomNetTables:SetTableValue("overlord_helmet", tostring(self:GetParent():entindex()), { damage = damage })
+	self:SendBuffRefreshToClients()
 end
 
 function modifier_item_overlord_helmet_aura_friendly:DeclareFunctions()
@@ -177,14 +185,16 @@ function modifier_item_overlord_helmet_aura_friendly:DeclareFunctions()
     }
 end
 
+function modifier_item_overlord_helmet_aura_friendly:AddCustomTransmitterData()
+    return {
+        damage = self.damage,
+    }
+end
+
+function modifier_item_overlord_helmet_aura_friendly:HandleCustomTransmitterData(data)
+    self.damage = data.damage
+end
+
 function modifier_item_overlord_helmet_aura_friendly:GetModifierPreAttack_BonusDamage()
-	if IsServer() then
-   		return self.damage
-	else
-		local netOverlordHelmet = CustomNetTables:GetTableValue("overlord_helmet", tostring(self:GetParent():entindex()))
-
-		if not netOverlordHelmet then return end
-
-		return netOverlordHelmet.damage
-	end
+	return self.damage
 end

@@ -63,6 +63,9 @@ function drow_cross_lua:OnSpellStart()
 			Source = self:GetCaster(),
 			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+			bProvidesVision = true,
+			iVisionRadius = 200,
 		}
 		ProjectileManager:CreateLinearProjectile( info1 )	
 		local info2 = {
@@ -76,6 +79,9 @@ function drow_cross_lua:OnSpellStart()
 			Source = self:GetCaster(),
 			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+			bProvidesVision = true,
+			iVisionRadius = 200,
 		}
 		ProjectileManager:CreateLinearProjectile( info2 )
 	end 

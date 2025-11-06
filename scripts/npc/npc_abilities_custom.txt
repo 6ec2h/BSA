@@ -2974,6 +2974,13 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 	}
 	
+"ultra_cast_sunstrike"
+	{
+	    "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/ultra_cast_sunstrike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+	
 "custom_rosh"
 	{
 		"BaseClass"						"ability_datadriven"
@@ -3000,9 +3007,40 @@
 	    "BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/stun"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+	
+"ultra_cast_spawn_dado"
+	{
+	    "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/ultra_cast_spawn_dado"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 	}	
+
+"dado_one_shoot"
+	{
+	    "BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dado_one_shoot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"MaxLevel"						"4"
+		
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+	}
 	
-	
+"ultra_cast_land_mine"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/ultra_cast_land_mine"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
+        "MaxLevel"                      "1"
+        "AbilityTextureName"            "techies_land_mines"
+	}
 
 	
 "medusa_custom_stone_arrows"

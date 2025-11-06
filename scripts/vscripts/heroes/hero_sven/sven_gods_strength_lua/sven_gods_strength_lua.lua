@@ -17,6 +17,10 @@ function sven_gods_strength_lua:OnSpellStart()
 	self:GetCaster():StartGesture( ACT_DOTA_OVERRIDE_ABILITY_4 );
 end
 
+function sven_gods_strength_lua:GetCastRange()		
+	return self:GetCaster():FindAbilityByName("special_bonus_sven_tal3"):GetLevel() > 0 and self:GetSpecialValueFor("aura_radius")
+end
+
 -----------------------------------------------------------
 
 modifier_sven_gods_strength_lua = class({})

@@ -65,6 +65,10 @@ function modifier_desolator_golden:IsPurgable()
 	return true 
 end
 
+function modifier_desolator_golden:GetTexture()
+	return "all/desolator_6"
+end
+
 function modifier_desolator_golden:OnCreated(data)
 	if not IsServer() then
 		return

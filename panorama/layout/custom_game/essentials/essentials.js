@@ -1,6 +1,10 @@
 var curhpunit = false;
 function hpbar() {
     var hp = Entities.GetHealthPercent(curhpunit)
+
+	if (hp == null)
+		return
+
     if(Math.round(hp)<=0){
         curhpunit= false
         $("#hpbarroot").visible = false 
@@ -10,14 +14,17 @@ function hpbar() {
     $.Schedule(0.03,hpbar)
 }
 function showHpBar(t) {
-    if(!t.unit){
+	const unit = t.unit
+	const unitName = unit ? Entities.GetUnitName(unit) : undefined
+
+    if(!unit || !Entities.IsAlive(unit) || !unitName) {
         $("#hpbarroot").visible = false
         curhpunit = false
         return
     }
-    curhpunit = t.unit
+    curhpunit = unit
     $("#hpbarroot").visible = true
-    $("#name").text = $.Localize("#"+Entities.GetUnitName(t.unit))
+    $("#name").text = $.Localize("#"+unitName)
     hpbar()
 }
 

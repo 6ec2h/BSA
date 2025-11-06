@@ -10,7 +10,7 @@ function modifier_drow_ranger_marksmanship_lua_effect:OnCreated( kv )
 	self.chance = self:GetAbility():GetSpecialValueFor( "chance" )
 	self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 	self.disable = self:GetAbility():GetSpecialValueFor( "disable_range" )
-	self.radius = self:GetAbility():GetSpecialValueFor( "AbilityCastRange" )
+	self.radius = self:GetAbility():GetSpecialValueFor( "aura_radius" )
 	self.agilityBonusMult = self:GetAbility():GetSpecialValueFor( "agility_bonus_pct" ) / 100
 	self.split_range = self:GetAbility():GetSpecialValueFor( "scepter_range" )
 	self.split_count = self:GetAbility():GetSpecialValueFor( "split_count_scepter" )
@@ -50,7 +50,7 @@ function modifier_drow_ranger_marksmanship_lua_effect:OnRefresh( kv )
 	self.chance = self:GetAbility():GetSpecialValueFor("chance")
 	self.damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.disable = self:GetAbility():GetSpecialValueFor("disable_range")
-	self.radius = self:GetAbility():GetSpecialValueFor("AbilityCastRange")
+	self.radius = self:GetAbility():GetSpecialValueFor("aura_radius")
 	self.agilityBonusMult = self:GetAbility():GetSpecialValueFor("agility_bonus_pct") / 100
 end
 
@@ -73,23 +73,25 @@ function modifier_drow_ranger_marksmanship_lua_effect:DeclareFunctions()
 	}
 end
 
-function modifier_drow_ranger_marksmanship_lua_effect:OnTooltip()
+modifier_drow_ranger_marksmanship_lua_effect.OnTooltip = Debounce(.1, function(self)
 	local agility = self:GetCaster():GetAgility()
 
 	return math.floor(agility * (1 / (1 + self.agilityBonusMult)) * self.agilityBonusMult)
-end
+end)
 
-function modifier_drow_ranger_marksmanship_lua_effect:GetModifierBonusStats_Agility()
+modifier_drow_ranger_marksmanship_lua_effect.GetModifierBonusStats_Agility = Debounce(.1, function(self)
 	if self.agiLock then return end
 	
-	if self:GetCaster() ~= self:GetParent() then return end
+	local caster, parent = self:GetCaster(), self:GetParent()
+
+	if caster ~= parent then return end
 
 	self.agiLock = true
-	local bonus = math.floor(self:GetCaster():GetAgility() * self.agilityBonusMult)
+	local bonus = math.floor(caster:GetAgility() * self.agilityBonusMult)
 	self.agiLock = false
 
 	return bonus
-end
+end)
 
 function modifier_drow_ranger_marksmanship_lua_effect:GetModifierProcAttack_BonusDamage_Physical( params )
 	if IsServer() then

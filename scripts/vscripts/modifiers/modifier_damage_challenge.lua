@@ -49,6 +49,12 @@ function modifier_damage_challenge:DeclareFunctions()
   }
 end
 
+function modifier_damage_challenge:CheckState()
+	return {
+		[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
+	}
+end
+
 function modifier_damage_challenge:GetMinHealth()
   return 1
 end
@@ -88,7 +94,7 @@ function modifier_damage_challenge:OnRefresh(kv)
 end
 
 function modifier_damage_challenge:OnDestroy()
-  if not IsServer() then return end
+  if not IsServer() or self.parent:IsNull() then return end
   CustomNetTables:SetTableValue("health_bar", tostring(self.parent:entindex()), nil)
   
   -- Уведомляем клиент об удалении health bar панели

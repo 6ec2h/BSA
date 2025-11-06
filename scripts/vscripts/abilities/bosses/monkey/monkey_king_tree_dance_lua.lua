@@ -7,6 +7,10 @@ function monkey_king_tree_dance_lua:GetIntrinsicModifierName()
 	return "modifier_monkey_king_tree_dance_lua_passive"
 end
 
+function monkey_king_tree_dance_lua:Precache(context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", context)
+end
+
 function monkey_king_tree_dance_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()

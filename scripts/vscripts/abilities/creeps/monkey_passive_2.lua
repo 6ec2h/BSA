@@ -7,6 +7,10 @@ function monkey_passive_2:GetIntrinsicModifierName()
 	return "modifier_monkey_passive_2"
 end
 
+function monkey_passive_2:Precache(context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_terrorblade_reflection.vpcf", context)
+end
+
 ----------------------------------------------------------------------------
 
 modifier_monkey_passive_2 = class({})

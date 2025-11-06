@@ -14,6 +14,7 @@ function rules:init()
 	-- CustomGameEventManager:RegisterListener("golden_spawn", Dynamic_Wrap( rules, 'golden_spawn' ))
 	CustomGameEventManager:RegisterListener("TryStartEvent", Dynamic_Wrap( rules, 'TryStartEvent' ))
 	CustomGameEventManager:RegisterListener("select_skill_lua", Dynamic_Wrap( rules, 'select_skill_lua'))
+	CustomGameEventManager:RegisterListener("request_npc_interactions_data", Dynamic_Wrap( rules, 'request_npc_interactions_data'))
 end
 
 ------------------------------------------------------ BOSS REWARDS -------------------------------------------------
@@ -210,6 +211,8 @@ function create_box_traps()
 	end
 end
 
+local npcsInteractionData = {}
+
 function dummy_spawn()
 	if not IsServer() then return end
 
@@ -217,22 +220,19 @@ function dummy_spawn()
 	blacksmith:AddNewModifier(blacksmith, nil, "modifier_blacksmith_meepo", {})
 	blacksmith:SetAngles(0,-90,0)
 	local blacksmithEvent = {unit_id = blacksmith:entindex(), distance = 400, name = "#blacksmith"}
-	CustomGameEventManager:Send_ServerToAllClients("create_npc_button", blacksmithEvent)
-	rules:SaveReconnectEvent("create_npc_button", blacksmithEvent)
+	table.insert(npcsInteractionData, blacksmithEvent)
 	
 	local trade = CreateUnitByName("blacksmith", Vector(-4800,-15424, 384), false, nil, nil, DOTA_TEAM_GOODGUYS)
 	trade:AddNewModifier(blacksmith, nil, "modifier_trade_meepo", {})
 	trade:SetAngles(0,180,0)
 	local tradeEvent = {unit_id = trade:entindex(), distance = 400, name = "#trade"}
-	CustomGameEventManager:Send_ServerToAllClients("create_npc_button", tradeEvent)
-	rules:SaveReconnectEvent("create_npc_button", tradeEvent)
+	table.insert(npcsInteractionData, tradeEvent)
 
 	local dungeon_master = CreateUnitByName("blacksmith", Vector(-5557.479980, -15719.900391, 256.000000), false, nil, nil, DOTA_TEAM_GOODGUYS)
 	dungeon_master:AddNewModifier(dungeon_master, nil, "modifier_trade_meepo", {})
 	dungeon_master:SetAngles(0,90,0)
 	local dungeonMasterEvent = {unit_id = dungeon_master:entindex(), distance = 400, name = "#dungeon_master"}
-	CustomGameEventManager:Send_ServerToAllClients("create_npc_button", dungeonMasterEvent)
-	rules:SaveReconnectEvent("create_npc_button", dungeonMasterEvent)
+	table.insert(npcsInteractionData, dungeonMasterEvent)
 
 	local unit = CreateUnitByName( "npc_dota_hero_target_dummy", Vector(-4823,-14482,256), false, nil, nil, DOTA_TEAM_NEUTRALS)
 	local angle = unit:GetAngles()
@@ -321,6 +321,13 @@ function rules:boss_invulnerable(t)
 	essentials:createCustomHpBarFor(unit)
 end
 
+function rules:request_npc_interactions_data(t)
+	local player = PlayerResource:GetPlayer(t.PlayerID)
+
+	for _, npcData in pairs(npcsInteractionData) do
+		CustomGameEventManager:Send_ServerToPlayer(player, "create_npc_button", npcData)
+	end
+end
 
 
 

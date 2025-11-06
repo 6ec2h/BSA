@@ -2315,7 +2315,7 @@
         "ModelScale"                ".8"
         "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
 
-        "Ability1"                  "proximity_mine2"    
+        "Ability1"                  "ultra_cast_land_mine"    
 
         "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
         "AttackDamageMin"           "0"  
@@ -9661,7 +9661,9 @@
 		"Ability5"					"custom_rosh"
 		"Ability6"					"custom_statick"
 		"Ability7"					"custom_mine"
-		"Ability7"					"custom_stun"
+		"Ability8"					"custom_stun"
+		"Ability9"					"ultra_cast_sunstrike"
+		"Ability10"					"ultra_cast_spawn_dado"
 
 		"ArmorPhysical"				"3000"			
 		"MagicalResistance"         "3000"
@@ -9690,6 +9692,50 @@
 		"VisionNighttimeRange"		"3000"		
 
 		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+	
+"ultra_dado_one_shoot"
+	{	
+		"vscripts"       			"ai/ai_ultra_dado_one_shoot.lua"
+		"Model"						"models/units/doppelganger/doppelganger.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"30"
+		"ModelScale" 				"1.2"
+		"HasInventory"				"1"
+		"IsAncient"					"1"
+			
+		"Ability1"					"dado_one_shoot"
+
+		"ArmorPhysical"				"3000"			
+		"MagicalResistance"         "3000"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRate"				"0"
+		"AttackAnimationPoint"		"0"
+		"AttackAcquisitionRange"	"1000"
+		"AttackRange"				"1"
+
+		"RingRadius"				"2"
+		"HealthBarOffset"			"0"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"100"
+		"MovementTurnRate"			"1"
+
+		"StatusHealth"				"99999"
+		"StatusHealthRegen"			"999"
+		"StatusMana"				"9099"
+		"StatusManaRegen"			"9000"
+	
+		"VisionDaytimeRange"		"3000"
+		"VisionNighttimeRange"		"3000"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"

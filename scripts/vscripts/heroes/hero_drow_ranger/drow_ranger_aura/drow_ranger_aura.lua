@@ -108,10 +108,10 @@ end
 function modifier_drow_ranger_aura_buff:GetModifierMoveSpeedBonus_Percentage()
 	return self.move_speed_buff
 end
-function modifier_drow_ranger_aura_buff:GetModifierAttackSpeedBonus_Constant()
+modifier_drow_ranger_aura_buff.GetModifierAttackSpeedBonus_Constant = Debounce(.1, function(self)
 	return self:GetCaster():GetAgility() / 100 * self.attack_speed_pct_buff
-end
-function modifier_drow_ranger_aura_buff:GetModifierPreAttack_BonusDamage(params)
+end)
+modifier_drow_ranger_aura_buff.GetModifierPreAttack_BonusDamage = Debounce(.1, function(self)
 	local caster = self:GetCaster()
 
 	local agilityToDamageTalent = caster:FindAbilityByName("special_bonus_unique_drow_ranger_1")
@@ -119,7 +119,7 @@ function modifier_drow_ranger_aura_buff:GetModifierPreAttack_BonusDamage(params)
 	if not agilityToDamageTalent or agilityToDamageTalent:GetLevel() < 1 then return end
 
     return caster:GetAgility() / 100 * self.attack_speed_pct_buff
-end
+end)
 
 modifier_drow_ranger_aura_debuff = class({})
 

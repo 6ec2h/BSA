@@ -3,7 +3,6 @@
 	<scripts>
 		<include src="s2r://panorama/scripts/dota_hud.js" />
 		<include src="s2r://panorama/scripts/looptime.js" />
-		<include src="s2r://panorama/layout/custom_game/npc_overlay/npc_overlay.js" />
 		<include src="s2r://panorama/layout/custom_game/health_bar/custom_health_bar_engine.js" />
 	</scripts>
 	<Panel>
@@ -32,5 +31,7 @@
 		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/discount/discount.vxml_c" />
 		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/unlock_difficulty/unlock_difficulty.vxml_c" />
 		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/player_booster_service/player_booster_service.vxml_c" />
+		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/tips/tips.vxml_c" />
+		<CustomUIElement type="Hud" layoutfile="s2r://panorama/layout/custom_game/npc_overlay/npc_overlay.vxml_c" />
 	</Panel>
 </root>

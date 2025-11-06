@@ -1,5 +1,12 @@
 "DOTAAbilities"
 {
+	"special_bonus_unique_luna_1"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"luna_lunar_blessing_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -11,16 +18,10 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilityCastRange"				"700"
-
 		"AbilityValues"
 		{
 			"radius"					"700"
-			"primary_attribute"			
-			{
-				"value"					"8 12 16 20"
-				"LinkedSpecialBonus"	"special_bonus_luna_str10"
-			}	
+			"attributes_pct"			"10 15 20 25"
 			"bonus_night_vision"		"700"
 		}
 	}

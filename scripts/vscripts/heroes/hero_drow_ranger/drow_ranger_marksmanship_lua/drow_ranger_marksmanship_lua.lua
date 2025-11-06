@@ -8,6 +8,17 @@ function drow_ranger_marksmanship_lua:GetIntrinsicModifierName()
 	return "modifier_drow_ranger_marksmanship_lua"
 end
 
+function drow_ranger_marksmanship_lua:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_drow/drow_marksmanship_attack.vpcf", context )
+end
+
+
+function drow_ranger_marksmanship_lua:GetCastRange()
+	if not IsClient() then return end
+	
+	return self:GetSpecialValueFor("aura_radius")
+end
+
 function drow_ranger_marksmanship_lua:OnProjectileHit_ExtraData( target, location, data )
 	if not target then return end
 	self.split = true
@@ -66,7 +77,6 @@ modifier_drow_ranger_marksmanship_lua = class({})
 
 function modifier_drow_ranger_marksmanship_lua:IsHidden() return true end
 function modifier_drow_ranger_marksmanship_lua:IsPurgable() return false end
-function modifier_drow_ranger_marksmanship_lua:IsAura() return true end
 function modifier_drow_ranger_marksmanship_lua:GetModifierAura()
 	return self.auraModifierName
 end
@@ -80,6 +90,10 @@ function modifier_drow_ranger_marksmanship_lua:GetAuraRadius()
 	return self.radius
 end
 function modifier_drow_ranger_marksmanship_lua:GetAuraEntityReject(target)
+	if target:HasModifier("modifier_drow_ranger_marksmanship_lua_effect") and target ~= self:GetCaster() then
+		return true
+	end
+
     if target == self:GetCaster() then
         self.auraModifierName = "modifier_drow_ranger_marksmanship_lua_effect"
     else
@@ -95,7 +109,7 @@ end
 function modifier_drow_ranger_marksmanship_lua:OnCreated()
 	local ability = self:GetAbility()
 
-	self.radius = ability:GetSpecialValueFor("AbilityCastRange")
+	self.radius = ability:GetSpecialValueFor("aura_radius")
 end
 
 modifier_drow_ranger_marksmanship_lua_aura_buff = class({})
@@ -105,10 +119,10 @@ function modifier_drow_ranger_marksmanship_lua_aura_buff:IsDebuff() return false
 function modifier_drow_ranger_marksmanship_lua_aura_buff:IsPurgable() return false end
 
 function modifier_drow_ranger_marksmanship_lua_aura_buff:OnCreated()
-	self.agility_bonus_allies_pecent = self:GetAbility():GetSpecialValueFor("agility_bonus_allies_percent")
-	self.agility_bonus_pct = self:GetAbility():GetSpecialValueFor("agility_bonus_pct")
+	local allyAgilityBonusPct = self:GetAbility():GetSpecialValueFor("agility_bonus_allies_pec")
+	self.drowAgilityBonusMult = self:GetAbility():GetSpecialValueFor("agility_bonus_pct") / 100
 
-	self.agilityBonusMult = (self.agility_bonus_allies_pecent / 100) * (self.agility_bonus_pct / 100)
+	self.agilityBonusMult = (allyAgilityBonusPct / 100) * self.drowAgilityBonusMult
 end
 
 function modifier_drow_ranger_marksmanship_lua_aura_buff:OnRefresh()
@@ -121,16 +135,16 @@ function modifier_drow_ranger_marksmanship_lua_aura_buff:DeclareFunctions()
 	}
 end
 
-function modifier_drow_ranger_marksmanship_lua_aura_buff:GetModifierBonusStats_Agility()
+modifier_drow_ranger_marksmanship_lua_aura_buff.GetModifierBonusStats_Agility = Debounce(.1, function(self)
 	if self.agiLock then return end
 	
-	local caster = self:GetCaster()
+	local caster, parent = self:GetCaster(), self:GetParent()
 
-	if caster == self:GetParent() then return end
+	if caster == parent then return end
 
-	self.agiLock = true
+	caster.agiLock = true
 	local agility = caster:GetAgility()
 	self.agiLock = false
 
-	return math.floor(agility * (1 / (1 + self.agilityBonusMult)) * self.agilityBonusMult)
-end
+	return math.floor(agility * (1 / (1 + self.drowAgilityBonusMult)) * self.agilityBonusMult)
+end)

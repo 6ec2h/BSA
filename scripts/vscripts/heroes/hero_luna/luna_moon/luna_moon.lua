@@ -6,16 +6,6 @@ LinkLuaModifier("modifier_cd", "heroes/hero_luna/luna_moon/luna_moon", LUA_MODIF
 
 luna_moon = class({})
 
-function luna_moon:GetCooldown(level)
-	local caster = self:GetCaster()
-	if self:GetCaster():FindAbilityByName("special_bonus_luna_int9")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_luna_int9"):GetLevel() > 0 then 
-			return self.BaseClass.GetCooldown( self, level ) - 60
-		end
-	end
-	return self.BaseClass.GetCooldown( self, level )
-end
-
 function luna_moon:OnSpellStart()
 	local caster = self:GetCaster()
 	local ability = self
@@ -158,6 +148,19 @@ end
 
 function modifier_spell_ampl_moon:OnCreated()
 if IsServer() then
+	caster = self:GetCaster()
+    player = caster:GetOwner()
+	spell_amp_spirits = player:GetSpellAmplification(false) * 100
+	end
+end
+
+function modifier_spell_ampl_moon:DeclareFunctions()
+	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
+end
+
+function modifier_spell_ampl_moon:GetModifierSpellAmplify_Percentage()
+	return spell_amp_spirits
+enderver() then
 	caster = self:GetCaster()
     player = caster:GetOwner()
 	spell_amp_spirits = player:GetSpellAmplification(false) * 100

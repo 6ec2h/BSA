@@ -9,7 +9,6 @@
 		"FightRecapLevel"				"1"
 		"ScriptFile"					"heroes/hero_sven/sven_gods_strength_lua/sven_gods_strength_lua"
 
-		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.3"
 
 		"AbilityCooldown"				"90 75 60"
@@ -19,6 +18,7 @@
 
 		"AbilityValues"
 		{
+			"aura_radius"				"700"
 			"gods_strength_damage"
 			{
 				"value"						"100 150 200"
@@ -27,4 +27,5 @@
 			"gods_strength_duration"	"25"
 		}
 	}
+}}
 }

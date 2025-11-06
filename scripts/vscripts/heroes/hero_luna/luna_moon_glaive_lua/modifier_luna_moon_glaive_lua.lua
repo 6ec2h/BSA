@@ -49,6 +49,7 @@ function modifier_luna_moon_glaive_lua:GetModifierProcAttack_Feedback( params )
 
 	-- cancel if break
 	if self:GetParent():PassivesDisabled() then return end
+	if params.no_attack_cooldown then return end
 
 	-- create thinker
 	CreateModifierThinker(

@@ -1,5 +1,7 @@
 pcall(require, "encrypt")
 
+require("libraries/debounce")
+
 LinkLuaModifier( "modifier_difficult", "abilities/difficult/modifier_difficult", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_guild", "modifiers/modifier_guild", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_aegis", "items/item_aegis_lua", LUA_MODIFIER_MOTION_NONE )

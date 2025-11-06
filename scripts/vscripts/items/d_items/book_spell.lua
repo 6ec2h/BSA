@@ -88,7 +88,11 @@ function modifier_item_spell_aura:OnTakeDamage(keys)
 				ParticleManager:SetParticleControl(self.lifesteal_pfx, 0, keys.attacker:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(self.lifesteal_pfx)
 			
-				if keys.attacker:GetHealth() <= lifesteal and keys.inflictor and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
+				keys.attacker:Heal(lifesteal, self)
+			end
+		end
+	end
+endand bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
 					keys.attacker:ForceKill(true)
 				else
 					keys.attacker:Heal(lifesteal, self)

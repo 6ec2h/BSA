@@ -3018,27 +3018,22 @@
 			"DOTA_Tooltip_ability_item_physical_immune"														"Physical Eye"
 			"DOTA_Tooltip_ability_item_physical_immune_Description"											"<h1>Активное: Immune</h1> Наделяет выбранную цель физическим иммунитетом на %duration% сек и увеличивает ее скорость атаки на %bonus_as%.\nСпособность действует на одно и то же существо не чаще, чем раз в %tooltip_reapply_time% сек.\nНеобходимый уровень героя: %required_level%"
 			"DOTA_Tooltip_ability_item_physical_immune_bonus_all"											"+$all"	
-			"DOTA_Tooltip_ability_item_physical_immune_bonus_as"											"+$attack"	
 		
 			"DOTA_Tooltip_ability_item_physical_immune2"													"Physical Eye 2"
 			"DOTA_Tooltip_ability_item_physical_immune2_Description"										"<h1>Активное: Immune</h1> Наделяет выбранную цель физическим иммунитетом на %duration% сек и увеличивает ее скорость атаки на %bonus_as%.\nСпособность действует на одно и то же существо не чаще, чем раз в %tooltip_reapply_time% сек.\nНеобходимый уровень героя: %required_level%"
 			"DOTA_Tooltip_ability_item_physical_immune2_bonus_all"											"+$all"	
-			"DOTA_Tooltip_ability_item_physical_immune2_bonus_as"											"+$attack"	
 			
 			"DOTA_Tooltip_ability_item_physical_immune3"													"Physical Eye 3"
 			"DOTA_Tooltip_ability_item_physical_immune3_Description"										"<h1>Активное: Immune</h1> Наделяет выбранную цель физическим иммунитетом на %duration% сек и увеличивает ее скорость атаки на %bonus_as%.\nСпособность действует на одно и то же существо не чаще, чем раз в %tooltip_reapply_time% сек.\nНеобходимый уровень героя: %required_level%"
 			"DOTA_Tooltip_ability_item_physical_immune3_bonus_all"											"+$all"	
-			"DOTA_Tooltip_ability_item_physical_immune3_bonus_as"											"+$attack"	
 			
 			"DOTA_Tooltip_ability_item_physical_immune4"													"Physical Eye 4"
 			"DOTA_Tooltip_ability_item_physical_immune4_Description"										"<h1>Активное: Immune</h1> Наделяет выбранную цель физическим иммунитетом на %duration% сек и увеличивает ее скорость атаки на %bonus_as%.\nСпособность действует на одно и то же существо не чаще, чем раз в %tooltip_reapply_time% сек.\nНеобходимый уровень героя: %required_level%"
 			"DOTA_Tooltip_ability_item_physical_immune4_bonus_all"											"+$all"	
-			"DOTA_Tooltip_ability_item_physical_immune4_bonus_as"											"+$attack"	
 			
 			"DOTA_Tooltip_ability_item_physical_immune5"													"Physical Eye 5"
 			"DOTA_Tooltip_ability_item_physical_immune5_Description"										"<h1>Активное: Immune</h1> Наделяет выбранную цель физическим иммунитетом на %duration% сек и увеличивает ее скорость атаки на %bonus_as%.\nСпособность действует на одно и то же существо не чаще, чем раз в %tooltip_reapply_time% сек.\nНеобходимый уровень героя: %required_level%"
 			"DOTA_Tooltip_ability_item_physical_immune5_bonus_all"											"+$all"	
-			"DOTA_Tooltip_ability_item_physical_immune5_bonus_as"											"+$attack"	
 			
 			"DOTA_Tooltip_modifier_physical_immune_active"													"Immune"
 			"DOTA_Tooltip_modifier_physical_immune_active_Description"										"Иммунитет к физическому урону. Скорость атаки увеличена на %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
@@ -3381,7 +3376,7 @@
 		"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_aura_buff"																	"Marksmanship"
 		"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_aura_buff_description"														"Ловкость увеличена на %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS%."
 		"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_effect"																		"Marksmanship"
-		"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_effect_description"															"Ловкость увеличена на %dMODIFIER_PROPERTY_TOOLTIP%."
+		"DOTA_Tooltip_modifier_drow_ranger_marksmanship_lua_effect_description"															"Ловкость увеличена на %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS%."
 		
 		"DOTA_Tooltip_ability_special_bonus_unique_drow_ranger_1"																		"Вместе со скоростью атаки Speed Aura увеличивает урон"				
 		"DOTA_Tooltip_ability_special_bonus_unique_drow_ranger_2"																		"+20% к бонусу ловкости от Marksmanship"
@@ -3546,20 +3541,22 @@
 		"DOTA_Tooltip_ability_luna_moon_glaive_lua_damage_reduction_percent"															"%СНИЖЕНИЕ УРОНА ЗА ОТСКОК:"
 		
 		"DOTA_Tooltip_ability_luna_lunar_blessing_lua"																					"Lunar Blessing"
-		"DOTA_Tooltip_ability_luna_lunar_blessing_lua_Description"																		"Повышает атрибуты у владельца и союзников. Способность увеличивает основной атрибут у владельца на величину равную <font color='#16ff00'>четвери суммы не основных атрибутов</font>, у союзников на процент бонуса. У героев универсалов повышает все атрибуты но на 50% от бонуса. Также увеличивает ночной обзор владельца."
+		"DOTA_Tooltip_ability_luna_lunar_blessing_lua_Description"																		"Способность увеличивает основной атрибут на %attributes_pct%%% от суммы второстепенных атрибутов.<br>Для героев-универсалов повышает все атрибуты, но работает в два раза слабее.<br>Также увеличивает ночной обзор владельца."
 		"DOTA_Tooltip_ability_luna_lunar_blessing_lua_radius"																			"РАДИУС АУРЫ:"
-		"DOTA_Tooltip_ability_luna_lunar_blessing_lua_primary_attribute"																"%БОНУС К ОСНОВНОМУ АТРИБУТУ СОЮЗНИКАМ:"
-		"DOTA_Tooltip_ability_luna_lunar_blessing_lua_bonus_night_vision"																"ОБЗОР НОЧЬЮ:"
+		"DOTA_Tooltip_ability_luna_lunar_blessing_lua_bonus_night_vision"																"ДОП. ОБЗОР НОЧЬЮ:"
+
+		"DOTA_Tooltip_modifier_luna_lunar_blessing_lua_effect"																			"Lunar Blessing"
+		"DOTA_Tooltip_modifier_luna_lunar_blessing_lua_effect_description"																"Сила увеличена на %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%.<br>Ловкость увеличена на %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS%.<br>Интеллект увеличен на %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%."
 		
 		"DOTA_Tooltip_ability_luna_moon"																								"Eclipse"
-		"DOTA_Tooltip_ability_luna_moon_Description"																					"Герой призывает к себе на помощь саму луну. Все враги поппавшие в радиус действия скила не могут отвести взгляд от луны и двужутся к ней не обращая внимание не на что другое, так же враги получают урон от способности Starfall."
+		"DOTA_Tooltip_ability_luna_moon_Description"																					"Герой призывает к себе на помощь саму луну. Все враги, попавшие в радиус действия скила, не могут отвести взгляд от луны и двужутся к ней, не обращая внимание ни на что другое. Так же враги получают урон от способности Starfall."
 		"DOTA_Tooltip_ability_luna_moon_duration"																						"ДЛИТЕЛЬНОСТЬ:"
 		"DOTA_Tooltip_ability_luna_moon_radius"																							"РАДИУС:"			
 			
-		"DOTA_Tooltip_ability_special_bonus_luna_str10"																					"+18% к Lunar Blessing"
-		"DOTA_Tooltip_ability_special_bonus_luna_agi9"																					"-16% снижение урона за отскок"
-		"DOTA_Tooltip_ability_special_bonus_luna_agi10"																					"Moon Glaives дополнительно отскакивает 3 раза"
-		"DOTA_Tooltip_ability_special_bonus_luna_int9"																					"-60 секунд кулдауна ультимэйта"			
+		"DOTA_Tooltip_ability_special_bonus_unique_luna_1"																				"Lunar Blessing становится аурой"
+		"DOTA_Tooltip_ability_special_bonus_unique_luna_2"																				"-16% снижение урона за отскок"
+		"DOTA_Tooltip_ability_special_bonus_unique_luna_3"																				"Moon Glaives дополнительно отскакивает 3 раза"
+		"DOTA_Tooltip_ability_special_bonus_unique_luna_4"																				"-60 секунд перезарядки Eclipse"			
 			
 			//============================================================================================CRYSTAL=============================================================================================
 			
@@ -3778,7 +3775,7 @@
 			
 		"DOTA_Tooltip_ability_special_bonus_lion_1"																						"+120 к урону Earth Spike"
 		"DOTA_Tooltip_ability_special_bonus_lion_2"																						"+6 маны за врага Mana Aura"
-		"DOTA_Tooltip_ability_special_bonus_lion_3"																						"Mana Aura нановит урон равный потери маны"
+		"DOTA_Tooltip_ability_special_bonus_lion_3"																						"Mana Aura наносит урон равный потери маны"
 		"DOTA_Tooltip_ability_special_bonus_lion_4"																						"+0.2 к урону Soul Collector"
 		"DOTA_Tooltip_ability_special_bonus_lion_int6"																					"Earth Spike в 3 стороны"
 		"DOTA_Tooltip_ability_special_bonus_lion_5"																						"+10% к замедлению Mana Aura"
@@ -4228,12 +4225,19 @@
 		"DOTA_Tooltip_ability_magnus_empower_lua_empower_duration"																		"ДЛИТЕЛЬНОСТЬ:"
 		"DOTA_Tooltip_ability_magnus_empower_lua_bonus_damage_pct"																		"%ДОПОЛНИТЕЛЬНЫЙ УРОН:"
 		"DOTA_Tooltip_ability_magnus_empower_lua_cleave_damage_pct"																		"%ПРОРУБАЮЩИЙ УРОН:"
+
+		"DOTA_Tooltip_modifier_magnus_empower_lua"																						"Empower"
+		"DOTA_Tooltip_modifier_magnus_empower_lua_description"																			"Урон увеличен на %dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%. Атаки наносят %dMODIFIER_PROPERTY_TOOLTIP%%% прорубающего урона."
 		
 		"DOTA_Tooltip_ability_magnataur_skin"																							"Magnataur Skin"
 		"DOTA_Tooltip_ability_magnataur_skin_Description"																				"Аура укрепляет кожу союзников неподалеку повышая броню и сопротивление магии!"
 		"DOTA_Tooltip_ability_magnataur_skin_aura_radius"																				"РАДИУС:"
 		"DOTA_Tooltip_ability_magnataur_skin_bonus_armor"																				"БОНУС К БРОНЕ:"
 		"DOTA_Tooltip_ability_magnataur_skin_bonus_resist"  																			"%БОНУС К МАГИЧЕСКОМУ СОПРОТИВЛЕНИЮ:"
+		
+		"DOTA_Tooltip_modifier_magnataur_skin"																							"Magnataur Skin"
+		"DOTA_Tooltip_modifier_magnataur_skin_description"																				"Броня увеличена на %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%. Магическое сопротивление увеличено на %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%."
+		
 		"DOTA_Tooltip_modifier_magnataur_skin_friendly_datadriven"																		"Magnataur Skin"
 		"DOTA_Tooltip_modifier_magnataur_skin_friendly_datadriven_Description"															"Ваша кожа стала прочнее! Армор и магическое сопротивление увеличены."
 		
@@ -4908,6 +4912,9 @@
 		"DOTA_Tooltip_ability_sven_warcry_lua_warcry_armor"									"ДОП. БРОНЯ:"
 		"DOTA_Tooltip_ability_sven_warcry_lua_warcry_duration"								"ДЛИТЕЛЬНОСТЬ:"
 		"DOTA_Tooltip_ability_sven_warcry_lua_warcry_radius"								"РАДИУС:"
+		
+        "DOTA_Tooltip_modifier_sven_warcry_lua"												"Warcry"
+        "DOTA_Tooltip_modifier_sven_warcry_lua_Description"									"Броня увеличена на %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%. Сопротивление магии увеличено на %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%. Скорость передвижения увеличена на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 		
 		"DOTA_Tooltip_ability_sven_gods_strength_lua"										"God's Strength"
 		"DOTA_Tooltip_ability_sven_gods_strength_lua_Description"							"Герой концентрирует свою неконтролируемую мощь, получая бонус к урону на %abilityduration% сек."
@@ -5934,6 +5941,9 @@
 	"DOTA_Tooltip_modifier_creep_ursa_fury_swipes_debuff_lua"	"Fury Swipes"
 	"DOTA_Tooltip_modifier_creep_ursa_fury_swipes_debuff_lua_description"	"Получает дополнительные %dMODIFIER_PROPERTY_TOOLTIP% урона от атак владельца Fury Swipes."
 
+	"DOTA_Tooltip_modifier_ursa_fury_swipes_debuff_lua"	"Fury Swipes"
+	"DOTA_Tooltip_modifier_ursa_fury_swipes_debuff_lua_description"	"Получает дополнительные %dMODIFIER_PROPERTY_TOOLTIP% урона от атак владельца Fury Swipes."
+
 //===============================================================================================PAUCHOK============================================================================================
 
   "DOTA_Tooltip_ability_creep_poison_sting_lua" "Poison Sting"
@@ -6659,7 +6669,7 @@
 		"mjolnir_armor_description"		"Броня молний: 10% шанс запустить молнию при атаке, урон в размере "
 		"mkb_description"				"Pierce: 40% шанс атака нанесет дополнительный магический урон в размере "
 		"hp_regen_description"			"Восстанавливает здоровье в размере: "
-		"hp_regen_amp_description"		"Усиление восстанавления здоровья: "
+		"hp_regen_amp_description"		"Усиление восстановления здоровья: "
 		"damage_block_description"		"15% Шанс заблокировать урон в размере: "
 		"manacost_description"			"Снижение затрат маны: "
 		"crit_description"				"15% Шанс нанести крит. урон в размере: 100 + "
@@ -6695,10 +6705,10 @@
 		"golden_zone_2"																					"<font color='#fcb900'>На Бурной Реке появился золотой монстр - </font>"
 		"GoldenQueen" "Золотая Королева"
 		
-		"golden_zone_3"																					"<font color='#fcb900'>В Джунглях появился появился золотой монстр - </font>"
+		"golden_zone_3"																					"<font color='#fcb900'>В Джунглях появился золотой монстр - </font>"
 		"GoldenWyvern" "Золотая Виверна"
 
-		"golden_zone_4"																					"<font color='#fcb900'>В Темныом Лесу появился золотой монстр - </font>"
+		"golden_zone_4"																					"<font color='#fcb900'>В Темном Лесу появился золотой монстр - </font>"
 		"GoldenSea" "Золотой Морской Лев"
 
 		"golden_zone_5"																					"<font color='#fcb900'>В Преисподня появился золотой монстр - </font>"
@@ -6706,6 +6716,9 @@
 
 		"golden_zone_6"																					"<font color='#fcb900'>В зоне Олимп появился золотой монстр - </font>"
 		"GoldenForest" "Золотая Обезьяна"
+
+		"DOTA_Tooltip_modifier_desolator_golden"				"Corruption"
+		"DOTA_Tooltip_modifier_desolator_golden_description"	"Броня снижена на %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%. Магическое сопротивление снижено на %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%."
 
 		"quest_system"	"Квесты"
 		"new_quest"	"Новый квест"
@@ -7259,5 +7272,8 @@
 		"ui_booster_confirm_purchase_button"				"ПОДТВЕРДИТЬ ПОКУПКУ"
 		"ui_booster_cancel_button"							"ОТМЕНА"
 		"ui_booster_license_duration"						"Лицензия действует 30 дней"
+
+		"tips"												"Похвала"
+		"tip"												"Похвала"
 	}	
 }

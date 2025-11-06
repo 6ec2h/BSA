@@ -1,5 +1,25 @@
 LinkLuaModifier( "modifier_item_atribute", "items/item_atribute", LUA_MODIFIER_MOTION_NONE )
 
+ListenToGameEvent("npc_spawned", function(data)
+	local unit = EntIndexToHScript(data.entindex)
+
+	if not unit then return end
+	if not unit.IsBaseNPC or not unit:IsBaseNPC() then return end
+	if not unit:IsRealHero() then return end
+
+	Timers:CreateTimer(.05, function()
+		local primaryAttribute = unit:GetPrimaryAttribute()
+		local tempAttribute = primaryAttribute == DOTA_ATTRIBUTE_STRENGTH and DOTA_ATTRIBUTE_AGILITY or DOTA_ATTRIBUTE_STRENGTH
+		
+		unit:SetPrimaryAttribute(tempAttribute)
+
+		Timers:CreateTimer(.05, function()
+			unit:SetPrimaryAttribute(primaryAttribute)
+			unit:CalculateStatBonus(true)
+		end)
+	end)
+end, nil)
+
 item_str_atribute = class({})
 item_agi_atribute = class({})
 item_int_atribute = class({})

@@ -41,6 +41,8 @@ function modifier_item_mana_plate:IsHidden()
     return true
 end
 
+function modifier_item_mana_plate:IsPurgable() return false end
+
 function modifier_item_mana_plate:GetAttributes()
     return MODIFIER_ATTRIBUTE_NONE
 end

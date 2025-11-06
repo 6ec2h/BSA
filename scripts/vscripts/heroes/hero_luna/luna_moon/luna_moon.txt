@@ -9,14 +9,18 @@
 			"MaxLevel"						"3"
 			"AbilityTextureName"			"luna_eclipse"
 			"AbilityCastRange"				"300"
-			"AbilityCooldown"				"160 140 120"
 			"AbilityManaCost"				"200 300 400"
 			
 			"AbilityValues"
-	{
-		"duration"	"4"
+			{
+				"duration"	"4"
 				"radius"	"700"
-	}
+				"AbilityCooldown"
+				{
+					"value" "160 140 120"
+					"special_bonus_unique_luna_4" "-60"
+				}
+			}
 		}	
 		
 	"luna_moon_starfall"

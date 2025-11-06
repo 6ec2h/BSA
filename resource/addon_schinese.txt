@@ -3150,20 +3150,22 @@
 	"DOTA_Tooltip_ability_luna_moon_glaive_lua_damage_reduction_percent" 	 "% 弹跳伤害减少："
 		
 	"DOTA_Tooltip_ability_luna_lunar_blessing_lua" 	 "月之祝福"
-	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_Description" 	 "Increases the attributes of the owner and allies. The ability increases the main attribute of the owner by an amount equal to <font color='#16ff00'>four of the sum of non-primary attributes</font>, for allies by a percentage of the bonus. For heroes of generalists, increases all attributes but by 50% of the bonus.Also increases the wearer's night vision."
+	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_Description" 	 "该技能将主要属性增加次要属性总和的%attributes_pct%%%。<br>对于全能英雄，会增加所有属性，但效果减半。<br>同时增加拥有者的夜间视野。"
 	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_radius" 	 "半径："
-	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_primary_attribute" 	 "盟友主属性的 % 加成："
-	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_bonus_night_vision" 	 "夜间视野加成："
-		
+	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_bonus_night_vision" 	 "额外夜间视野："
+
+	"DOTA_Tooltip_modifier_luna_lunar_blessing_lua_effect"	"月之祝福"
+	"DOTA_Tooltip_modifier_luna_lunar_blessing_lua_effect_description"	"力量增加%dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%。<br>敏捷增加%dMODIFIER_PROPERTY_STATS_AGILITY_BONUS%。<br>智力增加%dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%。"
+
 	"DOTA_Tooltip_ability_luna_moon" 	 "月蚀"
 	"DOTA_Tooltip_ability_luna_moon_Description" 	 "英雄召唤月亮本身来帮助他。所有落入技能范围内的敌人都无法将目光从月亮上移开并朝着月亮移动，并且敌人也会受到月光技能的伤害。"
 	"DOTA_Tooltip_ability_luna_moon_duration" 	 "持续时间："
 	"DOTA_Tooltip_ability_luna_moon_radius" 	 "半径："
 			
-	"DOTA_Tooltip_ability_special_bonus_luna_str10" 	 "+18% 月之祝福效果"
-	"DOTA_Tooltip_ability_special_bonus_luna_agi9" 	 "-16% 月刃弹跳伤害减免"
-	"DOTA_Tooltip_ability_special_bonus_luna_agi10" 	 "月刃额外弹跳 3 次"
-	"DOTA_Tooltip_ability_special_bonus_luna_int9" 	 "-60 秒月蚀冷却时间"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_1" 	 "月之祝福成为光环"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_2" 	 "-16% 月刃弹跳伤害减免"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_3" 	 "月刃额外弹跳 3 次"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_4" 	 "-60 秒月蚀冷却时间"
 			
 			//============================================================================================CRYSTAL=============================================================================================
 			
@@ -3836,11 +3838,18 @@
 	"DOTA_Tooltip_ability_magnus_empower_lua_bonus_damage_pct" 	 "%额外伤害："
 	"DOTA_Tooltip_ability_magnus_empower_lua_cleave_damage_pct" 	 "%分裂伤害："
 		
+	"DOTA_Tooltip_modifier_magnus_empower_lua"				"强化"
+	"DOTA_Tooltip_modifier_magnus_empower_lua_description"	"伤害增加%dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%。攻击造成%dMODIFIER_PROPERTY_TOOLTIP%%%的顺劈伤害。"
+
 	"DOTA_Tooltip_ability_magnataur_skin" 	 "猛犸人皮肤"
 	"DOTA_Tooltip_ability_magnataur_skin_Description" 	 "光环使附近盟友的皮肤变硬，增加护甲和魔法抗性！"
 	"DOTA_Tooltip_ability_magnataur_skin_aura_radius" 	 "半径："
 	"DOTA_Tooltip_ability_magnataur_skin_bonus_armor" 	 "提升护甲："
 	"DOTA_Tooltip_ability_magnataur_skin_bonus_resist" 	 "%魔法抗性加成："
+
+	"DOTA_Tooltip_modifier_magnataur_skin"				"猛犸皮肤"
+	"DOTA_Tooltip_modifier_magnataur_skin_description"	"护甲增加%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。魔法抗性增加%dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%。"
+	
 	"DOTA_Tooltip_modifier_magnataur_skin_friendly_datadriven" 	 "猛犸人皮肤"
 	"DOTA_Tooltip_modifier_magnataur_skin_friendly_datadriven_Description" 	 "你的皮肤变强了！护甲和魔法抗性增加了。"
 		
@@ -4514,7 +4523,10 @@
 	"DOTA_Tooltip_ability_sven_warcry_lua_warcry_armor" "可选装甲："
 	"DOTA_Tooltip_ability_sven_warcry_lua_warcry_duration" "持续时间："
 	"DOTA_Tooltip_ability_sven_warcry_lua_warcry_radius" "半径："
-		
+	
+	"DOTA_Tooltip_modifier_sven_warcry_lua"		"战吼"
+	"DOTA_Tooltip_modifier_sven_warcry_lua_Description"		"护甲增加%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。魔法抗性增加%dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%。移动速度增加%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%。"
+
 	"DOTA_Tooltip_ability_sven_gods_strength_lua" 	 "神之力量"
 	"DOTA_Tooltip_ability_sven_gods_strength_lua_Description" 	 "英雄集中他无法控制的力量，获得 %abilityduration% 秒的攻击力加成。"
 	"DOTA_Tooltip_ability_sven_gods_strength_lua_gods_strength_damage" 	 "%额外攻击力："
@@ -6100,6 +6112,9 @@
 "golden_zone_6" "<font color='#fcb900'>奥林匹斯区域出现了一只金色怪物 - </font>"
 "GoldenForest" "金猴"
 
+"DOTA_Tooltip_modifier_desolator_golden"				"Corruption"
+"DOTA_Tooltip_modifier_desolator_golden_description"	"护甲降低 %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%。魔法抗性降低 %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%。"
+
 "quest_system" "任务"
 "new_quest" "新任务"
 "success_quest" "任务完成 -"
@@ -6298,8 +6313,8 @@
 "mana_3" "+150 法力"
 "regen_mana_0" "+{value} 法力恢复"
 "regen_mana_1" "+1 法力恢复"
-"regen_mana_1" "+2 法力恢复"
-"regen_mana_1" "+3 法力恢复"
+"regen_mana_2" "+2 法力恢复"
+"regen_mana_3" "+3 法力恢复"
 "cd_0" "-{value}% 冷却时间"
 "cd_1" "-0.5% 冷却时间"
 "cd_2" "-1.0% 冷却时间"
@@ -6492,5 +6507,8 @@
 "ui_booster_notification_error_title"               "错误"
 "ui_booster_notification_info_title"                "信息"
 "ui_booster_notification_warning_title"             "警告"
+
+"tips" "提示"
+"tip" "提示"
 }	
 }

@@ -69,6 +69,7 @@ function modifier_magnus_empower_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_TOOLTIP,
 	}
 	return funcs
 end
@@ -87,6 +88,10 @@ function modifier_magnus_empower_lua:GetModifierProcAttack_Feedback( params )
 		self.radius_dist,
 		"particles/units/heroes/hero_magnataur/magnataur_empower_cleave_effect.vpcf"
 	)
+end
+
+function modifier_magnus_empower_lua:OnTooltip()
+	return self.cleave
 end
 
 function modifier_magnus_empower_lua:GetModifierDamageOutgoing_Percentage()

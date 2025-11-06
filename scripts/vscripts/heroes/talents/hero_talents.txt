@@ -588,66 +588,7 @@
 			}
 		}
 	}
-		
-//=================================================================================================	
-	
-"special_bonus_luna_str10"
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"18"
-				"ad_linked_abilities"		"luna_lunar_blessing_lua"
-			}
-		}
-	}	
-	
-"special_bonus_luna_agi9"
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-16"
-				"ad_linked_abilities"		"luna_moon_glaive_lua"
-			}
-		}
-	}
 
-"special_bonus_luna_agi10"
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-				"ad_linked_abilities"		"luna_moon_glaive_lua"
-			}
-		}
-	}	
-
-"special_bonus_luna_int9"
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	}	
-	
-//=================================================================================================	
-	
 //=================================================================================================	
 	
 "special_bonus_lina_1"
@@ -3640,6 +3581,75 @@
 		"BaseClass"             		"special_bonus_undefined"
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	
+/////////////////////////////////////////////////////////////////
+
+	"pango_1" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_2" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_3" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_blade_of_the_exile"
+			}
+		}
+	}
+
+	"pango_4" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_broken_wings"
+			}
+		}
+	}	
+}
+SSIVE"
 	}
 	
 /////////////////////////////////////////////////////////////////

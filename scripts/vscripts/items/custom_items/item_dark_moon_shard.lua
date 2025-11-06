@@ -43,12 +43,29 @@ function modifier_item_dark_moon_shard:IsPurgable()	return false end
 function modifier_item_dark_moon_shard:GetTexture() return "dark_moon_shard" end
 
 function modifier_item_dark_moon_shard:OnCreated()
-	local flBaseAttackTime = self:GetParent():GetBaseAttackTime()
+	if not IsServer() then return end
+
     local nbaseAttackReduction = 27
+
     if self:GetAbility() then
        nbaseAttackReduction = self:GetAbility():GetSpecialValueFor("base_attack_time_reduction")
     end
-    self.flBaseAttackTime = flBaseAttackTime* (100-nbaseAttackReduction)/100
+
+    self.flBaseAttackTime = self:GetParent():GetOriginalBaseAttackTime() * (100 - nbaseAttackReduction) / 100
+
+	self:SetHasCustomTransmitterData(true)
+	
+    self:SendBuffRefreshToClients()
+end
+
+function modifier_item_dark_moon_shard:AddCustomTransmitterData()
+    return {
+        flBaseAttackTime = self.flBaseAttackTime,
+    }
+end
+
+function modifier_item_dark_moon_shard:HandleCustomTransmitterData(data)
+    self.flBaseAttackTime = data.flBaseAttackTime
 end
 
 function modifier_item_dark_moon_shard:DeclareFunctions()
@@ -82,6 +99,4 @@ end
 
 function modifier_item_dark_moon_shard_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.passive_attack_speed
-endodifierAttackSpeedBonus_Constant()
-    if self:GetAbility() then return self:GetAbility():GetSpecialValueFor("passive_attack_speed") end
 end

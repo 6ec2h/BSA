@@ -22,3 +22,13 @@ function modifier_dummy:CheckState()
 	return state
 end
 
+function modifier_dummy:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
+	}
+end
+
+function modifier_dummy:GetModifierProvidesFOWVision()
+	return 1
+end
+

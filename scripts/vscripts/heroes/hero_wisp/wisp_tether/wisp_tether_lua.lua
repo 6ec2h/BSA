@@ -93,7 +93,7 @@ end
 
 function modifier_wisp_tether_lua:OnRemoved()
 	if IsServer() then
-		if self.target:HasModifier("modifier_wisp_tether_lua_ally") then
+		if not self.target:IsNull() and self.target:HasModifier("modifier_wisp_tether_lua_ally") then
 			self.target:RemoveModifierByName("modifier_wisp_tether_lua_ally")
 		end
 		self:GetCaster():EmitSound("Hero_Wisp.Tether.Stop")

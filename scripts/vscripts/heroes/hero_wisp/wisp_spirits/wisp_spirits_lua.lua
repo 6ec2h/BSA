@@ -127,14 +127,12 @@ end
 
 function modifier_wisp_spirits_lua:OnRemoved()
 	if IsServer() then
-		if not self:GetParent():IsAlive() then
-			for k,spirit in pairs( self.spirits_spiritsSpawned ) do
-				if not spirit:IsNull() then
-					spirit:RemoveModifierByName("modifier_imba_wisp_spirit_handler")
-				end
+		for k,spirit in pairs( self.spirits_spiritsSpawned ) do
+			if not spirit:IsNull() then
+				spirit:RemoveModifierByName("modifier_imba_wisp_spirit_handler")
 			end
-			self:GetParent():StopSound("Hero_Wisp.Spirits.Loop")
 		end
+		self:GetParent():StopSound("Hero_Wisp.Spirits.Loop")
 	end
 end
 
@@ -253,5 +251,8 @@ function modifier_spell_ampl_spirit:DeclareFunctions()
 end
 
 function modifier_spell_ampl_spirit:GetModifierSpellAmplify_Percentage()
+	return spell_amp_spirits
+end
+lAmplify_Percentage()
 	return spell_amp_spirits
 end

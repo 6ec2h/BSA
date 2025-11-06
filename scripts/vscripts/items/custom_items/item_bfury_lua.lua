@@ -54,6 +54,44 @@ function modifier_item_bfury_lua:GetModifierPreAttack_BonusDamage(keys)
 	end
 end
 
+local cleaveIgnoredUnits = {
+	["npc_dota_creature_big_bear"] = true,
+	["boss_undying"] = true,
+	["lich"] = true,
+	["npc_dota_creature_storegga"] = true,
+	["NYX"] = true,
+	["NYX_2"] = true,
+	["npc_boss_slardar"] = true,
+	["npc_boss_monkey_king"] = true,
+	["npc_boss_fura"] = true,
+	["Lord"] = true,
+	["medusa"] = true,
+	["npc_boss_arc"] = true,
+    ["npc_dota_creature_snow"] = true,
+    ["npc_dota_creature_gaven_the_brute"] = true,
+	["npc_xdes"] = true,
+
+	["npc_necro_bear"] = true,
+	["npc_necro_undy"] = true,
+	["npc_necro_lich"] = true,
+	["npc_necro_storegga"] = true,
+	["npc_necro_nyx"] = true,
+	["npc_necro_slardar"] = true,
+	["npc_necro_monkey_king"] = true,
+	["npc_necro_fura"] = true,
+	["npc_necro_lord"] = true,
+	["npc_necro_medusa"] = true,
+	["npc_necro_arc"] = true,
+	["necrolyte"] = true,
+	
+    ["GoldenMiner"] = true,
+	["GoldenQueen"] = true,
+	["GoldenWyvern"] = true,
+	["GoldenSea"] = true,
+	["GoldenDragon"] = true,
+	["GoldenForest"] = true,
+}
+
 function modifier_item_bfury_lua:OnAttackLanded(keys)
     if not (
         IsServer()
@@ -86,7 +124,9 @@ function modifier_item_bfury_lua:OnAttackLanded(keys)
 					enemy:AddNewModifier(self:GetParent(), item, "modifier_item_bfury_lua_debuff", {duration = 5})
 				end
 			end
-			ApplyDamage({victim = enemy, attacker = self:GetParent(), damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
+			if not cleaveIgnoredUnits[enemy:GetUnitName()] then
+				ApplyDamage({victim = enemy, attacker = self:GetParent(), damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
+			end
 		end
 	end
 	self:PlayEffects1(direction )
@@ -184,7 +224,5 @@ function modifier_item_bfury_lua_debuff:DeclareFunctions()
 end
 
 function modifier_item_bfury_lua_debuff:GetModifierPhysicalArmorBonus()
-	return self.count
-end:GetModifierPhysicalArmorBonus()
 	return self.count
 end

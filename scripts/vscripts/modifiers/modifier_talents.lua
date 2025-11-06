@@ -366,7 +366,7 @@ function modifier_talents:GetModifierPreAttack_BonusDamage()
 	end
 	
 	if self.values['bonus_agi_13'] and self.values['bonus_agi_13'] > 0 then
-		bonus = bonus + self:GetCaster():GetIncreasedAttackSpeed(false) * 100
+		bonus = bonus + math.max(0, self:GetCaster():GetIncreasedAttackSpeed(false) * 100)
 		if self:GetParent():HasModifier('modifier_bonus_agi_15') then
 			bonus = bonus - 1450
 		end
@@ -506,7 +506,7 @@ function modifier_talents:GetModifierIncomingDamage_Percentage(keys)
 			local backtrack_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_ABSORIGIN, self:GetParent())
 			ParticleManager:SetParticleControl(backtrack_fx, 0, self:GetParent():GetAbsOrigin())
 			ParticleManager:ReleaseParticleIndex(backtrack_fx)
-			return -100
+			return -9999
 		end
 	end
 	
@@ -515,7 +515,7 @@ function modifier_talents:GetModifierIncomingDamage_Percentage(keys)
 			local backtrack_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_ABSORIGIN, self:GetParent())
 			ParticleManager:SetParticleControl(backtrack_fx, 0, self:GetParent():GetAbsOrigin())
 			ParticleManager:ReleaseParticleIndex(backtrack_fx)
-			return -100
+			return -9999
 		end
 	end
     
@@ -527,7 +527,7 @@ function modifier_talents:GetModifierIncomingDamage_Percentage(keys)
 		self:AddParticle(combo_breaker_particle, false, false, -1, true, false)
 	
 		self:GetParent():AddNewModifier(self:GetParent(), self, "modifier_invu_lua", {duration = 300})
-		return -100
+		return -9999
 	end
 	
 	if damage >= self:GetParent():GetHealth() and self.values['bonus_str_15'] and self.values['bonus_str_15'] > 0 and not self:GetParent():HasModifier('modifier_hp_regen_boost_lua') then
@@ -536,7 +536,7 @@ function modifier_talents:GetModifierIncomingDamage_Percentage(keys)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, self:GetParent(), amount, nil)
 		self:GetCaster():EmitSound("DOTA_Item.Mekansm.Activate")
 		self:GetParent():AddNewModifier(self:GetParent(), self, "modifier_hp_regen_boost_lua", {duration = 300})
-		return -100
+		return -9999
 	end
 	
 	return bonus 
@@ -570,7 +570,7 @@ function modifier_talents:OnTakeDamage(keys)
 			end
 		end
 	
-		if keys.damage_type == 0 and self.values['bonus_int_14'] and self.values['bonus_int_14'] > 0 then
+		if keys.damage_type == 2 and self.values['bonus_int_14'] and self.values['bonus_int_14'] > 0 then
 			self:GetParent():AddNewModifier(self:GetParent(), self, "modifier_bonus_int_14", {duration = 3})
 		end
 		
@@ -916,8 +916,7 @@ function modifier_bonus_agi_15:GetModifierAttackSpeedBonus_Constant()
 		return 1450
 	end
 	return 0
-end()
-	self.proc = false
+endfalse
 end
 
 function modifier_bonus_agi_15:DeclareFunctions()

@@ -47,7 +47,7 @@ end
 
 function modifier_push:OnTakeDamage( params )
 	if IsServer() then
-	if params.attacker:GetUnitName() == 'trap_zone_2' and self:GetParent() == params.unit and not params.attacker:IsOther() and params.attacker:GetName() ~= "npc_dota_unit_undying_zombie" then	 
+	if params.attacker:GetUnitName() == 'trap_zone_2' and self:GetParent() == params.unit and not params.attacker:IsOther() and params.attacker:GetName() ~= "npc_dota_unit_undying_zombie" and not params.unit:HasModifier("modifier_knockback") then	 
 		params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_knockback", {
 				center_x			= params.attacker:GetAbsOrigin()[1] + 1,
 				center_y			= params.attacker:GetAbsOrigin()[2] + 1,
@@ -64,7 +64,7 @@ end
 
 function modifier_push:OnAttackLanded( params )
 	if IsServer() then
-	if params.attacker and params.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and self:GetParent() == params.target and not params.attacker:IsOther() and params.attacker:GetName() ~= "npc_dota_unit_undying_zombie" then	 
+	if params.attacker and params.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and self:GetParent() == params.target and not params.attacker:IsOther() and params.attacker:GetName() ~= "npc_dota_unit_undying_zombie" and not params.target:HasModifier("modifier_knockback") then	 
 		params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_knockback", {
 				center_x			= params.attacker:GetAbsOrigin()[1] + 1,
 				center_y			= params.attacker:GetAbsOrigin()[2] + 1,

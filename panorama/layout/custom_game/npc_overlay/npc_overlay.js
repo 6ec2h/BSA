@@ -1,4 +1,4 @@
-const HUD_ROOT = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HeroRelicProgress");
+const HUD_ROOT = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("HeroRelicProgress");
 HUD_ROOT.hittestchildren = true
 
 // Хранилище для всех созданных NPC overlay
@@ -40,11 +40,11 @@ function isNpcVisible(posX, posY, originZ) {
 }
 
 // Оптимизированная функция расчета расстояния
-function calculateDistance(origin1, origin2) {
+function calculateDistanceSqr(origin1, origin2) {
     const dx = origin1[0] - origin2[0];
     const dy = origin1[1] - origin2[1];
     const dz = origin1[2] - origin2[2];
-    return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    return dx * dx + dy * dy + dz * dz;
 }
 
 // Оптимизированная функция обновления всех NPC
@@ -150,15 +150,15 @@ function UpdateAllNpcOverlays() {
         }
         
         // Вычисляем расстояние до игрока
-        const distance = calculateDistance(origin, npcCache.playerOrigin);
+        const distanceSqr = calculateDistanceSqr(origin, npcCache.playerOrigin);
         
-        if (isNaN(distance)) {
+        if (isNaN(distanceSqr)) {
             continue;
         }
         
         // Определяем активность
         const interactionRadius = overlay.required_distance || 200;
-        const isActive = distance <= interactionRadius;
+        const isActive = distanceSqr <= (interactionRadius * interactionRadius);
         
         // Оптимизированное обновление состояния элементов
         const wasActive = overlay.button.BHasClass('active');
@@ -338,7 +338,7 @@ function remove_npc_button(t){
     delete npcOverlays[unitId];
     
     // Если больше нет NPC, останавливаем общий таймер
-    if (Object.keys(npcOverlays).length === 0 && npcUpdateTimer) {
+    if (Object.keys(npcOverlays).length === 0 && npcUpdateTimer != null) {
         GameUI.LoopTime.RemoveTime("npc_overlay_update");
         npcUpdateTimer = null;
         // $.Msg("Stopped global NPC update timer - no more NPCs");
@@ -392,3 +392,5 @@ GameEvents.Subscribe( "remove_npc_button", remove_npc_button)
 GameEvents.Subscribe( "debug_npc_overlays", debug_npc_overlays)
 GameEvents.Subscribe( "force_update_all_npc", force_update_all_npc)
 GameEvents.Subscribe( "clear_npc_cache", clear_npc_cache)
+
+GameEvents.SendCustomGameEventToServer("request_npc_interactions_data", {})

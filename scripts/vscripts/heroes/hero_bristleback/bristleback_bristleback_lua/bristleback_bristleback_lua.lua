@@ -113,57 +113,87 @@ function modifier_bristleback_bristleback_lua:GetModifierIncomingDamage_Percenta
 	end
 end
 
-function modifier_bristleback_bristleback_lua:OnTakeDamage( params )
+function modifier_bristleback_bristleback_lua:OnTakeDamage(params)
 	if not IsServer() then return end
 	if params.unit ~= self.parent then return end
-	if self.parent:PassivesDisabled() or bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION or bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) == DOTA_DAMAGE_FLAG_HPLOSS or not self.parent:HasAbility("bristleback_quill_spray_lua") or not self.parent:FindAbilityByName("bristleback_quill_spray_lua"):IsTrained() then return end
-		
+	if self:IsDamageIgnored(params) then return end
+
 	local special_bonus_unique_bristleback_1 = self.caster:FindAbilityByName("special_bonus_unique_bristleback_1")
+	local special_bonus_unique_bristleback_4 = self.parent:FindAbilityByName("special_bonus_unique_bristleback_4")
+	local quill_spray_ability = self.parent:FindAbilityByName("bristleback_quill_spray_lua")
 	
-	if special_bonus_unique_bristleback_1 and special_bonus_unique_bristleback_1:GetLevel() > 0 then
-		self:SetStackCount(self:GetStackCount() + params.damage)
-		
-		local quill_spray_ability = self.parent:FindAbilityByName("bristleback_quill_spray_lua")
-		
-		if quill_spray_ability and quill_spray_ability:IsTrained() and self:GetStackCount() >= self.quill_release_threshold then
-			quill_spray_ability:OnSpellStart()
-			self:SetStackCount(0)
-			
-			local special_bonus_unique_bristleback_4 = self.parent:FindAbilityByName("special_bonus_unique_bristleback_4")
-
-			if special_bonus_unique_bristleback_4 and special_bonus_unique_bristleback_4:GetLevel() > 0 then
-				local warpathModifier = self.parent:FindModifierByName("modifier_bristleback_warpath_lua")
-
-				if warpathModifier then
-					warpathModifier:OnAbilityFullyCast({
-						ability = quill_spray_ability,
-						unit = self.parent,
-					})
-				end
-			end
-		end
+	if self:ApplyTalentQuillSpray(special_bonus_unique_bristleback_1, special_bonus_unique_bristleback_4, quill_spray_ability, params.damage) then
 		return
 	end
 
-	if params.inflictor ~= nil and params.inflictor:GetAbilityName() == "spectre_dispersion" then return end
-	if params.inflictor ~= nil and params.inflictor:GetAbilityName() == "frostivus2018_spectre_active_dispersion"  then return end
-		
-	local forwardVector			= self.caster:GetForwardVector()
-	local forwardAngle			= math.deg(math.atan2(forwardVector.x, forwardVector.y))
-			
-	local reverseEnemyVector	= (self.caster:GetAbsOrigin() - params.attacker:GetAbsOrigin()):Normalized()
-	local reverseEnemyAngle		= math.deg(math.atan2(reverseEnemyVector.x, reverseEnemyVector.y))
+	if self:IsDispersionDamage(params) then return end
 
+	if self:IsInBack(params) then
+		self:TryQuillSprayStack(params.damage, quill_spray_ability, special_bonus_unique_bristleback_4)
+	end
+end
+
+-- Проверка, нужно ли игнорировать урон
+function modifier_bristleback_bristleback_lua:IsDamageIgnored(params)
+	return self.parent:PassivesDisabled()
+		or bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION
+		or bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) == DOTA_DAMAGE_FLAG_HPLOSS
+		or not self.parent:HasAbility("bristleback_quill_spray_lua")
+		or not self.parent:FindAbilityByName("bristleback_quill_spray_lua")
+		or not self.parent:FindAbilityByName("bristleback_quill_spray_lua"):IsTrained()
+end
+
+-- Проверка, является ли урон Disperison-уроном
+function modifier_bristleback_bristleback_lua:IsDispersionDamage(params)
+	return (params.inflictor ~= nil and (
+		params.inflictor:GetAbilityName() == "spectre_dispersion"
+		or params.inflictor:GetAbilityName() == "frostivus2018_spectre_active_dispersion"
+	))
+end
+
+-- Проверка, попадает ли урон в спину
+function modifier_bristleback_bristleback_lua:IsInBack(params)
+	local forwardVector = self.caster:GetForwardVector()
+	local forwardAngle = math.deg(math.atan2(forwardVector.x, forwardVector.y))
+	local reverseEnemyVector = (self.caster:GetAbsOrigin() - params.attacker:GetAbsOrigin()):Normalized()
+	local reverseEnemyAngle = math.deg(math.atan2(reverseEnemyVector.x, reverseEnemyVector.y))
 	local difference = math.abs(forwardAngle - reverseEnemyAngle)
+	return (difference <= (self.back_angle / 2)) or (difference >= (360 - (self.back_angle / 2)))
+end
 
-	if (difference <= (self.back_angle / 2)) or (difference >= (360 - (self.back_angle / 2))) then
-		self:SetStackCount(self:GetStackCount() + params.damage)
-		
-		local quill_spray_ability = self.parent:FindAbilityByName("bristleback_quill_spray_lua")
-		
+-- Талант: увеличение стака, проверка и прокаст спрея с талантом
+function modifier_bristleback_bristleback_lua:ApplyTalentQuillSpray(special_bonus_unique_bristleback_1, special_bonus_unique_bristleback_4, quill_spray_ability, damage)
+	if special_bonus_unique_bristleback_1 and special_bonus_unique_bristleback_1:GetLevel() > 0 then
+		self:SetStackCount(self:GetStackCount() + damage)
 		if quill_spray_ability and quill_spray_ability:IsTrained() and self:GetStackCount() >= self.quill_release_threshold then
 			quill_spray_ability:OnSpellStart()
 			self:SetStackCount(0)
+			self:TryActivateWarpath(special_bonus_unique_bristleback_4, quill_spray_ability)
+		end
+		return true
+	end
+	return false
+end
+
+-- Проверка стака урона с пассивки и возможный выпуск Quill Spray
+function modifier_bristleback_bristleback_lua:TryQuillSprayStack(damage, quill_spray_ability, special_bonus_unique_bristleback_4)
+	self:SetStackCount(self:GetStackCount() + damage)
+	if quill_spray_ability and quill_spray_ability:IsTrained() and self:GetStackCount() >= self.quill_release_threshold then
+		quill_spray_ability:OnSpellStart()
+		self:SetStackCount(0)
+		self:TryActivateWarpath(special_bonus_unique_bristleback_4, quill_spray_ability)
+	end
+end
+
+-- Если есть талант 4, активировать модификатор warpath
+function modifier_bristleback_bristleback_lua:TryActivateWarpath(special_bonus_unique_bristleback_4, quill_spray_ability)
+	if special_bonus_unique_bristleback_4 and special_bonus_unique_bristleback_4:GetLevel() > 0 then
+		local warpathModifier = self.parent:FindModifierByName("modifier_bristleback_warpath_lua")
+		if warpathModifier then
+			warpathModifier:OnAbilityFullyCast({
+				ability = quill_spray_ability,
+				unit = self.parent,
+			})
 		end
 	end
 end

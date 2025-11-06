@@ -18,18 +18,6 @@ function modifier_luna_moon_glaive_lua_thinker:OnCreated( kv )
 	self.range = self:GetAbility():GetSpecialValueFor( "range" )
 	self.reduction = self:GetAbility():GetSpecialValueFor( "damage_reduction_percent" )
 	
-	if self:GetCaster():FindAbilityByName("special_bonus_luna_agi10")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_luna_agi10"):GetLevel() > 0 then 
-			self.bounces = self.bounces + 3
-		end
-	end
-	
-	if self:GetCaster():FindAbilityByName("special_bonus_luna_agi9")~=nil then
-		if self:GetCaster():FindAbilityByName("special_bonus_luna_agi9"):GetLevel() > 0 then 
-			self.reduction = self.reduction - 16
-		end
-	end
-	
 	self.reduction = (100-self.reduction)/100
 
 	if IsServer() then
@@ -103,6 +91,7 @@ function modifier_luna_moon_glaive_lua_thinker:GetModifierProcAttack_Feedback( p
 	if not IsServer() then return end
 	-- perform actual attack
 	self:GetAbility().outgoing = math.pow( self.reduction, self.bounce )*100 - 100
+	self.caster:PerformAttack(params.target, true, true, true, true, false, true, true) -- FAKE ATTACK
 	self.caster:PerformAttack(
 		params.target,
 		false,
@@ -198,6 +187,23 @@ function modifier_luna_moon_glaive_lua_thinker:Attack()
 		self.targets = {}
 
 		-- set current target as have been hit, just for nice bouncing
+		self.targets[units[1]] = true
+
+		unit = units[2]
+	end
+
+	-- perform bounce
+	self.parent:PerformAttack(
+		unit,
+		false,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true
+	) -- hTarget, bUseCastAttackOrb, bProcessProcs, bSkipCooldown, bIgnoreInvis, bUseProjectile, bFakeAttack, bNeverMiss 
+ende been hit, just for nice bouncing
 		self.targets[units[1]] = true
 
 		unit = units[2]

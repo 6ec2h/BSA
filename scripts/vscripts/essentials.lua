@@ -76,6 +76,9 @@ function essentials:createCustomHpBarFor(unit)
 end
 
 function essentials:StartReq(t)
-	local p = t.PlayerID
-	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(p),"showHpBar", {unit=essentials.currentHpBar})
+	local unit = essentials.currentHpBar
+
+	if not unit or unit:IsNull() or not unit:IsAlive() then return end
+
+	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(t.PlayerID),"showHpBar", {unit=unit})
 end

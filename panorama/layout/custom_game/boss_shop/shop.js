@@ -254,7 +254,7 @@ function initShop(tab){
 								pan.FindChildTraverse('item_panel_buy').SetPanelEvent("onmouseactivate", buy(key, tovarKey, pan))
 								pan.FindChildTraverse('item_panel_name').text = $.Localize("#DOTA_Tooltip_ability_"+tovarValue.itemname)
 								
-								if (tovarValue.type == 'effect' || tovarValue.type == 'spray' || tovarValue.type == 'highfive'){          //-----------------------------------------------------
+								if (tovarValue.type == 'effect' || tovarValue.type == 'spray' || tovarValue.type == 'highfive' || tovarValue.type == 'tip'){          //-----------------------------------------------------
 									pan.FindChildTraverse('item_panel_image2').SetImage('file://{resources}/' + tovarValue.image);
 									pan.FindChildTraverse('item_panel_name').text = $.Localize("#"+tovarValue.type)
 									if (tovarValue.now > 0){
@@ -347,7 +347,7 @@ var buy = (function(i, n, pan)
 		}else{
 			BuyControl.FindChildTraverse('item_buy_label').text = $.Localize("#DOTA_Tooltip_ability_"+tovar.itemname)
 		}
-		if (tovar.type == 'effect' || tovar.type == 'spray' || tovar.type == 'highfive'){
+		if (tovar.type == 'effect' || tovar.type == 'spray' || tovar.type == 'highfive' || tovar.type == 'tip'){
 			BuyControl.FindChildTraverse('item_buy_label').text = $.Localize("#"+tovar.type)
 			BuyControl.FindChildTraverse('item_buy_image2').visible = true
 			BuyControl.FindChildTraverse('item_buy_image2').SetImage('file://{resources}/' + tovar.image);
@@ -439,7 +439,7 @@ var give = (function(i, n)
 			return
 		}
 		
-		if (tovarValue.type == 'effect' || tovarValue.type == 'spray' || tovarValue.type == 'highfive' || tovarValue.type == 'pet'){
+		if (tovarValue.type == 'effect' || tovarValue.type == 'spray' || tovarValue.type == 'tip' || tovarValue.type == 'highfive' || tovarValue.type == 'pet'){
 			update_panels(i, n, tovarValue.type)
 			return
 		}

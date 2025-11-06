@@ -1491,10 +1491,10 @@
 
 	"DOTA_Tooltip_modifier_item_desolator_lua_debuff"	"Corruption"
 	"DOTA_Tooltip_modifier_item_desolator_lua_debuff_Description"	"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
-	"DOTA_Tooltip_modifier_item_desolator_lua_debuff_2"	"Corruption"
-	"DOTA_Tooltip_modifier_item_desolator_lua_debuff_2_Description"	"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
-	"DOTA_Tooltip_modifier_item_desolator_lua_debuff_3"	"Corruption"
-	"DOTA_Tooltip_modifier_item_desolator_lua_debuff_3_Description"	"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+	"DOTA_Tooltip_modifier_item_desolator_lua_2_debuff"	"Corruption"
+	"DOTA_Tooltip_modifier_item_desolator_lua_2_debuff_Description"	"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+	"DOTA_Tooltip_modifier_item_desolator_lua_3_debuff"	"Corruption"
+	"DOTA_Tooltip_modifier_item_desolator_lua_3_debuff_Description"	"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
 
 //=========
 
@@ -1726,7 +1726,7 @@
 	"DOTA_Tooltip_ability_item_skadi_lua1_bonus_health" 	 "+$health"
 	"DOTA_Tooltip_ability_item_skadi_lua1_bonus_mana" 	 "+$mana"
 
-	"DOTA_Tooltip_ability_item_skadi_lua2" 	 "Great Sakdi"
+	"DOTA_Tooltip_ability_item_skadi_lua2" 	 "Great Skadi"
 	"DOTA_Tooltip_ability_item_skadi_lua2_Description" 	 "<h1>Passive: Cold Attack</h1> Each attack slows the target's movement and attack for %cold_duration% seconds, and reduces their healing, health regeneration, lifesteal, and ability lifesteal by %heal_reduction%%%. Slow depends on type Prey Attacks: Slows movement of ranged creatures by %cold_slow_ranged%%%, attack by %cold_slow_ranged%, slows movement of melee creatures by %cold_slow_melee%%%, attack by %cold_slow_melee%. \n<h1>Passive: Cold Blast</h1> After dying under the effect of Cold Attack, fragments will fly from the target to all enemies within the %radius%, causing %damage% magic damage and stun for %duration% second."
 	"DOTA_Tooltip_ability_item_skadi_lua2_Lore" 	 "An incredibly rare artifact guarded by azure dragons."
 	"DOTA_Tooltip_ability_item_skadi_lua2_bonus_all_stats" 	 "+$all"
@@ -3092,27 +3092,22 @@
 	"DOTA_Tooltip_ability_item_physical_immune" "Physical Eye"
 	"DOTA_Tooltip_ability_item_physical_immune_Description" "<h1>Active: Immune</h1> Gives the target target physical immunity by %duration% and increases its attack speed. \nThe ability affects the same creature no more than once every %tooltip_reapply_time% seconds.\nRequired hero level: %required_level%"
 	"DOTA_Tooltip_ability_item_physical_immune_bonus_all" "+$all"
-	"DOTA_Tooltip_ability_item_physical_immune_bonus_as" "+$attack"
 
 	"DOTA_Tooltip_ability_item_physical_immune2" "Physical Eye 2"
 	"DOTA_Tooltip_ability_item_physical_immune2_Description" "<h1>Active: Immune</h1> Grants the target target physical immunity by %duration% and increases its attack speed. \nThe ability affects the same creature no more than once every %tooltip_reapply_time% seconds.\nRequired hero level: %required_level%"
 	"DOTA_Tooltip_ability_item_physical_immune2_bonus_all" "+$all"
-	"DOTA_Tooltip_ability_item_physical_immune2_bonus_as" "+$attack"
 
 	"DOTA_Tooltip_ability_item_physical_immune3" "Physical Eye 3"
 	"DOTA_Tooltip_ability_item_physical_immune3_Description" "<h1>Active: Immune</h1> Grants the target target physical immunity by %duration% and increases its attack speed.\nThe ability affects the same creature no more than once every %tooltip_reapply_time% seconds.\nRequired hero level: %required_level%"
 	"DOTA_Tooltip_ability_item_physical_immune3_bonus_all" "+$all"
-	"DOTA_Tooltip_ability_item_physical_immune3_bonus_as" "+$attack"
 
 	"DOTA_Tooltip_ability_item_physical_immune4" "Physical Eye 4"
 	"DOTA_Tooltip_ability_item_physical_immune4_Description" "<h1>Active: Immune</h1> Grants the target target physical immunity by %duration% and increases its attack speed.\nThe ability affects the same creature no more than once every %tooltip_reapply_time% seconds.\nRequired hero level: %required_level%"
 	"DOTA_Tooltip_ability_item_physical_immune4_bonus_all" "+$all"
-	"DOTA_Tooltip_ability_item_physical_immune4_bonus_as" "+$attack"
 
 	"DOTA_Tooltip_ability_item_physical_immune5" "Physical Eye 5"
 	"DOTA_Tooltip_ability_item_physical_immune5_Description" "<h1>Active: Immune</h1> Grants the target target physical immunity by %duration% and increases its attack speed. \nThe ability affects the same creature no more than once every %tooltip_reapply_time% seconds.\nRequired hero level: %required_level%"
 	"DOTA_Tooltip_ability_item_physical_immune5_bonus_all" "+$all"
-	"DOTA_Tooltip_ability_item_physical_immune5_bonus_as" "+$attack"
 
 	"DOTA_Tooltip_modifier_physical_immune_active" "Immune"
 	"DOTA_Tooltip_modifier_physical_immune_active_Description" "Immunity to physical damage. Attack speed increased by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
@@ -3622,20 +3617,22 @@
 	"DOTA_Tooltip_ability_luna_moon_glaive_lua_damage_reduction_percent" 	 "%BOUNCE DAMAGE REDUCTION:"
 		
 	"DOTA_Tooltip_ability_luna_lunar_blessing_lua" 	 "Lunar Blessing"
-	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_Description" 	 "Increases the attributes of the owner and allies. The ability increases the main attribute of the owner by an amount equal to <font color='#16ff00'>four of the sum of non-primary attributes</font>, for allies by a percentage of the bonus. For heroes of generalists, increases all attributes but by 50% of the bonus.Also increases the wearer's night vision."
+	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_Description" 	 "The ability increases the primary attribute by %attributes_pct%%% of the sum of secondary attributes.<br>For Universal heroes, it increases all attributes but is half as effective.<br>Also increases the owner's night vision."
 	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_radius" 	 "AURA RADIUS:"
-	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_primary_attribute" 	 "%BONUS TO MAIN ATTRIBUTES TO ALLIES:"
-	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_bonus_night_vision" 	 "REVIEW NIGHT:"
+	"DOTA_Tooltip_ability_luna_lunar_blessing_lua_bonus_night_vision" 	 "EXTRA NIGHT VISION:"
+
+	"DOTA_Tooltip_modifier_luna_lunar_blessing_lua_effect"	"Lunar Blessing"
+	"DOTA_Tooltip_modifier_luna_lunar_blessing_lua_effect_description"	"Strength increased by %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%.<br>Agility increased by %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS%.<br>Intelligence increased by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%."
 		
 	"DOTA_Tooltip_ability_luna_moon" 	 "Eclipse"
 	"DOTA_Tooltip_ability_luna_moon_Description" 	 "The hero summons the moon itself to help him. All enemies that fall within the radius of the skill cannot take their eyes off the moon and move towards it without paying attention to anything else, and enemies also take damage from the Starfall ability."
 	"DOTA_Tooltip_ability_luna_moon_duration" 	 "DURATION:"
 	"DOTA_Tooltip_ability_luna_moon_radius" 	 "RADIUS:"
 			
-	"DOTA_Tooltip_ability_special_bonus_luna_str10" 	 "+18% к Lunar Blessing"
-	"DOTA_Tooltip_ability_special_bonus_luna_agi9" 	 "-16% Bounce Damage Reduction"
-	"DOTA_Tooltip_ability_special_bonus_luna_agi10" 	 "Moon Glaives bounces 3 extra times"
-	"DOTA_Tooltip_ability_special_bonus_luna_int9" 	 "-60 seconds ultimate cooldown"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_1" 	 "Lunar Blessing becomes an aura"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_2" 	 "-16% Bounce Damage Reduction"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_3" 	 "Moon Glaives bounces 3 extra times"
+	"DOTA_Tooltip_ability_special_bonus_unique_luna_4" 	 "-60 seconds Eclipse cooldown"
 			
 			//============================================================================================CRYSTAL=============================================================================================
 			
@@ -4311,12 +4308,19 @@
 	"DOTA_Tooltip_ability_magnus_empower_lua_empower_duration" 	 "DURATION:"
 	"DOTA_Tooltip_ability_magnus_empower_lua_bonus_damage_pct" 	 "%BONUS DAMAGE:"
 	"DOTA_Tooltip_ability_magnus_empower_lua_cleave_damage_pct" 	 "%CUT DAMAGE:"
-		
+	
+	"DOTA_Tooltip_modifier_magnus_empower_lua"				"Empower"
+	"DOTA_Tooltip_modifier_magnus_empower_lua_description"	"Damage increased by %dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%. Attacks deal %dMODIFIER_PROPERTY_TOOLTIP%%% cleave damage."
+	
 	"DOTA_Tooltip_ability_magnataur_skin" 	 "Magnataur Skin"
 	"DOTA_Tooltip_ability_magnataur_skin_Description" 	 "The aura hardens the skin of nearby allies, increasing armor and magic resistance!"
 	"DOTA_Tooltip_ability_magnataur_skin_aura_radius" 	 "RADIUS:"
 	"DOTA_Tooltip_ability_magnataur_skin_bonus_armor" 	 "BONUS TO ARMOR:"
 	"DOTA_Tooltip_ability_magnataur_skin_bonus_resist" 	 "%BONUS TO MAGICAL RESISTANCE:"
+
+	"DOTA_Tooltip_modifier_magnataur_skin"				"Magnataur Skin"
+	"DOTA_Tooltip_modifier_magnataur_skin_description"	"Armor increased by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%. Magic resistance increased by %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%."
+
 	"DOTA_Tooltip_modifier_magnataur_skin_friendly_datadriven" 	 "Magnataur Skin"
 	"DOTA_Tooltip_modifier_magnataur_skin_friendly_datadriven_Description" 	 "Your skin has become stronger! Armor and magic resistance have been increased."
 		
@@ -4990,6 +4994,9 @@
 	"DOTA_Tooltip_ability_sven_warcry_lua_warcry_armor" "OPTIONAL ARMOR:"
 	"DOTA_Tooltip_ability_sven_warcry_lua_warcry_duration" "DURATION:"
 	"DOTA_Tooltip_ability_sven_warcry_lua_warcry_radius" "RADIUS:"
+	
+	"DOTA_Tooltip_modifier_sven_warcry_lua"		"Warcry"
+	"DOTA_Tooltip_modifier_sven_warcry_lua_Description"		"Armor increased by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%. Magic resistance increased by %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%. Movement speed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 	"DOTA_Tooltip_ability_sven_gods_strength_lua" 	 "God's Strength"
 	"DOTA_Tooltip_ability_sven_gods_strength_lua_Description" 	 "The hero concentrates his uncontrollable power, gaining a damage bonus for %abilityduration% sec."
@@ -5996,6 +6003,9 @@
 	"DOTA_Tooltip_modifier_creep_ursa_fury_swipes_debuff_lua"	"Fury Swipes"
 	"DOTA_Tooltip_modifier_creep_ursa_fury_swipes_debuff_lua_description"	"Taking an extra %dMODIFIER_PROPERTY_TOOLTIP% damage from Fury Swipes's owner attacks."
 
+	"DOTA_Tooltip_modifier_ursa_fury_swipes_debuff_lua"	"Fury Swipes"
+	"DOTA_Tooltip_modifier_ursa_fury_swipes_debuff_lua_description"	"Taking an extra %dMODIFIER_PROPERTY_TOOLTIP% damage from Fury Swipes's owner attacks."
+
 //===============================================================================================PAUCHOK============================================================================================
 
   "DOTA_Tooltip_ability_creep_poison_sting_lua" "Poison Sting"
@@ -6756,6 +6766,9 @@
 "golden_zone_6" "<font color='#fcb900'>A golden monster has appeared in the Olympus zone - </font>"
 "GoldenForest" "Golden Monkey"
 
+"DOTA_Tooltip_modifier_desolator_golden"				"Corruption"
+"DOTA_Tooltip_modifier_desolator_golden_description"	"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%. Magic resistance reduced by %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%."
+
 "quest_system" "Quests"
 "new_quest" "New quest"
 "success_quest" "Quest completed -"
@@ -6977,8 +6990,8 @@
 
 "regen_mana_0" "+{value} to mana regeneration"
 "regen_mana_1" "+1 to mana regeneration"
-"regen_mana_1" "+2 to mana regeneration"
-"regen_mana_1" "+3 to mana regeneration"
+"regen_mana_2" "+2 to mana regeneration"
+"regen_mana_3" "+3 to mana regeneration"
 
 "cd_0" "-{value}% to cooldown"
 "cd_1" "-0.5% to cooldown"
@@ -7298,5 +7311,7 @@
 "ui_booster_cancel_button"                          "CANCEL"
 "ui_booster_license_duration"                       "The license is valid for 30 days"
 
+"tips"												"Tip"
+"tip"												"Tip"
 }	
 }

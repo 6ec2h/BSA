@@ -105,7 +105,7 @@ function modifier_creep_ursa_fury_swipes_debuff_lua:DeclareFunctions()
 end
 
 function modifier_creep_ursa_fury_swipes_debuff_lua:OnTooltip()
-	return self:GetStackCount() * self.damagePerStack
+	return self:GetParent():GetMaxHealth() / 100 * self.damagePerStack * self:GetStackCount()
 end
 
 function modifier_creep_ursa_fury_swipes_debuff_lua:OnCreated( kv )

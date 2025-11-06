@@ -56,8 +56,8 @@ end
 
 function modifier_item_skadi_lua:OnDeath(params)
     local parent = self:GetParent()
-	if (params.attacker == parent or params.attacker:GetOwner() == parent) then
-
+	if ((params.attacker == parent or params.attacker:GetOwner() == parent) and params.unit:HasModifier("modifier_item_skadi_slow_lua")) then
+ 
 		local nearby_enemy_units = FindUnitsInRadius(parent:GetTeam(), params.unit:GetAbsOrigin(), nil, self.radius,  DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
 		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 

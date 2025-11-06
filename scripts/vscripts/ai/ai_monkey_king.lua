@@ -22,6 +22,10 @@ end
 
 --------------------------------------------------------------------------------
 
+local function findNearEnemies()
+	return FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity.fSearchRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+end
+
 function MonkeyKingThink()
 	if ( not thisEntity:IsAlive() ) then
 		return -1
@@ -64,12 +68,18 @@ function MonkeyKingThink()
 	end
 
 	if ( not thisEntity:GetAggroTarget() ) then
-		if thisEntity.fTimeWeLostAggro and (GameRules:GetGameTime() > (thisEntity.fTimeWeLostAggro + 1.0)) then
+		if thisEntity.fTimeWeLostAggro and (GameRules:GetGameTime() > (thisEntity.fTimeWeLostAggro + .5)) then
+			local treeDanceMod = thisEntity:FindModifierByName("modifier_monkey_king_tree_dance_lua")
+			if treeDanceMod then
+				CastPrimalSpring()
+				return 0.9
+			end
+
 			return RetreatHome()
 		end
 	end
 
-	local hEnemies = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, thisEntity.fSearchRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+	local hEnemies = findNearEnemies()
 	if #hEnemies == 0 then
 		return 1
 	end
@@ -85,7 +95,7 @@ function MonkeyKingThink()
 	if thisEntity.hBoundlessStrike ~= nil and thisEntity.hBoundlessStrike:IsFullyCastable() then
 		return CastBoundlessStrike( hEnemies[ RandomInt( 1, #hEnemies ) ] )
 	end
-	
+
 	if thisEntity.hPrimalSpring ~= nil and thisEntity.hPrimalSpring:IsFullyCastable() then
 		if thisEntity.hTreeDance ~= nil and thisEntity.hTreeDance:IsFullyCastable() then
 			return CastTreeDance()
@@ -167,12 +177,25 @@ end
 
 function CastPrimalSpring( hEnemy )
 	thisEntity.flTreeDanceTime = GameRules:GetGameTime() + 15
-	local fDist = ( hEnemy:GetOrigin() - thisEntity:GetOrigin() ):Length2D()
-	local vTargetPos = hEnemy:GetOrigin()
 
-	if ( fDist > 400 ) and hEnemy and hEnemy:IsMoving() then
-		local vLeadingOffset = hEnemy:GetForwardVector() * RandomInt( 200, 380 )
-		vTargetPos = hEnemy:GetOrigin() + vLeadingOffset
+	local vTargetPos
+
+	if hEnemy then
+		local fDist = ( hEnemy:GetOrigin() - thisEntity:GetOrigin() ):Length2D()
+		vTargetPos = hEnemy:GetOrigin()
+
+		if ( fDist > 400 ) and hEnemy and hEnemy:IsMoving() then
+			local vLeadingOffset = hEnemy:GetForwardVector() * RandomInt( 200, 380 )
+			vTargetPos = hEnemy:GetOrigin() + vLeadingOffset
+		end
+	else
+		local nearEnemies = findNearEnemies()
+
+		if #nearEnemies ~= 0 then
+			return CastPrimalSpring(nearEnemies[ RandomInt( 1, #nearEnemies ) ])
+		end
+
+		vTargetPos = thisEntity:GetOrigin()
 	end
 
 	ExecuteOrderFromTable({

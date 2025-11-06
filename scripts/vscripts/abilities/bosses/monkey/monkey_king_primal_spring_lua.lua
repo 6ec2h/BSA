@@ -12,6 +12,16 @@ function monkey_king_primal_spring_lua:Spawn()
 	end
 end
 
+function monkey_king_primal_spring_lua:Precache(context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_furarmy_ring.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_monkey_king_spring_slow.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_spring_slow.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_spring.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_spring_cast.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_spring_channel.vpcf", context)
+end
+
 --------------------------------------------------------------------------------
 -- Ability Custom Indicator
 function monkey_king_primal_spring_lua:CreateCustomIndicator( loc )
