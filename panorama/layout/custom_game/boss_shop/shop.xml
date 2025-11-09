@@ -10,7 +10,14 @@
 	<snippets>
 		<snippet name="fr_snippet">
 			<Panel id="fr" class="fr">
-				<Image class="avatar1" src="s2r://panorama/images/custom_game/ds/bd.png" />
+				<Image class="avatar1" src="s2r://panorama/images/custom_game/ds/bg_png.vtex" />
+				<Image class="don_img" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+				<Panel id="site_button_container" class="site_button_container">
+					<Label class="crystals_text" text="#get_crystals" />
+					<Panel id="site_button" class="site_button">
+						<Label class="site_button_label" text="#here_button" />
+					</Panel>
+				</Panel>
 			</Panel>
 		</snippet>
 		<snippet name="items_snippet">
@@ -95,9 +102,14 @@
 			<Panel id="don" />
 			<Panel id="lowPanel" class="lowPanel" hittest="false">
 				<Panel id="money_panel" class="money_panel">
-					<Panel class="DNMoneyPanel" id="DNMoneyPanel" onmouseover="TipsOver(&apos;gems&apos;,&apos;DNMoneyPanel&apos;)" onmouseout="TipsOut()">
-						<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
-						<Label class="DNMoneyLabel" id="DNMoneyLabel" text="0" html="true" />
+					<Panel class="DNMoneyPanelContainer" id="DNMoneyPanelContainer">
+						<Panel class="DNMoneyPanel" id="DNMoneyPanel" onmouseover="TipsOver(&apos;gems&apos;,&apos;DNMoneyPanel&apos;)" onmouseout="TipsOut()">
+							<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="DNMoneyLabel" id="DNMoneyLabel" text="0" html="true" />
+						</Panel>
+						<Panel id="add_money_button" class="add_money_button" onmouseover="TipsOver(&apos;fr&apos;,&apos;add_money_button&apos;)" onmouseout="TipsOut()">
+							<Label class="add_money_label" text="+" />
+						</Panel>
 					</Panel>
 					<Panel class="MMMRPointsPanel" id="MMMRPointsPanel" onmouseover="TipsOver(&apos;mmrpoints&apos;,&apos;MMMRPointsPanel&apos;)" onmouseout="TipsOut()">
 						<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/protection.png" />

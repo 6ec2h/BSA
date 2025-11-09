@@ -9,7 +9,7 @@
 		"MaxLevel"						"4"
 		
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		"AbilityValues"
@@ -24,10 +24,6 @@
 			{
 				"value"							"44 38 32 26"
 				"special_bonus_unique_luna_2" 	"-16"
-			}	
-		}
-	}
-}
 			}	
 		}
 	}

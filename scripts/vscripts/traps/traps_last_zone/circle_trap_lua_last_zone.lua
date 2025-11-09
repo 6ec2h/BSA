@@ -27,12 +27,13 @@ function modifier_circle_trap_lua_last_zone:OnCreated( kv )
 	local pathLength = 400
 	local pfx = ParticleManager:CreateParticle( "particles/trap_sunray.vpcf", PATTACH_WORLDORIGIN, nil )
 	local attach_point = caster:ScriptLookupAttachment( "attach_head" )
-	local deltaTime = 0.09
+	local deltaTime = 0.03
 	
-	self.speed = circle_move_last[RandomInt(1,#circle_move_last)] * (.09 / .03)
+	self.speed = circle_move_last[RandomInt(1,#circle_move_last)]
 	table.remove(circle_move_last, self.speed)
 
 	local centerIsSet = false
+	local damageDebounceStep = 0
 
 	caster:SetContextThink( DoUniqueString( "updateSunRay" ), function ()			
 		if not _G.last_zone_circle_traps_active then
@@ -62,21 +63,28 @@ function modifier_circle_trap_lua_last_zone:OnCreated( kv )
 
 		ParticleManager:SetParticleControl( pfx, 1, endcapPos )
 
-		local units = FindUnitsInLine(caster:GetTeamNumber(), caster:GetAbsOrigin(), endcapPos, nil, 50, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE)
-		
-		for i = 1, #units do
-			local unit = units[i]
-			if unit and not unit:IsMagicImmune() and not unit:IsInvulnerable() then
-				local damageTable = {
-					victim = unit,
-					attacker = self:GetCaster(),
-					damage = unit:GetMaxHealth(),
-					damage_type = DAMAGE_TYPE_PURE,
-				}
+		if damageDebounceStep >= 1 then
+			damageDebounceStep = 0
 
-				ApplyDamage(damageTable)
+			local units = FindUnitsInLine(caster:GetTeamNumber(), caster:GetAbsOrigin(), endcapPos, nil, 50, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE)
+			
+			for i = 1, #units do
+				local unit = units[i]
+				if unit and not unit:IsMagicImmune() and not unit:IsInvulnerable() then
+					local damageTable = {
+						victim = unit,
+						attacker = self:GetCaster(),
+						damage = unit:GetMaxHealth(),
+						damage_type = DAMAGE_TYPE_PURE,
+					}
+
+					ApplyDamage(damageTable)
+				end
 			end
+		else
+			damageDebounceStep = damageDebounceStep + 1
 		end
+
 		return deltaTime
 	end, 0)
 end

@@ -155,8 +155,10 @@ function UpdateInventoryMain(t)
         UpdateInventorySlots()
         UpdateInventoryItems(TABLE_HERO.hero_inventory)
         $("#InventoryMain").SetHasClass("HideInventory", false)
+		$("#AutoDismantlingToggle").SetHasClass("HideInventory", false)
     }else{
         $("#InventoryMain").SetHasClass("HideInventory", true)
+		$("#AutoDismantlingToggle").SetHasClass("HideInventory", true)
     }
     EquipCreateSlots()
     UpdateEquipItems(TABLE_HERO.hero_enquip)

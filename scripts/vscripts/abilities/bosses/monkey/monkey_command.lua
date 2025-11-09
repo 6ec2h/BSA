@@ -9,6 +9,18 @@ function monkey_king_wukongs_command_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	local center = caster:GetOrigin()
 	caster:EmitSound("Hero_MonkeyKing.FurArmy")
+
+	local thinkers = Entities:FindAllByName("npc_dota_thinker")
+
+	for i = 1, #thinkers do
+		local thinker = thinkers[i]
+
+		local mkMod = thinker:FindModifierByName("modifier_wukongs_command_custom_thinker")
+		if mkMod then
+			UTIL_Remove(thinker)
+		end
+	end
+
 	CreateModifierThinker(caster, self, "modifier_wukongs_command_custom_thinker", {duration = self:GetCooldown(self:GetLevel() - 1)}, center, caster:GetTeamNumber(), false)
 end
 
@@ -69,6 +81,21 @@ function modifier_wukongs_command_custom_thinker:OnDestroy()
 	if self.particleHandle then
 		ParticleManager:DestroyParticle(self.particleHandle, true)
 		ParticleManager:ReleaseParticleIndex(self.particleHandle)
+	end
+	
+	if self.table_clone then
+		for i, unit in pairs(_G.clone) do
+			if unit and not unit:IsNull() then
+				unit:ForceKill(false)
+			end
+		end	
+	end
+	_G.clone = {}
+	
+	local parent = self:GetParent()
+
+	if parent and not parent:IsNull() then
+		parent:ForceKill(false)
 	end
 end
 

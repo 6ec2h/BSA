@@ -14,7 +14,18 @@ end
 function dado_one_shoot:OnSpellStart()
 	self:PlayEffects()
 
-	self:GetCursorTarget():Kill(nil, self:GetCaster())
+	local target = self:GetCursorTarget()
+
+	for modNum = 0, target:GetModifierCount() - 1 do
+		local modName = target:GetModifierNameByIndex(modNum)
+		local mod = target:FindModifierByName(modName)
+
+		if mod and mod:HasFunction(MODIFIER_PROPERTY_MIN_HEALTH) then
+			target:RemoveModifierByName(modName)
+		end
+	end
+
+	target:Kill(nil, self:GetCaster())
 
 	self:GetCaster():FindModifierByName("modifier_dado_one_shoot").extraSpeed = 600
 end

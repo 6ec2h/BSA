@@ -7,3 +7,11 @@ LinkLuaModifier( "modifier_luna_moon_glaive_lua_thinker", "heroes/hero_luna/luna
 function luna_moon_glaive_lua:GetIntrinsicModifierName()
 	return "modifier_luna_moon_glaive_lua"
 end
+
+function luna_moon_glaive_lua:OnUpgrade()
+	self.OnUpgrade = nil
+
+	if not IsServer() then return end
+
+	self:ToggleAutoCast()
+end

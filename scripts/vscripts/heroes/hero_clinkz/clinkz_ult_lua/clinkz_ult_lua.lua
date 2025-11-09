@@ -8,6 +8,14 @@ function clinkz_ult_lua:GetIntrinsicModifierName()
     return 'modifier_npc_dota_hero_clinkz_permanent_ability'
 end
 
+function clinkz_ult_lua:OnUpgrade()
+	self.OnUpgrade = nil
+
+	if not IsServer() then return end
+
+	self:ToggleAutoCast()
+end
+
 -------------------------------------------------------------------------------------------
 
 modifier_npc_dota_hero_clinkz_permanent_ability = class({})
@@ -53,6 +61,8 @@ end
 count_archers = {}
 
 function modifier_npc_dota_hero_clinkz_permanent_ability:AddStack()
+	local ability = self:GetAbility()
+	if not ability:GetAutoCastState() then return end
 
 	if not self:GetParent():PassivesDisabled() then
 		if self:GetStackCount() < self.count then

@@ -486,6 +486,14 @@ function medusa_split_shot_lua:GetIntrinsicModifierName()
 	return "modifier_medusa_split_shot_lua"
 end
 
+function medusa_split_shot_lua:OnUpgrade()
+	self.OnUpgrade = nil
+
+	if not IsServer() then return end
+
+	self:ToggleAutoCast()
+end
+
 ---------------------------------------------------------------------
 
 modifier_medusa_split_shot_lua = class({})
@@ -548,7 +556,10 @@ function modifier_medusa_split_shot_lua:OnAttack(keys)
 	if not keys.target or keys.target:GetTeamNumber() == parent:GetTeamNumber() then return end
 	if keys.no_attack_cooldown then return end
 	if parent:PassivesDisabled() then return end
-	if not self:GetAbility():IsTrained() then return end
+
+	local ability = self:GetAbility()
+	if not ability:IsTrained() then return end
+    if not ability:GetAutoCastState() then return end
 
 	local applyModifiersTalent = parent:FindAbilityByName("special_bonus_unique_medusa_8")
 	local applyModifiers = applyModifiersTalent and applyModifiersTalent:GetLevel() > 0 or false

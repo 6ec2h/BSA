@@ -6,6 +6,14 @@ function templar_assassin_psi_blades_lua:GetIntrinsicModifierName()
 	return "modifier_templar_assassin_psi_blades_lua_damage"
 end
 
+function templar_assassin_psi_blades_lua:OnUpgrade()
+	self.OnUpgrade = nil
+
+	if not IsServer() then return end
+
+	self:ToggleAutoCast()
+end
+
 -----------------------------------------------
 
 modifier_templar_assassin_psi_blades_lua_damage = class({})
@@ -27,6 +35,9 @@ end
 
 function modifier_templar_assassin_psi_blades_lua_damage:OnTakeDamage(keys)
 	if keys.attacker == self:GetParent() and self:GetAbility():IsTrained() and not self:GetParent():PassivesDisabled() and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not keys.unit:IsBuilding() and (not keys.unit:IsOther() or (keys.unit:IsOther() and keys.damage > 0)) then
+		local ability = self:GetAbility()
+		if not ability:GetAutoCastState() then return end
+		
 		local damage_to_use = keys.damage
 		
 		for _, enemy in pairs(FindUnitsInLine(self:GetCaster():GetTeamNumber(), keys.unit:GetAbsOrigin(), keys.unit:GetAbsOrigin() + ((keys.unit:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Normalized() * self:GetAbility():GetSpecialValueFor("attack_spill_range")), nil, self:GetAbility():GetSpecialValueFor("attack_spill_width"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES)) do

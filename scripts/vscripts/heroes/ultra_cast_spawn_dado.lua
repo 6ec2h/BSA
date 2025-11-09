@@ -1,5 +1,9 @@
 ultra_cast_spawn_dado = class({})
 
+function ultra_cast_spawn_dado:Precache(context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_ultra_dado.vsndevts", context)
+end
+
 function ultra_cast_spawn_dado:OnSpellStart()
 	if not IsServer() then return end
 

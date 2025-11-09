@@ -5,7 +5,7 @@ function hpbar() {
 	if (hp == null)
 		return
 
-    if(Math.round(hp)<=0){
+    if(Math.ceil(hp)<=0){
         curhpunit= false
         $("#hpbarroot").visible = false 
         return;

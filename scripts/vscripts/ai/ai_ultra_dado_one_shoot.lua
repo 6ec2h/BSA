@@ -2,6 +2,8 @@ function Spawn( entityKeyValues )
     if not IsServer() then return end
     if not thisEntity then return end
 
+	EmitSoundOn("Hero_Ultra_Dado.Ambient", thisEntity)
+
     DadoOneShoot = thisEntity:FindAbilityByName("dado_one_shoot")
 	DadoOneShoot:SetLevel(2)
 
@@ -30,6 +32,8 @@ function DadoOneShootThink()
 
 	if not target:IsAlive() then
 		if not RemoveTimerStarted then
+			StopSoundOn("Hero_Ultra_Dado.Ambient", thisEntity)
+
 			RemoveTimerStarted = true
 
 			Timers:CreateTimer(5, function()

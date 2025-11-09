@@ -54,13 +54,15 @@ function modifier_ultra_cast_land_mine:OnIntervalThink()
 	local nearbyEnemies = FindUnitsInRadius(caster:GetTeamNumber(), pos, nil, damageRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 
 	for _, enemy in pairs(nearbyEnemies) do
-		ApplyDamage({
-			victim = enemy,
-			attacker = caster, 
-			damage = enemy:GetMaxHealth() / 2,
-			damage_type = DAMAGE_TYPE_PURE,
-			ability = self.ability
-		})
+		if not enemy:IsQuestSheep() then
+			ApplyDamage({
+				victim = enemy,
+				attacker = caster, 
+				damage = enemy:GetMaxHealth() / 2,
+				damage_type = DAMAGE_TYPE_PURE,
+				ability = self.ability
+			})
+		end
 	end
 
 	caster:ForceKill(false)

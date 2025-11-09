@@ -5,13 +5,10 @@ function Spawn( entityKeyValues )
     if thisEntity == nil then
         return
     end
-    thisEntity:SetContextThink( "NecroLordThink", NecroLordThink, 0.5 ) 
+    thisEntity:SetContextThink( "NecroLordThink", NecroLordThink, 0.15 ) 
 end
 
 function NecroLordThink()
-	if thisEntity:GetRenderColor() then
-		thisEntity:SetRenderColor( 104, 85, 70 )
-	end
 	if ( not thisEntity:IsAlive() ) then 
         return -1  
     end
@@ -28,6 +25,9 @@ function NecroLordThink()
 		local particleLeader = ParticleManager:CreateParticle( "particles/dire_fx/fire_barracks.vpcf", PATTACH_OVERHEAD_FOLLOW, thisEntity ) 
 		ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, thisEntity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", thisEntity:GetAbsOrigin(), true )
 		thisEntity:Attribute_SetIntValue("particleID", particleLeader)
+		end
+	return 0.15
+endhisEntity:Attribute_SetIntValue("particleID", particleLeader)
 		end
 	return 0.01
 end

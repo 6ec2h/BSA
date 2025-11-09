@@ -11,7 +11,7 @@ function earthshaker_fissure_lua:OnSpellStart()
 
 	-- load data
 	local damage = self:GetAbilityDamage()
-	local distance = self:GetCastRange( point, caster )
+	local distance = self:GetSpecialValueFor("AbilityCastRange")
 	local duration = self:GetSpecialValueFor("fissure_duration")
 	local radius = self:GetSpecialValueFor("fissure_radius")
 	local stun_duration = self:GetSpecialValueFor("stun_duration")
@@ -73,7 +73,7 @@ function earthshaker_fissure_lua:OnSpellStart()
 	local talent = self:GetCaster():FindAbilityByName("special_bonus_earthshaker_tal1")
 	if talent ~= nil and talent:GetLevel() > 0 then
 		local count = 0
-		Timers:CreateTimer(1, function()
+		Timers:CreateTimer(0, function()
 			count = count + 1
 			local sound_cast = "Hero_EarthShaker.Totem.Attack"
 			EmitSoundOn( sound_cast, self:GetCaster() )
@@ -82,9 +82,16 @@ function earthshaker_fissure_lua:OnSpellStart()
 					if unit:GetTeamNumber()~=caster:GetTeamNumber() then
 						damageTable.victim = unit
 						ApplyDamage(damageTable)
+
+						unit:AddNewModifier(
+							caster, -- player source
+							self, -- ability source
+							"modifier_generic_stunned_lua", -- modifier name
+							{ duration = stun_duration } -- kv
+						)
 					end	
 				end
-			if count < 3 then 
+			if count <= 3 then 
 				return 1
 			else
 				return nil

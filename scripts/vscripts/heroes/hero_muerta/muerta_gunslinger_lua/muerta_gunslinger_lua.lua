@@ -5,6 +5,14 @@ function muerta_gunslinger_lua:GetIntrinsicModifierName()
 	return "modifier_muerta_gunslinger_lua"
 end
 
+function muerta_gunslinger_lua:OnUpgrade()
+	self.OnUpgrade = nil
+
+	if not IsServer() then return end
+
+	self:ToggleAutoCast()
+end
+
 -------------------------------------------------------------
 
 modifier_muerta_gunslinger_lua = class({})
@@ -66,7 +74,8 @@ function modifier_muerta_gunslinger_lua:OnAttackStart( params )
 
 	if self.parent:PassivesDisabled() then return end
 	
-
+	local ability = self:GetAbility()
+	if not ability:GetAutoCastState() then return end
 
 	if not RollPseudoRandomPercentage(self.chance, self.parent:entindex(), self.parent) then return end
 

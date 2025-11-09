@@ -18,16 +18,28 @@ function ability_capture_lua:GetChannelAnimation()
 end
 
 function ability_capture_lua:CastFilterResultLocation(pos)
+	if self.pos then return end
+
 	self.pos = pos
 end
 
 function ability_capture_lua:OnSpellStart(keys)
+	if not IsServer() then return end
+
+	self.respawnPos = self.pos
+	self.pos = nil
+
 	StartSoundEvent("Outpost.Channel", self:GetCaster())
 end
 
 function ability_capture_lua:OnChannelFinish( bInterrupted )
-	if not bInterrupted then
-		local items_on_the_ground = Entities:FindAllByClassnameWithin("dota_item_drop", self.pos, 200)
+	if not IsServer() then return end
+
+	local pos = self.respawnPos
+	self.respawnPos = nil
+	
+	if not bInterrupted and pos then
+		local items_on_the_ground = Entities:FindAllByClassnameWithin("dota_item_drop", pos, 200)
 		for _,item_ground in pairs(items_on_the_ground) do
 			if not item_ground or item_ground:IsNull() then
 				goto continue
@@ -44,7 +56,7 @@ function ability_capture_lua:OnChannelFinish( bInterrupted )
 			end
 
 			local hero = item:GetPurchaser()
-			local point = self.pos
+			local point = pos
 			local hRelay = Entities:FindByName( nil, "logic_teleport" )
 			if hRelay then
 				hRelay:Trigger(nil,nil)

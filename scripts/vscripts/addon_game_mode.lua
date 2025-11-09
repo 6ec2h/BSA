@@ -7,6 +7,7 @@ require("libraries/animations")
 require("libraries/table")
 require("libraries/utils")
 require("libraries/debounce")
+require("libraries/base_npc")
 require('mini_quest')
 require('essentials')
 require('rules')
@@ -207,13 +208,11 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 	if data.order_type == DOTA_UNIT_ORDER_PICKUP_ITEM then
         if target then
             local item = target:GetContainedItem()
-			local item_name = item:GetAbilityName()
-			local position = item:GetAbsOrigin()	
-			if item_name == "item_tombstone" then
+			if item and item:GetAbilityName() == "item_tombstone" then
 				ExecuteOrderFromTable({
 					UnitIndex = hero:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-					Position = position,
+					Position = target:GetAbsOrigin(),
 					AbilityIndex = hero:FindAbilityByName("ability_capture_lua"):entindex(),
 				})
 				return false
@@ -707,13 +706,35 @@ local bossesTable = {
 local goldUnitNames = {
     "GoldenMiner", "GoldenQueen", "GoldenWyvern", "GoldenSea", "GoldenDragon", "GoldenForest"
 }
--- -createhero GoldenMiner enemy
-local bless_drop_units = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear",
+
+local goldUnitNamesMap = {}
+
+for k,v in ipairs(goldUnitNames) do
+	goldUnitNamesMap[v] = true
+end
+
+goldUnitNames = nil
+
+local blessDropUnits = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear",
 	"npc_dota_creature_dire_hound","npc_dota_creature_dire_hound_boss","forest_zombie","skeleton","npc_creep_crystal",
 	"apparat","tusk","icespider","white_walker","mirana","npc_dota_creature_large_ogre_seal","guard","npc_trap_visage",
 	"tank","undying","morf", "npc_blob","npc_slardar_unit","npc_zone_jungle_1","npc_zone_jungle_2","npc_zone_jungle_3",
 	"npc_zone_jungle_4","npc_keeper_of_the_light","miner","small_hellbear","encha","treant","npc_lifestealer","batr","warlock",
 	"pudge","npc_venom_creep","demon","npc_gyro","npc_enigma","npc_sniper","npc_disruptor","cher"}
+
+local blessDropUnitsMap = {}
+
+for k,v in ipairs(blessDropUnits) do
+	blessDropUnitsMap[v] = true
+end
+
+blessDropUnits = nil
+
+local questSheepUnitsMap = {
+	["npc_snow"] = true,
+	["npc_snow2"] = true,
+	["npc_snow3"] = true,
+}
 
 _G.bosses_counter = {
 	 ["npc_dota_creature_big_bear"] = false,
@@ -750,7 +771,7 @@ end
 
 function CAddonAdvExGameMode:OnEntityKilled( keys )
     local killed_unit = EntIndexToHScript( keys.entindex_killed )
-    local killer = EntIndexToHScript( keys.entindex_attacker )
+    local killer = keys.entindex_attacker and EntIndexToHScript( keys.entindex_attacker )
 	local unitName = killed_unit:GetUnitName()
 	
 	-- if killed_unit and killed_unit:IsRealHero() and killed_unit:HasModifier("modifier_guild_event") then
@@ -798,6 +819,8 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 			end
 		end)
 	end		
+	
+	if killer then
 ------------------------------------------------------ CREEPS GOLD REWARD -----------------------------------------------------------------------------------
 
 	if goldTable[unitName] then
@@ -823,7 +846,7 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 
 ------------------------------------------------------ GOLDEN UNITS REWARDS -----------------------------------------------------------------------------------
 
-	if table.contains(goldUnitNames, unitName) and GetMapName() ~= "ability_mode" then
+		if goldUnitNamesMap[unitName] and GetMapName() ~= "ability_mode" then
 		local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
         DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
         FIND_ANY_ORDER, false)
@@ -838,18 +861,11 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 	
 ------------------------------------------------------ BLESS DROP -----------------------------------------------------------------------------------	
 	
-	if table.contains(bless_drop_units, unitName) and not GetMapName() ~= "ability_mode" then
-		if killer and killer:IsRealHero() then
+		if blessDropUnitsMap[unitName] and not GetMapName() ~= "ability_mode" then
+			if killer:IsRealHero() then
 			local pid = killer:GetPlayerID()
 			inventory:add_bless(pid)
 		end
-	end
-	
---------------------------------------------------------------------снега
-
-	if unitName == "npc_snow" or unitName == "npc_snow2" or unitName == "npc_snow3" then
-		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-		Shop:booster_game_end("LOSE")
 	end
 	
 ----------------------------------------------------------------------боксы
@@ -875,7 +891,7 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 
 ---------------------------------------------------------------------------------
 
-	if killer and killer:IsRealHero() then
+		if killer:IsRealHero() then
 		local pid = killer:GetPlayerID()
 		if _G.player_quest[pid] then
 			if _G.player_quest[pid][unitName] == nil then
@@ -885,6 +901,14 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 			end
 		end
 	end
+	end
+--------------------------------------------------------------------снега
+
+	if questSheepUnitsMap[unitName] then
+		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		Shop:booster_game_end("LOSE")
+	end
+	
 end
 
 function respawn_heroes()

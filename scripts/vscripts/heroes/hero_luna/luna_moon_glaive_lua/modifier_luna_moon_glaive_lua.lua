@@ -49,12 +49,16 @@ function modifier_luna_moon_glaive_lua:GetModifierProcAttack_Feedback( params )
 
 	-- cancel if break
 	if self:GetParent():PassivesDisabled() then return end
+
+	local ability = self:GetAbility()
+	if not ability:GetAutoCastState() then return end
+
 	if params.no_attack_cooldown then return end
 
 	-- create thinker
 	CreateModifierThinker(
 		self:GetParent(), -- player source
-		self:GetAbility(), -- ability source
+		ability, -- ability source
 		"modifier_luna_moon_glaive_lua_thinker", -- modifier name
 		{  }, -- kv
 		params.target:GetOrigin(),

@@ -1,7 +1,7 @@
 var PlayerCount = 0,
 	shop = CustomNetTables.GetAllTableValues( "shop" ),
 	playerID = Players.GetLocalPlayer(),
-	shopinfo,
+	shopinfo = {},
 	isShopOpen = false,
 	first_start = true, 
 	shopnumber = 0,
@@ -25,23 +25,25 @@ DotaHUD.windowControllers["shop"] = {
     open: function(){
         GameEvents.SendCustomGameEventToServer("money_update", {})
 		DSPanel.visible = true
-		for(var i = 1; i <= Object.keys(shopinfo).length; i++){
-			var panel = $('#TabPanel_' + i)
-			var label = $('#TabLabel_' + i)
-			var content = $('#DSContentPanel_' + i)
-			if(i == shopnumber){
-				content.visible = true
-				panel.AddClass('selected_bd')
-				label.AddClass('selected_text')
-			}else{
-				if(panel){
-					panel.RemoveClass('selected_bd')
-				}
-				if(label){
-					label.RemoveClass('selected_text')
-				}
-				if(content){
-					content.visible = false
+		if (shopinfo) {
+			for(var i = 1; i <= Object.keys(shopinfo).length; i++){
+				var panel = $('#TabPanel_' + i)
+				var label = $('#TabLabel_' + i)
+				var content = $('#DSContentPanel_' + i)
+				if(i == shopnumber){
+					content.visible = true
+					panel.AddClass('selected_bd')
+					label.AddClass('selected_text')
+				}else{
+					if(panel){
+						panel.RemoveClass('selected_bd')
+					}
+					if(label){
+						label.RemoveClass('selected_text')
+					}
+					if(content){
+						content.visible = false
+					}
 				}
 			}
 		}
@@ -135,10 +137,26 @@ function initShop(tab){
 	if (shopinfo.link['fr']){
 		don_panel.visible = true
 		var fr = $.CreatePanel("Panel", don_panel, "frsn");
-        fr.BLoadLayoutSnippet("fr_snippet");	
+        fr.BLoadLayoutSnippet("fr_snippet");
+		$.Msg("fr = ", shopinfo.link['fr'])
 		fr.SetPanelEvent("onmouseactivate", function() {$.DispatchEvent("ExternalBrowserGoToURL", shopinfo.link['fr'])})
         fr.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", fr, $.Localize('#fr'))});
         fr.SetPanelEvent("onmouseout", TipsOut)
+		
+		// Показываем кнопку пополнения и устанавливаем обработчик
+		var addMoneyButton = $('#add_money_button')
+		if (addMoneyButton) {
+			addMoneyButton.visible = true
+			addMoneyButton.SetPanelEvent("onmouseactivate", function() {
+				$.DispatchEvent("ExternalBrowserGoToURL", shopinfo.link['fr'])
+			})
+		}
+	} else {
+		// Скрываем кнопку, если ссылки нет
+		var addMoneyButton = $('#add_money_button')
+		if (addMoneyButton) {
+			addMoneyButton.visible = false
+		}
 	}
 	for (const [key, value] of Object.entries(shopinfo)) {
 		if(typeof(value) == 'object' && value != shopinfo.link){
