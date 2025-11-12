@@ -52,6 +52,7 @@ end
 function modifier_damage_challenge:CheckState()
 	return {
 		[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
+		[MODIFIER_STATE_ROOTED] = true,
 	}
 end
 

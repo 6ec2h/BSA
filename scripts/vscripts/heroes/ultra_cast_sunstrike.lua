@@ -32,7 +32,7 @@ function ultra_cast_sunstrike:OnSpellStart()
 			local unitsUnderSunstrike = FindUnitsInRadius(caster:GetTeam(), point, nil, 200, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 
 			for _, unit in ipairs(unitsUnderSunstrike) do
-				if not enemy:IsQuestSheep() then
+				if not unit:IsQuestSheep() then
 					ApplyDamage({
 						attacker = caster,
 						victim = unit,
@@ -44,4 +44,4 @@ function ultra_cast_sunstrike:OnSpellStart()
 			end		
 		end)
 	end	
-end
+endd

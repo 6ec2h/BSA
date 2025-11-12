@@ -11553,6 +11553,46 @@
 		}
 	} 
 
+"npc_players_summary"
+	{	
+		"Model"						"models/items/rattletrap/warmachine_cog_dc/warmachine_cog_dc.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"4"
+		"ModelScale" 				"0.01"
+		"HasInventory"				"1"
+		"IsAncient"					"1"
+		
+		"ArmorPhysical"				"3000"			
+		"MagicalResistance"         "3000"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"100"		
+		"AttackDamageMax"			"0"		
+		"AttackRate"				"0"		
+		"AttackAnimationPoint"		"0"		
+		"AttackAcquisitionRange"	"1000"		
+		"AttackRange"				"1"
+
+		"RingRadius"				"2"
+		"HealthBarOffset"			"0"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"0"			
+		"MovementTurnRate"			"1"		
+
+		"StatusHealth"				"99999"		
+		"StatusHealthRegen"			"999"		
+		"StatusMana"				"9099"		
+		"StatusManaRegen"			"9000"			 
+	
+		"VisionDaytimeRange"		"3000"		
+		"VisionNighttimeRange"		"3000"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
 }	
 
 #base "../npc/npc_units_heroes.txt"

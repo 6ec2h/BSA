@@ -250,6 +250,10 @@ function dummy_spawn()
 	local damage_challenge = CreateUnitByName("npc_unit_damage_challenge", Vector(-6915.544922, -14742.480469, 128.000000), false, nil, nil, DOTA_TEAM_NEUTRALS)
 	damage_challenge:AddNewModifier(damage_challenge, nil, "modifier_damage_challenge", {})
 	damage_challenge:SetAngles(0,-90,0)
+
+	LinkLuaModifier("modifier_players_summary", "modifiers/modifier_players_summary", LUA_MODIFIER_MOTION_NONE)
+	local playersSummary = CreateUnitByName("npc_players_summary", Entities:FindByName(nil, "easy_target"):GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
+	playersSummary:AddNewModifier(playersSummary, nil, "modifier_players_summary", {})
 end	
 
 --------------------------------------------------- 

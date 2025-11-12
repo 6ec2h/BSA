@@ -1,0 +1,92 @@
+<!-- xml reconstructed by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/casv2/casv2.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/casv2/casv2.js" />
+	</scripts>
+	<Panel class="root" hittest="false">
+		<Panel class="background-gradient" />
+		<Panel class="crystal-shards" />
+		<Label class="main-title" text="DRAGON JACKPOT" />
+		<Panel class="jackpot-container">
+			<Image class="jackpot-diamond-icon" src="s2r://panorama/images/items/diamond_png.vtex" />
+			<Label class="jackpot-amount" text="125,430" />
+			<Label class="jackpot-description" text="5% от каждой ставки идёт в банк" />
+		</Panel>
+		<Panel class="best-wins-panel">
+			<Label class="best-wins-title" text="УЧШИЕ ВЫИГРЫШИ" />
+			<Panel class="wins-list">
+				<Panel class="win-entry">
+					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/magnus_png.vtex" />
+					<Label class="character-name" text="Magnus" />
+					<Image class="win-item-icon" src="s2r://panorama/images/items/gem_blue_png.vtex" />
+				</Panel>
+				<Panel class="win-entry">
+					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/aurelius_png.vtex" />
+					<Label class="character-name" text="Aurelius" />
+					<Image class="win-item-icon" src="s2r://panorama/images/items/shield_orange_png.vtex" />
+				</Panel>
+				<Panel class="win-entry">
+					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/stormlight_png.vtex" />
+					<Label class="character-name" text="Stormlight" />
+					<Image class="win-item-icon" src="s2r://panorama/images/items/scroll_png.vtex" />
+				</Panel>
+				<Panel class="win-entry">
+					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/ravenna_png.vtex" />
+					<Label class="character-name" text="Ravenna" />
+					<Image class="win-item-icon" src="s2r://panorama/images/items/scroll_png.vtex" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="game-area">
+			<Panel class="game-frame">
+				<Panel class="slots-container">
+					<Panel class="slot" id="slot1">
+						<Image class="slot-symbol" src="s2r://panorama/images/items/diamond_red_png.vtex" />
+					</Panel>
+					<Panel class="slot" id="slot2">
+						<Image class="slot-symbol" src="s2r://panorama/images/items/scroll_gold_png.vtex" />
+					</Panel>
+					<Panel class="slot" id="slot3">
+						<Image class="slot-symbol" src="s2r://panorama/images/items/shield_blue_png.vtex" />
+					</Panel>
+				</Panel>
+				<Button class="play-button" onactivate="OnPlayButtonPressed()">
+					<Label class="play-button-text" text="ИГРАТЬ" />
+				</Button>
+				<Panel class="cost-info">
+					<Label class="cost-label" text="СТОИМОСТЬ:" />
+					<Image class="cost-diamond-icon" src="s2r://panorama/images/items/diamond_blue_png.vtex" />
+					<Label class="cost-amount" text="2" />
+					<Image class="cost-gem-icon" src="s2r://panorama/images/items/gem_orange_png.vtex" />
+					<Label class="cost-amount" text="20" />
+				</Panel>
+			</Panel>
+			<Panel class="flames-overlay" />
+		</Panel>
+		<Panel class="right-panel">
+			<Image class="dragon-head" src="s2r://panorama/images/custom_game/casv2/dragon_head_png.vtex" />
+			<Panel class="progress-bars-container">
+				<Panel class="progress-bar-wrapper">
+					<Panel class="progress-bar-frame fire-bar">
+						<Panel class="progress-bar-fill fire-fill" style="width: 85%;" />
+						<Label class="progress-percentage" text="85%" />
+					</Panel>
+					<Label class="progress-label" text="до выпадения главного приза" />
+				</Panel>
+				<Panel class="progress-bar-wrapper">
+					<Panel class="progress-bar-frame artifact-bar">
+						<Panel class="progress-bar-fill artifact-fill" style="width: 34%;" />
+						<Label class="progress-percentage" text="34%" />
+					</Panel>
+					<Label class="progress-label" text="до выпадения артефакта" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="info-icon">
+			<Label class="info-text" text="i" />
+		</Panel>
+	</Panel>
+</root>

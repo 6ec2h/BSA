@@ -6,7 +6,7 @@ function muerta_gunslinger_lua:GetIntrinsicModifierName()
 end
 
 function muerta_gunslinger_lua:OnUpgrade()
-	self.OnUpgrade = nil
+	self.OnUpgrade = function() end
 
 	if not IsServer() then return end
 

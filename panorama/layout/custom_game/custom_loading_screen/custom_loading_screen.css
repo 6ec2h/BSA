@@ -203,3 +203,35 @@
 	background-color:red;
 }
 
+.player_avatar
+{
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	border: 1px solid #888888;
+	img-shadow: 2px 2px 8px 3.0 #000000;
+}
+
+.player_item DOTAAvatarImage.player_avatar
+{
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	border: 1px solid #888888;
+	img-shadow: 2px 2px 8px 3.0 #000000;
+}
+
+.player_item
+{
+	flow-children: right;
+	padding: 5px;
+}
+
+.players_list_container
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 10px;
+}
+

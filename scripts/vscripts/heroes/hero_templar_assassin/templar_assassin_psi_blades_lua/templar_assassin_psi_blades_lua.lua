@@ -7,7 +7,7 @@ function templar_assassin_psi_blades_lua:GetIntrinsicModifierName()
 end
 
 function templar_assassin_psi_blades_lua:OnUpgrade()
-	self.OnUpgrade = nil
+	self.OnUpgrade = function() end
 
 	if not IsServer() then return end
 

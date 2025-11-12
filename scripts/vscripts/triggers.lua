@@ -296,6 +296,8 @@ function randomspawnshovel()
 	local pos_int = RandomInt(1, 6)
     local pos = Entities:FindByName( nil, "shov"..pos_int):GetAbsOrigin() 
     local drop = CreateItemOnPositionSync(pos, item)
-    item:LaunchLoot(false, 0, 150, 0.5, pos)
+    item:LaunchLoot(false, 150, 0.5, pos)
 end
+
+
 

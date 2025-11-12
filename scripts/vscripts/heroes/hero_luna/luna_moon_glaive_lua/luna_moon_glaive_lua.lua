@@ -9,7 +9,7 @@ function luna_moon_glaive_lua:GetIntrinsicModifierName()
 end
 
 function luna_moon_glaive_lua:OnUpgrade()
-	self.OnUpgrade = nil
+	self.OnUpgrade = function() end
 
 	if not IsServer() then return end
 

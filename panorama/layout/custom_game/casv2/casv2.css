@@ -1,0 +1,394 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	width: 100%;
+	height: 100%;
+	overflow: clip;
+}
+
+.background-gradient
+{
+	width: 100%;
+	height: 100%;
+	background-color: #0a0a0a;
+	opacity: 0.9;
+}
+
+.crystal-shards
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/casv2/crystals_png.vtex");
+	background-size: cover;
+	opacity: 0.3;
+	wash-color: rgba(100, 50, 200, 0.5);
+}
+
+.main-title
+{
+	font-size: 72px;
+	font-weight: bold;
+	color: #ffd700;
+	text-shadow: 0px 0px 20px #ffaa00, 0px 0px 40px #ff8800;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 40px;
+	letter-spacing: 4px;
+	font-family: titleFont;
+}
+
+.jackpot-container
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 120px;
+	flow-children: right;
+	vertical-align: middle;
+}
+
+.jackpot-diamond-icon
+{
+	width: 48px;
+	height: 48px;
+	margin-right: 12px;
+	wash-color: #4a9eff;
+	brightness: 1.5;
+}
+
+.jackpot-amount
+{
+	font-size: 48px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 0px 0px 15px #ffffff;
+	vertical-align: middle;
+	margin-right: 20px;
+}
+
+.jackpot-description
+{
+	font-size: 16px;
+	color: #cccccc;
+	vertical-align: middle;
+	margin-top: 8px;
+}
+
+.best-wins-panel
+{
+	width: 280px;
+	height: 500px;
+	background-color: #2a1a0a;
+	border: 3px solid #ffd700;
+	border-radius: 8px;
+	horizontal-align: left;
+	vertical-align: center;
+	margin-left: 60px;
+	padding: 20px;
+	flow-children: down;
+	box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
+}
+
+.best-wins-title
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #ffd700;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 20px;
+	text-shadow: 0px 0px 10px #ffaa00;
+}
+
+.wins-list
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.win-entry
+{
+	width: 100%;
+	height: 80px;
+	margin-bottom: 15px;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 4px;
+	padding: 8px;
+}
+
+.character-portrait
+{
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 2px solid #ffd700;
+	margin-right: 12px;
+}
+
+.character-name
+{
+	font-size: 18px;
+	color: #ffffff;
+	vertical-align: middle;
+	margin-right: 12px;
+	width: fill-parent-flow(1);
+}
+
+.win-item-icon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+}
+
+.game-area
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 500px;
+	height: 400px;
+	flow-children: down;
+}
+
+.game-frame
+{
+	width: 100%;
+	height: 100%;
+	background-color: #2a1a0a;
+	border: 4px solid #ffd700;
+	border-radius: 12px;
+	padding: 30px;
+	flow-children: down;
+	box-shadow: 0px 0px 40px rgba(255, 215, 0, 0.4);
+}
+
+.slots-container
+{
+	width: 100%;
+	height: 180px;
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 20px;
+}
+
+.slot
+{
+	width: 140px;
+	height: 180px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 2px solid #ff8800;
+	border-radius: 8px;
+	margin: 0px 10px;
+	horizontal-align: center;
+	vertical-align: middle;
+	box-shadow: 0px 0px 20px rgba(255, 136, 0, 0.6);
+}
+
+.slot-symbol
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	brightness: 1.3;
+}
+
+.play-button
+{
+	width: 200px;
+	height: 60px;
+	horizontal-align: center;
+	background-color: #ff6600;
+	border: 3px solid #ffd700;
+	border-radius: 8px;
+	margin: 20px 0px;
+	box-shadow: 0px 0px 25px rgba(255, 102, 0, 0.8);
+}
+
+.play-button:hover
+{
+	brightness: 1.3;
+}
+
+.play-button:active
+{
+	brightness: 0.8;
+}
+
+.play-button-text
+{
+	font-size: 28px;
+	font-weight: bold;
+	color: #8a3a00;
+	horizontal-align: center;
+	vertical-align: center;
+	text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.cost-info
+{
+	horizontal-align: center;
+	flow-children: right;
+	vertical-align: middle;
+}
+
+.cost-label
+{
+	font-size: 18px;
+	color: #ffffff;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+.cost-diamond-icon,.cost-gem-icon
+{
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+	margin: 0px 4px;
+}
+
+.cost-diamond-icon
+{
+	wash-color: #4a9eff;
+}
+
+.cost-gem-icon
+{
+	wash-color: #ff8800;
+}
+
+.cost-amount
+{
+	font-size: 18px;
+	color: #ffffff;
+	vertical-align: middle;
+	margin-right: 12px;
+}
+
+.flames-overlay
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/casv2/flames_png.vtex");
+	background-size: cover;
+	opacity: 0.6;
+	wash-color: rgba(255, 100, 0, 0.8);
+	z-index: -1;
+}
+
+.right-panel
+{
+	horizontal-align: right;
+	vertical-align: top;
+	width: 350px;
+	height: 100%;
+	margin-right: 40px;
+	flow-children: down;
+}
+
+.dragon-head
+{
+	width: 300px;
+	height: 300px;
+	horizontal-align: center;
+	margin-top: 20px;
+	wash-color: rgba(50, 100, 200, 0.9);
+	brightness: 1.2;
+}
+
+.progress-bars-container
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 20px;
+}
+
+.progress-bar-wrapper
+{
+	width: 100%;
+	margin-bottom: 30px;
+	flow-children: down;
+}
+
+.progress-bar-frame
+{
+	width: 100%;
+	height: 40px;
+	border: 2px solid #ffd700;
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.5);
+	overflow: clip;
+}
+
+.fire-bar
+{
+	background-color: #ff6600;
+	box-shadow: 0px 0px 15px rgba(255, 136, 0, 0.6);
+}
+
+.fire-fill
+{
+	width: 85%;
+	height: 100%;
+	background-color: #ffaa00;
+	box-shadow: 0px 0px 20px rgba(255, 200, 0, 0.8);
+}
+
+.artifact-bar
+{
+	background-color: rgba(50, 100, 200, 0.3);
+	border: 2px solid #4a9eff;
+	box-shadow: 0px 0px 15px rgba(74, 158, 255, 0.4);
+}
+
+.artifact-fill
+{
+	width: 34%;
+	height: 100%;
+	background-color: #6ab0ff;
+	box-shadow: 0px 0px 20px rgba(74, 158, 255, 0.8);
+}
+
+.progress-percentage
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 10;
+}
+
+.progress-label
+{
+	font-size: 14px;
+	color: #cccccc;
+	horizontal-align: center;
+	margin-top: 4px;
+}
+
+.info-icon
+{
+	width: 32px;
+	height: 32px;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	border: 2px solid #ffffff;
+}
+
+.info-text
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #ffffff;
+	horizontal-align: center;
+	vertical-align: center;
+}
+

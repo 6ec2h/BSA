@@ -65,6 +65,7 @@ end
 function modifier_aegis:OnDeath(keys)
 	if keys.unit == self:GetParent() or keys.unit:GetCloneSource() == self:GetParent() then
 		if not self:GetParent():HasModifier("modifier_guild_event") then
+			PlayersSummary:HandleAegisDeath(self:GetParent())
 			Timers:CreateTimer(FrameTime(), function()
 				local nStackCount = self:GetStackCount()
 				if nStackCount>=2 then
@@ -75,10 +76,7 @@ function modifier_aegis:OnDeath(keys)
 			end)
 		end
 	end
-enden
-					self:SetStackCount(nStackCount-1)
-				else
-					self:Destroy()
+end					self:Destroy()
 				end
 			end)
 		end

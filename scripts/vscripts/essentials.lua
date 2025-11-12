@@ -28,26 +28,23 @@ function essentials:OnEntityHurt(t)
 					local hp = victim:GetHealth()
 					local dmg = 0
 					if attacker:IsAlive() then
-						if t.damagetype_const == 2 then	
+						if t.damagetype_const == DAMAGE_TYPE_MAGICAL then	
 							dmg = t.damage - victim:GetBaseMagicalResistanceValue()/100 * t.damage
 							if dmg > hp then
 								dmg = hp	
 							end
-							essentials.dmgtable[pid] = essentials.dmgtable[pid] + dmg	
-						elseif t.damagetype_const == 1 then
+						elseif t.damagetype_const == DAMAGE_TYPE_PHYSICAL then
 							local armor = victim:GetPhysicalArmorValue(false)
 							local factor = 1 - ((0.06 * armor) / (1 + 0.06 * math.abs(armor)))
 							dmg = t.damage * factor
 							if dmg > hp then
 								dmg = hp
-							end
-							essentials.dmgtable[pid] = essentials.dmgtable[pid] + dmg								
-					   elseif t.damagetype_const == 4 then
+							end							
+					   elseif t.damagetype_const == DAMAGE_TYPE_PURE then
 							dmg = t.damage
 							if dmg > hp then
 								dmg = hp
 							end
-							essentials.dmgtable[pid] = essentials.dmgtable[pid] + dmg
 						end
 					end
 					
@@ -79,6 +76,9 @@ function essentials:StartReq(t)
 	local unit = essentials.currentHpBar
 
 	if not unit or unit:IsNull() or not unit:IsAlive() then return end
+
+	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(t.PlayerID),"showHpBar", {unit=unit})
+endot unit:IsAlive() then return end
 
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(t.PlayerID),"showHpBar", {unit=unit})
 end

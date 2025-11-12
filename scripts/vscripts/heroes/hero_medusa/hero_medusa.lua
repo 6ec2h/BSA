@@ -487,7 +487,7 @@ function medusa_split_shot_lua:GetIntrinsicModifierName()
 end
 
 function medusa_split_shot_lua:OnUpgrade()
-	self.OnUpgrade = nil
+	self.OnUpgrade = function() end
 
 	if not IsServer() then return end
 

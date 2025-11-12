@@ -232,6 +232,8 @@ function FixNeutralItemSlot() {
 }
 
 (function() {
+	GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false)
+	
     GameEvents.Subscribe('mountain_dota_hud_show_hud_error', function(data) {
         DotaHUD.ShowError(data.message);
     });

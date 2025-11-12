@@ -1,4 +1,5 @@
 -- pcall(require, "encrypt")
+require("overrides")
 
 require("talents_stats")
 require('libraries/notifications')
@@ -13,7 +14,7 @@ require('essentials')
 require('rules')
 require('effects')
 require("hero_builder")
-
+require("player_summary")
 -- require('www/acc')
 -- require("www/web")
 -- require('www/guilds')
@@ -45,7 +46,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetHudCombatEventsDisabled( true )
 	GameRules:SetHeroSelectionTime(50)
 	GameRules:SetPreGameTime(0)
-	GameRules:SetPostGameTime (2.0)
+	GameRules:SetPostGameTime(60)
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5)
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0)
 	GameRules:GetGameModeEntity():SetUnseenFogOfWarEnabled(not IsInToolsMode())
@@ -74,6 +75,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	GameRules:SetShowcaseTime(0)
 	essentials:Init()
 	effects:init()
+	PlayersSummary:Init()
 	
 	self._ischeckingdefeat = false 
 	self._defeatcounter = 5  
@@ -142,6 +144,7 @@ function CAddonAdvExGameMode:OnChat( event )
 		HandleKilledUnit(hero, hero, 10, 50, 25, 1, 1, 11, "necrolyte")
 		Notifications:TopToAll({text="#win", duration=5})
 		Timers:CreateTimer(6, function()
+			PlayersSummary:SyncPlayersSummaryWithClient()
 			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end)
 		Shop:booster_game_end("WIN")
@@ -396,6 +399,32 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 				local activation_point = CreateUnitByName("npc_dota_watch_tower_activation_point", watch_tower:GetOrigin(), false, nil, nil, DOTA_TEAM_GOODGUYS)
 				activation_point:AddNewModifier(activation_point, nil, "modifier_outpost_activation", {})
 			end
+			--------------------------------------- fix tp 11.11.2025
+			local thinkers = {
+				-- earth spirit plates
+				{"quest109_plate_1", 			Vector(-13044.835938, -7590.122559, 256.000000)},
+				{"quest109_plate_2", 			Vector(-15044.627930, 4383.260254, 768.000000)},
+				{"quest109_plate_3", 			Vector(-15501.587891, 6424.714844, 384.000000)},
+				-- hidden room
+				{"quest111", 					Vector(-12328.547852, -10023.000000, 256.000000)},
+
+				{"nyx", 						Vector(-2805.114746, 8142.730469, 384.000000)},
+				-- doom gates
+				{"quest16_gate_plate_1", 		Vector(2589.920898, 15715.543945, 128.000000)},
+				{"quest16_gate_plate_2", 		Vector(5279.026855, 13606.590820, 256.000000)},
+				{"quest16_gate_plate_3", 		Vector(6524.231934, 15366.601562, 384.000000)},
+				{"quest16_gate_plate_4", 		Vector(8553.907227, 15012.033203, 384.000000)},
+				-- mine plate to xdes
+				{"quest114_plate", 				Vector(-15944.386719, -11902.361328, 256.000000)},
+				
+				{"last_location_circle_traps", 	Vector(14206.921875, -11773.106445, 640.000000)},
+				{"necrolyte", 					Vector(10272.265625, -15234.589844, 512.000000)},
+			}
+
+			for k,v in pairs(thinkers) do
+				LinkLuaModifier("modifier_map_interactions_handler_" .. v[1], "modifiers/modifier_map_interactions_handler", LUA_MODIFIER_MOTION_NONE)
+				CreateModifierThinker(nil, nil, "modifier_map_interactions_handler_" .. v[1], {}, v[2], DOTA_TEAM_GOODGUYS, false)
+			end
 	end
 
 	if state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
@@ -433,6 +462,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 					end
 					if not hHero.bInited then
 						InitPlayerHero(hHero, pid)
+						PlayersSummary:InitPlayerHero(pid)
 					end
 				end)
 			end	
@@ -451,6 +481,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 		if GameRules:IsCheatMode() and not IsInToolsMode() then
 			GameRules:SendCustomMessage("ИГРА ЗАПУЩЕНА С ЧИТАМИ!!! Игра будет окончена через 10 минут!!!", 0, 0)
 			Timers:CreateTimer(600, function()
+				PlayersSummary:SyncPlayersSummaryWithClient("#lose_reason_cheats_enabled")
 				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 			end)
 		end
@@ -611,6 +642,7 @@ function CAddonAdvExGameMode:_CheckForDefeat()
 				for playerID = 0, 4 do
 					Shop:add_pr(0, 0, 0, 0, 2, playerID, "lose", 0)
 				end
+				PlayersSummary:SyncPlayersSummaryWithClient("#lose_reason_all_heroes_dead")
 				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 				Shop:booster_game_end("LOSE")
 			else
@@ -823,88 +855,90 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 	if killer then
 ------------------------------------------------------ CREEPS GOLD REWARD -----------------------------------------------------------------------------------
 
-	if goldTable[unitName] then
-		local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 1100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false ) 
-		for i = 1, #heroes do
-			local gold = goldTable[unitName]*((100 - (5-#heroes)*10)*0.01)/#heroes		
-			local playerID = heroes[i]:GetPlayerID()
-			local player = PlayerResource:GetSelectedHeroEntity(playerID)
-			if player:HasModifier("modifier_item_gold_aura") then
-				gold = gold * 1.1
+		if goldTable[unitName] then
+			local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 1100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false ) 
+			for i = 1, #heroes do
+				local gold = goldTable[unitName]*((100 - (5-#heroes)*10)*0.01)/#heroes		
+				local playerID = heroes[i]:GetPlayerID()
+				local player = PlayerResource:GetSelectedHeroEntity(playerID)
+				if player:HasModifier("modifier_item_gold_aura") then
+					gold = gold * 1.1
+				end
+				player:ModifyGold(gold, true, 0)
+				SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, player, gold, nil)
 			end
-			player:ModifyGold(gold, true, 0)
-			SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, player, gold, nil)
 		end
-	end
-	
------------------------------------------------------- BOSSES OTHER REWARD -----------------------------------------------------------------------------------
+		
+	------------------------------------------------------ BOSSES OTHER REWARD -----------------------------------------------------------------------------------
 
-	local bossesData = bossesTable[unitName]
-    if bossesData then
-        HandleKilledUnit(killed_unit, killer, bossesData[1], bossesData[2], bossesData[3], bossesData[4], bossesData[5], bossesData[6], unitName)
-    end
+		local bossesData = bossesTable[unitName]
+		if bossesData then
+			HandleKilledUnit(killed_unit, killer, bossesData[1], bossesData[2], bossesData[3], bossesData[4], bossesData[5], bossesData[6], unitName)
+		end
 
------------------------------------------------------- GOLDEN UNITS REWARDS -----------------------------------------------------------------------------------
+	------------------------------------------------------ GOLDEN UNITS REWARDS -----------------------------------------------------------------------------------
 
 		if goldUnitNamesMap[unitName] and GetMapName() ~= "ability_mode" then
-		local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
-        DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
-        FIND_ANY_ORDER, false)
-		for _, hero in pairs(heroes) do
-			local pid = hero:GetPlayerID()
-			local connection = PlayerResource:GetConnectionState(pid)
-			if hero and connection ~= DOTA_CONNECTION_STATE_ABANDONED then
-				inventory:roll_random_item(pid, unitName)
+			local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
+			DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
+			FIND_ANY_ORDER, false)
+			for _, hero in pairs(heroes) do
+				local pid = hero:GetPlayerID()
+				local connection = PlayerResource:GetConnectionState(pid)
+				if hero and connection ~= DOTA_CONNECTION_STATE_ABANDONED then
+					inventory:roll_random_item(pid, unitName)
+				end
 			end
 		end
-	end
 	
------------------------------------------------------- BLESS DROP -----------------------------------------------------------------------------------	
-	
+	------------------------------------------------------ BLESS DROP -----------------------------------------------------------------------------------	
+		
 		if blessDropUnitsMap[unitName] and not GetMapName() ~= "ability_mode" then
 			if killer:IsRealHero() then
-			local pid = killer:GetPlayerID()
-			inventory:add_bless(pid)
-		end
-	end
-	
-----------------------------------------------------------------------боксы
-
-	if unitName == "npc_dota_crate" then
-		if RandomInt(0,1) == 1 then
-			killer:EmitSound("Dungeon.SmashCrateShort")
-		else
-			killer:EmitSound("Dungeon.SmashCrateLong")
-		end
-	end
-	
----------------------------------------------------------------------------------
-
-	if unitName == "necrolyte" and not GameRules:IsCheatMode() then
-		HandleKilledUnit(killed_unit, killer, 10, 50, 25, 1, 1, 11, unitName)
-		Notifications:TopToAll({text="#win", duration=5})
-		Timers:CreateTimer(6, function()
-			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-		end)
-		Shop:booster_game_end("WIN")
-	end
-
----------------------------------------------------------------------------------
-
-		if killer:IsRealHero() then
-		local pid = killer:GetPlayerID()
-		if _G.player_quest[pid] then
-			if _G.player_quest[pid][unitName] == nil then
-				_G.player_quest[pid][unitName] = 1
-			else
-				_G.player_quest[pid][unitName] = _G.player_quest[pid][unitName] + 1
+				local pid = killer:GetPlayerID()
+				inventory:add_bless(pid)
 			end
 		end
-	end
+		
+	----------------------------------------------------------------------боксы
+
+		if unitName == "npc_dota_crate" then
+			if RandomInt(0,1) == 1 then
+				killer:EmitSound("Dungeon.SmashCrateShort")
+			else
+				killer:EmitSound("Dungeon.SmashCrateLong")
+			end
+		end
+		
+	---------------------------------------------------------------------------------
+
+		if unitName == "necrolyte" and not GameRules:IsCheatMode() then
+			HandleKilledUnit(killed_unit, killer, 10, 50, 25, 1, 1, 11, unitName)
+			Notifications:TopToAll({text="#win", duration=5})
+			Timers:CreateTimer(6, function()
+				PlayersSummary:SyncPlayersSummaryWithClient()
+				GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+			end)
+			Shop:booster_game_end("WIN")
+		end
+
+	---------------------------------------------------------------------------------
+
+		if killer:IsRealHero() then
+			local pid = killer:GetPlayerID()
+			if _G.player_quest[pid] then
+				if _G.player_quest[pid][unitName] == nil then
+					_G.player_quest[pid][unitName] = 1
+				else
+					_G.player_quest[pid][unitName] = _G.player_quest[pid][unitName] + 1
+				end
+			end
+		end
 	end
 --------------------------------------------------------------------снега
 
 	if questSheepUnitsMap[unitName] then
+		PlayersSummary:SyncPlayersSummaryWithClient("#lose_reason_quest5_sheep_death")
 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 		Shop:booster_game_end("LOSE")
 	end

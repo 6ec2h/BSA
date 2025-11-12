@@ -138,7 +138,6 @@ function initShop(tab){
 		don_panel.visible = true
 		var fr = $.CreatePanel("Panel", don_panel, "frsn");
         fr.BLoadLayoutSnippet("fr_snippet");
-		$.Msg("fr = ", shopinfo.link['fr'])
 		fr.SetPanelEvent("onmouseactivate", function() {$.DispatchEvent("ExternalBrowserGoToURL", shopinfo.link['fr'])})
         fr.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", fr, $.Localize('#fr'))});
         fr.SetPanelEvent("onmouseout", TipsOut)

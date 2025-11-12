@@ -49,11 +49,64 @@ for (let key in position) {
     }
 }
 
-function init_diff(id){
-	var diff = id[1]
-	$.Msg(id)
+function init_diff(data){
+	$.Msg("init_diff raw data:", data);
+	
+	// Обрабатываем разные форматы данных
+	var data_diff = null;
+	if(Array.isArray(data) && data.length > 0){
+		data_diff = data[0];
+	} else if(typeof data === 'object' && data !== null){
+		data_diff = data;
+	}
+	
+	$.Msg("init_diff data_diff:", data_diff);
+	
+	// Извлекаем host_diff - может быть в разных форматах
+	var host_diff = 0;
+	if(data_diff){
+		// Если есть прямое поле host_diff
+		if(data_diff.host_diff !== undefined){
+			host_diff = data_diff.host_diff;
+		}
+		// Если данные в формате {"1":20} или {"0":{...}}
+		else if(data_diff["1"] !== undefined){
+			// Если значение - это число, это host_diff
+			if(typeof data_diff["1"] === 'number'){
+				host_diff = data_diff["1"];
+			}
+			// Если значение - это объект, ищем host_diff внутри
+			else if(data_diff["1"].host_diff !== undefined){
+				host_diff = data_diff["1"].host_diff;
+			}
+		}
+		// Если данные в формате {"0":{...}}
+		else if(data_diff["0"] !== undefined && typeof data_diff["0"] === 'object'){
+			if(data_diff["0"].host_diff !== undefined){
+				host_diff = data_diff["0"].host_diff;
+			}
+		}
+	}
+	
+	var display_players = {};
+	if(data_diff){
+		if(data_diff.display_players){
+			display_players = data_diff.display_players;
+		}
+		else if(data_diff["1"] && typeof data_diff["1"] === 'object' && data_diff["1"].display_players){
+			display_players = data_diff["1"].display_players;
+		}
+		else if(data_diff["0"] && typeof data_diff["0"] === 'object' && data_diff["0"].display_players){
+			display_players = data_diff["0"].display_players;
+		}
+	}
+	
+	$.Msg("init_diff host_diff:", host_diff, "display_players:", display_players);
+	
 	var hittestBlocker = $.GetContextPanel().GetParent().FindChild("SidebarAndBattleCupLayoutContainer");
-	hittestBlocker.visible = false
+	if(hittestBlocker){
+		hittestBlocker.visible = false;
+	}
 
     var num = 0;
 
@@ -64,9 +117,8 @@ function init_diff(id){
 
                 let innerPanel = $('#Diff_'+num);
 				
-				$.Msg(num, diff)
-				
-                if (num <= diff) {
+				// Разблокируем сложности до host_diff включительно
+                if (num <= host_diff) {
                     innerPanel.SetHasClass("lock", false);
 					innerPanel.style.backgroundImage = "url('file://{resources}/images/custom_game/loading_screen/num_unlock.png')";
 					
@@ -92,6 +144,108 @@ function init_diff(id){
             })(num);
         }
     }
+	
+	// Создаем список игроков под кнопками сложности
+	if(display_players && Object.keys(display_players).length > 0){
+		create_players_list(display_players);
+	}
+}
+
+function create_players_list(display_players){
+	$.Msg("create_players_list display_players:", display_players);
+	
+	// Удаляем все существующие списки игроков
+	var mainPanel = $.GetContextPanel().FindChildTraverse("Diff_container");
+	if(!mainPanel){
+		$.Msg("Diff_container not found");
+		return;
+	}
+	
+	// Удаляем все старые контейнеры списков игроков
+	for(var diff = 1; diff <= 20; diff++){
+		var diffPanel = mainPanel.FindChildTraverse("d" + diff);
+		if(diffPanel){
+			var existingList = diffPanel.FindChildTraverse("PlayersListContainer_" + diff);
+			if(existingList){
+				existingList.DeleteAsync(0);
+			}
+		}
+	}
+	
+	// display_players это объект с строковыми ключами ("0", "1", "2", ...)
+	// Итерируемся по всем ключам объекта
+	for(var diffKey in display_players){
+		if(!display_players.hasOwnProperty(diffKey)){
+			continue;
+		}
+		
+		// Преобразуем строковый ключ в число
+		var diff = parseInt(diffKey);
+		if(isNaN(diff) || diff < 1 || diff > 20){
+			continue;
+		}
+		
+		// Получаем объект игроков для этой сложности
+		var playersObj = display_players[diffKey];
+		
+		// Проверяем, есть ли игроки (объект не пустой)
+		var hasPlayers = false;
+		for(var key in playersObj){
+			if(playersObj.hasOwnProperty(key)){
+				hasPlayers = true;
+				break;
+			}
+		}
+		
+		if(!hasPlayers){
+			continue;
+		}
+		
+		$.Msg("Creating players list for difficulty:", diff, "players:", playersObj);
+		
+		// Находим родительскую панель для этой сложности (d1, d2, и т.д.)
+		var diffPanel = mainPanel.FindChildTraverse("d" + diff);
+		
+		if(!diffPanel){
+			$.Msg("Panel not found for difficulty:", diff);
+			continue;
+		}
+		
+		// Создаем контейнер для списка игроков этой сложности
+		var playersListContainer = $.CreatePanel("Panel", diffPanel, "PlayersListContainer_" + diff);
+		playersListContainer.AddClass("players_list_container");
+		
+		// Позиционирование задается через CSS класс players_list_container
+		// Контейнер будет центрирован горизонтально и выровнен по нижнему краю родителя (d17)
+		
+		// Создаем элементы для каждого игрока этой сложности
+		// playersObj это объект, где ключи - индексы игроков, значения - объекты с sid
+		var playerIndex = 0;
+		for(var playerKey in playersObj){
+			if(!playersObj.hasOwnProperty(playerKey)){
+				continue;
+			}
+			
+			var player = playersObj[playerKey];
+			if(player && player.sid){
+				var playerItem = $.CreatePanel("Panel", playersListContainer, "PlayerItem_" + diff + "_" + playerIndex);
+				playerItem.AddClass("player_item");
+				
+				var avatarImage = $.CreatePanel("DOTAAvatarImage", playerItem, "PlayerAvatar_" + diff + "_" + playerIndex);
+				avatarImage.AddClass("player_avatar");
+				avatarImage.steamid = player.sid;
+				
+				// Применяем стили напрямую, так как DOTAAvatarImage может не применять CSS классы
+				avatarImage.style.width = "30px";
+				avatarImage.style.height = "30px";
+				avatarImage.style.borderRadius = "50%";
+				avatarImage.style.border = "1px solid #888888";
+				
+				$.Msg("Created player avatar for difficulty:", diff, "sid:", player.sid);
+				playerIndex++;
+			}
+		}
+	}
 }
 
 function TipsCustomOver(pos, num)

@@ -9,7 +9,7 @@ function clinkz_ult_lua:GetIntrinsicModifierName()
 end
 
 function clinkz_ult_lua:OnUpgrade()
-	self.OnUpgrade = nil
+	self.OnUpgrade = function() end
 
 	if not IsServer() then return end
 

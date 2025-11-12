@@ -49,6 +49,8 @@ function DadoOneShootThink()
 		return TeleportCloserToTarget()
 	end
 	
+	target:AddNewModifier(thisEntity, nil, "modifier_truesight", {duration = 1})
+	
     ExecuteOrderFromTable({
         UnitIndex = thisEntity:entindex(),
         OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
