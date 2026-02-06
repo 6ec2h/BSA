@@ -5109,13 +5109,13 @@
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua" 	 "Pierce the Veil"
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_Description" 	 "The hero assumes an incorporeal form, gaining immunity to physical damage and the ability to pass through creatures. Despite being incorporeal, the hero can attack, and magic damage against the hero is increased. Attack damage increases and becomes magical, which makes the hero able to attack other incorporeal creatures, but such attacks do not damage spell immune targets."
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_duration" 	 "DURATION:"
-	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_base_damage_pct" 	 "% INCREASE MAG DAMAGE ON HERO:"
+	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_self_magical_resist_reduction" 	 "% INCREASE MAG DAMAGE ON HERO:"
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_bonus_damage" 	 "BONUS DAMAGE:"
 
-	"DOTA_Tooltip_ability_special_bonus_muerta_1" 	 "+100k damage Dead Shot"
-	"DOTA_Tooltip_ability_special_bonus_muerta_2" 	 "+15% Magic Damage while affected by The Calling"
-	"DOTA_Tooltip_ability_special_bonus_muerta_3" 	 "+20% chance Gunslinger"
-	"DOTA_Tooltip_ability_special_bonus_muerta_4" 	 "Pierce the Veil's magic damage is not increased"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_1" 	 "+100 to Dead Shot damage"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_2" 	 "+15% Magic Damage while affected by The Calling"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_3" 	 "+20% to Gunslinger chance"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_4" 	 "Pierce the Veil's magic damage is not increased"
 		
 		//============================================================================================ FACELESS VOID =============================================================================================
 
@@ -5553,10 +5553,10 @@
 	"DOTA_Tooltip_modifier_broodmother_steal_debuff"	"Insatiable Hunger"
 	"DOTA_Tooltip_modifier_broodmother_steal_debuff_description"	"Lost health %dMODIFIER_PROPERTY_TOOLTIP%"
 
-	"DOTA_Tooltip_ability_special_bonus_broodmother_1" "+175 Silken Bola Damage"
-	"DOTA_Tooltip_ability_special_bonus_broodmother_3" "+40k damage to Poison"
-	"DOTA_Tooltip_ability_special_bonus_broodmother_2" "+10% Insatiable Hunger Chance"
-	"DOTA_Tooltip_ability_special_bonus_broodmother_4" "+0.2 Extension Effect"	
+	"DOTA_Tooltip_ability_special_bonus_broodmother_1" "+175 to Silken Bola Damage"
+	"DOTA_Tooltip_ability_special_bonus_broodmother_3" "+40 to Poison damage"
+	"DOTA_Tooltip_ability_special_bonus_broodmother_2" "+10% to Insatiable Hunger Chance"
+	"DOTA_Tooltip_ability_special_bonus_broodmother_4" "+0.2 to Extension effect"	
 
 	//============================================================================================HUSKAR=============================================================================================
 	
@@ -6016,6 +6016,19 @@
   "DOTA_Tooltip_ability_creep_poison_sting_lua_damage" "DAMAGE:"
   "DOTA_Tooltip_ability_creep_poison_sting_lua_movement_speed" "%SLOW MOVEMENT:"
 
+//===============================================================================================FATAL BONDS============================================================================================
+
+	"DOTA_Tooltip_ability_warlock_fatal_bonds"                                      "Fatal Bonds"
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_Description"                          "Binds several visible enemy units together, causing a percentage of the damage dealt to one of them to be felt by the others."
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_Lore"                                 "An ancient incantation that links the vital energies of multiple lifeforms into one collective body."
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_damage_share_pct"                     "%SHARED DAMAGE:"
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_duration"                             "DURATION:"
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_search_aoe"                           "BIND RADIUS:"
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_Note0"                                "The shared damage type is the same as the type of damage inflicted." 
+
+	"DOTA_Tooltip_modifier_fatal_bonds"                                     "Fatal Bonds"
+	"DOTA_Tooltip_modifier_fatal_bonds_Description"                         "Distributing %dMODIFIER_PROPERTY_TOOLTIP%%% of all damage to linked units"
+	
 //===============================================================================================SUMMON=================================================================================================
 
 	"DOTA_Tooltip_ability_summon_buff" 	 "Summon Buff"
@@ -6389,8 +6402,6 @@
 
 	"DOTA_Tooltip_ability_special_bonus_attack_base_damage_100" 	 "+100 base damage"
 
-	"DOTA_Tooltip_ability_special_bonus_unique_medusa_2" 	 "+2 targets for Split shot"
-			
 	"DOTA_Tooltip_ability_nevermore_necromastery_Description" 	 "Shadow Fiend steals the soul of every enemy it kills, gaining an attack bonus. Releases a quarter of them upon death."
 			
 	"DOTA_Tooltip_ability_special_bonus_unique_bloodseeker_2" 	 "+275 Blood Rite Dive"
@@ -7171,6 +7182,12 @@
 
 "guild_creeps" "1"
 
+"npc_unit_damage_challenge"			"Damage Challenge"
+"damage_challenge_inc_armor"		"Armor +10"
+"damage_challenge_dec_armor"		"Armor -10"
+"damage_challenge_inc_magic_armor"	"Magic Resistance +5%"
+"damage_challenge_dec_magic_armor"	"Magic Resistance -5%"
+
 "ui_trade_panel_element_items_orders_sold_label"                     "Sold"
 "ui_trade_panel_element_items_orders_expired_label"                  "Expired"
 "ui_trade_panel_element_items_orders_expired_btn_label"              "Claim item"
@@ -7316,11 +7333,17 @@
 "tips"												"Tip"
 "tip"												"Tip"
 
+"hint_for_126_keybind_title"						"Use by key"
+"hint_for_126_keybind_text"							"<font color='#ff0'>Advanced settings</font><br><font color='#ff0'>Controlled groups</font><br><b><font color='#ff0'>Group 5</font></b> — <font color='#0f0'>Throw snowball</font>"
+
 "EndGame_PlayerAccountLevel"						"Account level %s"
 
 "lose_reason_all_heroes_dead"						"All heroes are <font color=\"#f00\">dead</font>"
 "lose_reason_quest14_timeout"						"All <font color=\"#f00\">miners</font> were not killed within <font color=\"#f00\">the allotted time</font>"
 "lose_reason_quest5_sheep_death"					"One of the <font color=\"#f00\">sheep</font> was <font color=\"#f00\">killed</font>"
 "lose_reason_cheats_enabled"						"For a full game experience, <font color=\"#f00\">disable cheats</font> in the lobby"
+
+"top_bar_details_hint_type_BossHintIcon"			"Additional ability of <font color=\"#ff0\">all quest</font> bosses"
+"top_bar_details_hint_type_CreepHintIcon"			"Additional ability of creeps in the <font color=\"#ff0\">last unlocked location</font>"
 }	
 }

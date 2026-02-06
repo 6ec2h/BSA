@@ -17,7 +17,7 @@ end
 local BigNum = require("libraries/bignum")
 
 function modifier_damage_challenge:IsHidden() 
-  return false 
+  return true 
 end
 
 function modifier_damage_challenge:IsPurgable() 
@@ -130,8 +130,8 @@ function modifier_damage_challenge:OnTakeDamage(event)
   local dmg = math.max(0, event.damage or 0)
   if dmg <= 0 then return end
 
-  -- Откатить реальный урон (сохраняем 1 HP минимум)
-  self.parent:SetHealth(math.max(1, self.parent:GetHealth() + dmg))
+  -- Откатить урон
+  self.parent:SetHealth(self.parent:GetMaxHealth())
 
   -- Логика по стадиям
   if self.stage == "ready" then
@@ -389,6 +389,10 @@ function modifier_damage_challenge:SetFullyDisabled(disabled)
   if disabled then
     self.is_movement_blocked = true
     self.is_attack_blocked = true
+    self.is_ability_blocked = true
+  end
+  self:_sync()
+endcked = true
     self.is_ability_blocked = true
   end
   self:_sync()

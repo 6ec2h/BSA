@@ -134,7 +134,7 @@
 				<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="0" html="true" />
 			</Panel>
 			<TextEntry id="buy_text_input" ontextentrychange="InputCount()" text="1" textmode="numeric" />
-			<Panel class="buy_button" id="close_button" onmouseactivate="close()">
+			<Panel class="buy_button" id="close_button" onmouseactivate="closeBuyControl()">
 				<Label class="close_button_label" id="close_button_label" text="#close" html="true" />
 			</Panel>
 		</Panel>

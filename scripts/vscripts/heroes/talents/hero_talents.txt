@@ -2368,74 +2368,6 @@
 
 //=============================================================================================
 
-	"special_bonus_muerta_1" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-				"ad_linked_abilities"		"muerta_dead_shot_lua"
-			}
-		}
-	}
-	
-	"special_bonus_muerta_2" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
-				"ad_linked_abilities"		"muerta_the_calling_lua"
-			}
-		}
-	}
-	
-	
-	"special_bonus_muerta_3" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
-				"ad_linked_abilities"		"muerta_gunslinger_lua"
-			}
-		}
-	}
-
-
-	"special_bonus_muerta_4" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-100"
-				"ad_linked_abilities"		"muerta_pierce_the_veil_lua"
-			}
-		}
-	}
-	
-//=============================================================================================
-
 	"special_bonus_faceless_void_1" 
 	{
 		"BaseClass"             		"special_bonus_undefined"
@@ -3580,6 +3512,76 @@
 	{
 		"BaseClass"             		"special_bonus_undefined"
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	
+/////////////////////////////////////////////////////////////////
+
+	"pango_1" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_2" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_3" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_blade_of_the_exile"
+			}
+		}
+	}
+
+	"pango_4" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_broken_wings"
+			}
+		}
+	}	
+}
+_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
 	

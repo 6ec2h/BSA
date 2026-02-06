@@ -25,6 +25,8 @@ DotaHUD.windowControllers["shop"] = {
     open: function(){
         GameEvents.SendCustomGameEventToServer("money_update", {})
 		DSPanel.visible = true
+		DSPanel.hittest = true
+		DSPanel.hittestchildren = true
 		if (shopinfo) {
 			for(var i = 1; i <= Object.keys(shopinfo).length; i++){
 				var panel = $('#TabPanel_' + i)
@@ -75,10 +77,19 @@ var rarity_color = // Цвет рарности
     ancient : "#ed0c2e", 
 } 
 
-function close(){
+function closeBuyControl(){
 	BuyControl.visible = false
 	count_buy = 1
 	textEntry.text = "1"
+	disableContentPanel(false)
+}
+
+function disableContentPanel(disable) {
+	const contentPanel = $("#DSContentPanel")
+	if (!contentPanel) return
+
+	contentPanel.hittest = !disable
+	contentPanel.hittestchildren = !disable
 }
 
 function openShopButton()
@@ -106,12 +117,14 @@ function openShop(n){
 		DotaHUD.windowControllers["shop"].is_open = false
 	}
 	DotaHUD.WindowOpen("shop");
+	disableContentPanel(false)
 }
 
 var opn = (function(n)
 {
 	return function()
 	{
+		closeBuyControl()
 		Game.EmitSound("ui_team_select_pick_team")
 		shopnumber = n
 		last_page = shopnumber
@@ -353,6 +366,7 @@ var buy = (function(i, n, pan)
 	{
 		Game.EmitSound("ui_team_select_shuffle")
 		BuyControl.visible = true;
+		disableContentPanel(true)
 		count_buy = 1
 		textEntry.text = "1"
 		var tovar = shopinfo[i][n]

@@ -4638,13 +4638,13 @@
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua" 	 "幽灵面纱"
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_Description" 	 "英雄进入虚体形态，获得对物理伤害的免疫力和穿越生物的能力。虽然是虚体，但英雄可以攻击，对英雄的魔法伤害增加。攻击伤害增加并变为魔法，这使得英雄能够攻击其他虚体生物，但此类攻击不会伤害技能免疫目标。"
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_duration" 	 "持续时间："
-	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_base_damage_pct" 	 "% 增加英雄的魔法伤害："
+	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_self_magical_resist_reduction" 	 "% 增加英雄的魔法伤害："
 	"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_bonus_damage" 	 "攻击力提升："
 
-	"DOTA_Tooltip_ability_special_bonus_muerta_1" 	 "+100绝杀伤害"
-	"DOTA_Tooltip_ability_special_bonus_muerta_2" 	 "+15% 死亡印记加深魔法伤害"
-	"DOTA_Tooltip_ability_special_bonus_muerta_3" 	 "+20% 神枪在手几率"
-	"DOTA_Tooltip_ability_special_bonus_muerta_4" 	 "幽灵面纱的不再受到额外魔法伤害"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_1" 	 "+100绝杀伤害"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_2" 	 "+15% 死亡印记加深魔法伤害"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_3" 	 "+20% 神枪在手几率"
+	"DOTA_Tooltip_ability_special_bonus_unique_muerta_4" 	 "幽灵面纱的不再受到额外魔法伤害"
 		
 		//============================================================================================ FACELESS VOID =============================================================================================
 
@@ -5381,6 +5381,19 @@
 "DOTA_Tooltip_ability_special_bonus_bloodseeker_7" "+3 迷雾伤害"
 "DOTA_Tooltip_ability_special_bonus_bloodseeker_8" "血怒可以对盟友施放"
 
+//===============================================================================================FATAL BONDS============================================================================================
+
+	"DOTA_Tooltip_ability_warlock_fatal_bonds"                                      "致命连接"
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_Description"                          "将数个可见的敌方单位连接在一起，其中一人所受伤害的一定百分比会被其他所有人感受到。"
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_Lore"                                 "一个远古咒语，能将多个生命体的生命能量连接成一个集合体。"
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_damage_share_pct"                     "%伤害共享："
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_duration"                             "持续时间："
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_search_aoe"                           "连接范围："
+	"DOTA_Tooltip_ability_warlock_fatal_bonds_Note0"                                "共享伤害的类型与原伤害相同。"    
+
+	"DOTA_Tooltip_modifier_fatal_bonds"                                     "致命连接"
+	"DOTA_Tooltip_modifier_fatal_bonds_Description"                         "受到的所有伤害的%dMODIFIER_PROPERTY_TOOLTIP%%%会被分给连接在一起的所有单位。"
+	
 //===============================================================================================SUMMON=================================================================================================
 
 	"DOTA_Tooltip_ability_summon_buff" 	 "召唤法师"
@@ -6484,6 +6497,12 @@
 
 "guild_creeps" "1"
 
+"npc_unit_damage_challenge"			"伤害挑战"
+"damage_challenge_inc_armor"		"护甲 +10"
+"damage_challenge_dec_armor"		"护甲 -10"
+"damage_challenge_inc_magic_armor"	"魔法抗性 +5%"
+"damage_challenge_dec_magic_armor"	"魔法抗性 -5%"
+
 "ui_unlock_difficulty"            "难度"
 "ui_unlock"                       "解锁"
 "blacksmith"                      "铁匠"
@@ -6495,7 +6514,6 @@
 "hide_total_talents_stats"				"隐藏"
 "show_total_talents_stats"				"显示"
 
-// 助推器通知系统本地化
 "ui_booster_notification_license_purchased"         "助推器许可证购买成功！"
 "ui_booster_notification_settings_updated"          "助推器设置已更新！"
 "ui_booster_notification_license_error"             "购买许可证时出错"
@@ -6512,11 +6530,18 @@
 
 "tips" "提示"
 "tip" "提示"
+
+"hint_for_126_keybind_title"						"按键使用"
+"hint_for_126_keybind_text"							"<font color='#ff0'>高级设置</font><br><font color='#ff0'>可控制组</font><br><b><font color='#ff0'>第5组</font></b> — <font color='#0f0'>投掷雪球</font>"
+
 "EndGame_PlayerAccountLevel"						"账户等级 %s"
 
 "lose_reason_all_heroes_dead"						"所有英雄<font color=\"#f00\">死亡</font>"
 "lose_reason_quest14_timeout"						"所有<font color=\"#f00\">矿工</font>未在规定时间内被杀死"
 "lose_reason_quest5_sheep_death"					"其中一只<font color=\"#f00\">羊</font>被杀死"
 "lose_reason_cheats_enabled"						"为了完整的游戏体验，请在大厅中<font color=\"#f00\">禁用作弊</font>"
+
+"top_bar_details_hint_type_BossHintIcon"			"所有<font color=\"#ff0\">任务</font>首领的额外能力"
+"top_bar_details_hint_type_CreepHintIcon"			"最近解锁的<font color=\"#ff0\">最后一个区域</font>中小怪的额外能力"
 }	
 }

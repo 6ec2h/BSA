@@ -1,5 +1,12 @@
 "DOTAAbilities"
 {
+	"special_bonus_unique_muerta_2"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"muerta_the_calling_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -22,14 +29,14 @@
 		"AbilityValues"
 		{
 			"spell_ampl"					
-				{
-				"value"					"10 15 20 25"
-				"LinkedSpecialBonus"	"special_bonus_muerta_2"
-				}
-			"duration"						"5"
-			"radius"						"400"
-			"aura_movespeed_slow"			"-30"
-			"aura_attackspeed_slow"			"-10 -20 -30 -40"
+			{
+				"value"							"10 15 20 25"
+				"special_bonus_unique_muerta_2"	"+15"
+			}
+			"duration"							"5"
+			"radius"							"400"
+			"aura_movespeed_slow"				"-30"
+			"aura_attackspeed_slow"				"-10 -20 -30 -40"
 		}
 	}
 }

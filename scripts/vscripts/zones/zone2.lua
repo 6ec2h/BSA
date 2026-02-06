@@ -4,6 +4,7 @@ end
 
 function creep_spawn()
 	random_ability = passive[RandomInt(1,#passive)]
+
 	local units = Entities:FindAllByName("forest_zombie")
 	for _,unit in pairs(units) do
 		rules:aura_dif(unit,random_ability)
@@ -24,6 +25,7 @@ function creep_spawn()
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
+			rules:updateExtraAbility("creeps", random_ability)
 		end)
 	end
 	

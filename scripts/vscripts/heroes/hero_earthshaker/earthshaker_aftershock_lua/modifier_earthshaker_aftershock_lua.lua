@@ -52,9 +52,15 @@ function modifier_earthshaker_aftershock_lua:DeclareFunctions()
 	return funcs
 end
 
+local ignoredAbilityNames = {
+	["techies_focused_detonate_lua"] = true,
+	["ability_capture_lua"] = true,
+	["new_year_snowball"] = true,
+}
+
 function modifier_earthshaker_aftershock_lua:OnAbilityFullyCast( params )
 	if IsServer() then
-		if params.unit~=self:GetParent() or params.ability:IsItem() or params.ability:GetName() == 'ability_capture_lua' or params.ability:GetName() == 'techies_focused_detonate_lua' then return end
+		if params.unit~=self:GetParent() or params.ability:IsItem() or ignoredAbilityNames[params.ability:GetName()] then return end
 
 		local enemies = FindUnitsInRadius(
 			self:GetCaster():GetTeamNumber(),	-- int, your team number

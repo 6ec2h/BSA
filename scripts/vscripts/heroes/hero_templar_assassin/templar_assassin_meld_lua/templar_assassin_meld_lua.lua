@@ -84,7 +84,7 @@ function templar_assassin_meld_lua:ApplyMeld(target, attacker)
 		ability 		= self
 	})
 
-	SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, target, self:GetSpecialValueFor("bonus_damage"), nil)
+	-- SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, target, self:GetSpecialValueFor("bonus_damage"), nil)
 end
 
 ----------------------------------------------------------

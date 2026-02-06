@@ -9,6 +9,28 @@
 	</scripts>
 	<Panel class="root" hittest="false">
 		<Panel id="damage-challenge-container" class="damage-challenge-container">
+			<Panel id="settings-container">
+				<Panel id="armor-container" class="setting-container">
+					<Button class="setting-button setting-first-button" onmouseactivate="adjustArmor(1)" onmouseover="showTooltip(&apos;armor&apos;, true)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_armor_psd.vtex" />
+						<Label class="setting-button-label" text="+10" />
+					</Button>
+					<Button class="setting-button" onmouseactivate="adjustArmor(-1)" onmouseover="showTooltip(&apos;armor&apos;, false)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_armor_psd.vtex" />
+						<Label class="setting-button-label" text="-10" />
+					</Button>
+				</Panel>
+				<Panel id="magic-armor-container" class="setting-container">
+					<Button class="setting-button setting-first-button" onmouseactivate="adjustMagicRes(1)" onmouseover="showTooltip(&apos;magic_armor&apos;, true)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex" />
+						<Label class="setting-button-label" text="+5%" />
+					</Button>
+					<Button class="setting-button" onmouseactivate="adjustMagicRes(-1)" onmouseover="showTooltip(&apos;magic_armor&apos;, false)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex" />
+						<Label class="setting-button-label" text="-5%" />
+					</Button>
+				</Panel>
+			</Panel>
 			<Panel id="damage-challenge-inner" class="damage-challenge-inner">
 				<Panel id="lives-circle" class="lives-circle">
 					<Label id="lives-text" class="lives-text" text="1" />

@@ -1,92 +1,255 @@
 <!-- xml reconstructed by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
-		<include src="s2r://panorama/layout/custom_game/casv2/casv2.css" />
+		<include src="s2r://panorama/layout/custom_game/casv2/layout.css" />
+		<include src="s2r://panorama/layout/custom_game/casv2/reward-cards.css" />
+		<include src="s2r://panorama/layout/custom_game/casv2/winners-panel.css" />
+		<include src="s2r://panorama/layout/custom_game/casv2/game-slots.css" />
+		<include src="s2r://panorama/layout/custom_game/casv2/play-panel.css" />
+		<include src="s2r://panorama/layout/custom_game/casv2/stats-panel.css" />
+		<include src="s2r://panorama/layout/custom_game/casv2/win-notification.css" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/layout/custom_game/casv2/casv2.js" />
+		<include src="s2r://panorama/layout/custom_game/casv2/spinengine.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/casv2.vjs_c" />
 	</scripts>
-	<Panel class="root" hittest="false">
-		<Panel class="background-gradient" />
-		<Panel class="crystal-shards" />
-		<Label class="main-title" text="DRAGON JACKPOT" />
-		<Panel class="jackpot-container">
-			<Image class="jackpot-diamond-icon" src="s2r://panorama/images/items/diamond_png.vtex" />
-			<Label class="jackpot-amount" text="125,430" />
-			<Label class="jackpot-description" text="5% от каждой ставки идёт в банк" />
+	<Panel class="game-container" hittest="false">
+		<Panel class="game-header">
+			<Label class="logo-text" text="DRAGON" />
+			<Label class="logo-subtitle" text="JACKPOT" />
 		</Panel>
-		<Panel class="best-wins-panel">
-			<Label class="best-wins-title" text="УЧШИЕ ВЫИГРЫШИ" />
-			<Panel class="wins-list">
-				<Panel class="win-entry">
-					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/magnus_png.vtex" />
-					<Label class="character-name" text="Magnus" />
-					<Image class="win-item-icon" src="s2r://panorama/images/items/gem_blue_png.vtex" />
+		<Panel class="game-main">
+			<Panel class="winners-panel">
+				<Panel class="winners-panel-header">
+					<Label class="winners-panel-title" text="🏆 ИСТОРИЯ ИГР" />
+					<Label class="winners-panel-subtitle" text="ПОСЛЕДНИЕ ПОБЕДИТЕЛИ" />
 				</Panel>
-				<Panel class="win-entry">
-					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/aurelius_png.vtex" />
-					<Label class="character-name" text="Aurelius" />
-					<Image class="win-item-icon" src="s2r://panorama/images/items/shield_orange_png.vtex" />
+				<Panel class="winners-tabs-header">
+					<Button class="winners-tab-label" id="RecentWinnersTab">
+						<Label class="winners-tab-text" text="ПОСЛЕДНИЕ" />
+					</Button>
+					<Button class="winners-tab-label winners-tab-selected" id="WinningsTab">
+						<Label class="winners-tab-text" text="ВЫИГРЫШИ" />
+					</Button>
+					<Button class="winners-tab-label" id="TopWinnersTab">
+						<Label class="winners-tab-text" text="ЛУЧШИЕ ЗА 30 ДНЕЙ" />
+					</Button>
 				</Panel>
-				<Panel class="win-entry">
-					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/stormlight_png.vtex" />
-					<Label class="character-name" text="Stormlight" />
-					<Image class="win-item-icon" src="s2r://panorama/images/items/scroll_png.vtex" />
+				<Panel class="winners-tab-content" id="RecentWinnersContent">
+					<Panel class="winners-list">
+						<Panel class="winner-item">
+							<DOTAAvatarImage class="winner-avatar" steamid="76561198146952643" />
+							<Panel class="winner-info">
+								<Panel class="winner-name-row">
+									<DOTAUserName class="winner-name" steamid="76561198146952643" />
+									<Label class="winner-time" text="2 МИН НАЗАД" />
+								</Panel>
+								<Panel class="winner-prize-row">
+									<DOTAItemImage class="winner-item-icon" itemname="item_bkb_flask" />
+									<Label class="winner-prize-amount" text="х2" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="winner-item">
+							<DOTAAvatarImage class="winner-avatar" steamid="76561198146952643" />
+							<Panel class="winner-info">
+								<Panel class="winner-name-row">
+									<DOTAUserName class="winner-name" steamid="76561198146952643" />
+									<Label class="winner-time" text="5 МИН НАЗАД" />
+								</Panel>
+								<Panel class="winner-prize-row">
+									<DOTAItemImage class="winner-item-icon" itemname="item_bkb_flask" />
+									<Label class="winner-prize-amount" text="х3" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
-				<Panel class="win-entry">
-					<Image class="character-portrait" src="s2r://panorama/images/heroes/portraits/ravenna_png.vtex" />
-					<Label class="character-name" text="Ravenna" />
-					<Image class="win-item-icon" src="s2r://panorama/images/items/scroll_png.vtex" />
+				<Panel class="winners-tab-content" id="TopWinnersContent" visible="false">
+					<Panel class="winners-list">
+						<Panel class="winner-item">
+							<DOTAAvatarImage class="winner-avatar" steamid="76561198146952643" />
+							<Panel class="winner-info">
+								<Panel class="winner-name-row">
+									<DOTAUserName class="winner-name" steamid="76561198146952643" />
+									<Label class="winner-time" text="1 ДЕНЬ НАЗАД" />
+								</Panel>
+								<Panel class="winner-prize-row">
+									<DOTAItemImage class="winner-item-icon" itemname="item_bkb_flask" />
+									<Label class="winner-prize-amount" text="х10" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
 			</Panel>
-		</Panel>
-		<Panel class="game-area">
-			<Panel class="game-frame">
+			<Panel class="game-slots" id="GameSlots">
 				<Panel class="slots-container">
-					<Panel class="slot" id="slot1">
-						<Image class="slot-symbol" src="s2r://panorama/images/items/diamond_red_png.vtex" />
+					<Panel class="slot-card" id="SlotCard1">
+						<Panel class="slot-animation-container" id="SlotAnimation1" />
+						<Panel class="slot-blur-overlay" id="SlotBlur1" />
 					</Panel>
-					<Panel class="slot" id="slot2">
-						<Image class="slot-symbol" src="s2r://panorama/images/items/scroll_gold_png.vtex" />
+					<Panel class="slot-card" id="SlotCard2">
+						<Panel class="slot-animation-container" id="SlotAnimation2" />
+						<Panel class="slot-blur-overlay" id="SlotBlur2" />
 					</Panel>
-					<Panel class="slot" id="slot3">
-						<Image class="slot-symbol" src="s2r://panorama/images/items/shield_blue_png.vtex" />
+					<Panel class="slot-card" id="SlotCard3">
+						<Panel class="slot-animation-container" id="SlotAnimation3" />
+						<Panel class="slot-blur-overlay" id="SlotBlur3" />
 					</Panel>
 				</Panel>
-				<Button class="play-button" onactivate="OnPlayButtonPressed()">
-					<Label class="play-button-text" text="ИГРАТЬ" />
-				</Button>
-				<Panel class="cost-info">
-					<Label class="cost-label" text="СТОИМОСТЬ:" />
-					<Image class="cost-diamond-icon" src="s2r://panorama/images/items/diamond_blue_png.vtex" />
-					<Label class="cost-amount" text="2" />
-					<Image class="cost-gem-icon" src="s2r://panorama/images/items/gem_orange_png.vtex" />
-					<Label class="cost-amount" text="20" />
+				<Panel class="play-panel">
+					<Panel class="control-line">
+						<Panel class="controls-container">
+							<Panel class="economy-block">
+								<Button class="economy-info-btn" id="InfoButton">
+									<Panel class="economy-info-btn-frame" />
+									<Panel class="economy-info-btn-bg" />
+									<Image class="economy-info-icon" src="s2r://panorama/images/custom_game/casv2/inof-icon_png.vtex" />
+								</Button>
+								<Panel class="EconRows">
+									<Panel class="EconRowPill EconRowPill--Shield">
+										<Panel class="BalanceSection">
+											<Label class="LabelBalance" text="БАЛАНС" />
+											<Image class="balance-icon" src="s2r://panorama/images/custom_game/casv2/currency_shield_png.vtex" />
+											<Label class="ValueBalance" id="BalanceShieldValue" text="5,000" />
+										</Panel>
+										<Button class="BetSection BetSectionSelected" id="BetShieldChip">
+											<Label class="LabelBet" text="СТАВКА" />
+											<Image class="bet-icon" src="s2r://panorama/images/custom_game/casv2/currency_shield_png.vtex" />
+											<Label class="ValueBet" id="BetShieldValue" text="20" />
+										</Button>
+									</Panel>
+									<Panel class="EconRowPill EconRowPill--Crystal">
+										<Panel class="BalanceSection">
+											<Label class="LabelBalance" text="БАЛАНС" />
+											<Image class="balance-icon" src="s2r://panorama/images/custom_game/casv2/currency_ruby_png.vtex" />
+											<Label class="ValueBalance" id="BalanceCrystalValue" text="1,000" />
+										</Panel>
+										<Button class="BetSection BetSectionUnselected" id="BetCrystalChip">
+											<Label class="LabelBet" text="СТАВКА" />
+											<Image class="bet-icon" src="s2r://panorama/images/custom_game/casv2/currency_ruby_png.vtex" />
+											<Label class="ValueBet" id="BetCrystalValue" text="2" />
+										</Button>
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="autospin-wrapper">
+								<Panel class="speed-controls">
+									<Panel class="speed-buttons-container">
+										<Button class="speed-btn" id="Speed1x">
+											<Panel class="speed-btn-frame" />
+											<Panel class="speed-btn-bg" />
+											<Label class="speed-text" text="x1" />
+										</Button>
+										<Button class="speed-btn" id="Speed2x">
+											<Panel class="speed-btn-frame" />
+											<Panel class="speed-btn-bg" />
+											<Label class="speed-text" text="x2" />
+										</Button>
+										<Button class="speed-btn" id="Speed4x">
+											<Panel class="speed-btn-frame" />
+											<Panel class="speed-btn-bg" />
+											<Label class="speed-text" text="x4" />
+										</Button>
+									</Panel>
+								</Panel>
+								<Button class="spin-btn" id="PlayButton">
+									<Panel class="spin-btn-frame" />
+									<Panel class="spin-bg-huge" />
+									<Label class="spin-text" id="PlayButtonText" text="ИГРАТЬ" />
+								</Button>
+								<Panel class="autospin-block" id="AutoSpinBlock">
+									<Panel class="autospin-controls">
+										<Button class="autospin-btn" id="AutoSpinDecrease10">
+											<Panel class="autospin-btn-frame" />
+											<Panel class="autospin-btn-bg" />
+											<Label class="autospin-symbol" text="−10" />
+										</Button>
+										<Button class="autospin-btn" id="AutoSpinDecrease">
+											<Panel class="autospin-btn-frame" />
+											<Panel class="autospin-btn-bg" />
+											<Label class="autospin-symbol" text="−1" />
+										</Button>
+										<Panel class="autospin-display">
+											<Panel class="autospin-display-frame" />
+											<Panel class="autospin-display-bg" />
+											<Label class="autospin-number" id="AutoSpinValue" text="0" />
+										</Panel>
+										<Button class="autospin-btn" id="AutoSpinIncrease">
+											<Panel class="autospin-btn-frame" />
+											<Panel class="autospin-btn-bg" />
+											<Label class="autospin-symbol" text="+1" />
+										</Button>
+										<Button class="autospin-btn" id="AutoSpinIncrease10">
+											<Panel class="autospin-btn-frame" />
+											<Panel class="autospin-btn-bg" />
+											<Label class="autospin-symbol" text="+10" />
+										</Button>
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
 			</Panel>
-			<Panel class="flames-overlay" />
-		</Panel>
-		<Panel class="right-panel">
-			<Image class="dragon-head" src="s2r://panorama/images/custom_game/casv2/dragon_head_png.vtex" />
-			<Panel class="progress-bars-container">
-				<Panel class="progress-bar-wrapper">
-					<Panel class="progress-bar-frame fire-bar">
-						<Panel class="progress-bar-fill fire-fill" style="width: 85%;" />
-						<Label class="progress-percentage" text="85%" />
+			<Panel class="stats-panel">
+				<Panel class="crystal-jackpot-banner" id="CrystalJackpotBanner">
+					<Panel class="jackpot-hero">
+						<Label class="jackpot-title" text="КРИСТАЛЬНЫЙ ДЖЕКПОТ" />
+						<Panel class="jackpot-hero-wrapper">
+							<Panel class="jackpot-value-container">
+								<Label class="jackpot-value" id="JackpotValue" text="12 450" />
+								<Image class="crystal-icon" src="s2r://panorama/images/custom_game/casv2/currency_ruby_png.vtex" />
+							</Panel>
+						</Panel>
 					</Panel>
-					<Label class="progress-label" text="до выпадения главного приза" />
 				</Panel>
-				<Panel class="progress-bar-wrapper">
-					<Panel class="progress-bar-frame artifact-bar">
-						<Panel class="progress-bar-fill artifact-fill" style="width: 34%;" />
-						<Label class="progress-percentage" text="34%" />
+				<Panel class="reward-card RewardCard--Dragon RewardCard--Red" id="RewardCardDragon">
+					<Panel class="reward-progress-column">
+						<Panel class="reward-progress-bg" />
+						<Panel class="reward-progress-mask">
+							<Panel class="reward-progress-fill" id="RewardProgressFillDragon" style="height: 45%;">
+								<Panel class="progress-level-line" />
+							</Panel>
+						</Panel>
+						<Panel class="reward-progress-frame" />
 					</Panel>
-					<Label class="progress-label" text="до выпадения артефакта" />
+					<Panel class="reward-content-panel">
+						<Label class="reward-card-title" text="ПРИЗ ДРАКОНА" />
+						<DOTAItemImage class="reward-icon" itemname="item_heavy_plate" />
+						<Panel class="reward-stats">
+							<Label class="reward-progress-text" id="RewardProgressTextDragon" text="Прогресс: 45%" />
+							<Label class="reward-chance-text" id="RewardChanceTextDragon" text="Текущий шанс: +2.5%" />
+						</Panel>
+						<Label class="reward-footer-note" text="Каждый проигрыш на сервере увеличивает шанс. После выигрыша — сброс." />
+					</Panel>
+				</Panel>
+				<Panel class="reward-card RewardCard--Dragon RewardCard--Gold" id="RewardCardSecond">
+					<Panel class="reward-progress-column">
+						<Panel class="reward-progress-bg" />
+						<Panel class="reward-progress-mask">
+							<Panel class="reward-progress-fill" id="RewardProgressFillSecond" style="height: 12%;">
+								<Panel class="progress-level-line" />
+							</Panel>
+						</Panel>
+						<Panel class="reward-progress-frame" />
+					</Panel>
+					<Panel class="reward-content-panel">
+						<Label class="reward-card-title" text="ПРИЗ ДРАКОНА" />
+						<DOTAItemImage class="reward-icon" itemname="item_heavy_plate" />
+						<Panel class="reward-stats">
+							<Label class="reward-progress-text" id="RewardProgressTextDragon" text="Прогресс: 45%" />
+							<Label class="reward-chance-text" id="RewardChanceTextDragon" text="Текущий шанс: +2.5%" />
+						</Panel>
+						<Label class="reward-footer-note" text="Каждый проигрыш на сервере увеличивает шанс. После выигрыша — сброс." />
+					</Panel>
 				</Panel>
 			</Panel>
 		</Panel>
-		<Panel class="info-icon">
-			<Label class="info-text" text="i" />
+		<Panel class="win-notification" id="WinNotification">
+			<Label class="win-notification-title" text="ВЫИГРЫШ!" />
+			<Label class="win-notification-amount" id="WinAmount" text="+0" />
 		</Panel>
 	</Panel>
 </root>

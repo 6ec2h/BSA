@@ -1,11 +1,54 @@
-const DOTA_HUD_ROOT = $.GetContextPanel().GetParent().GetParent().GetParent();
+const DOTA_HUD_ROOT = $.GetContextPanel().GetParent().GetParent().GetParent()
+const CONTEXT = $.GetContextPanel()
+const quickSelectTipMenu = $("#QuickSelectTipMenu")
+quickSelectTipMenu.visible = false
+
 const topBarPlayersContainer = DOTA_HUD_ROOT.FindChildTraverse("TopBarRadiantPlayersContainer")
 const localPlayerId = Players.GetLocalPlayer()
 const localPlayerIdStr = String(localPlayerId)
+
 let activeTip = CustomNetTables.GetTableValue( "active_player_tip", localPlayerIdStr)
 
-function print(...args) {
-	$.Msg(...args)
+const boughtTips = [
+	// "ahjahja",
+	// "cat_ahaha",
+	// "facepalm",
+	// "fotkayu",
+	// "kekw",
+	// "markaryan",
+	// "okak",
+	// "pepe_clown",
+	// "peter_griffin",
+	// "skebob",
+	// "vodonos",
+	// "vodonos_2",
+]
+
+function handleBoughtTips(data) {
+	const tipsData = data[9]
+	if (!tipsData) return
+
+	boughtTips.splice(0, boughtTips.length)
+
+	for (const tipNum in tipsData) {
+		if (tipNum === "name") continue
+
+		const tipItem = tipsData[tipNum]		
+		if (tipItem.status === "buy") continue
+
+		boughtTips.push(tipItem.tip)
+	}
+
+	if (quickSelectTipMenu.actuallayoutwidth === 0) {
+		quickSelectTipMenu.visible = true
+		quickSelectTipMenu.style.opacity = 0.01
+		$.Schedule(1, () => {
+			quickSelectTipMenu.visible = false
+			quickSelectTipMenu.style.opacity = 1
+		})
+	}
+
+	fillQuickSelectTipMenu()
 }
 
 function getTopBarPlayerContainers() {
@@ -74,11 +117,60 @@ function initTipButtons() {
 
 			GameEvents.SendCustomGameEventToServer( "do_player_tip", {targetId: playerId});
 		})
+		tipButton.SetPanelEvent("oncontextmenu", () => {
+			if (boughtTips.length === 0) return
+
+			openQuickSelectTipMenu(tipButton)
+		})
 		tipButton.SetHasClass("NoActiveTip", !activeTip)
 
 		tipButton.SetParent(playerContainer)
 
 		tipButtons[playerId] = tipButton
+	}
+}
+
+function openQuickSelectTipMenu(tipButton) {
+	quickSelectTipMenu.parentTipButton = tipButton
+	recomposeQuickSelectTipMenu(true)
+}
+
+function recomposeQuickSelectTipMenu(makeVisible) {
+	const tipButton = quickSelectTipMenu.parentTipButton
+	if (!tipButton?.IsValid())
+		return
+	
+	const tipButtonPos = tipButton.GetPositionWithinWindow();
+
+	const x = tipButtonPos.x
+	const y = tipButtonPos.y + tipButton.actuallayoutheight
+
+	quickSelectTipMenu.style.marginLeft = `${Math.floor(x + (tipButton.actuallayoutwidth - quickSelectTipMenu.actuallayoutwidth) / 2)}px`
+	quickSelectTipMenu.style.marginTop = `${Math.floor(y + 10)}px`
+
+	if (makeVisible)
+		quickSelectTipMenu.visible = true
+}
+
+function fillQuickSelectTipMenu() {
+	quickSelectTipMenu.RemoveAndDeleteChildren()
+
+	const quickSelectTipMenuInner = $.CreatePanel("Panel", quickSelectTipMenu, "QuickSelectTipMenuInner")
+
+	for (const tip of boughtTips) {
+		const selectTipButton = $.CreatePanel("Button", quickSelectTipMenuInner, "", {class: "SelectTipButton"})
+		selectTipButton.SetPanelEvent("onmouseactivate", () => {
+			const tipButton = quickSelectTipMenu.parentTipButton
+			if (!tipButton?.IsValid() || tipButton.BHasClass("OnCooldown"))
+				return
+
+			GameEvents.SendCustomGameEventToServer( "do_player_tip", {targetId: tipButton.playerId, tip: tip});
+
+			quickSelectTipMenu.visible = false
+		})
+
+		const selectTipButtonImage = $.CreatePanel("Image", selectTipButton, "")
+        selectTipButtonImage.SetImage(`file://{images}/custom_game/tips/${tip}.png`);
 	}
 }
 
@@ -102,7 +194,7 @@ function successTip(data) {
 		handleTipCooldown()
 	}
 
-    Game.EmitSound("General.Coins")
+    Game.EmitSound(`Tips.${data.tip}`)
 
 	const tipToast = $.CreatePanel("Panel", tipToastsContainer, "PlayerTipToastContainer");
     tipToast.BLoadLayoutSnippet("PlayerTipToast");
@@ -181,5 +273,23 @@ function activeTipChanged(netTableName, key, value) {
 	updateTipButtons()
 
 	GameEvents.Subscribe("success_player_tip", successTip);
+	GameEvents.Subscribe("initShop", handleBoughtTips)
+	GameEvents.Subscribe("initShop2", handleBoughtTips)
 	CustomNetTables.SubscribeNetTableListener("active_player_tip", activeTipChanged);
+
+	GameUI.CustomUIConfig().DotaHUD.ListenToMouseEvent(function(eventType, arg) {
+        if (quickSelectTipMenu && quickSelectTipMenu.visible && eventType === "pressed" && (arg === 0 || arg === 1)) {
+			const cursorPos = GameUI.GetCursorPosition()
+			const menuPos = quickSelectTipMenu.GetPositionWithinWindow()
+
+			const width = quickSelectTipMenu.actuallayoutwidth
+			const height = quickSelectTipMenu.actuallayoutheight
+
+			if (cursorPos[0] < menuPos.x || menuPos.x + width < cursorPos[0] || cursorPos[1] < menuPos.y || cursorPos[1] < menuPos.y + height) {
+				quickSelectTipMenu.visible = false
+			}
+		}
+
+        return false;
+    })
 })();

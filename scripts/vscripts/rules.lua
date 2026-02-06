@@ -15,6 +15,8 @@ function rules:init()
 	CustomGameEventManager:RegisterListener("TryStartEvent", Dynamic_Wrap( rules, 'TryStartEvent' ))
 	CustomGameEventManager:RegisterListener("select_skill_lua", Dynamic_Wrap( rules, 'select_skill_lua'))
 	CustomGameEventManager:RegisterListener("request_npc_interactions_data", Dynamic_Wrap( rules, 'request_npc_interactions_data'))
+	CustomGameEventManager:RegisterListener("adjust_damage_challenge_stats", Dynamic_Wrap( rules, 'adjust_damage_challenge_stats'))
+	CustomGameEventManager:RegisterListener("RequestDifficultData", Dynamic_Wrap(rules, "RequestDifficultData"))
 end
 
 ------------------------------------------------------ BOSS REWARDS -------------------------------------------------
@@ -71,6 +73,8 @@ function rules:select_skill_lua(t)
 	if not _G.RewardPoints[t.PlayerID] or _G.RewardPoints[t.PlayerID] < 1 then
 		return
 	end
+
+	_G.RewardPoints[t.PlayerID] = _G.RewardPoints[t.PlayerID] - 1
 
     local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
     for _, ability_name in pairs(t) do
@@ -250,6 +254,7 @@ function dummy_spawn()
 	local damage_challenge = CreateUnitByName("npc_unit_damage_challenge", Vector(-6915.544922, -14742.480469, 128.000000), false, nil, nil, DOTA_TEAM_NEUTRALS)
 	damage_challenge:AddNewModifier(damage_challenge, nil, "modifier_damage_challenge", {})
 	damage_challenge:SetAngles(0,-90,0)
+	_G.DamageChallengeEnt = damage_challenge
 
 	LinkLuaModifier("modifier_players_summary", "modifiers/modifier_players_summary", LUA_MODIFIER_MOTION_NONE)
 	local playersSummary = CreateUnitByName("npc_players_summary", Entities:FindByName(nil, "easy_target"):GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
@@ -257,6 +262,21 @@ function dummy_spawn()
 end	
 
 --------------------------------------------------- 
+
+DIFFICULT_EXTRA_ABILITIES = {
+	boss = nil,
+	creeps = nil,
+}
+
+function rules:updateExtraAbility(typeExtra, abilityName)
+    local ability = _G.npc_creeps_passives and _G.npc_creeps_passives:FindAbilityByName(abilityName)
+
+	DIFFICULT_EXTRA_ABILITIES[typeExtra] = DIFFICULT_EXTRA_ABILITIES[typeExtra] or {}
+	DIFFICULT_EXTRA_ABILITIES[typeExtra].name = abilityName
+	DIFFICULT_EXTRA_ABILITIES[typeExtra].level = ability and ability:GetLevel() or 0
+
+	CustomGameEventManager:Send_ServerToAllClients("UpdateDifficultData:ExtraAbilities", DIFFICULT_EXTRA_ABILITIES)
+end
 
 creeps_other = {
 	"forest_fat_zombie","forest_zombie","skeleton","npc_dota_creature_big_bear","boss_undying","lich",
@@ -280,6 +300,9 @@ bosses_invu = {
 
 function rules:bosses_upgrade()	
 	random_ability = passive[RandomInt(1,#passive)]	
+    if _G.Game_Difficulty >= 12 then
+		rules:updateExtraAbility("boss", random_ability)
+	end
 	local enemies = FindUnitsInRadius(DOTA_TEAM_NEUTRALS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
 	for _, unit in pairs(enemies) do
 		if table.contains(creeps_other, unit:GetUnitName()) then
@@ -287,6 +310,7 @@ function rules:bosses_upgrade()
         end
     end
 	invulnerable(enemies)
+	rules:bosses_hats(enemies)
 end
 
 function invulnerable(enemies)
@@ -296,6 +320,14 @@ function invulnerable(enemies)
             unit:AddNewModifier(unit, nil, "modifier_medusa_stone_gaze_stone", {})
             unit:AddNewModifier(unit, nil, "modifier_magic_immune", {})
         end
+    end
+end
+
+function rules:bosses_hats(enemies)
+	if not isNewYearNow() then return end
+
+    for _, unit in pairs(enemies) do
+		unit:SetupHat(HAT_TYPE.NEW_YEAR)
     end
 end
 
@@ -319,6 +351,7 @@ end
 
 function rules:boss_invulnerable(t)
 	local unit = Entities:FindByName( nil, t)
+	if not unit or unit:IsNull() or not unit:IsAlive() then return end
 	unit:RemoveModifierByName( "modifier_invulnerable")
 	unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
 	unit:RemoveModifierByName("modifier_magic_immune")
@@ -333,7 +366,41 @@ function rules:request_npc_interactions_data(t)
 	end
 end
 
+function rules:adjust_damage_challenge_stats(t)
+	if not DamageChallengeEnt or DamageChallengeEnt:IsNull() then return end
 
+	local modifier = DamageChallengeEnt:FindModifierByName("modifier_damage_challenge")
+	if not modifier or modifier:IsNull() or modifier.stage ~= "ready" then return end
+
+	if t.type == "armor" then
+		local currentArmor = DamageChallengeEnt:GetPhysicalArmorBaseValue()
+
+		if t.inc == 1 and currentArmor < 4000 then
+			DamageChallengeEnt:SetPhysicalArmorBaseValue(currentArmor + 10)
+		elseif t.inc == 0 and currentArmor > -2000 then
+			DamageChallengeEnt:SetPhysicalArmorBaseValue(currentArmor - 10)
+		end
+	elseif t.type == "magic_armor" then
+		local currentMagicRes = DamageChallengeEnt:GetBaseMagicalResistanceValue()
+
+		if t.inc == 1 and currentMagicRes < 98 then
+			DamageChallengeEnt:SetBaseMagicalResistanceValue(math.min(99, currentMagicRes + 5))
+		elseif t.inc == 0 and currentMagicRes > -100 then
+			DamageChallengeEnt:SetBaseMagicalResistanceValue((currentMagicRes >= 98 and 95 or currentMagicRes - 5))
+		end
+	end
+end
+
+function rules:RequestDifficultData(t)
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(t.PlayerID),
+		"UpdateDifficultData:Full",
+		{
+			difficulty = _G.Game_Difficulty,
+			extraAbilities = DIFFICULT_EXTRA_ABILITIES,
+		}
+	)
+end
 
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------

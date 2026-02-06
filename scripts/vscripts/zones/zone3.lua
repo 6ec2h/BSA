@@ -39,6 +39,7 @@ function snowspawn(snow)
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
+			rules:updateExtraAbility("creeps", random_ability)
 		end)
 	end
 	

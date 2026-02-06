@@ -10,7 +10,7 @@ function dado_tp:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	EmitSoundOn("Hero_Enigma.Black_Hole.Stop", caster )
-	unit = CreateUnitByName("tp_in", position, true, caster, nil, caster:GetTeamNumber())
+	unit = CreateUnitByName("tp_in", position, true, caster, caster, caster:GetTeamNumber())
 	
 	duration = self:GetSpecialValueFor("dur")
 	

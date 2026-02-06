@@ -2,62 +2,55 @@ muerta_dead_shot_lua = class({})
 LinkLuaModifier( "modifier_muerta_dead_shot_lua", "heroes/hero_muerta/muerta_dead_shot_lua/muerta_dead_shot_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_muerta_dead_shot_lua_slow", "heroes/hero_muerta/muerta_dead_shot_lua/muerta_dead_shot_lua", LUA_MODIFIER_MOTION_NONE )
 
+function muerta_dead_shot_lua:Precache(context)
+	print("muerta_dead_shot_lua:Precache")
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot_linear.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot_tracking_proj.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot_tracking_proj_projectile_model.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot.vpcf", context)
+	PrecacheResource("particle_folder", "particles/units/heroes/hero_muerta", context)
+end
+
 function muerta_dead_shot_lua:OnSpellStart()
 	local caster = self:GetCaster()
-	local point = self:GetCursorPosition()
-	local speed = self:GetSpecialValueFor( "speed" )
 
-	local projectile_name = "particles/units/heroes/hero_muerta/muerta_deadshot_linear.vpcf"
-
-	local projectile_speed = self:GetSpecialValueFor( "speed" )
-	local projectile_distance = 800
 	local projectile_radius = self:GetSpecialValueFor( "radius" )
-	local projectile_direction = point-caster:GetOrigin()
+	local projectile_direction = (self:GetCursorPosition() - caster:GetOrigin()):Normalized()
 	projectile_direction.z = 0
-	projectile_direction = projectile_direction:Normalized()
 
-	local info = {
+	ProjectileManager:CreateLinearProjectile({
 		Source = caster,
 		Ability = self,
-		vSpawnOrigin = caster:GetAbsOrigin(),
+		vSpawnOrigin = caster:GetAbsOrigin() + Vector(0, 0, 50),
 		
 	    iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 	    iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 	    iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 	    
-	    EffectName = projectile_name,
-	    fDistance = projectile_distance,
+	    EffectName = "particles/units/heroes/hero_muerta/muerta_deadshot_linear.vpcf",
+	    fDistance = 800,
 	    fStartRadius = projectile_radius,
 	    fEndRadius = projectile_radius,
-		vVelocity = projectile_direction * projectile_speed,
-	}
-	local projectile = ProjectileManager:CreateLinearProjectile(info)
+		vVelocity = projectile_direction * self:GetSpecialValueFor( "speed" ),
+	})
 	EmitSoundOn( "Hero_Muerta.DeadShot.Cast", caster )
 	EmitSoundOn( "Hero_Muerta.DeadShot.Layer", caster )
 end
 
 function muerta_dead_shot_lua:OnProjectileHitHandle( target, location, handle )
-	if target then
+	if not target then return end
 	if not IsServer() then return end
-		local damage = self:GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage") 
-		
-		local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_1")
-		if ability ~= nil and ability:GetLevel() > 0 then 
-			damage = damage + 100
-		end
-	
-		local damageTable = {
-			victim = target,
-			attacker = self:GetCaster(),
-			damage = damage,
-			damage_type = self:GetAbilityDamageType(),
-			ability = self, --Optional.
-		}
-		ApplyDamage(damageTable)
 
-		target:AddNewModifier(self:GetCaster(), self, "modifier_muerta_dead_shot_lua_slow", {duration = self:GetSpecialValueFor( "duration" )})
-		EmitSoundOn( "Hero_Muerta.DeadShot.Slow", target )
-	end
+	ApplyDamage({
+		victim = target,
+		attacker = self:GetCaster(),
+		damage = self:GetSpecialValueFor( "damage" ) + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage"),
+		damage_type = self:GetAbilityDamageType(),
+		ability = self, --Optional.
+	})
+
+	target:AddNewModifier(self:GetCaster(), self, "modifier_muerta_dead_shot_lua_slow", {duration = self:GetSpecialValueFor( "duration" )})
+	EmitSoundOn( "Hero_Muerta.DeadShot.Slow", target )
 end
 
 -----------------------------------------------------------
@@ -92,10 +85,9 @@ function modifier_muerta_dead_shot_lua_slow:OnDestroy()
 end
 
 function modifier_muerta_dead_shot_lua_slow:DeclareFunctions()
-	local funcs = {
+	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
-	return funcs
 end
 
 function modifier_muerta_dead_shot_lua_slow:GetModifierMoveSpeedBonus_Percentage()

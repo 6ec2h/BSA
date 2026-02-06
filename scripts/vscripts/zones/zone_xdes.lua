@@ -33,6 +33,10 @@ function creep_spawn()
 		local point = Entities:FindByName( nil, "point_panda"):GetAbsOrigin()
 		local unit = CreateUnitByName("npc_xdes", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		rules:aura_dif(unit,random_ability)
+
+		if isNewYearNow() then
+			unit:SetupHat(HAT_TYPE.NEW_YEAR)
+		end
 		
 		clear()
 		

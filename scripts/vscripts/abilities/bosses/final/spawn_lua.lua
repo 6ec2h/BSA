@@ -46,6 +46,10 @@ function SpawnUnit(dummy, index)
 	unit:AddNewModifier(unit, nil, "modifier_necro_spawn_lua_effect", {})
 	rules:aura_dif(unit,random_ability)
 	-- unit:AddNewModifier(unit, nil, "modifier_kill", {duration = 5})
+
+	if isNewYearNow() then
+		unit:SetupHat(HAT_TYPE.NEW_YEAR)
+	end
 end
 
 ------------------------------------------------

@@ -62,7 +62,8 @@ function modifier_item_overlord_helmet:GetModifierConstantHealthRegen()
 end
 
 function modifier_item_overlord_helmet:IsAura()
-	if self:GetCaster():IsIllusion() then 
+	local caster = self:GetCaster()
+	if caster:IsIllusion() or not caster:IsRealHero() then 
 		return false
 	end
 	return true

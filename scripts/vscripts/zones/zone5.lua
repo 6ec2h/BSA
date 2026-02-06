@@ -41,6 +41,7 @@ function trapsspawn(trapspawn)
 		Timers:CreateTimer(3, function()
 			Notifications:TopToAll({text="#usilenie", duration=3})
 			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
+			rules:updateExtraAbility("creeps", random_ability)
 		end)
 	end
 	
@@ -186,5 +187,4 @@ function tainikoff(event)
    local unit = event.activator
    unit:RemoveModifierByName("modifier_silent")  
    unit:RemoveModifierByName("modifier_ice_blast")  
-end
 end

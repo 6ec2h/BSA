@@ -20,7 +20,7 @@ function NecroLordThink()
 	local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
 	if #enemies > 0 then
 		for _,unit in pairs(enemies) do
-			if unit:IsHero() then
+			if unit:IsHero() and not PlayerResource:IsDisableHelpSetForPlayerID(unit:GetPlayerOwnerID(), thisEntity:GetPlayerOwnerID()) then
 				blink(unit)
 			end
 		end
@@ -48,4 +48,4 @@ function blink(unit)
 			end
 		end
 	end
-endd
+end

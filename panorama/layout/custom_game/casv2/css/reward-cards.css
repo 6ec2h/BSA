@@ -1,0 +1,141 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.reward-progress-frame
+{
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgba(158, 118, 6, 0.35);
+	border-radius: 4px;
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.04), inset 0px -1px 2px rgba(0, 0, 0, 0.5), inset 1px 0px 1px rgba(255, 255, 255, 0.02), inset -1px 0px 1px rgba(0, 0, 0, 0.3);
+	z-index: 3;
+}
+
+.progress-level-line
+{
+	width: 100%;
+	height: 2px;
+	vertical-align: top;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 240, 150, 0.9)), color-stop(0.7, rgba(255, 240, 150, 0.9)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 3px rgba(255, 230, 120, 0.6), 0px 0px 1px rgba(255, 255, 255, 0.4);
+	transition-property: opacity;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+	z-index: 3;
+}
+
+.reward-icon
+{
+	width: 68px;
+	vertical-align: center;
+	horizontal-align: center;
+	box-shadow: 0px 0px 10px rgba(184, 134, 11, 0.5), 0px 0px 5px rgba(255, 215, 0, 0.3);
+	brightness: 1.1;
+}
+
+.reward-stats
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 30px;
+	vertical-align: bottom;
+}
+
+.reward-progress-text
+{
+	font-size: 11px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.9);
+	horizontal-align: center;
+	margin-bottom: 4px;
+}
+
+.reward-chance-text
+{
+	font-size: 11px;
+	font-weight: bold;
+	color: rgba(255, 215, 0, 0.95);
+	horizontal-align: center;
+	text-shadow: 0px 0px 4px rgba(255, 215, 0, 0.4);
+}
+
+.reward-footer-note
+{
+	font-size: 8px;
+	font-weight: normal;
+	color: rgba(184, 134, 11, 0.5);
+	text-transform: none;
+	letter-spacing: 0.2px;
+	horizontal-align: center;
+	text-align: center;
+	white-space: normal;
+	line-height: 1.2;
+	opacity: 0.7;
+	margin-top: 2px;
+	vertical-align: bottom;
+}
+
+.reward-card.RewardProgressLow .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 210, 90, 0.85)), color-stop(0.5, rgba(212, 175, 55, 0.75)), to(rgba(158, 118, 6, 0.65)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.1), inset 0px -1px 3px rgba(255, 255, 255, 0.08), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 6px rgba(255, 215, 0, 0.2);
+}
+
+.reward-card.RewardProgressLow .progress-level-line
+{
+	opacity: 0.85;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 230, 130, 0.8)), color-stop(0.7, rgba(255, 230, 130, 0.8)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 2px rgba(255, 220, 100, 0.5);
+}
+
+.reward-card.RewardProgressHigh .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 235, 130, 0.98)), color-stop(0.25, rgba(255, 220, 100, 0.93)), color-stop(0.5, rgba(255, 205, 85, 0.88)), color-stop(0.75, rgba(230, 190, 70, 0.83)), to(rgba(200, 150, 30, 0.78)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.14), inset 0px -1px 3px rgba(255, 255, 255, 0.12), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 10px rgba(255, 215, 0, 0.35), 0px 0px 4px rgba(255, 230, 120, 0.25);
+}
+
+.reward-card.RewardProgressHigh .progress-level-line
+{
+	opacity: 1.0;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 245, 160, 0.95)), color-stop(0.7, rgba(255, 245, 160, 0.95)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 4px rgba(255, 235, 140, 0.7), 0px 0px 2px rgba(255, 255, 255, 0.5);
+}
+
+.reward-card.RewardProgressHigh .reward-progress-frame
+{
+	border-color: rgba(184, 134, 11, 0.5);
+}
+
+.reward-card.RewardProgressCritical .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 245, 150, 1.0)), color-stop(0.2, rgba(255, 230, 120, 0.98)), color-stop(0.5, rgba(255, 215, 100, 0.95)), color-stop(0.75, rgba(240, 200, 80, 0.9)), to(rgba(220, 170, 50, 0.85)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.18), inset 0px -1px 3px rgba(255, 255, 255, 0.15), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 12px rgba(255, 215, 0, 0.5), 0px 0px 6px rgba(255, 240, 140, 0.4);
+}
+
+.reward-card.RewardProgressCritical .progress-level-line
+{
+	opacity: 1.0;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 250, 180, 1.0)), color-stop(0.7, rgba(255, 250, 180, 1.0)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 5px rgba(255, 245, 160, 0.9), 0px 0px 3px rgba(255, 255, 255, 0.6);
+	animation-name: level_line_pulse;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.reward-card.RewardProgressCritical .reward-progress-frame
+{
+	border-color: rgba(255, 215, 0, 0.6);
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.08), inset 0px -1px 2px rgba(0, 0, 0, 0.5), 0px 0px 4px rgba(255, 215, 0, 0.3);
+}
+
+.reward-card.RewardJustWon .reward-progress-column
+{
+	box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8), 0px 0px 40px rgba(184, 134, 11, 0.6);
+}
+
+.reward-card.RewardJustWon .reward-progress-fill
+{
+	transition-duration: 0.6s;
+}
+

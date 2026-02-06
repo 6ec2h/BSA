@@ -6055,9 +6055,9 @@
 		
 		"Ability1"					"custom_fireball"		
 		"Ability2"					"warlock_rain_of_chaos"	
-		"Ability3"					"warlock_fatal_bonds"
+		"Ability3"					"fatal_bonds"
 		"Ability4"					"necronomicon_warrior_sight"
-		
+
 		"ArmorPhysical"				"15"			
 		"MagicalResistance"         "15"
 
@@ -11497,13 +11497,13 @@
 		"Model"						"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_winter_ancient_hulk.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Ranged"
-		"Level"						"5"
+		"Level"						"30"
 		"ModelScale" 				"1.0"
 		
 		"Ability1"					"zombie_ice_hit"		
 
-		"ArmorPhysical"				"80"			
-		"MagicalResistance"         "45"
+		"ArmorPhysical"				"0"			
+		"MagicalResistance"         "0"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
@@ -11522,10 +11522,10 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"360"			
 		
-		"StatusHealth"				"450"		
-		"StatusHealthRegen"			"3"		
+		"StatusHealth"				"100000"		
+		"StatusHealthRegen"			"0"		
 		"StatusMana"				"200"			
-		"StatusManaRegen"			"2.0"			 
+		"StatusManaRegen"			"0"			 
 		
 		"VisionDaytimeRange"		"1000"		
 		"VisionNighttimeRange"		"1000"		
@@ -11534,23 +11534,6 @@
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-		"Creature"
-		{
-		
-		"ItemDrops"
-			{
-				"Trinkets"
-				{
-					"Item"
-					{	
-						"1"				"item_mana_potion"
-						"2"				"item_health_potion"
-					}
-					"Chance"			"25"
-				}
-			}	
-		}
 	} 
 
 "npc_players_summary"
@@ -11590,6 +11573,13 @@
 
 		"TeamName"					"DOTA_TEAM_NEUTRALS"							
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+}	
+
+#base "../npc/npc_units_heroes.txt"
+ttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}

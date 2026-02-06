@@ -85,9 +85,11 @@ return function(context)
 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_axe", context )
 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_tusk", context )
 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_life_stealer", context )
+		PrecacheResource( "particle_folder", "particles/units/heroes/hero_treant", context )
 		PrecacheResource( "particle_folder", "particles/darkmoon_last_hit_effect.vpcf", context )
 		
 		PrecacheResource( "particle_folder", "particles/hny/", context )
+		PrecacheResource( "particle", "particles/econ/events/snowball/snowball_projectile.vpcf", context )
 		
 		
 		PrecacheResource( "particle", "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf", context )
@@ -103,6 +105,9 @@ return function(context)
 		PrecacheResource("particle", "particles/trap_sunray.vpcf", context)
 		PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf", context)
 		PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_scepter.vpcf", context)
+
+		PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf", context)
+		PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
 		
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context )
@@ -239,7 +244,9 @@ return function(context)
 		
 		PrecacheResource( "soundfile", "sounds/music/stingers/quest_complete_01.vsnd", context )
 		PrecacheResource( "soundfile", "soundevents/music/game_sounds_music_tutorial.vsndevts", context )
-		
+
+		PrecacheResource( "soundfile", "soundevents/game_sounds_tips.vsndevts", context )
+
 		PrecacheResource( "model", "models/gameplay/breakingcrate_dest.vmdl", context )	
 		PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl", context )	
 		PrecacheResource( "model", "models/heroes/undying/undying_tower.vmdl", context )	

@@ -111,11 +111,6 @@ function modifier_muerta_the_calling_lua_slow:OnCreated( kv )
 	self.ms_slow = self:GetAbility():GetSpecialValueFor( "aura_movespeed_slow" )
 	self.as_slow = self:GetAbility():GetSpecialValueFor( "aura_attackspeed_slow" )
 	self.spell_ampl = self:GetAbility():GetSpecialValueFor( "spell_ampl" )
-	
-	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_2")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.spell_ampl = self.spell_ampl + 15
-	end
 
 	if not IsServer() then return end
 end
@@ -155,6 +150,10 @@ function modifier_muerta_the_calling_lua_slow:GetEffectAttachType()
 end
 
 function modifier_muerta_the_calling_lua_slow:GetModifierIncomingDamage_Percentage(keys)
+	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+		return self.spell_ampl
+	end
+endction modifier_muerta_the_calling_lua_slow:GetModifierIncomingDamage_Percentage(keys)
 	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
 		return self.spell_ampl
 	end

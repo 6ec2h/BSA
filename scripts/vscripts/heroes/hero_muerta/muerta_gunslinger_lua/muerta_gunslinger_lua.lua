@@ -28,11 +28,6 @@ function modifier_muerta_gunslinger_lua:OnCreated( kv )
 	self.chance = self:GetAbility():GetSpecialValueFor( "double_shot_chance" )
 	self.bonus_range = self:GetAbility():GetSpecialValueFor( "target_search_bonus_range" )
 	
-	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_3")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.chance = self.chance + 20
-	end
-	
 	if not IsServer() then return end
 
 	self.main_target = nil
@@ -43,11 +38,6 @@ end
 function modifier_muerta_gunslinger_lua:OnRefresh( kv )
 	self.chance = self:GetAbility():GetSpecialValueFor( "double_shot_chance" )
 	self.bonus_range = self:GetAbility():GetSpecialValueFor( "target_search_bonus_range" )
-	
-	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_3")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		self.chance = self.chance + 20
-	end
 end
 
 function modifier_muerta_gunslinger_lua:OnRemoved()
@@ -77,7 +67,7 @@ function modifier_muerta_gunslinger_lua:OnAttackStart( params )
 	local ability = self:GetAbility()
 	if not ability:GetAutoCastState() then return end
 
-	if not RollPseudoRandomPercentage(self.chance, self.parent:entindex(), self.parent) then return end
+	if not RollPseudoRandomPercentage(self.chance, DOTA_PSEUDO_RANDOM_MUERTA_GUNSLINGER, self.parent) then return end
 
 	self.main_target = params.target
 	self.proc_target = params.target
@@ -128,6 +118,14 @@ function modifier_muerta_gunslinger_lua:GetModifierProjectileName()
 		return "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf"
 	else
 		return "particles/units/heroes/hero_muerta/muerta_ultimate_projectile_alternate.vpcf"
+	end
+end
+
+function modifier_muerta_gunslinger_lua:PlayEffects()
+	local particle_cast = "particles/units/heroes/hero_muerta/muerta_gunslinger.vpcf"
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+endrnate.vpcf"
 	end
 end
 

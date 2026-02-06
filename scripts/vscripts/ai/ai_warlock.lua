@@ -7,7 +7,7 @@ function Spawn( entityKeyValues )
     end
 
     PointAbility = thisEntity:FindAbilityByName( "custom_fireball" )
-	TargetAbility = thisEntity:FindAbilityByName( "warlock_fatal_bonds" )
+	TargetAbility = thisEntity:FindAbilityByName( "fatal_bonds" )
 	PointAbility2 = thisEntity:FindAbilityByName( "warlock_rain_of_chaos" )
 
     thisEntity:SetContextThink( "WarlockThink", WarlockThink, 0.5 )
@@ -96,5 +96,8 @@ function TargetAbilityCast(enemy)
     })
    
     return 0.5
+end
+
+
 end
 

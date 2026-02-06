@@ -395,3 +395,65 @@
 	transition-timing-function: ease-in-out;
 }
 
+#settings-container
+{
+	width: 100%;
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.setting-container
+{
+	flow-children: right;
+}
+
+.setting-button
+{
+	flow-children: right;
+	width: 60px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b6f4f), to(#1e4a3b));
+	border: 2px solid #4a8a6a;
+	box-shadow: fill #00000066 0px 4px 8px 0px, inset 0px 1px 0px #5a9a7a;
+	padding: 3px;
+}
+
+.setting-button:hover
+{
+	brightness: 1.2;
+	border-color: #5a9a7a;
+	box-shadow: fill #00000088 0px 6px 12px 0px, inset 0px 1px 0px #6aaa8a;
+}
+
+.setting-button:active
+{
+	brightness: 0.9;
+	box-shadow: fill #00000044 0px 2px 4px 0px, inset 0px 1px 0px #4a8a6a;
+}
+
+.setting-button-icon
+{
+	margin-left: 2px;
+	width: 15px;
+	height: 15px;
+}
+
+.setting-button-label
+{
+	horizontal-align: center;
+	font-family: Radiance;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#magic-armor-container
+{
+	horizontal-align: right;
+}
+
+.setting-first-button
+{
+	margin-right: 10px;
+}
+

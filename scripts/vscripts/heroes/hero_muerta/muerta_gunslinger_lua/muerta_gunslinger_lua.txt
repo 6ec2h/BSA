@@ -1,5 +1,12 @@
 "DOTAAbilities"
 {
+	"special_bonus_unique_muerta_3"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"muerta_gunslinger_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -16,10 +23,10 @@
 		{
 			"double_shot_chance"
 			{
-				"value"					"20 30 40 50"
-				"LinkedSpecialBonus"	"special_bonus_muerta_3"
+				"value"							"20 30 40 50"
+				"special_bonus_unique_muerta_3"	"+20"
 			}
-			"target_search_bonus_range"	"150"
+			"target_search_bonus_range"			"150"
 		}
 	}
 }

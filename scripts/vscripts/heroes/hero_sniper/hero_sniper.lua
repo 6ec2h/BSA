@@ -575,7 +575,7 @@ function modifier_sniper_ult:GetModifierAttackRangeBonus()
 end
 
 function modifier_sniper_ult:GetModifierDamageOutgoing_Percentage()
-	return self.bonus_attack_damage
+	return -self.bonus_attack_damage
 end
 
 function modifier_sniper_ult:GetEffectName()

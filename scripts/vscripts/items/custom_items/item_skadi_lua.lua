@@ -79,9 +79,9 @@ function modifier_item_skadi_lua:OnDeath(params)
 					bVisibleToEnemies 	= true,
 					bReplaceExisting 	= false,
 					flExpireTime 		= GameRules:GetGameTime() + 10,
-					bProvidesVision 	= true,
-					iVisionRadius 		= 400,
-					iVisionTeamNumber 	= parent:GetTeamNumber(),
+					-- bProvidesVision 	= true,
+					-- iVisionRadius 		= 400,
+					-- iVisionTeamNumber 	= parent:GetTeamNumber(),
 				}
 
 				ProjectileManager:CreateTrackingProjectile(projectile);
@@ -95,6 +95,7 @@ function item_skadi_lua1:OnProjectileHit(target)
 		local caster = self:GetCaster()
 		target:AddNewModifier(caster, self, "modifier_stunned", {duration = 1 * (1 - target:GetStatusResistance())})
 		caster:EmitSound("Hero_Winter_Wyvern.SplinterBlast.Splinter")
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, target:GetOrigin(), 400, 1.5, false)
 		local damage_table 			= {};
 		damage_table.attacker 		= caster;
 		damage_table.ability 		= self;
@@ -126,32 +127,23 @@ function modifier_item_skadi_lua:GetModifierManaBonus()
 end
 
 function modifier_item_skadi_lua:OnAttackLanded(params)
-	local attacker = self:GetParent()
+	local attacker = params.attacker
+	if attacker ~= self:GetParent() then return end
+	if attacker:IsIllusion() then return end
+	if attacker:PassivesDisabled() then return end
 	
-	if attacker ~= params.attacker then
-		return
-	end
+	local target = params.target
 
-	if attacker:IsIllusion() then
-		return
-	end
-	
-	local target = params.target if target==nil then target = params.unit end
-		if target:GetTeamNumber()==self:GetParent():GetTeamNumber() then
-			return 0
-		end
-		local modifier = target:FindModifierByNameAndCaster("modifier_item_skadi_slow_lua", self:GetAbility():GetCaster())
-		if modifier==nil then
-			if not self:GetParent():PassivesDisabled() then
+	if target:GetTeamNumber() == attacker:GetTeamNumber() then return end
 
-				target:AddNewModifier(
-					attacker,
-					self:GetAbility(),
-					"modifier_item_skadi_slow_lua",
-					{ duration = 3 }
-				)
-		end
-	end
+	if target:HasModifier("modifier_item_skadi_slow_lua") then return end
+
+	target:AddNewModifier(
+		attacker,
+		self:GetAbility(),
+		"modifier_item_skadi_slow_lua",
+		{ duration = 3 }
+	)
 end
 
 --------------------------------------------------------------------
@@ -198,5 +190,7 @@ function modifier_item_skadi_slow_lua:GetModifierHPRegenAmplify_Percentage()
 end
 
 function modifier_item_skadi_slow_lua:GetModifierLifestealAmplify()
+	return -self.heal_reduction
+endn modifier_item_skadi_slow_lua:GetModifierLifestealAmplify()
 	return -self.heal_reduction
 end

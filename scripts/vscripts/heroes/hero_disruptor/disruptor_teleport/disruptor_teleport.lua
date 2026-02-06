@@ -27,15 +27,37 @@ function disruptor_teleport:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 end
 
+function disruptor_teleport:CastFilterResultTarget(target)
+	local caster = self:GetCaster()
+	if caster == target then
+		return UF_FAIL_CUSTOM
+	end
+
+	if IsServer() and PlayerResource:IsDisableHelpSetForPlayerID(target:GetPlayerOwnerID(), caster:GetPlayerOwnerID()) then
+		return UF_FAIL_DISABLE_HELP
+	end
+
+	return self.BaseClass.CastFilterResultTarget(self, target)
+end
+
+function disruptor_teleport:GetCustomCastErrorTarget(target)
+	if self:GetCaster() == target then
+		return "#dota_hud_error_cant_cast_on_self"
+	end
+
+	return ""
+end
+
 function disruptor_teleport:OnSpellStart()
 	local caster = self:GetCaster()
-	local target = self:GetCursorTarget()
 	local target_point = self:GetCursorPosition()
 	self.delay = self:GetSpecialValueFor("delay")
 	
 	local special_bonus_disruptor_agi4 = self:GetCaster():FindAbilityByName("special_bonus_disruptor_agi4")
 
 	if special_bonus_disruptor_agi4 and special_bonus_disruptor_agi4:GetLevel() > 0 then 
+		local casterPlayerId = caster:GetPlayerOwnerID()
+
 		local radius = self:GetSpecialValueFor("radius")
 		
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),
@@ -49,24 +71,25 @@ function disruptor_teleport:OnSpellStart()
 		false)
 
 		for _,unit in pairs(units) do
-			if unit == caster then return end
+			if unit == caster then goto continue end
+			local unitPlayerId = unit:GetPlayerOwnerID()
+			if IsServer() and PlayerResource:IsDisableHelpSetForPlayerID(unitPlayerId, casterPlayerId) then goto continue end
 			unit:AddNewModifier(caster, self, "modifier_disruptor_teleport", {duration = self.delay})
 			local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
 			EmitSoundOn( sound_cast, caster )
+			::continue::
 		end
 	else
-		if caster ~= target then
-			target:AddNewModifier(
-				caster, -- player source
-				self, -- ability source
-				"modifier_disruptor_teleport", -- modifier name
-				{duration  = self.delay} -- kv
-			)
+		self:GetCursorTarget():AddNewModifier(
+			caster, -- player source
+			self, -- ability source
+			"modifier_disruptor_teleport", -- modifier name
+			{duration  = self.delay} -- kv
+		)
 
-			-- play effects
-			local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
-			EmitSoundOn( sound_cast, caster )
-		end
+		-- play effects
+		local sound_cast = "Hero_Disruptor.ThunderStrike.Cast"
+		EmitSoundOn( sound_cast, caster )
 	end
 end
 
@@ -224,5 +247,4 @@ end
 
 function modifier_disruptor_aura_effect:GetModifierSpellAmplify_Percentage()
 	return self.ampl
-endturn self.ampl
 end

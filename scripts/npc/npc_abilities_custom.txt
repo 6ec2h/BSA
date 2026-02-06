@@ -40,6 +40,7 @@
 "techies_minefield_sign"					"REMOVE"
 "techies_focused_detonate"					"REMOVE"
 "remote_mines_self_detonate"				"REMOVE"
+"item_aeon_disk"							"REMOVE"
 
 //===============================================================================================================================================================
 
@@ -57,7 +58,27 @@
 	"MaxLevel"						"1"
 	"AbilityCastRange"				"150"
 }
+
+"new_year_snowball"
+{
+	"BaseClass"             		"ability_lua"
+	"ScriptFile"             		"abilities/new_year_snowball"
+
+	"AbilityTextureName"            "tusk_snowball"
+	"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+
+	"AbilityCastPoint"              "0.25"
+	"AbilityCooldown"               "5"
+	"AbilityManaCost"               "0"
+	"AbilityCastRange"				"600"
 	
+	"IsOnCastBar"                   "0"
+	"MaxLevel"						"1"
+}
+
  "empty_0"
     {
         "BaseClass"					"ability_datadriven"

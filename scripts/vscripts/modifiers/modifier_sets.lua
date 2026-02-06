@@ -253,70 +253,121 @@ end
 
 function modifier_sets:OnTakeDamage(keys)
 	if not IsServer() then return end
-	
-	--------------magic lifesteal---------------------
-	
-	if keys.attacker == self:GetParent() and  keys.unit ~= keys.attacker and not keys.unit:IsBuilding() and not keys.unit:IsOther() then		
-		if self:GetParent():FindAllModifiersByName(self:GetName())[1] == self and keys.damage_category == 0 and keys.inflictor and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ~= DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL 
-		and not (keys.inflictor:GetName() == 'sven_great_cleave_lua' or keys.inflictor:GetName() == 'kunkka_tidebringer_custom' or keys.inflictor:GetName() == 'magnus_empower_custom') then
-			local lifesteal = keys.original_damage * self.magic_lifesteal * self.full_set/ 100
-			if lifesteal > 1 then
-				self.lifesteal_pfx = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
-				ParticleManager:SetParticleControl(self.lifesteal_pfx, 0, keys.attacker:GetAbsOrigin())
-				ParticleManager:ReleaseParticleIndex(self.lifesteal_pfx)
-			
-				if keys.attacker:GetHealth() <= lifesteal and keys.inflictor and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
-					keys.attacker:ForceKill(true)
-				else
-					keys.attacker:Heal(lifesteal, self)
-				end
-			end
-		end
-	end
-	
-	------------------ reflect ----------------------------
-	
-	if self.reflect > 0 and keys.unit == self:GetParent() and not keys.attacker:IsBuilding() and keys.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) ~= DOTA_DAMAGE_FLAG_HPLOSS and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		local damage = keys.damage / 100 * self.reflect * self.full_set
 
-		ApplyDamage({
-			victim = keys.attacker,
-			attacker = keys.unit,
-			damage = damage,
-			damage_type = keys.damage_type,
-			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
-		})
-	end
-	
-	-------------------- mjolnir armor -----------------------------
-	
-	if keys.unit == self:GetParent() and keys.attacker ~= self:GetParent() and keys.damage >= 5 and self.mjolnir_armor > 0 and RandomInt(1,100) < 10 then
-		self:GetParent():EmitSound("Item.Maelstrom.Chain_Lightning.Jump")
-		if (keys.attacker:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D() <= 500 and not keys.attacker:IsBuilding() and not keys.attacker:IsOther() and keys.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
-			
-			local head_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
-			ParticleManager:SetParticleControlEnt(head_particle, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(head_particle, 1, keys.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.attacker:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControl(head_particle, 62, Vector(2, 0, 2))
+	self:OnTakeDamageMagicLifesteal(keys)
+	self:OnTakeDamageReflect(keys)
+	self:OnTakeDamageMjolnirArmor(keys)
+end
 
-			ParticleManager:ReleaseParticleIndex(head_particle)
-			self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_set_mjolnir_strike", {starting_unit_entindex = keys.attacker:entindex(), damage = self.mjolnir_armor * self.full_set })
-		end
-	end	
+local magicLifestealIgnoredInflictors = {
+	["sven_great_cleave_lua"] = true,
+	["kunkka_tidebringer_custom"] = true,
+	["magnus_empower_custom"] = true,
+}
+
+function modifier_sets:OnTakeDamageMagicLifesteal(keys)
+	local parent = self:GetParent()
+	if parent ~= keys.attacker then return end
+
+	local magicLifestealPct = self.magic_lifesteal
+	if magicLifestealPct <= 0 then return end
+
+	if keys.unit == keys.attacker then return end
+	if keys.unit:IsBuilding() then return end
+	if keys.unit:IsOther() then return end
+	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_SPELL then return end
+
+	local inflictor = keys.inflictor
+	if not inflictor then return end
+
+	if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) == DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL then return end
+	if magicLifestealIgnoredInflictors[keys.inflictor:GetName()] then return end
+
+	local lifesteal = keys.original_damage * magicLifestealPct / 100 * self.full_set
+	if lifesteal <= 1 then return end
+
+	self.lifesteal_pfx = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
+	ParticleManager:SetParticleControl(self.lifesteal_pfx, 0, keys.attacker:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(self.lifesteal_pfx)
+
+	if keys.attacker:GetHealth() <= lifesteal and keys.inflictor and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
+		keys.attacker:ForceKill(true)
+	else
+		keys.attacker:Heal(lifesteal, self)
+	end
+end
+
+function modifier_sets:OnTakeDamageReflect(keys)
+	local parent = self:GetParent()
+	if parent ~= keys.unit then return end
+
+	local reflectPct = self.reflect
+	if reflectPct <= 0 then return end
+	
+	if keys.attacker:IsBuilding() then return end
+	if keys.attacker:GetTeamNumber() == parent:GetTeamNumber() then return end
+
+	if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) == DOTA_DAMAGE_FLAG_HPLOSS then return end
+	if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then return end
+
+	ApplyDamage({
+		victim = keys.attacker,
+		attacker = keys.unit,
+		damage = keys.damage * reflectPct / 100 * self.full_set,
+		damage_type = keys.damage_type,
+		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+	})
+end
+
+function modifier_sets:OnTakeDamageMjolnirArmor(keys)
+	local parent = self:GetParent()
+	if parent ~= keys.unit then return end
+
+	local mjolnirArmorDamage = self.mjolnir_armor
+	if mjolnirArmorDamage <= 0 then return end
+
+	if keys.attacker == parent then return end
+	if keys.attacker:GetTeamNumber() == parent:GetTeamNumber() then return end
+		
+	if keys.damage < 5 then return end
+
+	if RandomInt(1, 100) >= 10 then return end
+
+	parent:EmitSound("Item.Maelstrom.Chain_Lightning.Jump")
+
+	if (keys.attacker:GetAbsOrigin() - parent:GetAbsOrigin()):Length2D() > 500 then return end
+
+	if keys.attacker:IsBuilding() then return end
+	if keys.attacker:IsOther() then return end
+
+	local caster = self:GetCaster()
+
+	local head_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+	ParticleManager:SetParticleControlEnt(head_particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(head_particle, 1, keys.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.attacker:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControl(head_particle, 62, Vector(2, 0, 2))
+
+	ParticleManager:ReleaseParticleIndex(head_particle)
+	
+	caster:AddNewModifier(caster, self:GetAbility(), "modifier_set_mjolnir_strike", {starting_unit_entindex = keys.attacker:entindex(), damage = mjolnirArmorDamage * self.full_set })
 end
 
 ---------------- magic desolator ------------------------
 
 function modifier_sets:GetModifierTotalDamageOutgoing_Percentage(params)
-	if params.attacker == self:GetParent() and params.target ~= params.attacker and not params.target:IsBuilding() and not params.target:IsOther() and self.magic_desolator > 0 then		
-		local mod_magic_desolator = params.target:FindModifierByName("modifier_magic_desolator_set")
-		if mod_magic_desolator then
-			if mod_magic_desolator.armor_reduction < self.magic_desolator * self.full_set then
-				params.target:AddNewModifier(self:GetParent(), self, "modifier_magic_desolator_set", {duration = 5, armor_reduction = self.magic_desolator * self.full_set})
-			end
-		else
+	if self.magic_desolator <= 0 then return end
+	if params.attacker ~= self:GetParent() then return end
+	if params.target == params.attacker then return end
+	if params.target:IsBuilding() then return end
+	if params.target:IsOther() then return end
+
+	local mod_magic_desolator = params.target:FindModifierByName("modifier_magic_desolator_set")
+	if mod_magic_desolator then
+		if mod_magic_desolator.armor_reduction < self.magic_desolator * self.full_set then
 			params.target:AddNewModifier(self:GetParent(), self, "modifier_magic_desolator_set", {duration = 5, armor_reduction = self.magic_desolator * self.full_set})
-		end	
+		end
+	else
+		params.target:AddNewModifier(self:GetParent(), self, "modifier_magic_desolator_set", {duration = 5, armor_reduction = self.magic_desolator * self.full_set})
 	end	
 end
 

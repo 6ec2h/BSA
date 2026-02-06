@@ -15,6 +15,7 @@ require('rules')
 require('effects')
 require("hero_builder")
 require("player_summary")
+require("hats")
 -- require('www/acc')
 -- require("www/web")
 -- require('www/guilds')
@@ -399,32 +400,6 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 				local activation_point = CreateUnitByName("npc_dota_watch_tower_activation_point", watch_tower:GetOrigin(), false, nil, nil, DOTA_TEAM_GOODGUYS)
 				activation_point:AddNewModifier(activation_point, nil, "modifier_outpost_activation", {})
 			end
-			--------------------------------------- fix tp 11.11.2025
-			local thinkers = {
-				-- earth spirit plates
-				{"quest109_plate_1", 			Vector(-13044.835938, -7590.122559, 256.000000)},
-				{"quest109_plate_2", 			Vector(-15044.627930, 4383.260254, 768.000000)},
-				{"quest109_plate_3", 			Vector(-15501.587891, 6424.714844, 384.000000)},
-				-- hidden room
-				{"quest111", 					Vector(-12328.547852, -10023.000000, 256.000000)},
-
-				{"nyx", 						Vector(-2805.114746, 8142.730469, 384.000000)},
-				-- doom gates
-				{"quest16_gate_plate_1", 		Vector(2589.920898, 15715.543945, 128.000000)},
-				{"quest16_gate_plate_2", 		Vector(5279.026855, 13606.590820, 256.000000)},
-				{"quest16_gate_plate_3", 		Vector(6524.231934, 15366.601562, 384.000000)},
-				{"quest16_gate_plate_4", 		Vector(8553.907227, 15012.033203, 384.000000)},
-				-- mine plate to xdes
-				{"quest114_plate", 				Vector(-15944.386719, -11902.361328, 256.000000)},
-				
-				{"last_location_circle_traps", 	Vector(14206.921875, -11773.106445, 640.000000)},
-				{"necrolyte", 					Vector(10272.265625, -15234.589844, 512.000000)},
-			}
-
-			for k,v in pairs(thinkers) do
-				LinkLuaModifier("modifier_map_interactions_handler_" .. v[1], "modifiers/modifier_map_interactions_handler", LUA_MODIFIER_MOTION_NONE)
-				CreateModifierThinker(nil, nil, "modifier_map_interactions_handler_" .. v[1], {}, v[2], DOTA_TEAM_GOODGUYS, false)
-			end
 	end
 
 	if state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
@@ -463,6 +438,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 					if not hHero.bInited then
 						InitPlayerHero(hHero, pid)
 						PlayersSummary:InitPlayerHero(pid)
+						CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "PlayerHeroInited", {})
 					end
 				end)
 			end	
@@ -525,6 +501,17 @@ function InitPlayerHero(hHero, pid)
 	
 	local count = CAddonAdvExGameMode:ExpPlayerModifier()
 	hHero:AddNewModifier( hHero, nil, "modifier_player_exp",{}):SetStackCount(count)
+
+	local unitName = hHero:GetUnitName()
+
+	if isNewYearNow() then
+		hHero:SetupHat(HAT_TYPE.NEW_YEAR)
+		
+		local snowballAbility = hHero:AddAbility("new_year_snowball")
+		if snowballAbility then
+			snowballAbility:SetLevel(1)
+		end
+	end
 	
 	if hHero:GetUnitName() == 'npc_dota_hero_rubick' and not _G.ability_mode then
 		Timers:CreateTimer(3, function()
@@ -747,8 +734,9 @@ end
 
 goldUnitNames = nil
 
-local blessDropUnits = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear",
-	"npc_dota_creature_dire_hound","npc_dota_creature_dire_hound_boss","forest_zombie","skeleton","npc_creep_crystal",
+--"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear",
+--	"npc_dota_creature_dire_hound","npc_dota_creature_dire_hound_boss","forest_zombie","skeleton",
+local blessDropUnits = {"npc_creep_crystal",
 	"apparat","tusk","icespider","white_walker","mirana","npc_dota_creature_large_ogre_seal","guard","npc_trap_visage",
 	"tank","undying","morf", "npc_blob","npc_slardar_unit","npc_zone_jungle_1","npc_zone_jungle_2","npc_zone_jungle_3",
 	"npc_zone_jungle_4","npc_keeper_of_the_light","miner","small_hellbear","encha","treant","npc_lifestealer","batr","warlock",
@@ -943,6 +931,9 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 		Shop:booster_game_end("LOSE")
 	end
 	
+	if not killed_unit:IsRealHero() then
+		killed_unit:RemoveHat()
+	end
 end
 
 function respawn_heroes()
@@ -976,6 +967,37 @@ function add_book(unit)
 				if PlayerResource:HasSelectedHero( nPlayerID ) then
 					local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 					if unit == "npc_boss_slardar" then
+						hero:AddItemByName("item_add_spell")
+					else
+						hero:AddItemByName("item_reroll")
+					end
+				end
+			end
+		end
+	end
+end
+
+function CAddonAdvExGameMode:OnNpcInteract(data)
+	local pid = data.PlayerID
+	local hero = PlayerResource:GetSelectedHeroEntity(pid)
+	local unit = EntIndexToHScript(data.unit_id)
+	local name = data.name
+	local distance = 400
+	if (hero:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() < distance then
+		if name == "#blacksmith" then
+			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateBlacksmith",{})
+		elseif name == "#trade" then
+			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateTrade",{})
+		elseif name == "#dungeon_master" then
+			-- Shop:get_difficulty_data({PlayerID = pid})
+			-- Shop:get_booster_profile({PlayerID = pid})
+			Shop:get_booster_data({PlayerID = pid})
+		end
+	else
+		rules:DisplayError(pid, "#to_far_away")
+	end
+end
+_boss_slardar" then
 						hero:AddItemByName("item_add_spell")
 					else
 						hero:AddItemByName("item_reroll")

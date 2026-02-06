@@ -60,3 +60,34 @@ AutoCastItem = {
 	"item_black_king_bar_1",
 	"item_bloodthorn"
 }
+
+BOSS_NAME_TO_HERO_NAME = {
+	["npc_dota_creature_big_bear"] = "npc_dota_hero_ursa",
+	["boss_undying"] = "npc_dota_hero_undying",
+	["lich"] = "npc_dota_hero_lich",
+	["npc_dota_creature_storegga"] = "npc_dota_hero_storegga",
+	["guard"] = "npc_dota_hero_omniknight",
+	["NYX"] = "npc_dota_hero_nyx",
+	["NYX_2"] = "npc_dota_hero_nyx",
+	["npc_boss_slardar"] = "npc_dota_hero_slardar",
+	["npc_boss_monkey_king"] = "npc_dota_hero_monkey_king",
+	["npc_boss_fura"] = "npc_dota_hero_furion",
+	["Lord"] = "npc_dota_hero_doom",
+	["medusa"] = "npc_dota_hero_medusa",
+	["npc_boss_arc"] = "npc_dota_hero_arc_warden",
+	["necrolyte"] = "npc_dota_hero_necrolyte",
+
+	["npc_dota_creature_gaven_the_brute"] = "npc_dota_hero_earth_spirit",
+	
+	["npc_necro_bear"] = "npc_dota_hero_ursa",
+	["npc_necro_undy"] = "npc_dota_hero_undying",
+	["npc_necro_lich"] = "npc_dota_hero_lich",
+	["npc_necro_storegga"] = "npc_dota_hero_storegga",
+	["npc_necro_nyx"] = "npc_dota_hero_nyx",
+	["npc_necro_slardar"] = "npc_dota_hero_slardar",
+	["npc_necro_monkey_king"] = "npc_dota_hero_monkey_king",
+	["npc_necro_fura"] = "npc_dota_hero_furion",
+	["npc_necro_lord"] = "npc_dota_hero_doom",
+	["npc_necro_medusa"] = "npc_dota_hero_medusa",
+	["npc_necro_arc"] = "npc_dota_hero_arc_warden",
+}

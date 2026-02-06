@@ -56,6 +56,7 @@ function modifier_muerta_pierce_the_veil_lua:OnCreated( kv )
 	self.modelscale = self:GetAbility():GetSpecialValueFor( "modelscale" )
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 	self.transform_duration = self:GetAbility():GetSpecialValueFor( "transform_duration" )
+	self.self_magical_resist_reduction = self:GetAbility():GetSpecialValueFor( "self_magical_resist_reduction" )
 
 	self.transforming = true
 	self:StartIntervalThink( self.transform_duration )
@@ -111,11 +112,7 @@ function modifier_muerta_pierce_the_veil_lua:DeclareFunctions()
 end
 
 function modifier_muerta_pierce_the_veil_lua:GetModifierMagicalResistanceDecrepifyUnique()
-	local ability = self:GetCaster():FindAbilityByName("special_bonus_muerta_4")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		return 0
-	end
-    return -100
+	return -self.self_magical_resist_reduction
 end
 
 function modifier_muerta_pierce_the_veil_lua:GetModifierModelChange()
@@ -293,4 +290,5 @@ function modifier_muerta_pierce_the_veil_lua_undisarm:CheckState()
 	}
 
 	return state
+end state
 end

@@ -1,3 +1,28 @@
+function adjustArmor(value) {
+	GameEvents.SendCustomGameEventToServer("adjust_damage_challenge_stats", {
+		type: "armor",
+		inc: value > 0,
+	});
+}
+
+function adjustMagicRes(value) {
+	GameEvents.SendCustomGameEventToServer("adjust_damage_challenge_stats", {
+		type: "magic_armor",
+		inc: value > 0,
+	});
+}
+
+function showTooltip(buttonType, inc) {
+	const parent = buttonType == "armor" ? $("#armor-container") : $("#magic-armor-container")
+	const buttons = parent.FindChildrenWithClassTraverse("setting-button")
+
+	$.DispatchEvent("DOTAShowTextTooltip", inc ? buttons[0] : buttons[1], $.Localize(`#damage_challenge_${inc ? "inc" : "dec"}_${buttonType}`));
+}
+
+function hideTooltip() {
+    $.DispatchEvent( "DOTAHideTextTooltip");
+}
+
 (function() {
     "use strict";
     const container = $.GetContextPanel();

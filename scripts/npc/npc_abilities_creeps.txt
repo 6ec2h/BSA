@@ -3623,11 +3623,12 @@
 		}
 	}
 	
-	
   "treant_overgrowth"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/treant_creep_overgrowth"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "AbilityType"                   "ABILITY_TYPE_ULTIMATE"    
@@ -3635,7 +3636,7 @@
         "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
         "AbilitySound"                  "Hero_Treant.Overgrowth.Cast"
 
-        "AbilityCastPoint"              "0.5 0.5 0.5 0.5"
+        "AbilityCastPoint"              "0.5"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
 
         "FightRecapLevel"               "2"
@@ -3648,7 +3649,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "200 250 300"
+        "AbilityManaCost"               "200"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -3671,20 +3672,12 @@
 				"value"                 "585"
 				"CalculateSpellDamageTooltip"   "1"
 			}
-			"AbilityCooldown"               
-			{
-				"value"                     "18"
-				"special_bonus_unique_treant_14"    "-35"
-			}
+			"AbilityCooldown"		"18"
 
-			"undispellable"
-			{
-				"value"                             "0"
-			}
-            
+			"undispellable"			"0"
         }
     }
-		
+
 		
 //========================================================================================= zone 8 ====================================================================================
 
@@ -4017,6 +4010,41 @@
             "melee_cast_range"          "600"
         }
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_5"
+	}
+	
+"fatal_bonds"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/fatal_bonds"
+
+		"AbilityTextureName"			"warlock_fatal_bonds"
+        "AbilitySound"                  "Hero_Warlock.FatalBonds"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_DONT_PROC_OTHER_ABILITIES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+
+        "AbilityCastAnimation"          "ACT_DOTA_FATAL_BONDS"
+        "AbilityCastRange"              "1000"
+        "AbilityCastGestureSlot"        "DEFAULT"
+        "AbilityCastPoint"              "0.2"
+
+        "AbilityCooldown"               "18"
+        "AbilityManaCost"               "150"
+
+        "AbilityModifierSupportValue"   "0.0"
+        
+        "AbilityValues"
+        {
+            "search_aoe"					"700"
+			"damage_share_pct"				"24"
+			"duration"						"18"
+
+			"accumulate_damage_time_min"	"0.1"
+			"accumulate_damage_time_max"	"0.2"
+        }
 	}
 	
  "batrider_flaming_lasso"

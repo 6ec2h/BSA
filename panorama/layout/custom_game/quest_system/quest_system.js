@@ -1,133 +1,218 @@
-var quest_system = $("#quest_system")
-var quest_system_main = $("#quest_system_main")
-var quest_system_additional = $("#quest_system_additional")
-var QuestMsgPanel = $("#QuestMsgPanel")
+const mainQuestsPanel = $("#MainQuests")
+const additionalQuestsPanel = $("#AdditionalQuests")
+const questsDividerLine = $("#QuestsDividerLine")
+const questMsgPanel = $("#QuestMsgPanel")
 
-show = false
+const questPanels = {}
+const questsData = {}
 
-var quests_system = {};
+function startQuest(questData, suppressQuestStatus) {
+	const { id, name, description, target, goal, type, priority, rewards } = questData
 
-function CreateNewQuest(data)
-{
-	var quest = InitNewQuest(data.name, data.description, data.target, data.goal, data.type, data.priority, data.rewards)
-	quest.tag = data.id;
-	quests_system[data.id] = quest
-	
-	show_text({description : data.description})
-}
-
-function debug(){
-	show_text('fail')
-}
-
-
-function InitNewQuest(name, description, target, goal, type, priority, rewards)
-{
-	if (priority == 'main'){
-		quest_panel = quest_system_main
-	}else{
-		quest_panel = quest_system_additional
+	if (questPanels[id]) {
+		return
 	}
+	// if (questPanels[id]) {
+	// 	delete questsData[id]
+	// 	questPanels[id].DeleteAsync(0)
+	// }
 	
-	var panel = $.CreatePanel('Panel', quest_panel,'');
-	panel.BLoadLayoutSnippet("Quest");
-	
-	panel.FindChildTraverse('QuestTitle').text = $.Localize("#"+name);
-	
-	$.Msg(target)
-	
-	if (type == 'bring'){
-		panel.FindChildTraverse('QuestDiscription').text = $.Localize("#"+description) + " " + $.Localize("#DOTA_Tooltip_ability_"+target)
-	}else{
-		panel.FindChildTraverse('QuestDiscription').text = $.Localize("#"+description);
+	const panel = $.CreatePanel("Panel", priority == "main" ? mainQuestsPanel : additionalQuestsPanel, "")
+
+	panel.BLoadLayoutSnippet("Quest")
+
+	const questPriorityMark = panel.FindChildrenWithClassTraverse("QuestPriorityMark")[0]
+	if (priority === "main") {
+		questPriorityMark.text = "!"
+		questPriorityMark.SetHasClass("MainQuest", true)
+	} else {
+		questPriorityMark.text = "?"
+		questPriorityMark.SetHasClass("AdditionalQuest", true)
 	}
-	panel.FindChildTraverse('GoldRewardTitle').text = rewards.gold
-	panel.FindChildTraverse('ExpRewardTitle').text = rewards.exp
+
+	panel.FindChildrenWithClassTraverse("QuestHeader")[0].text = $.Localize(`#${name}`)
 	
-	panel.name = name;
-	panel.desc = description;
-	panel.goal = goal;
-	panel.current = 0;
+	let completeDescription = type === "bring" ? `${$.Localize(`#${description}`)} ${$.Localize(`#DOTA_Tooltip_ability_${target}`)}` : $.Localize(`#${description}`)
 	
-	SetQuestProgress(panel, 0, goal, type)
-	return panel;
+	panel.FindChildrenWithClassTraverse("QuestDescriptionLabel")[0].text = completeDescription
+
+	panel.FindChildrenWithClassTraverse("QuestGoldRewardLabel")[0].text = rewards.gold
+	panel.FindChildrenWithClassTraverse("QuestExpRewardLabel")[0].text = rewards.exp
+
+	panel.questId = id
+
+	questPanels[id] = panel
+	
+	questsData[id] = {
+		priority,
+		id,
+		name,
+		type,
+		completeDescription,
+		expireAt: questData.expireAt,
+		goal,
+		current: 0,
+		rewards,
+	}
+
+	initQuestTimer(id)
+	
+	refreshQuestHeader(id)
+	refreshQuestPanelDescription(id)
+
+	handleQuestsDividerVisibility()
+
+	if (!suppressQuestStatus) {
+		showQuestStatusText(null, description)
+	}
 }
 
-function SetQuestProgress(quest, current, goal, type)
-{
-	if (type == 'kill' || type == 'clear' || type == 'collect'){
-		quest.FindChildTraverse('QuestProgress').text = current + "/" + goal;
-	}else{
-		quest.FindChildTraverse('QuestProgress').text = "";
+function initQuestTimer(questId) {
+	const questData = questsData[questId]
+	if (!questData) return
+	if (questData.expireAt == null) return
+
+	function loop() {
+		const questData = questsData[questId]
+		if (!questData) return
+
+		refreshQuestHeader(questId)
+
+		$.Schedule(1, loop)
 	}
-	var percent = (current / goal);
-	var background = quest.FindChildTraverse("Background");
-	background.style.width = (percent * 100) + "%";
-	quest.goal = goal;
-	quest.current = current;
+
+	loop()
 }
+
+function prettyDuration(time) {
+	if (time <= 0)
+		return "0:00"
+
+	return `${Math.floor(time / 60)}:${String(Math.floor(time) % 60).padStart(2, "0")}`
+}
+
+function refreshQuestHeader(questId) {
+	const questPanel = questPanels[questId]
+	if (!questPanel) return
+
+	const questData = questsData[questId]
+	if (!questData) return
+
+	let text = $.Localize(`#${questData.name}`)
+
+	if (questData.expireAt) {
+		text += ` <font color="#f00">${prettyDuration(questData.expireAt - Game.GetGameTime())}</font>`
+	}
+
+	questPanel.FindChildrenWithClassTraverse("QuestHeader")[0].text = text
+}
+
+function refreshQuestPanelDescription(questId) {
+	const questPanel = questPanels[questId]
+	if (!questPanel) return
+
+	const questData = questsData[questId]
+	if (!questData) return
+
+	if (!["kill", "collect"].includes(questData.type)) return
+
+	questPanel.FindChildrenWithClassTraverse("QuestDescriptionLabel")[0].text = `(${questData.current}/${questData.goal}) ${questData.completeDescription}`
+}
+
+function handleQuestsDividerVisibility() {
+	if (!questsDividerLine) return
+
+	if (mainQuestsPanel.GetChildCount() > 0 && additionalQuestsPanel.GetChildCount() > 0) {
+		questsDividerLine.visible = true
+	} else {
+		questsDividerLine.visible = false
+	}
+}
+
+function onQuestUpdate({id: questId, current}) {
+	const questData = questsData[questId]
+	if (!questData) return
+
+	questData.current = current
+
+	refreshQuestPanelDescription(questId)
+}
+
+function onQuestRemove({num: questId, status, description}) {
+	const questPanel = questPanels[questId]
+	if (questPanel) {
+		questPanel.DeleteAsync(0)
+		delete questPanels[questId]
+	}
+	if (questsData[questId])
+		delete questsData[questId]
+	
+	showQuestStatusText(status, description)
+}
+
+function onRequestQuestsResponce({data}) {
+	for (const i in data) {
+		const quest = data[i]
 		
-function OnQuestUpdateProgress(data)
-{
-	for (var x in quests_system)
-	{
-		quest = quests_system[x];
-		if (quest.tag == data.id)
-		{
-			SetQuestProgress(quest, data.current, data.goal, data.type);
-			break;
-		}
+		startQuest(quest, true)
+		onQuestUpdate({
+			id: quest.id,
+			current: quest.current ?? 0,
+		})
 	}
 }
 
-function OnQuestRemove(data)
-{
-	
-	for (var x in quests_system)
-	{
-		quest = quests_system[x];
-		if (quest.tag == data.num)
-		{
-			quest.DeleteAsync(0);
-			delete quests_system[data.num]
-			
-			show_text(data)
-			
-			break;
+function showQuestStatusText(status, description) {
+	let color, questStatus
+
+	switch (status) {
+		case "success": {
+			color = "#14b814"
+			questStatus = "success_quest"
+			break
+		}
+		case "fail": {
+			color = "#FF0000"
+			questStatus = "fail_quest"
+			break
+		}
+		default: {
+			color = "#FF8000"
+			questStatus = "new_quest"
+			break
 		}
 	}
-}
 
-function show_text(data) {
-    var color = '#FF8000';
-	var quest_status = 'new_quest'
-    if (data.status === 'success') {
-        color = '#14b814';
-		quest_status = 'success_quest'
-    }
-    if (data.status === 'fail') {
-        color = '#FF0000';
-		quest_status = 'fail_quest'
-    }
-
-    var questMsg = $.CreatePanel("Label", QuestMsgPanel, "");
-    questMsg.AddClass("quest_message");
-    questMsg.html = true;
-    questMsg.text = "<font color='" + color + "'>" + $.Localize("#"+quest_status) + " " + $.Localize("#" + data.description) + "</font>";
+    const questMsg = $.CreatePanel("Label", questMsgPanel, "")
+    questMsg.AddClass("QuestMessage")
+    questMsg.html = true
+	questMsg.text = `<font color="${color}">${$.Localize(`#${questStatus}`)} ${$.Localize(`#${description}`)}</font>`
 
     $.Schedule(3, function() {
-        questMsg.DeleteAsync(0);
-    });
+        questMsg.DeleteAsync(0)
+    })
 }
 
-
-
-
 (function(){
-	GameEvents.Subscribe( "quest_system_init", CreateNewQuest)
-	GameEvents.Subscribe( "quest_system_update", OnQuestUpdateProgress)
-	GameEvents.Subscribe( "quest_system_remove", OnQuestRemove)
-	GameEvents.Subscribe( "debug", debug)
-})();
+	mainQuestsPanel.RemoveAndDeleteChildren()
+	additionalQuestsPanel.RemoveAndDeleteChildren()
 
+	GameEvents.Subscribe("quest_system_start_quest", startQuest)
+	GameEvents.Subscribe("quest_system_update", onQuestUpdate)
+	GameEvents.Subscribe("quest_system_remove", onQuestRemove)
+	GameEvents.Subscribe("debug", () => {
+		showQuestStatusText({description : "fail"})
+	})
 
+	GameEvents.Subscribe("RequestQuests", onRequestQuestsResponce)
+	GameEvents.SendCustomGameEventToServer("RequestQuests", {})
+
+	const ROOT_PANEL = $.GetContextPanel()
+
+	if (ROOT_PANEL.GetParent().type === "DOTACustomUITypeContainer") {
+		const DOTA_HUD = ROOT_PANEL.GetParent().GetParent().GetParent()
+		const HUD_ELEMENTS = DOTA_HUD.FindChildTraverse("HUDElements")
+
+		ROOT_PANEL.SetParent(HUD_ELEMENTS)
+	}
+})()

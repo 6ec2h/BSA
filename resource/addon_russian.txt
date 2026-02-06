@@ -5026,13 +5026,13 @@
 		"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua"							"Pierce the Veil"
 		"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_Description"				"Герой принимает бесплотную форму, получая невосприимчивость к физическому урону и возможность проходить сквозь существ. Несмотря на бесплотность, герой может атаковать, а магический урон по герою увеличен. Урон от атак увеличивается и становится магическим, отчего герой может атаковать других бесплотных существ, но такие атаки не наносят урона невосприимчивым к магии целям."
 		"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_duration"					"ДЛИТЕЛЬНОСТЬ:"
-		"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_base_damage_pct"			"%УВЕЛИЧЕНИЕ МАГ УРОНА ПО ГЕРОЮ:"
+		"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_self_magical_resist_reduction"			"%УВЕЛИЧЕНИЕ МАГ УРОНА ПО ГЕРОЮ:"
 		"DOTA_Tooltip_ability_muerta_pierce_the_veil_lua_bonus_damage"				"БОНУС УРОНА:"
 
-		"DOTA_Tooltip_ability_special_bonus_muerta_1"							"+100 к урону Dead Shot"
-		"DOTA_Tooltip_ability_special_bonus_muerta_2"							"+15% к маг урону под действием The Calling"
-		"DOTA_Tooltip_ability_special_bonus_muerta_3"							"+20% к шансу Gunslinger"
-		"DOTA_Tooltip_ability_special_bonus_muerta_4"							"Маг. урон Pierce the Veil не увеличивается"
+		"DOTA_Tooltip_ability_special_bonus_unique_muerta_1"							"+100 к урону Dead Shot"
+		"DOTA_Tooltip_ability_special_bonus_unique_muerta_2"							"+15% к маг урону под действием The Calling"
+		"DOTA_Tooltip_ability_special_bonus_unique_muerta_3"							"+20% к шансу Gunslinger"
+		"DOTA_Tooltip_ability_special_bonus_unique_muerta_4"							"Маг. урон Pierce the Veil не увеличивается"
 		
 		//============================================================================================ FACELESS VOID =============================================================================================
 
@@ -5959,6 +5959,19 @@
 "DOTA_Tooltip_modifier_custom_doom"	"Doom"
 "DOTA_Tooltip_modifier_custom_doom_Description" "Пассивные способности отключены. Способности и предметы заблокированы."
 
+//===============================================================================================FATAL BONDS============================================================================================
+
+	"DOTA_Tooltip_ability_fatal_bonds"                                      "Fatal Bonds"
+	"DOTA_Tooltip_ability_fatal_bonds_Description"                          "Соединяет несколько видимых врагов магической связью, в результате чего часть урона, полученного любым из них, наносится и остальным."
+	"DOTA_Tooltip_ability_fatal_bonds_Lore"                                 "Древнее заклятие, которое объединяет жизненные силы различных существ в единую сущность."
+	"DOTA_Tooltip_ability_fatal_bonds_damage_share_pct"                     "%РАСПРЕДЕЛЯЕМЫЙ УРОН:"
+	"DOTA_Tooltip_ability_fatal_bonds_duration"                             "ДЛИТЕЛЬНОСТЬ:"
+	"DOTA_Tooltip_ability_fatal_bonds_search_aoe"                           "РАДИУС СВЯЗИ:"
+	"DOTA_Tooltip_ability_fatal_bonds_Note0"                                "Общий урон имеет тот же тип, что и нанесённый изначально."  
+	
+	"DOTA_Tooltip_modifier_fatal_bonds"                                     "Fatal Bonds"
+	"DOTA_Tooltip_modifier_fatal_bonds_Description"                         "Распределяет %dMODIFIER_PROPERTY_TOOLTIP%%% от всего урона по связанным существам"
+	
 //===============================================================================================SUMMON=================================================================================================
 
 			"DOTA_Tooltip_ability_summon_buff"																	"Summon Buff"
@@ -7132,6 +7145,11 @@
 
 		"guild_creeps"	"1"
 
+		"npc_unit_damage_challenge"													"Damage Challenge"
+		"damage_challenge_inc_armor"												"Броня +10"
+		"damage_challenge_dec_armor"												"Броня -10"
+		"damage_challenge_inc_magic_armor"											"Сопр. магии +5%"
+		"damage_challenge_dec_magic_armor"											"Сопр. магии -5%"
 
 		"ui_trade_panel_element_items_orders_sold_label"									"Продано"
 		"ui_trade_panel_element_items_orders_expired_label"									"Время истекло"
@@ -7278,11 +7296,17 @@
 		"tips"												"Похвала"
 		"tip"												"Похвала"
 
+		"hint_for_126_keybind_title"						"Использование по клавише"
+		"hint_for_126_keybind_text"							"<font color='#ff0'>Расширенные настройки</font><br><font color='#ff0'>Подконтрольные группы</font><br><b><font color='#ff0'>5-я группа</font></b> — <font color='#0f0'>Бросить снежок</font>"
+
 		"EndGame_PlayerAccountLevel"						"%s-й уровень аккаунта"
 		
 		"lose_reason_all_heroes_dead"						"Все герои <font color=\"#f00\">мертвы</font>"
 		"lose_reason_quest14_timeout"						"Все <font color=\"#f00\">минёры</font> не были убиты за <font color=\"#f00\">отведённое время</font>"
 		"lose_reason_quest5_sheep_death"					"Одна из <font color=\"#f00\">овечек</font> была <font color=\"#f00\">убита</font>"
 		"lose_reason_cheats_enabled"						"Для полноценной игры <font color=\"#f00\">отключите читы</font> в лобби"
+	
+		"top_bar_details_hint_type_BossHintIcon"			"Дополнительная способность <font color=\"#ff0\">всех квестовых</font> боссов"
+		"top_bar_details_hint_type_CreepHintIcon"			"Дополнительная способность крипов на <font color=\"#ff0\">последней открытой локации</font>"
 	}	
 }

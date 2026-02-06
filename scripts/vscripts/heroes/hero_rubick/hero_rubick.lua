@@ -10,12 +10,19 @@ function hero_rubick_ability:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 end
 
-local rubick_ability = {
-	"special_bonus_mp_600", "special_bonus_gold_income_60",
-	"special_bonus_mana_reduction_11", "special_bonus_cast_speed_30",
-	"special_bonus_spell_lifesteal_10", "special_bonus_cast_range_200",
-	"special_bonus_all_stats_20", "special_bonus_unique_rubick_5",
-	"ability_capture_lua", "hero_rubick_ability"
+-- local rubick_ability = {
+local unremovableAbilitiesMap = {
+	["special_bonus_mp_600"] = true,
+	["special_bonus_gold_income_60"] = true,
+	["special_bonus_mana_reduction_11"] = true,
+	["special_bonus_cast_speed_30"] = true,
+	["special_bonus_spell_lifesteal_10"] = true,
+	["special_bonus_cast_range_200"] = true,
+	["special_bonus_all_stats_20"] = true,
+	["special_bonus_unique_rubick_5"] = true,
+	["hero_rubick_ability"] = true,
+	["ability_capture_lua"] = true,
+	["new_year_snowball"] = true,
 }
 
 local invalid_ability_names = {
@@ -27,7 +34,9 @@ local invalid_ability_names = {
     "hero_rubick_ability",
     "NoAbilityName",
     "generic_hidden",
-    "abyssal_underlord_portal_warp"
+    "abyssal_underlord_portal_warp",
+	"techies_focused_detonate_lua",
+	"techies_remote_mines_lua",
 }
 
 function is_invalid_ability(ability_name)
@@ -48,7 +57,7 @@ function hero_rubick_ability:OnSpellStart()
 		local ability = hero:GetAbilityByIndex(i)
 		if ability and not ability:IsNull() then
 			local ability_name = ability:GetAbilityName()
-			if not table.contains(rubick_ability, ability_name) then
+			if not unremovableAbilitiesMap[ability_name] then
 				table.insert(self.ability_level, ability:GetLevel())
 				hero:RemoveAbility(ability_name)
 			end
@@ -148,7 +157,7 @@ function modifier_hero_rubick:clear(hero)
 		local ability = hero:GetAbilityByIndex(i)
 		if ability and not ability:IsNull() then
 			local ability_name = ability:GetAbilityName()
-			if not table.contains(rubick_ability, ability_name) then
+			if not unremovableAbilitiesMap[ability_name] then
 				table.insert(self.ability_level, ability:GetLevel())
 				hero:RemoveAbility(ability_name)
 			end

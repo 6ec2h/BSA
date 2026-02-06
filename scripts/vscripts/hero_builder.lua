@@ -61,7 +61,7 @@ function HeroBuilder:InitPlayerHero( hHero )
 		local ability = hHero:GetAbilityByIndex(i)
 		if ability and not ability:IsNull() then
 			local ability_name = ability:GetAbilityName()
-			if not string.find(ability_name, "special_bonus") and not string.find(ability_name, "special_bonus_dado_tal") and not string.find(ability_name, "ability_capture_lua") then
+			if not string.find(ability_name, "special_bonus") and not string.find(ability_name, "special_bonus_dado_tal") and not string.find(ability_name, "ability_capture_lua") and not string.find(ability_name, "new_year_snowball") then
 				hHero:RemoveAbility(ability_name)
 			end
 		end
@@ -174,7 +174,7 @@ function HeroBuilder:GetPlayerSpells(nPlayerID)
         local playerAbilities = {}
         for ability_id = 0, hero:GetAbilityCount() - 1 do
             local ability = hero:GetAbilityByIndex(ability_id)
-            if ability and not ability:IsAttributeBonus() and not ability:IsHidden() and not string.find(ability:GetAbilityName(), "ability_capture_lua") then
+            if ability and not ability:IsAttributeBonus() and not ability:IsHidden() and not string.find(ability:GetAbilityName(), "ability_capture_lua") and not string.find(ability:GetAbilityName(), "new_year_snowball") then
                 local abilityName = ability:GetAbilityName()
                 table.insert(playerAbilities, abilityName)
             end
