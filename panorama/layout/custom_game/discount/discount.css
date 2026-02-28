@@ -1,0 +1,271 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height:100%;
+	width:100%;
+}
+
+#openDiscount
+{
+	width:35px;
+	height:35px;
+	margin-left:160px;
+	margin-top:10px;
+	tooltip-position: bottom;
+	background-image: url("s2r://panorama/images/discount_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#openDiscount:hover
+{
+	brightness: 1.8;
+}
+
+#openDiscount:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+#CloseDiscount,#close_buy
+{
+	vertical-align: top;
+	horizontal-align:right;
+	margin: 5px;
+	background-image: url("s2r://panorama/images/custom_game/closeicon.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width:20px;
+	height:20px;
+}
+
+#CloseDiscount:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#CloseDiscount:hover,#close_buy:hover
+{
+	sound: "ui_select_arrow";
+}
+
+#DiscountPanel
+{
+	width: 950px;
+	height: 560px;
+	vertical-align: center;
+	horizontal-align:center;
+	background-image: url("s2r://panorama/images/shop/shop_backgraund.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding:5px;
+}
+
+#DiscountContainer
+{
+	margin-top:40px;
+	height: 560px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.hidden
+{
+	visibility: collapse;
+}
+
+#DiscountTop
+{
+	horizontal-align: center;
+	color:gradient(linear, 0% 65%, 0% 100%, from(#FFFFFF), color-stop(0.2, #cfd7db), to(#e1e8eb));
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:titleFont;
+	text-shadow:0px 2px 16px 5.0 #000a;
+	font-size: 30px;
+	margin-top: 5px;
+}
+
+#Left
+{
+	vertical-align: center;
+	height: 95%;
+	margin: 5px;
+	padding: 5px;
+	flow-children: down;
+}
+
+#leftImage
+{
+	height: 200px;
+	width: 200px;
+	vertical-align: top;
+	horizontal-align: right;
+	margin: 16px;
+	background-image: url("s2r://panorama/images/set_discount_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: center;
+}
+
+#Middle
+{
+	vertical-align: center;
+	height: 95%;
+	margin: 5px;
+	padding: 5px;
+	flow-children: down;
+}
+
+#middleImage
+{
+	height: 200px;
+	width: 200px;
+	vertical-align: top;
+	horizontal-align: right;
+	margin: 16px;
+	background-image: url("s2r://panorama/images/bless_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: center;
+}
+
+#Right
+{
+	vertical-align: center;
+	height: 95%;
+	margin: 5px;
+	padding: 5px;
+	flow-children: down;
+}
+
+#rightImage
+{
+	height: 200px;
+	width: 200px;
+	vertical-align: top;
+	horizontal-align: right;
+	margin: 16px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: center;
+}
+
+#leftButton,#middleButton,#rightButton
+{
+	vertical-align: bottom;
+	height: 40px;
+	width: 200px;
+	background-image: url("s2r://panorama/images/elements/buttom_blue_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 15px;
+	box-shadow: 2px 2px 4px 0px #00000080;
+}
+
+#leftButton:hover,#middleButton:hover,#rightButton:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.discountLabel,.ButtonLabel
+{
+	horizontal-align: center;
+	color:gradient(linear, 0% 65%, 0% 100%, from(#FFFFFF), color-stop(0.2, #cfd7db), to(#e1e8eb));
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:titleFont;
+	text-shadow:0px 2px 16px 5.0 #000a;
+	font-size: 18px;
+	max-width: 200px;
+	text-align: center;
+	vertical-align: center;
+}
+
+.very_rare_item_effect
+{
+	width: 100%;
+	height: 100%;
+	wash-color: white;
+	margin-top: 0px;
+	transform: scale3d( 1.2, 1.8, 1) translateY( 0px );
+	hue-rotation: -90deg;
+	overflow: clip;
+	opacity: 0.3;
+}
+
+.BuyControl
+{
+	vertical-align:center;
+	horizontal-align:center;
+	width:300px;
+	height:300px;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+#item_buy_image
+{
+	horizontal-align: center;
+	margin-top:20px;
+	width: 120px;
+	height: 120px;
+	box-shadow: inset 0px 0px 4px 0px #00000080;
+	border: 1px solid black;
+	background-image: url("s2r://panorama/images/set_discount_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.buy_content
+{
+	horizontal-align: center;
+	vertical-align: center;
+	height: 50px;
+	margin-top: 60px;
+	flow-children:right;
+}
+
+.buy_image
+{
+	width:35px;
+	height:30px;
+	vertical-align: center;
+}
+
+.buy_label,.buy_button_label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color:gradient(linear, 0% 65%, 0% 100%, from(#FFFFFF), color-stop(0.2, #cfd7db), to(#e1e8eb));
+	letter-spacing:1px;
+	font-weight:bold;
+	font-family:titleFont;
+	text-shadow:0px 2px 16px 5.0 #000a;
+	font-size: 18px;
+	text-align: center;
+}
+
+.buy_button
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	height: 40px;
+	width: 200px;
+	background-image: url("s2r://panorama/images/elements/buttom_blue_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 15px;
+	box-shadow: 2px 2px 4px 0px #00000080;
+}
+
+.buy_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	background-color: #414219;
+}
+

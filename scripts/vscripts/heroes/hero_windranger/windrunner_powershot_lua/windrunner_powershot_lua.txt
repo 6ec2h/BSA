@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+"windrunner_powershot_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_windranger/windrunner_powershot_lua/windrunner_powershot_lua"
+		"AbilityTextureName"			"windrunner_powershot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Ability.Powershot"
+		"MaxLevel"						"4"
+
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"				"22 18 14 10"
+		"AbilityManaCost"				"90 100 110 120"
+		
+		"AbilityValues"
+		{
+			"attack_damage"				"50 100 150 200"	
+			"damage_reduction"			"20"
+			"arrow_width"				"125"
+			"arrow_range"				"800"
+			"arrow_speed"				"3000.0"
+			"tree_width"				"75"
+			"vision_radius"				"400"
+			"vision_duration"			"3.34"
+		}
+	}
+}

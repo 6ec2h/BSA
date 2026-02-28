@@ -1,0 +1,1 @@
+CBaseEntity.SetAbsOrigin = CBaseEntity.SetOrigin

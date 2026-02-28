@@ -1,0 +1,20 @@
+"DOTAAbilities"
+{	
+	"ancient_apparition_ice_blast_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                   	"heroes/hero_ancient_apparition/ancient_apparition_ice_blast_lua/ancient_apparition_ice_blast_lua.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"ancient_apparition_ice_blast"
+		"MaxLevel"						"3"
+		
+		"AbilityValues"
+		{
+			"slow"						"10 20 30"
+			"duration"					"3"
+			"damage"					"50 100 150"
+			"ExtraIntelligenceDamage" "0.2"
+		}
+	}
+}

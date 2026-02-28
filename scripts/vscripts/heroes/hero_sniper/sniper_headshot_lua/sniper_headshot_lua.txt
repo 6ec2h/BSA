@@ -1,0 +1,37 @@
+"DOTAAbilities"
+{
+	"sniper_headshot_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sniper/sniper_headshot_lua/sniper_headshot_lua"
+		"AbilityTextureName"			"sniper_headshot"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityDamage"					"20 50 80 110"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"0.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"proc_chance"					"25 30 35 40"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow"							"-100"
+			}
+		}
+	}
+}

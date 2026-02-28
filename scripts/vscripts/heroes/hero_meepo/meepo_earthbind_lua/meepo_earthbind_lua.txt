@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+	"meepo_earthbind_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_meepo/meepo_earthbind_lua/meepo_earthbind_lua"
+		"AbilityTextureName"			"meepo_earthbind"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.6"
+
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilityValues"
+	{
+		"duration"	"2.0 2.5 3.0 3.5"
+			"net_speed"	"1500"
+	}
+	}
+}

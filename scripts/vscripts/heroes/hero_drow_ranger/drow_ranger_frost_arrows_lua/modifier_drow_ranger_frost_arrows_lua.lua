@@ -1,0 +1,61 @@
+modifier_drow_ranger_frost_arrows_lua = class({})
+
+function modifier_drow_ranger_frost_arrows_lua:IsHidden()
+	return false
+end
+
+function modifier_drow_ranger_frost_arrows_lua:IsDebuff()
+	return true
+end
+
+function modifier_drow_ranger_frost_arrows_lua:IsStunDebuff()
+	return false
+end
+
+function modifier_drow_ranger_frost_arrows_lua:IsPurgable()
+	return true
+end
+
+function modifier_drow_ranger_frost_arrows_lua:OnCreated( kv )
+	self.slow = self:GetAbility():GetSpecialValueFor( "frost_arrows_movement_speed" )
+end
+
+function modifier_drow_ranger_frost_arrows_lua:OnRefresh( kv )
+	self.slow = self:GetAbility():GetSpecialValueFor( "frost_arrows_movement_speed" )
+end
+
+function modifier_drow_ranger_frost_arrows_lua:OnDestroy( kv )
+
+end
+
+function modifier_drow_ranger_frost_arrows_lua:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE,
+	}
+
+	return funcs
+end
+
+function modifier_drow_ranger_frost_arrows_lua:GetModifierPhysicalArmorBonus()
+	if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi7")~=nil then
+		if self:GetCaster():FindAbilityByName("special_bonus_drow_ranger_agi7"):GetLevel() > 0 then 
+			return -5
+			end
+		end
+	return 0
+end
+
+function modifier_drow_ranger_frost_arrows_lua:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_drow_ranger_frost_arrows_lua:GetEffectName()
+	return "particles/generic_gameplay/generic_slowed_cold.vpcf"
+end
+
+function modifier_drow_ranger_frost_arrows_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+

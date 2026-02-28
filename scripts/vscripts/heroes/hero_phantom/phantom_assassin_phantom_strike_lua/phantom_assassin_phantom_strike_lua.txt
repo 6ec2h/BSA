@@ -1,0 +1,31 @@
+"DOTAAbilities"
+{
+	"phantom_assassin_phantom_strike_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom/phantom_assassin_phantom_strike_lua/phantom_assassin_phantom_strike_lua"
+		"AbilityTextureName"			"phantom_assassin_phantom_strike"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"50 70 90 110"
+
+		"AbilityValues"
+	{
+		"crit_bonus"	"120 160 200 240"
+			"duration"	"1.0 1.5 2.0 2.5"
+	}
+	}
+}

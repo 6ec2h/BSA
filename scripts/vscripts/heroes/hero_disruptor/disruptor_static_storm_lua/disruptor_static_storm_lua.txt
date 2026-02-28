@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"disruptor_static_storm_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_disruptor/disruptor_static_storm_lua/disruptor_static_storm_lua"
+		"AbilityTextureName"			"disruptor_static_storm"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
+		"AbilityCastRange"				"800 800 800 800"
+
+		"AbilityCooldown"				"120 110 100"
+		"AbilityManaCost"				"200 300 400"
+
+		"AbilityValues"
+		{
+			"radius"					"400"
+			"pulses"					"20"
+			"damage_max"				"200 400 600"
+			"duration"					"5.0"
+			"ExtraIntelligenceDamage"	"0.2"
+		}
+	}
+}

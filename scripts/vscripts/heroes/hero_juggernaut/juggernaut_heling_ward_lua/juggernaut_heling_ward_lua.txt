@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"juggernaut_heling_ward_lua"
+		{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/hero_juggernaut/juggernaut_heling_ward_lua/juggernaut_heling_ward_lua"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+			"AbilityTextureName"			"juggernaut_healing_ward"
+			"AOERadius"						"%heal_radius"
+
+			"AbilityCastRange"				"350"
+			"AbilityCastPoint"				"0.3"
+
+			"AbilityCooldown"				"60"
+			"AbilityDuration"				"10 15 20 25"
+
+			"AbilityManaCost"				"100 120 140 160"
+
+			"AbilityValues"
+	{
+		"health"	"1 2 3 4"
+	}
+		}
+		
+	"juggernaut_healing_ward_passive_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_heling_ward_lua/juggernaut_heling_ward_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"juggernaut_healing_ward"
+	}
+}

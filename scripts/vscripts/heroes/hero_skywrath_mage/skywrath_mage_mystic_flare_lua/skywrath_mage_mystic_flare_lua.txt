@@ -1,0 +1,33 @@
+"DOTAAbilities"
+{
+	"skywrath_mage_mystic_flare_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_lua/skywrath_mage_mystic_flare_lua"
+		"AbilityTextureName"			"skywrath_mage_mystic_flare"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.1"
+
+		"AbilityCooldown"				"100 80 60"
+		"AbilityManaCost"				"300 500 700"
+		
+		"AbilityValues"
+		{
+			"radius"				"170"
+			"duration"				"2.4"
+			"damage"				"600 1000 1400"
+			"damage_interval"		"0.1"
+			"scepter_radius"		"500"
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+}

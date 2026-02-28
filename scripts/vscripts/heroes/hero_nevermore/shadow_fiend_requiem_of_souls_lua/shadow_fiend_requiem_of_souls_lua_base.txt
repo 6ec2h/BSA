@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+	"shadow_fiend_requiem_of_souls_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua"
+		"AbilityTextureName"			"nevermore_requiem"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"1.67"
+		"AbilityDuration"				"5.0"
+
+		"AbilityCooldown"				"100 90 80"
+		"AbilityManaCost"				"200 300 400"
+
+		"AbilityValues"
+	{
+		"cast_time_tooltip"	"1.67"
+			"requiem_radius"	"1000"
+			"requiem_line_width_start"	"125"
+			"requiem_line_width_end"	"425"
+			"requiem_line_speed"	"700"
+			"soul_death_release"	"0.5"
+			"damage"	"4 8 12"
+	}
+	}
+}

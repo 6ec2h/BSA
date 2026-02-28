@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+	"primal_beast_uproar_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_primal_beast/primal_beast_uproar_lua/primal_beast_uproar_lua"
+		"AbilityTextureName"			"primal_beast_uproar"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCastRange"				"500"
+
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"90 100 110 120"
+
+		"AbilityValues"
+		{
+			"bonus_damage"				
+				{
+				"value"					"10 15 20 25"
+				"LinkedSpecialBonus"	"special_bonus_primal_beast_3"
+				}
+			"armor" 					"2 4 6 8"
+			"slow"						"5 10 15 20"
+			"duration"					"4"
+			"radius"					"500"
+		}
+	}
+}

@@ -1,0 +1,94 @@
+gold_dragon = {"creature_fire_breath","jakiro_liquid_fire","lina_stun", "golden_sun"}
+
+function Spawn( entityKeyValues )
+	if not IsServer() then
+		return
+	end
+
+	if thisEntity == nil then
+		return
+	end
+	thisEntity.toggle = false
+	
+	thisEntity:SetContextThink( "CreepThink", CreepThink, 0.5 )
+end
+
+--------------------------------------------------------------------------------
+
+
+function CreepThink()
+	if ( not thisEntity:IsAlive() ) then
+		return -1
+	end
+
+	if GameRules:IsGamePaused() == true then
+		return 1
+	end
+	
+	if thisEntity:IsChanneling() then  
+        return 1 
+    end
+
+	local search_radius = thisEntity:GetAcquisitionRange()
+	local hp = thisEntity:GetHealthPercent()
+	local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, search_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
+	if #enemies > 0 then
+	enemy = enemies[1]
+		for _, T in ipairs(gold_dragon) do
+			local Spell = thisEntity:FindAbilityByName(T)
+			if Spell then
+				local Behavior = Spell:GetBehaviorInt()
+				if bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET ) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
+					Spell.Behavior = "target"
+					Cast( Spell, enemy )
+				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET ) == DOTA_ABILITY_BEHAVIOR_NO_TARGET then
+					Spell.Behavior = "no_target"
+					if Spell:GetSpecialValueFor("radius") == 0 then
+						Cast( Spell, enemy )
+					elseif ( enemy:GetOrigin()- thisEntity:GetOrigin() ):Length2D() < Spell:GetSpecialValueFor("radius") then
+						Cast( Spell, enemy )
+					end
+				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_POINT ) == DOTA_ABILITY_BEHAVIOR_POINT then
+					Spell.Behavior = "point"
+					Cast( Spell, enemy )
+				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE ) == DOTA_ABILITY_BEHAVIOR_TOGGLE then
+					Spell.Behavior = "toggle"
+					if thisEntity.toggle == false then 
+						thisEntity.toggle = true
+						Spell:ToggleAutoCast()
+						--Spell:ToggleAbility()
+					end
+				elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_PASSIVE ) == DOTA_ABILITY_BEHAVIOR_PASSIVE then
+					Spell.Behavior = "passive"
+				end
+			end
+		end	
+	end	
+	return 1
+end
+
+--------------------------------------------------------------------------------
+
+function Cast( Spell , enemy )
+	local order_type
+	local vTargetPos = enemy:GetOrigin()
+    if Spell.Behavior == "target" then
+        order_type = DOTA_UNIT_ORDER_CAST_TARGET
+    elseif Spell.Behavior == "no_target" then
+        order_type = DOTA_UNIT_ORDER_CAST_NO_TARGET
+    elseif Spell.Behavior == "point" then
+        order_type = DOTA_UNIT_ORDER_CAST_POSITION
+    elseif Spell.Behavior == "passive" then
+        return
+    end
+
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = order_type,
+		Position = vTargetPos,
+		TargetIndex = enemy:entindex(),  
+		AbilityIndex = Spell:entindex(),
+		Queue = false,
+	})
+	return 1
+end

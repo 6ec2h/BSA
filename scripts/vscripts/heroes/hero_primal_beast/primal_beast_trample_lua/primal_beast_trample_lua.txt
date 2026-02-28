@@ -1,0 +1,33 @@
+"DOTAAbilities"
+{
+	"primal_beast_trample_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_primal_beast/primal_beast_trample_lua/primal_beast_trample_lua"
+		"AbilityTextureName"			"primal_beast_trample"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCooldown"				"30 28 26 24"
+		"AbilityManaCost"				"90 95 100 105"
+
+		"AbilityValues"
+		{
+			"effect_radius"				"230"
+			"step_distance"				"140"
+			"base_damage"				"20 30 40 50"
+			"duration"					"5.5"
+			"attack_damage"				
+				{
+				"value"					"60"
+				"LinkedSpecialBonus"	"special_bonus_primal_beast_1"
+				}
+		}
+	}
+}

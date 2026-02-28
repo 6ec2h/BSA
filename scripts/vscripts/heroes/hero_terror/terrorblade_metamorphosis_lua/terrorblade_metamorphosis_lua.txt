@@ -1,0 +1,31 @@
+"DOTAAbilities"
+{
+	"terrorblade_metamorphosis_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_terror/terrorblade_metamorphosis_lua/terrorblade_metamorphosis_lua"
+		"AbilityTextureName"			"terrorblade_metamorphosis"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"120.0"
+		"AbilityManaCost"				"100 120 140 160"
+
+		"AbilityValues"
+	{
+		"duration"	"60"
+			"transformation_time"	"0.35"
+			"base_attack_time"	"1.4"
+			"bonus_range"	"400"
+			"tooltip_attack_range"	"550"
+			"bonus_damage"	"25 50 75 100"
+			"speed_loss"	"0"
+			"metamorph_aura_tooltip"	"1200"
+			"fear_duration"	"3.75"
+	}
+	}
+}

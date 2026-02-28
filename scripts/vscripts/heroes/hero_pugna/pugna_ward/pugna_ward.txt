@@ -1,0 +1,69 @@
+"DOTAAbilities"
+{
+	"pugna_nether_ward_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_pugna/pugna_ward/pugna_ward.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"pugna_nether_ward"
+
+		"MaxLevel"						"4"
+		"AbilitySound"					"Hero_Pugna.NetherWard"
+
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"200"
+
+		"AbilityCooldown"				"40 36 32 28"
+		"AbilityManaCost"				"80 120 160 200"
+		"AbilityDuration"				"15"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cast_range"					"200"	
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"500"	
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_damage"					"10 20 30 40" 
+			} 	
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"intelligence_damage"			"25 35 45 55" 
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attacks_to_destroy"			"4"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"15" 
+			} 
+			"09"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"count"							"2" 
+			} 			
+			"10"
+			{
+				"var_type"              		"FIELD_FLOAT"
+				"interval"             			"2"
+			}
+		}
+	}
+}

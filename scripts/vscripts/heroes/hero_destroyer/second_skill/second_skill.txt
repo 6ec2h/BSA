@@ -1,0 +1,68 @@
+"DOTAAbilities"
+{
+	"hero_destroyer_second_skill_armor"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/second_skill/second_skill_armor"
+		"AbilityTextureName"			"destrarmor"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityValues"
+		{
+			"armor"						"5 10 15 20"
+			"crit_chance"				"20 30 40 50"
+			"crit_damage"				"180"
+			"fresist"					"10 15 20 25"
+			"fspell_amp"					"15 25 35 45"
+			"fregen"						"1.0 1.5 2.0 2.5"
+			"flifesteal"					"10 15 20 25"
+		}
+	}
+	
+	"hero_destroyer_second_skill_resist"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/second_skill/second_skill_resist"
+		"AbilityTextureName"			"destorresist"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityValues"
+		{
+			"farmor"						"5 10 15 20"
+			"fcrit_chance"				"20 30 40 50"
+			"fcrit_damage"				"180"
+			"resist"					"10 15 20 25"
+			"spell_amp"					"15 25 35 45"
+			"fregen"						"1.0 1.5 2.0 2.5"
+			"flifesteal"					"10 15 20 25"
+		}
+	}
+
+	"hero_destroyer_second_skill_hp"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/second_skill/second_skill_hp"
+		"AbilityTextureName"			"destrhp"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityValues"
+		{
+			"farmor"						"5 10 15 20"
+			"fcrit_chance"				"20 30 40 50"
+			"fcrit_damage"				"180"
+			"fresist"					"10 15 20 25"
+			"fspell_amp"					"15 25 35 45"
+			"regen"						"1.0 1.5 2.0 2.5"
+			"lifesteal"					"10 15 20 25"
+		}
+	}	
+}

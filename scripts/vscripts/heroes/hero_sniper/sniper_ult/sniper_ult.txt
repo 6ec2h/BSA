@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{
+	"sniper_ult"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sniper/sniper_ult/sniper_ult.lua"
+		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"sniper_assassinate"
+
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"180 150 120"
+		"AbilityManaCost"				"300 400 500"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_attack_time"		"0.1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_damage"	"-70 -60 -50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"less"					"0.7 1.0 1.3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_range"			"200 300 400"
+			}
+		}
+	}
+}
+						

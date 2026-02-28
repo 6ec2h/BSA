@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+	"axe_berserkers_call_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_berserkers_call_lua/axe_berserkers_call_lua"
+		"AbilityTextureName"			"axe_berserkers_call"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastPoint"				"0.4"
+
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"80 90 100 110"	
+
+		"AbilityValues"
+	{
+		"radius"	"300"
+			"bonus_armor"	"20 25 30 35"
+			"duration"	"2.0 2.4 2.8 3.2"
+	}
+	}
+}

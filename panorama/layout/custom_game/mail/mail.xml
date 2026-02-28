@@ -1,0 +1,42 @@
+<!-- xml reconstructed by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/mail/mail.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/mail/mail.js" />
+	</scripts>
+	<snippets>
+		<snippet name="mail_button">
+			<Panel id="Mail" class="Mail">
+				<Label id="Mail_Label" text="" />
+				<Panel id="MailDecr" class="MailDecr">
+					<Label id="mailfrom" class="MailDescLabel" text="" />
+					<Label id="maildate" class="MailDescLabel" text="" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="mail_desc">
+			<Panel id="RightSide">
+				<Label id="MailTitle" text="" />
+				<Label id="MailText" html="true" text="" />
+				<Panel id="RightSideItems" />
+				<Panel id="RightSideButton">
+					<Label id="MailButton" text="#take_mail" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel id="openmail" onmouseactivate="openButton()" onmouseover="TipsOver(&apos;mail&apos;,&apos;openmail&apos;)" onmouseout="TipsOut()" />
+		<Panel id="MailPanel" hittest="false">
+			<Label id="MailTop" text="#mail" />
+			<Panel class="CloseMail" onmouseactivate="closeButton()" />
+			<Panel id="MailContainer">
+				<Panel id="LeftSide" />
+				<Panel id="LeftSideBack" hittest="false" />
+				<Panel id="RightSide" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

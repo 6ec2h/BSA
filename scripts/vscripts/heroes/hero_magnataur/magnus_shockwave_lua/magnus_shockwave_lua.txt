@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+	"magnus_shockwave_lua"
+	{	
+		"BaseClass"						            "ability_lua"
+		"ScriptFile"		                        "heroes/hero_magnataur/magnus_shockwave_lua/magnus_shockwave_lua"
+		"AbilityTextureName"                        "magnataur_shockwave"
+		"AbilityBehavior"					        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"				        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				        "DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"				        "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"					        "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCooldown"					        "16 15 14 13"
+		"AbilityCastRange"					        "700"
+		"MaxLevel"									"4"
+		"AbilityManaCost"							"70 80 90 100"
+
+		"AbilityValues"
+	{
+		"damage"	"50 100 150 200"
+			"line"	"1 2 3 4"
+			"lines_travel_speed"	"1700"
+			"travel_distance"	"700"
+			"lines_starting_width"	"130"
+			"lines_end_width"	"130"
+	}
+	}	
+}

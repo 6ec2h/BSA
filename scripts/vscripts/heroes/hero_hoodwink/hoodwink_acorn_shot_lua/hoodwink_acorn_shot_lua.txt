@@ -1,0 +1,45 @@
+"DOTAAbilities"
+{
+	"hoodwink_acorn_shot_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_hoodwink/hoodwink_acorn_shot_lua/hoodwink_acorn_shot_lua"
+		"AbilityTextureName"			"hoodwink_acorn_shot"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"575"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCharges"				"2"
+		"AbilityChargeRestoreTime"		"18 16 14 12"
+		"AbilityManaCost"				"75 85 95 105"
+
+		"AbilityValues"
+		{
+			"bonus_range"			"100 125 150 175"
+			"bonus_damage"			
+				{
+				"value"					"40 80 120 160"
+				"LinkedSpecialBonus"	"npc_dota_hero_hoodwink_1"
+				}
+			"projectile_speed"		"2000"
+			"bounce_count"
+				{
+				"value"					"4"
+				"LinkedSpecialBonus"	"npc_dota_hero_hoodwink_3"
+				}
+			"bounce_range"			"525"
+			"debuff_duration"		"0.25"
+			"slow"					"100"
+			"bounce_delay"			"0.1"
+		}
+	}
+}

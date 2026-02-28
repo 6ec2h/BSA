@@ -1,0 +1,20 @@
+"DOTAAbilities"
+{
+	"wraith_king_sceleton"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_skeleton/wraith_king_sceleton/wraith_king_sceleton"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"acid"
+
+		"AbilityValues"
+		{
+			"bonus"							"2 4 6 8"
+			"stack_bonus"					
+			{
+				"value"						"0.2 0.3 0.4 0.5"
+				"LinkedSpecialBonus"		"special_bonus_skeleton_king_tal1"
+			}
+		}
+	}
+}

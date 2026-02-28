@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+
+"boss_lich_frost_blast_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/lich/boss_lich_frost_blast_lua"
+		"AbilityTextureName"			"lich_frost_blast"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+		"AbilityDuration"				"4.0"
+
+		"AbilityCooldown"				"7.0"
+		"AbilityManaCost"				"125 150 170 190"
+
+		"AbilityValues"
+		{
+				"radius"				"200"
+				"slow_movement_speed"	"-30"
+				"slow_attack_speed"		"-30"
+				"aoe_damage"			"50"
+		}
+	}
+	
+"boss_lich_chain_frost_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/lich/boss_lich_chain_frost_lua"
+		"AbilityTextureName"			"lich_chain_frost_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+				"damage"				"40"
+				"jumps"					"100"
+				"jump_range"			"700"
+				"slow_movement_speed"	"-30"
+				"slow_attack_speed"		"-50"
+				"slow_duration"			"2.5"
+				"projectile_speed"		"1200"
+				"vision_radius"			"800"		
+		}
+	}
+}

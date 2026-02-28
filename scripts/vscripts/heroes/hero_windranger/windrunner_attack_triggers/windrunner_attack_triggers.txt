@@ -1,0 +1,39 @@
+"DOTAAbilities"
+{
+	  "windrunner_attack_triggers"
+    {
+        "BaseClass"						"ability_datadriven"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName" 			"windrunner_ult"
+        "MaxLevel"                      "4"
+        "AbilityValues"
+	{
+		"chance"	"12 14 16 18"
+			"mana_prc"	"10 20 30 40"
+	}
+        "Modifiers"
+        {
+            "modifier_windrunner_attack_triggers"
+            {
+                "Passive"				"1"
+                "IsHidden"				"1"
+                "OnAttack"
+                {
+                    "Random"
+                    {
+                        "Chance"		"%chance"
+                        "OnSuccess"
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"	"heroes/hero_windranger/windrunner_attack_triggers/windrunner_attack_triggers"
+                                "Function"		"WindRunner"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

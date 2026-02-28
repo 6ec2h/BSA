@@ -1,0 +1,45 @@
+"DOTAAbilities"
+{
+"anakim_wisp"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_anakim/anakim_wisp/anakim_wisp"
+		"AbilityTextureName"			"anakim_wisp"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"800"
+
+		"AbilityValues"
+		{	
+			"soul_defense"			
+			{
+				"value"					"30 60 90 120"
+				"LinkedSpecialBonus"	"special_bonus_anakim_tal3"
+			}
+			"soul_damage"
+			{
+				"value"							"10"
+				"special_bonus_anakim_tal5"		"+5"
+			}
+			"soul_ampl"
+			{
+				"value"							"4"
+				"special_bonus_anakim_tal5"		"+2"
+			}
+			"kills"
+			{
+				"value"					"2"
+				"LinkedSpecialBonus"	"special_bonus_anakim_tal4"
+			}
+			"max_souls"				
+			{
+				"value"					"4 5 6 7"
+				"LinkedSpecialBonus"	"special_bonus_anakim_tal6"
+			}
+			"min_range"				"100"
+		}
+	}
+}	

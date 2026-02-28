@@ -1,0 +1,401 @@
+/* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
+
+.blacksmith_root
+{
+	height: 100%;
+	width: 100%;
+}
+
+#blacksmith_panel_main
+{
+	height: 560px;
+	width: 700px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#blacksmith_close
+{
+	height: 20px;
+	width: 20px;
+	vertical-align: top;
+	horizontal-align: right;
+	margin: 16px;
+	background-image: url("s2r://panorama/images/custom_game/closeicon_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#blacksmith_close:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+#blacksmith_close:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.BlacksmithInventoryMain
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom:20px;
+	background-color: rgba(0, 0, 0, 0.61);
+}
+
+.BlacksmithInventorySlots
+{
+	width: 480px;
+	vertical-align: bottom;
+	margin: 5px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.inventory_slot
+{
+	width: 45px;
+	height: 45px;
+	background-color: black;
+	margin: 1px;
+}
+
+.item_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#blacksmith_select_panel
+{
+	horizontal-align: center;
+	vertical-align: top;
+	height: 310px;
+	width:590px;
+	margin-top:50px;
+	background-color: rgba(0, 0, 0, 0.61);
+	padding:15px;
+}
+
+#blacksmith_target
+{
+	horizontal-align: left;
+	vertical-align:center;
+}
+
+#blacksmith_result
+{
+	horizontal-align: right;
+	vertical-align:center;
+}
+
+.blacksmith_up_panel
+{
+	height: 280px;
+	width: 200px;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	padding: 5px;
+	flow-children:down;
+}
+
+.blacksmith_up_panel:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	box-shadow: 0px 0px 2px 0px #979c1c;
+}
+
+.blacksmith_up_panel_name
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: white;
+}
+
+.blacksmith_up_panel_image
+{
+	height:80px;
+	width:80px;
+	horizontal-align: center;
+	margin-top:5px;
+}
+
+.blacksmith_up_panel_image_back
+{
+	height:80px;
+	width:80px;
+	horizontal-align: center;
+	margin-top:-80px;
+}
+
+.blacksmith_up_panel_base
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: gold;
+	margin-top: 5px;
+}
+
+.blacksmith_up_panel_bonus
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 5px;
+	width: 100%;
+	flow-children: down;
+}
+
+#SourceValueLine
+{
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
+	width: 100%;
+	horizontal-align: center;
+	height: 5px;
+	margin-bottom:5px;
+}
+
+.bonus_label
+{
+	text-align: center;
+	color: #00f704;
+	width:100%;
+	font-size: 14px;
+	text-overflow: shrink;
+}
+
+#blacksmith_description
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.blacksmith_up_panel_desc
+{
+	flow-children: down;
+}
+
+#blacksmith_up_panel_desc_label_chance
+{
+	horizontal-align: center;
+	text-align: center;
+	font-size: 18px;
+	color: gold;
+}
+
+#blacksmith_up_panel_price,#blacksmith_up_panel_dust_price
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#blacksmith_up_panel_price_image
+{
+	height: 45px;
+	width: 45px;
+	vertical-align: center;
+}
+
+#blacksmith_up_panel_price_dust_label
+{
+	vertical-align:center;
+	margin-left: 5px;
+	font-size: 24px;
+	font-weight: bold;
+	color: white;
+}
+
+#blacksmith_up_panel_price_label
+{
+	vertical-align:center;
+	margin-left: 5px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #da3917;
+}
+
+#blacksmith_up_panel_desc_button
+{
+	horizontal-align: center;
+	background-image:url("s2r://panorama/images/custom_game/acc/yes_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 100px;
+	height: 40px;
+}
+
+#blacksmith_up_panel_desc_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+#blacksmith_up_panel_desc_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: white;
+	font-weight: bold;
+}
+
+#blacksmith_up_panel_desc_loading
+{
+	horizontal-align: center;
+	background-image:url("s2r://panorama/images/elements/loading_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 40px;
+	height: 40px;
+	margin-top: -40px;
+	animation-name: spin;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes 'spin'
+{
+	0%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(-180deg);
+	}
+	
+}
+
+#blacksmith_errors_label
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 190px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.item_drop_effect
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+#blacksmith_description_text
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: white;
+	font-size: 30px;
+}
+
+#DustPanel
+{
+	flow-children: right;
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: 10px;
+	margin-bottom: 15px;
+}
+
+#DustPanelImage
+{
+	vertical-align:center;
+	width: 40px;
+	height: 40px;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#DustPaneLabel
+{
+	vertical-align: center;
+	color: white;
+	font-weight: bold;
+}
+
+.equipped_item_shadow_level_1
+{
+	box-shadow: inset #b0c3d9d0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_2
+{
+	box-shadow: inset #b0c3d9c9 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_3
+{
+	box-shadow: inset #5e97d9c5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_4
+{
+	box-shadow: inset #5e97d9cb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_5
+{
+	box-shadow: inset #4b69ffd5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_6
+{
+	box-shadow: inset #4b69ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_7
+{
+	box-shadow: inset #8747ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_8
+{
+	box-shadow: inset #8747ffd0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_9
+{
+	box-shadow: inset #d32ce6cc 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_10
+{
+	box-shadow: inset #e4ae39de 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_11
+{
+	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
+}
+

@@ -1,0 +1,246 @@
+"DOTAAbilities"
+{
+
+"dado_field"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_dado/dado_field"
+		"AbilityTextureName" 					"ul"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		
+		"AbilityCastPoint"						"0.3"
+		"AbilityCharges"						"1 2 3"
+		"AbilityChargeRestoreTime"				"90"
+		"AbilityCastRange"						"700"
+
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilityValues"
+		{
+			"radius"						"50"
+			"dot_interval"					"0.2"
+			"dot_damage"
+				{
+					"value"					"20 40 60"
+					"LinkedSpecialBonus"	"special_bonus_dado_tal4"
+				}	
+			"duration"						"5"
+			"maxradius"						"400"
+			"dot_damage_max"				
+				{
+					"value"					"60 120 180"
+					"LinkedSpecialBonus"	"special_bonus_dado_tal4"
+				}	
+			"duration_da"					"5"
+			"max_mana_cost"		        	"33.3"
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+	
+"dado_tp_passive"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_dado/tp_passive.lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+
+	
+"Dado_passivka"
+{
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityTextureName"			"passi"
+	"MaxLevel"						"1"
+		"precache"
+	{
+		"particle"			"particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
+	}
+	
+	"AbilityValues"
+	{
+		"attack_spill_range"	"200"
+		"attack_spill_width"	"360"
+	}
+	"OnProjectileHitUnit"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_dado/dado_passive.lua"
+			"Function"		"DealDamage"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_psi_blades"
+		{
+			"Passive"	"1"
+			"IsHidden"	"1"
+			
+			"OnAttackLanded"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_dado/dado_passive.lua"
+					"Function"		"CheckAngles"
+					"particle"		"particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
+					"damage"		"%attack_damage"
+				}
+			}
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"-100"
+			}
+		}
+	}
+}
+
+ "dado_ampl"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_dado/dado_ampl.lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "backpas"
+		"AbilityValues"
+		{
+			"attack_spill"
+				{
+					"value"					"0.1"
+					"LinkedSpecialBonus"	"special_bonus_dado_tal3"
+				}	
+			"attack_life"
+				{
+					"value"					"11 9 7 5"
+					"LinkedSpecialBonus"	"special_bonus_dado_tal8"
+				}			
+		}
+    }
+	
+"dado_storm_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dado/blast.lua"
+		"AbilityTextureName"			"blast"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"	"particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf"
+		}
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"22 18 14 10"
+		
+		"AbilityValues"
+		{
+			"jump_count"			"4 6 8 10"
+			"radius"				"475"
+			"jump_delay"			"0.15"
+			"dmg"
+				{
+					"value"					"0.1"
+					"LinkedSpecialBonus"	"special_bonus_dado_tal7"
+				}
+			"max_mana_cost"		    "20"
+		}
+	}
+	
+	
+"dado_tp"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dado/tp_in.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"portal"
+		"AbilityCastRange"				"700"
+		"FightRecapLevel"				"1"
+		"LinkedAbility"					"dado_tp_vixod"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"60"
+		"AbilityDuration"				"60 120 180 240"
+		"AbilityManaCost"				"150"		
+
+		"AbilityValues"
+		{
+			"dur"
+				{
+					"value"					"60 120 180 240"
+					"LinkedSpecialBonus"	"special_bonus_dado_tal5"
+				}	
+			"mana"					
+				{
+					"value"					"200 400 600 800"
+					"LinkedSpecialBonus"	"special_bonus_dado_tal6"
+				}	
+		}
+	}
+	
+"dado_tp_vixod"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dado/tp_out.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"				"0"
+		"AbilityTextureName"			"portal2"
+		"AbilityCastRange"				"100"
+		"MaxLevel"						"0"
+		"LinkedAbility"					"dado_tp"
+		"AbilityDraftPreAbility"		"dado_tp"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"150"		
+	}
+			
+"dado_off"
+{
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"FightRecapLevel"				"1"
+	"AbilityTextureName"			"portaloff"
+	"AbilityCastPoint"				"0.2"
+
+	"AbilityValues"
+	{
+		
+	}
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"	"Hero_Enigma.Midnight_Pulse"
+			"Target" 		"CASTER"
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_dado/tp.lua"
+			"Function"		"Kill"
+		}
+	
+	}
+}
+
+}

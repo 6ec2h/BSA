@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+"shaman_wards_custom"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"					"heroes/hero_shaman/shaman_wards/shaman_wards"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT |DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
+		"AbilityCastRange"				"500"
+		"MaxLevel"						"3"
+		"AbilityCooldown"				"100 80 60"
+		
+		"AbilityManaCost"				"200 350 500"
+		
+		"AbilityValues"
+		{
+			"count"						
+			{
+				"value"					"3 6 9"
+				"LinkedSpecialBonus"	"special_bonus_shadow_shaman_7"
+			}	
+			"duration"					"20"
+			"dmg_per_int"				
+			{
+				"value"					"0.5 1.0 1.5"
+				"LinkedSpecialBonus"	"special_bonus_shadow_shaman_8"
+			}	
+			"as_per_agi"
+			{
+				"value"					"0.5 1.0 1.5"
+				"LinkedSpecialBonus"	"special_bonus_shadow_shaman_8"
+			}					
+		}
+	}
+}

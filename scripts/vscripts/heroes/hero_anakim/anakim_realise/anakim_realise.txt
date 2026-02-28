@@ -1,0 +1,31 @@
+"DOTAAbilities"
+{
+"anakim_realise"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_anakim/anakim_realise/anakim_realise"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"anakim_realise"
+		"MaxLevel"						"3"
+		"AbilityCastRange"				"700"
+		"AbilityManaCost"				"200 300 400"
+		"AbilityCooldown"				"10"
+
+		"AbilityValues"
+		{
+			"damage"				
+			{
+				"value"					"50 75 100"
+				"LinkedSpecialBonus"	"special_bonus_anakim_tal7"
+			}
+			"stack_damage"			"25 50 75"
+			"delay"					"0.2"
+		}
+	}
+}	

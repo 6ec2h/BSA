@@ -1,0 +1,23 @@
+"DOTAAbilities"
+{
+	"phantom_assassin_blur_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom/phantom_assassin_blur_lua/phantom_assassin_blur_lua"
+		"AbilityTextureName"			"phantom_assassin_blur"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"60 80 100 120"
+
+		"AbilityValues"
+		{
+			"bonus_evasion"				"15 20 25 30"
+			"radius"					"700"
+			"duration"					"3"
+		}
+	}
+}
+

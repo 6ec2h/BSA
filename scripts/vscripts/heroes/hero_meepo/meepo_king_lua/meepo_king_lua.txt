@@ -1,0 +1,20 @@
+"DOTAAbilities"
+{
+	"meepo_king_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_meepo/meepo_king_lua/meepo_king_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"meepo"
+		"AbilityCastAnimation"			"ACT_INVALID"
+
+		"AbilityValues"
+	{
+		"bonus_exp"	"5 10 15"
+			"bonus_dmg"	"15 25 35"
+			"bonus_all"	"10 20 30"
+			"model_multiplier"	"20 35 50"
+	}
+	}
+}

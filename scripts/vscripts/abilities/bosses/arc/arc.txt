@@ -1,0 +1,112 @@
+"DOTAAbilities"
+{
+"boss_arc_flux"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/arc/boss_arc_flux"
+		"AbilityTextureName"			"arc_warden_flux"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_ArcWarden.Flux.Target"
+
+
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.2"
+		
+		"AbilityCooldown"				"12.0"
+
+		"AbilityManaCost"				"700"
+
+		"AbilityValues"
+		{
+			"duration"						"5.0"
+			"damage_per_second"				"1500"
+			"think_interval"				"0.5"
+			"move_speed_slow_pct"			"50"
+		}
+	}
+
+
+"boss_arc_magnetic_field"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/arc/boss_arc_magnetic_field"
+		"AbilityTextureName"			"arc_warden_magnetic_field"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_ArcWarden.MagneticField.Cast"
+
+		"AbilityCastAnimation"			"ACT_DOTA_AW_MAGNETIC_FIELD"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"500"
+		
+
+		"AbilityValues"
+		{
+			"radius"					"300"
+			"duration"					"5"
+			"evasion_chance"			"100"
+		}
+	}
+		
+
+"boss_arc_spark_wraith"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/arc/boss_arc_spark_wraith"
+		"AbilityTextureName"			"arc_warden_spark_wraith"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_ArcWarden.SparkWraith.Activate"
+		"AbilityCastRange"				"1200"	
+		"AbilityCooldown"				"4.0"
+
+		"AbilityManaCost"				"400"
+
+		"AbilityValues"
+		{
+				"radius"						"375"
+				"activation_delay"				"1.0"
+				"duration"						"4"
+				"wraith_speed"					"300"
+				"spark_damage"					"2000"
+				"tick"							"0.2"
+				"move_speed_slow_pct"			"100"
+				"count"							"5"
+		}
+	}
+	
+"boss_arc_hide_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/arc/boss_arc_hide_lua"
+		"AbilityTextureName"			"arc_warden_spark_wraith"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"1200"	
+		"AbilityCooldown"				"9"
+
+		"AbilityValues"
+		{
+			"radius"	"375"
+			"duration"	"2"
+		}
+	}			
+}

@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+    "weaver_shukuchi_custom"
+	{
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_weaver/weaver_shukuchi_custom/weaver_shukuchi_custom"
+		"AbilityTextureName"			"weaver_shukuchi"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Weaver.Shukuchi"
+		"HasShardUpgrade"				"1"
+		"AbilityCastPoint"				"0 0 0 0"
+		"AbilityManaCost"				"60"
+        "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityValues"
+		{
+			"damage"				
+			{
+				"value"										"100 130 160 190"
+				"special_bonus_unique_weaver_1"				"+55"
+			}
+			"speed"					"200 230 260 290"
+			"radius"				
+			{
+				"value"		"175 175 175 175"
+				"affected_by_aoe_increase"	"1"
+			}
+			"fade_time"				"0.25"
+			"duration"				"4.0 4.0 4.0 4.0"
+			"AbilityCooldown"
+			{
+				"value"								"15 12 9 6"
+				"special_bonus_unique_weaver_6"		"-2.5"
+			}
+			"geminate_attack_mark_duration"
+			{
+				"value"									"0"
+				"special_bonus_shard"					"+4.6"
+			}
+			"shukuchi_attack_mark_radius"
+			{
+				"value"									"0"
+				"affected_by_aoe_increase"				"1"
+				"special_bonus_shard"					"+1200"
+			}
+			"shukuchi_attack_delay"
+			{
+				"value"									"0"
+				"special_bonus_shard"					"+0.2"
+			}
+		}
+	}
+}

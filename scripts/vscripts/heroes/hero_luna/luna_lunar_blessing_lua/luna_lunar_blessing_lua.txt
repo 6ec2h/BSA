@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+	"special_bonus_unique_luna_1"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"luna_lunar_blessing_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_luna/luna_lunar_blessing_lua/luna_lunar_blessing_lua"
+		"AbilityTextureName"			"luna_lunar_blessing"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+			"radius"					"700"
+			"attributes_pct"			"10 15 20 25"
+			"bonus_night_vision"		"700"
+		}
+	}
+}
