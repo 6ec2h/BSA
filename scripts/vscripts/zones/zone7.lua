@@ -60,30 +60,3 @@ function spawn_creeps()
     rules:clear_zone('dust_', 1, 27)
     rules:clear_zone('dust_quest_', 1, 7)
 end
- )), true, nil, nil, DOTA_TEAM_NEUTRALS)
-						rules:aura_dif(unit,random_ability)
-					elseif i == 5 then 
-						local unit = CreateUnitByName("encha", point + RandomVector( RandomInt( 200, 200 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
-						rules:aura_dif(unit,random_ability)				
-					else
-						local unit = CreateUnitByName("treant", point + RandomVector( RandomInt( 200, 200 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
-						rules:aura_dif(unit,random_ability)
-					end		
-				end	
-			end
-			return 0.1
-		else
-			return nil
-		end
-	end)
-				
-	if _G.Game_Difficulty >= 12 then
-		Timers:CreateTimer(3, function()
-			Notifications:TopToAll({text="#usilenie", duration=3})
-			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
-			rules:updateExtraAbility("creeps", random_ability)
-		end)
-	end
-	
-	rules:clear_zone('for', 25)
-end

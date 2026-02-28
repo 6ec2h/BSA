@@ -28,22 +28,3 @@ function NeutralThink()
         end
 	return 0.3
 end
-ntity:FaceTowards(point)
-	end
-	return 1
-	
-end
-
-function AttackMove( unit, enemy )
-    if enemy == nil then
-        return
-    end
-    ExecuteOrderFromTable({
-        UnitIndex = unit:entindex(),       
-        OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,   
-        Position = enemy:GetOrigin(),         
-        Queue = false,
-    })
-
-    return 0.3
-end

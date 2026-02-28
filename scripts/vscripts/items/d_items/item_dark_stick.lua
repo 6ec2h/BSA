@@ -151,31 +151,4 @@ end
 
 function modifier_item_dark_stick_debuff:IsPurgable()
 	return false
-endion modifier_item_dark_stick:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
-
-function modifier_item_dark_stick:IsAuraActiveOnDeath()
-	return false
-end
-
-function modifier_item_dark_stick:GetAuraEntityReject( hEntity )
-	if IsServer() then
-		if hEntity==self:GetCaster() then return true end
-	end
-	return false
-end
-
------------------------------------------------------------
------------------------------------------------------------
------------------------------------------------------------
-
-modifier_item_dark_stick_debuff = class({})
-
-function modifier_item_dark_stick_debuff:IsHidden()
-	return true
-end
-
-function modifier_item_dark_stick_debuff:IsPurgable()
-	return false
 end

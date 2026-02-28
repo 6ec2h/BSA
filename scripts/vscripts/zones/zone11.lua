@@ -102,9 +102,4 @@ function teleport(event)
         end
         return nil
     end)
-endoAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
-			rules:updateExtraAbility("creeps", random_ability)
-		end)
-	end	
-	rules:clear_zone('zone_12_', 20)
 end

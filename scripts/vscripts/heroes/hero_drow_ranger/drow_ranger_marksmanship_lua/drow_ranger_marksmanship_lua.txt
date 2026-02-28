@@ -9,36 +9,4 @@
 	}
 
 	
-}ow_ranger_marksmanship_lua"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_marksmanship_lua/drow_ranger_marksmanship_lua"
-		"AbilityTextureName"			"drow_ranger_marksmanship"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"3"
-
-		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		
-		"AbilityValues"
-		{
-			"aura_radius"					"700"
-			"chance"						"15 25 35"
-			"bonus_damage"					"50 100 150"
-			"agility_bonus_pct"
-			{
-				"value"									"15 25 35"
-				"special_bonus_unique_drow_ranger_2" 	"+20"
-			}
-			"split_count_scepter"			"2"
-			"scepter_range"					"275"
-			"damage_reduction_scepter"		"50"
-			"disable_range"					"400"
-			"tool_disarm"					"50"
-			"agility_bonus_allies_pec"		"50"
-		}
-	}
-}	}
 }

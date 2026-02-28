@@ -404,7 +404,4 @@ function tinker_rearm_lua:PlayEffects()
 	local effect_cast = ParticleManager:CreateParticle( "particles/units/heroes/hero_tinker/tinker_rearm.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 	EmitSoundOn( "Hero_Tinker.RearmStart", self:GetCaster() )
-endnker_rearm.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-	EmitSoundOn( "Hero_Tinker.RearmStart", self:GetCaster() )
 end

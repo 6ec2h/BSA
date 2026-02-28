@@ -97,17 +97,3 @@ end
 function modifier_muerta_dead_shot_lua_slow:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
-	}
-end
-
-function modifier_muerta_dead_shot_lua_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
-function modifier_muerta_dead_shot_lua_slow:GetEffectName()
-	return "particles/units/heroes/hero_muerta/muerta_deadshot_debuff_slow.vpcf"
-end
-
-function modifier_muerta_dead_shot_lua_slow:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end

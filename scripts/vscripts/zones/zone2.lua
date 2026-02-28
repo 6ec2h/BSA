@@ -48,35 +48,4 @@ function visions(trigger)
     local ent = trigger.activator
     if not ent or not ent:IsRealHero() then return end
     ent:AddNewModifier(ent, nil, "modifier_bad_vision", {})
-endnd
-
-function visions(trigger)
-    local ent = trigger.activator
-    if not ent then
-		return
-	end
-    if ent:IsAlive() and ent:GetLevel() < 20 then
-		ent:AddNewModifier( ent, nil, "modifier_badvision", {} )
-		ent:SetDayTimeVisionRange( 450 )
-		ent:SetNightTimeVisionRange	( 450 )
-        return
-    end
-	if ent:IsAlive() and ent:GetLevel() > 20 then
-		ent:AddNewModifier( ent, nil, "modifier_badvision", {} )
-		ent:SetDayTimeVisionRange( 350 )
-		ent:SetNightTimeVisionRange	( 350 )
-        return
-    end
-	return 1
-end
-
-function visionsoff(trigger)
-    local ent = trigger.activator
-    if not ent then return end
-    if ent:IsAlive() then
-		ent:RemoveModifierByName("modifier_badvision")
-		ent:SetDayTimeVisionRange( 1100 )
-		ent:SetNightTimeVisionRange	( 1100 )
-        return
-    end
 end

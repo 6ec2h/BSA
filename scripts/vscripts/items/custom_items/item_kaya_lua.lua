@@ -66,10 +66,4 @@ end
 
 function modifier_item_kaya_lua:GetModifierMPRegenAmplify_Percentage( params )
 	return self.mana_regen_multiplier
-endy_Percentage( params )
-	return self.spell_lifesteal_amp
-end
-
-function modifier_item_kaya_lua:GetModifierMPRegenAmplify_Percentage( params )
-	return self.mana_regen_multiplier
 end

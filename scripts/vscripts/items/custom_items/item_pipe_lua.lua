@@ -139,9 +139,4 @@ end
 
 function modifier_item_pipe_aura_lua:GetModifierMagicalResistanceBonus()
 	return self.magic_resistance_aura
-endf.aura_health_regen
-end
-
-function modifier_item_pipe_aura_lua:GetModifierMagicalResistanceBonus()
-	return self.magic_resistance_aura
 end

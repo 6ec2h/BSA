@@ -360,5 +360,3 @@ function HeroBuilder:RegisterScepterOwner(hHero)
     if not hHero or not hHero:IsMainHero() then return end
     HeroBuilder.scepterOwners[hHero:GetEntityIndex()] = hHero
 end
-] = hHero
-end

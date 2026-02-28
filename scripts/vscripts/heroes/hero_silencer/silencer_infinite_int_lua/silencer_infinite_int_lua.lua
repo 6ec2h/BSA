@@ -61,19 +61,4 @@ function IsMyKilledBadGuys2(hero, params)
 	if not _G.excludedUnitsLookup[params.unit:GetUnitName()] then return false end
 
 	return true
-endg","morf",
-"npc_blob","npc_slardar_unit","npc_shaker","npc_zone_jungle_1","npc_zone_jungle_2","npc_zone_jungle_3","npc_zone_jungle_4","npc_keeper_of_the_light","miner","small_hellbear","encha","treant",
-"npc_lifestealer","batr","warlock","pudge","npc_venom_creep","demon","npc_gyro","npc_enigma","npc_sniper","npc_disruptor","cher"}
-
-function IsMyKilledBadGuys2(hero, params)
-    if params.unit:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS then
-        return false
-    end
-	local attacker = params.attacker
-	local unit_name = params.unit:GetUnitName()
-		for _,current_name in pairs(salo_creeps) do
-			if current_name == unit_name and hero == attacker then
-			return true
-		end
-	end
 end

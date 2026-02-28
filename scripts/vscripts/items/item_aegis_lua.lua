@@ -76,9 +76,4 @@ function modifier_aegis:OnDeath(keys)
 			end)
 		end
 	end
-end					self:Destroy()
-				end
-			end)
-		end
-	end
 end

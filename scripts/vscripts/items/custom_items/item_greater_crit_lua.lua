@@ -49,7 +49,4 @@ function RollPseudoRandom(base_chance, entity)
 		if base_chance >= ran then return true
 		else return false
 		end
-endce >= ran then return true
-		else return false
-		end
 end

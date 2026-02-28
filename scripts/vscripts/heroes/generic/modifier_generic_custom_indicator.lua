@@ -79,9 +79,3 @@ function modifier_generic_custom_indicator:Register( loc )
 	-- start interval
 	self:StartIntervalThink( 0.1 )
 end
-tomIndicator( loc )
-	end
-
-	-- start interval
-	self:StartIntervalThink( 0.1 )
-end

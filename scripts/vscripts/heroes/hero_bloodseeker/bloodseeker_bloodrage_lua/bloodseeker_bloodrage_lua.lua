@@ -101,27 +101,4 @@ function modifier_bloodseeker_bloodrage_lua:PlayEffects()
 	local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-endl( params.attacker, params.unit:GetMaxHealth() )
-		-- end
-	-- end
--- end
-
-
--- function modifier_bloodseeker_bloodrage_lua:Heal( target, maxhealth )
-	-- target:Heal( maxhealth*self.heal/100, self:GetParent() )
-	-- self:PlayEffects( target )
--- end
-
-function modifier_bloodseeker_bloodrage_lua:GetEffectName()
-	return "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodrage.vpcf"
-end
-
-function modifier_bloodseeker_bloodrage_lua:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_bloodseeker_bloodrage_lua:PlayEffects()
-	local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

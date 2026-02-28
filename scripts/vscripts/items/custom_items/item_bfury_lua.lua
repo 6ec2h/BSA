@@ -193,32 +193,4 @@ end
 
 function modifier_item_bfury_lua_debuff:GetModifierPhysicalArmorBonus()
 	return self.count
-endnsert( targets, unit )
-		end
-	end
-	return targets
-end
-
---------------------------------------
-
-LinkLuaModifier("modifier_item_bfury_lua_debuff", 'items/custom_items/item_bfury_lua.lua', LUA_MODIFIER_MOTION_NONE)
-
-modifier_item_bfury_lua_debuff = class({})
-
-function modifier_item_bfury_lua_debuff:IsHidden() return false end
-function modifier_item_bfury_lua_debuff:IsDebuff() return true end
-function modifier_item_bfury_lua_debuff:IsPurgable() return true end
-
-function modifier_item_bfury_lua_debuff:OnCreated(kv)
-	self.count = (self:GetAbility():GetSpecialValueFor("corruption_armor") * (-1)) / 2
-end
-
-function modifier_item_bfury_lua_debuff:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
-function modifier_item_bfury_lua_debuff:GetModifierPhysicalArmorBonus()
-	return self.count
 end

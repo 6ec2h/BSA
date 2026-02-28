@@ -70,17 +70,4 @@ function modifier_push:OnTakeDamage(params)
     if params.unit == self:GetParent() then
         self:ApplyPush(params.attacker)
     end
-endme() ~= "npc_dota_unit_undying_zombie" and not params.target:HasModifier("modifier_knockback") then	 
-		params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_knockback", {
-				center_x			= params.attacker:GetAbsOrigin()[1] + 1,
-				center_y			= params.attacker:GetAbsOrigin()[2] + 1,
-				center_z			= params.attacker:GetAbsOrigin()[3],
-				duration			= 0.4,
-				knockback_duration	= 0.4,
-				knockback_distance	= 50,
-				knockback_height	= 0,
-				should_stun			= 0
-			})
-		end	
-	end
 end

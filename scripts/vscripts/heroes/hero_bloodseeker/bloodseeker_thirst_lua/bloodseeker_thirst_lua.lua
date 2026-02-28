@@ -157,34 +157,3 @@ function modifier_bloodseeker_thirst_lua_speed:GetModifierMoveSpeedBonus_Percent
 	end
 	return self.ms
 end
-nd
-
-function modifier_bloodseeker_thirst_lua_speed:IsDebuff()
-	return false
-end
-
-function modifier_bloodseeker_thirst_lua_speed:IsPurgable()
-	return false
-end
-
-function modifier_bloodseeker_thirst_lua_speed:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-
-function modifier_bloodseeker_thirst_lua_speed:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-	return funcs
-end
-
-function modifier_bloodseeker_thirst_lua_speed:GetModifierMoveSpeedBonus_Percentage()
-	self.ms = self:GetAbility():GetSpecialValueFor( "bonus_movespeed" )
-	local tal = self:GetCaster():FindAbilityByName("special_bonus_bloodseeker_1")
-	if tal and tal:GetLevel() > 0 then
-		self.ms = self.ms + 3
-		return self.ms
-	end
-	return self.ms
-end

@@ -122,7 +122,4 @@ function modifier_players_summary:OnDeath(data)
 	if not attacker or not attacker:IsRealHero() then return end
 	
 	PlayersSummary:HandleKill(attacker:GetPlayerOwnerID())
-endn return end
-	
-	PlayersSummary:HandleKill(attacker:GetPlayerOwnerID())
 end

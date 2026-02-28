@@ -103,5 +103,4 @@ end
 
 function modifier_desolator_golden:HandleCustomTransmitterData( data )
 	self.armor_reduction = data.armor_reduction
-endta.armor_reduction
 end

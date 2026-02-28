@@ -231,16 +231,3 @@ function GreavesActivate(caster, ability, heal_amount, mana_amount, heal_radius,
 	end
 end
 
-ero() then
-			particle_target = particle_name_hero
-		end
-
-		local target_pfx = ParticleManager:CreateParticle(particle_target, PATTACH_ABSORIGIN_FOLLOW, ally)
-		ParticleManager:SetParticleControl(target_pfx, 0, ally:GetAbsOrigin())
-
-		ally:AddNewModifier(caster, ability, "modifier_item_guardian_greaves_lua_heal", {duration = 40})
-
-		ability:UseResources( true, false, false, true )
-	end
-end
-

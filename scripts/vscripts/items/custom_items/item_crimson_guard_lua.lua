@@ -98,8 +98,4 @@ function modifier_item_crimson_guard_lua:GetModifierPhysical_ConstantBlock()
 	else
 		return 0
 	end
-end 	return self.block_damage
-	else
-		return 0
-	end
 end 

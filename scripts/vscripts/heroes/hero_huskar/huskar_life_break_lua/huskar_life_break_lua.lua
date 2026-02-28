@@ -244,5 +244,3 @@ end
 function modifier_huskar_life_break_lua_call:GetStatusEffectName()
 	return "particles/status_fx/status_effect_beserkers_call.vpcf"
 end
-return "particles/status_fx/status_effect_beserkers_call.vpcf"
-end

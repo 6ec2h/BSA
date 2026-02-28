@@ -198,5 +198,4 @@ end
 
 function modifier_alchemist_unstable_concoction_lua_disarm:GetModifierPhysicalArmorBonus()
 	return self.armor_reduction
-endtion
 end

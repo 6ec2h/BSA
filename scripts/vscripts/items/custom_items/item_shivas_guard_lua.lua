@@ -166,4 +166,4 @@ function modifier_item_shivas_guard_lua:GetAuraRadius()				return self.aura_radi
 function modifier_item_shivas_guard_lua:GetAuraSearchFlags()			return DOTA_UNIT_TARGET_FLAG_NONE end
 function modifier_item_shivas_guard_lua:GetAuraSearchTeam()			return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_item_shivas_guard_lua:GetAuraSearchType()			return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
-function modifier_item_shivas_guard_lua:GetModifierAura()				return "modifier_item_shivas_guard_aura_lua" end "modifier_item_shivas_guard_aura_lua" end
+function modifier_item_shivas_guard_lua:GetModifierAura()				return "modifier_item_shivas_guard_aura_lua" end

@@ -783,28 +783,3 @@ end
 function modifier_lua_abyssal_underlord_dark_rift_effect:GetModifierMagicalResistanceBonus( params )
 	return self.resist
 end
-SpecialValueFor( "resist" )
-	if not IsServer() then return end
-end
-
-
-function modifier_lua_abyssal_underlord_dark_rift_effect:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,	
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
-	}
-	return funcs
-end
-
-function modifier_lua_abyssal_underlord_dark_rift_effect:GetModifierHealthRegenPercentage( params )
-	return self.hr_regen
-end
-
-function modifier_lua_abyssal_underlord_dark_rift_effect:GetModifierPhysicalArmorBonus( params )
-	return self.armor
-end
-
-function modifier_lua_abyssal_underlord_dark_rift_effect:GetModifierMagicalResistanceBonus( params )
-	return self.resist
-end

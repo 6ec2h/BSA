@@ -114,30 +114,3 @@ function modifier_item_devastator_lua_debuff:OnRemoved()
 
 	ability:UseResources(false, false, false, true)
 end
-function modifier_item_devastator_lua_debuff:IsHidden()
-	return false
-end
-
-function modifier_item_devastator_lua_debuff:IsPurgable()
-	return false
-end
-
-function modifier_item_devastator_lua_debuff:RemoveOnDeath()	
-	return false 
-end
-
-function modifier_item_devastator_lua_debuff:GetAttributes()
-    return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_devastator_lua_debuff:GetTexture()
-    return "item_devastator"
-end
-
-function modifier_item_devastator_lua_debuff:OnRemoved()
-    if not IsServer() then return end
-
-    if self:GetAbility():IsCooldownReady() then
-        self:GetAbility():UseResources(false, false, false, true)
-    end
-end

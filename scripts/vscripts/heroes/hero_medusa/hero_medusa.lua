@@ -598,12 +598,4 @@ function modifier_medusa_split_shot_lua:GetModifierDamageOutgoing_Percentage(key
 		end
 	end
 	return self:GetStackCount()
-endSplitShotTargets()
-
-			if #targets > 1 then return end
-
-			self:SetStackCount(80)
-		end
-	end
-	return self:GetStackCount()
 end

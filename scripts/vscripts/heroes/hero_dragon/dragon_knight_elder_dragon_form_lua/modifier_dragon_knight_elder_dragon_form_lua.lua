@@ -302,5 +302,4 @@ function modifier_dragon_knight_elder_dragon_form_lua:PlayEffects()
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-endcleManager:ReleaseParticleIndex( effect_cast )
 end

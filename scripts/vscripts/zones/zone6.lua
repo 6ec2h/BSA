@@ -33,10 +33,4 @@ function spawn_creeps()
     end
 
     rules:clear_zone('sea', 1, 36)
-endndom_ability, duration=3})
-			rules:updateExtraAbility("creeps", random_ability)
-		end)
-	end
-	
-	rules:clear_zone('sea', 37)
 end

@@ -248,30 +248,4 @@ function modifier_item_mjollnir_strike:OnIntervalThink()
 		self:StartIntervalThink(-1)
 		self:Destroy()
 	end
-endParticleControlEnt(self.zap_particle, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControl(self.zap_particle, 2, Vector(1, 1, 1))
-			ParticleManager:ReleaseParticleIndex(self.zap_particle)
-		
-			self.unit_counter						= self.unit_counter + 1
-			self.current_unit						= enemy
-			self.units_affected[self.current_unit]	= true
-			self.zapped								= true
-			
-			ApplyDamage({
-				victim 			= enemy,
-				damage 			= self.chain_damage,
-				damage_type		= DAMAGE_TYPE_MAGICAL,
-				damage_flags 	= DOTA_DAMAGE_FLAG_NONE,
-				attacker 		= self:GetCaster(),
-				ability 		= self:GetAbility()
-			})
-			
-			break
-		end
-	end
-	
-	if (self.unit_counter >= self.chain_strikes and self.chain_strikes > 0) or not self.zapped then
-		self:StartIntervalThink(-1)
-		self:Destroy()
-	end
 end

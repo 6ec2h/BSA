@@ -192,5 +192,4 @@ end
 
 function modifier_item_skadi_slow_lua:GetModifierLifestealAmplify()
 	return -self.heal_reduction
-endction
 end

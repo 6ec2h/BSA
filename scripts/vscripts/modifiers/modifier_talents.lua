@@ -918,13 +918,4 @@ function modifier_bonus_agi_15:GetModifierAttackSpeedBonus_Constant()
 		return 1450
 	end
 	return 0
-endGetParent() then return end
-	self.proc = true
-end
-
-function modifier_bonus_agi_15:GetModifierAttackSpeedBonus_Constant()
-	if self.proc == false then
-		return 1450
-	end
-	return 0
 end

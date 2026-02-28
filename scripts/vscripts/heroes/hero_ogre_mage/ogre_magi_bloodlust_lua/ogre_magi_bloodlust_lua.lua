@@ -193,9 +193,4 @@ end
 
 function modifier_ogre_magi_bloodlust_lua_buff:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-endoodlust_buff.vpcf"
-end
-
-function modifier_ogre_magi_bloodlust_lua_buff:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
 end

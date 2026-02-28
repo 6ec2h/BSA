@@ -50,14 +50,4 @@ end
 
 function modifier_item_butterfly_lua:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_attack_speed
-endModifierPreAttack_BonusDamage()
-	return self.bonus_damage
-end
-
-function modifier_item_butterfly_lua:GetModifierEvasion_Constant()
-	return self.bonus_evasion
-end
-
-function modifier_item_butterfly_lua:GetModifierAttackSpeedBonus_Constant()
-	return self.bonus_attack_speed
 end

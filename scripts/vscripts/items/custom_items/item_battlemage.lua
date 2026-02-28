@@ -141,9 +141,4 @@ end
 
 function modifier_battlemage_arsenal_attack_buff:GetEffectName()
     return "particles/items5_fx/revenant_brooch.vpcf"
-endreturn "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf"
-end
-
-function modifier_battlemage_arsenal_attack_buff:GetEffectName()
-    return "particles/items5_fx/revenant_brooch.vpcf"
 end

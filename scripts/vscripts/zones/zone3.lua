@@ -87,8 +87,4 @@ function snowsheep(trigger)
 		data.completed = true
 		quest_system:RemoveQuest('main', 5, 'success')
 	end
-end_data['main'][5].goal then
-		data.completed = true
-		quest_system:RemoveQuest('main', 5, 'success')
-	end
 end

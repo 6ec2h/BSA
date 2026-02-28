@@ -29,13 +29,4 @@ function item_mana_potion:OnSpellStart()
 
 		self:SpendCharge(0)
 	end
-end/items3_fx/mango_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, Hero )
-				ParticleManager:ReleaseParticleIndex( nFXIndex )
-			end
-		end
-
-		self:SpendCharge(0)
-	end
 end
-
---------------------------------------------------------------------------------

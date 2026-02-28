@@ -99,31 +99,3 @@ function modifier_broodmother_ult:GetModifierIgnoreMovespeedLimit()
 	return 1
 end
 
-pc_sniper","npc_disruptor","cher", "npc_invoker_creep", "npc_mars_creep", "npc_phoenix_creep"}
-
----------------------------------------------------------
-
-function talent(caster)
-	local ability = caster:FindAbilityByName("special_bonus_broodmother_4")
-	if ability ~= nil and ability:GetLevel() > 0 then 
-		return 0.2
-	end
-	return 0
-end	
-
-function modifier_broodmother_ult:GetModifierBaseAttack_BonusDamage()
-	return self:GetStackCount() * (self.damage + talent(self:GetCaster())) 
-end
-
-function modifier_broodmother_ult:GetModifierConstantHealthRegen()
-	return self:GetStackCount() * (self.regen + talent(self:GetCaster())) 
-end
-
-function modifier_broodmother_ult:GetModifierMoveSpeedBonus_Constant()
-	return self:GetStackCount() * (self.ms + talent(self:GetCaster())) 
-end
-
-function modifier_broodmother_ult:GetModifierIgnoreMovespeedLimit()
-	return 1
-end
-

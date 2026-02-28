@@ -156,6 +156,4 @@ end
 
 function modifier_talisman_of_evasion:GetModifierMoveSpeedBonus_Constant( params )
 	return self.movespeed
-endan_of_evasion:GetModifierMoveSpeedBonus_Constant( params )
-	return self.movespeed
 end

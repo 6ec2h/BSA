@@ -261,10 +261,4 @@ function modifier_land_mines_explose_delay:OnDestroy()
 			end
 		end
 	end
-endhen
-				buff:SetStackCount(1)
-				buff:Destroy()
-			end
-		end
-	end
 end
