@@ -97,13 +97,4 @@ end
 
 function modifier_item_black_king_bar_lua_buff:GetModifierModelScale()
     return self.model_scale
-endurn state
-end
-
-function modifier_item_black_king_bar_lua_buff:DeclareFunctions()
-    local decFuncs = {MODIFIER_PROPERTY_MODEL_SCALE}
-end
-
-function modifier_item_black_king_bar_lua_buff:GetModifierModelScale()
-    return self.model_scale
 end

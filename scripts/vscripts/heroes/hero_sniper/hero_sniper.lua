@@ -4,6 +4,11 @@ LinkLuaModifier( "modifier_sniper_shrapnel_lua_thinker", "heroes/hero_sniper/her
 
 sniper_shrapnel_lua = class({})
 
+function sniper_shrapnel_lua:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf", context )
+end
+
 function sniper_shrapnel_lua:GetIntrinsicModifierName()
 	return "modifier_sniper_shrapnel_lua_charges"
 end
@@ -247,6 +252,11 @@ LinkLuaModifier( "modifier_sniper_granade_debuff" , "heroes/hero_sniper/hero_sni
 
 sniper_granade = class({})
 
+function sniper_granade:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_gob_squad/rocket_blast.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_gob_squad/rocket_blast_explosion.vpcf", context )
+end
+
 function sniper_granade:GetCastRange(location, target)
     return self.BaseClass.GetCastRange(self, location, target)
 end
@@ -299,7 +309,7 @@ function sniper_granade:OnProjectileHit( target, vLocation )
         local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_gob_squad/rocket_blast_explosion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, target)
         ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin()+Vector(0,0,75))
         ParticleManager:SetParticleControl(particle, 1, Vector(300,0,0))
-        target:EmitSound("Hero_Techies.LandMine.Detonate")
+        target:EmitSound("Hero_Techies.RemoteMine.Detonate")
         AddFOWViewer( self:GetCaster():GetTeamNumber(), target:GetAbsOrigin(), 300, 1, false )
         local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
         for i,unit in ipairs(units) do
@@ -353,7 +363,7 @@ end
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+
 LinkLuaModifier( "modifier_sniper_headshot_lua", "heroes/hero_sniper/hero_sniper", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_sniper_headshot_lua_slow", "heroes/hero_sniper/hero_sniper", LUA_MODIFIER_MOTION_NONE )
 
@@ -424,7 +434,7 @@ function modifier_sniper_headshot_lua:OnTakeDamage(keys)
 						victim 			= enemy,
 						damage 			= keys.damage,
 						damage_type		= DAMAGE_TYPE_PURE,
-						damage_flags 	= DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+						damage_flags 	= DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 						attacker 		= self:GetParent(),
 						ability 		= self:GetAbility()
 					})
@@ -488,11 +498,14 @@ end
 
 -----------------------------------------------------------------
 -----------------------------------------------------------------
------------------------------------------------------------------
 
 LinkLuaModifier("modifier_sniper_ult", "heroes/hero_sniper/hero_sniper", LUA_MODIFIER_MOTION_NONE)
 
 sniper_ult = class({})
+
+function sniper_ult:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_cast.vpcf", context )
+end
 
 function sniper_ult:GetAbilityTextureName()
 	return "sniper_assassinate"

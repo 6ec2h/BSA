@@ -49,7 +49,7 @@ function UpdateBuffs(panel, isBuffs) {
 		}
 
 		for (let i = 0; i < BUFF_LIST_INITIAL_CHILDRENS; i++) {
-			if (buffSerialsToUse[i]) {
+			if (buffSerialsToUse[i] != null) {
 				panel._childrens[i].SetHasClass("Hidden", false);
 				UpdateBuffPanel(panel._childrens[i], selectedUnit, buffSerialsToUse[i]);
 			} else {

@@ -1,1283 +1,169 @@
 /* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
 
-.Guild_menu_root
+.root Label
 {
-	height:100%;
-	z-index: 1;
-	width:100%;
-	color: white;
+	font-family: "Radiance";
 }
 
-.CloseGuild
-{
-	vertical-align: top;
-	horizontal-align:right;
-	margin: 5px;
-	background-image: url("s2r://panorama/images/custom_game/closeicon.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	width:20px;
-	height:20px;
-}
-
-.CloseGuild2
-{
-	vertical-align: center;
-	horizontal-align:right;
-	margin: 5px;
-	background-image: url("s2r://panorama/images/custom_game/closeicon.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	width:20px;
-	height:20px;
-}
-
-.CloseGuild:active
-{
-	sound: "ui_custom_lobby_dialog_slide";
-}
-
-.CloseGuild:hover
-{
-	sound: "ui_select_arrow";
-}
-
-#Guild_menu_open_button
+.root > .open
 {
 	width: 30px;
 	height: 30px;
-	margin-left: 290px;
-	background-image: url("s2r://panorama/images/guild/guild_icon_png.vtex");
+	margin: 10px 0 0 290px;
+	background-image: url("s2r://panorama/images/guild/open_menu_png.vtex");
 	background-repeat: no-repeat;
 	background-size: 100%;
-	margin-top:10px;
 	tooltip-position: bottom;
 }
 
-#Guild_menu_open_button:active
+.root > .open:active
 {
 	sound: "ui_chat_slide_in";
 }
 
-#Guild_menu_container
+.root > .main-layer
 {
-	height:800px;
-	width:1800px;
-	vertical-align:center;
-	horizontal-align:center;
-	margin-bottom: 120px;
-}
-
-#Guild_panel_icon
-{
-	height:72px;
-	width:1010px;
-	margin-top: -17px;
-	margin-left: -5px;
-	horizontal-align:center;
-	background-image: url("s2r://panorama/images/guild/portrait_hero_badge_frame_tier_1_psd_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	z-index:10;
-}
-
-#Guild_menu_content
-{
-	height:850px;
-	width:1000px;
-	background-image: url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color:black;
-	vertical-align:center;
-	horizontal-align:center;
-}
-
-#Guild_menu_content_top
-{
-	height:550px;
 	width: 100%;
+	height: 100%;
 }
 
-#Guild_menu_content_top_left
+.root > .top-layer
 {
-	height:270px;
-	width: 340px;
+	width: 100%;
+	height: 100%;
 }
 
-#Guild_menu_member_buy_slots
+.root > .top-layer > .blank
 {
-	height:50px;
-	width: 150px;
-	margin-left:10px;
-	margin-top: 280px;
+	width: 100%;
+	height: 100%;
+}
+
+.root > .top-layer > .blank.modal-layer
+{
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+.root > .top-layer > .blank > .modal
+{
+	align: center center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1px solid #3a4a5a;
+	border-radius: 8px;
+}
+
+.root > .top-layer > .blank > .context-menu,.root > .top-layer > .blank .sub-menu-options
+{
+	min-width: 250px;
+	min-height: 2px;
+	flow-children: down;
+	padding: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(20, 30, 45)), to(rgb(15, 22, 35)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 10px;
+}
+
+.root > .top-layer > .blank > .context-menu > Button,.root > .top-layer > .blank > .context-menu > Panel,.root > .top-layer > .blank .sub-menu-options > Button,.root > .top-layer > .blank .sub-menu-options > Panel
+{
 	flow-children: right;
-	background-image: url("s2r://panorama/images/guild/buy_button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
+	width: 100%;
+	height: 36px;
+	padding: 4px;
 }
 
-#Guild_menu_member_buy_slots:hover
+.root > .top-layer > .blank > .context-menu > Button:hover,.root > .top-layer > .blank > .context-menu > Panel:hover,.root > .top-layer > .blank .sub-menu-options > Button:hover,.root > .top-layer > .blank .sub-menu-options > Panel:hover
 {
-	brightness: 1.8;
-	sound: "ui_select_arrow";
+	background-color: rgba(100, 181, 246, 0.1);
+	border-radius: 4px;
 }
 
-#Guild_menu_reset
+.root > .top-layer > .blank > .context-menu > Button.disabled,.root > .top-layer > .blank > .context-menu > Panel.disabled,.root > .top-layer > .blank .sub-menu-options > Button.disabled,.root > .top-layer > .blank .sub-menu-options > Panel.disabled
 {
-	height:50px;
-	width: 150px;
-	margin-left:170px;
-	margin-top: 280px;
-	flow-children: right;
-	background-image: url("s2r://panorama/images/guild/buy_button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
+	opacity: 0.2;
 }
 
-#Guild_menu_reset:hover
+.root > .top-layer > .blank > .context-menu > Button.checked > .box > .filler,.root > .top-layer > .blank > .context-menu > Panel.checked > .box > .filler,.root > .top-layer > .blank .sub-menu-options > Button.checked > .box > .filler,.root > .top-layer > .blank .sub-menu-options > Panel.checked > .box > .filler
 {
-	brightness: 1.8;
-	sound: "ui_select_arrow";
+	background-color: #eee;
 }
 
-.buy_slots_image
+.root > .top-layer > .blank > .context-menu > Button > .box,.root > .top-layer > .blank > .context-menu > Panel > .box,.root > .top-layer > .blank .sub-menu-options > Button > .box,.root > .top-layer > .blank .sub-menu-options > Panel > .box
 {
-	height:50px;
-	width:50px;
 	vertical-align: center;
-	horizontal-align: center;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 3px 0px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(20, 30, 45)), to(rgb(15, 22, 35)));
+	border: 1px solid rgba(60, 80, 110, 0.8);
+	border-radius: 4px;
 }
 
-.buy_slots_image_gem
+.root > .top-layer > .blank > .context-menu > Button > .box > .filler,.root > .top-layer > .blank > .context-menu > Panel > .box > .filler,.root > .top-layer > .blank .sub-menu-options > Button > .box > .filler,.root > .top-layer > .blank .sub-menu-options > Panel > .box > .filler
 {
-	height:20px;
-	width:25px;
+	width: 100%;
+	height: 100%;
+	margin: 4px;
+}
+
+.root > .top-layer > .blank > .context-menu > Button > .icon,.root > .top-layer > .blank > .context-menu > Panel > .icon,.root > .top-layer > .blank .sub-menu-options > Button > .icon,.root > .top-layer > .blank .sub-menu-options > Panel > .icon
+{
 	vertical-align: center;
-	margin-left: 20px;
+	margin: 4px 0px;
+	width: height-percentage(100%);
+	height: 100%;
 }
 
-.buy_slots_text
+.root > .top-layer > .blank > .context-menu > Button > .label,.root > .top-layer > .blank > .context-menu > Panel > .label,.root > .top-layer > .blank .sub-menu-options > Button > .label,.root > .top-layer > .blank .sub-menu-options > Panel > .label
 {
-	width:50px;
-	horizontal-align: right;
-	vertical-align:center;
-	font-weight: bold;
-	font-size: 24px;
-}
-
-#members_count
-{
-	height:50px;
-	width: 150px;
-	horizontal-align:center;
-	vertical-align:bottom;
-	font-weight: bold;
+	vertical-align: center;
+	color: #e5e0c5;
 	font-size: 16px;
-	text-align:center center;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
 }
 
-#Guild_menu_member_list
+.root > .top-layer > .blank > .context-menu > Button > .box,.root > .top-layer > .blank > .context-menu > Button > .icon,.root > .top-layer > .blank > .context-menu > Panel > .box,.root > .top-layer > .blank > .context-menu > Panel > .icon,.root > .top-layer > .blank .sub-menu-options > Button > .box,.root > .top-layer > .blank .sub-menu-options > Button > .icon,.root > .top-layer > .blank .sub-menu-options > Panel > .box,.root > .top-layer > .blank .sub-menu-options > Panel > .icon
 {
-	height:450px;
-	width: 320px;
-	margin-left:10px;
-	margin-top: 340px;
-	background-color: #00000080;
-	padding: 10px;
-	flow-children:down;
-	overflow: scroll;
+	margin-right: 8px;
 }
 
-#Guild_menu_member_list_back
+.root > .top-layer > .blank > .context-menu > Button > .arrow,.root > .top-layer > .blank > .context-menu > Panel > .arrow,.root > .top-layer > .blank .sub-menu-options > Button > .arrow,.root > .top-layer > .blank .sub-menu-options > Panel > .arrow
 {
-	height:450px;
-	width: 320px;
-	margin-left:10px;
-	margin-top: 340px;
-	background-image: url("s2r://panorama/images/guild/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 6px;
+	margin-top: 2px;
+	color: #e5e0c5;
+	font-size: 20px;
+	font-weight: bold;
 }
 
-.member_card
+.root > .top-layer > .blank > .context-menu > .hide-above-head-things,.root > .top-layer > .blank .sub-menu-options > .hide-above-head-things
 {
-	width: 300px;
-	height: 43px;
-	background-image: url("s2r://panorama/images/guild/bg_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	padding:5px;
-	box-shadow: #00000080 4px 4px 8px 0px;
-	margin-bottom: 5px;
+	width: fit-children;
 }
 
-#member_card_icon
+#VerticalScrollBar
 {
-	vertical-align:center;
-	width: 46px;
-	height: 46px;
-}
-
-#member_card_name
-{
-	vertical-align:center;
-	margin-left: 54px;
-}
-
-#member_card_remove
-{
-	vertical-align:top;
-	horizontal-align:right;
-	margin-right: 0px;
-	width: 16px;
-	height: 16px;
-	background-image: url("s2r://panorama/images/guild/remove_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	brightness: 0.4;
-}
-
-#member_card_remove:hover
-{
-	brightness: 1;
-	sound: "ui_select_arrow";
-}
-
-#Guild_menu_content_top_right
-{
-	height:455px;
-	width: 660px;
-	margin-top: 40px;
-	margin-right:5px;
-	background-image: url("s2r://panorama/images/guild/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	horizontal-align:right;
-	background-color: #00000080;
-	padding: 10px;
-	flow-children: right-wrap;
-}
-
-#Guild_menu_content_bottom
-{
-	width: 1420px;
-	height:200px;
-	vertical-align:bottom;
-	flow-children:right;
-	overflow: scroll;
-	horizontal-align: center;
+	horizontal-align: right;
+	width: 6px;
+	height: 96%;
+	margin-top: 2%;
+	border-radius: 3px;
+	layout-position: fixed;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1px solid #3a4a5a;
 }
 
 #ScrollThumb
 {
-	background-color: #ab7f24;
-	margin-top:8px;
+	border-radius: 3px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(100, 120, 150, 0.6)), to(rgba(74, 90, 122, 0.6)));
+	border: 1px solid rgba(15, 26, 42, 0.3);
 }
 
-#Guild_menu_icon
+TextEntry > #PlaceholderText
 {
-	margin-top: 30px;
-	horizontal-align: center;
-	width: 150px;
-	height:150px;
-	background-image: url("s2r://panorama/images/guild/guild_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	box-shadow: #00000080 4px 4px 8px 0px;
-	border-radius: 8%;
-}
-
-#Guild_menu_icon_back
-{
-	margin-top: 30px;
-	horizontal-align: center;
-	width: 150px;
-	height:150px;
-	background-image: url("s2r://panorama/images/guild/icon_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#Guild_menu_name
-{
-	margin-top: 190px;
-	horizontal-align: center;
-	width: 320px;
-	text-align:center;
-	font-size: 20px;
-	text-overflow: shrink;
-}
-
-#Guild_menu_icon_lvl
-{
-	height: 50px;
-	width: 50px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333 ), to( #000 ) );
-	border-radius: 50%;
-	border-brush: gradient( linear, 0% 100%, 0% 0%, from( #a37b42 ), color-stop( 0.38, #b17829 ), color-stop( 0.48, #be9457 ), color-stop( 0.58, #DBAB6A ), color-stop( 0.80, #daab66 ), to( #b17829 ) );
-	margin-top: 221px;
-	margin-left: 12px;
-}
-
-#Guild_menu_icon_lvl_text
-{
-	align: center center;
-	font-size: 24px;
-	color: white;
-}
-
-#Guild_menu_exp_icon
-{
-	margin-top: 220px;
-	height: 55px;
-	width: 319px;
-	horizontal-align: center;
-	z-index:10;
-}
-
-#Guild_menu_icon_pr_bar
-{
-	margin-top: 239px;
-	margin-left:66px;
-	height: 14px;
-	width: 260px;
-	background-image: url("s2r://panorama/images/guild/player_menu_exp_bar_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#Guild_menu_rating
-{
-	height: 80px;
-	horizontal-align: center;
-	margin-top: 255px;
-	flow-children:right;
-}
-
-#Guild_menu_rating_image
-{
-	height: 80px;
-	width: 80px;
-	vertical-align:center;
-}
-
-#Guild_menu_rating_text
-{
-	vertical-align:center;
-	color:#ab7f24;
-	font-weight: bold;
-	font-size: 30px;
-	text-shadow: black 0px 2px 2px 0;
-}
-
-.pass_content
-{
-	width: 200px;
-	height: 150px;
-	margin-left:30px;
-	transform: skew(-5deg);
-	vertical-align: center;
-	background-image: url("s2r://panorama/images/guild/bg_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	padding:5px;
-	box-shadow: #00000080 4px 4px 8px 0px;
-}
-
-#pass_content_level
-{
-	horizontal-align:right;
-	vertical-align:bottom;
-	color:#ab7f24;
-	font-weight: bold;
-	margin-right:5px;
-	font-size: 20px;
-}
-
-.pass_content_image
-{
-	horizontal-align:center;
-	vertical-align:top;
-	width: 180px;
-	height: 110px;
-	background-image: url("s2r://panorama/images/guild/bg_reward_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	z-index:10;
-}
-
-#pass_content_image_content
-{
-	width: 180px;
-	max-height: 110px;
-}
-
-#pass_content_button
-{
-	height: 25px;
-	width: 150px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color:#ab7f24;
-	vertical-align: bottom;
-	margin-left: 5px;
-}
-
-.pass_content_button_text
-{
-	color: black;
-	align: center center;
-	font-weight: bold;
-	font-size: 18px;
-}
-
-.Guild_menu_content_top_right_cart
-{
-	margin: 9px 4px 9px 4px;
-	height: 200px;
-	width: 150px;
-	background-image: url("s2r://panorama/images/guild/bg_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: black;
-	brightness: 0.4;
-	box-shadow: #00000080 4px 4px 8px 0px;
-}
-
-.Guild_menu_content_top_right_cart:hover
-{
-	brightness: 1.1;
-	sound: "ui_select_arrow";
-}
-
-.pass_cart_image_progress
-{
-	vertical-align:top;
-	horizontal-align:center;
-	width: 140px;
-	height: 34px;
-	margin-top: 4px;
-}
-
-#pass_cart_image_quest
-{
-	vertical-align:top;
-	horizontal-align:center;
-	width: 100px;
-	height: 100px;
-	margin-top: 20px;
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: black;
-}
-
-.pass_cart_image_quest_back
-{
-	vertical-align:top;
-	horizontal-align:center;
-	width: 100px;
-	height: 100px;
-	margin-top: 20px;
-	background-image: url("s2r://panorama/images/guild/bg_reward_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-.pass_cart_label
-{
-	vertical-align:bottom;
-	horizontal-align:center;
-	width: 180px;
-	margin-bottom: 20px;
-	text-align: center;
-	font-size: 14px;
-}
-
-.pass_cart_label_progress
-{
-	vertical-align:bottom;
-	horizontal-align:left;
-	margin-left: 15px;
-	margin-bottom: 32px;
-}
-
-.pass_cart_panel_progress_back
-{
-	vertical-align:bottom;
-	horizontal-align:left;
-	margin-left: 15px;
-	background-color: red;
-	margin-bottom: 25px;
-	width: 124px;
-	height: 8px;
-}
-
-.pass_cart_panel_progress
-{
-	vertical-align:bottom;
-	horizontal-align:left;
-	margin-left: 15px;
-	background-color: blue;
-	margin-bottom: 25px;
-	width: 80px;
-	height: 8px;
-}
-
-.pass_cart_panel_reward
-{
-	vertical-align:bottom;
-	horizontal-align:right;
-	background-color: #373a3d;
-	margin-bottom: 5px;
-	margin-right: 5px;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-image: url("s2r://panorama/images/guild/quest_reward_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-.pass_cart_panel_reward_label
-{
-	vertical-align:top;
-	horizontal-align:center;
-	font-size:14px;
-	margin-top:7px;
-	width: 50px;
-	text-align: center;
-}
-
-.pass_cart_panel_reward_image
-{
-	horizontal-align:center;
-	width: 25px;
-	height: 25px;
-	margin-top:22px;
-}
-
-#Guild_menu_container_list
-{
-	height:650px;
-	width:850px;
-	background-image: url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	vertical-align:center;
-	horizontal-align:center;
-	box-shadow: #00000080 4px 4px 8px 0px;
-}
-
-#Guild_menu_container_list_content_icon
-{
-	height:510px;
-	width: 830px;
-	margin-top:70px;
-	background-image: url("s2r://panorama/images/guild/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	horizontal-align:center;
-	background-color: #00000080;
-	padding: 10px;
-}
-
-#Guild_menu_container_list_content
-{
-	height:510px;
-	width: 830px;
-	margin-top:70px;
-	horizontal-align:center;
-	padding: 10px;
-	flow-children:down;
-	overflow: scroll;
-}
-
-.Guild_menu_container_list_card
-{
-	height: 100px;
-	width: 810px;
-	margin-bottom:10px;
-	background-image: url("s2r://panorama/images/guild/bg_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: black;
-	brightness: 0.4;
-	box-shadow: #00000080 4px 4px 8px 0px;
-}
-
-#Guild_menu_container_list_icon
-{
-	vertical-align:center;
-	horizontal-align: left;
-	width: 70px;
-	height:70px;
-	margin-left:15px;
-	background-image: url("s2r://panorama/images/guild/guild_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	box-shadow: #00000080 4px 4px 8px 0px;
-	border-radius: 8%;
-}
-
-#Guild_menu_container_list_icon_back
-{
-	vertical-align:center;
-	horizontal-align: left;
-	width: 70px;
-	height:70px;
-	margin-left:15px;
-	background-image: url("s2r://panorama/images/guild/icon_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-.Guild_menu_container_list_name
-{
-	vertical-align:center;
-	margin-left:110px;
-	font-size: 20px;
-	width: 250px;
-	text-overflow: shrink;
-}
-
-.Guild_menu_container_list_level
-{
-	vertical-align:center;
-	margin-left:350px;
-	font-size: 20px;
-	width: 150px;
-}
-
-.Guild_menu_container_list_count
-{
-	vertical-align:center;
-	margin-left:505px;
-	font-size: 20px;
-	width: 160px;
-}
-
-#Guild_menu_container_list_card_button
-{
-	vertical-align:center;
-	horizontal-align: right;
-	width: 100px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: black;
-	margin-right:15px;
-}
-
-#Guild_menu_container_list_card_button:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-#Guild_menu_container_list_card_button Label
-{
-	vertical-align:center;
-	horizontal-align:center;
-}
-
-#Guild_menu_container_list_create_button
-{
-	vertical-align:bottom;
-	horizontal-align: center;
-	width: 200px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: green;
-	margin-bottom:10px;
-}
-
-#Guild_menu_container_list_create_button:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-#Guild_menu_container_list_create_button_label
-{
-	vertical-align:center;
-	horizontal-align:center;
-	font-size: 20px;
-}
-
-#Guild_create_panel
-{
-	height:350px;
-	width:450px;
-	background-image: url("s2r://panorama/images/guild/background_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color:black;
-	vertical-align:center;
-	horizontal-align:center;
-	box-shadow: #00000080 4px 4px 8px 0px;
-}
-
-.Guild_create_panel_main_label
-{
-	vertical-align:top;
-	horizontal-align:center;
-	font-size: 20px;
-	margin-top: 40px;
-}
-
-.Guild_create_panel_main_label2
-{
-	vertical-align:top;
-	horizontal-align:center;
-	margin-top: 200px;
-}
-
-#guild_name
-{
-	height:30px;
-	width:400px;
-	vertical-align: center;
-	horizontal-align: center;
-	background-image: url("s2r://panorama/images/guild/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	horizontal-align:center;
-	background-color: #00000080;
-	font-size:20px;
-	margin-top: 120px;
-}
-
-#guild_name_input
-{
-	height:30px;
-	width:400px;
-	margin-top:5px;
-	text-align:center center;
-}
-
-#Guild_create_panel_ok
-{
-	vertical-align:bottom;
-	horizontal-align: left;
-	width: 150px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: green;
-	margin-bottom:20px;
-	margin-left: 20px;
-}
-
-#Guild_create_panel_close
-{
-	vertical-align:bottom;
-	horizontal-align: right;
-	width: 150px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: red;
-	margin-bottom:20px;
-	margin-right: 20px;
-}
-
-#Guild_create_panel_ok:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-#Guild_create_panel_close:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-.Guild_create_panel_label
-{
-	vertical-align:center;
-	horizontal-align:center;
-	font-size: 20px;
-}
-
-#Guild_image_container
-{
-	vertical-align:center;
-	horizontal-align:center;
-	width: 200px;
-	height:100px;
-	margin-bottom: 80px;
-}
-
-#NextImage
-{
-	vertical-align:center;
-	horizontal-align: right;
-	width: 40px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/next_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#PrevImage
-{
-	vertical-align:center;
-	horizontal-align: left;
-	width: 40px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/prew_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#NextImage:hover,#PrevImage:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-#Guild_image_contant_back
-{
-	vertical-align:center;
-	horizontal-align: center;
-	width: 90px;
-	height:90px;
-	background-image: url("s2r://panorama/images/guild/icon_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#Guild_image_contant
-{
-	vertical-align:center;
-	horizontal-align: center;
-	width: 80px;
-	height:80px;
-	background-image: url("s2r://panorama/images/guild/guild_icons/5_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	border-radius: 5%;
-}
-
-#Guild_menu_member_leave
-{
-	vertical-align:bottom;
-	horizontal-align: right;
-	width: 150px;
-	height:20px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: red;
-	margin-bottom:10px;
-	margin-right: 435px;
-	font-weight:bold;
-	text-overflow: shrink;
-}
-
-#Guild_menu_member_leave:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-#Guild_menu_member_leave_text
-{
-	vertical-align:center;
-	horizontal-align:center;
-}
-
-#guild_rune
-{
-	vertical-align:bottom;
-	horizontal-align: right;
-	width: 120px;
-	height:160px;
-	margin-bottom:80px;
-	margin-right: 530px;
-}
-
-#guild_rune_icon
-{
-	vertical-align:top;
-	horizontal-align: center;
-	width: 120px;
-	height:120px;
-	background-image: url("s2r://panorama/images/guild/rune_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	brightness: 0.2;
-}
-
-#guild_rune_button
-{
-	vertical-align:bottom;
-	horizontal-align: center;
-	width: 110px;
-	height:25px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: gray;
-	margin-bottom: 10px;
-	flow-children: right;
-}
-
-#guild_rune_button:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-#guild_aegis
-{
-	vertical-align:bottom;
-	horizontal-align: right;
-	width: 120px;
-	height:160px;
-	margin-bottom:80px;
-	margin-right: 380px;
-}
-
-#guild_aegis_icon
-{
-	vertical-align:top;
-	horizontal-align: center;
-	width: 120px;
-	height:120px;
-	background-image: url("s2r://panorama/images/guild/aegis_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	brightness: 0.2;
-}
-
-#guild_aegis_button
-{
-	vertical-align:bottom;
-	horizontal-align: center;
-	width: 110px;
-	height:25px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: gray;
-	margin-bottom: 10px;
-	flow-children: right;
-}
-
-.guild_button_image
-{
-	width: 23px;
-	height:16px;
-	vertical-align: center;
-	margin-left: 30px;
-}
-
-.guild_button_text
-{
-	width: 23px;
-	height:16px;
-	vertical-align: center;
-	margin-left:5px;
-	font-weight: bold;
-	font-size:16px;
-	color:gold;
-}
-
-#guild_aegis_button:hover
-{
-	brightness: 1.8;
-	sound: "ui_select_arrow";
-}
-
-#guild_chat
-{
-	vertical-align:bottom;
-	horizontal-align: right;
-	height:300px;
-	width: 350px;
-}
-
-#guild_chat_back
-{
-	vertical-align:bottom;
-	horizontal-align: right;
-	height:250px;
-	width: 350px;
-	background-image: url("s2r://panorama/images/guild/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom: 45px;
-	margin-right:5px;
-}
-
-#guild_chat_text
-{
-	vertical-align:bottom;
-	horizontal-align: left;
-	height:250px;
-	width: 100%;
-	background-color: #00000080;
-	padding: 5px;
-	flow-children:up;
-	margin-bottom: 45px;
-	margin-right:5px;
-	overflow: scroll;
-}
-
-#guild_chat_input
-{
-	vertical-align:bottom;
-	horizontal-align: left;
-	height:30px;
-	width: 340px;
-	background-image: url("s2r://panorama/images/guild/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: gray;
-	margin-bottom: 10px;
-	padding: 7px;
-}
-
-.guild_chat_message
-{
-	horizontal-align:left;
-	flow-children:right;
-	vertical-align:center;
-}
-
-.guild_chat_message_icon
-{
-	height:30px;
-	width: 30px;
-	margin:3px;
-}
-
-.guild_chat_message_text
-{
-	vertical-align: bottom;
-	horizontal-align:right;
-}
-
-#Guild_menu_member_leave_accept
-{
-	height:150px;
-	width:350px;
-	background-image: url("s2r://panorama/images/guild/background_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color:black;
-	vertical-align:center;
-	horizontal-align:center;
-	box-shadow: #00000080 4px 4px 8px 0px;
-}
-
-#Guild_menu_member_leave_yes
-{
-	vertical-align:center;
-	horizontal-align: left;
-	width: 150px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: green;
-	margin-left: 20px;
-}
-
-#Guild_menu_member_leave_no
-{
-	vertical-align:center;
-	horizontal-align: right;
-	width: 150px;
-	height:50px;
-	background-image: url("s2r://panorama/images/guild/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: red;
-	margin-right: 20px;
-}
-
-.Guild_menu_member_leave_label
-{
-	vertical-align:center;
-	horizontal-align:center;
-	font-size: 20px;
-}
-
-#member_card_date
-{
-	vertical-align:bottom;
-	horizontal-align:right;
-}
-
-#Guild_panel_all_button
-{
-	horizontal-align:right;
-	vertical-align:center;
-	width: 5%;
-	height: 5%;
-	margin-right:340px;
-	background-image: url("s2r://panorama/images/guild/next_png.vtex");
-	background-position: 57% center;
-	background-repeat:no-repeat;
-	background-size: 45% 90%;
-	animation-duration: 0.3s;
-	animation-iteration-count: 1;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
-	img-shadow:0px 0px 3px 3 gold;
-	z-index:1000;
-}
-
-#Guild_panel_all_button:hover
-{
-	sound: "ui_select_arrow";
-}
-
-#Guild_panel_all_button:active
-{
-	sound: "ui_friends_slide_in";
-}
-
-.Guild_panel_all
-{
-	opacity: 0;
-	height:800px;
-	width:400px;
-	horizontal-align:right;
-	background-image: url("s2r://panorama/images/guild/background_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color:black;
-	pre-transform-scale2d: 0.8;
-	transition-property: opacity, pre-transform-scale2d,position;
-	transition-duration: 0.37s;
-	transition-timing-function: ease-in-out;
-	position: -12% 0px 0px;
-	flow-children: down;
-	padding:10px;
-	overflow: scroll;
-}
-
-.show_all_set
-{
-	opacity: 1;
-	pre-transform-scale2d: 1;
-	position: 0% 0px 0px;
-}
-
-@keyframes 'rotate'
-{
-	0%
-	{
-		transform: rotateZ(0deg);
-	}
-	
-	100%
-	{
-		transform: rotateZ(180deg);
-	}
-	
-}
-
-@keyframes 'rotate2'
-{
-	0%
-	{
-		transform: rotateZ(180deg);
-	}
-	
-	100%
-	{
-		transform: rotateZ(0deg);
-	}
-	
-}
-
-.Guild_all_card
-{
-	height: 90px;
-	width: 380px;
-	margin-bottom:5px;
-	background-image: url("s2r://panorama/images/guild/bg_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: black;
-	brightness: 0.4;
-	box-shadow: #00000080 4px 4px 8px 0px;
-	flow-children: right;
-}
-
-#icon_container
-{
-	vertical-align:center;
-	horizontal-align: left;
-}
-
-#Guild_all_icon
-{
-	vertical-align:center;
-	horizontal-align: center;
-	width: 70px;
-	height:70px;
-	margin-left:15px;
-	background-image: url("s2r://panorama/images/guild/guild_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	box-shadow: #00000080 4px 4px 8px 0px;
-	border-radius: 8%;
-}
-
-#Guild_all_icon_back
-{
-	vertical-align:center;
-	horizontal-align: left;
-	width: 70px;
-	height:70px;
-	margin-left:15px;
-	background-image: url("s2r://panorama/images/guild/icon_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#desc_container
-{
-	vertical-align:center;
-	horizontal-align: left;
-	flow-children:down;
-	margin-left: 10px;
-	width: 200px;
-}
-
-.Guild_all_name
-{
-	horizontal-align: center;
-	vertical-align:center;
-	font-size: 20px;
-	text-overflow: shrink;
-}
-
-.Guild_all_level
-{
-	horizontal-align: center;
-	vertical-align:center;
-	font-size: 20px;
-}
-
-.Guild_all_count
-{
-	vertical-align:center;
-	font-size: 20px;
-	horizontal-align: right;
-	margin-right:15px;
+	opacity: 0.5;
 }
 

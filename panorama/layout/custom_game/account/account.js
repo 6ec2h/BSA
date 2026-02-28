@@ -434,4 +434,7 @@ function ban(){
 (function(){
 	GameEvents.Subscribe( "ban", ban);
 	GameEvents.Subscribe( "init_account", init_account)
+	GameUI.LoopTime.Schedule(0.0, ()=>{
+		DotaHUD.CreateTopBarButton("file://{images}/custom_game/account.png", "account", openaccountButton, "account");
+	});
 })();

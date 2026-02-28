@@ -62,7 +62,7 @@ end
 --------------------------------------------------------------------------------
 -- Helper
 function modifier_generic_custom_indicator:Register( loc )
-	-- TODO: check if self.ability can persist through disconnect if declared in OnCreated
+
 	local ability = self:GetAbility()
 
 	-- init

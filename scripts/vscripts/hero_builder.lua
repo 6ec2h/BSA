@@ -270,16 +270,8 @@ function HeroBuilder:CleanFamiliar(hHero)
 	end
 end
 
-
-
-
-
-
-
-
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-
 
 function HeroBuilder:SetAbilityToSlot(hHero, hAbility)
     if not hHero or hHero:IsNull() then return end

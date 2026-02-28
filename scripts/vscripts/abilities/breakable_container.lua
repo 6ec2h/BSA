@@ -1,9 +1,12 @@
-breakable_container = class({})
 LinkLuaModifier( "modifier_breakable_container", "abilities/breakable_container", LUA_MODIFIER_MOTION_NONE )
+
+breakable_container = class({})
 
 function breakable_container:GetIntrinsicModifierName()
 	return "modifier_breakable_container"
 end
+
+------------------------------------------------------------------------------
 
 modifier_breakable_container = class({})
 
@@ -54,12 +57,12 @@ function modifier_breakable_container:OnDeath( params )
 		if ( params.unit == self:GetParent() ) then
 			if self:GetParent():GetUnitName() == "npc_dota_crate" then
 				if RandomInt( 0, 1 ) >= 1 then
-					EmitSoundOn( "Dungeon.SmashCrateShort", self:GetParent() )
+					EmitSoundOn("Dungeon.SmashCrateShort", self:GetParent() )
 				else
-					EmitSoundOn( "Dungeon.SmashCrateLong", self:GetParent() )
+					EmitSoundOn("Dungeon.SmashCrateLong", self:GetParent() )
 				end
 			elseif self:GetParent():GetUnitName() == "npc_dota_vase" then
-				EmitSoundOn( "Dungeon.VaseBreak", self:GetParent() )
+				EmitSoundOn("Dungeon.VaseBreak", self:GetParent() )
 			end
 		end
 	end

@@ -6,7 +6,6 @@
         "AbilityCooldown"               "8.0"
     }
 
-
 "item_treasure_1"
 	{
 		"BaseClass"						"item_lua"
@@ -95,6 +94,16 @@
 		"ItemSellable"		    		"0"
 		"ItemShareability"				"ITEM_NOT_SHAREABLE"
 		"ItemPermanent"					"0"
+	}	
+
+"item_crystal_jackpot"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"crystal_jackpot"
+		"ItemPurchasable"				"0"
+		"ItemSellable"		    		"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemPermanent"					"0"
 	}		
 //===================================================================	
 
@@ -106,6 +115,7 @@
         "FightRecapLevel"               "1"
 		
 	}
+
 //===================================================================	
 
 
@@ -165,178 +175,170 @@
 		}
 	}
 
-"item_recipe_sange_and_yasha"				"REMOVED"	
-"item_sange_and_yasha"						"REMOVED"	
-"item_recipe_kaya_and_sange"				"REMOVED"	
-"item_kaya_and_sange"						"REMOVED"	
-"item_recipe_yasha_and_kaya"				"REMOVED"	
-"item_yasha_and_kaya"						"REMOVED"	
-"item_disperser"						"REMOVED"	
-"item_recipe_disperser"						"REMOVED"	
+"item_recipe_sange_and_yasha"           "REMOVED"   
+"item_sange_and_yasha"                  "REMOVED"   
+"item_recipe_kaya_and_sange"            "REMOVED"   
+"item_kaya_and_sange"                   "REMOVED"   
+"item_yasha_and_kaya"                   "REMOVED"   
+"item_recipe_yasha_and_kaya"            "REMOVED"   
+"item_disperser"                        "REMOVED"   
+"item_recipe_disperser"                 "REMOVED"   
+"item_super_blink"                      "REMOVED"   
+"item_fallen_sky"                       "REMOVED"   
+"item_overwhelming_blink"               "REMOVED"   
+"item_swift_blink"                      "REMOVED"   
+"item_arcane_blink"                     "REMOVED"   
+"item_recipe_arcane_blink"              "REMOVED"   
+"item_recipe_swift_blink"               "REMOVED"   
+"item_recipe_overwhelming_blink"        "REMOVED"
+"item_aghanims_shard"                   "REMOVED"   
+"item_recipe_refresher"                 "REMOVED"   
+"item_refresher"                        "REMOVED"   
+"item_recipe_revenants_brooch"          "REMOVED"   
+"item_revenants_brooch"                 "REMOVED"   
+"item_devastator"                       "REMOVED"   
+"item_recipe_echo_sabre"                "REMOVED"   
+"item_mjollnir"                         "REMOVED"
+"item_recipe_mjollnir"                  "REMOVED"
+"item_assault"                          "REMOVED"
+"item_recipe_assault"                   "REMOVED"
+"item_satanic"                          "REMOVED"
+"item_recipe_satanic"                   "REMOVED"
+"item_radiance"                         "REMOVED"
+"item_recipe_radiance"                  "REMOVED"
+"item_blight_stone"                     "REMOVED"
+"item_desolator"                        "REMOVED"
+"item_recipe_desolator"                 "REMOVED"
+"item_butterfly"                        "REMOVED"
+"item_recipe_butterfly"                 "REMOVED"
+"item_monkey_king_bar"                  "REMOVED"
+"item_recipe_monkey_king_bar"           "REMOVED"
+"item_shivas_guard"                     "REMOVED"
+"item_recipe_shivas_guard"              "REMOVED"
+"item_greater_crit"                     "REMOVED"
+"item_recipe_greater_crit"              "REMOVED"
+"item_kaya"                             "REMOVED"
+"item_recipe_kaya"                      "REMOVED"
+"item_bfury"                            "REMOVED"
+"item_recipe_bfury"                     "REMOVED"
+"item_crimson_guard"                    "REMOVED"
+"item_recipe_crimson_guard"             "REMOVED"
+"item_rapier"                           "REMOVED"
+"item_recipe_rapier"                    "REMOVED"
+"item_veil_of_discord"                  "REMOVED"
+"item_recipe_veil_of_discord"           "REMOVED"
+"item_guardian_greaves"                 "REMOVED"
+"item_recipe_guardian_greaves"          "REMOVED"
+"item_dragon_lance"                     "REMOVED"
+"item_recipe_dragon_lance"              "REMOVED"
+"item_skadi"                            "REMOVED"
+"item_recipe_skadi"                     "REMOVED"
+"item_heart"                            "REMOVED"
+"item_recipe_heart"                     "REMOVED"
+"item_vladmir"                          "REMOVED"
+"item_recipe_vladmir"                   "REMOVED"
+"item_dagon"                            "REMOVED"
+"item_dagon_2"                          "REMOVED"
+"item_dagon_3"                          "REMOVED"
+"item_dagon_4"                          "REMOVED"
+"item_dagon_5"                          "REMOVED"
+"item_recipe_dagon"                     "REMOVED"
+"item_recipe_dagon_2"                   "REMOVED"
+"item_recipe_dagon_3"                   "REMOVED"
+"item_recipe_dagon_4"                   "REMOVED"
+"item_recipe_dagon_5"                   "REMOVED"
+"item_pipe"                             "REMOVED"
+"item_recipe_pipe"                      "REMOVED"
+"item_aghanims_shard_roshan"            "REMOVED"   
+"item_ultimate_scepter_roshan"          "REMOVED"   
+"item_ultimate_scepter_2"               "REMOVED"   
+"item_recipe_ultimate_scepter_2"        "REMOVED"   
+"item_recipe_ultimate_scepter"          "REMOVED"   
+"item_harpoon"                          "REMOVED"
+"item_recipe_harpoon"                   "REMOVED"   
+"item_wind_waker"                       "REMOVED"
+"item_recipe_wind_waker"                "REMOVED"
+"item_spirit_vessel"                    "REMOVED"
+"item_recipe_spirit_vessel"             "REMOVED"
+"item_urn_of_shadows"                   "REMOVED"
+"item_recipe_urn_of_shadows"            "REMOVED"
+"item_eternal_shroud"                   "REMOVED"
+"item_bloodstone"                       "REMOVED"
+"item_recipe_bloodstone"                "REMOVED"
+"item_abyssal_blade"                    "REMOVED"
+"item_basher"                           "REMOVED"
+"item_recipe_basher"                    "REMOVED"
+"item_recipe_abyssal_blade"             "REMOVED"
+"item_recipe_blade_mail"                "REMOVED"
+"item_force_staff"                      "REMOVED"
+"item_hurricane_pike"                   "REMOVED"
+"item_manta"                            "REMOVED"
+"item_recipe_manta"                     "REMOVED"
+"item_travel_boots"                     "REMOVED"
+"item_travel_boots_2"                   "REMOVED"
+"item_recipe_travel_boots"              "REMOVED"
+"item_recipe_travel_boots_2"            "REMOVED"
+"item_nullifier"                        "REMOVED"
+"item_octarine_core"                    "REMOVED"
+"item_recipe_octarine_core"             "REMOVED"
+"item_tranquil_boots"                   "REMOVED"
+"item_recipe_tranquil_boots"            "REMOVED"
+"item_black_king_bar"                   "REMOVED"
+"item_recipe_black_king_bar"            "REMOVED"
+"item_aeon_disk"                        "REMOVED"
+"item_recipe_hand_of_midas"             "REMOVED"
+"item_hand_of_midas"             		"REMOVED"
+"item_necronomicon_3"					"REMOVED"
+"item_recipe_necronomicon_3"			"REMOVED"
+"item_ultimate_scepter"					"REMOVED"
+"item_avernos_mist"						"REMOVED"
+"item_courier"							"REMOVED"
+"item_flying_courier"					"REMOVED"
+"item_smoke_of_deceit"					"REMOVED"
+"item_helm_of_the_dominator"			"REMOVED"
+"item_recipe_helm_of_the_dominator"		"REMOVED"
+"item_recipe_hurricane_pike"			"REMOVED"
+"item_recipe_force_staff"				"REMOVED"
+"item_blade_mail"						"REMOVED"
+"item_necronomicon"						"REMOVED"
+"item_recipe_necronomicon"				"REMOVED"
+"item_necronomicon_2"					"REMOVED"
+"item_recipe_necronomicon_2"			"REMOVED"
+"item_tome_of_knowledge"				"REMOVED"
+"item_recipe_helm_of_the_overlord"		"REMOVED"
+"item_helm_of_the_overlord"				"REMOVED"
 
-"item_super_blink"							"REMOVED"	
-"item_fallen_sky"							"REMOVED"	
-"item_overwhelming_blink"					"REMOVED"	
-"item_swift_blink"							"REMOVED"	
-"item_arcane_blink"							"REMOVED"	
-"item_recipe_arcane_blink"					"REMOVED"	
-"item_recipe_swift_blink"					"REMOVED"	
-"item_recipe_overwhelming_blink"			"REMOVED"
-"item_aghanims_shard"						"REMOVED"	
-"item_recipe_refresher"						"REMOVED"	
-"item_refresher"							"REMOVED"	
-"item_recipe_revenants_brooch" 				"REMOVED"	
-"item_revenants_brooch"						"REMOVED"	
-"item_devastator"							"REMOVED"	
-"item_recipe_echo_sabre"					"REMOVED"	
-	
 
-"item_mjollnir"								"REMOVED"
-"item_recipe_mjollnir"						"REMOVED"
-"item_assault"								"REMOVED"
-"item_recipe_assault"						"REMOVED"
-"item_satanic"								"REMOVED"
-"item_recipe_satanic"						"REMOVED"
-"item_radiance"								"REMOVED"
-"item_recipe_radiance"						"REMOVED"
-"item_blight_stone"							"REMOVED"
-"item_desolator"							"REMOVED"
-"item_recipe_desolator"						"REMOVED"
-"item_butterfly"							"REMOVED"
-"item_recipe_butterfly"						"REMOVED"
-"item_monkey_king_bar"						"REMOVED"
-"item_recipe_monkey_king_bar"				"REMOVED"
-"item_shivas_guard"							"REMOVED"
-"item_recipe_shivas_guard"					"REMOVED"
-"item_greater_crit"							"REMOVED"
-"item_recipe_greater_crit"					"REMOVED"
-"item_kaya"									"REMOVED"
-"item_recipe_kaya"							"REMOVED"
-"item_bfury"								"REMOVED"
-"item_recipe_bfury"							"REMOVED"
-"item_crimson_guard"						"REMOVED"
-"item_recipe_crimson_guard"					"REMOVED"
-"item_rapier"								"REMOVED"
-"item_recipe_rapier"						"REMOVED"
-"item_veil_of_discord"						"REMOVED"
-"item_recipe_veil_of_discord"				"REMOVED"
-"item_guardian_greaves"						"REMOVED"
-"item_recipe_guardian_greaves"				"REMOVED"
-"item_dragon_lance"							"REMOVED"
-"item_recipe_dragon_lance"					"REMOVED"
-"item_recipe_skadi"							"REMOVED"
-"item_skadi"								"REMOVED"
-"item_recipe_heart"							"REMOVED"
-"item_heart"								"REMOVED"
-"item_recipe_vladmir"						"REMOVED"
-"item_vladmir"								"REMOVED"
-"item_recipe_dagon"							"REMOVED"
-"item_recipe_dagon_2"						"REMOVED"
-"item_recipe_dagon_3"						"REMOVED"
-"item_recipe_dagon_4"						"REMOVED"
-"item_recipe_dagon_5"						"REMOVED"
-"item_dagon"								"REMOVED"
-"item_dagon_2"								"REMOVED"
-"item_dagon_3"								"REMOVED"
-"item_dagon_4"								"REMOVED"
-"item_dagon_5"								"REMOVED"
-"item_recipe_pipe"							"REMOVED"
-"item_pipe"									"REMOVED"
-"item_aghanims_shard"						"REMOVED"	
-"item_aghanims_shard_roshan"				"REMOVED"	
-"item_ultimate_scepter_roshan"				"REMOVED"	
-"item_ultimate_scepter_2"					"REMOVED"	
-"item_recipe_ultimate_scepter_2"			"REMOVED"	
-"item_recipe_ultimate_scepter"				"REMOVED"	
-"item_recipe_harpoon"						"REMOVED"	
-"item_harpoon"								"REMOVED"
-"item_wind_waker"							"REMOVED"
-"item_recipe_wind_waker"					"REMOVED"
-"item_spirit_vessel"						"REMOVED"
-"item_recipe_spirit_vessel"					"REMOVED"
-"item_urn_of_shadows"						"REMOVED"
-"item_recipe_urn_of_shadows"				"REMOVED"
-"item_eternal_shroud"						"REMOVED"
-
-
-"item_ultimate_scepter"
+"item_blink"
 	{
-		"ItemPurchasable"				"0"
+		"ItemPurchasable"          		"0"
 	}
+
+"item_gem"
+	{
+		"ItemPurchasable"          		"0"
+	}
+
 "item_bottle"
 	{
 		"ItemPurchasable"				"0"
 		"ItemSellable"					"0"
 		"ItemKillable"					"0"
 	}
-"item_avernos_mist"
-	{
-		"ItemPurchasable"				"0"
-	}
-"item_courier"
-	{
-		"ItemPurchasable"				"0"
-	}
-"item_flying_courier"
-	{
-		"ItemPurchasable"				"0"
-	}
-"item_smoke_of_deceit"
-	{
-		"ItemPurchasable"				"0"
-	}
-"item_helm_of_the_dominator"
-	{
-		"ItemPurchasable"				"0"
-	}
-"item_recipe_helm_of_the_dominator"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_recipe_hurricane_pike"
-	{
-		"ItemPurchasable"						"0"	
-	}
 "item_paw_of_lucius"
 	{
-		"ItemPurchasable"						"0"	
+		"ItemPurchasable"				"0"	
 	}
 "item_Lord_heart"
 	{
-		"ItemPurchasable"						"0"	
+		"ItemPurchasable"				"0"	
 	}
 "item_Medusa_heart"
 	{
-		"ItemPurchasable"						"0"	
+		"ItemPurchasable"				"0"	
 	}
-"item_blink"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_gold_2000"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_gold_3000"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_gold_4000"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_set_boots"
-	{
-		"ItemPurchasable"						"0"	
-	}	
-"item_asdasdasdsa"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_naga_stone"
-	{
-		"ItemPurchasable"						"0"	
-	}
+
+
 	
 //=================================================================
 "item_d_pet"
@@ -374,8 +376,21 @@
 		"ItemPurchasable"				"0"
 		"AbilityTextureName"			"pets/6"
 	}	
+
+"item_jackpot_pet"
+	{
+		"ItemPurchasable"				"0"
+		"AbilityTextureName"			"pets/pet_xdes"
+	}	
+
+"item_mimic_pet"
+	{
+		"ItemPurchasable"				"0"
+		"AbilityTextureName"			"pets/mimic"
+	}	
 	
 //=================================================================	
+
 "item_attackspeed_pet"
 	{
 		"ItemPurchasable"				"0"
@@ -568,10 +583,7 @@
 	{
 		"ItemPurchasable"						"0"	
 	}
-"item_shovel"
-	{
-		"ItemPurchasable"						"0"	
-	}
+
 "item_pet_hp"
 	{
 		"ItemPurchasable"						"0"	
@@ -580,149 +592,17 @@
 	{
 		"ItemPurchasable"						"0"	
 	}
-"item_agi"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_str"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_int"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_random_stat"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_abyssal_blade"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_basher"
-	{
-		"ItemPurchasable"						"0"	
-	}
 "item_pet_dagon"
 	{
 		"ItemPurchasable"						"0"	
 	}
-"item_force_staff"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_hurricane_pike"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_blade_mail"
-	{
-		"ItemPurchasable"						"0"
-	}
-"item_recipe_blade_mail"
-	{
-		"ItemPurchasable"						"0"
-	}
-"item_recipe_force_staff"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_manta"
-	{
-		"ItemPurchasable"						"0"	
-	}
+
 "item_rosh"
 	{
 		"ItemPurchasable"						"0"	
 	}
-"item_recipe_manta"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_necronomicon"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_recipe_necronomicon"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_necronomicon_2"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_recipe_necronomicon_2"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_tome_of_knowledge"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_necronomicon_3"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_recipe_necronomicon_3"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_hand_of_midas"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_recipe_hand_of_midas"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_travel_boots"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_travel_boots_2"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_recipe_travel_boots"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_recipe_travel_boots_2"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_krest"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_orb"
-	{
-		"ItemPurchasable"						"0"	
-	}
-"item_book_of_intelligence"
-	{
-		"ItemPurchasable"				"0"
-	}
-"item_book_of_agility"
-	{
-		"ItemPurchasable"				"0"
-	}	
-"item_book_of_strength"
-	{
-		"ItemPurchasable"				"0"
-	}	
-"item_epx_aura"
-	{
-		"ItemPurchasable"				"0"
-	}
-"item_dmg_aura"
-	{
-		"ItemPurchasable"				"0"
-	}
-//==========================================================================================================================================================	
-//==========================================================================================================================================================	
-//==========================================================================================================================================================	
+
+//=====================================================================================	
 
 "item_recipe_ancient_janggo"
 	{
@@ -889,53 +769,6 @@
         }
 	}
 
-//=====================================================================================		
-
-
-//=====================================================================================	
-
-"item_gem"
-	{
-		"ItemPurchasable"          		"0"
-	}	
-
-//=====================================================================================	
-
-"item_tpscroll"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOASSIST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BUILDING"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-		"Model"							"models/props_gameplay/tpscroll01.vmdl"
-
-		"AbilityCastRange"				"0"
-		"AbilityCooldown"				"60"
-		"AbilitySharedCooldown"			"teleport"
-		"AbilityChannelTime"			"3.0"
-		"AbilityCastPoint"				"0.0"
-		
-		"AbilityManaCost"				"75"
-		"ItemCost"						"0"
-		"ItemShopTags"					"consumable;tutorial"
-		"ItemQuality"					"consumable"
-		"ItemAliases"					"tp;town portal scroll;teleport"
-		"ItemStackable"					"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemPermanent"					"1"
-		"ItemInitialCharges"			"9999"
-		"ItemHideCharges"				"1"
-		"ItemPurchasable"				"0"
-		"ItemSellable"					"0"
-		
-        "AbilityValues"
-        {
-                "minimum_distance"      "70"
-                "maximum_distance"      "300"
-                "vision_radius"         "200"
-                "tooltip_channel_time"          "3.0"
-        }
-	}
 	
 //=====================================================================================	
 
@@ -1182,7 +1015,7 @@
         {
                 "bonus_health"          "0"
                 "bonus_mana"            "0"
-                "heal_increase"     "30	45"
+                "heal_increase"     	"30	45"
                 "max_charges"           "20"
                 "charge_radius"         
                 {   
@@ -1283,11 +1116,12 @@
         }
 }
 
-"item_tpscroll"
+	"item_tpscroll"
 	{
 		"AbilityChannelTime"			"3.0"
 		"AbilityManaCost"				"0"
 		"ItemPurchasable"				"1"
+		"ItemInitialCharges"            "9999"
         "AbilityValues"
         {
                 "minimum_distance"      "70"
@@ -1299,8 +1133,6 @@
 
 	"item_orchid"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"98"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1470,25 +1302,18 @@
 	
 	"item_bloodthorn"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"250"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"250"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"FightRecapLevel"				"1"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"45.0"
 		"AbilitySharedCooldown"			"orchid"
 
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"100"
 		"ItemCost"						"6800"
 		"ItemShopTags"					"int;attack_speed;damage;regen_mana;damage;hard_to_tag"
@@ -1497,8 +1322,6 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ShouldBeSuggested"				"1"
 		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 				"bonus_intellect"			"32"
@@ -1540,7 +1363,7 @@
 		
 		"AbilityValues"
         {
-                "hp_regen"      "0.4"
+                "hp_regen"      		"0.4"
                 "replenish_amount"      "100"
         }
 	}

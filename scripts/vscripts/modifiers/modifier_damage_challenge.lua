@@ -392,8 +392,4 @@ function modifier_damage_challenge:SetFullyDisabled(disabled)
     self.is_ability_blocked = true
   end
   self:_sync()
-endcked = true
-    self.is_ability_blocked = true
-  end
-  self:_sync()
 end

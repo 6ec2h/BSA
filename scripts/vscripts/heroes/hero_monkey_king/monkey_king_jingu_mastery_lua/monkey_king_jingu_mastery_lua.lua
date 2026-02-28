@@ -73,6 +73,7 @@ function modifier_monkey_king_jingu_mastery_lua_counter:OnRefresh()
 end
 
 function modifier_monkey_king_jingu_mastery_lua_counter:OnStackCountChanged()
+    if not IsServer() then return end
     if self:GetStackCount() >= self.required_hits then
         self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_monkey_king_jingu_mastery_lua_active", {})
         EmitSoundOn("Hero_MonkeyKing.IronCudgel", self:GetCaster())

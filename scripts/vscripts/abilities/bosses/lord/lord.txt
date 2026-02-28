@@ -1,9 +1,9 @@
 "DOTAAbilities"
 {
-"custom_solar_flare"	
+	"boos_doom_solar_flare_lua"	
 	{
 		"BaseClass"           			"ability_lua"
-		"ScriptFile"					"abilities/bosses/lord/custom_solar_flare"
+		"ScriptFile"					"abilities/bosses/lord/lord"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -16,23 +16,22 @@
 
 		"AbilityValues"
 		{
-			"damage"						"50000"
+			"damage"						"100000"
 			"delay"							"2.3"
 			"range"							"3000"
 			"damage_radius"					"200"
 		}	
 	}
 
-"custom_pit"
+	"boos_doom_pit_lua"
 	{
 		"BaseClass"           			"ability_lua"
-		"ScriptFile"					"abilities/bosses/lord/custom_pit"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTarget"				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"ScriptFile"					"abilities/bosses/lord/lord"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"abyssal_underlord_pit_of_malice"
 		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.2"
 		"AbilityCastRange"				"3000"
 		"AbilityCooldown"				"11"
 		"AbilityManaCost"				"400"
@@ -43,43 +42,41 @@
 			"pit_duration"				"4"
 			"pit_interval"				"2"
 			"pit_damage"				"5000"
+			"diff_boost_damage"			"500"
 			"ensnare_duration"			"0.8"
 		}
 	}	
 	
-"creature_fire_breath"
+	"boos_doom_fire_ring_lua"
 	{
-		"AbilityName"					"creature_fire_breath"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"ogre_magi_fireblast"
-		"MaxLevel"						"1"
-
-		"AbilityCooldown"				"14.0"
-		"AbilityChannelTime"			"1.3"
-
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.1"
-
-		"AbilityManaCost"				"400"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/lord/lord"
+		"AbilityTextureName"			"fire_ring"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"13"
+		"AbilityManaCost"				"125"		
 
 		"AbilityValues"
 		{
-				"radius"				"200.0"
-				"speed"					"1000"
-				"damage"				"3500.0"
-				"rotation_angle"		"90.0"
-				"projectile_count"		"12"
+			"damage_min"				"4000"
+			"damage_max"				"10000"
+			"diff_boost_damage"			"200"
+			"radius"					"800"
+			"speed"						"636"
 		}
-	}	
-	
-	
-"custom_doom"	
+	}
+
+	"boos_doom_doom_lua"	
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/bosses/lord/custom_doom"
-		"AbilityTextureName"			"doom_doom"
-		"FightRecapLevel"				"2"
+		"ScriptFile"					"abilities/bosses/lord/lord"
+		"AbilityTextureName"			"doom_bringer_doom"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -95,8 +92,7 @@
 		"AbilityValues"
 		{
 			"duration"				"12"
-			"damage"				"500"
+			"damage"				"8"
 		}
-	}	
-		
+	}
 }

@@ -27,8 +27,6 @@ end
 
 ----------------------------------BONUS----------------------------------------------------------
 
--------------------
-
 function modifier_golden_unit:GetModifierProcAttack_Feedback(params)
 	params.target:AddNewModifier(self:GetParent(), self, "modifier_desolator_golden", {duration = 5, armor_reduction = (self:GetStackCount() / 100)})
 end

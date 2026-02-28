@@ -1,4 +1,5 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+// this format guid is not known to Source 2 Viewer, make a pull request to update KV3IDLookup file
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -14,34 +15,44 @@
 	m_bShouldSort = false
 	m_Renderers = 
 	[
+		
 		{
 			_class = "C_OP_RenderSprites"
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_bAdditive = true
 			m_flOverbrightFactor = 2.000000
-			m_hTexture = resource:"materials/particle/particle_ring_wavy4.vtex"
-			m_nOrientationType = 2
-			m_flAnimationRate2 = 0.500000
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
 			m_flAnimationRate = 2.000000
+			m_vecTexturesInput = 
+			[
+				
+				{
+					m_hTexture = resource:"materials/particle/particle_ring_wavy4.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
 		},
 	]
 	m_Operators = 
 	[
+		
 		{
 			_class = "C_OP_BasicMovement"
 			m_fDrag = 0.250000
 		},
+		
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flEndScale = 0.000000
 		},
+		
 		{
 			_class = "C_OP_Decay"
 		},
+		
 		{
 			_class = "C_OP_FadeInSimple"
 			m_flFadeInTime = 1.000000
 		},
+		
 		{
 			_class = "C_OP_ColorInterpolate"
 			m_ColorFade = 
@@ -53,40 +64,69 @@
 			]
 			m_bDisableOperator = true
 		},
-		{
-			_class = "C_OP_StopAfterCPDuration"
-			m_nCPField = 1
-			m_nCP = 1
-		},
 	]
 	m_Initializers = 
 	[
+		
 		{
 			_class = "C_INIT_RandomSequence"
 			m_nSequenceMax = 1
 		},
+		
 		{
-			_class = "C_INIT_RandomRotation"
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.000000
+				m_flRandomMax = 360.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
 		},
+		
 		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMax = 32
-			m_nAlphaMin = 32
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.125490
+			}
+			m_nOutputField = 7
 		},
+		
 		{
-			_class = "C_INIT_CreateWithinSphere"
+			_class = "C_INIT_CreateWithinSphereTransform"
 		},
+		
 		{
-			_class = "C_INIT_RemapCPtoScalar"
-			m_nCPInput = 1
-			m_flInputMax = 5000.000000
-			m_flOutputMax = 5000.000000
-			m_bScaleInitialRange = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.650000
+				m_flRandomMax = 1.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
 		},
+		
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 0.650000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.000000
+				m_flInput1 = 5000.000000
+				m_flOutput0 = 0.000000
+				m_flOutput1 = 5000.000000
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+			}
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
 		},
+		
 		{
 			_class = "C_INIT_PositionOffset"
 			m_OffsetMin = 
@@ -102,24 +142,33 @@
 				4.000000,
 			]
 		},
+		
 		{
-			_class = "C_INIT_RemapCPtoScalar"
-			m_nCPInput = 1
-			m_flInputMax = 10.000000
-			m_nField = 1
-			m_nFieldOutput = 1
-			m_flOutputMax = 10.000000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.000000
+				m_flInput1 = 10.000000
+				m_flOutput0 = 0.000000
+				m_flOutput1 = 10.000000
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+			}
+			m_nOutputField = 1
 		},
+		
 		{
 			_class = "C_INIT_RemapParticleCountToScalar"
-			m_bScaleInitialRange = true
 			m_flOutputMin = 0.250000
 			m_nFieldOutput = 1
 			m_nInputMax = 7
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
 		},
+		
 		{
-			_class = "C_INIT_RemapCPtoVector"
-			m_nCPInput = 15
+			_class = "C_INIT_RemapTransformToVector"
 			m_nFieldOutput = 6
 			m_vInputMax = 
 			[
@@ -133,56 +182,75 @@
 				1.000000,
 				1.000000,
 			]
-			m_nOpScaleCP = 16
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.000000
+				m_flInput1 = 1.000000
+				m_flOutput0 = 0.000000
+				m_flOutput1 = 1.000000
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 15
+			}
+			m_LocalSpaceTransform = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
 		},
 	]
 	m_Emitters = 
 	[
+		
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 8
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 8.000000
+			}
 		},
 	]
 	m_Children = 
 	[
+		
 		{
 			m_ChildRef = resource:"particles/test_particle/dungeon_generic_blast_pre_core.vpcf"
 		},
+		
 		{
 			m_ChildRef = resource:"particles/test_particle/dungeon_generic_blast_pre_light.vpcf"
 		},
+		
 		{
 			m_ChildRef = resource:"particles/test_particle/dungeon_generic_blast_pre_pull_in.vpcf"
 		},
+		
 		{
 			m_ChildRef = resource:"particles/test_particle/dungeon_generic_blast_pre_ring_light.vpcf"
 		},
+		
 		{
 			m_ChildRef = resource:"particles/test_particle/dungeon_generic_blast_pre_aoe.vpcf"
 		},
 	]
 	m_controlPointConfigurations = 
 	[
+		
 		{
 			m_name = "preview"
 			m_drivers = 
 			[
+				
 				{
 					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = 
-					[
-						0.000000,
-						0.000000,
-						0.000000,
-					]
-					m_angOffset = 
-					[
-						0.000000,
-						0.000000,
-						0.000000,
-					]
 					m_entityName = "self"
 				},
+				
 				{
 					m_iControlPoint = 1
 					m_iAttachType = "PATTACH_WORLDORIGIN"
@@ -192,14 +260,9 @@
 						1.000000,
 						1.000000,
 					]
-					m_angOffset = 
-					[
-						0.000000,
-						0.000000,
-						0.000000,
-					]
 					m_entityName = "self"
 				},
+				
 				{
 					m_iControlPoint = 15
 					m_iAttachType = "PATTACH_WORLDORIGIN"
@@ -209,26 +272,15 @@
 						10.000000,
 						100.000000,
 					]
-					m_angOffset = 
-					[
-						0.000000,
-						0.000000,
-						0.000000,
-					]
 					m_entityName = "self"
 				},
+				
 				{
 					m_iControlPoint = 16
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_vecOffset = 
 					[
 						1.000000,
-						0.000000,
-						0.000000,
-					]
-					m_angOffset = 
-					[
-						0.000000,
 						0.000000,
 						0.000000,
 					]
@@ -242,4 +294,21 @@
 			}
 		},
 	]
+	m_PreEmissionOperators = 
+	[
+		
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 1.000000
+			}
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 5
 }

@@ -32,33 +32,52 @@
 	width: 600px;
 	height: 710px;
 	margin-bottom: 100px;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	background-repeat: no-repeat;
 	background-size: 100%;
 	align: center center;
-	flow-children: down;
 	transition-property: opacity;
 	transition-duration: 0.1s;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+}
+
+#container
+{
+	width:100%;
+	height: 100%;
+	margin-top: 20px;
+	flow-children: down;
 }
 
 #CloseButtonIcon
 {
+	horizontal-align:right;
 	vertical-align:top;
-	horizontal-align: right;
-	margin:5px;
-	width:20px;
-	height:20px;
-}
-
-#CloseButtonIcon:hover
-{
-	sound: "ui_select_arrow";
-	brightness: 1.8;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	margin: 5px;
+	z-index: 100;
 }
 
 #CloseButtonIcon:active
 {
-	pre-transform-scale2d: 0.8;
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#CloseButtonIcon:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
 }
 
 .InventorySlots
@@ -75,9 +94,11 @@
 {
 	width: 45px;
 	height: 45px;
-	background-color: black;
 	margin: 1px;
 	tooltip-position: bottom;
+	background-color: #0f1a2a;
+	border: 2px solid #3a4a5a;
+	border-radius: 4px;
 }
 
 .item_panel
@@ -109,7 +130,7 @@
 	font-size: 26px;
 	align: center center;
 	font-weight: semi-bold;
-	color: white;
+	color: #e5e0c5;
 	text-shadow: 0px 0px 3px 2.0 #000000b0;
 }
 
@@ -132,7 +153,7 @@
 	font-size: 26px;
 	align: center center;
 	font-weight: semi-bold;
-	color: white;
+	color: #e5e0c5;
 	text-shadow: 0px 0px 3px 2.0 #000000b0;
 }
 
@@ -140,7 +161,7 @@
 {
 	width: 200px;
 	height: 300px;
-	border: 1px solid black;
+	border: 1px solid #3a4a5a;
 }
 
 .hero_model
@@ -192,12 +213,14 @@
 #DustPaneLabel
 {
 	vertical-align: center;
-	color: white;
+	color: #ffd700;
 }
 
 .font_desr
 {
 	font-size: 15px;
+	color: #99ff99;
+	padding-right: 4px;
 }
 
 .QuipCenter
@@ -228,7 +251,7 @@
 {
 	horizontal-align: center;
 	font-weight: semi-bold;
-	color: white;
+	color: #e5e0c5;
 	font-size: 14px;
 }
 
@@ -236,23 +259,36 @@
 {
 	width: 65px;
 	height: 65px;
-	background-color: #121212;
+	background-color: #0f1a2a;
 	horizontal-align: center;
 	margin-top: 17px;
-	border: 1px solid gray;
+	border: 2px solid #3a4a5a;
+	border-radius: 4px;
+}
+
+.equip_slot:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.inventory_slot:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
 }
 
 .upgrade_inventory
 {
 	width: 45px;
 	height: 45px;
-	background-color: black;
+	background-color: #000000;
 	background-image: url("s2r://panorama/images/control_icons/plus_png.vtex");
 	background-position: 50% 50%;
 	background-size: 80% 80%;
 	background-repeat: no-repeat;
 	margin: 1px;
-	border: 1px solid gray;
+	border: 1px solid #3a4a5a;
 }
 
 #head
@@ -303,12 +339,12 @@
 
 #hr
 {
-	border-bottom: 1px solid #fff;
-	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
-	width: 100%;
 	horizontal-align: center;
-	height: 5px;
-	margin-bottom:5px;
+	width: 100%;
+	height: 3px;
+	margin: 2px 0;
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 45%, from(white), to(#fff0));
 }
 
 #item_reward_panel_image
@@ -324,7 +360,7 @@
 	vertical-align: bottom;
 	width: 50px;
 	height: 50px;
-	background-color: blue;
+	background-color: #0f1a2a;
 	margin: 5px;
 	background-image: url("s2r://panorama/images/dust_png.vtex");
 	background-repeat: no-repeat;
@@ -338,113 +374,96 @@
 	vertical-align: center;
 }
 
-#MainInfo
+.content
 {
+	vertical-align: center;
+	width: 250px;
+	margin: 5px;
 	flow-children: down;
-	width: 100%;
+	background-color: #1a2a3a;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
 }
 
-#TooltipImage
+#MainInfo
 {
-	height: 120px;
-	width: 120px;
-	margin-bottom: 10px;
-	horizontal-align: center;
-	align: center top;
-	box-shadow: fill #000000aa 0px 0px 2px 2px;
-	pre-transform-scale2d: 1;
-	border: 2px solid black;
-	wash-color: #899aa944;
-	saturation: 0.9;
+	vertical-align: center;
+	width: 100%;
+	flow-children: down;
 }
 
 #TooltipName
 {
 	width: 100%;
-	height: 40px;
-	font-size: 350px;
+	font-size: 17px;
 	text-overflow: shrink;
-	padding: 0px 9px 4px 18px;
-	margin: 5px 0 5px 0;
+	padding: 0px 9px;
+	margin: 5px 0;
 	text-align:center;
 	font-weight: bold;
+	color: #e5e0c5;
 }
 
-#SourceValueLine
+#TooltipImage
 {
-	width: 100%;
-	height: 1px;
-	background-color: #a8b0a5;
-	vertical-align: center;
-	margin: 6px 5px 0px 15px;
+	width: 120px;
+	height: width-percentage(100%);
+	margin-bottom: 16px;
+	horizontal-align: center;
+	align: center top;
+	box-shadow: fill #000000aa 0px 0px 2px 2px;
+	pre-transform-scale2d: 1;
+	border: 2px solid #3a4a5a;
+	wash-color: #899aa944;
+	saturation: 0.9;
 }
 
 #BaseAttribute
 {
-	margin-top: 10px;
 	width: 100%;
+	padding: 4px 9px;
+	text-align: center;
+	color: #ffd700;
 	font-size: 17px;
-	text-overflow: shrink;
-	padding: 0px 9px 4px 9px;
-	text-align:center;
-	background-color:#171717;
-	opacity: 0.5;
 	font-weight: bold;
-	color: gold;
+	opacity: 0.5;
 }
 
-#Descr
+#BonusSourceValueLine
 {
 	width: 100%;
-	font-size: 17px;
-	text-overflow: shrink;
-	padding: 0px 9px 4px 9px;
-	text-align:center;
-	background-color:#171717;
-	opacity: 0.5;
-	color: red;
+	height: 1px;
+	background-color: #3a4a5a;
+	margin: 0 10px;
 }
 
 #BonusAttribute
 {
-	flow-children: down;
-	margin-top: 10px;
 	width: 100%;
-	font-size: 17px;
-	text-overflow: shrink;
-	padding: 0px 9px 4px 9px;
-	text-align:center;
-	background-color:#171717;
+	padding: 0px 9px;
+	flow-children: down;
 	opacity: 0.5;
+}
+
+#BonusAttribute > Label:first-child
+{
+	margin-top: 4px;
+}
+
+#BonusAttribute > Label:last-child
+{
+	margin-bottom: 4px;
 }
 
 .bonus_label
 {
+	width: 100%;
 	text-align: center;
 	color: #00f704;
-	width:100%;
 	font-size: 16px;
-}
-
-#hr
-{
-	border-bottom: 1px solid #fff;
-	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
-	width: 100%;
-	horizontal-align: center;
-	height: 5px;
-	margin-bottom:5px;
-}
-
-.content
-{
-	width: 300px;
-	flow-children: down;
-	border: 2px solid BorderColor;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin: 5px;
+	line-height: 1.2;
 }
 
 .equipped_item_shadow_level_1
@@ -502,6 +521,25 @@
 	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
 }
 
+#DescrSourceValueLine
+{
+	width: 100%;
+	height: 1px;
+	background-color: #3a4a5a;
+	margin: 0 10px;
+}
+
+#Descr
+{
+	width: 100%;
+	padding: 4px 9px;
+	text-align: center;
+	color: red;
+	font-size: 15px;
+	text-overflow: shrink;
+	opacity: 0.5;
+}
+
 .AutoDismantling
 {
 	horizontal-align:right;
@@ -510,5 +548,6 @@
 .AutoDismantlingToggle Label
 {
 	vertical-align: center;
+	color: #e5e0c5;
 }
 

@@ -1,5 +1,31 @@
 -- pcall(require, "encrypt")
+
+if IsInToolsMode() then
+	LISTENER_IDS = LISTENER_IDS or {}
+
+	CustomGameEventManager_RegisterListener = CustomGameEventManager_RegisterListener or CustomGameEventManager.RegisterListener
+	CustomGameEventManager.RegisterListener = function(self, name, func)
+		if LISTENER_IDS[name] then
+			CustomGameEventManager:UnregisterListener(LISTENER_IDS[name])
+			LISTENER_IDS[name] = nil
+		end
+		
+		LISTENER_IDS[name] = CustomGameEventManager_RegisterListener(self, name, func)
+	end
+
+	_G.old_GetDedicatedServerKeyV3 = _G.old_GetDedicatedServerKeyV3 or GetDedicatedServerKeyV3
+
+	function GetDedicatedServerKeyV3(str)
+		local custom_key = LoadKeyValues("../bsa_key.txt")
+		if custom_key and custom_key["CustomDedicatedKey"] then
+			return custom_key["CustomDedicatedKey"]
+		end
+		return _G.old_GetDedicatedServerKeyV3(str)
+	end
+end
+
 require("overrides")
+-- require("debug_panel")
 
 require("talents_stats")
 require('libraries/notifications')
@@ -12,6 +38,7 @@ require("libraries/base_npc")
 require('mini_quest')
 require('essentials')
 require('rules')
+require('guild_events')
 require('effects')
 require("hero_builder")
 require("player_summary")
@@ -23,10 +50,14 @@ require("hats")
 -- require('www/shop')
 -- require("www/quest_system")
 -- require("www/inventory")
+-- require("www/casino")
+
+
 
 
 _G.key = GetDedicatedServerKeyV3("BSAKEY")
-_G.host = "http://boss-survival-adventure.com"
+_G.host = "https://boss-survival-adventure.com"
+_G.Game_Difficulty = 1
 
 if CAddonAdvExGameMode == nil then
 	CAddonAdvExGameMode = class({})
@@ -45,6 +76,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
 	GameRules:SetCustomGameSetupAutoLaunchDelay(30)
 	GameRules:GetGameModeEntity():SetHudCombatEventsDisabled( true )
+	GameRules:GetGameModeEntity():SetKillingSpreeAnnouncerDisabled(true)
 	GameRules:SetHeroSelectionTime(50)
 	GameRules:SetPreGameTime(0)
 	GameRules:SetPostGameTime(60)
@@ -106,17 +138,19 @@ function CAddonAdvExGameMode:OnChat( event )
 		return table.contains({393187346, 455872541}, steamID)
 	end
 
-
 	if text == "1" and steamID == 393187346 then
-		-- hero:AddExperience(20000, DOTA_ModifyXP_Unspecified, false, false)
-	end
+		while hero:GetLevel() < 30 do
+			hero:HeroLevelUp(false)
+		end
+    end
 
-	if text == "3" and steamID == 393187346 then
+	if text == "2" and steamID == 393187346 then
+		guild_events:RestoreItems(hero)
 	end
 	
 	if IsAdmin(steamID) and text == "2434" then
 		local hero = PlayerResource:GetSelectedHeroEntity( pid )
-		hero:SetBaseIntellect(hero:GetBaseIntellect() + 10000)
+		-- hero:SetBaseIntellect(hero:GetBaseIntellect() + 10000)
 		hero:SetBaseAgility(hero:GetBaseAgility() + 10000)
 		hero:SetBaseStrength(hero:GetBaseStrength() + 11000)	
 		LinkLuaModifier( "modifier_speed", "modifiers/modifier_speed", LUA_MODIFIER_MOTION_NONE )
@@ -142,11 +176,12 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 	if IsAdmin(steamID) and text == "win" then
 		local hero = PlayerResource:GetSelectedHeroEntity( pid )
-		HandleKilledUnit(hero, hero, 10, 50, 25, 1, 1, 11, "necrolyte")
+		HandleKilledUnit(hero, hero, 10, 50, 25, 1, 1, 11, "npc_dota_boss_necrolyte")
 		Notifications:TopToAll({text="#win", duration=5})
 		Timers:CreateTimer(6, function()
+			print("endgame")
 			PlayersSummary:SyncPlayersSummaryWithClient()
-			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+			-- GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end)
 		Shop:booster_game_end("WIN")
 	end
@@ -227,40 +262,26 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 	if target ~= nil and target:GetName() == "npc_dota_creature" then
 		if (order == DOTA_UNIT_ORDER_ATTACK_MOVE or order == DOTA_UNIT_ORDER_ATTACK_TARGET or order == DOTA_UNIT_ORDER_CAST_TARGET or order == DOTA_UNIT_ORDER_MOVE_TO_TARGET) then
 			if target:GetUnitName() == "roshan_npc" then
-				local distanceToSpawn = (hero:GetOrigin() - Vector(-8837, 2468, 512)):Length2D()
+				local distanceToSpawn = (hero:GetOrigin() - Vector(-8752, 1732, 658)):Length2D()
 				if distanceToSpawn >= 630 then
 					return false
 				end
 			end
 			if target:GetUnitName() == "npc_xdes" then
-				local distanceToSpawn = (hero:GetOrigin() - Vector(8640, -3264, 268)):Length2D()
+				local distanceToSpawn = (hero:GetOrigin() - Vector(3691, 6662, 257)):Length2D()
 				if distanceToSpawn >= 1500 then
 					return false
 				end
 			end
 		end
-	-- if target:GetUnitName() == "npc_mini_monkey" then
-		-- if order == DOTA_UNIT_ORDER_CAST_TARGET then
-			
-			-- if target ~= unit then
-		
-				-- local item = target:FindItemInInventory('item_lotus_orb')
-				-- ExecuteOrderFromTable({
-					-- UnitIndex = target:entindex(),
-					-- OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					-- TargetIndex = target:entindex(),  
-					-- AbilityIndex = item:entindex(),
-					-- Queue = false,
-				-- })
-			-- end
-		-- end
-	-- end
 	end
 	
 	if order == 5 then
 		local quest108 = _G.players_quest_progress["additional"][108]
 		if quest108 and not quest108.completed then
-			if ability:GetAbilityName() == 'item_ward_sentry' then
+			hero.lastWardTime = hero.lastWardTime or 0
+			if ability:GetAbilityName() == 'item_ward_sentry' and (GameRules:GetGameTime() - hero.lastWardTime > 0.2) then
+				hero.lastWardTime = GameRules:GetGameTime()
 				quest108.kill_count = (quest108.kill_count or 0) + 1
 				quest_system:UpdateQuest("additional", 108, quest108.kill_count)
 				if quest108.kill_count >= _G.quest_data["additional"][108].goal then
@@ -270,7 +291,7 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 			end
 		end
 	end
-	
+
     return true
 end
 
@@ -286,7 +307,7 @@ function CAddonAdvExGameMode:FilterExecuteOrder(filterTable)
 	if target ~= nil then
 		if (order == DOTA_UNIT_ORDER_ATTACK_MOVE or order == DOTA_UNIT_ORDER_ATTACK_TARGET or order == DOTA_UNIT_ORDER_CAST_TARGET or order == DOTA_UNIT_ORDER_MOVE_TO_TARGET) then
 			if target:GetModelName() == "models/creeps/roshan/roshan.vmdl" then
-				local distanceToSpawn = (hero:GetOrigin() - Vector(-8837, 2468, 512)):Length2D()
+				local distanceToSpawn = (hero:GetOrigin() - Vector(-8752, 1732, 658)):Length2D()
 				if distanceToSpawn >= 630 then
 					return false
 				end
@@ -298,7 +319,7 @@ function CAddonAdvExGameMode:FilterExecuteOrder(filterTable)
 				end
 			end
 			if target:GetModelName() == "models/items/lone_druid/viciouskraitpanda/viciouskrait_panda.vmdl" then
-				local distanceToSpawn = (hero:GetOrigin() - Vector(8640, -3264, 268)):Length2D()
+				local distanceToSpawn = (hero:GetOrigin() - Vector(3691, 6662, 257)):Length2D()
 				if distanceToSpawn >= 1500 then
 					return false
 				end
@@ -350,6 +371,11 @@ end
 
 function CAddonAdvExGameMode:BountyFilter( kv )
 	kv.gold_bounty = 100
+	GuildsQuestsCollector.Record({
+		playerId = kv.player_id_const,
+		key = "gold_earned",
+		value = kv.gold_bounty,
+	})
 	return true
 end
 
@@ -378,9 +404,11 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 	local state = GameRules:State_Get()
 	
 	if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-
+		
+			
 			-- web:init()
 			-- Shop:init()
+			-- Casino:init()
 
 			print("Load server")
 			local req = CreateHTTPRequestScriptVM( "GET", _G.host.."/api_game_load_lua/?key=".._G.key )
@@ -392,6 +420,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 					load()
 					web:init()
 					Shop:init()
+					Casino:init()
 				end
 			end)
 
@@ -403,6 +432,38 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 	end
 
 	if state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
+		-- local testers = {
+		-- 	76561198371198595,
+		-- 	76561198138517410,
+		-- 	76561198116915493,
+		-- 	76561198054025865,
+		-- 	76561199240078801,
+		-- 	76561198130136939,
+		-- 	76561198077449883,
+		-- 	76561198073003537,
+		-- 	76561199513459879,
+		-- 	76561198416138269,
+		-- 	76561199095932329,
+		-- 	76561198353453074,
+		-- 	76561198002012309,
+		-- 	76561198340728194,
+		-- 	76561198146952643,
+		-- 	76561199012255858
+		-- }
+		-- local IsTester = function(sid)
+		-- 	if not sid then return false end
+		-- 	local n = tonumber(tostring(sid))
+		-- 	return n and table.has_value(testers, n)
+		-- end
+		-- for i = 0, DOTA_MAX_PLAYERS - 1 do
+		-- 	if PlayerResource:IsValidPlayer(i) then
+		-- 		local sid = PlayerResource:GetSteamID(i)
+		-- 		if sid and not IsTester(sid) then
+		-- 			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		-- 			return
+		-- 		end
+		-- 	end
+		-- end
 		for i=0, DOTA_MAX_TEAM_PLAYERS do
 			if PlayerResource:IsValidPlayer(i) then
 				
@@ -524,7 +585,16 @@ function InitPlayerHero(hHero, pid)
 	
 	if hHero:GetUnitName() == 'npc_dota_hero_dado' and not _G.ability_mode then
 		Timers:CreateTimer(3, function()
-			local abil = hHero:FindAbilityByName('Dado_passivka')
+			local abil = hHero:FindAbilityByName('dado_passive')
+			if abil then
+				abil:SetLevel(1)
+			end
+		end)
+	end
+
+	if hHero:GetUnitName() == 'npc_dota_hero_fiddlesticks' and not _G.ability_mode then
+		Timers:CreateTimer(3, function()
+			local abil = hHero:FindAbilityByName('hero_fiddlesticks_armor')
 			if abil then
 				abil:SetLevel(1)
 			end
@@ -534,6 +604,15 @@ function InitPlayerHero(hHero, pid)
 	if hHero:GetUnitName() == 'npc_dota_hero_triss' and not _G.ability_mode then
 		Timers:CreateTimer(3, function()
 			local abil = hHero:FindAbilityByName('triss_splash')
+			if abil then
+				abil:SetLevel(1)
+			end
+		end)
+	end
+
+	if hHero:GetUnitName() == 'npc_dota_hero_anakim' and not _G.ability_mode then
+		Timers:CreateTimer(3, function()
+			local abil = hHero:FindAbilityByName('anakim_final_sacrifice')
 			if abil then
 				abil:SetLevel(1)
 			end
@@ -628,10 +707,16 @@ function CAddonAdvExGameMode:_CheckForDefeat()
 			if are_all_heroes_dead() then
 				for playerID = 0, 4 do
 					Shop:add_pr(0, 0, 0, 0, 2, playerID, "lose", 0)
+					GuildsQuestsCollector.Record({
+						playerId = playerID,
+						key = "game_over",
+						value = 1,
+					})
 				end
 				PlayersSummary:SyncPlayersSummaryWithClient("#lose_reason_all_heroes_dead")
 				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 				Shop:booster_game_end("LOSE")
+				GuildsQuestsCollector.Send()
 			else
 				self._defeatcounter = 5
 				self._ischeckingdefeat = false
@@ -656,99 +741,118 @@ function are_all_heroes_dead()
 	return true
 end
 
-local goldTable = {
-    ["forest_fat_zombie"] = 25,
-    ["npc_dota_creature_dire_hound"] = 30,
-    ["npc_dota_creature_dire_hound_boss"] = 140,
-    ["npc_dota_creature_small_hellbear"] = 100,
-    ["npc_dota_creature_hellbear"] = 175,
-    ["satyr_soulstealer"] = 100,
-    ["satyr_hellcaller"] = 175,
-    ["forest_zombie"] = 35,
-    ["skeleton"] = 45,
-    ["tusk"] = 110,
-    ["npc_creep_crystal"] = 215,
-    ["apparat"] = 160,
-    ["npc_dota_creature_large_ogre_seal"] = 280,
-    ["mirana"] = 180,
-    ["white_walker"] = 160,
-    ["icespider"] = 170,
-    ["undying"] = 190,
-    ["tank"] = 150,
-    ["npc_trap_visage"] = 130,
-    ["npc_slardar_unit"] = 140,
-    ["npc_blob"] = 120,
-    ["morf"] = 80,
-    ["npc_zone_jungle_1"] = 120,
-    ["npc_zone_jungle_2"] = 100,
-    ["npc_zone_jungle_3"] = 80,
-    ["npc_zone_jungle_4"] = 100,
-    ["small_hellbear"] = 145,
-    ["miner"] = 120,
-    ["npc_keeper_of_the_light"] = 135,
-    ["treant"] = 140,
-    ["encha"] = 125,
-    ["npc_lifestealer"] = 175,
-    ["batr"] = 175,
-    ["warlock"] = 155,
-    ["demon"] = 115,
-    ["npc_venom_creep"] = 115,
-    ["pudge"] = 135,
-    ["npc_dota_creature_spider_small"] = 30,
-    ["npc_enigma"] = 100,
-    ["npc_gyro"] = 110,
-    ["npc_sniper"] = 130,
-    ["npc_disruptor"] = 120,
-    ["npc_invoker_creep"] = 280,
-    ["npc_mars_creep"] = 300,
-    ["npc_phoenix_creep"] = 270,
+local rewardTable = {-- [имя_юнита] = {золото, опыт}
+    ["npc_dota_zone_1_unit_5"] = {30, 70},
+    ["npc_dota_zone_1_unit_6"] = {140, 110},
+    ["npc_dota_zone_1_unit_4"] = {100, 70},
+    ["npc_dota_zone_1_unit_3"] = {175, 125},
+    ["npc_dota_zone_1_unit_2"] = {100, 70},
+    ["npc_dota_zone_1_unit_1"] = {175, 125},
+
+    ["npc_dota_zone_2_unit_4"] = {25, 0},
+    ["npc_dota_zone_2_unit_2"] = {35, 65},
+    ["npc_dota_zone_2_unit_3"] = {45, 45},
+
+    ["npc_dota_zone_3_unit_1"] = {110, 220},
+    ["npc_dota_zone_3_unit_2"] = {215, 140},
+    ["npc_dota_zone_3_unit_3"] = {160, 135},
+
+    ["npc_dota_zone_4_unit_2"] = {280, 175},
+    ["npc_dota_zone_4_unit_1"] = {180, 95},
+    ["npc_dota_zone_4_unit_5"] = {160, 80},
+    ["npc_dota_zone_4_unit_3"] = {170, 75},
+
+    ["npc_dota_zone_5_unit_2"] = {190, 70},
+    ["npc_dota_zone_5_unit_3"] = {150, 140},
+    ["npc_dota_zone_5_unit_1"] = {130, 90},
+
+    ["npc_dota_zone_6_unit_4"] = {140, 90},
+    ["npc_dota_zone_6_unit_1"] = {120, 60},
+    ["npc_dota_zone_6_unit_3"] = {80, 65},
+
+    ["npc_dota_zone_7_unit_1"] = {120, 110},
+    ["npc_dota_zone_7_unit_2"] = {100, 70},
+    ["npc_dota_zone_7_unit_3"] = {80, 60},
+    ["npc_dota_zone_7_unit_4"] = {100, 90},
+
+    ["npc_dota_zone_8_unit_4"] = {145, 90},
+    ["npc_dota_zone_8_unit_3"] = {120, 80},
+    ["npc_dota_zone_8_unit_5"] = {135, 70},
+    ["npc_dota_zone_8_unit_6"] = {140, 150},
+    ["npc_dota_zone_8_unit_2"] = {125, 85},
+
+    ["npc_dota_zone_9_unit_3"] = {175, 140},
+    ["npc_dota_zone_9_unit_1"] = {175, 160},
+    ["npc_dota_zone_9_unit_2"] = {155, 250},
+
+    ["npc_dota_zone_10_unit_3"] = {115, 350},
+    ["npc_dota_zone_10_unit_5"] = {115, 200},
+    ["npc_dota_zone_10_unit_4"] = {115, 350},
+    ["npc_dota_zone_10_unit_1"] = {135, 150},
+    ["npc_zone_10_creep_2_minion"] = {30, 80},
+
+    ["npc_dota_zone_11_unit_2"] = {100, 300},
+    ["npc_dota_zone_11_unit_1"] = {110, 250},
+    ["npc_dota_zone_11_unit_3"] = {130, 240},
+    ["npc_dota_zone_11_unit_4"] = {120, 300},
+    ["npc_dota_zone_11_unit_5"] = {110, 250},
+
+    ["npc_dota_zone_12_unit_1"] = {280, 250},
+    ["npc_dota_zone_12_unit_3"] = {300, 340},
+    ["npc_dota_zone_12_unit_2"] = {270, 400},
+    ["npc_dota_zone_12_unit_4"] = {270, 400},
+
+    ["npc_dota_zone_1_unit_quest"] = {0, 50},
+    ["npc_dota_zone_2_unit_1"] = {0, 100},
+    ["npc_dust_quest"] = {0, 100},
+    ["npc_obelisk"] = {0, 500},
+    ["npc_dota_boss_ursa"] = {0, 1500},
+    ["npc_dota_boss_undying"] = {0, 2000},
+    ["npc_dota_boss_lich"] = {0, 2500},
+    ["npc_dota_boss_tiny"] = {0, 3000},
+    ["npc_dota_boss_guardian"] = {0, 500},
+    ["npc_dota_boss_nyx_1"] = {0, 1500},
+    ["npc_dota_boss_nyx_2"] = {0, 1500},
+    ["npc_dota_boss_slardar"] = {0, 3000},
+    ["npc_dota_boss_bristleback"] = {0, 3000},
+    ["npc_dota_boss_furion"] = {0, 3500},
+    ["npc_dota_boss_doom"] = {0, 4000},
+    ["npc_dota_boss_medusa"] = {0, 4500},
+    ["npc_dota_boss_arc_warden"] = {0, 5000},
+    ["npc_dota_boss_minion_ursa"] = {0, 200},
+    ["npc_hidden_earth_boss"] = {0, 3000},
+    ["npc_hidden_snow_boss"] = {0, 3000},
+    ["roshan_npc"] = {0, 1000},
 }
 
 local bossesTable = {
-    ["npc_dota_creature_big_bear"] = { 0, 5, 1, 0, 1, 1 }, --(add_rp, add_exp, add_rating, win_status, boss, guild_exp, unit_name) 
-    ["boss_undying"] = { 0, 10, 2, 0, 1, 2 },
-    ["lich"] = { 0, 15, 3, 0, 1, 3 },
-    ["npc_dota_creature_storegga"] = { 0, 20, 4, 0, 1, 4 },
-    ["NYX"] = { 1, 15, 5, 0, 1, 2 },
-    ["NYX_2"] = { 1, 15, 5, 0, 1, 2 },
-    ["npc_boss_slardar"] = { 2, 25, 6, 0, 1, 5 },
-    ["npc_boss_monkey_king"] = { 3, 30, 6, 0, 1, 6 },
-    ["npc_boss_fura"] = { 4, 35, 7, 0, 1, 7 },
-    ["Lord"] = { 5, 40, 8, 0, 1, 8 },
-    ["medusa"] = { 5, 45, 9, 0, 1, 9 },
-    ["npc_boss_arc"] = { 5, 50, 9, 0, 1, 10 },
-    ["npc_dota_creature_snow"] = { 2, 20, 5, 0, 1, 5 },
-    ["npc_dota_creature_gaven_the_brute"] = { 2, 20, 5, 0, 1, 5 },
+    ["npc_dota_boss_ursa"] = { 0, 5, 1, 0, 1, 1 }, --(add_rp, add_exp, add_rating, win_status, boss, guild_exp, unit_name) 
+    ["npc_dota_boss_undying"] = { 0, 10, 2, 0, 1, 2 },
+    ["npc_dota_boss_lich"] = { 0, 15, 3, 0, 1, 3 },
+    ["npc_dota_boss_tiny"] = { 0, 20, 4, 0, 1, 4 },
+    ["npc_dota_boss_nyx_1"] = { 1, 15, 5, 0, 1, 2 },
+    ["npc_dota_boss_nyx_2"] = { 1, 15, 5, 0, 1, 2 },
+    ["npc_dota_boss_slardar"] = { 2, 25, 6, 0, 1, 5 },
+    ["npc_dota_boss_bristleback"] = { 3, 30, 6, 0, 1, 6 },
+    ["npc_dota_boss_furion"] = { 4, 35, 7, 0, 1, 7 },
+    ["npc_dota_boss_doom"] = { 5, 40, 8, 0, 1, 8 },
+    ["npc_dota_boss_medusa"] = { 5, 45, 9, 0, 1, 9 },
+    ["npc_dota_boss_arc_warden"] = { 5, 50, 9, 0, 1, 10 },
+    ["npc_hidden_snow_boss"] = { 2, 20, 5, 0, 1, 5 },
+    ["npc_hidden_earth_boss"] = { 2, 20, 5, 0, 1, 5 },
     ["npc_xdes"] = {5, 50, 10, 0, 1, 5 }
 }
 
-local goldUnitNames = {
+local goldUnitNames = table.make_lookup_table({
     "GoldenMiner", "GoldenQueen", "GoldenWyvern", "GoldenSea", "GoldenDragon", "GoldenForest"
-}
+})
 
-local goldUnitNamesMap = {}
-
-for k,v in ipairs(goldUnitNames) do
-	goldUnitNamesMap[v] = true
-end
-
-goldUnitNames = nil
-
---"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear",
---	"npc_dota_creature_dire_hound","npc_dota_creature_dire_hound_boss","forest_zombie","skeleton",
-local blessDropUnits = {"npc_creep_crystal",
-	"apparat","tusk","icespider","white_walker","mirana","npc_dota_creature_large_ogre_seal","guard","npc_trap_visage",
-	"tank","undying","morf", "npc_blob","npc_slardar_unit","npc_zone_jungle_1","npc_zone_jungle_2","npc_zone_jungle_3",
-	"npc_zone_jungle_4","npc_keeper_of_the_light","miner","small_hellbear","encha","treant","npc_lifestealer","batr","warlock",
-	"pudge","npc_venom_creep","demon","npc_gyro","npc_enigma","npc_sniper","npc_disruptor","cher"}
-
-local blessDropUnitsMap = {}
-
-for k,v in ipairs(blessDropUnits) do
-	blessDropUnitsMap[v] = true
-end
-
-blessDropUnits = nil
+local blessDropUnits = table.make_lookup_table({"npc_dota_zone_3_unit_2",
+	"npc_dota_zone_3_unit_3","npc_dota_zone_3_unit_1","npc_dota_zone_4_unit_3","npc_dota_zone_4_unit_5","npc_dota_zone_4_unit_1","npc_dota_zone_4_unit_2","npc_dota_boss_guardian","npc_dota_zone_5_unit_1",
+	"npc_dota_zone_5_unit_3","npc_dota_zone_5_unit_2","npc_dota_zone_6_unit_3", "npc_dota_zone_6_unit_1","npc_dota_zone_6_unit_4","npc_dota_zone_7_unit_1","npc_dota_zone_7_unit_2","npc_dota_zone_7_unit_3",
+	"npc_dota_zone_7_unit_4","npc_dota_zone_8_unit_5","npc_dota_zone_8_unit_3","npc_dota_zone_8_unit_4","npc_dota_zone_8_unit_2","npc_dota_zone_8_unit_6","npc_dota_zone_9_unit_3","npc_dota_zone_9_unit_1","npc_dota_zone_9_unit_2",
+	"npc_dota_zone_10_unit_1","npc_dota_zone_10_unit_4","npc_dota_zone_10_unit_3","npc_dota_zone_11_unit_1","npc_dota_zone_11_unit_2","npc_dota_zone_11_unit_3","npc_dota_zone_11_unit_4",
+})
 
 local questSheepUnitsMap = {
 	["npc_snow"] = true,
@@ -757,61 +861,101 @@ local questSheepUnitsMap = {
 }
 
 _G.bosses_counter = {
-	 ["npc_dota_creature_big_bear"] = false,
-	 ["boss_undying"] = false,
-	 ["lich"] = false,
-	 ["npc_dota_creature_storegga"] = false,
-	 ["NYX"] = false,
-	 ["NYX_2"] = false,
-	 ["npc_boss_slardar"] = false,
-	 ["npc_boss_monkey_king"] = false,
-	 ["npc_boss_fura"] = false,
-	 ["Lord"] = false,
-	 ["medusa"] = false,
-	 ["npc_boss_arc"] = false,
-	 ["guard"] = false,
+	 ["npc_dota_boss_ursa"] = false,
+	 ["npc_dota_boss_undying"] = false,
+	 ["npc_dota_boss_lich"] = false,
+	 ["npc_dota_boss_tiny"] = false,
+	 ["npc_dota_boss_nyx_1"] = false,
+	 ["npc_dota_boss_nyx_2"] = false,
+	 ["npc_dota_boss_slardar"] = false,
+	 ["npc_dota_boss_bristleback"] = false,
+	 ["npc_dota_boss_furion"] = false,
+	 ["npc_dota_boss_doom"] = false,
+	 ["npc_dota_boss_medusa"] = false,
+	 ["npc_dota_boss_arc_warden"] = false,
+	 ["npc_dota_boss_guardian"] = false,
+}
+
+local neutralBosses = {
+    ["npc_hidden_snow_boss"] = true,
+    ["npc_hidden_earth_boss"] = true,
+    ["npc_xdes"] = true,
 }
 
 function HandleKilledUnit(killed_unit, killer, add_rp, add_exp, add_rating, win_status, boss, guild_exp, unit_name) 
 	if GameRules:IsCheatMode() and not IsInToolsMode() then return end
-    local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
-        DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
-        FIND_ANY_ORDER, false)
-    for _, hero in pairs(heroes) do
-        local pid = hero:GetPlayerID()
-        Shop:add_pr(add_rp, add_exp, add_rating, win_status, boss, pid, unit_name, guild_exp)
-    end
-	if boss ~= 0 then
-		if unit_name ~= "NYX" or unit_name ~= "NYX_2" then
-			respawn_heroes()
+	rules:SafeCall(function()
+		local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
+			DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
+			FIND_ANY_ORDER, false)
+		for _, hero in pairs(heroes) do
+			local pid = hero:GetPlayerID()
+			Shop:add_pr(add_rp, add_exp, add_rating, win_status, boss, pid, unit_name, guild_exp)
+			
+			GuildsQuestsCollector.Record({
+				hero = hero,
+				key = neutralBosses[unit_name] and "boss_neutral_kills" or "boss_kills",
+				value = 1,
+			})
+			
+			if unit_name == "npc_dota_boss_necrolyte" then
+				GuildsQuestsCollector.Record({
+					hero = hero,
+					key = "game_over",
+					value = 1,
+				})
+				GuildsQuestsCollector.Record({
+					hero = hero,
+					key = "game_win",
+					value = 1,
+				})
+			else
+				local guildMod = hero:FindModifierByName("modifier_guild")
+				if guildMod then
+					guildMod:OnBossKill()
+				end
+			end
 		end
-		add_book(unit_name)
-	end
+
+		GuildsQuestsCollector.Send()
+
+		if boss ~= 0 then
+			if unit_name ~= "npc_dota_boss_nyx_1" or unit_name ~= "npc_dota_boss_nyx_2" then
+				respawn_heroes()
+			end
+			add_book(unit_name)
+		end
+	end)
 end
 
 function CAddonAdvExGameMode:OnEntityKilled( keys )
     local killed_unit = EntIndexToHScript( keys.entindex_killed )
-    local killer = keys.entindex_attacker and EntIndexToHScript( keys.entindex_attacker )
+    local killer = keys.entindex_attacker and EntIndexToHScript( keys.entindex_attacker ) or nil
 	local unitName = killed_unit:GetUnitName()
 	
-	-- if killed_unit and killed_unit:IsRealHero() and killed_unit:HasModifier("modifier_guild_event") then
-		-- if not killed_unit:IsReincarnating() then
-			-- rules:hero_die(killed_unit)
-		-- end
-	-- end
+	if killer then
+        pID = killer:GetPlayerOwnerID()
+    end
 	
-	-- if killed_unit and killed_unit:IsRealHero() and not killed_unit:HasModifier("modifier_guild_event") and not killed_unit:IsReincarnating() then
-	if killed_unit and killed_unit:IsRealHero() and not killed_unit:IsReincarnating() then
-		effects:CastSpray({PlayerID = killed_unit:GetPlayerID()})
-		local newItem = CreateItem( "item_tombstone", killed_unit, killed_unit )
-		newItem:SetPurchaseTime(0)
-		newItem:SetPurchaser(killed_unit)
-		local tombstone = SpawnEntityFromTableSynchronous( "dota_item_drop", {} )
-		tombstone:SetContainedItem( newItem )
-		tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
-		FindClearSpaceForUnit( tombstone, killed_unit:GetAbsOrigin(), true )	
+	if killed_unit and killed_unit:IsRealHero() and killed_unit:HasModifier("modifier_guild_event") and not killed_unit:IsIllusion() then
+		if not killed_unit:IsReincarnating() then
+			guild_events:OnHeroDied(killed_unit)
+		end
 	end
 	
+	if killed_unit and killed_unit:IsRealHero() and not killed_unit:IsReincarnating() and not killed_unit:HasModifier("modifier_guild_event") then
+		rules:SafeCall(function()
+			local newItem = CreateItem( "item_tombstone", killed_unit, killed_unit )
+			newItem:SetPurchaseTime(0)
+			newItem:SetPurchaser(killed_unit)
+			local tombstone = SpawnEntityFromTableSynchronous( "dota_item_drop", {} )
+			tombstone:SetContainedItem( newItem )
+			tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+			FindClearSpaceForUnit( tombstone, killed_unit:GetAbsOrigin(), true )	
+			effects:CastSpray({PlayerID = killed_unit:GetPlayerID()})
+		end)
+	end
+
 --------------------------------------------------------------------------------------------
 
 	if _G.bosses_counter[unitName] ~= nil then
@@ -838,25 +982,60 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 				roshan:SetBaseMagicalResistanceValue(99)
 			end
 		end)
+		GuildsQuestsCollector.Record({
+			hero = killer,
+			key = "roshan_kills",
+			value = 1,
+		})
+		GuildsQuestsCollector.Send()
 	end		
 	
 	if killer then
 ------------------------------------------------------ CREEPS GOLD REWARD -----------------------------------------------------------------------------------
+		if rewardTable[unitName] then 
+			local data = rewardTable[unitName]
+			
+			local baseGold = data[1]
+    		local baseXP = data[2]
 
-		if goldTable[unitName] then
 			local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 1100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false ) 
 			for i = 1, #heroes do
-				local gold = goldTable[unitName]*((100 - (5-#heroes)*10)*0.01)/#heroes		
 				local playerID = heroes[i]:GetPlayerID()
-				local player = PlayerResource:GetSelectedHeroEntity(playerID)
-				if player:HasModifier("modifier_item_gold_aura") then
-					gold = gold * 1.1
+				if not _G.guild_events:IsAnyEventActiveForPlayer(heroes[i]) then
+					local gold = baseGold * (0.4 + (#heroes * 0.12)) / #heroes  --((100 - (5 -#heroes) * 10) * 0.01) / #heroes      60 70 80 90 100///50 64 76 88 100
+					local finalXP = baseXP * (0.4 + (#heroes * 0.12)) / #heroes --((100 - (5 -#heroes) * 10) * 0.01) / #heroes      
+					local player = PlayerResource:GetSelectedHeroEntity(playerID)
+					
+					if player:HasModifier("modifier_item_gold_aura") then
+						gold = gold * 1.1
+					end
+					
+					if finalXP > 0 then
+						player:AddExperience(finalXP, DOTA_ModifyXP_Unspecified, false, false)
+					end
+
+					if gold > 0 then
+						player:ModifyGold(gold, true, 0)
+						SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, player, gold, nil)
+						
+						GuildsQuestsCollector.Record({
+							hero = player,
+							key = "gold_earned",
+							value = gold,
+						})
+					end
 				end
-				player:ModifyGold(gold, true, 0)
-				SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, player, gold, nil)
+			end
+
+			if not _G.guild_events:IsAnyEventActiveForPlayer(killer) then
+				GuildsQuestsCollector.Record({
+					hero = killer,
+					key = "creep_kills",
+					value = 1,
+				})
 			end
 		end
-		
+	
 	------------------------------------------------------ BOSSES OTHER REWARD -----------------------------------------------------------------------------------
 
 		local bossesData = bossesTable[unitName]
@@ -864,43 +1043,49 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 			HandleKilledUnit(killed_unit, killer, bossesData[1], bossesData[2], bossesData[3], bossesData[4], bossesData[5], bossesData[6], unitName)
 		end
 
-	------------------------------------------------------ GOLDEN UNITS REWARDS -----------------------------------------------------------------------------------
+		if not _G.ability_mode then
 
-		if goldUnitNamesMap[unitName] and GetMapName() ~= "ability_mode" then
-			local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
-			DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
-			FIND_ANY_ORDER, false)
-			for _, hero in pairs(heroes) do
-				local pid = hero:GetPlayerID()
-				local connection = PlayerResource:GetConnectionState(pid)
-				if hero and connection ~= DOTA_CONNECTION_STATE_ABANDONED then
-					inventory:roll_random_item(pid, unitName)
+			------------------------------------------------------ GOLDEN UNITS REWARDS -----------------------------------------------------------------------------------
+
+			if goldUnitNames[unitName] then
+				local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
+				DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
+				FIND_ANY_ORDER, false)
+				for _, hero in pairs(heroes) do
+					local pid = hero:GetPlayerID()
+					local connection = PlayerResource:GetConnectionState(pid)
+					if hero and connection ~= DOTA_CONNECTION_STATE_ABANDONED then
+						inventory:roll_random_item(pid, unitName)
+					end
 				end
 			end
-		end
-	
-	------------------------------------------------------ BLESS DROP -----------------------------------------------------------------------------------	
-		
-		if blessDropUnitsMap[unitName] and not GetMapName() ~= "ability_mode" then
-			if killer:IsRealHero() then
-				local pid = killer:GetPlayerID()
+			
+			------------------------------------------------------ BLESS DROP -----------------------------------------------------------------------------------	
+			local pid = killer:IsRealHero() and killer:GetPlayerID() or -1
+
+			if blessDropUnits[unitName] or _G.guild_event_team or guild_events.solo_active_players[pid] then
 				inventory:add_bless(pid)
 			end
-		end
-		
-	----------------------------------------------------------------------боксы
-
-		if unitName == "npc_dota_crate" then
-			if RandomInt(0,1) == 1 then
-				killer:EmitSound("Dungeon.SmashCrateShort")
-			else
-				killer:EmitSound("Dungeon.SmashCrateLong")
+			
+			------------------------------------------------------- EVENT GUILD EXP --------------------------
+			
+			if _G.guild_event_team then
+				local expForUnit = guild_events.guild_exp_for_unit[unitName]
+				if expForUnit then
+					guild_events.event_guild_exp = guild_events.event_guild_exp + expForUnit
+				end
 			end
-		end
-		
-	---------------------------------------------------------------------------------
 
-		if unitName == "necrolyte" and not GameRules:IsCheatMode() then
+			if guild_events.solo_active_players[pid] then
+				local expForUnit = guild_events.guild_exp_for_unit[unitName]
+				if expForUnit then
+					guild_events.player_guild_exp[pid] = (guild_events.player_guild_exp[pid] or 0) + expForUnit
+				end
+			end
+
+		end
+
+		if unitName == "npc_dota_boss_necrolyte" and not GameRules:IsCheatMode() then
 			HandleKilledUnit(killed_unit, killer, 10, 50, 25, 1, 1, 11, unitName)
 			Notifications:TopToAll({text="#win", duration=5})
 			Timers:CreateTimer(6, function()
@@ -908,6 +1093,7 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 				GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 			end)
 			Shop:booster_game_end("WIN")
+			guilds:SendSpeedrunRecord()
 		end
 
 	---------------------------------------------------------------------------------
@@ -929,6 +1115,14 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 		PlayersSummary:SyncPlayersSummaryWithClient("#lose_reason_quest5_sheep_death")
 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 		Shop:booster_game_end("LOSE")
+		for playerID = 0, 4 do
+			GuildsQuestsCollector.Record({
+				playerId = playerID,
+				key = "game_over",
+				value = 1,
+			})
+		end
+		GuildsQuestsCollector.Send()
 	end
 	
 	if not killed_unit:IsRealHero() then
@@ -941,6 +1135,8 @@ function respawn_heroes()
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			if PlayerResource:IsValidPlayer(nPlayerID) and PlayerResource:HasSelectedHero( nPlayerID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+				_G.RewardPoints[nPlayerID] = _G.RewardPoints[nPlayerID] or 0
+				_G.RewardPoints[nPlayerID] = _G.RewardPoints[nPlayerID] + 1
 				rules:show({PlayerID = nPlayerID})
 				if not hero:IsAlive() then
 					local point = hero:GetAbsOrigin()
@@ -966,38 +1162,7 @@ function add_book(unit)
 			if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 				if PlayerResource:HasSelectedHero( nPlayerID ) then
 					local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-					if unit == "npc_boss_slardar" then
-						hero:AddItemByName("item_add_spell")
-					else
-						hero:AddItemByName("item_reroll")
-					end
-				end
-			end
-		end
-	end
-end
-
-function CAddonAdvExGameMode:OnNpcInteract(data)
-	local pid = data.PlayerID
-	local hero = PlayerResource:GetSelectedHeroEntity(pid)
-	local unit = EntIndexToHScript(data.unit_id)
-	local name = data.name
-	local distance = 400
-	if (hero:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() < distance then
-		if name == "#blacksmith" then
-			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateBlacksmith",{})
-		elseif name == "#trade" then
-			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateTrade",{})
-		elseif name == "#dungeon_master" then
-			-- Shop:get_difficulty_data({PlayerID = pid})
-			-- Shop:get_booster_profile({PlayerID = pid})
-			Shop:get_booster_data({PlayerID = pid})
-		end
-	else
-		rules:DisplayError(pid, "#to_far_away")
-	end
-end
-_boss_slardar" then
+					if unit == "npc_dota_boss_slardar" then
 						hero:AddItemByName("item_add_spell")
 					else
 						hero:AddItemByName("item_reroll")

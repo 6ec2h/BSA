@@ -158,12 +158,6 @@ function modifier_ogre_magi_bloodlust_lua_buff:OnRefresh( kv )
 	self:OnCreated( kv )
 end
 
-function modifier_ogre_magi_bloodlust_lua_buff:OnRemoved()
-end
-
-function modifier_ogre_magi_bloodlust_lua_buff:OnDestroy()
-end
-
 function modifier_ogre_magi_bloodlust_lua_buff:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,

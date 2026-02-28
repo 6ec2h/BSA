@@ -109,5 +109,4 @@ function modifier_generic_charges:SetActive( active )
 	-- for server
 	self.active = active
 
-	-- todo: self.active should be known to client
 end

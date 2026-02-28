@@ -163,34 +163,41 @@ function onRequestQuestsResponce({data}) {
 }
 
 function showQuestStatusText(status, description) {
-	let color, questStatus
+	const lineContainer = $.CreatePanel("Panel", questMsgPanel, "");
+	lineContainer.AddClass("QuestLineContainer");
+
+	let statusClass = "";
+	let questStatus = "";
 
 	switch (status) {
-		case "success": {
-			color = "#14b814"
-			questStatus = "success_quest"
-			break
-		}
-		case "fail": {
-			color = "#FF0000"
-			questStatus = "fail_quest"
-			break
-		}
-		default: {
-			color = "#FF8000"
-			questStatus = "new_quest"
-			break
-		}
+		case "success": 
+			statusClass = "SuccessStatus"; 
+			questStatus = "success_quest";
+			break;
+		case "fail": 
+			statusClass = "FailStatus"; 
+			questStatus = "fail_quest";
+			break;
+		default: 
+			statusClass = "NewStatus"; 
+			questStatus = "new_quest";
+			break;
 	}
 
-    const questMsg = $.CreatePanel("Label", questMsgPanel, "")
-    questMsg.AddClass("QuestMessage")
-    questMsg.html = true
-	questMsg.text = `<font color="${color}">${$.Localize(`#${questStatus}`)} ${$.Localize(`#${description}`)}</font>`
+	const questLabel = $.CreatePanel("Label", lineContainer, "");
+	questLabel.AddClass("QuestMessage");
+	questLabel.html = true;
+
+	const statusText = $.Localize("#" + questStatus);
+	const descriptionText = $.Localize("#" + description);
+
+	questLabel.text = `<span class="${statusClass}">${statusText}</span> <span class="DescriptionText"> ${descriptionText}</span>`;
 
     $.Schedule(3, function() {
-        questMsg.DeleteAsync(0)
-    })
+        if (lineContainer) {
+            lineContainer.DeleteAsync(0);
+        }
+    });
 }
 
 (function(){

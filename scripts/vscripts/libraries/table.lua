@@ -354,3 +354,11 @@ function table.remove_key(tbl,key)
     end
     return t
 end
+
+function table.make_lookup_table(tbl)
+	local new_tbl = {}
+	for _, v in pairs(tbl) do
+		new_tbl[v] = true
+	end
+	return new_tbl
+end

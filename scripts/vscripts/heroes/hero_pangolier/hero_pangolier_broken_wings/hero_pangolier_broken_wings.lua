@@ -2,6 +2,10 @@ LinkLuaModifier( "modifier_hero_pangolier_broken_wings", "heroes/hero_pangolier/
 
 hero_pangolier_broken_wings = class({})
 
+function hero_pangolier_broken_wings:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf", context )
+end
+
 function hero_pangolier_broken_wings:CastFilterResult()
 	if IsServer() then
 		if self:IsInAbilityPhase() then

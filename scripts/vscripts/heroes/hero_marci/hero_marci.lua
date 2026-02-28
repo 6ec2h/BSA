@@ -357,10 +357,11 @@ function modifier_marci_unleash_lua:OnCreated( kv )
 	)
 
 	self:PlayEffects()
-
-	self.hammer = self:GetCaster():GetTogglableWearable( DOTA_LOADOUT_TYPE_WEAPON )
-	if self.hammer then
-		self.hammer:AddEffects( EF_NODRAW )
+	if self:GetCaster():IsRealHero() then
+		self.hammer = self:GetCaster():GetTogglableWearable( DOTA_LOADOUT_TYPE_WEAPON )
+		if self.hammer then
+			self.hammer:AddEffects( EF_NODRAW )
+		end
 	end
 end
 

@@ -1,8 +1,8 @@
-pcall(require, "encrypt")
+-- pcall(require, "encrypt")
 
 require("libraries/debounce")
 
-LinkLuaModifier( "modifier_difficult", "abilities/difficult/modifier_difficult", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_difficult", "modifiers/modifier_difficult", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_guild", "modifiers/modifier_guild", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_aegis", "items/item_aegis_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_creep_antilag", "modifiers/modifier_creep_antilag", LUA_MODIFIER_MOTION_NONE )
@@ -15,9 +15,14 @@ LinkLuaModifier( "modifier_new_player", "modifiers/modifier_new_player", LUA_MOD
 LinkLuaModifier( "modifier_teleport_event", "modifiers/modifier_teleport_event", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_guild_event", "modifiers/modifier_guild_event", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_wait", "modifiers/modifier_wait", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_guild_event_buff", "modifiers/modifier_guild_event_buff", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_statue", "modifiers/modifier_statue", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_custom_blacksmith", "modifiers/modifier_custom_blacksmith", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_bad_vision", "modifiers/modifier_bad_vision", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_damage_boost", "abilities/bosses/modifier_boss_damage_boost", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_hidden_room_effect", "modifiers/modifier_hidden_room_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_cold_map_ability", "modifiers/modifier_cold_map_ability", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_dummy", "modifiers/modifier_dummy", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_event_buff", "modifiers/modifier_event_buff", LUA_MODIFIER_MOTION_NONE )
 
 all_skills = {"str","agi","int","hpr","mpr","movespeed","armor","mresist","exp","cooldown","damage","attack_speed","evasion","spellamp"}
 for _, skill in pairs(all_skills) do 

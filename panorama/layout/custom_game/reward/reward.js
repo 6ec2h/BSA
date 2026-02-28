@@ -45,6 +45,7 @@ class SingleSkill {
         }
         if(this.skill_panel){
             this.skill_panel.style.backgroundImage = `url("file://{resources}/images/custom_game/reward/`+ skill_name + `.png")` ;
+            this.skill_panel.style.backgroundSize = "100%";
             this.skill_panel.SetPanelEvent("onmouseactivate", SkillClick( this ))
             this.skill_panel.visible = true
         }
@@ -65,6 +66,7 @@ class SingleSkill {
 }
 
 function show_skills_js(t){
+	if (mainPanel.visible) return
     for(var i = 1; i <= 3; i++){
         let skill = t[i]
         Skills[i].update(skill, 'add')

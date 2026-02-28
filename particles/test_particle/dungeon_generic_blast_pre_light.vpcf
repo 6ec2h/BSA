@@ -1,4 +1,5 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+// this format guid is not known to Source 2 Viewer, make a pull request to update KV3IDLookup file
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -14,38 +15,44 @@
 	m_bShouldSort = false
 	m_Renderers = 
 	[
+		
 		{
 			_class = "C_OP_RenderDeferredLight"
 			m_flStartFalloff = 0.100000
 			m_flAlphaScale = 80.000000
 			m_flRadiusScale = 2.000000
 			m_hTexture = resource:"materials/models/heroes/pugna/pugna_ward_runes.vtex"
-			m_ColorScale = 
-			[
-				255,
-				255,
-				255,
-			]
 		},
+		
 		{
 			_class = "C_OP_RenderProjected"
-			m_hProjectedMaterial = resource:"materials/particle/particle_ring_wave_stepped_additive_projected.vmat"
 			m_bFlipHorizontal = true
+			m_vecProjectedMaterials = 
+			[
+				
+				{
+					m_hMaterial = resource:"materials/particle/particle_ring_wave_stepped_additive_projected.vmat"
+				},
+			]
 		},
 	]
 	m_Operators = 
 	[
+		
 		{
 			_class = "C_OP_BasicMovement"
 			m_fDrag = 0.250000
 		},
+		
 		{
 			_class = "C_OP_Decay"
 		},
+		
 		{
 			_class = "C_OP_FadeInSimple"
 			m_flFadeInTime = 1.000000
 		},
+		
 		{
 			_class = "C_OP_ColorInterpolate"
 			m_ColorFade = 
@@ -60,20 +67,49 @@
 	]
 	m_Initializers = 
 	[
+		
 		{
-			_class = "C_INIT_RandomRotation"
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.000000
+				m_flRandomMax = 360.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
 		},
+		
 		{
-			_class = "C_INIT_CreateWithinSphere"
+			_class = "C_INIT_CreateWithinSphereTransform"
 		},
+		
 		{
-			_class = "C_INIT_RemapCPtoScalar"
-			m_nCPInput = 1
-			m_flInputMax = 10.000000
-			m_nField = 1
-			m_nFieldOutput = 1
-			m_flOutputMax = 10.000000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 256.000000
+			}
 		},
+		
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.000000
+				m_flInput1 = 10.000000
+				m_flOutput0 = 0.000000
+				m_flOutput1 = 10.000000
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+			}
+			m_nOutputField = 1
+		},
+		
 		{
 			_class = "C_INIT_PositionOffset"
 			m_OffsetMin = 
@@ -89,14 +125,9 @@
 				80.000000,
 			]
 		},
+		
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 256.000000
-			m_flRadiusMax = 256.000000
-		},
-		{
-			_class = "C_INIT_RemapCPtoVector"
-			m_nCPInput = 15
+			_class = "C_INIT_RemapTransformToVector"
 			m_nFieldOutput = 6
 			m_vInputMax = 
 			[
@@ -110,38 +141,52 @@
 				1.000000,
 				1.000000,
 			]
-			m_nOpScaleCP = 16
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.000000
+				m_flInput1 = 1.000000
+				m_flOutput0 = 0.000000
+				m_flOutput1 = 1.000000
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 15
+			}
+			m_LocalSpaceTransform = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
 		},
 	]
 	m_Emitters = 
 	[
+		
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 1
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.000000
+			}
 		},
 	]
 	m_controlPointConfigurations = 
 	[
+		
 		{
 			m_name = "preview"
 			m_drivers = 
 			[
+				
 				{
 					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = 
-					[
-						0.000000,
-						0.000000,
-						0.000000,
-					]
-					m_angOffset = 
-					[
-						null,
-						null,
-						null,
-					]
 					m_entityName = "self"
 				},
+				
 				{
 					m_iControlPoint = 1
 					m_iAttachType = "PATTACH_WORLDORIGIN"
@@ -151,15 +196,11 @@
 						1.000000,
 						0.000000,
 					]
-					m_angOffset = 
-					[
-						null,
-						null,
-						null,
-					]
 					m_entityName = "self"
 				},
 			]
 		},
 	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 3
 }

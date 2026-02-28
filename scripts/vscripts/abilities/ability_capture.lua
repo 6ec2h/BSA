@@ -94,12 +94,68 @@ function modifier_magic_resist_lua:RemoveOnDeath()
 	return false
 end
 
+function modifier_magic_resist_lua:IsPermanent()
+	return true
+end
+
 function modifier_magic_resist_lua:DeclareFunctions()
     return {
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION,
+		MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL,
+        MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE,
     }
 end
 
 function modifier_magic_resist_lua:GetModifierMagicalResistanceDirectModification()
 	return -0.1 * self:GetParent():GetIntellect(true)
+end
+
+------------------------------
+
+function modifier_magic_resist_lua:OnCreated(kv)
+    if not IsServer() then return end
+    self:SetHasCustomTransmitterData(true)
+    self:CalculateValue()
+end
+
+function modifier_magic_resist_lua:CalculateValue()
+    local ability = self:GetAbility()
+    if not ability or ability:IsNull() then return end
+
+    self.fDifficulty = _G.Game_Difficulty
+    
+    self:SendBuffRefreshToClients()
+end
+
+function modifier_magic_resist_lua:AddCustomTransmitterData()
+    return { 
+        fDifficulty = self.fDifficulty
+    }
+end
+
+function modifier_magic_resist_lua:HandleCustomTransmitterData(data)
+    self.fDifficulty = data.fDifficulty
+end
+
+function modifier_magic_resist_lua:GetModifierOverrideAbilitySpecial(params)
+    if not params.ability or params.ability:IsNull() then return 0 end
+
+    local name = params.ability_special_value
+    if name == "ExtraIntelligenceDamage" then
+        return 1
+    end
+    return 0
+end
+
+function modifier_magic_resist_lua:GetModifierOverrideAbilitySpecialValue(params)
+    if not self.fDifficulty then return 0 end
+
+    local ability = params.ability
+    if not ability or ability:IsNull() then return 0 end
+
+    local name = params.ability_special_value
+    local level = ability:GetLevel() - 1
+    if level < 0 then level = 0 end
+
+    return 0.1 * self.fDifficulty
 end

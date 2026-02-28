@@ -92,12 +92,4 @@ function modifier_item_spell_aura:OnTakeDamage(keys)
 			end
 		end
 	end
-endand bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
-					keys.attacker:ForceKill(true)
-				else
-					keys.attacker:Heal(lifesteal, self)
-				end
-			end
-		end
-	end
 end

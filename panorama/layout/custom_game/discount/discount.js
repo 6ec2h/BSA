@@ -94,3 +94,7 @@ function TipsOut() {
     $.DispatchEvent("DOTAHideTextTooltip");
 }
 
+GameUI.LoopTime.Schedule(0.0, ()=>{
+    DotaHUD.CreateTopBarButton("file://{images}/discount.png", "discount", openButton, "open_discount");
+});
+

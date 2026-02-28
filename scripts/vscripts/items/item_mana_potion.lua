@@ -1,12 +1,8 @@
 item_mana_potion = class({})
 
---------------------------------------------------------------------------------
-
 function item_mana_potion:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 end
-
---------------------------------------------------------------------------------
 
 function item_mana_potion:OnSpellStart()
 	if IsServer() then
@@ -34,5 +30,3 @@ function item_mana_potion:OnSpellStart()
 		self:SpendCharge(0)
 	end
 end
-
---------------------------------------------------------------------------------

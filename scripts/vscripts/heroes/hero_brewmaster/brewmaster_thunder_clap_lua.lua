@@ -1,6 +1,10 @@
 brewmaster_thunder_clap_lua = class({})
 LinkLuaModifier('modifier_brewmaster_thunder_clap_lua_debuff',  "heroes/hero_brewmaster/brewmaster_thunder_clap_lua", LUA_MODIFIER_MOTION_NONE)
 
+function brewmaster_thunder_clap_lua:Precache( context )
+	PrecacheResource( "particle", "particles/econ/items/brewmaster/brewmaster_offhand_elixir/brewmaster_thunder_clap_elixir.vpcf", context )
+end
+
 function brewmaster_thunder_clap_lua:OnSpellStart()
     local caster = self:GetCaster()
     local radius = self:GetSpecialValueFor("radius")

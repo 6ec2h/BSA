@@ -36,7 +36,7 @@ function modifier_sets:SetupRewards(kv)
 	self.mjolnir_armor = kv.mjolnir_armor or 0
 	self.mkb = kv.mkb or 0
 	self.hp_regen = kv.hp_regen or 0
-	-- self.spell_amp = kv.spell_amp or 0 --
+	self.magic_crit = kv.magic_crit or 0 --
 	self.hp_regen_amp = kv.hp_regen_amp or 0 --
 	self.damage_block = kv.damage_block or 0 --
 	self.manacost = kv.manacost or 0 --
@@ -64,7 +64,7 @@ function modifier_sets:AddCustomTransmitterData()
 		mjolnir_armor = self.mjolnir_armor,
 		mkb = self.mkb,
 		hp_regen = self.hp_regen,
-		-- spell_amp = self.spell_amp,
+		magic_crit = self.magic_crit,
 		hp_regen_amp = self.hp_regen_amp,
 		damage_block = self.damage_block,
 		manacost = self.manacost,
@@ -92,7 +92,7 @@ function modifier_sets:HandleCustomTransmitterData(data)
 	self.mjolnir_armor = data.mjolnir_armor
 	self.mkb = data.mkb
 	self.hp_regen = data.hp_regen
-	-- self.spell_amp = data.spell_amp
+	self.magic_crit = data.magic_crit
 	self.hp_regen_amp = data.hp_regen_amp
 	self.damage_block = data.damage_block
 	self.manacost = data.manacost
@@ -280,8 +280,10 @@ function modifier_sets:OnTakeDamageMagicLifesteal(keys)
 	local inflictor = keys.inflictor
 	if not inflictor then return end
 
+	if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then return end
 	if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) == DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL then return end
-	if magicLifestealIgnoredInflictors[keys.inflictor:GetName()] then return end
+	
+	if magicLifestealIgnoredInflictors[inflictor:GetName()] then return end
 
 	local lifesteal = keys.original_damage * magicLifestealPct / 100 * self.full_set
 	if lifesteal <= 1 then return end
@@ -290,11 +292,7 @@ function modifier_sets:OnTakeDamageMagicLifesteal(keys)
 	ParticleManager:SetParticleControl(self.lifesteal_pfx, 0, keys.attacker:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(self.lifesteal_pfx)
 
-	if keys.attacker:GetHealth() <= lifesteal and keys.inflictor and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
-		keys.attacker:ForceKill(true)
-	else
-		keys.attacker:Heal(lifesteal, self)
-	end
+	keys.attacker:Heal(lifesteal, self)
 end
 
 function modifier_sets:OnTakeDamageReflect(keys)
@@ -315,7 +313,7 @@ function modifier_sets:OnTakeDamageReflect(keys)
 		attacker = keys.unit,
 		damage = keys.damage * reflectPct / 100 * self.full_set,
 		damage_type = keys.damage_type,
-		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 	})
 end
 
@@ -326,30 +324,55 @@ function modifier_sets:OnTakeDamageMjolnirArmor(keys)
 	local mjolnirArmorDamage = self.mjolnir_armor
 	if mjolnirArmorDamage <= 0 then return end
 
-	if keys.attacker == parent then return end
-	if keys.attacker:GetTeamNumber() == parent:GetTeamNumber() then return end
-		
+	if self.mjolnirArmorOnCooldown then return end
+
+	local attacker = keys.attacker
+	if attacker == parent then return end
+	if attacker:GetTeamNumber() == parent:GetTeamNumber() then return end
+
 	if keys.damage < 5 then return end
 
 	if RandomInt(1, 100) >= 10 then return end
 
-	parent:EmitSound("Item.Maelstrom.Chain_Lightning.Jump")
+	local nearbyUnits = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), nil, 700, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local nearbyUnitsLen = #nearbyUnits
 
-	if (keys.attacker:GetAbsOrigin() - parent:GetAbsOrigin()):Length2D() > 500 then return end
+	local leftStaticStrikes = 3
 
-	if keys.attacker:IsBuilding() then return end
-	if keys.attacker:IsOther() then return end
+	for i = 1, nearbyUnitsLen do
+		local enemy = nearbyUnits[i]
 
-	local caster = self:GetCaster()
+		local particle = ParticleManager:CreateParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
+		ParticleManager:SetParticleControlEnt(particle, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(particle, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
+		ParticleManager:ReleaseParticleIndex(particle)
 
-	local head_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
-	ParticleManager:SetParticleControlEnt(head_particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(head_particle, 1, keys.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.attacker:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControl(head_particle, 62, Vector(2, 0, 2))
+		ApplyDamage({
+			attacker 		= self:GetCaster(),
+			victim 			= enemy,
+			damage 			= mjolnirArmorDamage * self.full_set,
+			damage_type		= DAMAGE_TYPE_MAGICAL,
+			damage_flags 	= DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
+			ability 		= self:GetAbility()
+		})
+		
+		leftStaticStrikes = leftStaticStrikes - 1
 
-	ParticleManager:ReleaseParticleIndex(head_particle)
-	
-	caster:AddNewModifier(caster, self:GetAbility(), "modifier_set_mjolnir_strike", {starting_unit_entindex = keys.attacker:entindex(), damage = mjolnirArmorDamage * self.full_set })
+		if leftStaticStrikes <= 0 then
+			break
+		end
+	end
+
+	if nearbyUnitsLen > 0 then
+		parent:EmitSound("Item.Maelstrom.Chain_Lightning.Jump")
+	end
+
+	self.mjolnirArmorOnCooldown = true
+	Timers:CreateTimer(0.3, function()
+		if self:IsNull() then return end
+
+		self.mjolnirArmorOnCooldown = false
+	end)
 end
 
 ---------------- magic desolator ------------------------
@@ -415,7 +438,7 @@ function modifier_set_mjolnir_strike:GetAttributes()	return MODIFIER_ATTRIBUTE_M
 
 function modifier_set_mjolnir_strike:OnCreated(keys)
 	self.static_damage	 	= keys.damage
-	self.static_radius 		= 300
+	self.static_radius 		= 600
 	self.static_strikes 	= 3
 	self.jump_delay			= 0.1
 	self.starting_unit_entindex	= keys.starting_unit_entindex
@@ -428,7 +451,7 @@ function modifier_set_mjolnir_strike:OnCreated(keys)
 			victim 			= self.current_unit,
 			damage 			= self.static_damage,
 			damage_type		= DAMAGE_TYPE_MAGICAL,
-			damage_flags 	= DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+			damage_flags 	= DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 			attacker 		= self:GetCaster(),
 			ability 		= self:GetAbility()
 		})
@@ -445,7 +468,7 @@ end
 function modifier_set_mjolnir_strike:OnIntervalThink()
 	self.zapped = false
 	
-	if self.current_unit and (self.unit_counter >= self.static_strikes and self.static_strikes > 0) or not self.zapped then
+	if self.current_unit and not self.current_unit:IsNull() and self.current_unit:IsAlive() and (self.unit_counter >= self.static_strikes and self.static_strikes > 0) or not self.zapped then
 
 		for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self.current_unit:GetAbsOrigin(), nil, self.static_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)) do
 			if not self.units_affected[enemy] and enemy ~= self.current_unit and enemy ~= self.previous_unit then
@@ -473,7 +496,7 @@ function modifier_set_mjolnir_strike:OnIntervalThink()
 					victim 			= enemy,
 					damage 			= self.static_damage,
 					damage_type		= DAMAGE_TYPE_MAGICAL,
-					damage_flags 	= DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+					damage_flags 	= DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 					attacker 		= self:GetCaster(),
 				})
 				break
@@ -733,8 +756,6 @@ function modifier_multicast_lua_proc:PlayEffects( value )
 		EmitSoundOn( sound_cast, self.caster )
 	end
 end
-
-
 
 
 

@@ -3,11 +3,7 @@ LinkLuaModifier( "modifier_muerta_dead_shot_lua", "heroes/hero_muerta/muerta_dea
 LinkLuaModifier( "modifier_muerta_dead_shot_lua_slow", "heroes/hero_muerta/muerta_dead_shot_lua/muerta_dead_shot_lua", LUA_MODIFIER_MOTION_NONE )
 
 function muerta_dead_shot_lua:Precache(context)
-	print("muerta_dead_shot_lua:Precache")
-	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot_linear.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot_tracking_proj.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot_tracking_proj_projectile_model.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_deadshot_linear_tree.vpcf", context)
 	PrecacheResource("particle_folder", "particles/units/heroes/hero_muerta", context)
 end
 
@@ -27,7 +23,7 @@ function muerta_dead_shot_lua:OnSpellStart()
 	    iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 	    iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 	    
-	    EffectName = "particles/units/heroes/hero_muerta/muerta_deadshot_linear.vpcf",
+	    EffectName = "particles/units/heroes/hero_muerta/muerta_deadshot_linear_tree.vpcf",
 	    fDistance = 800,
 	    fStartRadius = projectile_radius,
 	    fEndRadius = projectile_radius,

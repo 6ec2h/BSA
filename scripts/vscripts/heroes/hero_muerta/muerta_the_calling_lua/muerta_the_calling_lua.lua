@@ -153,8 +153,4 @@ function modifier_muerta_the_calling_lua_slow:GetModifierIncomingDamage_Percenta
 	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
 		return self.spell_ampl
 	end
-endction modifier_muerta_the_calling_lua_slow:GetModifierIncomingDamage_Percentage(keys)
-	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
-		return self.spell_ampl
-	end
 end

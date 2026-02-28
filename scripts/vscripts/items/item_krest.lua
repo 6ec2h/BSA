@@ -1,18 +1,17 @@
 function last_chance(keys)
-	print(1)
 	local wws= keys.caster
 	if not wws:IsRealHero() then return end
+
+	if wws:HasModifier("modifier_guild_event") then return end
+
 	local new_charges = keys.ability:GetCurrentCharges() - 1
 	
-	local hRelay = Entities:FindByName( nil, "tp_off" )
-	if hRelay == nil then return end
-	hRelay:Trigger(nil,nil)
-
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 				if not hero:HasModifier("modifier_guild_event") then
+					hero.isTeleporting = true
 					if not hero:IsAlive() then
 						local point = wws:GetAbsOrigin()
 						hero:RespawnHero(false, false)
@@ -24,6 +23,7 @@ function last_chance(keys)
 					hero:SetMana( hero:GetMaxMana() )
 					hero:EmitSound("Hero_Omniknight.GuardianAngel.cast")
 					hero:AddNewModifier( hero, nil, "modifier_omninight_guardian_angel", { duration = 2.5 } )
+					hero.isTeleporting = false
 				end
 			end
 		end

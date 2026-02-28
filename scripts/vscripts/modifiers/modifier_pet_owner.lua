@@ -53,8 +53,8 @@ function modifier_pet_owner:OnCreated(data)
 		end
 	end
     
-    self.hero_pet = CreateUnitByName(string.gsub(data.pet, "item_", ""), self:GetParent():GetOrigin() + RandomVector(RandomInt(50, 150)), true, nil, nil, self:GetParent():GetTeam())
-    self.hero_pet:SetControllableByPlayer(self:GetParent():GetPlayerID(), true)
+    self.hero_pet = CreateUnitByName(string.gsub(data.pet, "item_", ""), self:GetParent():GetOrigin() + RandomVector(RandomInt(50, 150)), true, self:GetParent(), self:GetParent(), self:GetParent():GetTeam())
+    -- self.hero_pet:SetControllableByPlayer(self:GetParent():GetPlayerID(), true)
     self.hero_pet:SetOwner(self:GetParent())
     self.hero_pet:AddNewModifier(self.hero_pet, nil,"modifier_pets", {})
 	self:SetHasCustomTransmitterData(true)

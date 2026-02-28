@@ -78,7 +78,4 @@ function essentials:StartReq(t)
 	if not unit or unit:IsNull() or not unit:IsAlive() then return end
 
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(t.PlayerID),"showHpBar", {unit=unit})
-endot unit:IsAlive() then return end
-
-	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(t.PlayerID),"showHpBar", {unit=unit})
 end

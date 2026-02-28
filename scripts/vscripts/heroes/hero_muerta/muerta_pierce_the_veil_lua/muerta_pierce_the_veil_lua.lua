@@ -164,7 +164,7 @@ function modifier_muerta_pierce_the_veil_lua:OnTakeDamage( params )
 				attacker = params.attacker,
 				damage =  self.damage,
 				damage_type = DAMAGE_TYPE_MAGICAL,
-				damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+				damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 			})
 			EmitSoundOn( "Hero_Muerta.PierceTheVeil.ProjectileImpact", params.unit )
 		end
@@ -290,5 +290,4 @@ function modifier_muerta_pierce_the_veil_lua_undisarm:CheckState()
 	}
 
 	return state
-end state
 end

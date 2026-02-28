@@ -91,7 +91,7 @@ function modifier_slark_dark_pact_custom:OnIntervalThink()
 	else
 		local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 		self.damageTable.damage = self.damage
-		self.damageTable.damage_flags = 0
+		self.damageTable.damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN
 		for _,enemy in pairs(enemies) do
 			self.damageTable.victim = enemy
 			ApplyDamage( self.damageTable )
@@ -100,7 +100,7 @@ function modifier_slark_dark_pact_custom:OnIntervalThink()
 			self:GetParent():Purge( false, true, false, true, true )
 		end
 		self.damageTable.damage = self.damage / 100 * self.self_damage_pct
-		self.damageTable.damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL
+		self.damageTable.damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN
 		self.damageTable.victim = self:GetParent()
         ApplyDamage( self.damageTable )
 		self.count = self.count + 1

@@ -27,7 +27,4 @@ function NecroLordThink()
 		thisEntity:Attribute_SetIntValue("particleID", particleLeader)
 		end
 	return 0.15
-endhisEntity:Attribute_SetIntValue("particleID", particleLeader)
-		end
-	return 0.01
 end

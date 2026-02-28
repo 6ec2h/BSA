@@ -1,5 +1,5 @@
 LinkLuaModifier( "modifier_alchemist_unstable_concoction_lua", "heroes/hero_alchemist/alchemist_unstable_concoction_lua/modifier_alchemist_unstable_concoction_lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_alchemist_unstable_concoction_lua_disarm", "heroes/hero_alchemist/alchemist_unstable_concoction_lua/modifier_alchemist_unstable_concoction_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_alchemist_unstable_concoction_lua_disarm", "heroes/hero_alchemist/alchemist_unstable_concoction_lua/alchemist_unstable_concoction_lua", LUA_MODIFIER_MOTION_NONE )
 
 alchemist_unstable_concoction_lua = class({})
 

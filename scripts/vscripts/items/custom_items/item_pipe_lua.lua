@@ -1,10 +1,6 @@
 item_pipe_lua1 = item_pipe_lua1 or class({})
 item_pipe_lua2 = item_pipe_lua1 or class({})
 item_pipe_lua3 = item_pipe_lua1 or class({})
-item_pipe_lua4 = item_pipe_lua1 or class({})
-item_pipe_lua5 = item_pipe_lua1 or class({})
-item_pipe_lua6 = item_pipe_lua1 or class({})
-item_pipe_lua7 = item_pipe_lua1 or class({})
 
 LinkLuaModifier("modifier_item_pipe_lua", 'items/custom_items/item_pipe_lua.lua', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_pipe_aura_lua", 'items/custom_items/item_pipe_lua.lua', LUA_MODIFIER_MOTION_NONE)
@@ -122,6 +118,7 @@ function modifier_item_pipe_lua:GetModifierAura()				return "modifier_item_pipe_
 modifier_item_pipe_aura_lua = class({})
 
 function modifier_item_pipe_aura_lua:OnCreated()
+	if not self:GetAbility() then return end
 	self.aura_health_regen = self:GetAbility():GetSpecialValueFor("aura_health_regen")
 	self.magic_resistance_aura = self:GetAbility():GetSpecialValueFor("magic_resistance_aura")
 end

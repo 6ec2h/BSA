@@ -20,12 +20,9 @@ function modifier_players_summary:OnCreated()
 		["big_box"] = true,
 		["middle_box"] = true,
 		["small_box"] = true,
-		["wand_box"] = true,
 		["invis_box"] = true,
-		["zombie_lordTomb_1"] = true,
-		["zombie_lordTomb_2"] = true,
-		["zombie_lordTomb_3"] = true,
-		["zombie_lordTomb_4"] = true,
+		["npc_zone_9_creep_2_minion"] = true,
+		["npc_zone_9_tomb_minion"] = true,
 	}
 end
 

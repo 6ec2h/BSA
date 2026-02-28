@@ -271,6 +271,213 @@
 	margin-right: 15px;
 }
 
+.BetSelectionPanel
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 295px;
+	margin-right: 15px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(34, 36, 40, 0.76)), to(rgba(26, 28, 32, 0.76)));
+	border: 1px solid rgba(255, 200, 80, 0.12);
+	border-radius: 8px;
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.65), 0px 1px 3px rgba(0, 0, 0, 0.5), inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px 0px 1px rgba(255, 255, 255, 0.06), inset 0px -2px 3px rgba(0, 0, 0, 0.42);
+	padding: 0px;
+	overflow: noclip;
+}
+
+.CurrencyTabsContainer
+{
+	flow-children: right;
+	width: 100%;
+	height: 42px;
+	padding: 0px;
+	margin: 0px;
+	background-color: transparent;
+}
+
+.CurrencyTab
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 0px 14px;
+	border-radius: 8px 8px 0px 0px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(20, 22, 26, 0.60)), to(rgba(15, 17, 20, 0.60)));
+	border: 1px solid rgba(255, 200, 80, 0.08);
+	border-bottom: 1px solid transparent;
+	vertical-align: bottom;
+	margin-bottom: 0px;
+	transition-property: brightness, background-color, border-color, margin-bottom, z-index, height;
+	transition-duration: 0.15s;
+	z-index: 1;
+}
+
+.CurrencyTab:hover
+{
+	brightness: 1.15;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(30, 32, 36, 0.70)), to(rgba(25, 27, 31, 0.70)));
+	border-color: rgba(255, 200, 80, 0.15);
+}
+
+.CurrencyTab--Active
+{
+	margin-bottom: 0px;
+	z-index: 2;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(34, 36, 40, 0.76)), to(rgba(26, 28, 32, 0.76)));
+	border: 1px solid rgba(255, 200, 80, 0.20);
+	border-bottom: 1px solid rgba(255, 200, 80, 0.20);
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.10), inset 0px 0px 1px rgba(255, 255, 255, 0.06), 0px -2px 4px rgba(0, 0, 0, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.2);
+	brightness: 1.08;
+}
+
+.CurrencyTab--Active:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(36, 38, 42, 0.80)), to(rgba(28, 30, 34, 0.80)));
+	border-color: rgba(255, 200, 80, 0.28);
+	brightness: 1.12;
+}
+
+.tab-icon
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	margin-right: 7px;
+	opacity: 0.85;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.CurrencyTab--Active .tab-icon
+{
+	opacity: 1.0;
+	brightness: 1.1;
+}
+
+.tab-label
+{
+	font-size: 12px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.80);
+	vertical-align: center;
+	letter-spacing: 0.9px;
+	text-transform: uppercase;
+}
+
+.CurrencyTab--Active .tab-label
+{
+	color: rgba(184, 134, 11, 1.0);
+	brightness: 1.1;
+}
+
+.BetContentPanel
+{
+	width: 100%;
+	height: 64px;
+	flow-children: none;
+	padding: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(34, 36, 40, 0.76)), to(rgba(26, 28, 32, 0.76)));
+	border-radius: 0px 0px 8px 8px;
+	border: 0px;
+}
+
+.BetOptions
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	padding: 0px;
+	background-color: transparent;
+	border: 0px;
+	box-shadow: none;
+}
+
+.BetOption
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-right: 5px;
+	padding: 0px 10px;
+	border-radius: 6px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(36, 38, 42, 0.20)), to(rgba(32, 34, 38, 0.20)));
+	border: 1px solid rgba(255, 200, 80, 0.15);
+	vertical-align: center;
+	horizontal-align: center;
+	opacity: 0.70;
+	transition-property: brightness, opacity, background-color, border-color, box-shadow;
+	transition-duration: 0.15s;
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.08), inset 0px -1px 2px rgba(0, 0, 0, 0.20), 0px 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.BetOption:last-child
+{
+	margin-right: 0px;
+}
+
+.BetOption:hover
+{
+	brightness: 1.08;
+	opacity: 0.85;
+	border-color: rgba(255, 200, 80, 0.25);
+	box-shadow: inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px -1px 2px rgba(0, 0, 0, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.20);
+}
+
+.BetOption--Selected
+{
+	opacity: 1.0;
+	brightness: 1.12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 200, 80, 0.22)), to(rgba(255, 200, 80, 0.18)));
+	border: 1px solid rgba(255, 200, 80, 0.35);
+	box-shadow: inset 0px 1px 4px rgba(255, 255, 255, 0.16), inset 0px 0px 1px rgba(255, 255, 255, 0.12), inset 0px -1px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.40), 0px 2px 4px rgba(0, 0, 0, 0.28), inset 0px 0px 10px rgba(255, 200, 80, 0.10);
+}
+
+.BetOption--Selected:hover
+{
+	brightness: 1.15;
+	border-color: rgba(255, 200, 80, 0.45);
+	box-shadow: inset 0px 1px 5px rgba(255, 255, 255, 0.18), inset 0px 0px 1px rgba(255, 255, 255, 0.14), inset 0px -1px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.50), 0px 3px 6px rgba(0, 0, 0, 0.32), inset 0px 0px 12px rgba(255, 200, 80, 0.12);
+}
+
+.BetOption:active
+{
+	brightness: 0.96;
+	margin-top: 1px;
+	box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.04), inset 0px -2px 2px rgba(0, 0, 0, 0.30);
+}
+
+.bet-option-icon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-right: 7px;
+	opacity: 0.90;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.BetOption--Selected .bet-option-icon
+{
+	opacity: 1.0;
+	brightness: 1.15;
+}
+
+.bet-option-value
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.90);
+	vertical-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.BetOption--Selected .bet-option-value
+{
+	color: rgba(184, 134, 11, 1.0);
+	brightness: 1.15;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.30);
+}
+
 .EconRowPill
 {
 	flow-children: right;
@@ -472,8 +679,8 @@
 	height: 18px;
 	vertical-align: center;
 	margin-right: 8px;
-	wash-color: rgba(184, 134, 11, 0.82);
 	opacity: 0.88;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .bet-icon
@@ -485,21 +692,18 @@
 {
 	opacity: 1.0;
 	brightness: 1.10;
-	wash-color: rgba(184, 134, 11, 0.98);
 }
 
 .BetSectionUnselected .bet-icon
 {
 	opacity: 0.75;
 	brightness: 0.88;
-	wash-color: rgba(184, 134, 11, 0.70);
 }
 
 .BetSection.isActiveBet .bet-icon
 {
 	opacity: 1.0;
 	brightness: 1.08;
-	wash-color: rgba(184, 134, 11, 0.95);
 }
 
 .EconModule
@@ -545,9 +749,9 @@
 	height: 17px;
 	vertical-align: center;
 	margin-right: 8px;
-	wash-color: rgba(184, 134, 11, 0.7);
 	opacity: 0.8;
 	brightness: 0.95;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .BalanceShieldValue,.BalanceCrystalValue
@@ -660,20 +864,18 @@
 	vertical-align: center;
 	horizontal-align: center;
 	margin-right: 8px;
-	wash-color: rgba(184, 134, 11, 0.8);
 	opacity: 0.9;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .BetChip.isSelected .bet-chip-icon
 {
-	wash-color: rgba(184, 134, 11, 0.92);
 	opacity: 1.0;
 	brightness: 1.05;
 }
 
 .BetChip:disabled .bet-chip-icon
 {
-	wash-color: rgba(120, 100, 80, 0.5);
 	opacity: 0.6;
 }
 

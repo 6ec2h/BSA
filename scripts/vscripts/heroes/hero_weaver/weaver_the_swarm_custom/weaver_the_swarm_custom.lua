@@ -193,7 +193,7 @@ function modifier_weaver_the_swarm_custom_debuff:OnCreated(params)
 		victim 			= self:GetParent(),
 		damage 			= self.damage,
 		damage_type		= self.damage_type,
-		damage_flags 	= DOTA_DAMAGE_FLAG_NONE,
+		damage_flags 	= DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 		attacker 		= self:GetCaster(),
 		ability 		= self:GetAbility()
     }

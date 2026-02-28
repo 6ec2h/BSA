@@ -33,7 +33,7 @@ function modifier_viper_corrosive_skin_lua_debuff:OnCreated( kv )
 		damage = damage,
 		damage_type = self:GetAbility():GetAbilityDamageType(),
 		ability = self:GetAbility(), --Optional.
-		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION, --Optional.
+		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN, --Optional.
 	}
 
 	-- Start interval

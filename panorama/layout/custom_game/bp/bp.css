@@ -24,9 +24,11 @@
 	horizontal-align:center;
 	height:600px;
 	width:1080px;
-	background-image:url("s2r://panorama/images/bp/back2_png.vtex");
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
 	background-repeat: no-repeat;
 	background-size: 100%;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
 	padding: 10px;
 }
 
@@ -43,13 +45,30 @@
 
 #CloseShopButton
 {
-	height:20px;
-	width:20px;
 	horizontal-align:right;
-	margin: 10px;
-	background-image: url("s2r://panorama/images/bp/close_png.vtex");
+	vertical-align:top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+}
+
+#CloseShopButton:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#CloseShopButton:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
 }
 
 #BP_content_top
@@ -94,7 +113,7 @@
 	margin-top: 160px;
 	horizontal-align: center;
 	width: 320px;
-	color: white;
+	color: #e5e0c5;
 	font-size:20px;
 }
 
@@ -141,7 +160,7 @@
 {
 	align: center center;
 	font-size: 24px;
-	color: white;
+	color: #e5e0c5;
 }
 
 #Gold_everyday_reward
@@ -173,10 +192,10 @@
 {
 	horizontal-align: center;
 	vertical-align: bottom;
-	color: #addfb1;
+	color: #ffd700;
 	font-weight: bold;
 	font-size: 24px;
-	text-shadow: black 0px 2px 2px 0;
+	text-shadow: 0px 0px 4px black;
 	text-align: center;
 }
 
@@ -200,12 +219,14 @@
 	width: 790px;
 	margin-top: 25px;
 	margin-right:6px;
-	background-image: url("s2r://panorama/images/bp/back3_png.vtex");
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	horizontal-align:right;
 	padding:5px;
 	flow-children: right;
+	border-radius: 8px;
 }
 
 #BP_content_top_right_label
@@ -214,12 +235,13 @@
 	vertical-align: center;
 	font-size: 40px;
 	font-weight: bold;
+	color: #e5e0c5;
 }
 
 #BP_content_bottom_container
 {
 	width: 1050px;
-	height:150px;
+	height:180px;
 	vertical-align:bottom;
 	horizontal-align: center;
 	margin-bottom: 5px;
@@ -230,18 +252,21 @@
 	height: 100%;
 	flow-children: right;
 	overflow: scroll squish;
+	padding: 5px 10px 5px 10px;
 }
 
 #BP_content_bottom_back
 {
 	width: 1050px;
-	height:150px;
+	height:170px;
 	vertical-align:bottom;
 	horizontal-align: center;
 	margin-bottom: 5px;
-	background-image: url("s2r://panorama/images/bp/back3_png.vtex");
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid #3a4a5a;
 	background-repeat: no-repeat;
 	background-size: 100%;
+	border-radius: 8px;
 }
 
 .pass_content
@@ -250,13 +275,13 @@
 	height: 150px;
 	margin-left:5px;
 	margin-right:5px;
-	margin-top: 5px;
+	margin-top: 8px;
 	flow-children:down;
 }
 
 #ScrollThumb
 {
-	background-color: #ab7f24;
+	background-color: #3a4a5a;
 	margin-top:6px;
 }
 
@@ -265,15 +290,18 @@
 	width: 150px;
 	height: 150px;
 	margin:5px 0 5px 0px;
-	background-image: url("s2r://panorama/images/bp/bp_button_simple_png.vtex");
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	box-shadow: #00000080 4px 4px 8px 0px;
+	border-radius: 6px;
 }
 
 .free_bp:hover
 {
 	brightness: 1.8;
+	border-color: rgba(100, 181, 246, 0.6);
 	sound: "ui_select_arrow";
 }
 
@@ -281,7 +309,7 @@
 {
 	horizontal-align:left;
 	vertical-align:top;
-	color: white;
+	color: #e5e0c5;
 	font-weight: bold;
 	font-size: 24px;
 	margin: 2px;
@@ -308,7 +336,7 @@
 	height: 88px;
 	margin-right: 5px;
 	margin-bottom: 10px;
-	background-image: url("s2r://panorama/images/bp/back_item_png.vtex");
+	background-color: rgba(0, 0, 0, 0.3);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	z-index:10;
@@ -316,69 +344,25 @@
 
 .pass_content_image_simple,.pass_content_image_simple_image
 {
-	horizontal-align:right;
+	horizontal-align:center;
 	vertical-align:bottom;
-	width: 124px;
+	width: 116px;
 	height: 88px;
-	margin-right: 5px;
 	margin-bottom: 10px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 6px;
 }
 
 @keyframes 'fizzy2'
 {
 	0%
 	{
-		box-shadow: 0 0 6px #29b1e3;
-	}
-	
-	10%
-	{
-		box-shadow: 0 0 6px #29b8e3;
-	}
-	
-	20%
-	{
-		box-shadow: 0 0 6px #29b1e3;
-	}
-	
-	30%
-	{
-		box-shadow: 0 0 6px #29b8e3;
-	}
-	
-	40%
-	{
-		box-shadow: 0 0 6px #29b1e3;
-	}
-	
-	50%
-	{
-		box-shadow: 0 0 6px #29b8e3;
-	}
-	
-	60%
-	{
-		box-shadow: 0 0 6px #29b1e3;
-	}
-	
-	70%
-	{
-		box-shadow: 0 0 6px #29b8e3;
-	}
-	
-	80%
-	{
-		box-shadow: 0 0 6px #29b1e3;
-	}
-	
-	90%
-	{
-		box-shadow: 0 0 6px #29b8e3;
+		box-shadow: 0 0 6px rgba(100, 181, 246, 0.6);
 	}
 	
 	100%
 	{
-		box-shadow: 0 0 6px #29b1e3;
+		box-shadow: 0 0 6px rgba(100, 181, 246, 0.6);
 	}
 	
 }
@@ -387,57 +371,12 @@
 {
 	0%
 	{
-		box-shadow: 0 0 6px #e39f29;
-	}
-	
-	10%
-	{
-		box-shadow: 0 0 6px #e37329;
-	}
-	
-	20%
-	{
-		box-shadow: 0 0 6px #e39f29;
-	}
-	
-	30%
-	{
-		box-shadow: 0 0 6px #e37329;
-	}
-	
-	40%
-	{
-		box-shadow: 0 0 6px #e39f29;
-	}
-	
-	50%
-	{
-		box-shadow: 0 0 6px #e37329;
-	}
-	
-	60%
-	{
-		box-shadow: 0 0 6px #e39f29;
-	}
-	
-	70%
-	{
-		box-shadow: 0 0 6px #e37329;
-	}
-	
-	80%
-	{
-		box-shadow: 0 0 6px #e39f29;
-	}
-	
-	90%
-	{
-		box-shadow: 0 0 6px #e37329;
+		box-shadow: 0 0 6px #ffd700;
 	}
 	
 	100%
 	{
-		box-shadow: 0 0 6px #e39f29;
+		box-shadow: 0 0 6px #ffd700;
 	}
 	
 }
@@ -462,12 +401,18 @@
 {
 	height:300px;
 	width: 240px;
-	background-color: red;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid #3a4a5a;
 	margin:5px;
-	background-image:url("s2r://panorama/images/bp/back2_png.vtex");
 	background-repeat: no-repeat;
 	background-size: 100%;
 	box-shadow: #00000080 4px 4px 8px 0px;
+	border-radius: 6px;
+}
+
+.Player_quest:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
 }
 
 #Player_quest_image
@@ -485,7 +430,7 @@
 {
 	width: 120px;
 	height:120px;
-	background-image: url("s2r://panorama/images/bp/bg_reward_png.vtex");
+	background-color: rgba(0, 0, 0, 0.3);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	horizontal-align:center;
@@ -495,7 +440,7 @@
 #Player_quest_image_desc
 {
 	horizontal-align:center;
-	color: white;
+	color: #e5e0c5;
 	font-weight: bold;
 	font-size: 18px;
 	text-shadow: black 0px 2px 2px 0;
@@ -510,13 +455,13 @@
 	vertical-align: bottom;
 	margin: 15px;
 	flow-children: right;
-	color:white;
+	color: #ffd700;
 }
 
 #Player_quest_image_progress
 {
 	horizontal-align:center;
-	color: white;
+	color: #e5e0c5;
 	font-weight: bold;
 	font-size: 18px;
 	text-shadow: black 0px 2px 2px 0;
@@ -530,12 +475,12 @@
 	width: 160px;
 	height: 50px;
 	vertical-align: bottom;
-	background-image: url("s2r://panorama/images/bp/bp_button_simple_png.vtex");
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	margin-bottom: 5px;
 	margin-right: 10px;
-	background-color: red;
 }
 
 #BuyBP_text
@@ -543,7 +488,7 @@
 	vertical-align: center;
 	horizontal-align: center;
 	text-align: center;
-	color: white;
+	color: #e5e0c5;
 	font-weight: bold;
 	font-size: 16px;
 	text-overflow: shrink;
@@ -561,10 +506,11 @@
 	horizontal-align:center;
 	width:400px;
 	height:280px;
-	background-image:url("s2r://panorama/images/bp/back2_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1px solid #3a4a5a;
 	background-repeat: no-repeat;
 	background-size: 100%;
-	box-shadow: 0px 0px 2px 0px #979c1c;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
 }
 
 #item_buy_label
@@ -573,7 +519,7 @@
 	vertical-align: top;
 	margin-top:20px;
 	width: 380px;
-	color: white;
+	color: #e5e0c5;
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
@@ -587,12 +533,11 @@
 	vertical-align: top;
 	margin-top:55px;
 	width: 380px;
-	color: white;
+	color: #b0bfc9;
 	text-align: center;
 	font-weight: bold;
 	font-size:16px;
 	letter-spacing: 1px;
-	line-height:24px;
 }
 
 #don_button
@@ -613,7 +558,8 @@
 
 .buy_button
 {
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid rgba(255, 255, 255, 0.1);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	height: 40px;
@@ -625,7 +571,6 @@
 {
 	brightness: 1.8;
 	sound: "ui_select_arrow";
-	background-color: #414219;
 }
 
 .DNMoneyLogoBuy
@@ -638,11 +583,12 @@
 
 .DNMoneyLabel
 {
-	color:gold;
-	font-size:20px;
+	color: #ffd700;
+	font-size:21px;
 	margin-left:10px;
 	vertical-align:center;
-	text-shadow: 1px 1px 2px 0.5 #666066;
+	text-shadow: 0px 0px 4px black;
+	font-weight: bold;
 }
 
 #item_buy_image,#item_buy_image_back
@@ -668,14 +614,15 @@
 	horizontal-align: center;
 	vertical-align: bottom;
 	margin-bottom: 20px;
-	background-color: red;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff6b6b55), to(#ff6b6b22));
+	border: 1px solid #ff6b6b;
 }
 
 .close_button_label
 {
 	horizontal-align: center;
 	vertical-align: center;
-	color: white;
+	color: #e5e0c5;
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
@@ -687,6 +634,9 @@
 	vertical-align: center;
 	width: 100px;
 	margin-top: 24px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border: 1px solid #4a5a6a;
+	color: #ffd700;
 }
 
 #ShowReward
@@ -694,10 +644,11 @@
 	horizontal-align: center;
 	vertical-align: center;
 	flow-children: down;
-	background-image:url("s2r://panorama/images/bp/back2_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(100, 181, 246, 0.6);
 	background-repeat: no-repeat;
 	background-size: 100%;
-	box-shadow: 0 0 6px #29b1e3;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	padding:20px;
 }
 
@@ -713,7 +664,7 @@
 {
 	horizontal-align: center;
 	vertical-align: center;
-	color: white;
+	color: #e5e0c5;
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;

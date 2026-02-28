@@ -1,24 +1,36 @@
 /* Prettified by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io */
 
-@define BorderColor: #171717;
 .CreepTooltipRoot
 {
-	width: 330px;
+	width: 320px;
 	flow-children: down;
-	border: 2px solid BorderColor;
+	border-radius: 8px;
 }
 
 #MainInfo
 {
-	flow-children: down;
+	vertical-align: center;
 	width: 100%;
+	flow-children: down;
+}
+
+#TooltipName
+{
+	width: 100%;
+	font-size: 17px;
+	text-overflow: shrink;
+	padding: 0px 9px;
+	margin: 5px 0;
+	text-align:center;
+	font-weight: bold;
+	color: #e5e0c5;
 }
 
 #TooltipImage
 {
-	height: 90px;
 	width: 90px;
-	margin-bottom: 10px;
+	height: width-percentage(100%);
+	margin-bottom: 16px;
 	horizontal-align: center;
 	align: center top;
 	box-shadow: fill #000000aa 0px 0px 2px 2px;
@@ -28,81 +40,68 @@
 	saturation: 0.9;
 }
 
-#TooltipName
+#BaseAttribute
 {
 	width: 100%;
-	height: 40px;
-	font-size: 350px;
-	text-overflow: shrink;
-	padding: 0px 9px 4px 18px;
-	margin: 5px 0 5px 0;
+	padding: 4px 9px;
 	text-align:center;
+	color: #ffd700;
+	font-size: 17px;
 	font-weight: bold;
+	opacity: 0.5;
 }
 
-#SourceValueLine
+#BonusSourceValueLine
 {
 	width: 100%;
 	height: 1px;
-	background-color: #a8b0a5;
-	vertical-align: center;
-	margin: 6px 5px 0px 15px;
-}
-
-#BaseAttribute
-{
-	margin-top: 10px;
-	width: 100%;
-	font-size: 17px;
-	text-overflow: shrink;
-	padding: 0px 9px 4px 9px;
-	text-align:center;
-	background-color:#171717;
-	opacity: 0.5;
-	font-weight: bold;
-	color: gold;
-}
-
-#Descr
-{
-	width: 100%;
-	font-size: 17px;
-	text-overflow: shrink;
-	padding: 0px 9px 4px 9px;
-	text-align:center;
-	background-color:#171717;
-	opacity: 0.5;
-	color: red;
+	margin: 0 10px;
+	background-color: #3a4a5a;
 }
 
 #BonusAttribute
 {
-	flow-children: down;
-	margin-top: 10px;
 	width: 100%;
-	font-size: 17px;
-	text-overflow: shrink;
-	padding: 0px 9px 4px 9px;
-	text-align:center;
-	background-color:#171717;
+	padding: 4px 9px;
+	flow-children: down;
 	opacity: 0.5;
 }
 
 .bonus_label
 {
+	width: 100%;
 	text-align: center;
 	color: #00f704;
-	width:100%;
 	font-size: 16px;
+	line-height: 1.2;
+}
+
+#Descr
+{
+	width: 100%;
+	padding: 4px 9px;
+	text-align: center;
+	color: red;
+	font-size: 15px;
+	text-overflow: shrink;
+	opacity: 0.5;
+}
+
+#DescrSourceValueLine
+{
+	width: 100%;
+	height: 1px;
+	margin: 0 10px;
+	background-color: #3a4a5a;
 }
 
 #hr
 {
-	border-bottom: 1px solid #fff;
-	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
-	width: 100%;
 	horizontal-align: center;
-	height: 5px;
-	margin-bottom:5px;
+	width: 100%;
+	height: 3px;
+	margin: 2px 0;
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 45%, from(white), to(#fff0));
 }
 

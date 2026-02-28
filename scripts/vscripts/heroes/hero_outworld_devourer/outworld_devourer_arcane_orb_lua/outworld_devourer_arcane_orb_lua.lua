@@ -55,6 +55,7 @@ function outworld_devourer_arcane_orb_lua:OnOrbImpact( params )
 	local damageTable = {
 		attacker = caster,
 		damage_type = self:GetAbilityDamageType(),
+		damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 		ability = self, --Optional.
 	}
 

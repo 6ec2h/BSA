@@ -12,11 +12,14 @@ return function(context)
 				end
 			end
 		end
-		-- "npc_heroes_custom", "npc_units_custom", "npc_units_heroes"
+
+		local root_files = {"npc_units_custom", "npc_units_heroes", "bosses/main_bosses_unit", "bosses/bosses_minion_unit", "bosses/additional_bosses_unit", "traps/traps"}
 		local precached_units = {}
-		for _, file_name in pairs({"npc_units_custom", "npc_units_heroes"}) do
+		local precached_units_creeps = {}
+
+		for _, file_name in pairs(root_files) do
 			local t = LoadKeyValues("scripts/npc/"..file_name..".txt")
-			for unit_name, v in pairs(t) do
+			for unit_name, _ in pairs(t) do
 				if not precached_units[unit_name] then
 					PrecacheUnitByNameSync(unit_name, context, nil)
 					precached_units[unit_name] = true
@@ -24,53 +27,17 @@ return function(context)
 			end
 		end
 
-		-- PrecacheUnitByNameSync( "npc_dota_crate", context )
-		-- PrecacheUnitByNameSync( "npc_mini_blob", context )
-		-- PrecacheUnitByNameSync( "morf", context )
-		-- PrecacheUnitByNameSync( "npc_blob", context )
-		-- PrecacheUnitByNameSync( "npc_slardar_unit", context )
-		-- PrecacheUnitByNameSync( "forest_fat_zombie", context )
-		-- PrecacheUnitByNameSync( "npc_dota_creature_dire_hound", context )
-		-- PrecacheUnitByNameSync( "npc_dota_creature_dire_hound_boss", context )
-		-- PrecacheUnitByNameSync( "npc_dota_creature_small_hellbear", context )
-		-- PrecacheUnitByNameSync( "npc_dota_creature_hellbear", context )
-		-- PrecacheUnitByNameSync( "satyr_soulstealer", context )
-		-- PrecacheUnitByNameSync( "satyr_hellcaller", context )
-		-- PrecacheUnitByNameSync( "tusk", context )
-		-- PrecacheUnitByNameSync( "npc_creep_crystal", context )
-		-- PrecacheUnitByNameSync( "apparat", context )
-		-- PrecacheUnitByNameSync( "npc_dota_creature_large_ogre_seal", context )
-		-- PrecacheUnitByNameSync( "mirana", context )
-		-- PrecacheUnitByNameSync( "white_walker", context )
-		-- PrecacheUnitByNameSync( "icespider", context )
-		-- PrecacheUnitByNameSync( "undying", context )
-		-- PrecacheUnitByNameSync( "tank", context )
-		-- PrecacheUnitByNameSync( "npc_trap_visage", context )
-		PrecacheUnitByNameSync( "npc_shaker", context )
-		PrecacheUnitByNameSync( "npc_dota_phoenix_sun", context )
-		-- PrecacheUnitByNameSync( "npc_zone_jungle_1", context )
-		-- PrecacheUnitByNameSync( "npc_zone_jungle_2", context )
-		-- PrecacheUnitByNameSync( "npc_zone_jungle_3", context )
-		-- PrecacheUnitByNameSync( "npc_zone_jungle_4", context )
-		-- PrecacheUnitByNameSync( "small_hellbear", context )
-		-- PrecacheUnitByNameSync( "miner", context )
-		-- PrecacheUnitByNameSync( "npc_keeper_of_the_light", context )
-		-- PrecacheUnitByNameSync( "treant", context )
-		-- PrecacheUnitByNameSync( "encha", context )
-		-- PrecacheUnitByNameSync( "npc_lifestealer", context )
-		-- PrecacheUnitByNameSync( "batr", context )
-		-- PrecacheUnitByNameSync( "warlock", context )
-		-- PrecacheUnitByNameSync( "demon", context )
-		-- PrecacheUnitByNameSync( "npc_venom_creep", context )
-		-- PrecacheUnitByNameSync( "pudge", context )
-		-- PrecacheUnitByNameSync( "npc_dota_creature_spider_small", context )
-		-- PrecacheUnitByNameSync( "npc_invoker_creep", context )
-		-- PrecacheUnitByNameSync( "npc_mars_creep", context )
-		-- PrecacheUnitByNameSync( "npc_phoenix_creep", context )
-		
-		-- PrecacheResource( "model", "models/creeps/darkreef/prisoner_swoledar/prisoner_swoledar.vmdl", context )		
-		-- PrecacheResource( "model", "models/creeps/darkreef/blob/darkreef_blob_02_small.vmdl", context )		
-		-- PrecacheResource( "model", "models/heroes/morphling/morphling.vmdl", context )		
+		for i = 1, 12 do
+			local t = LoadKeyValues("scripts/npc/creeps/zone_" .. i .. "/unit_zone_" .. i .. ".txt")
+			for unit_name, _ in pairs(t) do
+				if not precached_units_creeps[unit_name] then
+					PrecacheUnitByNameSync(unit_name, context, nil)
+					precached_units_creeps[unit_name] = true
+				end
+			end
+		end
+
+
 		PrecacheResource( "model", "models/events/crownfall/survivors/undying_minion/undying_minion_enemy.vmdl", context )		
 		
 		PrecacheItemByNameSync( "item_tombstone", context )
@@ -90,6 +57,7 @@ return function(context)
 		
 		PrecacheResource( "particle_folder", "particles/hny/", context )
 		PrecacheResource( "particle", "particles/econ/events/snowball/snowball_projectile.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf", context )
 		
 		
 		PrecacheResource( "particle", "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf", context )
@@ -99,15 +67,20 @@ return function(context)
 		PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf" , context)
 		PrecacheResource("particle", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf" , context)
 		PrecacheResource("particle", "particles/traps/temple_trap_arrow.vpcf", context)
+		PrecacheResource("particle", "particles/trap_sunray.vpcf", context)
 		
 		PrecacheResource("particle", "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf", context)
 		PrecacheResource("particle", "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf", context)
-		PrecacheResource("particle", "particles/trap_sunray.vpcf", context)
 		PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf", context)
 		PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_scepter.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_explosion.vpcf", context)
+		PrecacheResource("particle", "particles/bkb_flask.vpcf", context)
 
 		PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf", context)
 		PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
+
+		PrecacheResource("particle", "particles/guild/behind_banner_1.vpcf", context)
 		
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context )
@@ -232,14 +205,14 @@ return function(context)
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_hoodwink.vsndevts", context )	
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts", context )	
 		
-		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ambient.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/game_sounds_ambient.vsndevts", context )
 		
 		PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_enigma.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/soundevents_conquest.vsndevts", context )
 		
 		PrecacheResource( "soundfile", "soundevents/game_sounds_custom.vsndevts", context )
-		PrecacheResource( "soundfile", "soundevents/game_sounds_dungeon.vsndevts", context )
-		PrecacheResource( "soundfile", "soundevents/game_sounds_dungeon_enemies.vsndevts", context )
+		-- PrecacheResource( "soundfile", "soundevents/game_sounds_dungeon.vsndevts", context )
+		-- PrecacheResource( "soundfile", "soundevents/game_sounds_dungeon_enemies.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/game_sounds_winter_2018.vsndevts", context )
 		
 		PrecacheResource( "soundfile", "sounds/music/stingers/quest_complete_01.vsnd", context )
@@ -272,7 +245,6 @@ return function(context)
 		PrecacheResource( "model", "models/heroes/siren/siren.vmdl", context )
 		PrecacheResource( "model", "models/heroes/slardar/slardar.vmdl", context )
 		PrecacheResource( "model", "models/heroes/treant_protector/treant_protector.vmdl", context )
-		PrecacheResource( "model", "models/creeps/knoll_1/werewolf_boss.vmdl", context )
 		PrecacheResource( "model", "models/creeps/forest_bear/forest_bear.vmdl", context )
 		PrecacheResource( "model", "models/heroes/enchantress/enchantress.vmdl", context )
 		PrecacheResource( "model", "models/heroes/life_stealer/life_stealer.vmdl", context )
@@ -286,7 +258,6 @@ return function(context)
 		PrecacheResource( "model", "models/creeps/spiders/spidersack.vmdl", context )
 		PrecacheResource( "model", "models/items/broodmother/spiderling/lycosidae_spiderling/lycosidae_spiderling.vmdl", context )
 		PrecacheResource( "model", "models/heroes/zeus/zeus.vmdl", context )
-		PrecacheResource( "model", "models/creeps/thief/thief_01.vmdl", context )
 		PrecacheResource( "model", "models/heroes/phoenix/phoenix_bird.vmdl", context )
 		PrecacheResource( "model", "models/creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl", context )
 		PrecacheResource( "model", "models/heroes/necrolyte/necrolyte.vmdl", context )		
@@ -318,7 +289,6 @@ return function(context)
 		PrecacheResource( "model", "models/heroes/techies/fx_techiesfx_mine.vmdl", context )
 		PrecacheResource( "model", "models/heroes/shadowshaman/shadowshaman_totem.vmdl", context )
 		PrecacheResource( "model", "models/items/wraith_king/arcana/wk_arcana_skeleton.vmdl", context )
-		PrecacheResource( "model", "models/creeps/thief/thief_01.vmdl", context )
 		PrecacheResource( "model", "models/items/rattletrap/clockmaster_cog/clockmaster_cog.vmdl", context )
 		PrecacheResource( "model", "models/development/invisiblebox.vmdl", context )
 		PrecacheResource( "model", "models/items/courier/mok/mok_flying.vmdl", context )
@@ -379,7 +349,6 @@ return function(context)
 		PrecacheResource( "model", "models/courier/smeevil_magic_carpet/smeevil_magic_carpet_flying.vmdl", context )
 		PrecacheResource( "model", "models/courier/venoling/venoling_flying.vmdl", context )
 		PrecacheResource( "model", "models/items/warlock/golem/ti9_cache_warlock_tribal_warlock_golem/ti9_cache_warlock_tribal_golem_alt.vmdl", context )
-		PrecacheResource( "model", "models/creeps/thief/thief_01_archer.vmdl", context )
 		PrecacheResource( "model", "models/items/pugna/ward/nether_grandmasters_ward/nether_grandmasters_ward.vmdl", context )
 		PrecacheResource( "model", "models/items/courier/axolotl/axolotl_flying.vmdl", context )
 		PrecacheResource( "model", "models/heroes/furion/furion.vmdl", context )
@@ -434,11 +403,10 @@ return function(context)
 		PrecacheResource( "model", "models/items/broodmother/spiderling/the_glacial_creeper_creepling/the_glacial_creeper_creepling.vmdl", context )
 		PrecacheResource( "model", "models/props_gameplay/shopkeeper_fountain/shopkeeper_fountain.vmdl", context )
 		PrecacheResource( "model", "models/heroes/ursa/ursa.vmdl", context )
-		PrecacheResource( "model", "models/source/machinegun.vmdl", context )
+		PrecacheResource( "model", "models/machinegun_new.vmdl", context )
 		PrecacheResource( "model", "models/items/courier/amaterasu/amaterasu_flying.vmdl", context )
 		PrecacheResource( "model", "models/items/courier/bearzky_v2/bearzky_v2_flying.vmdl", context )
 		PrecacheResource( "model", "models/heroes/enigma/enigma.vmdl", context )
-		PrecacheResource( "model", "models/creeps/thief/thief_01_leader.vmdl", context )
 		PrecacheResource( "model", "models/courier/seekling/seekling_flying.vmdl", context )
 		PrecacheResource( "model", "models/items/courier/mighty_chicken/mighty_chicken.vmdl", context )
 		PrecacheResource( "model", "models/creeps/ice_biome/ogreseal/ogreseal.vmdl", context )
@@ -454,5 +422,14 @@ return function(context)
 		PrecacheResource( "model", "models/props_gameplay/dummy/dummy.vmdl", context )
 		
 		PrecacheResource( "model", "models/heroes/fiddlesticks/fiddlesticks.vmdl", context )
+
+		PrecacheResource( "soundfile", "soundevents/cas/sound_spinning.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/cas/bg_game_loop.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/cas/you_win_sequence_1.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/cas/you_win_sequence_2.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/cas/you_win_sequence_3.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/cas/item_has_been_sold.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/cas/casino_jackpot.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/cas/jackpot_win_notification.vsndevts", context )
 
 end		

@@ -114,7 +114,3 @@ function modifier_item_god_tribute:OnAttackLanded( params )
 	end
 	return 0
 end
-			end
-	end
-	return 0
-end

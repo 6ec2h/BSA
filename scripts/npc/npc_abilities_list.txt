@@ -13,10 +13,10 @@
   "4"    "axe_enrage_lua"
   }
   "legion_commander" {
-  "1"	"legion_odds"
-  "2"	"legion_press_the_attack"
-  "3"	"legion_courage"
-  "4"	"legion_ult"
+  "1"   "legion_odds"
+  "2"	  "legion_press_the_attack"
+  "3"	  "legion_courage"
+  "4"	  "legion_ult"
   }
   "drow_ranger" {
   "1"    "drow_ranger_frost_arrows_lua"
@@ -97,7 +97,7 @@
   "3"    "sand_caustic"
   "4"    "sandking_custom_trembling_waves"
   }
-  "medusa" {
+  "npc_dota_boss_medusa" {
   "1"    "medusa_poison_arrow_lua"
   "2"    "medusa_mystic_snake_lua"
   "3"    "medusa_mana_shield_lua"
@@ -120,7 +120,7 @@
   "1"    "wisp_tether_lua"
   "2"    "wisp_spirits_lua"
   "3"    "wisp_overcharge_lua"
-  "4"    "wisp_relocate_lua"
+  "4"    "wisp_event_horizon"
   }
   "sniper" {
   "1"    "sniper_shrapnel_lua"
@@ -191,7 +191,7 @@
   }
   "disruptor" {
   "1"    "disruptor_thunder_strike_lua"
-  "2"    "disruptor_teleport"
+  "2"    "disruptor_magnetic_collect"
   "3"    "disruptor_kinetic_field_lua"
   "4"    "disruptor_static_storm_lua"
   }
@@ -251,7 +251,7 @@
   "4"    "techies_remote_mines_lua"
   }
   "spectre" {
-  "spectre_haunt_lua" {"spectre_reality_datadriven" "0"}
+  "spectre_haunt_lua" {"spectre_reality_lua" "0"}
   "1"    "spectre_step"
   "2"    "spectre_desolate_lua"
   "3"    "spectre_dispersion_lua"

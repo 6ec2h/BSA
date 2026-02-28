@@ -56,4 +56,4 @@ function modifier_weaver_time_lapse_custom:OnIntervalThink()
 			table.remove(self.instances_position, 1)
 		end
 	end
-endd
+end

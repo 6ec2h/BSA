@@ -1,3 +1,130 @@
+--------------------------- DECORATOR FOR ApplyDamage  ----------------------------------------------------------
+
+if not _G.OriginalApplyDamage then
+    _G.OriginalApplyDamage = _G.ApplyDamage
+end
+
+_G.ApplyDamage = function(damageTable)
+	local damage_flags = damageTable.damage_flags
+	if damage_flags and bit.band(damage_flags, DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN) == DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN then
+		return _G.OriginalApplyDamage(damageTable)
+	end
+
+    local attacker = damageTable.attacker
+	if not attacker or attacker:IsNull() or not attacker:IsRealHero() then
+		return _G.OriginalApplyDamage(damageTable)
+	end
+
+    local victim = damageTable.victim
+	if victim == attacker then
+		return _G.OriginalApplyDamage(damageTable)
+	end
+
+	local set_modifier = attacker:FindModifierByName("modifier_sets")
+	if set_modifier and set_modifier.magic_crit and set_modifier.magic_crit > 0 and RollPercentage(set_modifier.magic_crit) then
+		-- damageTable.damage = damageTable.damage * ((set_modifier.magic_crit + 100) * set_modifier.full_set  / 100)
+		damageTable.damage_type = DAMAGE_TYPE_PURE
+	else
+		return _G.OriginalApplyDamage(damageTable)
+	end
+
+    local finalDamage = _G.OriginalApplyDamage(damageTable)
+	if finalDamage <= 0 then
+		return finalDamage
+	end
+
+	if not victim or victim:IsNull() then
+		return finalDamage
+	end
+
+	local particle_damage = math.floor(finalDamage)
+	local particle = ParticleManager:CreateParticle("particles/msg_fx/msg_damage.vpcf", PATTACH_OVERHEAD_FOLLOW, victim)
+	
+	ParticleManager:SetParticleControl(particle, 1, Vector(0, particle_damage, 4))
+	ParticleManager:SetParticleControl(particle, 2, Vector(2, string.len(tostring(particle_damage)) + 1, 0))
+	ParticleManager:SetParticleControl(particle, 3, Vector(58, 154, 255))
+	ParticleManager:ReleaseParticleIndex(particle)
+
+    return finalDamage
+end
+
+--------------------------- DECORATOR FOR --- SetControllableByPlayer --- and --- GetPlayerID  ----------------------------------------------------------
+
+local function SafeGetIDDecorator(originalFunc)
+    return function(self)
+
+        if not self or self:IsNull() then return -1 end
+
+        if not originalFunc then return -1 end
+
+        local is_hero = false
+        pcall(function() is_hero = self:IsRealHero() end)
+        
+        if not is_hero then
+            return -1
+        end
+        return originalFunc(self)
+    end
+end
+
+if CDOTA_BaseNPC.GetPlayerID then
+    CDOTA_BaseNPC.GetPlayerID = SafeGetIDDecorator(CDOTA_BaseNPC.GetPlayerID)
+else
+    CDOTA_BaseNPC.GetPlayerID = function(self) return -1 end
+end
+
+local function RealPlayerOnly(originalFunc)
+    return function(self, playerID, bForced)
+        if not self or self:IsNull() or not originalFunc then return nil end
+        if not playerID or playerID < 0 then return nil end
+        local is_fake = PlayerResource:IsFakeClient(playerID)
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if not is_fake and hero and hero:IsRealHero() then
+            return originalFunc(self, playerID, bForced)
+        end
+        return nil
+    end
+end
+
+if CDOTA_BaseNPC.SetControllableByPlayer then
+    CDOTA_BaseNPC.SetControllableByPlayer = RealPlayerOnly(CDOTA_BaseNPC.SetControllableByPlayer)
+end
+
+--------------------------------------------DECORATOR --- GetAgility---GetStrength---GetIntellect--------------------------------------------------------------
+
+-- Список без аргументов
+local simple_stats = {"GetAgility", "GetStrength"}
+
+for _, methodName in pairs(simple_stats) do
+    local originalMethod = CDOTA_BaseNPC_Hero[methodName]
+    CDOTA_BaseNPC[methodName] = function(self)
+        if self:IsHero() and originalMethod then
+            return originalMethod(self)
+        end
+        local owner = self:GetOwner()
+        if owner and owner.IsHero and owner:IsHero() and owner[methodName] then
+            return owner[methodName](owner)
+        end
+        return 1
+    end
+end
+
+-- Интеллект с поддержкой аргумента
+local originalInt = CDOTA_BaseNPC_Hero.GetIntellect
+CDOTA_BaseNPC.GetIntellect = function(self, bUseBonus)
+    if self:IsHero() and originalInt then
+        -- Пробрасываем аргумент только сюда
+        return originalInt(self, bUseBonus)
+    end
+    local owner = self:GetOwner()
+    if owner and owner.IsHero and owner:IsHero() then
+        return owner:GetIntellect(bUseBonus)
+    end
+    return 1
+end
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 innateExceptions = {
 	modifier_faceless_void_time_walk_tracker = true,
@@ -10,7 +137,7 @@ innateExceptions = {
 delayForDanger = {
 	morphling_waveform = 5.0,
 	huskar_life_break = 3.0,
-	tusk_snowball = 5.0,
+	--tusk _snowball = 5.0, --- tusk_snow ball был удален
 	ember_spirit_fire_remnant = 5.0,
 	rattletrap_hookshot = 3.0,
 	faceless_void_time_walk = 5.0,
@@ -30,22 +157,6 @@ function CDOTABaseAbility:ClearInnateModifiers()
 	end
 end
 
--- function CDOTA_Item_Lua:IsMuted()	
-	
-	-- if string.find(self:GetParent():GetUnitName(), "_pet") then
-		-- return true
-	-- end
-	
-	-- if self:GetParent():GetTeamNumber() ~= DOTA_TEAM_GOODGUYS then
-		-- return false
-	-- end
-	
-	-- if self:GetPurchaser() ~= self:GetParent() then 
-		-- return true
-	-- end
-
-	-- return false
--- end
 
 function CDOTABaseAbility:Disable()
 	if self:IsChanneling() then

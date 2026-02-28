@@ -2,6 +2,10 @@ LinkLuaModifier("modifier_pet_medallion_of_courage_passive_debuff", "pets/abilit
 
 pet_medallion_of_courage = class({})
 
+function pet_medallion_of_courage:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf", context )
+end
+
 function pet_medallion_of_courage:OnSpellStart()
 	local target = self:GetCursorTarget()
 

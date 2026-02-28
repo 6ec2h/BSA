@@ -1,9 +1,3 @@
-
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 _G.shovel_event = false
 
 function mine_room_quest(trigger)
@@ -21,7 +15,7 @@ local hero = trigger.activator
 end
 
 function mine_spawn()
-	local random_mine_box = RandomInt(1,7)
+	local random_epic_box = RandomInt(1,7)
 	local units = {"middle_box","small_box","ultra_box"}
 	for i = 1, 7 do
 		local point = Entities:FindByName( nil, "mine"..i):GetAbsOrigin() 
@@ -30,8 +24,8 @@ function mine_spawn()
 				local unit = CreateUnitByName("npc_treasure_chest", point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)	
 			end
 		end
-		if i == random_mine_box then
-			local unit = CreateUnitByName("minebox", point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)	
+		if i == random_epic_box then
+			local unit = CreateUnitByName("epic_box", point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)	
 		else
 			local unit = CreateUnitByName(units[RandomInt(1,#units)], point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)
 		end
@@ -160,90 +154,3 @@ function tp_out_mines(event)
 		end)
 	end
 end
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
- 
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
--- function creep1()
-	-- local t = {"1_golden_1","1_golden_2","1_golden_3","1_golden_4","1_golden_5"}
-	-- local array = t[math.random(#t)]
-
--- end
-
--- function creep2()
-	-- local t = {"2_golden_1","2_golden_2","2_golden_3"}
-	-- local array = t[math.random(#t)]
-	-- Notifications:TopToAll({text="#golden_dragon2", duration=3})
-	-- prt('#golden_dragon2')		
-	-- local point = Entities:FindByName( nil, array):GetAbsOrigin()
-	-- local unit = CreateUnitByName("GoldenQueen", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-	-- random_ability = passive[RandomInt(1,#passive)]	
-	-- rules:aura_dif(unit, random_ability)
-	-- Timers:CreateTimer({endTime = 240, callback = function()
-		-- golden_end(unit)
-	-- end})
--- end
-
--- function creep3()
-	-- local t = {"3_golden_1","3_golden_2","3_golden_3"}
-	-- local array = t[math.random(#t)]
-	-- Notifications:TopToAll({text="#golden_dragon3", duration=3})
-	-- prt('#golden_dragon3')		
-	-- local point = Entities:FindByName( nil, array):GetAbsOrigin()
-	-- local unit = CreateUnitByName("GoldenWyvern", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-	-- random_ability = passive[RandomInt(1,#passive)]	
-	-- rules:aura_dif(unit, random_ability)
-	-- Timers:CreateTimer({endTime = 240, callback = function()
-		-- golden_end(unit)
-	-- end})
--- end
-
--- function creep4()
-	-- local t = {"4_golden_1","4_golden_2","4_golden_3"}
-	-- local array = t[math.random(#t)]
-	-- Notifications:TopToAll({text="#golden_dragon4", duration=3})
-	-- prt('#golden_dragon4')
-	-- local point = Entities:FindByName( nil, array):GetAbsOrigin()
-	-- local unit = CreateUnitByName("GoldenSea", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-	-- random_ability = passive[RandomInt(1,#passive)]	
-	-- rules:aura_dif(unit, random_ability)
-	-- Timers:CreateTimer({endTime = 240, callback = function()
-		-- golden_end(unit)
-	-- end})
--- end
-
--- function creep5()
-	-- local t = {"5_golden_1","5_golden_2","5_golden_3"}
-	-- local array = t[math.random(#t)]
-	-- Notifications:TopToAll({text="#golden_dragon5", duration=3})
-	-- prt('#golden_dragon5')		
-	-- local point = Entities:FindByName( nil, array):GetAbsOrigin()
-	-- local unit = CreateUnitByName("GoldenDragon", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-	-- random_ability = passive[RandomInt(1,#passive)]	
-	-- rules:aura_dif(unit, random_ability)
-	-- Timers:CreateTimer({endTime = 240, callback = function()
-		-- golden_end(unit)
-	-- end})
--- end
-
--- function creep6()
-	-- local t = {"6_golden_1","6_golden_2","6_golden_3"}
-	-- local array = t[math.random(#t)]
-	-- Notifications:TopToAll({text="#golden_dragon6", duration=3})
-	-- prt('#golden_dragon6')		
-	-- local point = Entities:FindByName( nil, array):GetAbsOrigin()
-	-- local unit = CreateUnitByName("GoldenForest", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-	-- random_ability = passive[RandomInt(1,#passive)]	
-	-- rules:aura_dif(unit, random_ability)
-	-- Timers:CreateTimer({endTime = 240, callback = function()
-		-- golden_end(unit)
-	-- end})
--- end

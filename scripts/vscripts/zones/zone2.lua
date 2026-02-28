@@ -3,89 +3,49 @@ function quest_start(data)
 end
 
 function creep_spawn()
-	random_ability = passive[RandomInt(1,#passive)]
+    random_ability = passive[RandomInt(1, #passive)]
 
-	local units = Entities:FindAllByName("forest_zombie")
-	for _,unit in pairs(units) do
-		rules:aura_dif(unit,random_ability)
-		unit:RemoveModifierByName( "modifier_invulnerable")
-		unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
-		unit:RemoveModifierByName("modifier_magic_immune")
-	end
-	
-	local units = Entities:FindAllByName("skeleton")
-	for _,unit in pairs(units) do
-		rules:aura_dif(unit,random_ability)
-		unit:RemoveModifierByName( "modifier_invulnerable")
-		unit:RemoveModifierByName("modifier_medusa_stone_gaze_stone")
-		unit:RemoveModifierByName("modifier_magic_immune")
-	end
+    local unit_types = {"npc_dota_zone_2_unit_2", "npc_dota_zone_2_unit_3", "npc_dota_zone_2_unit_4"}
+    local modifiers_to_remove = {
+        "modifier_invulnerable",
+        "modifier_medusa_stone_gaze_stone",
+        "modifier_magic_immune"
+    }
 
-	if _G.Game_Difficulty >= 12 then
-		Timers:CreateTimer(3, function()
-			Notifications:TopToAll({text="#usilenie", duration=3})
-			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
-			rules:updateExtraAbility("creeps", random_ability)
-		end)
-	end
-	
-	for i = 9, 18 do 
-		local point = Entities:FindByName( nil, "crate"..i):GetAbsOrigin()
-		 for i =1,4 do
-			local unit = CreateUnitByName("npc_dota_crate", point + RandomVector( RandomInt( 50, 50 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+    for _, unit_name in ipairs(unit_types) do
+        local units = Entities:FindAllByName(unit_name)
+        for _, unit in pairs(units) do
+            rules:aura_dif(unit, random_ability)
+            for _, mod_name in ipairs(modifiers_to_remove) do
+                unit:RemoveModifierByName(mod_name)
+            end
+        end
+    end
+
+    if _G.Game_Difficulty >= 12 then
+        Timers:CreateTimer(3, function()
+            Notifications:TopToAll({text="#usilenie", duration=3, style={color="red"}})
+            Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
+            rules:updateExtraAbility("creeps", random_ability)
+        end)
+    end
+    
+    for i = 9, 18 do 
+        local point = Entities:FindByName(nil, "crate"..i):GetAbsOrigin()
+		for j = 1, 4 do
+			CreateUnitByName("npc_dota_crate", point + RandomVector(50), true, nil, nil, DOTA_TEAM_NEUTRALS)
 		end
-	end	
+    end 
+
+    rules:clear_zone('crate', 9, 18)
 end
 
 -------------------------------------------------------------------------------------------------------------------------
 
-LinkLuaModifier("modifier_badvision", "zones/zone2.lua", LUA_MODIFIER_MOTION_NONE)
-
-modifier_badvision = class({})
-
-function modifier_badvision:IsHidden()
-	return false
-end
-
-function modifier_badvision:IsDebuff()
-	return true
-end
-
-function modifier_badvision:IsPurgable()
-	return false
-end
-
-function modifier_badvision:GetTexture()
-    return "darkness"
-end
+LinkLuaModifier("modifier_bad_vision", "modifiers/modifier_bad_vision", LUA_MODIFIER_MOTION_NONE)
 
 function visions(trigger)
     local ent = trigger.activator
-    if not ent then
-		return
-	end
-    if ent:IsAlive() and ent:GetLevel() < 20 then
-		ent:AddNewModifier( ent, nil, "modifier_badvision", {} )
-		ent:SetDayTimeVisionRange( 450 )
-		ent:SetNightTimeVisionRange	( 450 )
-        return
-    end
-	if ent:IsAlive() and ent:GetLevel() > 20 then
-		ent:AddNewModifier( ent, nil, "modifier_badvision", {} )
-		ent:SetDayTimeVisionRange( 350 )
-		ent:SetNightTimeVisionRange	( 350 )
-        return
-    end
-	return 1
-end
-
-function visionsoff(trigger)
-    local ent = trigger.activator
-    if not ent then return end
-    if ent:IsAlive() then
-		ent:RemoveModifierByName("modifier_badvision")
-		ent:SetDayTimeVisionRange( 1100 )
-		ent:SetNightTimeVisionRange	( 1100 )
-        return
-    end
+    if not ent or not ent:IsRealHero() then return end
+    ent:AddNewModifier(ent, nil, "modifier_bad_vision", {})
 end

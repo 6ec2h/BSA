@@ -7,6 +7,7 @@
     var SLOT_CARDS = ["SlotCard1", "SlotCard2", "SlotCard3"];
     var g_SelectedSpeed = 1; // По умолчанию x1
     var g_SelectedCurrency = "shield"; // По умолчанию щитки
+    var g_SelectedBet = 10; // По умолчанию ставка 10 (щиты)
 
     function Initialize() {
         if (g_Initialized) return;
@@ -20,6 +21,16 @@
 
     function setupEventHandlers() {
         var root = $.GetContextPanel();
+        
+        // Close button handler
+        var closeButton = root.FindChildTraverse("CasinoCloseButton");
+        if (closeButton) {
+            closeButton.SetPanelEvent("onactivate", function() {
+                GameEvents.SendCustomGameEventToServer("casino_close", {});
+                root.visible = false;
+            });
+        }
+        
         var playButton = root.FindChildTraverse("PlayButton");
         if (playButton) {
             playButton.SetPanelEvent("onactivate", onPlayButtonClicked);
@@ -51,24 +62,31 @@
         // Устанавливаем x1 по умолчанию
         setSpeed(1);
         
-        // Настройка обработчиков для кнопок выбора валюты ставки
-        var betShieldChip = root.FindChildTraverse("BetShieldChip");
-        var betCrystalChip = root.FindChildTraverse("BetCrystalChip");
+        // Настройка обработчиков для вкладок валют
+        var tabShield = root.FindChildTraverse("TabShield");
+        var tabCrystal = root.FindChildTraverse("TabCrystal");
         
-        if (betShieldChip) {
-            betShieldChip.SetPanelEvent("onactivate", function() {
+        if (tabShield) {
+            tabShield.SetPanelEvent("onactivate", function() {
                 setSelectedCurrency("shield");
             });
         }
         
-        if (betCrystalChip) {
-            betCrystalChip.SetPanelEvent("onactivate", function() {
+        if (tabCrystal) {
+            tabCrystal.SetPanelEvent("onactivate", function() {
                 setSelectedCurrency("crystal");
             });
         }
         
-        // Устанавливаем щитки по умолчанию
+        // Настройка обработчиков для кнопок выбора ставки (щиты)
+        setupBetButtons(root, "shield", ["BetShield10", "BetShield20", "BetShield40", "BetShield80"]);
+        
+        // Настройка обработчиков для кнопок выбора ставки (кристаллы)
+        setupBetButtons(root, "crystal", ["BetCrystal1", "BetCrystal2", "BetCrystal4", "BetCrystal8"]);
+        
+        // Устанавливаем щитки и ставку 10 по умолчанию
         setSelectedCurrency("shield");
+        setSelectedBet(10);
     }
     
     function setSpeed(speed) {
@@ -103,38 +121,109 @@
         }
     }
     
+    function setupBetButtons(root, currency, buttonIds) {
+        for (var i = 0; i < buttonIds.length; i++) {
+            var button = root.FindChildTraverse(buttonIds[i]);
+            if (button) {
+                var betValue = parseInt(button.GetAttributeString("data-value", "1"));
+                button.SetPanelEvent("onactivate", function(value, curr) {
+                    return function() {
+                        if (g_SelectedCurrency === curr) {
+                            setSelectedBet(value);
+                        }
+                    };
+                }(betValue, currency));
+            }
+        }
+    }
+    
     function setSelectedCurrency(currency) {
         if (g_SelectedCurrency === currency) return;
         
         var root = $.GetContextPanel();
         if (!root) return;
         
-        var betShieldChip = root.FindChildTraverse("BetShieldChip");
-        var betCrystalChip = root.FindChildTraverse("BetCrystalChip");
+        var tabShield = root.FindChildTraverse("TabShield");
+        var tabCrystal = root.FindChildTraverse("TabCrystal");
+        var betOptionsShield = root.FindChildTraverse("BetOptionsShield");
+        var betOptionsCrystal = root.FindChildTraverse("BetOptionsCrystal");
         
-        // Убираем BetSectionSelected и добавляем BetSectionUnselected ко всем
-        if (betShieldChip) {
-            betShieldChip.RemoveClass("BetSectionSelected");
-            betShieldChip.AddClass("BetSectionUnselected");
+        // Обновляем вкладки
+        if (tabShield) {
+            if (currency === "shield") {
+                tabShield.AddClass("CurrencyTab--Active");
+            } else {
+                tabShield.RemoveClass("CurrencyTab--Active");
+            }
         }
         
-        if (betCrystalChip) {
-            betCrystalChip.RemoveClass("BetSectionSelected");
-            betCrystalChip.AddClass("BetSectionUnselected");
+        if (tabCrystal) {
+            if (currency === "crystal") {
+                tabCrystal.AddClass("CurrencyTab--Active");
+            } else {
+                tabCrystal.RemoveClass("CurrencyTab--Active");
+            }
         }
         
-        // Добавляем BetSectionSelected к выбранной валюте и убираем BetSectionUnselected
-        var selectedButton = null;
-        if (currency === "shield" && betShieldChip) {
-            selectedButton = betShieldChip;
-        } else if (currency === "crystal" && betCrystalChip) {
-            selectedButton = betCrystalChip;
+        // Показываем/скрываем панели выбора ставки
+        if (betOptionsShield) {
+            if (currency === "shield") {
+                betOptionsShield.style.visibility = "visible";
+            } else {
+                betOptionsShield.style.visibility = "collapse";
+            }
         }
         
+        if (betOptionsCrystal) {
+            if (currency === "crystal") {
+                betOptionsCrystal.style.visibility = "visible";
+            } else {
+                betOptionsCrystal.style.visibility = "collapse";
+            }
+        }
+        
+        g_SelectedCurrency = currency;
+        Game.EmitSound("ui_generic_button_click");
+        
+        // Устанавливаем ставку по умолчанию для новой валюты
+        var defaultBet = currency === "shield" ? 10 : 1;
+        setSelectedBet(defaultBet);
+    }
+    
+    function setSelectedBet(betValue) {
+        if (g_SelectedBet === betValue && g_SelectedCurrency) {
+            // Проверяем, не выбрана ли уже эта ставка
+            var root = $.GetContextPanel();
+            if (!root) return;
+            
+            var currencyPrefix = g_SelectedCurrency === "shield" ? "BetShield" : "BetCrystal";
+            var currentButton = root.FindChildTraverse(currencyPrefix + betValue);
+            if (currentButton && currentButton.BHasClass("BetOption--Selected")) {
+                return; // Уже выбрана
+            }
+        }
+        
+        g_SelectedBet = betValue;
+        
+        var root = $.GetContextPanel();
+        if (!root) return;
+        
+        // Разные значения ставок для разных валют
+        var betValues = g_SelectedCurrency === "shield" ? [10, 20, 40, 80] : [1, 2, 4, 8];
+        var currencyPrefix = g_SelectedCurrency === "shield" ? "BetShield" : "BetCrystal";
+        
+        // Убираем выделение со всех кнопок ставки для текущей валюты
+        for (var i = 0; i < betValues.length; i++) {
+            var button = root.FindChildTraverse(currencyPrefix + betValues[i]);
+            if (button) {
+                button.RemoveClass("BetOption--Selected");
+            }
+        }
+        
+        // Добавляем выделение к выбранной кнопке
+        var selectedButton = root.FindChildTraverse(currencyPrefix + betValue);
         if (selectedButton) {
-            selectedButton.RemoveClass("BetSectionUnselected");
-            selectedButton.AddClass("BetSectionSelected");
-            g_SelectedCurrency = currency;
+            selectedButton.AddClass("BetOption--Selected");
             Game.EmitSound("ui_generic_button_click");
         }
     }
@@ -240,12 +329,16 @@
             clearAllSlots(root);
             setSpinningState(root, true);
             setupSpinTimeout();
-            GameEvents.SendCustomGameEventToServer("casino_spin", {currency: "ruby"});
+            var currencyParam = g_SelectedCurrency === "shield" ? "shield" : "ruby";
+            GameEvents.SendCustomGameEventToServer("casino_spin", {
+                currency: currencyParam,
+                bet: g_SelectedBet
+            });
         });
     }
 
     function onSpinResult(result) {
-        if (!result.item1 || !result.item2 || !result.item3 || !result.fillerItems1 || !result.fillerItems2 || !result.fillerItems3) {
+        if (!result.item1 || !result.item2 || !result.item3) {
             finishSpin();
             return;
         }
@@ -257,11 +350,11 @@
         //     {item: result.item2, duration: 1.5, speed: g_SelectedSpeed, fillerItems: result.fillerItems2},
         //     {item: result.item3, duration: 2.0, speed: g_SelectedSpeed, fillerItems: result.fillerItems3}
         // ], null, finishSpin);
-
+        var d3 = result.item1 == result.item2 ? 1.7 : 1.3;
         startAllSlotsAnimation(root, [
-            {item: "item_chest_d", duration: 0.7, speed: g_SelectedSpeed},
-            {item: "item_treasure_1", duration: 1.0, speed: g_SelectedSpeed},
-            {item: "item_armor_aura", duration: 1.6, speed: g_SelectedSpeed}
+            {item: result.item1, duration: 0.7, speed: g_SelectedSpeed},
+            {item: result.item2, duration: 1.0, speed: g_SelectedSpeed},
+            {item: result.item3, duration: d3, speed: g_SelectedSpeed}
         ], null, finishSpin, enableSkipButton);
     }
 

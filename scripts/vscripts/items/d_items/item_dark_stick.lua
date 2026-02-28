@@ -95,14 +95,9 @@ function modifier_item_dark_stick:OnDeath(params)
 	
 	if not params.unit:FindModifierByNameAndCaster( "modifier_item_dark_stick_debuff", parent ) then return end
 
-    local excludedUnits = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear","npc_dota_creature_dire_hound","npc_dota_creature_dire_hound_boss",
-	"forest_zombie","skeleton","npc_creep_crystal","apparat","tusk","icespider","white_walker","mirana","npc_dota_creature_large_ogre_seal","guard","npc_trap_visage","tank","undying","morf",
-	"npc_blob","npc_slardar_unit","npc_shaker","npc_zone_jungle_1","npc_zone_jungle_2","npc_zone_jungle_3","npc_zone_jungle_4","npc_keeper_of_the_light","miner","small_hellbear","encha","treant",
-	"npc_lifestealer","batr","warlock","pudge","npc_venom_creep","demon","npc_gyro","npc_enigma","npc_sniper","npc_disruptor","cher", "npc_invoker_creep", "npc_mars_creep", "npc_phoenix_creep"}
+    if not _G.excludedUnitsLookup[params.unit:GetUnitName()] or parent:HasModifier("modifier_guild_event") then return end
 
-    if table.contains(excludedUnits, params.unit:GetUnitName()) then 
-		self:GetAbility():SetCurrentCharges(self:GetAbility():GetCurrentCharges() + 1)
-	end
+	self:GetAbility():SetCurrentCharges(self:GetAbility():GetCurrentCharges() + 1)
 end
 
 function modifier_item_dark_stick:IsAura()
