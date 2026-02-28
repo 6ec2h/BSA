@@ -1,0 +1,155 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			
+			{
+				_class = "BoneMarkupList"
+				children = 
+				[
+				]
+				bone_cull_type = "None"
+			},
+			
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					
+					{
+						_class = "RenderMeshFile"
+						name = "attrib_tome_9bfef8b5"
+						filename = "models/gameplay/attrib_tome_9bfef8b5.dmx"
+					},
+				]
+			},
+			
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-95.457220,
+									-39.321830,
+									-29.400240,
+								]
+								hitbox_maxs = 
+								[
+									95.457220,
+									39.321830,
+									29.400240,
+								]
+								name = "hitbox_low"
+								parent_bone = "joint1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-95.457200,
+									-78.085570,
+									-60.239040,
+								]
+								hitbox_maxs = 
+								[
+									100.000000,
+									81.801660,
+									63.105820,
+								]
+								name = "hitbox_high"
+								parent_bone = "joint1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					
+					{
+						_class = "Bone"
+						name = "joint1"
+						origin = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						angles = 
+						[
+							-90.000000,
+							0.000000,
+							0.000000,
+						]
+						do_not_discard = true
+						children = 
+						[
+							
+							{
+								_class = "Bone"
+								name = "joint2"
+								origin = 
+								[
+									41.533890,
+									0.000000,
+									-0.000000,
+								]
+								angles = 
+								[
+									34.708180,
+									0.000000,
+									0.000003,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "joint3"
+										origin = 
+										[
+											20.375980,
+											32.219380,
+											29.894980,
+										]
+										angles = 
+										[
+											49.690770,
+											35.266910,
+											83.628230,
+										]
+										do_not_discard = true
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

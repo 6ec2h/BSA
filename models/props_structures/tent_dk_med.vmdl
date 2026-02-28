@@ -1,0 +1,239 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			
+			{
+				_class = "BoneMarkupList"
+				children = 
+				[
+				]
+				bone_cull_type = "None"
+			},
+			
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					
+					{
+						_class = "RenderMeshFile"
+						name = "tent_dk_med_model_8cfb7fd9"
+						filename = "models/props_structures/tent_dk_med_model_8cfb7fd9.dmx"
+					},
+				]
+			},
+			
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-87.690470,
+									-146.899100,
+									-227.323900,
+								]
+								hitbox_maxs = 
+								[
+									349.946600,
+									124.836400,
+									242.329400,
+								]
+								name = "0"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+							
+							{
+								_class = "Hitbox"
+								hitbox_mins = 
+								[
+									-9.160213,
+									-15.152860,
+									-3.285496,
+								]
+								hitbox_maxs = 
+								[
+									10.068470,
+									12.502360,
+									2.606068,
+								]
+								name = "1"
+								parent_bone = "flag_med_R0C0"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					
+					{
+						_class = "Bone"
+						name = "root"
+						origin = 
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						angles = 
+						[
+							-69.903950,
+							84.475600,
+							5.189912,
+						]
+						do_not_discard = true
+						children = 
+						[
+							
+							{
+								_class = "Bone"
+								name = "flag_med_R0C0"
+								origin = 
+								[
+									312.897300,
+									-0.000050,
+									-0.000031,
+								]
+								angles = 
+								[
+									-37.698970,
+									69.023080,
+									176.865200,
+								]
+								do_not_discard = true
+								children = 
+								[
+									
+									{
+										_class = "Bone"
+										name = "flag_med_R1C0"
+										origin = 
+										[
+											4.511200,
+											0.000000,
+											0.000023,
+										]
+										angles = 
+										[
+											-31.349770,
+											-31.311990,
+											0.743887,
+										]
+										do_not_discard = true
+										children = 
+										[
+											
+											{
+												_class = "Bone"
+												name = "flag_med_R2C0"
+												origin = 
+												[
+													15.577090,
+													-0.000061,
+													0.000015,
+												]
+												angles = 
+												[
+													0.139072,
+													-0.952818,
+													-0.005305,
+												]
+												do_not_discard = true
+												children = 
+												[
+													
+													{
+														_class = "Bone"
+														name = "flag_med_R3C0"
+														origin = 
+														[
+															13.386850,
+															0.000000,
+															0.000031,
+														]
+														angles = 
+														[
+															-2.140523,
+															0.060681,
+															0.079006,
+														]
+														do_not_discard = true
+														children = 
+														[
+															
+															{
+																_class = "Bone"
+																name = "flag_med_R4C0"
+																origin = 
+																[
+																	13.382070,
+																	0.000000,
+																	0.000053,
+																]
+																angles = 
+																[
+																	2.139549,
+																	-0.663118,
+																	-0.103710,
+																]
+																do_not_discard = true
+																children = 
+																[
+																	
+																	{
+																		_class = "Bone"
+																		name = "flag_med_R5C0"
+																		origin = 
+																		[
+																			13.392880,
+																			-0.000092,
+																			0.000053,
+																		]
+																		angles = 
+																		[
+																			-1.556025,
+																			2.772645,
+																			0.000018,
+																		]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

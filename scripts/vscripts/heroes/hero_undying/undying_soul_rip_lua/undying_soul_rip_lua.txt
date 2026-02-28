@@ -1,0 +1,37 @@
+"DOTAAbilities"
+{
+    "undying_soul_rip_lua"
+	{
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/undying_soul_rip_lua/undying_soul_rip_lua"
+		"AbilityTextureName"			"undying_soul_rip"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"					"Hero_Undying.SoulRip.Cast"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"750"
+		"AbilityCooldown"				"18 14 10 6"
+		"MaxLevel"						"4"
+		"AbilityManaCost"				"120"
+		
+		"AbilityValues"
+		{
+			"damage_per_unit"			
+			{
+				"value"			"16 32 48 64"
+				"LinkedSpecialBonus"	 	"special_bonus_undying_3" 
+			}			
+			"max_units"					"10"
+			"radius"					
+			{
+				"value"			"1300"
+				"affected_by_aoe_increase"	"1"
+			}
+        }
+	}
+}

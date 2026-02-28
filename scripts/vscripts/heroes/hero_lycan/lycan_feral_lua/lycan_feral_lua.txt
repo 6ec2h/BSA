@@ -1,0 +1,16 @@
+"DOTAAbilities"
+{
+"lycan_feral_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lycan/lycan_feral_lua/lycan_feral_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"lycan_feral_impulse"
+
+		"AbilityValues"
+		{	
+			"damage"				"10 15 20 25"
+			"armor"					"2 4 6 8"
+		}
+	}
+}

@@ -1,0 +1,27 @@
+"DOTAAbilities"
+{
+"undying_skin_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/undying_skin_lua/undying_skin_lua"
+		"AbilityTextureName"			"undying_skin_lua"
+		"FightRecapLevel"				"1"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+			"duration"					"4"
+			"bonus_attack_speed"		"10 14 18 22"
+			"damage"					
+			{
+				"value"						"8 16 24 32"
+				"LinkedSpecialBonus"	 	"special_bonus_undying_6" 
+			}
+		}
+	}	
+}
