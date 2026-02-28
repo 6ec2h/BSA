@@ -43,54 +43,24 @@ function modifier_item_bfury_lua:GetModifierConstantHealthRegen()
 end
 
 function modifier_item_bfury_lua:GetModifierPreAttack_BonusDamage(keys)
-	if keys.target and not keys.target:IsHero() and not keys.target:IsOther() and not keys.target:IsBuilding() and keys.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
-		if not self:GetParent():IsRangedAttacker() then
-			return self.bonus_damage + self.quelling_bonus
-		else
-			return self.bonus_damage + self.quelling_bonus_ranged
-		end
-	else
-		return self.bonus_damage
-	end
+    local target = keys.target
+    if not target or target:IsNull() then 
+        return self.bonus_damage 
+    end
+
+    local is_creep = not target:IsHero() and not target:IsOther() and not target:IsBuilding()
+    local is_enemy = target:GetTeamNumber() ~= self:GetParent():GetTeamNumber()
+
+    if is_creep and is_enemy then
+        if not self:GetParent():IsRangedAttacker() then
+            return self.bonus_damage + (self.quelling_bonus or 0)
+        else
+            return self.bonus_damage + (self.quelling_bonus_ranged or 0)
+        end
+    end
+
+    return self.bonus_damage
 end
-
-local cleaveIgnoredUnits = {
-	["npc_dota_creature_big_bear"] = true,
-	["boss_undying"] = true,
-	["lich"] = true,
-	["npc_dota_creature_storegga"] = true,
-	["NYX"] = true,
-	["NYX_2"] = true,
-	["npc_boss_slardar"] = true,
-	["npc_boss_monkey_king"] = true,
-	["npc_boss_fura"] = true,
-	["Lord"] = true,
-	["medusa"] = true,
-	["npc_boss_arc"] = true,
-    ["npc_dota_creature_snow"] = true,
-    ["npc_dota_creature_gaven_the_brute"] = true,
-	["npc_xdes"] = true,
-
-	["npc_necro_bear"] = true,
-	["npc_necro_undy"] = true,
-	["npc_necro_lich"] = true,
-	["npc_necro_storegga"] = true,
-	["npc_necro_nyx"] = true,
-	["npc_necro_slardar"] = true,
-	["npc_necro_monkey_king"] = true,
-	["npc_necro_fura"] = true,
-	["npc_necro_lord"] = true,
-	["npc_necro_medusa"] = true,
-	["npc_necro_arc"] = true,
-	["necrolyte"] = true,
-	
-    ["GoldenMiner"] = true,
-	["GoldenQueen"] = true,
-	["GoldenWyvern"] = true,
-	["GoldenSea"] = true,
-	["GoldenDragon"] = true,
-	["GoldenForest"] = true,
-}
 
 function modifier_item_bfury_lua:OnAttackLanded(keys)
     if not (
@@ -124,9 +94,7 @@ function modifier_item_bfury_lua:OnAttackLanded(keys)
 					enemy:AddNewModifier(self:GetParent(), item, "modifier_item_bfury_lua_debuff", {duration = 5})
 				end
 			end
-			if not cleaveIgnoredUnits[enemy:GetUnitName()] then
-				ApplyDamage({victim = enemy, attacker = self:GetParent(), damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
-			end
+			ApplyDamage({victim = enemy, attacker = self:GetParent(), damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN})
 		end
 	end
 	self:PlayEffects1(direction )
@@ -198,6 +166,34 @@ function FindUnitsInCone( nTeamNumber, vCenterPos, vStartPos, vEndPos, fStartRad
 		local fInterpRadius = (fProjection/distance)*(fEndRadius-fStartRadius) + fStartRadius
 		if fUnitRadius<=fInterpRadius then
 			table.insert( targets, unit )
+		end
+	end
+	return targets
+end
+
+--------------------------------------
+
+LinkLuaModifier("modifier_item_bfury_lua_debuff", 'items/custom_items/item_bfury_lua.lua', LUA_MODIFIER_MOTION_NONE)
+
+modifier_item_bfury_lua_debuff = class({})
+
+function modifier_item_bfury_lua_debuff:IsHidden() return false end
+function modifier_item_bfury_lua_debuff:IsDebuff() return true end
+function modifier_item_bfury_lua_debuff:IsPurgable() return true end
+
+function modifier_item_bfury_lua_debuff:OnCreated(kv)
+	self.count = (self:GetAbility():GetSpecialValueFor("corruption_armor") * (-1)) / 2
+end
+
+function modifier_item_bfury_lua_debuff:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_item_bfury_lua_debuff:GetModifierPhysicalArmorBonus()
+	return self.count
+endnsert( targets, unit )
 		end
 	end
 	return targets

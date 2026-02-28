@@ -33,6 +33,7 @@ function hero_destroyer_ult:OnSpellStart()
 			attacker = self:GetCaster(),
 			damage = try_damage,
 			damage_type = DAMAGE_TYPE_PHYSICAL,
+			damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 			ability = self, --Optional.
 		}
 		ApplyDamage(damageTable)

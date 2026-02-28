@@ -117,7 +117,7 @@ function modifier_battlemage_arsenal_attack_buff:GetModifierTotalDamageOutgoing_
 				attacker = self:GetParent(),
 				damage = params.original_damage,
 				damage_type = DAMAGE_TYPE_MAGICAL,
-				damage_flag = DOTA_DAMAGE_FLAG_MAGIC_AUTO_ATTACK + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+				damage_flag = DOTA_DAMAGE_FLAG_MAGIC_AUTO_ATTACK + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 			})
 			EmitSoundOn( "Hero_Muerta.PierceTheVeil.ProjectileImpact", params.target )
 		else
@@ -141,8 +141,7 @@ end
 
 function modifier_battlemage_arsenal_attack_buff:GetEffectName()
     return "particles/items5_fx/revenant_brooch.vpcf"
-endge_arsenal_attack_buff:GetModifierProjectileName()
-    return "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf"
+endreturn "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf"
 end
 
 function modifier_battlemage_arsenal_attack_buff:GetEffectName()

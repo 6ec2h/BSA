@@ -1,9 +1,3 @@
-
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 _G.shovel_event = false
 
 function mine_room_quest(trigger)
@@ -21,7 +15,7 @@ local hero = trigger.activator
 end
 
 function mine_spawn()
-	local random_mine_box = RandomInt(1,7)
+	local random_epic_box = RandomInt(1,7)
 	local units = {"middle_box","small_box","ultra_box"}
 	for i = 1, 7 do
 		local point = Entities:FindByName( nil, "mine"..i):GetAbsOrigin() 
@@ -30,8 +24,8 @@ function mine_spawn()
 				local unit = CreateUnitByName("npc_treasure_chest", point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)	
 			end
 		end
-		if i == random_mine_box then
-			local unit = CreateUnitByName("minebox", point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)	
+		if i == random_epic_box then
+			local unit = CreateUnitByName("epic_box", point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)	
 		else
 			local unit = CreateUnitByName(units[RandomInt(1,#units)], point + RandomVector( RandomInt( 30, 30 )), true, nil, nil, DOTA_TEAM_BADGUYS)
 		end
@@ -146,6 +140,21 @@ function mine_tp_out()
 end
 
 function tp_out_mines(event)
+	if _G.shovel_event == false then
+		local unit = event.activator
+		local ent = Entities:FindByName( nil, "pnt5")
+		local point = ent:GetAbsOrigin()
+		unit:SetAbsOrigin( point )
+		FindClearSpaceForUnit(unit, point, true)
+		unit:Stop()
+		PlayerResource:SetCameraTarget(event.activator:GetPlayerOwnerID(), event.activator)
+		Timers:CreateTimer(0.1, function()
+			PlayerResource:SetCameraTarget(event.activator:GetPlayerOwnerID(), nil)
+			return nil
+		end)
+	end
+end
+on tp_out_mines(event)
 	if _G.shovel_event == false then
 		local unit = event.activator
 		local ent = Entities:FindByName( nil, "pnt5")

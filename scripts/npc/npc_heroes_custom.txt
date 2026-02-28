@@ -45,8 +45,6 @@
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 		"RingRadius"				"70"
 
-		// Status
-		//----------------------------------------------------------------
 		"StatusHealth"				"5000"
 		"StatusMana"				"5000"
 		"StatusManaRegen"			"100"
@@ -65,8 +63,8 @@
 	"npc_dota_hero_arc_warden"
 		{
 		"override_hero"			"npc_dota_hero_arc_warden"
-		"Ability1"				"arc_flux_lua"
-		"Ability2"				"arc_warden_magnetic_field_lua"
+		"Ability1"				"arc_flux_lua"			
+		"Ability2"				"arc_warden_magnetic_field_lua"		
 		"Ability3"				"ark_spark_lua"
 		"Ability4"				"generic_hidden"
 		"Ability5"				"generic_hidden"
@@ -74,15 +72,17 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_20"
-		"Ability11"				"special_bonus_attack_speed_20"
-		"Ability12"				"special_bonus_attack_range_150"
-		"Ability13"				"special_bonus_arc_warden_int9"
-		"Ability14"				"special_bonus_mana_reduction_11"
-		"Ability15"				"special_bonus_arc_warden_str8"
-		"Ability16"				"special_bonus_arc_warden_str9"
-		"Ability17"				"special_bonus_arc_warden_agi9"
+		"Ability10"				"special_bonus_unique_arc_1"
+		"Ability11"				"special_bonus_unique_arc_2"
+		"Ability12"				"special_bonus_unique_arc_3"
+		"Ability13"				"special_bonus_unique_arc_4"
+		"Ability14"				"special_bonus_unique_arc_5"
+		"Ability15"				"special_bonus_unique_arc_6"
+		"Ability16"				"special_bonus_unique_arc_7"
+		"Ability17"				"special_bonus_unique_arc_8"
 		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
 		}
 		
 	"npc_dota_hero_axe"
@@ -97,15 +97,17 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_20"
-		"Ability11"				"special_bonus_attack_speed_20"
-		"Ability12"				"special_bonus_armor_5"
-		"Ability13"				"special_bonus_all_stats_10"
-		"Ability14"				"special_bonus_unique_axe_2"
-		"Ability15"				"special_bonus_unique_axe_1"
-		"Ability16"				"special_bonus_unique_axe_3"
-		"Ability17"				"special_bonus_unique_axe_4"
+		"Ability10"				"special_bonus_unique_axe_1"
+		"Ability11"				"special_bonus_unique_axe_2"
+		"Ability12"				"special_bonus_unique_axe_3"
+		"Ability13"				"special_bonus_unique_axe_4"
+		"Ability14"				"special_bonus_unique_axe_5"
+		"Ability15"				"special_bonus_unique_axe_6"
+		"Ability16"				"special_bonus_unique_axe_7"
+		"Ability17"				"special_bonus_unique_axe_8"
 		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
 		}	
 		
 	"npc_dota_hero_legion_commander"
@@ -120,15 +122,17 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_20"
-		"Ability11"				"special_bonus_attack_speed_20"
-		"Ability12"				"special_bonus_all_stats_15"
-		"Ability13"				"special_bonus_armor_4"
-		"Ability14"				"special_bonus_legion_commander_tal1"
-		"Ability15"				"special_bonus_legion_commander_agi11"
-		"Ability16"				"special_bonus_legion_commander_str10"
-		"Ability17"				"special_bonus_legion_commander_agi6"
+		"Ability10"				"special_bonus_unique_legion_1"
+		"Ability11"				"special_bonus_unique_legion_2"
+		"Ability12"				"special_bonus_unique_legion_3"
+		"Ability13"				"special_bonus_unique_legion_4"
+		"Ability14"				"special_bonus_unique_legion_5"
+		"Ability15"				"special_bonus_unique_legion_6"
+		"Ability16"				"special_bonus_unique_legion_7"
+		"Ability17"				"special_bonus_unique_legion_8"
 		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
 		}	
 
 	"npc_dota_hero_drow_ranger"
@@ -143,15 +147,17 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_20"
-		"Ability11"				"special_bonus_hp_300"
-		"Ability12"				"special_bonus_agility_15"
-		"Ability13"				"special_bonus_attack_speed_35"
-		"Ability14"				"special_bonus_unique_drow_ranger_4"
-		"Ability15"				"special_bonus_unique_drow_ranger_1"
-		"Ability16"				"special_bonus_unique_drow_ranger_2"
-		"Ability17"				"special_bonus_unique_drow_ranger_3"
+		"Ability10"				"special_bonus_unique_drow_1"
+		"Ability11"				"special_bonus_unique_drow_2"
+		"Ability12"				"special_bonus_unique_drow_3"
+		"Ability13"				"special_bonus_unique_drow_4"
+		"Ability14"				"special_bonus_unique_drow_5"
+		"Ability15"				"special_bonus_unique_drow_6"
+		"Ability16"				"special_bonus_unique_drow_7"
+		"Ability17"				"special_bonus_unique_drow_8"
 		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
 		}
 		
 	"npc_dota_hero_centaur"
@@ -174,7 +180,10 @@
 		"Ability15"				"special_bonus_unique_centaur_lua_6"
 		"Ability16"				"special_bonus_unique_centaur_lua_7"
 		"Ability17"				"special_bonus_unique_centaur_lua_8"
-		"Facets"				""}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 	
 	"npc_dota_hero_phantom_assassin"
 		{
@@ -188,15 +197,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_hp_500"
-		"Ability11"				"special_bonus_movement_speed_20"
-		"Ability12"				"special_bonus_attack_damage_25"
-		"Ability13"				"special_bonus_lifesteal_10"
-		"Ability14"				"special_bonus_phantom_assassin_str11"
-		"Ability15"				"special_bonus_phantom_assassin_agi10"
-		"Ability16"				"special_bonus_phantom_assassin_int6"
-		"Ability17"				"special_bonus_phantom_assassin_agi9"
-		"Facets"				""}
+		"Ability10"				"special_bonus_unique_phantom_assassin_1"
+		"Ability11"				"special_bonus_unique_phantom_assassin_2"
+		"Ability12"				"special_bonus_unique_phantom_assassin_3"
+		"Ability13"				"special_bonus_unique_phantom_assassin_4"
+		"Ability14"				"special_bonus_unique_phantom_assassin_5"
+		"Ability15"				"special_bonus_unique_phantom_assassin_6"
+		"Ability16"				"special_bonus_unique_phantom_assassin_7"
+		"Ability17"				"special_bonus_unique_phantom_assassin_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_dazzle"
 		{
@@ -218,7 +230,10 @@
 		"Ability15"				"special_bonus_unique_dazzle_6"
 		"Ability16"				"special_bonus_unique_dazzle_7"
 		"Ability17"				"special_bonus_unique_dazzle_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_dragon_knight"
 		{
@@ -240,7 +255,10 @@
 		"Ability15"				"special_bonus_dragon_knight_1"
 		"Ability16"				"special_bonus_dragon_knight_7"
 		"Ability17"				"special_bonus_dragon_knight_3"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 		
 	"npc_dota_hero_luna"
 		{
@@ -254,15 +272,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_20"
-		"Ability11"				"special_bonus_attack_speed_20"
-		"Ability12"				"special_bonus_agility_10"
-		"Ability13"				"special_bonus_armor_5"
-		"Ability14"				"special_bonus_unique_luna_3"
-		"Ability15"				"special_bonus_unique_luna_2"
-		"Ability16"				"special_bonus_unique_luna_1"
-		"Ability17"				"special_bonus_unique_luna_4"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_luna_1"
+		"Ability11"				"special_bonus_unique_luna_2"
+		"Ability12"				"special_bonus_unique_luna_3"
+		"Ability13"				"special_bonus_unique_luna_4"
+		"Ability14"				"special_bonus_unique_luna_5"
+		"Ability15"				"special_bonus_unique_luna_6"
+		"Ability16"				"special_bonus_unique_luna_7"
+		"Ability17"				"special_bonus_unique_luna_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_crystal_maiden"
 		{
@@ -283,7 +304,10 @@
 		"Ability15"				"special_bonus_unique_crystal_6"
 		"Ability16"				"special_bonus_unique_crystal_7"
 		"Ability17"				"special_bonus_unique_crystal_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_lina"
 		{
@@ -305,7 +329,10 @@
 		"Ability15"				"special_bonus_lina_6"
 		"Ability16"				"special_bonus_lina_7"
 		"Ability17"				"special_bonus_lina_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_bristleback"
 		{
@@ -319,37 +346,43 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_10"
-		"Ability11"				"special_bonus_hp_250"
-		"Ability12"				"special_bonus_magic_resistance_15"
-		"Ability13"				"special_bonus_all_stats_15"
-		"Ability14"				"special_bonus_unique_bristleback_1"
-		"Ability15"				"special_bonus_unique_bristleback_4"
-		"Ability16"				"special_bonus_unique_bristleback_2"
-		"Ability17"				"special_bonus_unique_bristleback_3"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_bristleback_1"
+		"Ability11"				"special_bonus_unique_bristleback_2"
+		"Ability12"				"special_bonus_unique_bristleback_3"
+		"Ability13"				"special_bonus_unique_bristleback_4"
+		"Ability14"				"special_bonus_unique_bristleback_5"
+		"Ability15"				"special_bonus_unique_bristleback_6"
+		"Ability16"				"special_bonus_unique_bristleback_7"
+		"Ability17"				"special_bonus_unique_bristleback_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_windrunner"
 		{
 		"override_hero"			"npc_dota_hero_windrunner"
-		"Ability1"				"windrunner_powershot_lua"
-		"Ability2"				"windrunner_attack_triggers"
+		"Ability1"				"windrunner_attack_triggers"
+		"Ability2"				"windrunner_powershot_lua"
 		"Ability3"				"windrunner_windrun_lua"
 		"Ability4"				"generic_hidden"
 		"Ability5"				"generic_hidden"
-		"Ability6"				"windrunner_focusfire"
+		"Ability6"				"windrunner_focusfire_lua"
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_attack_damage_25"
-		"Ability11"				"special_bonus_movement_speed_20"
-		"Ability12"				"special_bonus_hp_300"
-		"Ability13"				"special_bonus_armor_5"
-		"Ability14"				"special_bonus_windrunner_int1"
-		"Ability15"				"special_bonus_unique_windranger_8"
-		"Ability16"				"special_bonus_windrunner_int11"
-		"Ability17"				"special_bonus_windrunner_int6"
-		"Facets"				"generic_hidden"}		
+		"Ability10"				"special_bonus_unique_windrunner_1"
+		"Ability11"				"special_bonus_unique_windrunner_2"
+		"Ability12"				"special_bonus_unique_windrunner_3"
+		"Ability13"				"special_bonus_unique_windrunner_4"
+		"Ability14"				"special_bonus_unique_windrunner_5"
+		"Ability15"				"special_bonus_unique_windrunner_6"
+		"Ability16"				"special_bonus_unique_windrunner_7"
+		"Ability17"				"special_bonus_unique_windrunner_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}		
 
 	"npc_dota_hero_shadow_shaman"
 		{
@@ -363,15 +396,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_shadow_shaman_1"
-		"Ability11"				"special_bonus_shadow_shaman_2"
-		"Ability12"				"special_bonus_shadow_shaman_6"
-		"Ability13"				"special_bonus_shadow_shaman_4"
-		"Ability14"				"special_bonus_shadow_shaman_5"
-		"Ability15"				"special_bonus_shadow_shaman_3"
-		"Ability16"				"special_bonus_shadow_shaman_7"
-		"Ability17"				"special_bonus_shadow_shaman_8"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_shadow_shaman_1"
+		"Ability11"				"special_bonus_unique_shadow_shaman_2"
+		"Ability12"				"special_bonus_unique_shadow_shaman_3"
+		"Ability13"				"special_bonus_unique_shadow_shaman_4"
+		"Ability14"				"special_bonus_unique_shadow_shaman_5"
+		"Ability15"				"special_bonus_unique_shadow_shaman_6"
+		"Ability16"				"special_bonus_unique_shadow_shaman_7"
+		"Ability17"				"special_bonus_unique_shadow_shaman_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_lion"
 		{
@@ -393,8 +429,10 @@
 		"Ability15"				"special_bonus_lion_int6"
 		"Ability16"				"special_bonus_lion_int11"
 		"Ability17"				"special_bonus_lion_int10"
-		"Facets"				"generic_hidden"
-		}	
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_sand_king"
 		{
@@ -416,7 +454,10 @@
 		"Ability15"				"special_bonus_unique_sand_king_6"
 		"Ability16"				"special_bonus_unique_sand_king_7"
 		"Ability17"				"special_bonus_unique_sand_king_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_medusa"
 		{
@@ -438,7 +479,10 @@
 		"Ability15"				"special_bonus_unique_medusa_6"
 		"Ability16"				"special_bonus_unique_medusa_7"
 		"Ability17"				"special_bonus_unique_medusa_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_zuus"
 		{
@@ -460,7 +504,10 @@
 		"Ability15"				"special_bonus_zuus_3"
 		"Ability16"				"special_bonus_zuus_2"
 		"Ability17"				"special_bonus_zuus_1"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_terrorblade"
 		{
@@ -474,15 +521,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_evasion_10"
-		"Ability11"				"special_bonus_agility_5"
-		"Ability12"				"special_bonus_lifesteal_10"
-		"Ability13"				"special_bonus_terrorblade_str7"
-		"Ability14"				"special_bonus_terrorblade_tal5"
-		"Ability15"				"special_bonus_unique_terrorblade_8"
-		"Ability16"				"special_bonus_terrorblade_agi9"
-		"Ability17"				"special_bonus_terrorblade_agi11"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_terrorblade_1"
+		"Ability11"				"special_bonus_unique_terrorblade_2"
+		"Ability12"				"special_bonus_unique_terrorblade_3"
+		"Ability13"				"special_bonus_unique_terrorblade_4"
+		"Ability14"				"special_bonus_unique_terrorblade_5"
+		"Ability15"				"special_bonus_unique_terrorblade_6"
+		"Ability16"				"special_bonus_unique_terrorblade_7"
+		"Ability17"				"special_bonus_unique_terrorblade_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_wisp"
 		{
@@ -492,19 +542,22 @@
 		"Ability3"				"wisp_overcharge_lua"
 		"Ability4"				"wisp_tether_break_lua"
 		"Ability5"				"generic_hidden"
-		"Ability6"				"wisp_relocate_lua"
+		"Ability6"				"wisp_event_horizon"
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_hp_400"
-		"Ability14"				"special_bonus_wisp_str10"
-		"Ability15"				"special_bonus_wisp_agi9"
-		"Ability16"				"special_bonus_wisp_str9"
-		"Ability17"				"special_bonus_wisp_int8"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_wisp_1"
+		"Ability11"				"special_bonus_unique_wisp_2"
+		"Ability12"				"special_bonus_unique_wisp_3"
+		"Ability13"				"special_bonus_unique_wisp_4"
+		"Ability14"				"special_bonus_unique_wisp_5"
+		"Ability15"				"special_bonus_unique_wisp_6"
+		"Ability16"				"special_bonus_unique_wisp_7"
+		"Ability17"				"special_bonus_unique_wisp_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 		
 	"npc_dota_hero_sniper"
 		{
@@ -526,7 +579,10 @@
 		"Ability15"				"special_bonus_unique_sniper_6"
 		"Ability16"				"special_bonus_unique_sniper_7"
 		"Ability17"				"special_bonus_unique_sniper_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 		
 	"npc_dota_hero_skywrath_mage"
 		{
@@ -540,15 +596,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_20"
-		"Ability11"				"special_bonus_hp_300"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_all_stats_12"
-		"Ability14"				"special_bonus_skywrath_mage_int6"
-		"Ability15"				"special_bonus_skywrath_mage_int7"
-		"Ability16"				"special_bonus_skywrath_mage_int9"
-		"Ability17"				"special_bonus_skywrath_mage_int11"
-		"Facets"				"generic_hidden"}		
+		"Ability10"				"special_bonus_unique_skywrath_mage_1"
+		"Ability11"				"special_bonus_unique_skywrath_mage_2"
+		"Ability12"				"special_bonus_unique_skywrath_mage_3"
+		"Ability13"				"special_bonus_unique_skywrath_mage_4"
+		"Ability14"				"special_bonus_unique_skywrath_mage_5"
+		"Ability15"				"special_bonus_unique_skywrath_mage_6"
+		"Ability16"				"special_bonus_unique_skywrath_mage_7"
+		"Ability17"				"special_bonus_unique_skywrath_mage_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}		
 		
 	"npc_dota_hero_juggernaut"
 		{
@@ -562,15 +621,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_10"
-		"Ability11"				"special_bonus_hp_300"
-		"Ability12"				"special_bonus_evasion_15"
-		"Ability13"				"special_bonus_agility_10"
-		"Ability14"				"special_bonus_juggernaut_agi2"
-		"Ability15"				"special_bonus_juggernaut_agi1"
-		"Ability16"				"special_bonus_juggernaut_agi11"
-		"Ability17"				"special_bonus_juggernaut_int8"
-		"Facets"				"generic_hidden"}	
+		"Ability10"				"special_bonus_unique_juggernaut_1"
+		"Ability11"				"special_bonus_unique_juggernaut_2"
+		"Ability12"				"special_bonus_unique_juggernaut_3"
+		"Ability13"				"special_bonus_unique_juggernaut_4"
+		"Ability14"				"special_bonus_unique_juggernaut_5"
+		"Ability15"				"special_bonus_unique_juggernaut_6"
+		"Ability16"				"special_bonus_unique_juggernaut_7"
+		"Ability17"				"special_bonus_unique_juggernaut_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}	
 		
 	"npc_dota_hero_nevermore"
 		{
@@ -584,15 +646,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_20"
-		"Ability11"				"special_bonus_hp_300"
-		"Ability12"				"special_bonus_unique_nevermore_5"
-		"Ability13"				"special_bonus_agility_10"
-		"Ability14"				"special_bonus_unique_nevermore_4"
-		"Ability15"				"special_bonus_unique_nevermore_1"
-		"Ability16"				"special_bonus_unique_nevermore_3"
-		"Ability17"				"special_bonus_unique_nevermore_2"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_shadow_fiend_1"
+		"Ability11"				"special_bonus_unique_shadow_fiend_2"
+		"Ability12"				"special_bonus_unique_shadow_fiend_3"
+		"Ability13"				"special_bonus_unique_shadow_fiend_4"
+		"Ability14"				"special_bonus_unique_shadow_fiend_5"
+		"Ability15"				"special_bonus_unique_shadow_fiend_6"
+		"Ability16"				"special_bonus_unique_shadow_fiend_7"
+		"Ability17"				"special_bonus_unique_shadow_fiend_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_night_stalker"
 		{
@@ -613,7 +678,10 @@
 		"Ability15"				"npc_dota_night_stalker_int4"
 		"Ability16"				"npc_dota_night_stalker_int3"
 		"Ability17"				"npc_dota_night_stalker_int1"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_mars"
 		{
@@ -627,15 +695,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_strength_10"
-		"Ability13"				"special_bonus_hp_300"
-		"Ability14"				"special_bonus_mars_str9"
-		"Ability15"				"special_bonus_mars_agi9"
-		"Ability16"				"special_bonus_mars_agi7"
-		"Ability17"				"special_bonus_mars_str7"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_mars_1"
+		"Ability11"				"special_bonus_unique_mars_2"
+		"Ability12"				"special_bonus_unique_mars_3"
+		"Ability13"				"special_bonus_unique_mars_4"
+		"Ability14"				"special_bonus_unique_mars_5"
+		"Ability15"				"special_bonus_unique_mars_6"
+		"Ability16"				"special_bonus_unique_mars_7"
+		"Ability17"				"special_bonus_unique_mars_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_pugna"
 		{
@@ -657,7 +728,10 @@
 		"Ability15"				"special_bonus_unique_pugna_6"
 		"Ability16"				"special_bonus_unique_pugna_7"
 		"Ability17"				"special_bonus_unique_pugna_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_magnataur"
 		{
@@ -671,15 +745,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_strength_10"
-		"Ability13"				"special_bonus_hp_300"
-		"Ability14"				"special_bonus_magnus_agi2"
-		"Ability15"				"special_bonus_magnus_agi4"
-		"Ability16"				"special_bonus_magnus_agi3"
-		"Ability17"				"special_bonus_magnus_agi1"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_magnus_1"
+		"Ability11"				"special_bonus_unique_magnus_2"
+		"Ability12"				"special_bonus_unique_magnus_3"
+		"Ability13"				"special_bonus_unique_magnus_4"
+		"Ability14"				"special_bonus_unique_magnus_5"
+		"Ability15"				"special_bonus_unique_magnus_6"
+		"Ability16"				"special_bonus_unique_magnus_7"
+		"Ability17"				"special_bonus_unique_magnus_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_alchemist"
 		{
@@ -701,7 +778,10 @@
 		"Ability15"				"special_bonus_alchemist_agi8"
 		"Ability16"				"special_bonus_alchemist_agi3"
 		"Ability17"				"special_bonus_alchemist_agi7"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_gyrocopter"
 		{
@@ -723,7 +803,10 @@
 		"Ability15"				"special_bonus_gyrocopter_agi2"
 		"Ability16"				"special_bonus_gyrocopter_agi3"
 		"Ability17"				"special_bonus_gyrocopter_agi1"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 	
 	"npc_dota_hero_leshrac"
 		{
@@ -745,13 +828,16 @@
 		"Ability15"				"special_bonus_leshrac_agi3"
 		"Ability16"				"special_bonus_leshrac_agi2"
 		"Ability17"				"special_bonus_leshrac_agi4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_disruptor"
 		{
 		"override_hero"			"npc_dota_hero_disruptor"
 		"Ability1"				"disruptor_thunder_strike_lua"
-		"Ability2"				"disruptor_teleport"
+		"Ability2"				"disruptor_magnetic_collect"
 		"Ability3"				"disruptor_kinetic_field_lua"
 		"Ability4"				"generic_hidden"
 		"Ability5"				"generic_hidden"
@@ -759,15 +845,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_10"
-		"Ability11"				"special_bonus_mp_300"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_intelligence_10"
-		"Ability14"				"special_bonus_disruptor_agi1"
-		"Ability15"				"special_bonus_disruptor_agi4"
-		"Ability16"				"special_bonus_disruptor_agi2"
-		"Ability17"				"special_bonus_disruptor_agi3"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_disruptor_1"
+		"Ability11"				"special_bonus_unique_disruptor_2"
+		"Ability12"				"special_bonus_unique_disruptor_3"
+		"Ability13"				"special_bonus_unique_disruptor_4"
+		"Ability14"				"special_bonus_unique_disruptor_5"
+		"Ability15"				"special_bonus_unique_disruptor_6"
+		"Ability16"				"special_bonus_unique_disruptor_7"
+		"Ability17"				"special_bonus_unique_disruptor_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_viper"
 		{
@@ -789,7 +878,10 @@
 		"Ability15"				"special_bonus_viper_int2"
 		"Ability16"				"special_bonus_viper_int1"
 		"Ability17"				"special_bonus_viper_int4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_tinker"
 		{
@@ -811,7 +903,10 @@
 		"Ability15"				"special_bonus_unique_tinker_6"
 		"Ability16"				"special_bonus_unique_tinker_7"
 		"Ability17"				"special_bonus_unique_tinker_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_omniknight"
 		{
@@ -833,7 +928,10 @@
 		"Ability15"				"special_bonus_omniknight_int3"
 		"Ability16"				"special_bonus_omniknight_int1"
 		"Ability17"				"special_bonus_omniknight_int4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_life_stealer"
 		{
@@ -855,7 +953,10 @@
 		"Ability15"				"special_bonus_lifestealer_int4"
 		"Ability16"				"special_bonus_lifestealer_int1"
 		"Ability17"				"special_bonus_lifestealer_int3"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_meepo"
 		{
@@ -869,15 +970,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_hp_300"
-		"Ability14"				"special_bonus_meepo_int1"
-		"Ability15"				"special_bonus_meepo_int2"
-		"Ability16"				"special_bonus_meepo_int3"
-		"Ability17"				"special_bonus_meepo_int4"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_meepo_1"
+		"Ability11"				"special_bonus_unique_meepo_2"
+		"Ability12"				"special_bonus_unique_meepo_3"
+		"Ability13"				"special_bonus_unique_meepo_4"
+		"Ability14"				"special_bonus_unique_meepo_5"
+		"Ability15"				"special_bonus_unique_meepo_6"
+		"Ability16"				"special_bonus_unique_meepo_7"
+		"Ability17"				"special_bonus_unique_meepo_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_antimage" 
 		{
@@ -888,15 +992,18 @@
 		"Ability4"				"generic_hidden"
 		"Ability5"				"generic_hidden"
 		"Ability6"				"antimage_mana_time_lua"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_hp_300"
-		"Ability14"				"special_bonus_antimage_int1"
-		"Ability15"				"special_bonus_antimage_int4"
-		"Ability16"				"special_bonus_antimage_int3"
-		"Ability17"				"special_bonus_antimage_int2"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_antimage_1"
+		"Ability11"				"special_bonus_unique_antimage_2"
+		"Ability12"				"special_bonus_unique_antimage_3"
+		"Ability13"				"special_bonus_unique_antimage_4"
+		"Ability14"				"special_bonus_unique_antimage_5"
+		"Ability15"				"special_bonus_unique_antimage_6"
+		"Ability16"				"special_bonus_unique_antimage_7"
+		"Ability17"				"special_bonus_unique_antimage_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_jakiro" 
 		{
@@ -918,7 +1025,10 @@
 		"Ability15"				"special_bonus_jakiro_int2"
 		"Ability16"				"special_bonus_jakiro_int3"
 		"Ability17"				"special_bonus_jakiro_int4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_silencer"
 		{
@@ -940,7 +1050,10 @@
 		"Ability15"				"special_bonus_silencer_int2"
 		"Ability16"				"special_bonus_silencer_int3"
 		"Ability17"				"special_bonus_silencer_int4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_techies"
 		{
@@ -962,7 +1075,10 @@
 		"Ability15"				"special_bonus_techies_int4"
 		"Ability16"				"special_bonus_techies_int2"
 		"Ability17"				"special_bonus_techies_int1"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 		
 	"npc_dota_hero_spectre"
 		{
@@ -970,21 +1086,24 @@
 		"Ability1"				"spectre_step"
 		"Ability2"				"spectre_desolate_lua"
 		"Ability3"				"spectre_dispersion_lua"
-		"Ability4"				"spectre_reality_datadriven"
+		"Ability4"				"spectre_reality_lua"
 		"Ability5"				"generic_hidden"
 		"Ability6"				"spectre_haunt_lua"
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
+		"Ability10"				"special_bonus_unique_spectre_1"
+		"Ability11"				"special_bonus_unique_spectre_2"
 		"Ability12"				"special_bonus_unique_spectre_3"
-		"Ability13"				"special_bonus_hp_300"
-		"Ability14"				"special_bonus_unique_spectre_2"
-		"Ability15"				"special_bonus_unique_spectre_4"
-		"Ability16"				"special_bonus_unique_spectre_1"
-		"Ability17"				"special_bonus_attack_speed_120"
-		"Facets"				"generic_hidden"}
+		"Ability13"				"special_bonus_unique_spectre_4"
+		"Ability14"				"special_bonus_unique_spectre_5"
+		"Ability15"				"special_bonus_unique_spectre_6"
+		"Ability16"				"special_bonus_unique_spectre_7"
+		"Ability17"				"special_bonus_unique_spectre_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 		
 	"npc_dota_hero_earthshaker"
 	{
@@ -992,12 +1111,12 @@
 		"Ability1"					"earthshaker_fissure_lua"
 		"Ability2"					"earthshaker_enchant_totem_lua"
 		"Ability3"					"earthshaker_aftershock_lua"
-		"Ability4"				"generic_hidden"
-		"Ability5"				"generic_hidden"
+		"Ability4"					"generic_hidden"
+		"Ability5"					"generic_hidden"
 		"Ability6"					"earthshaker_echo_slam_lua"
-		"Ability7"				"generic_hidden"
-		"Ability8"				"generic_hidden"
-		"Ability9"				"generic_hidden"
+		"Ability7"					"generic_hidden"
+		"Ability8"					"generic_hidden"
+		"Ability9"					"generic_hidden"
 		"Ability10"					"special_bonus_movement_speed_15"
 		"Ability11"					"special_bonus_attack_damage_20"
 		"Ability12"					"special_bonus_armor_4"
@@ -1006,7 +1125,10 @@
 		"Ability15"					"special_bonus_earthshaker_tal2"
 		"Ability16"					"special_bonus_earthshaker_tal3"
 		"Ability17"					"special_bonus_earthshaker_tal4"
-	"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_troll_warlord" 
 		{
@@ -1028,7 +1150,10 @@
 		"Ability15"				"special_bonus_troll_warlord_int3"
 		"Ability16"				"special_bonus_troll_warlord_int2"
 		"Ability17"				"special_bonus_troll_warlord_int4" 
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_skeleton_king"
 	{
@@ -1036,12 +1161,12 @@
 		"Ability1"					"wraith_king_sceleton"
 		"Ability2"					"wraith_king_mortal_strike_lua"
 		"Ability3"					"wraith_king_vampiric_aura_lua"
-		"Ability4"				"generic_hidden"
-		"Ability5"				"generic_hidden"
+		"Ability4"					"generic_hidden"
+		"Ability5"					"generic_hidden"
 		"Ability6"					"wraith_king_reincarnation_lua"
-		"Ability7"				"generic_hidden"
-		"Ability8"				"generic_hidden"
-		"Ability9"				"generic_hidden"
+		"Ability7"					"generic_hidden"
+		"Ability8"					"generic_hidden"
+		"Ability9"					"generic_hidden"
 		"Ability10"					"special_bonus_movement_speed_15"
 		"Ability11"					"special_bonus_attack_damage_20"
 		"Ability12"					"special_bonus_armor_4"
@@ -1050,7 +1175,10 @@
 		"Ability15"					"special_bonus_skeleton_king_tal2"
 		"Ability16"					"special_bonus_skeleton_king_tal3"
 		"Ability17"					"special_bonus_skeleton_king_tal4"
-	"Facets"				"generic_hidden"}
+		"Facets"					""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_clinkz" 
 		{
@@ -1064,15 +1192,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_hp_300"
-		"Ability14"				"special_bonus_clinkz_tal1"
-		"Ability15"				"special_bonus_clinkz_tal2"
-		"Ability16"				"special_bonus_clinkz_tal3"
-		"Ability17"				"special_bonus_clinkz_tal4" 
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_clinkz_1"
+		"Ability11"				"special_bonus_unique_clinkz_2"
+		"Ability12"				"special_bonus_unique_clinkz_3"
+		"Ability13"				"special_bonus_unique_clinkz_4"
+		"Ability14"				"special_bonus_unique_clinkz_5"
+		"Ability15"				"special_bonus_unique_clinkz_6"
+		"Ability16"				"special_bonus_unique_clinkz_7"
+		"Ability17"				"special_bonus_unique_clinkz_8" 
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_lycan" 
 		{
@@ -1094,7 +1225,10 @@
 		"Ability15"				"special_bonus_lycan_tal3" // +5%damage self
 		"Ability16"				"special_bonus_lycan_tal2" // first hit deal 50% cleave
 		"Ability17"				"special_bonus_lycan_tal4" //can use shapeshift
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_obsidian_destroyer"
 		{
@@ -1116,7 +1250,10 @@
 		"Ability15"				"special_bonus_outworld_devourer_tal2" // +10% шанс 
 		"Ability16"				"special_bonus_outworld_devourer_tal3" // +2% к урону орб
 		"Ability17"				"special_bonus_outworld_devourer_tal4" //+ 0.1 k ult
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_sven" 
 		{
@@ -1138,7 +1275,10 @@
 		"Ability15"				"special_bonus_sven_tal2" 
 		"Ability16"				"special_bonus_sven_tal3" 
 		"Ability17"				"special_bonus_sven_tal4" 
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_ancient_apparition" 
 		{
@@ -1152,15 +1292,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_10"
-		"Ability11"				"special_bonus_mp_300"
-		"Ability12"				"special_bonus_hp_regen_10"
-		"Ability13"				"special_bonus_all_stats_5"
-		"Ability14"				"special_bonus_ancient_apparition_tal4"
-		"Ability15"				"special_bonus_ancient_apparition_tal2"
-		"Ability16"				"special_bonus_ancient_apparition_tal1"
-		"Ability17"				"special_bonus_ancient_apparition_tal3"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_ancient_apparition_1"
+		"Ability11"				"special_bonus_unique_ancient_apparition_2"
+		"Ability12"				"special_bonus_unique_ancient_apparition_3"
+		"Ability13"				"special_bonus_unique_ancient_apparition_4"
+		"Ability14"				"special_bonus_unique_ancient_apparition_5"
+		"Ability15"				"special_bonus_unique_ancient_apparition_6"
+		"Ability16"				"special_bonus_unique_ancient_apparition_7"
+		"Ability17"				"special_bonus_unique_ancient_apparition_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_templar_assassin" 
 		{
@@ -1174,15 +1317,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_hp_300"
-		"Ability14"				"special_bonus_templar_assassin_tal1"
-		"Ability15"				"special_bonus_templar_assassin_tal4"
-		"Ability16"				"special_bonus_templar_assassin_tal3"
-		"Ability17"				"special_bonus_templar_assassin_tal2"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_templar_assassin_1"
+		"Ability11"				"special_bonus_unique_templar_assassin_2"
+		"Ability12"				"special_bonus_unique_templar_assassin_3"
+		"Ability13"				"special_bonus_unique_templar_assassin_4"
+		"Ability14"				"special_bonus_unique_templar_assassin_5"
+		"Ability15"				"special_bonus_unique_templar_assassin_6"
+		"Ability16"				"special_bonus_unique_templar_assassin_7"
+		"Ability17"				"special_bonus_unique_templar_assassin_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 		
 	"npc_dota_hero_muerta"
 		{
@@ -1204,7 +1350,10 @@
 		"Ability15"				"special_bonus_unique_muerta_2"
 		"Ability16"				"special_bonus_unique_muerta_3"
 		"Ability17"				"special_bonus_unique_muerta_4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_faceless_void"
 		{
@@ -1226,7 +1375,10 @@
 		"Ability15"				"special_bonus_faceless_void_2"
 		"Ability16"				"special_bonus_faceless_void_3"
 		"Ability17"				"special_bonus_faceless_void_4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_tidehunter"
 	{
@@ -1240,15 +1392,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_15"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_hp_400"
-		"Ability14"				"special_bonus_tidehunter_1"
-		"Ability15"				"special_bonus_tidehunter_2"
-		"Ability16"				"special_bonus_tidehunter_3"
-		"Ability17"				"special_bonus_tidehunter_4"
-	"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_tidehunter_1"
+		"Ability11"				"special_bonus_unique_tidehunter_2"
+		"Ability12"				"special_bonus_unique_tidehunter_3"
+		"Ability13"				"special_bonus_unique_tidehunter_4"
+		"Ability14"				"special_bonus_unique_tidehunter_5"
+		"Ability15"				"special_bonus_unique_tidehunter_6"
+		"Ability16"				"special_bonus_unique_tidehunter_7"
+		"Ability17"				"special_bonus_unique_tidehunter_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 	
 	"npc_dota_hero_ogre_magi" 
 		{
@@ -1270,7 +1425,10 @@
 		"Ability15"				"special_bonus_ogre_magi_6"
 		"Ability16"				"special_bonus_ogre_magi_1"
 		"Ability17"				"special_bonus_ogre_magi_4"
-		"Facets"				"generic_hidden"}	
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}	
 	
 	"npc_dota_hero_hoodwink"
 		{
@@ -1292,7 +1450,10 @@
 		"Ability15"				"special_bonus_unique_hoodwink_6"
 		"Ability16"				"special_bonus_unique_hoodwink_7"
 		"Ability17"				"special_bonus_unique_hoodwink_8"
-		"Facets"				"generic_hidden"}	
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}	
 
 	"npc_dota_hero_primal_beast"
 	{
@@ -1306,15 +1467,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_movement_speed_10"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_armor_4"
-		"Ability13"				"special_bonus_hp_400"
-		"Ability14"				"special_bonus_primal_beast_1"
-		"Ability15"				"special_bonus_primal_beast_2"
-		"Ability16"				"special_bonus_primal_beast_3"
-		"Ability17"				"special_bonus_primal_beast_4"
-	"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_primal_beast_1"
+		"Ability11"				"special_bonus_unique_primal_beast_2"
+		"Ability12"				"special_bonus_unique_primal_beast_3"
+		"Ability13"				"special_bonus_unique_primal_beast_4"
+		"Ability14"				"special_bonus_unique_primal_beast_5"
+		"Ability15"				"special_bonus_unique_primal_beast_6"
+		"Ability16"				"special_bonus_unique_primal_beast_7"
+		"Ability17"				"special_bonus_unique_primal_beast_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_abaddon"
 		{
@@ -1336,7 +1500,10 @@
 		"Ability15"				"special_bonus_unique_abaddon_lua_6"
 		"Ability16"				"special_bonus_unique_abaddon_lua_7"
 		"Ability17"				"special_bonus_unique_abaddon_lua_8"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_marci"
 		{
@@ -1358,7 +1525,10 @@
 		"Ability15"				"special_bonus_unique_marci_6"
 		"Ability16"				"special_bonus_unique_marci_7"
 		"Ability17"				"special_bonus_unique_marci_8" 
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_naga_siren"
 		{
@@ -1372,15 +1542,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_evasion_15"
-		"Ability11"				"special_bonus_agility_10"
-		"Ability12"				"special_bonus_naga_siren_2"
-		"Ability13"				"special_bonus_naga_siren_1"
-		"Ability14"				"special_bonus_naga_siren_3"
-		"Ability15"				"special_bonus_naga_siren_4"
-		"Ability16"				"special_bonus_naga_siren_5"
-		"Ability17"				"special_bonus_naga_siren_6"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_naga_siren_1"
+		"Ability11"				"special_bonus_unique_naga_siren_2"
+		"Ability12"				"special_bonus_unique_naga_siren_3"
+		"Ability13"				"special_bonus_unique_naga_siren_4"
+		"Ability14"				"special_bonus_unique_naga_siren_5"
+		"Ability15"				"special_bonus_unique_naga_siren_6"
+		"Ability16"				"special_bonus_unique_naga_siren_7"
+		"Ability17"				"special_bonus_unique_naga_siren_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_broodmother"
 		{
@@ -1402,7 +1575,10 @@
 		"Ability15"				"special_bonus_broodmother_2" //+10% steal
 		"Ability16"				"special_bonus_broodmother_3" //+40 damage
 		"Ability17"				"special_bonus_broodmother_4" //0.2
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 		
 	"npc_dota_hero_huskar"
 		{
@@ -1424,7 +1600,10 @@
 		"Ability15"				"special_bonus_huskar_tal_6"
 		"Ability16"				"special_bonus_huskar_tal_4"//
 		"Ability17"				"special_bonus_huskar_tal_8"
-		"Facets"				"generic_hidden"}	
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}	
 
 	"npc_dota_hero_queenofpain" 
 		{
@@ -1446,7 +1625,10 @@
 		"Ability15"				"special_bonus_qop_tal_4"
 		"Ability16"				"special_bonus_cooldown_reduction_15"//cd
 		"Ability17"				"special_bonus_qop_tal_8"//screem
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_vengefulspirit"
 		{
@@ -1460,15 +1642,18 @@
 		"Ability7"				"generic_hidden"
 		"Ability8"				"generic_hidden"
 		"Ability9"				"generic_hidden"
-		"Ability10"				"special_bonus_hp_regen_10"
-		"Ability11"				"special_bonus_armor_4"
-		"Ability12"				"special_bonus_all_stats_10"
-		"Ability13"				"special_bonus_attack_damage_40"
-		"Ability14"				"special_bonus_vengefulspirit_1"
-		"Ability15"				"special_bonus_vengefulspirit_3"
-		"Ability16"				"special_bonus_vengefulspirit_2"
-		"Ability17"				"special_bonus_vengefulspirit_4"
-		"Facets"				"generic_hidden"}
+		"Ability10"				"special_bonus_unique_vengefulspirit_1"
+		"Ability11"				"special_bonus_unique_vengefulspirit_2"
+		"Ability12"				"special_bonus_unique_vengefulspirit_3"
+		"Ability13"				"special_bonus_unique_vengefulspirit_4"
+		"Ability14"				"special_bonus_unique_vengefulspirit_5"
+		"Ability15"				"special_bonus_unique_vengefulspirit_6"
+		"Ability16"				"special_bonus_unique_vengefulspirit_7"
+		"Ability17"				"special_bonus_unique_vengefulspirit_8"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_venomancer"
 		{
@@ -1490,7 +1675,10 @@
 		"Ability15"				"special_bonus_venomancer_2"
 		"Ability16"				"special_bonus_venomancer_3"
 		"Ability17"				"special_bonus_venomancer_4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_brewmaster"
 		{
@@ -1512,7 +1700,10 @@
 		"Ability15"				"special_bonus_brewmaster_2"
 		"Ability16"				"special_bonus_brewmaster_3"
 		"Ability17"				"special_bonus_brewmaster_4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_rubick" 
 		{
@@ -1536,7 +1727,10 @@
 		"Ability17"				"special_bonus_cast_range_200"
 		"Ability18"				"special_bonus_all_stats_20"
 		"Ability19"				"special_bonus_unique_rubick_5"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_pangolier"
 		{
@@ -1558,7 +1752,10 @@
 		"Ability15"				"pango_2"
 		"Ability16"				"pango_3"
 		"Ability17"				"pango_4"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_monkey_king"
 	{
@@ -1579,7 +1776,10 @@
 		"Ability15"		"special_bonus_monkey_king_6"
 		"Ability16"		"special_bonus_monkey_king_7"
         "Ability17"		"special_bonus_monkey_king_8"
-    "Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_undying"
 	{
@@ -1600,7 +1800,10 @@
 		"Ability15"		"special_bonus_undying_4"
 		"Ability16"		"special_bonus_undying_7"
         "Ability17"		"special_bonus_undying_8"
-    "Facets"				"generic_hidden"}
+    	"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 
 	"npc_dota_hero_bloodseeker"
@@ -1622,7 +1825,10 @@
 		"Ability15"		"special_bonus_bloodseeker_6"
 		"Ability16"		"special_bonus_bloodseeker_7"
         "Ability17"		"special_bonus_bloodseeker_8"
-    "Facets"				"generic_hidden"}
+    	"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 
 
@@ -1639,20 +1845,20 @@
 		"Ability1"					"anakim_pulse"
 		"Ability2"					"anakim_chaos"
 		"Ability3"					"anakim_wisp"
-		"Ability4"					"generic_hidden"
+		"Ability4"					"anakim_final_sacrifice"
 		"Ability5"					"generic_hidden"
-		"Ability6"					"anakim_realise"
-		"Ability7"				"generic_hidden"
-		"Ability8"				"generic_hidden"
-		"Ability9"				"generic_hidden"
-		"Ability10"					"special_bonus_anakim_tal1" // + 40 урон anakim_pulse
-		"Ability11"					"special_bonus_anakim_tal2" // +6% у усиению anakim_chaos
-		"Ability12"					"special_bonus_anakim_tal3" // +60 к щиту
-		"Ability13"					"special_bonus_anakim_tal4" // -1 крип до стака
-		"Ability14"					"special_bonus_anakim_tal5" // +5 к урону + 2% уcиление
-		"Ability15"					"special_bonus_anakim_tal6" // +3 стака
-		"Ability16"					"special_bonus_anakim_tal7" // +50 у базовому урону ульты
-		"Ability17"					"special_bonus_anakim_tal8" // ульт по области 200 вокруг цели
+		"Ability6"					"anakim_pulse_line"
+		"Ability7"					"generic_hidden"
+		"Ability8"					"generic_hidden"
+		"Ability9"					"generic_hidden"
+		"Ability10"					"special_bonus_unique_anakim_1" // + 40 урон anakim_pulse
+		"Ability11"					"special_bonus_unique_anakim_2" // +6% у усиению anakim_chaos
+		"Ability12"					"special_bonus_unique_anakim_3" // +60 к щиту
+		"Ability13"					"special_bonus_unique_anakim_4" // -1 крип до стака
+		"Ability14"					"special_bonus_unique_anakim_5" // +5 к урону + 2% уcиление
+		"Ability15"					"special_bonus_unique_anakim_6" // +3 стака
+		"Ability16"					"special_bonus_unique_anakim_7" // +50 у базовому урону ульты
+		"Ability17"					"special_bonus_unique_anakim_8" // ульт по области 200 вокруг цели
 		
 		"AttributeStrengthGain"		"4"
 		"AttributeAgilityGain"		"4"
@@ -1679,7 +1885,10 @@
 		"ProjectileSpeed"			"1100"
 		"AttributePrimary"			"DOTA_ATTRIBUTE_ALL"
 		"StatusManaRegen"			"0.0"
-		"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_destroyer"
 	{
@@ -1689,24 +1898,25 @@
 		"Model"						"models/units/destroyer/destroyer.vmdl"
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_elder_titan.vsndevts"
+		"SoundSet"      			"Hero_Bristleback"
 		"ModelScale"				"1.5"
-		"Ability1"					"hero_destroyer_first_skill_totem"
-		"Ability2"					"hero_destroyer_second_skill_armor"
-		"Ability3"					"hero_destroyer_third_skill"
+		"Ability1"					"hero_destroyer_second_skill_armor"
+		"Ability2"					"hero_destroyer_third_skill"
+		"Ability3"					"hero_destroyer_overkill"
 		"Ability4"					"generic_hidden"
 		"Ability5"					"generic_hidden"
-		"Ability6"					"hero_destroyer_ult"
+		"Ability6"					"hero_destroyer_totem"
 		"Ability7"					"generic_hidden"
 		"Ability8"					"generic_hidden"
 		"Ability9"					"generic_hidden"
-		"Ability10"					"special_bonus_movement_speed_15"
-		"Ability11"					"special_bonus_attack_damage_20"
-		"Ability12"					"special_bonus_strength_10"
-		"Ability13"					"special_bonus_hp_300"
-		"Ability14"					"special_bonus_destroyer_tal1"
-		"Ability15"					"special_bonus_destroyer_tal2"
-		"Ability16"					"special_bonus_destroyer_tal3"
-		"Ability17"					"special_bonus_destroyer_tal4"
+		"Ability10"					"special_bonus_unique_destroyer_1"
+		"Ability11"					"special_bonus_unique_destroyer_2"
+		"Ability12"					"special_bonus_unique_destroyer_3"
+		"Ability13"					"special_bonus_unique_destroyer_4"
+		"Ability14"					"special_bonus_unique_destroyer_5"
+		"Ability15"					"special_bonus_unique_destroyer_6"
+		"Ability16"					"special_bonus_unique_destroyer_7"
+		"Ability17"					"special_bonus_unique_destroyer_8"
 		
 		"AttributeStrengthGain"		"6.5"
 		"AttributeAgilityGain"		"0.5"
@@ -1718,7 +1928,6 @@
 		
 		"MovementSpeed"				"250"
 		"AttackRange"				"150"
-		"VisionDaytimeRange"		"1100"
 		
 		"ArmorPhysical"				"5"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
@@ -1730,7 +1939,10 @@
 		"AttackRange"				"150"
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"StatusManaRegen"			"0.0"
-	"Facets"				"generic_hidden"}
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
+		}
 
 	"npc_dota_hero_dado"
 	{
@@ -1740,24 +1952,25 @@
 		"Model"						"models/units/doppelganger/doppelganger.vmdl"
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_enigma.vsndevts"
+		"SoundSet"      			"Hero_Enigma"
 		"ModelScale"				"0.9"
 		"Ability1"					"dado_storm_lua"
-		"Ability2"					"dado_tp"
-		"Ability3"					"dado_tp_vixod"
+		"Ability2"					"dado_tp_in"
+		"Ability3"					"dado_tp_out"
 		"Ability4"					"dado_ampl"
-		"Ability5"					"Dado_passivka"
+		"Ability5"					"dado_passive"
 		"Ability6"					"dado_field"
-		"Ability7"				"generic_hidden"
-		"Ability8"				"generic_hidden"
-		"Ability9"				"generic_hidden"
-		"Ability10"					"special_bonus_dado_tal5"
-		"Ability11"					"special_bonus_dado_tal6"
-		"Ability12"					"special_bonus_dado_tal1"
-		"Ability13"					"special_bonus_dado_tal2"
-		"Ability14"					"special_bonus_dado_tal8"
-		"Ability15"					"special_bonus_dado_tal7"
-		"Ability16"					"special_bonus_dado_tal3"
-		"Ability17"					"special_bonus_dado_tal4"
+		"Ability7"					"generic_hidden"
+		"Ability8"					"generic_hidden"
+		"Ability9"					"generic_hidden"
+		"Ability10"					"special_bonus_unique_dado_1"
+		"Ability11"					"special_bonus_unique_dado_2"
+		"Ability12"					"special_bonus_unique_dado_3"
+		"Ability13"					"special_bonus_unique_dado_4"
+		"Ability14"					"special_bonus_unique_dado_5"
+		"Ability15"					"special_bonus_unique_dado_6"
+		"Ability16"					"special_bonus_unique_dado_7"
+		"Ability17"					"special_bonus_unique_dado_8"
 		"ProjectileModel"			"particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
 		"ProjectileSpeed"			"900"
 		"SoundSet"					"Hero_Enigma"
@@ -1772,8 +1985,10 @@
 		"AttributeBaseAgility"		"10"
 		"MovementSpeed"				"350"
 		"AttackRange"				"600"
+		"Facets"				""
 		"VisionDaytimeRange"		"1100"
-	"Facets"				"generic_hidden"}
+		"VisionNighttimeRange"		"1100"
+		}
 	
 		
 	"npc_dota_hero_triss"
@@ -1832,8 +2047,10 @@
 		"Ability16"					"special_bonus_unique_triss_7"
 		"Ability17"					"special_bonus_unique_triss_8"
 			
+		"Facets"				""
 		"VisionDaytimeRange"		"1100"
-	"Facets"				"generic_hidden"}
+		"VisionNighttimeRange"		"1100"
+		}
 	
 	
 	"npc_dota_hero_treant"
@@ -1853,8 +2070,9 @@
 		"Ability15"		"special_bonus_unique_treant_6"
 		"Ability16"		"special_bonus_unique_treant_7"
 		"Ability17"		"special_bonus_unique_treant_8"
+		"Facets"				""
 		"VisionDaytimeRange"		"1100"
-		"Facets"				"generic_hidden"
+		"VisionNighttimeRange"		"1100"
 	}
 	
 	"npc_dota_hero_abyssal_underlord"
@@ -1875,8 +2093,9 @@
 		"Ability15"		"special_bonus_unique_underlord_6"
 		"Ability16"		"special_bonus_unique_underlord_7"
 		"Ability17"		"special_bonus_unique_underlord_8"
+		"Facets"				""
 		"VisionDaytimeRange"		"1100"
-		"Facets"				"generic_hidden"
+		"VisionNighttimeRange"		"1100"
 	}
 	
 	"npc_dota_hero_slardar"
@@ -1897,8 +2116,9 @@
 		"Ability15"		"special_bonus_unique_slardar_6"
 		"Ability16"		"special_bonus_unique_slardar_7"
 		"Ability17"		"special_bonus_unique_slardar_8"
+		"Facets"				""
 		"VisionDaytimeRange"		"1100"
-		"Facets"				"generic_hidden"
+		"VisionNighttimeRange"		"1100"
 	}
 	
 	"npc_dota_hero_snapfire"
@@ -1919,8 +2139,9 @@
 		"Ability15"		"special_bonus_unique_snapfire_6"
 		"Ability16"		"special_bonus_unique_snapfire_7"
 		"Ability17"		"special_bonus_unique_snapfire_8"
+		"Facets"				""
 		"VisionDaytimeRange"		"1100"
-		"Facets"				"generic_hidden"
+		"VisionNighttimeRange"		"1100"
 	}
 	
 	"npc_dota_hero_dark_seer"
@@ -1941,8 +2162,9 @@
 		"Ability15"		"special_bonus_unique_dark_seer_6"
 		"Ability16"		"special_bonus_unique_dark_seer_7"
 		"Ability17"		"special_bonus_unique_dark_seer_8"
+		"Facets"				""
 		"VisionDaytimeRange"		"1100"
-		"Facets"				"generic_hidden"
+		"VisionNighttimeRange"		"1100"
 	}
 	
 	
@@ -1970,13 +2192,12 @@
 		
 		"MovementSpeed"				"350"
 		"AttackRange"				"150"
-		"VisionDaytimeRange"		"1100"
 		
 		"Ability1"					"hero_fiddlesticks_harvest"
 		"Ability2"					"hero_fiddlesticks_rise"
 		"Ability3"					"hero_fiddlesticks_chains"
 		"Ability4"					"generic_hidden"
-		"Ability5"					"generic_hidden"
+		"Ability5"					"hero_fiddlesticks_armor"
 		"Ability6"					"hero_fiddlesticks_scythe"
 		"Ability7"					"generic_hidden"
 
@@ -1996,7 +2217,9 @@
 		"AttackRate"				"1.4"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"600"
-		"Facets"					"generic_hidden"
+		"Facets"				""
+		"VisionDaytimeRange"		"1100"
+		"VisionNighttimeRange"		"1100"
 	}
 }
 

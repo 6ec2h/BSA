@@ -1,5 +1,9 @@
 modifier_teleport_event = class({})
 
+function modifier_teleport_event:Precache( context )
+	PrecacheResource( "particle", "particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf", context )
+end
+
 function modifier_teleport_event:IsHidden()
     return true
 end
@@ -12,6 +16,7 @@ function modifier_teleport_event:CheckState()
 	local state = {
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,	
+		[MODIFIER_STATE_STUNNED] = true,	
 	}
 	return state
 end

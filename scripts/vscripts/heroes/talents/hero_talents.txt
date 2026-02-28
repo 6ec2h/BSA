@@ -1,6 +1,5 @@
 "DOTAAbilities"
 {
-	
 //=================================================================================================	
 
 	"special_bonus_lion_1"
@@ -2263,45 +2262,6 @@
 	
 //=============================================================================================
 
-	"special_bonus_ancient_apparition_tal1" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	}
-		
-	"special_bonus_ancient_apparition_tal2"
-	{
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
-				"ad_linked_abilities"			"ancient_apparition_cold_feet_lua"
-			}
-		}
-	}
-	
-	"special_bonus_ancient_apparition_tal3"
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	}
-	
-	"special_bonus_ancient_apparition_tal4"
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	}	
-
-//=============================================================================================
-
 	"special_bonus_templar_assassin_tal1" 
 	{
 		"BaseClass"             		"special_bonus_undefined"
@@ -3529,6 +3489,59 @@
 				"var_type"					"FIELD_INTEGER"
 				"value"						"1"
 				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_2" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_3" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_blade_of_the_exile"
+			}
+		}
+	}
+
+	"pango_4" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_broken_wings"
+			}
+		}
+	}	
+}
+bilities"		"hero_pangolier_runic_blade"
 			}
 		}
 	}

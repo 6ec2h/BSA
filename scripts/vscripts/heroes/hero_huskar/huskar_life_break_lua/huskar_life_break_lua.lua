@@ -1,6 +1,6 @@
 LinkLuaModifier( "modifier_huskar_life_break_lua", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_HORIZONTAL )
 LinkLuaModifier( "modifier_huskar_life_break_lua_debuff_arg", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_huskar_life_break_lua_debuff_arg_arg", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_huskar_life_break_lua_call", "heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua", LUA_MODIFIER_MOTION_NONE )
 
 huskar_life_break_lua = class({})
 
@@ -76,7 +76,7 @@ function modifier_huskar_life_break_lua:OnDestroy()
 		
 		damageTable.victim = self:GetCaster()
 		damageTable.damage = damage
-		damageTable.damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
+		damageTable.damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN
 		ApplyDamage(damageTable)
 
 		self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_huskar_life_break_lua_debuff_arg", { duration = self.duraiton })
@@ -84,7 +84,7 @@ function modifier_huskar_life_break_lua:OnDestroy()
 		
 		local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_6")
 		if talent and talent:GetLevel() > 0 then 
-			self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_huskar_life_break_lua_debuff_arg_arg", { duration = self.duraiton })
+			self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_huskar_life_break_lua_call", { duration = self.duraiton })
 		end
 	
 		local talent = self:GetCaster():FindAbilityByName("special_bonus_huskar_tal_5")
@@ -202,47 +202,47 @@ end
 
 
 ----------------------------------------------------------
-modifier_axe_berserkers_call_lua_debuff = class({})
 
-function modifier_axe_berserkers_call_lua_debuff:IsHidden()
+modifier_huskar_life_break_lua_call = class({})
+
+function modifier_huskar_life_break_lua_call:IsHidden()
 	return false
 end
 
-function modifier_axe_berserkers_call_lua_debuff:IsDebuff()
+function modifier_huskar_life_break_lua_call:IsDebuff()
 	return true
 end
 
-function modifier_axe_berserkers_call_lua_debuff:IsStunDebuff()
+function modifier_huskar_life_break_lua_call:IsStunDebuff()
 	return false
 end
 
-function modifier_axe_berserkers_call_lua_debuff:IsPurgable()
+function modifier_huskar_life_break_lua_call:IsPurgable()
 	return false
 end
 
-function modifier_axe_berserkers_call_lua_debuff:OnCreated( kv )
+function modifier_huskar_life_break_lua_call:OnCreated( kv )
 	if IsServer() then
 		self:GetParent():SetForceAttackTarget( self:GetCaster() )
 		self:GetParent():MoveToTargetToAttack( self:GetCaster() )
 	end
 end
 
-function modifier_axe_berserkers_call_lua_debuff:OnRemoved()
+function modifier_huskar_life_break_lua_call:OnRemoved()
 	if IsServer() then
-		self:GetParent():SetForceAttackTarget( nil )
+		self:GetParent():SetForceAttackTarget(nil)
 	end
 end
 
-function modifier_axe_berserkers_call_lua_debuff:OnDestroy()
-end
-
-function modifier_axe_berserkers_call_lua_debuff:CheckState()
+function modifier_huskar_life_break_lua_call:CheckState()
 	local state = {
 		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
 	}
 	return state
 end
 
-function modifier_axe_berserkers_call_lua_debuff:GetStatusEffectName()
+function modifier_huskar_life_break_lua_call:GetStatusEffectName()
 	return "particles/status_fx/status_effect_beserkers_call.vpcf"
+end
+return "particles/status_fx/status_effect_beserkers_call.vpcf"
 end

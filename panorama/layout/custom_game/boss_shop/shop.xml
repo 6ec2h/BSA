@@ -62,15 +62,17 @@
 					</Panel>
 				</DOTAItemImage>
 				<Image class="consumable_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
-				<Label id="consumable_panel_name" class="consumable_panel_name" text="222" />
-				<Panel id="item_panel_buy" class="consumable_panel_buy">
-					<Label id="consumable_panel_buy_label" class="consumable_panel_label" text="#buy" />
-				</Panel>
-				<Panel id="item_panel_take" class="consumable_panel_take">
-					<Label id="consumable_panel_take_label" class="consumable_panel_label" text="#take" />
-				</Panel>
-				<Panel id="item_panel_return" class="consumable_panel_return">
-					<Label id="consumable_panel_return_label" class="consumable_panel_label" text="#item_return" />
+				<Panel class="consumable_panel_container">
+					<Label id="consumable_panel_name" class="consumable_panel_name" text="222" />
+					<Panel id="item_panel_buy" class="consumable_panel_buy">
+						<Label id="consumable_panel_buy_label" class="consumable_panel_label" text="#buy" />
+					</Panel>
+					<Panel id="item_panel_take" class="consumable_panel_take">
+						<Label id="consumable_panel_take_label" class="consumable_panel_label" text="#take" />
+					</Panel>
+					<Panel id="item_panel_return" class="consumable_panel_return">
+						<Label id="consumable_panel_return_label" class="consumable_panel_label" text="#item_return" />
+					</Panel>
 				</Panel>
 			</Panel>
 		</snippet>
@@ -83,17 +85,18 @@
 				</DOTAItemImage>
 				<Image class="treasure_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
 				<Label id="treasure_panel_name" class="treasure_panel_name" html="true" text="" />
-				<Panel id="item_panel_buy" class="treasure_panel_buy">
-					<Label id="treasure_panel_buy_label" class="treasure_panel_label" text="#buy" />
-				</Panel>
-				<Panel id="item_panel_take" class="treasure_panel_take">
-					<Label id="treasure_panel_take_label" class="treasure_panel_label" text="#show" />
+				<Panel class="consumable_panel_container">
+					<Panel id="item_panel_buy" class="treasure_panel_buy">
+						<Label id="treasure_panel_buy_label" class="treasure_panel_label" text="#buy" />
+					</Panel>
+					<Panel id="item_panel_take" class="treasure_panel_take">
+						<Label id="treasure_panel_take_label" class="treasure_panel_label" text="#show" />
+					</Panel>
 				</Panel>
 			</Panel>
 		</snippet>
 	</snippets>
 	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
-		<Image class="openShop" id="openShop" onmouseactivate="openShopButton()" onmouseover="TipsOver(&apos;shop&apos;,&apos;openShop&apos;)" onmouseout="TipsOut()" />
 		<Panel class="DSPanel" id="DSPanel">
 			<Panel id="DSClose" class="DSClose" onmouseactivate="openShopButton()" onmouseover="TipsOver(&apos;close&apos;,&apos;DSClose&apos;)" onmouseout="TipsOut()" />
 			<Panel id="dis" onactivate="move_link(&apos;https://discord.gg/M6rJS9qF29&apos;)" onmouseover="TipsOver(&apos;dis&apos;,&apos;dis&apos;)" onmouseout="TipsOut()">

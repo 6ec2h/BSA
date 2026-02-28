@@ -7,7 +7,6 @@
 		<include src="s2r://panorama/layout/custom_game/discount/discount.js" />
 	</scripts>
 	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
-		<Panel id="openDiscount" onmouseactivate="openButton()" onmouseover="TipsOver(&apos;open_discount&apos;,&apos;openDiscount&apos;)" onmouseout="TipsOut()" />
 		<Panel id="DiscountPanel" hittest="false">
 			<Label id="DiscountTop" text="#Discount" />
 			<Panel id="CloseDiscount" class="CloseDiscount" onmouseactivate="closeButton()" />

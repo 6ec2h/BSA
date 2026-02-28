@@ -89,19 +89,19 @@ function modifier_bloodseeker_bloodrage_lua:GetModifierAttackSpeedBonus_Constant
 	return self.attack_speed
 end
 
+function modifier_bloodseeker_bloodrage_lua:GetEffectName()
+	return "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodrage.vpcf"
+end
 
--- function modifier_bloodseeker_bloodrage_lua:OnDeath( params )
-	-- if IsServer() then
-		-- if params.attacker~=self:GetParent() and params.unit~=self:GetParent() then return end
-		
-		-- if params.attacker:GetUnitName()=="npc_dota_roshan" or params.unit:GetUnitName()=="npc_dota_roshan" then return end
+function modifier_bloodseeker_bloodrage_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 
-		-- if params.attacker==self:GetParent() and params.unit~=self:GetParent() then
-			-- self:Heal( params.attacker, params.unit:GetMaxHealth() )
-		-- end
-
-		-- if params.unit==self:GetParent() and params.attacker~=self:GetParent() then
-			-- self:Heal( params.attacker, params.unit:GetMaxHealth() )
+function modifier_bloodseeker_bloodrage_lua:PlayEffects()
+	local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+endl( params.attacker, params.unit:GetMaxHealth() )
 		-- end
 	-- end
 -- end

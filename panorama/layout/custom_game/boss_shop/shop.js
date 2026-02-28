@@ -1,5 +1,5 @@
 var PlayerCount = 0,
-	shop = CustomNetTables.GetAllTableValues( "shop" ),
+	// shop = CustomNetTables.GetAllTableValues( "shop" ),
 	playerID = Players.GetLocalPlayer(),
 	shopinfo = {},
 	isShopOpen = false,
@@ -171,7 +171,7 @@ function initShop(tab){
 		}
 	}
 	for (const [key, value] of Object.entries(shopinfo)) {
-		if(typeof(value) == 'object' && value != shopinfo.link){
+		if(typeof(value) == 'object' && !["link", "rewards_list"].includes(key)){
 			if($("#DSTabsPanel")){
 				var TabPanel = $.CreatePanel("Panel", $("#DSTabsPanel"), "TabPanel_" + key);
 				TabPanel.AddClass("TabPanel");
@@ -203,7 +203,6 @@ function initShop(tab){
 						}
 					}			
 					if(hPanel){
-						var currency = tovarValue['price']['rp'];
 						var pan = $.CreatePanel("Panel", hPanel, "ShopItem" + key + '_' + tovarKey)
 						if(tovarValue.type == 'consumable'){
 							pan.BLoadLayoutSnippet("consumable_snippet")
@@ -230,7 +229,11 @@ function initShop(tab){
 							
 							pan.FindChildTraverse('pet_panel_image').itemname = tovarValue.itemname
 							pan.FindChildTraverse('pet_panel_name').text = "<font color='"+rarity_color[tovarValue.level]+"'>"+$.Localize("#DOTA_Tooltip_ability_"+tovarValue.itemname)+"</font>"   
-							pan.FindChildTraverse('pet_panel_label').text = $.Localize("#pet_unlock")
+							if (tovarValue.itemname == 'item_mimic_pet' || tovarValue.itemname =='item_jackpot_pet'){
+								pan.FindChildTraverse('pet_panel_label').text = $.Localize("#pet_unlock_casino")
+							}else{
+								pan.FindChildTraverse('pet_panel_label').text = $.Localize("#pet_unlock")
+							}
 							pan.FindChildTraverse('pet_panel_return').SetPanelEvent("onmouseactivate", returnItem(key, tovarKey, pan))
 							pan.FindChildTraverse('pet_panel_take').SetPanelEvent("onmouseactivate", give(key, tovarKey))
 							
@@ -585,6 +588,9 @@ function updatemmr(t){
 	GameEvents.Subscribe( "updatecoins", updatecoins)
 	GameEvents.Subscribe( "return_item_shop", return_item_js)
 	GameUI.CustomUIConfig.OpenShop = openShopButton;
+	GameUI.LoopTime.Schedule(0.0, ()=>{
+		DotaHUD.CreateTopBarButton("file://{images}/custom_game/DS/shopopen.png", "shop", openShopButton, "shop");
+	});
 })();
 
 

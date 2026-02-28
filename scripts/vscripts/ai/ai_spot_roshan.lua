@@ -7,10 +7,8 @@ function Spawn( entityKeyValues )
 		return
 	end
 	
-	ignore_all = false
-	
-	RoshanSlam = thisEntity:FindAbilityByName( "roshan_slam" )
-	thisEntity:SetContextThink( "RoshanThink", RoshanThink, 0.5 )
+	RoshanSlam = thisEntity:FindAbilityByName( "roshan_slam_lua" )
+	thisEntity:SetContextThink( "RoshanThink", RoshanThink, 0.3 )
 end
 
 --------------------------------------------------------------------------------
@@ -25,9 +23,9 @@ function RoshanThink()
 	end
 
 	if not thisEntity.bInitialized then
-		thisEntity.vInitialSpawnPos = Vector(-8837, 2468, 512)
-		thisEntity.bInitialized = true
-	end
+        thisEntity.vInitialSpawnPos = thisEntity:GetAbsOrigin()
+        thisEntity.bInitialized = true
+    end
 	
 	local distanceToSpawn = (thisEntity:GetOrigin() - thisEntity.vInitialSpawnPos):Length2D()
     if distanceToSpawn >= 700 then
@@ -44,7 +42,7 @@ function RoshanThink()
 	return 0.3
 end
 
-------------------------------------------
+--------------------------------------------------------------------------------
 
 function RoshanSlamCast(unit)
 	ExecuteOrderFromTable({

@@ -6,7 +6,7 @@ function push:GetIntrinsicModifierName()
 	return "modifier_push"
 end
 
----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
 modifier_push = class({})
 
@@ -18,53 +18,59 @@ function modifier_push:IsPurgable()
 	return false
 end
 
-function modifier_push:OnCreated( kv )
-end
-
 function modifier_push:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_MIN_HEALTH,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
-	}
-	return funcs
+    return {
+        MODIFIER_PROPERTY_MIN_HEALTH,
+        MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
 end
 
 function modifier_push:CheckState()
-	local state = {
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
-	}
-	return state
+    return {
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+        [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+        [MODIFIER_STATE_UNSELECTABLE] = true,
+        [MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
+    }
 end
 
 function modifier_push:GetMinHealth()
 	return 1
 end
 
-function modifier_push:OnTakeDamage( params )
-	if IsServer() then
-	if params.attacker:GetUnitName() == 'trap_zone_2' and self:GetParent() == params.unit and not params.attacker:IsOther() and params.attacker:GetName() ~= "npc_dota_unit_undying_zombie" and not params.unit:HasModifier("modifier_knockback") then	 
-		params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_knockback", {
-				center_x			= params.attacker:GetAbsOrigin()[1] + 1,
-				center_y			= params.attacker:GetAbsOrigin()[2] + 1,
-				center_z			= params.attacker:GetAbsOrigin()[3],
-				duration			= 0.4,
-				knockback_duration	= 0.4,
-				knockback_distance	= 50,
-				knockback_height	= 0,
-				should_stun			= 0
-			})
-		end	
-	end	
+function modifier_push:ApplyPush(attacker)
+    if not IsServer() then return end
+
+    local parent = self:GetParent()
+
+	if parent:GetName() == "only_trap_push" and attacker:GetUnitName() ~= 'npc_dota_simple_trap' then return end
+
+    if attacker and 
+       attacker ~= parent and
+       attacker:GetUnitName() ~= "npc_dota_unit_undying_zombie" and 
+       not parent:HasModifier("modifier_knockback") then
+
+        local origin = attacker:GetAbsOrigin()
+
+        parent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_knockback", {
+            center_x            = origin.x + 0.1,
+            center_y            = origin.y + 0.1,
+            center_z            = origin.z,
+            duration            = 0.4,
+            knockback_duration  = 0.4,
+            knockback_distance  = 50,
+            knockback_height    = 0,
+            should_stun         = 0
+        })
+    end
 end
 
-function modifier_push:OnAttackLanded( params )
-	if IsServer() then
-	if params.attacker and params.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and self:GetParent() == params.target and not params.attacker:IsOther() and params.attacker:GetName() ~= "npc_dota_unit_undying_zombie" and not params.target:HasModifier("modifier_knockback") then	 
+function modifier_push:OnTakeDamage(params)
+    if params.unit == self:GetParent() then
+        self:ApplyPush(params.attacker)
+    end
+endme() ~= "npc_dota_unit_undying_zombie" and not params.target:HasModifier("modifier_knockback") then	 
 		params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_knockback", {
 				center_x			= params.attacker:GetAbsOrigin()[1] + 1,
 				center_y			= params.attacker:GetAbsOrigin()[2] + 1,

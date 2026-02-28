@@ -1,10 +1,6 @@
 item_kaya_lua1 = item_kaya_lua1 or class({})
 item_kaya_lua2 = item_kaya_lua1 or class({})
 item_kaya_lua3 = item_kaya_lua1 or class({})
-item_kaya_lua4 = item_kaya_lua1 or class({})
-item_kaya_lua5 = item_kaya_lua1 or class({})
-item_kaya_lua6 = item_kaya_lua1 or class({})
-item_kaya_lua7 = item_kaya_lua1 or class({})
 
 LinkLuaModifier( "modifier_item_kaya_lua", "items/custom_items/item_kaya_lua", LUA_MODIFIER_MOTION_NONE )
 
@@ -65,6 +61,12 @@ function modifier_item_kaya_lua:GetModifierBonusStats_Intellect( params )
 end
 
 function modifier_item_kaya_lua:GetModifierSpellLifestealRegenAmplify_Percentage( params )
+	return self.spell_lifesteal_amp
+end
+
+function modifier_item_kaya_lua:GetModifierMPRegenAmplify_Percentage( params )
+	return self.mana_regen_multiplier
+endy_Percentage( params )
 	return self.spell_lifesteal_amp
 end
 

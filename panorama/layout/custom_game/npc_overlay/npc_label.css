@@ -3,7 +3,6 @@
 .npc_label_container
 {
 	width: 200px;
-	background-image: url("s2r://panorama/images/npc_overlay_inactive.png");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
@@ -26,7 +25,6 @@
 
 .npc_label_container:hover
 {
-	background-image: url("s2r://panorama/images/npc_overlay_active.png");
 	transform: scale3d(1.05, 1.05, 1);
 }
 
@@ -36,20 +34,10 @@
 	text-shadow: 2px 2px 0px #0000ff, -2px -2px 0px #0000ff, 2px -2px 0px #0000ff, -2px 2px 0px #0000ff, 0px 0px 10px #ffd700;
 }
 
-.npc_label_container.inactive
-{
-	background-image: url("s2r://panorama/images/npc_overlay_inactive.png");
-}
-
 .npc_label.inactive
 {
 	color: #ffd700;
 	text-shadow: 1px 1px 0px #333333, -1px -1px 0px #333333, 1px -1px 0px #333333, -1px 1px 0px #333333;
-}
-
-.npc_label_container.active
-{
-	background-image: url("s2r://panorama/images/npc_overlay_active.png");
 }
 
 .npc_label.active

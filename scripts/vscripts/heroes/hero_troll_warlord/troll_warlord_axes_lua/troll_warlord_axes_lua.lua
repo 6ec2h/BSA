@@ -130,7 +130,7 @@ function troll_warlord_whirling_axes_ranged_lua:OnProjectileHit_ExtraData(target
 		target:AddNewModifier(caster, self, "modifier_imba_whirling_axes_ranged", {duration = ExtraData.duration * (1 - target:GetStatusResistance())})
 		local abil = self:GetCaster():FindAbilityByName("special_bonus_troll_warlord_int3")
 		if abil ~= nil and abil:GetLevel() > 0 then 
-			enemy:AddNewModifier(caster, self, "modifier_axes_debuff", {duration = blind_duration * (1 - enemy:GetStatusResistance()), blind_stacks = blind_stacks})
+			target:AddNewModifier(caster, self, "modifier_axes_debuff", {duration = blind_duration * (1 - target:GetStatusResistance()), blind_stacks = blind_stacks})
 		end
 		target:EmitSound("Hero_TrollWarlord.WhirlingAxes.Target")
 	else

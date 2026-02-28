@@ -6,38 +6,21 @@
 	width:100%;
 }
 
-#openmail
+#CloseMail
 {
-	width:35px;
-	height:35px;
-	margin-left:375px;
-	margin-top:10px;
-	tooltip-position: bottom;
-	background-image: url("s2r://panorama/images/mail/mail_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#openmail:hover
-{
-	brightness: 1.8;
-}
-
-#openmail:active
-{
-	sound: "ui_chat_slide_in";
-}
-
-.CloseMail
-{
-	vertical-align: top;
 	horizontal-align:right;
-	margin: 5px;
-	background-image: url("s2r://panorama/images/custom_game/closeicon.png");
+	vertical-align:top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
 	background-repeat: no-repeat;
-	background-size: 100%;
-	width:20px;
-	height:20px;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	margin: 5px;
 }
 
 #CloseMail:active
@@ -45,9 +28,11 @@
 	sound: "ui_custom_lobby_dialog_slide";
 }
 
-.CloseMail:hover
+#CloseMail:hover
 {
-	sound: "ui_select_arrow";
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
 }
 
 #MailPanel
@@ -56,10 +41,12 @@
 	height: 560px;
 	vertical-align: center;
 	horizontal-align:center;
-	background-image: url("s2r://panorama/images/shop/shop_backgraund.png");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	background-repeat: no-repeat;
 	background-size: 100%;
+	border: 2px solid #3a4a5a;
 	padding:5px;
+	border-radius: 8px;
 }
 
 #MailContainer
@@ -94,47 +81,48 @@
 	height: 95%;
 	width: 300px;
 	margin-left: -300px;
-	background-image: url("s2r://panorama/images/mail/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
 	flow-children: down;
 	padding: 5px;
+	border-radius: 8px;
+	border: 2px solid #3a4a5a;
 }
 
 .Mail
 {
 	horizontal-align: center;
-	margin:5px;
+	margin:5px 0px 5px;
 	height: 70px;
 	width:100%;
-	background-image: url("s2r://panorama/images/shop/shop_backgraund.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#1a2a3a), to(#243444));
+	border: 2px solid #3a4a5a;
 	box-shadow: 2px 2px 4px 0px #00000080;
 	opacity: 1.2;
-	brightness: 1.5;
 	flow-children: right;
+	border-radius: 8px;
 }
 
 .read_status
 {
-	box-shadow: 0px 0px 2px 0px #979c1c;
+	box-shadow: 0px 0px 4px 0px #64b5f6;
+	border: 1px solid #64b5f6aa;
 }
 
 .Mail:hover
 {
 	brightness: 2;
+	border-color: rgba(100, 181, 246, 0.6);
 	sound: "ui_select_arrow";
 }
 
 #Mail_Label
 {
-	color: white;
+	color: #e5e0c5;
 	vertical-align: center;
 	font-size: 24px;
 	font-weight: bold;
 	letter-spacing: 2px;
-	opacity: 0.2;
+	opacity: 1;
 	margin-left: 15px;
 }
 
@@ -143,8 +131,8 @@
 	horizontal-align:right;
 	vertical-align: center;
 	flow-children: down;
-	color: white;
-	opacity: 0.2;
+	color: #e5e0c5;
+	opacity: 0.8;
 }
 
 .MailDescLabel
@@ -157,6 +145,7 @@
 {
 	font-weight: bold;
 	font-size: 16px;
+	color: #ffd700;
 }
 
 #RightSide
@@ -166,10 +155,10 @@
 	height: 95%;
 	width: 605px;
 	margin-left: 10px;
-	background-image: url("s2r://panorama/images/mail/bg_reward2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 2px solid #3a4a5a;
 	padding: 15px;
+	border-radius: 8px;
 }
 
 #Mail_Desc
@@ -185,23 +174,24 @@
 	horizontal-align: center;
 	vertical-align: top;
 	margin-top: 10px;
-	color: white;
+	color: #e5e0c5;
 	font-size: 36px;
 	font-weight: bold;
 	letter-spacing: 2px;
-	opacity: 0.2;
+	opacity: 1;
 	text-align: center;
+	text-shadow: 0px 0px 8px #000;
 }
 
 #MailText
 {
 	horizontal-align: center;
 	margin-top: 70px;
-	color: white;
+	color: #e5e0c5;
 	font-size: 16px;
 	font-weight: bold;
 	letter-spacing: 2px;
-	opacity: 0.2;
+	opacity: 0.9;
 	text-align: center;
 }
 
@@ -217,20 +207,17 @@
 .dota_item
 {
 	margin-left:5px;
-	width: 128px;
+	width: 120px;
 	height: 88px;
 	vertical-align:center;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
 }
 
-.dota_item_back
+.dota_item:hover
 {
-	background-image: url("s2r://panorama/images/spell_menu/back_spell_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-left:-128px;
-	width: 128px;
-	height: 88px;
-	vertical-align:center;
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
 }
 
 #RightSideButton
@@ -239,12 +226,11 @@
 	vertical-align: bottom;
 	height: 60px;
 	width: 150px;
-	background-image: url("s2r://panorama/images/shop/shop_backgraund.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 2px solid #1e782a11;
 	box-shadow: 2px 2px 4px 0px #00000080;
 	margin: 8px;
-	opacity: 1.5;
+	border-radius: 8px;
 }
 
 #MailButton
@@ -255,23 +241,23 @@
 	font-size: 20px;
 	font-weight: bold;
 	letter-spacing: 2px;
-	opacity: 0.2;
+	opacity: 1;
 }
 
 #RightSideButton:hover
 {
-	brightness: 2;
+	brightness: 1.5;
 	sound: "ui_select_arrow";
 }
 
 #MailTop
 {
 	horizontal-align: center;
-	color: white;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #e5e0c5 ), to( #b17829 ) );
 	font-size: 30px;
 	font-weight: bold;
 	letter-spacing: 2px;
-	opacity: 0.2;
+	opacity: 1;
 	margin-top: 8px;
 }
 

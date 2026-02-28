@@ -1,9 +1,10 @@
 var item_reward_panel = $("#item_reward_panel")
-item_reward_panel.visible = false 
+item_reward_panel.visible = false
+item_reward_panel.RemoveAndDeleteChildren()
 
 $("#InventoryPanel").SetHasClass("CloseInventory", true)
 
-var percent = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast'];
+var percent = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast', 'magic_crit'];
 var int_num = ['head', 'legs', 'weapon'];
 
 function GetDotaHud()
@@ -134,7 +135,7 @@ function UpdateInventoryMain(t)
 	if (current_selected_player != t.data.send_id){
 		return
 	}
-	$.Msg(t.data.dust)
+	// $.Msg(t.data.dust)
 	$("#DustPaneLabel").text = t.data.dust
 	
     let player_id = Entities.GetPlayerOwnerID(current_selected_player)
@@ -188,13 +189,7 @@ function CheckFullSet() {
     return filledItems === 6;
 }
 
-const can_use_sets = {
-	1: {min: 0},
-	2: {min: 4},
-	3: {min: 8},
-	4: {min: 12},
-	5: {min: 16},
-};
+var can_use_sets = CustomNetTables.GetTableValue( "can_use_sets", 'can_use_sets')
 	
 function update_description(){
 	var data = TABLE_HERO.hero_enquip
@@ -214,7 +209,7 @@ function update_description(){
 			for (const attrKey in attributes) {
 				const value = decription_attributes[attrKey]
 				
-				if (GAME_DIFF < can_use_sets[itemData.set_number].min + 1) {
+				if (GAME_DIFF < can_use_sets[itemData.set_number.toString()].min) {
                     continue;
                 }
 				
@@ -236,16 +231,18 @@ function update_description(){
 		}
 	}
 	
-	var simple_color = ['head', 'legs', 'armor', 'boots', 'weapon', 'shield'];
+	const simple_color = ['head', 'legs', 'armor', 'boots', 'weapon', 'shield'];
 	
+	let lastHr
+
 	for (const attrKey in attributeSum) {
 		let label = $.CreatePanel("Label", description_panel, "")
 		label.AddClass('font_desr')
 		
 		if (simple_color.includes(attrKey)){
-			color = "gold"
+			color = "#ffd700bf"
 		}else{
-			color = '#00f704'
+			color = "#00f704bf"
 		}
 		
 		if (percent.includes(attrKey)){
@@ -266,8 +263,11 @@ function update_description(){
 		
 		label.text = $.Localize("#"+attrKey+"_description") + " " + (attributeSum[attrKey].toFixed(num) * mult) + perc
 		label.style.color = color
-		let hr = $.CreatePanel("Panel", description_panel, "hr") 
+		lastHr = $.CreatePanel("Panel", description_panel, "hr") 
 	}
+
+	if (lastHr)
+		lastHr.DeleteAsync(0)
 }
 
 function UpdateInventorySlots() // Апдейт количество слотов, если вдруг у игроков они разные
@@ -625,7 +625,7 @@ function EquipCreateSlots() // Создание слотов для экипир
 
 function CreateSlotEquip(i, main, type_name) // Создание слота для экипировки
 {
-    $.Msg(EQUIP_ITEMS_TYPES_COLUMN_1[i])
+    // $.Msg(EQUIP_ITEMS_TYPES_COLUMN_1[i])
     let equip_slot_main = $.CreatePanel("Panel", main, type_name)
     equip_slot_main.AddClass("equip_slot_main")
 
@@ -694,6 +694,7 @@ function showTooltip(panel, data) {
 }
 
 function onAbilityMouseOver(panel) {
+    // $.Msg(panel)
     if (panel.type_slot) {
         let data = TABLE_HERO.hero_enquip[panel.type_slot];
         showTooltip(panel, data);
@@ -713,19 +714,6 @@ function CloseInventory() // Закрыть инвентарь
 {
     DotaHUD.WindowClose("inventory_hud");
 }
-
-// function AddButtonUpgradeInventory()
-// {
-    // let upgrade_inventory = $.CreatePanel("Panel", $("#InventorySlots"), "upgrade_inventory")
-    // upgrade_inventory.AddClass("upgrade_inventory")
-    // upgrade_inventory.SetPanelEvent('onactivate', function()
-    // {
-        // $.Schedule( 0.5, function()
-        // {
-            // UpdateInventoryMain()
-        // })
-    // })
-// }
 
 function send_update_hero(swapped_items = null){
 	// $.Msg(TABLE_HERO)
@@ -802,13 +790,22 @@ function show_item_reward(data){
 		panel.FindChildTraverse("TooltipName").text = $.Localize("#"+data.set_type+"_"+data.item_type) + " " + data.level
 		panel.FindChildTraverse("TooltipName").style.color = 'white'
 		panel.FindChildTraverse("MainInfo").style.backgroundColor = "gradient(linear, 50% 0%, 50% 100%, from(" + color + "), to(transparent))";
-		panel.FindChildTraverse("BaseAttribute").text = $.Localize("#"+data.item_type+"_description") + (decription_attributes[[data.item_type]] * data.level * data.set_number) + perc
-		panel.FindChildTraverse("Descr").visible = true
-		panel.FindChildTraverse("Descr").text = $.Localize("#min_level_use") + (can_use_sets[data.set_number].min + 1)
+		panel.FindChildTraverse("BaseAttribute").text = $.Localize("#"+data.item_type+"_description") + " " + (decription_attributes[[data.item_type]] * data.level * data.set_number) + perc
+		
+		const minLevelToUse = can_use_sets[data.set_number.toString()].min
+		if (minLevelToUse <= 0) {
+			panel.FindChildTraverse("Descr").visible = false
+			panel.FindChildTraverse("DescrSourceValueLine").visible = false
+		} else {
+			panel.FindChildTraverse("Descr").visible = true
+			panel.FindChildTraverse("Descr").text = $.Localize("#min_level_use") + " " + minLevelToUse
+		}
 	}
 	
-	bonus_attr = panel.FindChildTraverse("BonusAttribute")
+	const bonus_attr = panel.FindChildTraverse("BonusAttribute")
 	bonus_attr.RemoveAndDeleteChildren()
+
+	let lastHr
 	
 	for (const attrKey in data.bonus_attribute) {
 		let label = $.CreatePanel("Label", bonus_attr, "")
@@ -826,9 +823,15 @@ function show_item_reward(data){
 		}
 
 		label.text = $.Localize("#"+attrKey+"_description") + " " + (decription_attributes[attrKey] * data.set_number +  boost_attributes[attrKey][data.set_number] * (data.level - 1)).toFixed(num) + perc 
-		let hr = $.CreatePanel("Panel", bonus_attr, "hr") 
-
+		lastHr = $.CreatePanel("Panel", bonus_attr, "hr") 
 	}
+
+	if (lastHr) {
+		lastHr.DeleteAsync(0)
+	} else {
+		panel.FindChildTraverse("BonusSourceValueLine").visible = false
+	}
+
 	panel.DeleteAsync(5)
 	// $.Schedule(2, function(){
 		// item_reward_panel.visible = false

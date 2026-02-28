@@ -1,4 +1,5 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf26:version{26288658-411e-4f14-b698-2e1e5d00dec6} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+// this format guid is not known to Source 2 Viewer, make a pull request to update KV3IDLookup file
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -10,8 +11,14 @@
 		{
 			_class = "C_OP_RenderProjected"
 			m_bProjectWater = false
-			m_hProjectedMaterial = resource:"materials/particle/projected_cracks_radial.vmat"
 			m_bFlipHorizontal = true
+			m_vecProjectedMaterials = 
+			[
+				
+				{
+					m_hMaterial = resource:"materials/particle/projected_cracks_radial.vmat"
+				},
+			]
 		},
 	]
 	m_Operators = 
@@ -33,7 +40,7 @@
 		
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_nField = "13"
+			m_nField = 13
 			m_RateMin = 0.250000
 			m_RateMax = 0.300000
 		},
@@ -41,36 +48,58 @@
 		{
 			_class = "C_OP_ClampScalar"
 			m_flOutputMax = 1.500000
-			m_nFieldOutput = "13"
+			m_nFieldOutput = 13
 		},
 	]
 	m_Initializers = 
 	[
 		
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 400.000000
-			m_flRadiusMax = 400.000000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 400.000000
+			}
 		},
 		
 		{
-			_class = "C_INIT_RandomRotation"
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.000000
+				m_flRandomMax = 360.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
 		},
 		
 		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 2.000000
-			m_fLifetimeMax = 2.000000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.000000
+			}
+			m_nOutputField = 1
 		},
 		
 		{
-			_class = "C_INIT_CreateWithinSphere"
+			_class = "C_INIT_CreateWithinSphereTransform"
 		},
 		
 		{
-			_class = "C_INIT_RandomScalar"
-			m_flMax = 0.250000
-			m_nFieldOutput = "13"
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.000000
+				m_flRandomMax = 0.250000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 13
 		},
 		
 		{

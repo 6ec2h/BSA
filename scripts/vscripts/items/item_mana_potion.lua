@@ -1,12 +1,8 @@
 item_mana_potion = class({})
 
---------------------------------------------------------------------------------
-
 function item_mana_potion:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 end
-
---------------------------------------------------------------------------------
 
 function item_mana_potion:OnSpellStart()
 	if IsServer() then
@@ -27,6 +23,13 @@ function item_mana_potion:OnSpellStart()
 				Hero:GiveMana( flManaAmount / nHeroCount )
 				
 				local nFXIndex = ParticleManager:CreateParticle( "particles/items3_fx/mango_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, Hero )
+				ParticleManager:ReleaseParticleIndex( nFXIndex )
+			end
+		end
+
+		self:SpendCharge(0)
+	end
+end/items3_fx/mango_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, Hero )
 				ParticleManager:ReleaseParticleIndex( nFXIndex )
 			end
 		end

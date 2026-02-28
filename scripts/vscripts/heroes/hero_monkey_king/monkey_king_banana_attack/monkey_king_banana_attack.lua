@@ -65,7 +65,7 @@ function modifier_monkey_king_banana_attack:OnAttackLanded(data)
                     attacker = data.attacker,
                     damage = self:GetParent():GetAverageTrueAttackDamage(nil),
                     damage_type = DAMAGE_TYPE_PHYSICAL,
-                    damage_flags = DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+                    damage_flags = DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
                     ability = self:GetAbility()
                 })
             end

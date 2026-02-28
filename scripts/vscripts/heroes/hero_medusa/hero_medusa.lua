@@ -417,10 +417,6 @@ end
 
 modifier_medusa_mana_shield_lua = class({})
 
-function modifier_medusa_mana_shield_lua:GetEffectName()
-	return "particles/units/heroes/hero_medusa/medusa_mana_shield.vpcf"
-end
-
 function modifier_medusa_mana_shield_lua:IsHidden() return true end
 function modifier_medusa_mana_shield_lua:IsPurgable() return false end
 function modifier_medusa_mana_shield_lua:RemoveOnDeath() return false end
@@ -440,20 +436,19 @@ function modifier_medusa_mana_shield_lua:GetModifierIncomingDamage_Percentage(pa
 
 	absorb = -self.absorption
 	
-	local damage_absorbed = params.damage * self.absorption / 100
-	local manacost = damage_absorbed * self.damage_per_mana
-	local mana = self:GetParent():GetMana()
+	local damage_to_absorb = params.damage * self.absorption / 100
+    local manacost = damage_to_absorb * self.damage_per_mana
+    local mana = self:GetParent():GetMana()
 
-	if mana < manacost then
-		damage_absorbed = mana / self.damage_per_mana
-		manacost = mana
-	end
+    if mana < manacost then
+        damage_to_absorb = mana / self.damage_per_mana 
+        manacost = mana
+    end
 
-	self:GetParent():Script_ReduceMana(manacost, self:GetAbility())
-	self:PlayEffects(damage_absorbed)
+    self:GetParent():SpendMana(manacost, self:GetAbility())
 
-	local absorb = -damage_absorbed / params.damage * 100
-	return absorb
+    local absorb_pct = (damage_to_absorb / params.damage) * 100
+	return -absorb_pct	
 end
 
 function modifier_medusa_mana_shield_lua:GetEffectName()
@@ -596,6 +591,14 @@ function modifier_medusa_split_shot_lua:GetModifierDamageOutgoing_Percentage(key
 			if not doubleDamageTalent or doubleDamageTalent:GetLevel() < 1 then return end
 
 			local targets = self:GetSplitShotTargets()
+
+			if #targets > 1 then return end
+
+			self:SetStackCount(80)
+		end
+	end
+	return self:GetStackCount()
+endSplitShotTargets()
 
 			if #targets > 1 then return end
 

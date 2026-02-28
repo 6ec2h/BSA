@@ -148,7 +148,7 @@ function show_up(inventory_key_slot) {
     draw(inventory_key_slot);
 }
 
-var percentAttributes = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast'];
+var percentAttributes = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast', 'magic_crit'];
 var intNumAttributes = ['head', 'legs', 'weapon'];
 	
 function draw(inventory_key_slot) {

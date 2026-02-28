@@ -1,137 +1,122 @@
 "DOTAAbilities"
 {
-"necro_firestorm"
+	"boss_necro_firestorm"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/bosses/final/necro_firestorm"
+		"ScriptFile"					"abilities/bosses/final/final"
 		"AbilityTextureName"			"necro_firestorm"
-
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
 		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.6"
-
 		"AbilityCooldown"				"14"
 		"AbilityManaCost"				"500"
 
 		"AbilityValues"
 		{
 			"radius"						"1400"
-			"wave_duration"					"7.0"
+			"wave_duration"					"7"
 			"wave_count"					"6"
-			"wave_damage"					"500"
-			"wave_interval"					"1.0"
-			"burn_damage"					"2"
-			"burn_interval"					"1.0"
-			"burn_duration"					"2.0"
-			"first_wave_delay"				"0.0"
+			"wave_damage"					"1500"
+			"diff_boost_damage"		    	"150"
+			"wave_interval"					"1"
+			"burn_damage"					"250"
+			"diff_boost_additional"		    "50"
+			"burn_interval"					"1"
+			"burn_duration"					"2"
 		}
 	}
 	
-"poison_raze" 
-		{	
-		   	"BaseClass"           		"ability_lua"
-			"ScriptFile"				"abilities/bosses/final/poison_raze"
-		    "AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-			"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"	
-		    "AbilityTextureName"     	"poison_raze"
-			"AbilityCooldown"			"16"
-			"AbilityValues"
-			{
-				"damage" "2500"
-			}
-		}	
-
+	"boss_necro_poison_raze" 
+	{	
+		"BaseClass"           		"ability_lua"
+		"ScriptFile"				"abilities/bosses/final/final"
+		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"	
+		"AbilityTextureName"     	"poison_raze"
+		"AbilityCooldown"			"16"
+		"AbilityValues"
+		{
+			"damage" 				"2500"
+			"diff_boost_damage"		"250"
+		}
+	}	
 	
-"necro_spike"
+	"boss_necro_spike"
 	{
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/bosses/final/final"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"necro_spike"
-		
-		"AbilityCooldown"				"25"
-		
+		"AbilityCooldown"				"24"
 		"AbilityManaCost"				"500"
 
 		"AbilityValues"
 		{
-			"damage"						"2000"
+			"damage"						"3000"
+			"diff_boost_damage"				"300"
 			"interval"						"0.4"
 			"range"							"900"
-			"duration"						"6.0"
-			"delay"							"0.4"
+			"duration"						"4"
+			"delay"							"0.7"
 			"damage_radius"					"225"
-		}
-		
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"			"modifier_torrential_waters"
-				"Target"				"CASTER"
-			}
-		}
-
-		"Modifiers"
-		{
-			"modifier_torrential_waters"
-			{
-				"IsHidden"				"0"
-				"Duration"				"%duration"
-					
-				"ThinkInterval"				"%interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"abilities/bosses/final/necro_spike"
-						"Function"			"torrential_waters_interval"
-					}
-					"FireSound"
-					{
-						"EffectName"			"Hero_Leshrac.Split_Earth"
-						"Target"				"TARGET"
-					}
-				}
-			}
-			"modifier_dummy"
-			{
-				"ThinkInterval"		"0.01"
-				"OnIntervalThink"	
-				{
-					"Damage"
-					{
-						"Damage"		"2000"
-						"Type"			"DAMAGE_TYPE_PURE"
-						"Target"		"TARGET"
-					}
-				}
-				"States"
-				{
-					//"MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
 		}
 	}	
 	
-"necrolyte_heartstopper_aura_lua"
+	"boss_necro_blast"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"		            "abilities/bosses/final/necrolyte_heartstopper_aura_lua"
+		"ScriptFile"		            "abilities/bosses/final/final"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"            "necro_blast"
+		"AbilityValues"
+		{
+			"interval"		        	"5"
+			"radius"		        	"1000"
+			"damage"					"2000"
+			"diff_boost_damage"			"200"
+			"damage_radius"				"300"
+		}
+	}	
+	
+	"boss_necro_glimps"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"		            "abilities/bosses/final/final"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"            "necro_glimps"
+		"AbilityCooldown"           	"11"
+	}	
+	
+	"boss_necro_passive"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"		            "abilities/bosses/final/final"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            "necro_passive"
+		"AbilityValues"
+		{
+			"interval"		        "10"
+		}
+	}	
+
+	"boss_necro_spawn_lua" 
+	{	
+		"BaseClass"           		"ability_lua"
+		"ScriptFile"				"abilities/bosses/final/final"
+		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"        "spawn_lua"
+		"AbilityCooldown"			"20"
+	}	
+}"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"            "necro_blast"
 		"AbilityValues"

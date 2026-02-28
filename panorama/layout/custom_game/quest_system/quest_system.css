@@ -177,19 +177,44 @@
 	flow-children: down;
 }
 
+.QuestLineContainer
+{
+	margin-left: 10%;
+	margin-right: 10%;
+	horizontal-align: center;
+	flow-children: right;
+}
+
 .QuestMessage
 {
 	font-size: 48px;
-	font-family:titleFont;
-	font-weight:bold;
-	letter-spacing:1px;
-	text-shadow:0px 2px 16px 5.0 #000a;
-	color: gradient(linear, 0% 65%, 0% 100%, from(#FFFFFF), color-stop(0.2, #cfd7db), to(#e1e8eb));
-	horizontal-align: center;
-	animation-duration: 0.6s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
-	animation-name: show;
+	font-family: titleFont;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-shadow: 0px 2px 16px 5.0 #000a;
+	text-overflow: shrink;
+	white-space: nowrap;
+	vertical-align: center;
+}
+
+.NewStatus
+{
+	color: gradient( linear, 0% 10%, 0% 100%, from( #0b53b7 ), color-stop( 0.5, #156be3 ), to( #0f418d ) );
+}
+
+.SuccessStatus
+{
+	color: gradient( linear, 0% 10%, 0% 100%, from( #a2ffaf ), color-stop( 0.5, #14b814 ), to( #0a5a0a ) );
+}
+
+.FailStatus
+{
+	color: gradient( linear, 0% 10%, 0% 100%, from( #ff8a8a ), color-stop( 0.5, #FF0000 ), to( #800000 ) );
+}
+
+.DescriptionText
+{
+	color: gradient( linear, 0% 10%, 0% 100%, from( #E1CC9A ), color-stop( 0.5, #E7C57B ), to( #9D8145 ) );
 }
 
 @keyframes 'show'

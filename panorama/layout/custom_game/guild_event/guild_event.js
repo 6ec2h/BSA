@@ -2,7 +2,7 @@ $("#guild_event_container").visible = false
 
 function start_event(){
 	$.Msg("!")
-	GameEvents.SendCustomGameEventToServer("TryStartEvent", {})
+	GameEvents.SendCustomGameEventToServer("TryStartTeamEvent", {})
 	$("#guild_event_container").visible = false
 }
 

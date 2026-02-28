@@ -386,13 +386,6 @@ end
 
 tinker_rearm_lua.ItemException = {
 	["item_aeon_disk"] = true,
-	["item_agi"] = true,
-	["item_str"] = true,
-	["item_int"] = true,
-	["item_random_stat"] = true,
-	["item_str_50"] = true,
-	["item_agi_50"] = true,
-	["item_int_50"] = true,
 	["item_black_king_bar_lua1"] = true,
 	["item_black_king_bar_lua2"] = true,
 	["item_black_king_bar_lua3"] = true,
@@ -405,11 +398,13 @@ tinker_rearm_lua.ItemException = {
 	["item_aeon_of_tarrasque2"] = true,
 	["item_aeon_of_tarrasque3"] = true,
 	["hero_rubick_ability"] = true,
-	
 }
 
 function tinker_rearm_lua:PlayEffects()
 	local effect_cast = ParticleManager:CreateParticle( "particles/units/heroes/hero_tinker/tinker_rearm.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+	EmitSoundOn( "Hero_Tinker.RearmStart", self:GetCaster() )
+endnker_rearm.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 	EmitSoundOn( "Hero_Tinker.RearmStart", self:GetCaster() )
 end

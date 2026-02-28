@@ -97,6 +97,7 @@ function modifier_item_disperser_custom_lua_1:OnAttackLanded(params)
 		damageTable.attacker = self.parent
 		damageTable.victim = target
 		damageTable.damage_type = DAMAGE_TYPE_PHYSICAL
+		damageTable.damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN
 		damageTable.ability = self.ability
 		if not target:IsMagicImmune() then
 			if(target:GetMana() >= manaBurn) then
@@ -118,8 +119,4 @@ function modifier_item_disperser_custom_lua_1:OnAttackLanded(params)
 			ApplyDamage(damageTable)
 		end
 	end
-end)
-			end
-		end
-    end
 end

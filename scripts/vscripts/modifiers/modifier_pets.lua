@@ -5,18 +5,22 @@ function modifier_pets:IsHidden()
 end
 
 function modifier_pets:IsPurgable()
-    return false
+	return false
 end
 
 function modifier_pets:CheckState()
-	local state = {
-		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_FLYING] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-	}
-	return state
+    local parent = self:GetParent()
+    if not parent or parent:IsNull() then return {} end
+    local is_jackpot = parent:GetUnitName() == "jackpot_pet"
+
+    local state = {
+        [MODIFIER_STATE_MAGIC_IMMUNE] = true,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+        [MODIFIER_STATE_INVULNERABLE] = true,
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
+        [MODIFIER_STATE_FLYING] = not is_jackpot,
+        [MODIFIER_STATE_UNSELECTABLE] = true,
+        [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+    }
+    return state
 end

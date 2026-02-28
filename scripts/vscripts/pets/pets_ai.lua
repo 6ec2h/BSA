@@ -1,5 +1,3 @@
-pet_ability = {"pet_dagon", "pet_block_aura", "pet_magic_block_aura", "pet_orchid", "pet_health_bag", "pet_medallion_of_courage"}
-
 function Spawn( entityKeyValues )
 	if not IsServer() then
 		return
@@ -23,10 +21,22 @@ function PetThink()
 	if GameRules:IsGamePaused() == true then
 		return 0.5
 	end
+
+	if not thisEntity.bInitialized then
+		thisEntity.spells = {}
+		thisEntity.bInitialized = true
+		local abilityCount = thisEntity:GetAbilityCount()
+		for i = 0, abilityCount - 1 do
+			local ability = thisEntity:GetAbilityByIndex(i)
+			if ability and not ability:IsAttributeBonus() and not ability:IsHidden() and not ability:IsPassive() then
+				table.insert(thisEntity.spells, ability)
+			end
+		end
+    end
 	
 	thisEntity.owner = thisEntity:GetOwner()
 	
-	local creatures = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+	local creatures = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 1000, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
 	if #creatures > 0 then
 		for _, creature in pairs( creatures ) do
 			if creature ~= nil and creature:IsAlive() then
@@ -34,57 +44,78 @@ function PetThink()
 				if flDist < 600 then
 					check_can_use(thisEntity, creature)
 				end
-				if creature == thisEntity.owner then
-					if flDist >= 400 and flDist < 1000 then
-						return Approach(creature)
-					end
-					if flDist > 1200 then
-						return blink(creature)
-					end
-				end
 			end
 		end
 	end
+
+	local to_far = (thisEntity.owner:GetOrigin() - thisEntity:GetOrigin() ):Length2D()
+
+	if to_far >= 400 and to_far < 1000 then
+		return Approach(thisEntity.owner)
+	end
+
+	if to_far > 1200 then
+		return blink(thisEntity.owner)
+	end
+
 	return 1
 end
 
 function check_can_use(thisEntity, target)
-	for _, T in ipairs(pet_ability) do
-		local Spell = thisEntity:FindAbilityByName(T)
-		if Spell then
-			local Behavior = Spell:GetBehaviorInt()
-			if bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET ) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
-				Spell.Behavior = "target"
-				if bit.band( Spell:GetAbilityTargetTeam(), DOTA_UNIT_TARGET_TEAM_ENEMY ) == DOTA_UNIT_TARGET_TEAM_ENEMY then
-					Spell.Behavior = "target"
-					Cast( Spell, target )
-				elseif bit.band( Spell:GetAbilityTargetTeam(), DOTA_UNIT_TARGET_TEAM_FRIENDLY ) == DOTA_UNIT_TARGET_TEAM_FRIENDLY then	
-					if Spell:GetName() == "pet_health_bag" and target:GetHealthPercent() < 50 then
-						Cast( Spell, target )
-					end
-				end	
-			elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET ) == DOTA_ABILITY_BEHAVIOR_NO_TARGET then
-				if thisEntity:GetTeamNumber() == target:GetTeamNumber() and target:GetHealthPercent() < 80 then
-					Spell.Behavior = "no_target"
-					if Spell:GetSpecialValueFor("radius") == 0 then
-						Cast( Spell, target )
-					elseif ( target:GetOrigin()- thisEntity:GetOrigin() ):Length2D() < Spell:GetSpecialValueFor("radius") then
-						Cast( Spell, target )
-					end
-				end
-			elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_POINT ) == DOTA_ABILITY_BEHAVIOR_POINT then
-				Spell.Behavior = "point"
-				Cast( Spell, target )
-			elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE ) == DOTA_ABILITY_BEHAVIOR_POINT then
-				Spell.Behavior = "toggle"
-				if not Spell:GetToggleState() then 
-					Spell:ToggleAbility()
-				end
-			elseif bit.band( Behavior, DOTA_ABILITY_BEHAVIOR_PASSIVE ) == DOTA_ABILITY_BEHAVIOR_PASSIVE then
-				Spell.Behavior = "passive"
-			end
-		end
-	end	
+    if not thisEntity or thisEntity:IsNull() or not target or target:IsNull() then return end
+
+    for _, Spell in ipairs(thisEntity.spells) do
+        if Spell and not Spell:IsNull() and Spell:IsFullyCastable() and not Spell:IsPassive() then
+            
+            local Behavior = Spell:GetBehaviorInt()
+            local TargetTeam = Spell:GetAbilityTargetTeam()
+            local nTargetTeamNumber = target:GetTeamNumber()
+            local nMyTeamNumber = thisEntity:GetTeamNumber()
+
+            if bit.band(Behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
+                if nMyTeamNumber ~= nTargetTeamNumber and bit.band(TargetTeam, DOTA_UNIT_TARGET_TEAM_ENEMY) == DOTA_UNIT_TARGET_TEAM_ENEMY then
+                    Spell.Behavior = "target"
+                    Cast(Spell, target)
+                
+                elseif nMyTeamNumber == nTargetTeamNumber and bit.band(TargetTeam, DOTA_UNIT_TARGET_TEAM_FRIENDLY) == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
+                    Spell.Behavior = "target"
+                    
+                    if Spell:GetName() == "pet_health_bag" then
+                        if target:GetHealthPercent() < 50 then
+                            Cast(Spell, target)
+                        end
+                    else
+                        Cast(Spell, target)
+                    end
+                end
+
+            elseif bit.band(Behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) == DOTA_ABILITY_BEHAVIOR_NO_TARGET then
+                if nMyTeamNumber == nTargetTeamNumber and target:GetHealthPercent() < 80 then
+                    Spell.Behavior = "no_target"
+                    local radius = Spell:GetSpecialValueFor("radius")
+                    
+                    if radius == 0 then
+                        Cast(Spell, target)
+                    elseif (target:GetOrigin() - thisEntity:GetOrigin()):Length2D() < radius then
+                        Cast(Spell, target)
+                    end
+                end
+
+            elseif bit.band(Behavior, DOTA_ABILITY_BEHAVIOR_POINT) == DOTA_ABILITY_BEHAVIOR_POINT then
+                Spell.Behavior = "point"
+                Cast(Spell, target)
+
+            elseif bit.band(Behavior, DOTA_ABILITY_BEHAVIOR_TOGGLE) == DOTA_ABILITY_BEHAVIOR_TOGGLE then
+                Spell.Behavior = "toggle"
+                if not Spell:GetToggleState() then 
+                    Spell:ToggleAbility()
+                end
+
+            elseif bit.band(Behavior, DOTA_ABILITY_BEHAVIOR_PASSIVE) == DOTA_ABILITY_BEHAVIOR_PASSIVE then
+                Spell.Behavior = "passive"
+            end
+        end
+    end 
 end
 
 function Cast( Spell , enemy )
@@ -131,4 +162,4 @@ function Approach(unit)
 		Position = thisEntity:GetOrigin() + vToEnemy * thisEntity:GetIdealSpeed()
 	})
 	return 1
-endd
+end

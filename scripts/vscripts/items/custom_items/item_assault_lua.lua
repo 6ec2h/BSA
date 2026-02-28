@@ -76,10 +76,12 @@ modifier_assault_lua_aura_buff = class({})
 
 function modifier_assault_lua_aura_buff:OnCreated()
 	local ability = self:GetAbility()
-	
-	self.aura_attack_speed = ability:GetSpecialValueFor("aura_attack_speed")
-	self.aura_positive_armor = ability:GetSpecialValueFor("aura_positive_armor")
+	if ability then
+		self.aura_attack_speed = ability:GetSpecialValueFor("aura_attack_speed")
+		self.aura_positive_armor = ability:GetSpecialValueFor("aura_positive_armor")
+	end
 end
+
 function modifier_assault_lua_aura_buff:OnRefresh()
 	self:OnCreated()
 end
@@ -125,7 +127,7 @@ end
 function modifier_assault_lua_aura_debuff:GetModifierPhysicalArmorBonus()
 	return self.aura_negative_armor
 end
-ositive_effect:IsDebuff() return false end
+ return false end
 
 function modifier_assault_lua_aura_positive_effect:DeclareFunctions()
 	return {

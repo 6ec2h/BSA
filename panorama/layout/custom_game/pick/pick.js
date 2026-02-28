@@ -6,7 +6,7 @@ function FixHeroIcons(){
     var playerSlots = list.FindChildrenWithClassTraverse("HeroCard") 
 	
 	var tooltip = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().FindChildTraverse("ImageContainer")
-	if (tooltip && (tooltip.GetChild(1).heroname == 'dado' || tooltip.GetChild(1).heroname == 'triss'|| tooltip.GetChild(1).heroname == 'destroyer'|| tooltip.GetChild(1).heroname == 'anakim')) {
+	if (tooltip && (tooltip.GetChild(1).heroname == 'dado' || tooltip.GetChild(1).heroname == 'triss'|| tooltip.GetChild(1).heroname == 'destroyer'|| tooltip.GetChild(1).heroname == 'anakim' || tooltip.GetChild(1).heroname == 'fiddlesticks')) {
 		tooltip.GetChild(1).visible = false
 		a = tooltip.GetChild(0)
 		if (ContainerHero == null){
@@ -29,7 +29,7 @@ function FixHeroIcons(){
     for ( k in playerSlots ){
         var img = playerSlots[k].FindChildTraverse("HeroImage")
         if ( img.Children().length == 0 ){
-			 if (img.heroname == 'dado' || img.heroname == 'triss'|| img.heroname == 'destroyer'|| img.heroname == 'anakim') {
+			 if (img.heroname == 'dado' || img.heroname == 'triss'|| img.heroname == 'destroyer'|| img.heroname == 'anakim' || img.heroname == 'fiddlesticks') {
 				img.SetImage( "file://{images}/custom_game/heroes/" + img.heroname + ".png" ) 
 				  
 			 }			

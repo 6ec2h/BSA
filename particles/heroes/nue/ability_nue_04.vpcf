@@ -1,4 +1,5 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf26:version{26288658-411e-4f14-b698-2e1e5d00dec6} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+// this format guid is not known to Source 2 Viewer, make a pull request to update KV3IDLookup file
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -8,11 +9,16 @@
 		
 		{
 			_class = "C_OP_RenderSprites"
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_flStartFadeSize = 0.500000
 			m_flEndFadeSize = 0.750000
 			m_bBlendFramesSeq0 = false
-			m_hTexture = resource:"materials/particle/smoke1/smoke1.vtex"
+			m_vecTexturesInput = 
+			[
+				
+				{
+					m_hTexture = resource:"materials/particle/smoke1/smoke1.vtex"
+				},
+			]
 		},
 	]
 	m_Operators = 
@@ -55,7 +61,7 @@
 		{
 			_class = "C_OP_VectorNoise"
 			m_fl4NoiseScale = 0.300000
-			m_nFieldOutput = "0"
+			m_nFieldOutput = 0
 			m_vecOutputMin = 
 			[
 				-5.000000,
@@ -75,20 +81,40 @@
 	[
 		
 		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 64
-			m_nAlphaMax = 192
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.250980
+				m_flRandomMax = 0.752941
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
 		},
 		
 		{
-			_class = "C_INIT_RandomRotation"
-			m_flDegreesMax = 80.000000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.000000
+				m_flRandomMax = 80.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
 		},
 		
 		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.850000
-			m_fLifetimeMin = 0.600000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.600000
+				m_flRandomMax = 0.850000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
 		},
 		
 		{
@@ -110,19 +136,40 @@
 		},
 		
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 75.000000
-			m_flRadiusMin = 30.000000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 30.000000
+				m_flRandomMax = 75.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
 		},
 		
 		{
-			_class = "C_INIT_RandomRotation"
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.000000
+				m_flRandomMax = 360.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
 		},
 		
 		{
-			_class = "C_INIT_RandomRotationSpeed"
-			m_flDegreesMin = 20.000000
-			m_flDegreesMax = 70.000000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 20.000000
+				m_flRandomMax = 70.000000
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 5
 		},
 		
 		{
@@ -131,7 +178,7 @@
 		},
 		
 		{
-			_class = "C_INIT_CreateWithinSphere"
+			_class = "C_INIT_CreateWithinSphereTransform"
 			m_vecDistanceBias = 
 			[
 				1.000000,
@@ -159,13 +206,23 @@
 				-16.000000,
 				256.000000,
 			]
-			m_bLocalSpace = true
+			m_TransformInput = 
+			{
+			}
 		},
 		
 		{
-			_class = "C_INIT_RemapScalar"
-			m_flOutputMin = 1.500000
-			m_flInputMax = 0.250000
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.000000
+				m_flInput1 = 0.250000
+				m_flOutput0 = 1.500000
+				m_flOutput1 = 1.000000
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_PARTICLE_FLOAT"
+				m_nScalarAttribute = 8
+			}
 			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
 		},
 	]

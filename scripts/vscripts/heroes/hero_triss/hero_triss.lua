@@ -244,7 +244,7 @@ if not IsServer() then return end
 		attacker = keys.attacker,
 		damage = boom_damage,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
-		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 	}
 
 	local enemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, keys.target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)

@@ -184,10 +184,6 @@ function modifier_land_mines:CheckState()
 	}
 end
 
-function modifier_land_mines:GetEffectName()
-	return "particles/units/heroes/hero_techies/techies_land_mine.vpcf"
-end
-
 function modifier_land_mines:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
@@ -208,7 +204,7 @@ function modifier_land_mines:OnIntervalThink()
 	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.mine:GetAbsOrigin(), nil, self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	if #enemies > 0 and not self.mine:HasModifier("modifier_land_mines_explose_delay") then
 		local sound = CreateModifierThinker(self.caster, self.ability, "modifier_dummy_thinker", {duration = 0.5}, self.mine:GetAbsOrigin(), self.caster:GetTeamNumber(), false)
-		sound:EmitSound("Hero_Techies.LandMine.Priming")
+		EmitSoundOnLocationWithCaster(sound:GetAbsOrigin(), "Hero_Techies.RemoteMine.Priming", sound)
 		self.mine:AddNewModifier(self.caster, self.ability, "modifier_land_mines_explose_delay", {duration = self.ability:GetSpecialValueFor("activation_time")})
 	end
 end
@@ -233,7 +229,7 @@ function modifier_land_mines:OnDestroy()
 			end
 		)
 		local sound = CreateModifierThinker(self.caster, self.ability, "modifier_dummy_thinker", {duration = 0.5}, self.mine:GetAbsOrigin(), self.caster:GetTeamNumber(), false)
-		sound:EmitSound("Hero_Techies.LandMine.Detonate")
+		sound:EmitSound("Hero_Techies.RemoteMine.Detonate")
 		self:GetParent():ForceKill(false)
 	end
 	self.ability = nil
@@ -260,6 +256,12 @@ function modifier_land_mines_explose_delay:OnDestroy()
 		if #enemies > 0 and self:GetElapsedTime() >= self:GetDuration() then
 			local buff = self:GetParent():FindModifierByName("modifier_land_mines")
 			if buff then
+				buff:SetStackCount(1)
+				buff:Destroy()
+			end
+		end
+	end
+endhen
 				buff:SetStackCount(1)
 				buff:Destroy()
 			end

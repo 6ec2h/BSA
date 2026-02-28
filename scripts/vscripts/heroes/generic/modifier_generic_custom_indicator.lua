@@ -62,7 +62,7 @@ end
 --------------------------------------------------------------------------------
 -- Helper
 function modifier_generic_custom_indicator:Register( loc )
-	-- TODO: check if self.ability can persist through disconnect if declared in OnCreated
+
 	local ability = self:GetAbility()
 
 	-- init
@@ -74,6 +74,12 @@ function modifier_generic_custom_indicator:Register( loc )
 	-- update
 	if ability.UpdateCustomIndicator then
 		ability:UpdateCustomIndicator( loc )
+	end
+
+	-- start interval
+	self:StartIntervalThink( 0.1 )
+end
+tomIndicator( loc )
 	end
 
 	-- start interval

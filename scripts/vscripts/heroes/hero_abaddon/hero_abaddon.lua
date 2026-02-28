@@ -251,14 +251,13 @@ function modifier_abaddon_curse_of_avernus_lua:OnAttackLanded(data)
     if not IsServer() then return end
     if data.attacker ~= self:GetParent() then return end
 	if data.target:HasModifier('modifier_abaddon_curse_of_avernus_lua_debuff') then
-		local damageTable = {
+		ApplyDamage({
 			victim = data.target,
 			attacker = data.attacker,
 			damage = self.lifesteal,
 			damage_type = DAMAGE_TYPE_PURE,
-			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
-		}
-		ApplyDamage(damageTable)
+			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
+		})
 		
 		data.attacker:Heal(self.lifesteal, self:GetParent())
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, data.attacker, self.lifesteal, nil)

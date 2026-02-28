@@ -270,16 +270,8 @@ function HeroBuilder:CleanFamiliar(hHero)
 	end
 end
 
-
-
-
-
-
-
-
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-
 
 function HeroBuilder:SetAbilityToSlot(hHero, hAbility)
     if not hHero or hHero:IsNull() then return end
@@ -367,4 +359,6 @@ end
 function HeroBuilder:RegisterScepterOwner(hHero)
     if not hHero or not hHero:IsMainHero() then return end
     HeroBuilder.scepterOwners[hHero:GetEntityIndex()] = hHero
+end
+] = hHero
 end

@@ -62,7 +62,7 @@ function modifier_item_vladmir_aura_lua:IsAuraActiveOnDeath() return false end
 
 function modifier_item_vladmir_aura_lua:OnCreated()
 --	if not IsServer() then return end
-
+	if not self:GetAbility() then return end
 	self.armor_aura = self:GetAbility():GetSpecialValueFor("armor_aura")
 	self.mana_regen_aura = self:GetAbility():GetSpecialValueFor("mana_regen_aura")
 	self.lifesteal_aura = self:GetAbility():GetSpecialValueFor("lifesteal_aura")

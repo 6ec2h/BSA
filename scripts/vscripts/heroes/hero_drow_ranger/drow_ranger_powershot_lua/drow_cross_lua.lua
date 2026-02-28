@@ -98,7 +98,7 @@ function drow_cross_lua:OnProjectileHit( hTarget, vLocation )
 			victim = hTarget,
 			damage = self.shot_damage,	
 			damage_type = DAMAGE_TYPE_PHYSICAL,
-			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 			ability = self,
 		})
 

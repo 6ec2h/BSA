@@ -549,6 +549,8 @@ function modifier_talents:OnTakeDamage(keys)
 	local target = keys.unit 
 	local damage = keys.damage
 
+	if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then return end
+
 	if self:GetParent() == target then
 		self:GetParent():AddNewModifier(self:GetParent(), self, "modifier_in_fight_lua", {duration = 10})
 		
@@ -565,7 +567,7 @@ function modifier_talents:OnTakeDamage(keys)
 					attacker = target,
 					damage = return_damage,
 					damage_type = DAMAGE_TYPE_PURE,
-					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
+					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 				})
 			end
 		end
@@ -609,9 +611,9 @@ function modifier_talents:OnAttackLanded( params )
 				ApplyDamage({
 					victim = params.target,
 					attacker = params.attacker,
-					damage = self:GetParent():GetAttackDamage() *0.05,
+					damage = self:GetParent():GetAttackDamage() * 0.05,
 					damage_type = DAMAGE_TYPE_PURE,
-					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 				})
 				EmitSoundOn("Hero_Spectre.Desolate", self:GetParent())
 				
@@ -916,18 +918,7 @@ function modifier_bonus_agi_15:GetModifierAttackSpeedBonus_Constant()
 		return 1450
 	end
 	return 0
-endfalse
-end
-
-function modifier_bonus_agi_15:DeclareFunctions()
-    return {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-        MODIFIER_EVENT_ON_ATTACK
-    }
-end
-
-function modifier_bonus_agi_15:OnAttack(keys)
-	if keys.attacker ~= self:GetParent() then return end
+endGetParent() then return end
 	self.proc = true
 end
 

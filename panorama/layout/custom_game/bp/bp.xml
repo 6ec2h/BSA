@@ -44,14 +44,12 @@
 					<Panel class="pass_content_image_lock" id="pass_content_image_lock" />
 					<DOTAItemImage id="pass_content_image_simple" class="pass_content_image_simple" hittest="true" itemname="item_armor_aura" />
 					<Image id="pass_content_image_simple_image" class="pass_content_image_simple" src="" />
-					<Panel class="pass_content_image_simple_back" hittest="false" />
 					<Label class="pass_content_level_simple" id="pass_content_level_simple" text="1" />
 				</Panel>
 			</Panel>
 		</snippet>
 	</snippets>
 	<Panel class="root" hittest="false">
-		<Panel id="BP_open_button" onmouseactivate="open()" onmouseover="TipsOver(&apos;bp&apos;,&apos;BP_open_button&apos;)" onmouseout="TipsOut()" />
 		<Panel id="BP_container" hittest="false">
 			<Panel id="CloseShopButton" onmouseactivate="close()" onmouseover="TipsOver(&apos;close&apos;,&apos;CloseShopButton&apos;)" onmouseout="TipsOut()" />
 			<Panel id="BP_content_top">

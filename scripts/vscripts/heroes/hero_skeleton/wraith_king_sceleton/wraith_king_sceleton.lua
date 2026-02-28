@@ -54,8 +54,17 @@ end
 function modifier_wraith_king_sceleton:OnCreated(kv)
 end
 
-salo_creeps = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear","npc_dota_creature_dire_hound","npc_dota_creature_dire_hound_boss",
-"forest_zombie","skeleton","npc_creep_crystal","apparat","tusk","icespider","white_walker","mirana","npc_dota_creature_large_ogre_seal","guard","npc_trap_visage","tank","undying","morf",
+function IsMyKilledBadGuys2(hero, params)
+    if params.unit:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS then
+        return false
+    end
+	local attacker = params.attacker
+	if hero ~= attacker or attacker:HasModifier("modifier_guild_event") then return false end
+	
+	if not _G.excludedUnitsLookup[params.unit:GetUnitName()] then return false end
+
+	return true
+endmorf",
 "npc_blob","npc_slardar_unit","npc_shaker","npc_zone_jungle_1","npc_zone_jungle_2","npc_zone_jungle_3","npc_zone_jungle_4","npc_keeper_of_the_light","miner","small_hellbear","encha","treant",
 "npc_lifestealer","batr","warlock","pudge","npc_venom_creep","demon","npc_gyro","npc_enigma","npc_sniper","npc_disruptor","cher"}
 

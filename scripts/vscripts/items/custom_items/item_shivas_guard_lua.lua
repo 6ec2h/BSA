@@ -11,21 +11,24 @@ function item_shivas_guard_lua1:GetIntrinsicModifierName()
 end
 
 function item_shivas_guard_lua1:OnSpellStart()
+	local caster = self:GetCaster()
+	local caster_team = caster:GetTeamNumber()
 	local blast_radius = self:GetSpecialValueFor("blast_radius")
 	local blast_speed = self:GetSpecialValueFor("blast_speed")
 	local damage = self:GetSpecialValueFor("blast_damage")
 	local blast_duration = blast_radius / blast_speed
-	local current_loc = self:GetCaster():GetAbsOrigin()
+	local current_loc = caster:GetAbsOrigin()
 	
 	local slow_duration_tooltip	= self:GetSpecialValueFor("slow_duration_tooltip")
 
-	local caster	= self:GetCaster()
-	local ability	= self
+	
+	local ability = self
 
-	self:GetCaster():EmitSound("DOTA_Item.ShivasGuard.Activate")
 
-	local blast_pfx = ParticleManager:CreateParticle("particles/items2_fx/shivas_guard_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
-	ParticleManager:SetParticleControl(blast_pfx, 0, self:GetCaster():GetAbsOrigin())
+	caster:EmitSound("DOTA_Item.ShivasGuard.Activate")
+
+	local blast_pfx = ParticleManager:CreateParticle("particles/items2_fx/shivas_guard_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+	ParticleManager:SetParticleControl(blast_pfx, 0, caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(blast_pfx, 1, Vector(blast_radius, blast_duration * 1.33, blast_speed))
 	ParticleManager:ReleaseParticleIndex(blast_pfx)
 
@@ -34,10 +37,10 @@ function item_shivas_guard_lua1:OnSpellStart()
 	local current_radius = 0
 	local tick_interval = 0.1
 	Timers:CreateTimer(tick_interval, function()
-		AddFOWViewer(self:GetCaster():GetTeamNumber(), current_loc, current_radius, 0.1, false)
+		AddFOWViewer(caster_team, current_loc, current_radius, 0.1, false)
 		current_radius = current_radius + blast_speed * tick_interval
-		current_loc = self:GetCaster():GetAbsOrigin()
-		local nearby_enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), current_loc, nil, current_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		current_loc = caster:GetAbsOrigin()
+		local nearby_enemies = FindUnitsInRadius(caster_team, current_loc, nil, current_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		for _,enemy in pairs(nearby_enemies) do
 			local enemy_has_been_hit = false
 			for _,enemy_hit in pairs(targets_hit) do
@@ -163,4 +166,4 @@ function modifier_item_shivas_guard_lua:GetAuraRadius()				return self.aura_radi
 function modifier_item_shivas_guard_lua:GetAuraSearchFlags()			return DOTA_UNIT_TARGET_FLAG_NONE end
 function modifier_item_shivas_guard_lua:GetAuraSearchTeam()			return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_item_shivas_guard_lua:GetAuraSearchType()			return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
-function modifier_item_shivas_guard_lua:GetModifierAura()				return "modifier_item_shivas_guard_aura_lua" end
+function modifier_item_shivas_guard_lua:GetModifierAura()				return "modifier_item_shivas_guard_aura_lua" end "modifier_item_shivas_guard_aura_lua" end

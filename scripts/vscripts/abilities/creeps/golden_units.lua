@@ -1,7 +1,8 @@
+LinkLuaModifier( "modifier_golden_passive", "abilities/creeps/golden_units", LUA_MODIFIER_MOTION_NONE )
+
 local MODIFIER_PRIORITY_MONKAGIGA_EXTEME_HYPER_ULTRA_REINFORCED_V9 = 10001
 
 golden_passive = class({})
-LinkLuaModifier( "modifier_golden_passive", "abilities/creeps/golden_units", LUA_MODIFIER_MOTION_NONE )
 
 function golden_passive:GetIntrinsicModifierName()
 	return "modifier_golden_passive"

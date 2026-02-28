@@ -10,26 +10,40 @@
 {
 	height:700px;
 	width:1300px;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	vertical-align:center;
 	horizontal-align:center;
 	padding: 10px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 6px;
 }
 
 .DSClose
 {
 	horizontal-align:right;
 	vertical-align:top;
-	height: 20px;
-	width: 20px;
-	background-image:url("s2r://panorama/images/shop/close_png.vtex");
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
 }
 
 .DSClose:active
 {
 	sound: "ui_custom_lobby_dialog_slide";
+}
+
+.DSClose:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
 }
 
 #dis
@@ -48,40 +62,42 @@
 	width: 100%;
 	vertical-align:bottom;
 	horizontal-align:center;
-	box-shadow: inset 2px 2px 4px 0px #00000080;
+	background-color: rgba(0, 0, 0, 0.4);
 	height: 600px;
 	padding:10px;
+	border-radius: 8px;
 }
 
 .money_panel
 {
-	height:65px;
 	width:170px;
 	flow-children:down;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.4);
 	background-size: 100% 100%;
-	box-shadow: 2px 2px 4px 0px #00000080;
-	border-radius:2px;
-	padding: 5px;
+	border-radius:4px;
+	padding: 5px 5px 5px 0;
 }
 
 .DNMoneyPanelContainer
 {
 	flow-children: right;
-	margin-bottom: 5px;
 	width: 100%;
+}
+
+.DNMoneyPanelContainer:not(:last-child)
+{
+	margin-bottom: 5px;
 }
 
 .DNMoneyPanel
 {
-	margin-bottom: 0px;
 	flow-children: right;
 	width: fill-parent-flow(1);
 }
 
 .MMMRPointsPanel
 {
-	margin-bottom: 5px;
 	flow-children: right;
 }
 
@@ -105,7 +121,7 @@
 {
 	horizontal-align: center;
 	vertical-align: center;
-	color: white;
+	color: #e5e0c5;
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
@@ -123,25 +139,24 @@
 
 .DNMoneyLabel
 {
-	color:gold;
-	font-size:20px;
+	color: #e5e0c5;
+	font-size:18px;
 	margin-left:10px;
 	vertical-align:center;
-	text-shadow: 1px 1px 2px 0.5 #666066;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
 }
 
 .DSContentPanel_bg
 {
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-color: rgba(0, 0, 0, 0.4);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	horizontal-align: right;
 	vertical-align: top;
 	height: 580px;
 	width: 1080px;
-	box-shadow: 0px 2px 4px 2px #00000080;
-	border-radius:2px;
-	brightness: 0.4;
+	border-radius:8px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
 }
 
 .DSContentPanel
@@ -152,6 +167,7 @@
 	width: 1080px;
 	overflow: clip scroll;
 	padding: 5px;
+	border-radius:8px;
 }
 
 .DSTabsPanel
@@ -166,39 +182,44 @@
 	width:100%;
 	height:35px;
 	border-radius: 4px 0 0 4px;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
 	background-repeat: no-repeat;
 	background-size: 100%;
-	box-shadow: 0px 2px 2px 0px #00000080;
-	opacity: 0.2;
+	opacity: 0.6;
 	margin-bottom:6px;
 }
 
 .TabPanel:hover
 {
 	brightness: 2;
+	background-color: rgba(100, 181, 246, 0.1);
 }
 
 .TabLabel:hover
 {
-	color:gold;
+	color: #ffffff;
 	sound: "ui_select_arrow";
 }
 
 .selected_bd
 {
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.2)), to(rgba(20, 30, 45, 0)));
 	background-repeat: no-repeat;
 	background-size: 100%;
-	box-shadow: 0px 2px 2px 0px #00000080;
 	opacity: 1;
 	brightness: 1.2;
+	border-left: 3px solid #64b5f6;
 }
 
 .horizontal_panel
 {
 	width:100%;
 	flow-children:right;
+}
+
+.horizontal_panel:first-child
+{
+	margin-top: 5px;
 }
 
 .TabContent
@@ -212,23 +233,22 @@
 {
 	height: 170px;
 	width: 140px;
-	background-color: red;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	background-repeat: no-repeat;
 	background-size: 100%;
-	box-shadow: 0px 2px 2px 0px #00000080;
 	padding: 5px;
 	margin-bottom: 8px;
 	margin-right: 6px;
 	margin-left: 6px;
-	border: 0.6px solid black;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
 }
 
 .item_panel:hover
 {
-	brightness: 1.8;
+	brightness: 1.5;
 	sound: "ui_select_arrow";
-	box-shadow: 0px 0px 2px 0px #979c1c;
+	border-color: rgba(100, 181, 246, 0.6);
 }
 
 .item_panel_image,.item_panel_image2,.item_panel_image_back
@@ -239,46 +259,7 @@
 	height: 87px;
 }
 
-.item_panel_buy
-{
-	width: 130px;
-	height: 25px;
-	background-color: rgb(26, 94, 39);
-	horizontal-align: center;
-	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:5px;
-}
-
-.item_panel_take
-{
-	width: 130px;
-	height: 25px;
-	background-color: rgb(43, 59, 117);
-	horizontal-align: center;
-	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:5px;
-}
-
-.item_panel_return
-{
-	width: 130px;
-	height: 25px;
-	background-color: rgb(150, 89, 42);
-	horizontal-align: center;
-	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:5px;
-}
-
-.item_panel_buy:hover,.item_panel_take:hover,.item_panel_return:hover
+.item_panel_buy:hover,.item_panel_take:hover,.item_panel_return:hover,.item_panel_upgrade:hover
 {
 	brightness: 1.8;
 	sound: "ui_select_arrow";
@@ -288,6 +269,7 @@
 {
 	horizontal-align: center;
 	vertical-align: center;
+	color: #e5e0c5;
 }
 
 .item_panel_name
@@ -297,6 +279,7 @@
 	margin-bottom: 38px;
 	text-overflow: shrink;
 	height:24px;
+	color: #e5e0c5;
 }
 
 .item_panel_upgrade
@@ -308,6 +291,7 @@
 	background-size: 100%;
 	horizontal-align: right;
 	z-index:10;
+	brightness: 3.8;
 }
 
 .BuyControl
@@ -316,8 +300,9 @@
 	horizontal-align:center;
 	width:300px;
 	height:380px;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	box-shadow: 0px 0px 2px 0px #979c1c;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
 }
 
 .item_buy_image,.item_buy_image2
@@ -333,15 +318,14 @@
 .item_buy_label
 {
 	horizontal-align: center;
-	margin-top:140px;
+	margin-top:135px;
 	font-size: 20px;
+	color: #e5e0c5;
+	text-align: center;
 }
 
 .buy_button
 {
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
 	height: 40px;
 	width: 100px;
 	flow-children: right;
@@ -351,7 +335,6 @@
 {
 	brightness: 1.8;
 	sound: "ui_select_arrow";
-	background-color: #414219;
 }
 
 #don_button
@@ -360,6 +343,11 @@
 	vertical-align: bottom;
 	margin-left: 30px;
 	margin-bottom: 90px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	border-radius: 4px;
 }
 
 #rp_button
@@ -368,6 +356,11 @@
 	vertical-align: bottom;
 	margin-right: 30px;
 	margin-bottom: 90px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	border-radius: 4px;
 }
 
 #close_button
@@ -377,13 +370,18 @@
 	horizontal-align: center;
 	vertical-align: bottom;
 	margin-bottom: 20px;
-	background-color: red;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(175, 76, 76, 0.6)), to(rgba(142, 56, 56, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(175, 76, 76, 0.6);
+	border-radius: 4px;
 }
 
 .close_button_label
 {
 	horizontal-align: center;
 	vertical-align: center;
+	color: #e5e0c5;
 }
 
 #buy_text_input
@@ -392,29 +390,38 @@
 	vertical-align: center;
 	width: 100px;
 	margin-top: 24px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(25, 41, 57)), to(rgb(22, 38, 53)));
+	border: 2px solid #4a5a7a;
+	color: #e5e0c5;
+	border-radius: 4px;
+}
+
+.consumable_panel_container
+{
+	width: 100%;
+	horizontal-align:center;
+	vertical-align: bottom;
+	flow-children:down;
 }
 
 .consumable_panel
 {
 	height: 220px;
 	width: 164px;
-	background-color: red;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	box-shadow: 0px 2px 2px 0px #00000080;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	padding: 5px;
 	margin-bottom: 8px;
 	margin-right: 6px;
 	margin-left: 6px;
-	border: 0.6px solid black;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
 }
 
 .consumable_panel:hover
 {
-	brightness: 1.8;
+	brightness: 1.5;
 	sound: "ui_select_arrow";
-	box-shadow: 0px 0px 2px 0px #979c1c;
+	border-color: rgba(100, 181, 246, 0.6);
 }
 
 .consumable_panel_image,.consumable_panel_image_back
@@ -425,43 +432,32 @@
 	height: 87px;
 }
 
-.consumable_panel_buy
+.consumable_panel_buy,.item_panel_buy,.treasure_panel_buy
 {
-	width: 130px;
+	width: 100%;
 	height: 25px;
-	background-color: rgb(26, 94, 39);
 	horizontal-align: center;
 	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:63px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	border-radius: 4px;
+	margin: 2px;
 }
 
-.consumable_panel_take
+.consumable_panel_return,.pet_panel_return,.item_panel_return
 {
-	width: 130px;
+	width: 100%;
 	height: 25px;
-	background-color: rgb(43, 59, 117);
 	horizontal-align: center;
 	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:34px;
-}
-
-.consumable_panel_return
-{
-	width: 130px;
-	height: 25px;
-	background-color: rgb(150, 89, 42);
-	horizontal-align: center;
-	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:5px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(175, 144, 76, 0.6)), to(rgba(142, 112, 56, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(175, 147, 76, 0.6);
+	border-radius: 4px;
+	margin: 2px;
 }
 
 .consumable_panel_buy:hover,.consumable_panel_take:hover,.consumable_panel_return:hover
@@ -474,24 +470,23 @@
 {
 	horizontal-align: center;
 	vertical-align: center;
+	color: #e5e0c5;
 }
 
 .consumable_panel_name
 {
 	horizontal-align: center;
 	vertical-align:bottom;
-	margin-bottom: 90px;
 	text-overflow: shrink;
 	height:24px;
+	color: #e5e0c5;
+	text-align: center;
 }
 
 .consumable_panel_count
 {
 	horizontal-align: right;
 	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/count_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
 	background-color: black;
 	padding:2px 5px 0px 5px;
 }
@@ -502,6 +497,7 @@
 	height:24px;
 	horizontal-align: center;
 	vertical-align:center;
+	color: #e5e0c5;
 }
 
 #smart_toggle
@@ -519,23 +515,19 @@
 {
 	height: 200px;
 	width: 164px;
-	background-color: red;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	box-shadow: 0px 2px 2px 0px #00000080;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	padding: 5px;
 	margin-bottom: 8px;
 	margin-right: 6px;
 	margin-left: 6px;
-	border: 0.6px solid black;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
 }
 
 .treasure_panel:hover
 {
-	brightness: 1.8;
 	sound: "ui_select_arrow";
-	box-shadow: 0px 0px 2px 0px #979c1c;
+	border-color: rgba(100, 181, 246, 0.6);
 }
 
 .treasure_panel_image,.treasure_panel_image_back
@@ -546,43 +538,29 @@
 	height: 87px;
 }
 
-.treasure_panel_buy
+.treasure_panel_take,.consumable_panel_take,.pet_panel_take,.item_panel_take
 {
-	width: 130px;
+	width: 100%;
 	height: 25px;
-	background-color: rgb(26, 94, 39);
 	horizontal-align: center;
 	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:40px;
-}
-
-.treasure_panel_take
-{
-	width: 130px;
-	height: 25px;
-	background-color: rgb(43, 59, 117);
-	horizontal-align: center;
-	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:5px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	border-radius: 4px;
+	margin: 2px;
 }
 
 .treasure_panel_return
 {
 	width: 130px;
 	height: 25px;
-	background-color: rgb(150, 89, 42);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#7a4a24), to(#4d2d17));
 	horizontal-align: center;
 	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
 	margin-bottom:5px;
+	border: 1px solid rgba(255,255,255,0.05);
 }
 
 .treasure_panel_buy:hover,.treasure_panel_take:hover,.treasure_panel_return:hover
@@ -595,6 +573,7 @@
 {
 	horizontal-align: center;
 	vertical-align: center;
+	color: #e5e0c5;
 }
 
 .treasure_panel_name
@@ -604,15 +583,13 @@
 	margin-bottom: 70px;
 	text-overflow: shrink;
 	height:24px;
+	color: #e5e0c5;
 }
 
 .treasure_panel_count
 {
 	horizontal-align: right;
 	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/count_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
 	background-color: black;
 	padding:2px 5px 0px 5px;
 }
@@ -623,40 +600,27 @@
 	height:24px;
 	horizontal-align: center;
 	vertical-align:center;
-}
-
-#smart_toggle
-{
-	horizontal-align:right;
-	vertical-align: top;
-	padding: 0;
-	height: 18px;
-	width: 18px;
-	margin-right: 6px;
-	margin-top: 5px;
+	color: #e5e0c5;
 }
 
 .pet_panel
 {
 	height: 220px;
 	width: 164px;
-	background-color: red;
-	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	box-shadow: 0px 2px 2px 0px #00000080;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	padding: 5px;
 	margin-bottom: 8px;
 	margin-right: 6px;
 	margin-left: 6px;
-	border: 0.6px solid black;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
 }
 
 .pet_panel:hover
 {
-	brightness: 1.8;
+	brightness: 1.5;
 	sound: "ui_select_arrow";
-	box-shadow: 0px 0px 2px 0px #979c1c;
+	border-color: rgba(100, 181, 246, 0.6);
 }
 
 .pet_panel_image,.pet_panel_image_back
@@ -665,32 +629,6 @@
 	margin-top:4px;
 	width: 120px;
 	height: 87px;
-}
-
-.pet_panel_take
-{
-	width: 130px;
-	height: 25px;
-	background-color: rgb(43, 59, 117);
-	horizontal-align: center;
-	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:5px;
-}
-
-.pet_panel_return
-{
-	width: 130px;
-	height: 25px;
-	background-color: rgb(150, 89, 42);
-	horizontal-align: center;
-	vertical-align:bottom;
-	background-image:url("s2r://panorama/images/shop/button_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin-bottom:5px;
 }
 
 .pet_panel_take:hover
@@ -702,17 +640,20 @@
 .pet_panel_label
 {
 	horizontal-align: center;
-	vertical-align:center;
+	vertical-align: center;
+	width: 90%;
 	margin-top: 82px;
-	text-overflow: shrink;
-	height:65px;
+	height: 60px;
+	font-size: 15px;
 	text-align: center;
+	color: #e5e0c5;
 }
 
 .pet_panel_name
 {
 	horizontal-align: center;
 	vertical-align: center;
+	color: #e5e0c5;
 }
 
 .openShop
@@ -763,18 +704,18 @@
 {
 	height: 30px;
 	width: 100px;
-	background-color: #ff0000e0;
+	background-color: #3a4a7a;
 	border-radius: 4px;
-	box-shadow: 0px 0px 8px 3px #FF6600;
+	box-shadow: 0px 0px 8px 1px rgba(100, 181, 246, 0.4);
 	padding: 5px;
 	margin-top: 5px;
 	horizontal-align: center;
+	border: 1px solid #64b5f6;
 }
 
 #site_button:hover
 {
 	brightness: 1.3;
-	box-shadow: 0px 0px 10px 4px #FF8800;
 	sound: "ui_select_arrow";
 }
 
@@ -782,24 +723,23 @@
 {
 	horizontal-align: center;
 	vertical-align: center;
-	color: white;
+	color: #e5e0c5;
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
 	width: 100%;
-	text-shadow: 1px 1px 2px 0.5 #000000;
 }
 
 .crystals_text
 {
 	horizontal-align: center;
 	vertical-align: center;
-	color: #FFD700;
+	color: #e5e0c5;
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
 	width: 100%;
-	text-shadow: 2px 2px 4px 1.0 #000000, 0px 0px 8px 1.0 #FFAA00;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
 }
 
 .img_fr
@@ -814,7 +754,7 @@
 {
 	letter-spacing: 1px;
 	font-size:18px;
-	color:white;
+	color: #e5e0c5;
 	width:100%;
 	margin-left:20px;
 	vertical-align:center;
@@ -842,22 +782,10 @@
 		brightness: 1.0;
 	}
 	
-	25%
-	{
-		pre-transform-scale2d: 1.05;
-		brightness: 1.3;
-	}
-	
 	50%
 	{
 		pre-transform-scale2d: 1.08;
 		brightness: 1.5;
-	}
-	
-	75%
-	{
-		pre-transform-scale2d: 1.05;
-		brightness: 1.3;
 	}
 	
 	to
@@ -870,6 +798,7 @@
 
 .selected_text
 {
-	color:#d76a00;
+	color: #ffffff;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.8);
 }
 

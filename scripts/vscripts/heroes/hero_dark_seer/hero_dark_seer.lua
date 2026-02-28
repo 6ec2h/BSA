@@ -29,7 +29,7 @@ function lua_dark_seer_vacuum:OnSpellStart()
 		enemy:AddNewModifier(enemy, self, "modifier_lua_dark_seer_vacuum", {duration = self:GetSpecialValueFor("duration")})
 		ApplyDamage({
 			victim 			= enemy,
-			damage 			= self:GetSpecialValueFor("damage"),
+			damage 			= self:GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage"),
 			damage_type		= DAMAGE_TYPE_MAGICAL,
 			attacker 		= self:GetCaster(),
 			ability 		= self
@@ -116,13 +116,12 @@ end
 modifier_lua_dark_seer_ion_shell = class({})
 
 function modifier_lua_dark_seer_ion_shell:OnCreated()
-	self.damage_per_second = self:GetAbility():GetSpecialValueFor("damage_per_second")
+	if not IsServer() then return end
+	self.damage_per_second = self:GetAbility():GetSpecialValueFor("damage_per_second")  + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage")
 	self.proton_explosion_radius = self:GetAbility():GetSpecialValueFor("proton_explosion_radius")
 	self.proton_damage_pct = self:GetAbility():GetSpecialValueFor("proton_damage_pct")
 
 	self.interval = 0.25
-	
-	if not IsServer() then return end
 	
 	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 	
@@ -234,7 +233,7 @@ function lua_dark_seer_surge:OnSpellStart()
 	local position = self:GetCursorPosition()
 	local radius = self:GetSpecialValueFor("radius")
 	local duration = self:GetSpecialValueFor("duration")
-	local damage = self:GetSpecialValueFor("damage")
+	local damage = self:GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage")
 	
 	local allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), position, nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 
@@ -341,7 +340,7 @@ function lua_dark_seer_wall_of_replica:OnSpellStart()
 	local pos = self:GetCaster():GetOrigin() + front * 100
 	
     local duration = self:GetSpecialValueFor("duration") 
-    self.damage = self:GetSpecialValueFor("damage")	
+    self.damage = self:GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetSpecialValueFor("ExtraIntelligenceDamage")
 	
 	EmitSoundOn( "Hero_Dark_Seer.Wall_of_Replica_Start", caster )
 
@@ -430,6 +429,7 @@ function GetDirection2D(endpos, startpos)
 end
 
 --------------------------------------------------------------------------------
+
 modifier_stop_move_lua = class({})
 
 function modifier_stop_move_lua:IsHidden() 			
@@ -443,7 +443,7 @@ end
 function modifier_stop_move_lua:OnCreated() 
 	ApplyDamage({
 		victim 			= self:GetParent(),
-		damage 			= self:GetAbility():GetSpecialValueFor("damage"),
+		damage 			= self:GetAbility():GetSpecialValueFor("damage") + self:GetCaster():ExtraIntelligenceDamage() * self:GetAbility():GetSpecialValueFor("ExtraIntelligenceDamage"),
 		damage_type		= DAMAGE_TYPE_MAGICAL,
 		damage_flags 	= DOTA_DAMAGE_FLAG_NONE,
 		attacker 		= self:GetCaster(),

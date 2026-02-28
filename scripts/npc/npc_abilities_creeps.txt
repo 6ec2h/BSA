@@ -1,68 +1,235 @@
 ﻿"DOTAAbilities"
 {
 
-
-"creep_freezing_field"
+"jackpot_pet_lua"
 	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/creeps/creep_freezing_field"
-		"AbilityTextureName"			"crystal_maiden_freezing_field"
-		"FightRecapLevel"				"1"
-
-		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
-		"AbilityCastPoint"				"0.3"
-		"AbilityChannelTime"			"7"
-
-		"AbilityCooldown"				"30"
-		"AbilityManaCost"				"100"
-
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "pets/jackpot_pet_lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityValues"
 		{
-			"radius"					"700"
-			"explosion_radius"			"300"
-			"explosion_interval"		"0.1"
-			"movespeed_slow"			"-30"
-			"attack_slow"				"-30"
-			"slow_duration"				"1.0"
-			"explosion_min_dist"		"195"
-			"explosion_max_dist"		"785"
-			"damage" 					"300"
-			"duration"					"10"
-			"ExtraIntelligenceDamage"	"0.2"
+			"hero_stat_share_percent"   "50"
 		}
 	}
-	
-"enchantress_enchant_creep"
+
+//======================================================================================================================
+
+"thundergod_ultra_lua"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/creeps/enchantress_enchant_creep"
-		"AbilityTextureName"			"enchantress_enchant_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
 
+"sunstrike_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"silence_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"overgrowth_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"mine_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"roshan_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"stun_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"poison_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"blind_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"resist_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"ice_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+//======================================================================================================================
+
+"box_ability"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/box_ability"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+
+"breakable_container"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/breakable_container"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+
+"creep_translate_activity"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/creep_translate_activity"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+
+"push"
+    {
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/creeps/push"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+
+"boss_status_resist"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/boss_status_resist"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	}
 
-		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.3"
-		"AbilityDuration"				"4"
+"golden_passive"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/golden_units"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
 
-		"AbilityCooldown"				"14"
-		"AbilityManaCost"				"65"
+"roshan_spell_block"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCooldown"				"6.0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	}
 
+"roshan_slam_lua"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"            		"abilities/creeps/roshan_slam_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+		"AbilityManaCost"               "0"
+        "AbilityCooldown"               "10.0"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"      	"ACT_DOTA_CAST_ABILITY_3"
+        "AbilityValues"
+        {
+            "radius" 					"350"
+            "duration" 					"4"
+            "slow_ms"					"50"
+            "slow_as"					"50"
+            "damage"					"500"
+			"diff_boost_damage"     	"50" 
+        }
+	}
+
+"creep_hide_attribute"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"            		"abilities/creeps/creep_hide_attribute"
+		"AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+
+"trap_unselectable"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"            		"abilities/creeps/trap_unselectable"
+		"AbilityBehavior"      			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+
+"gold_200"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		
 		"AbilityValues"
 		{
-			"slow_movement_speed"	"-55"
+			"gold_value"                "10"
 		}
-	}	
-	
+	}
+
+"gold_500"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		
+		"AbilityValues"
+		{
+			"gold_value"                "10"
+		}
+	}
+
+"gold_3500"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		
+		"AbilityValues"
+		{
+			"gold_value"                "10"
+		}
+	}
+
+"gold_treasure"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold_treasure"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		"AbilityValues"
+		{
+			"gold_value"                "50"
+		}
+	}
+
 //==================================================================================================== pets =============================================================================================
 
 "pet_dagon"
@@ -183,165 +350,9 @@
 			"armor"						"10"
 			"duration"					"10"
 		}
-	}	
-	
-//==================================================================================================== GOLDEN ===========================================================================================
-
-  "leshrac_split_earth"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-        "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
-        "FightRecapLevel"               "1"
-        "AbilitySound"                  "Hero_Leshrac.Split_Earth"
-
-        "HasShardUpgrade"               "1"
-        "AbilityCastRange"              "650"
-        "AbilityCastPoint"              "0"
-        "AbilityCooldown"               "9"
-        "AbilityDamage"                 "2500"
-        "AbilityDuration"               "3"
-
-        "AbilityValues"
-        {
-                "delay"             "0.35"
-                "radius"            
-                {
-                    "value" "1500"
-                    "affected_by_aoe_increase"  "1"
-                }
-                "duration"          "1.7"
-                "shard_radius_increase"
-                {
-                    "value"     "45"
-                    "RequiresShard"                 "1"
-                    
-                }
-                "shard_max_count"
-                {
-                    "value"         "3"
-                    "RequiresShard"                 "1"
-                }
-                "shard_secondary_delay"         
-                {
-                    "value"     "5"
-                    "RequiresShard"                 "1"
-                }                       
-
-        }
-        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
-    }
-	
-"anti_fervor"
-	{
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"troll_warlord_fervor"
-		
-		"AbilityValues"
-		{
-			"max_stacks"			"100"
-			"attack_speed"			"-10"
-		}
-		"Modifiers"
-		{
-			"modifier_fervor_datadriven"
-			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-				"OnAttack"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/anti_fervor.lua"
-						"Function"		"Fervor"
-						"modifier"		"modifier_anti_fervor"
-					}
-				}
-			}
-			"modifier_anti_fervor"
-			{
-				"IsBuff"		"1"
-				"IsPurgable"	"0"
-				"Duration"		"20"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed" 
-				}
-			}
-		}
 	}
 
-"golden_passive"
-    {
-        "BaseClass"                     "ability_lua"
-        "ScriptFile"                    "abilities/creeps/golden_units"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-    }
-
-"tiny_avalanche"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Ability.Avalanche"
-
-		"AbilityCastRange"				"400"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		"AbilityCooldown"				"15"
-
-		"AbilityManaCost"				"12"
-
-		"AbilityValues"
-        {
-                "AbilityCastRange"              
-                {
-                    "value"     "600"
-                    "special_bonus_unique_tiny_4" "+200"
-                }
-                "radius"
-                {
-                    "value"         "1000"
-                    "affected_by_aoe_increase"  "1"
-                }
-                "tick_interval"             "0.3"
-                "total_duration"            "1.4"
-                "tick_count"            "5"
-                "stun_duration"             "0.3"
-                "projectile_speed"      "1200"
-                "avalanche_damage"          
-                {
-                    "value"             "600"
-                    "special_bonus_unique_tiny"         "+70"
-                }
-                "toss_damage_bonus_pct"     
-                {
-                    "value"             "100"
-                }
-        }
-        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
-    }
-	
-"crystal_maiden_freezing_field"
-	{
-		"AbilityCooldown"				"13"
-		"AbilityDuration"				"5.0"
-		"AbilityChannelTime"			"5"
-		
-		"AbilityValues"
-        {
-			 "damage"
-            {
-                "value"                                     "650"
-                "special_bonus_unique_crystal_maiden_3"     "+50"
+}"+50"
             }
 		}
 	}

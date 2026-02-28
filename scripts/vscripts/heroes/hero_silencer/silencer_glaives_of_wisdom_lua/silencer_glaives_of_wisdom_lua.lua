@@ -27,6 +27,7 @@ function silencer_glaives_of_wisdom_lua:OnOrbImpact( params )
 		attacker = caster,
 		damage = damage,
 		damage_type = self:GetAbilityDamageType(),
+		damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 		ability = self, --Optional.
 	}
 	ApplyDamage(damageTable)

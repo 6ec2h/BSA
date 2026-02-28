@@ -11,93 +11,106 @@ function item_mjollnir_lua1:GetIntrinsicModifierName()
 end
 
 function item_mjollnir_lua1:OnSpellStart()
+	if not IsServer() then return end
+
 	local target = self:GetCursorTarget()
-		if self:GetCaster():GetTeamNumber() == self:GetCursorTarget():GetTeam() and not target:IsBuilding() == true then 
-			target:AddNewModifier(self:GetCaster(), self, "modifier_item_mjollnir_active", {duration = 15})
-			self:GetParent():EmitSound("DOTA_Item.Mjollnir.Activate")
-		end
+	if target:IsBuilding() then return end
+
+	local caster = self:GetCaster()
+	if caster:GetTeamNumber() ~= target:GetTeam() then return end
+
+	target:AddNewModifier(caster, self, "modifier_item_mjollnir_active", { duration = 15 })
+	
+	target:EmitSound("DOTA_Item.Mjollnir.Activate")
 end
 
 -------------------------------------------------------------------------------------
 modifier_item_mjollnir_active = class({})
 
 function modifier_item_mjollnir_active:GetTexture()
-	return item_mjollnir
+	return "item_mjollnir"
+end
+
+function modifier_item_mjollnir_active:GetEffectName()
+	return "particles/items2_fx/mjollnir_shield.vpcf"
+end
+
+function modifier_item_mjollnir_active:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
 end
 
 function modifier_item_mjollnir_active:OnCreated()
-	self.shield_particle = ParticleManager:CreateParticle("particles/items2_fx/mjollnir_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
-	self:AddParticle(self.shield_particle, false, false, -1, false, false)
+	if not IsServer() then return end
 
 	self.static_chance	 	= self:GetAbility():GetSpecialValueFor("static_chance")
 	self.static_strikes	 	= self:GetAbility():GetSpecialValueFor("static_strikes")
 	self.static_damage	 	= self:GetAbility():GetSpecialValueFor("static_damage")
 	self.static_radius		= self:GetAbility():GetSpecialValueFor("static_radius")
 	self.static_cooldown	= self:GetAbility():GetSpecialValueFor("static_cooldown")
-
-	self.prock = true
 end
 
 function modifier_item_mjollnir_active:DeclareFunctions()
-	return{
+	return {
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 end
 
-function modifier_item_mjollnir_active:OnIntervalThink()
-	self.prock = true
-	self:StartIntervalThink(-1)
-end
-
 function modifier_item_mjollnir_active:OnTakeDamage(keys)
-	-- "Can only proc on damage instances of 5 or greater (after reductions)."
-	if keys.unit == self:GetParent() and keys.attacker ~= self:GetParent() and self.prock == true and keys.damage >= 5 and RandomInt(1,5) == 5 then
-		self:GetParent():EmitSound("Item.Maelstrom.Chain_Lightning.Jump")
-		if (keys.attacker:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D() <= self.static_radius and not keys.attacker:IsBuilding() and not keys.attacker:IsOther() and keys.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
-			local static_particle	= nil
-			static_particle = ParticleManager:CreateParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.unit)
-			ParticleManager:SetParticleControlEnt(static_particle, 0, keys.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.attacker:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(static_particle, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-			ParticleManager:ReleaseParticleIndex(static_particle)
-			
-			ApplyDamage({
-				victim 			= keys.attacker,
-				damage 			= self.static_damage,
-				damage_type		= DAMAGE_TYPE_MAGICAL,
-				damage_flags 	= DOTA_DAMAGE_FLAG_NONE,
-				attacker 		= self:GetCaster(),
-				ability 		= self:GetAbility()
-			})	
+	if not IsServer() then return end
+
+	if self.onCooldown then return end
+
+	local parent = self:GetParent()
+	if parent ~= keys.unit then return end
+
+	local attacker = keys.attacker
+	if attacker == parent then return end
+	if attacker:GetTeamNumber() == parent:GetTeamNumber() then return end
+
+	if keys.damage < 5 then return end
+
+	if RandomInt(1, 5) ~= 5 then return end
+
+	local nearbyUnits = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), nil, self.static_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local nearbyUnitsLen = #nearbyUnits
+
+	local leftStaticStrikes = self.static_strikes
+
+	for i = 1, nearbyUnitsLen do
+		local enemy = nearbyUnits[i]
+
+		local particle = ParticleManager:CreateParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
+		ParticleManager:SetParticleControlEnt(particle, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(particle, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
+		ParticleManager:ReleaseParticleIndex(particle)
+
+		ApplyDamage({
+			attacker 		= self:GetCaster(),
+			victim 			= enemy,
+			damage 			= self.static_damage,
+			damage_type		= DAMAGE_TYPE_MAGICAL,
+			damage_flags 	= DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
+			ability 		= self:GetAbility()
+		})
+		
+		leftStaticStrikes = leftStaticStrikes - 1
+
+		if leftStaticStrikes <= 0 then
+			break
 		end
-		
-		local unit_count = 0
-		
-		for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.static_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)) do
-			if enemy ~= keys.attacker then
-				static_particle = ParticleManager:CreateParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
-				ParticleManager:SetParticleControlEnt(static_particle, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(static_particle, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-				ParticleManager:ReleaseParticleIndex(static_particle)
-				ApplyDamage({
-					victim 			= enemy,
-					damage 			= self.static_damage,
-					damage_type		= DAMAGE_TYPE_MAGICAL,
-					damage_flags 	= DOTA_DAMAGE_FLAG_NONE,
-					attacker 		= self:GetCaster(),
-					ability 		= self:GetAbility()
-				})
-								
-				unit_count = unit_count + 1
-				
-				if (unit_count >= self.static_strikes and self.static_strikes > 0) then
-					break
-				end
-			end
-		end
-		
-		self.bStaticCooldown = true
-		self:StartIntervalThink(self.static_cooldown)
 	end
+
+	if nearbyUnitsLen > 0 then
+		parent:EmitSound("Item.Maelstrom.Chain_Lightning.Jump")
+	end
+
+	self.onCooldown = true
+	
+	Timers:CreateTimer(0.3, function()
+		if self:IsNull() then return end
+
+		self.onCooldown = false
+	end)
 end
 
 --------------------------------------------------------------------------------
@@ -210,6 +223,32 @@ function modifier_item_mjollnir_strike:OnIntervalThink()
 			end
 			
 			ParticleManager:SetParticleControlEnt(self.zap_particle, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+			ParticleManager:SetParticleControl(self.zap_particle, 2, Vector(1, 1, 1))
+			ParticleManager:ReleaseParticleIndex(self.zap_particle)
+		
+			self.unit_counter						= self.unit_counter + 1
+			self.current_unit						= enemy
+			self.units_affected[self.current_unit]	= true
+			self.zapped								= true
+			
+			ApplyDamage({
+				victim 			= enemy,
+				damage 			= self.chain_damage,
+				damage_type		= DAMAGE_TYPE_MAGICAL,
+				damage_flags 	= DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
+				attacker 		= self:GetCaster(),
+				ability 		= self:GetAbility()
+			})
+			
+			break
+		end
+	end
+	
+	if (self.unit_counter >= self.chain_strikes and self.chain_strikes > 0) or not self.zapped then
+		self:StartIntervalThink(-1)
+		self:Destroy()
+	end
+endParticleControlEnt(self.zap_particle, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControl(self.zap_particle, 2, Vector(1, 1, 1))
 			ParticleManager:ReleaseParticleIndex(self.zap_particle)
 		

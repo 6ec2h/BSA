@@ -105,7 +105,7 @@ function modifier_item_undying_skin_debuff:OnCreated( kv )
 		damage = self:GetAbility():GetSpecialValueFor( "damage" ),
 		damage_type = self:GetAbility():GetAbilityDamageType(),
 		ability = self:GetAbility(), --Optional.
-		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION, --Optional.
+		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN, --Optional.
 	}
 	self:StartIntervalThink(1)
 end
@@ -163,10 +163,8 @@ function modifier_item_undying_skin_debuff_slow:DeclareFunctions()
 		MODIFIER_PROPERTY_PRE_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_FINISHED,
-
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 	}
-
 	return funcs
 end
 

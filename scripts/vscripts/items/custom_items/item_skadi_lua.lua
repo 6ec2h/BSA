@@ -101,6 +101,7 @@ function item_skadi_lua1:OnProjectileHit(target)
 		damage_table.ability 		= self;
 		damage_table.damage_type 	= DAMAGE_TYPE_MAGICAL;
 		damage_table.damage	 		= self:GetSpecialValueFor("damage");
+		damage_table.damage_flags	= DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN
 		damage_table.victim  		= target;
 		ApplyDamage(damage_table)
 	end
@@ -191,6 +192,5 @@ end
 
 function modifier_item_skadi_slow_lua:GetModifierLifestealAmplify()
 	return -self.heal_reduction
-endn modifier_item_skadi_slow_lua:GetModifierLifestealAmplify()
-	return -self.heal_reduction
+endction
 end

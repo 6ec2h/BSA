@@ -1,7 +1,11 @@
 const CONTEXT = $.GetContextPanel();
+CONTEXT.style.backgroundColor = "#1a2a3a"
+CONTEXT.style.padding = "0"
+CONTEXT.style.border = "2px solid #3a4a5a"
 
 var decription_attributes = CustomNetTables.GetTableValue( "set_attributes", 'set_attributes')
 var boost_attributes = CustomNetTables.GetTableValue( "boost_attributes", 'boost_attributes')
+var can_use_sets = CustomNetTables.GetTableValue( "can_use_sets", 'can_use_sets')
 
 function CheckFullSet(all_data) {
     var data = all_data.hero_enquip;
@@ -21,14 +25,6 @@ function CheckFullSet(all_data) {
     }
     return filledItems === 6;
 }
-
-const can_use_sets = {
-	1: {min: 1},
-	2: {min: 5},
-	3: {min: 9},
-	4: {min: 13},
-	5: {min: 17},
-};
 
 function setTooltip(){
 	const item_data = CONTEXT.GetAttributeString(`item_data`, undefined);
@@ -52,7 +48,7 @@ function setTooltip(){
 		color = "#ed0c2e"
 	}
 	
-    var percent = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast'];
+    var percent = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast', 'magic_crit'];
     var int_num = ['head', 'legs', 'weapon'];
 	
 	if (percent.includes(data.item_type)){
@@ -71,9 +67,6 @@ function setTooltip(){
 		mult = 1
 	}
 	
-	
-	$("#TooltipImage").style.height = "90px"
-	
 	if (data.set_type == 'jewell'){
 		$("#TooltipImage").SetImage('file://{resources}/images/sets/'+ data.item_type + '.png');
 		$("#TooltipName").text = $.Localize("#"+data.set_type+"_"+data.item_type)
@@ -86,15 +79,26 @@ function setTooltip(){
 		$("#TooltipName").text = $.Localize("#"+data.set_type+"_"+data.item_type) + " " + data.level
 		$("#TooltipName").style.color = 'white'
 		$("#MainInfo").style.backgroundColor = "gradient(linear, 50% 0%, 50% 100%, from(" + color + "), to(transparent))";
-		$("#BaseAttribute").text = $.Localize("#"+data.item_type+"_description") + (decription_attributes[[data.item_type]] * data.level * data.set_number) + perc
-		$("#Descr").visible = true
-		$("#Descr").text = $.Localize("#min_level_use") + can_use_sets[data.set_number].min
+		$("#BaseAttribute").text = $.Localize("#"+data.item_type+"_description") + " " + (decription_attributes[[data.item_type]] * data.level * data.set_number) + perc
+		
+		const minLevelToUse = can_use_sets[data.set_number.toString()].min
+		if (minLevelToUse <= 0) {
+			$("#Descr").visible = false
+			CONTEXT.FindChildTraverse("DescrSourceValueLine").visible = false
+		} else {
+			$("#Descr").visible = true
+			$("#Descr").text = $.Localize("#min_level_use") + " " + minLevelToUse
+			CONTEXT.FindChildTraverse("DescrSourceValueLine").visible = true
+		}
 	}
-	panel = $("#BonusAttribute")
-	panel.RemoveAndDeleteChildren()
+	
+	const bonus_attr = $("#BonusAttribute")
+	bonus_attr.RemoveAndDeleteChildren()
+	
+	let lastHr
 	
 	for (const attrKey in data.bonus_attribute) {
-		let label = $.CreatePanel("Label", panel, "")
+		let label = $.CreatePanel("Label", bonus_attr, "")
 		label.AddClass('bonus_label')
 	
 		if (percent.includes(attrKey)){
@@ -108,10 +112,16 @@ function setTooltip(){
 			num = 1
 		}
 
-		// label.text = $.Localize("#"+attrKey+"_description") + " " + (decription_attributes[attrKey] + (data.set_number * 0.1 * data.level) - data.set_number * 0.1).toFixed(num) + perc;
-		
 		label.text = $.Localize("#"+attrKey+"_description") + " " + (decription_attributes[attrKey] * data.set_number +  boost_attributes[attrKey][data.set_number] * (data.level - 1)).toFixed(num) + perc  
-		let hr = $.CreatePanel("Panel", panel, "hr") 
-
+		lastHr = $.CreatePanel("Panel", bonus_attr, "hr") 
+	}
+	
+	if (lastHr) {
+		lastHr.DeleteAsync(0)
+		bonus_attr.style.padding = "4px 9px"
+		CONTEXT.FindChildTraverse("BonusSourceValueLine").visible = true
+	} else {
+		bonus_attr.style.padding = "0"
+		CONTEXT.FindChildTraverse("BonusSourceValueLine").visible = false
 	}
 }

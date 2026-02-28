@@ -11,36 +11,65 @@ function hero_fiddlesticks_harvest:GetCastAnimation()
 end
 
 function hero_fiddlesticks_harvest:OnSpellStart()
-	local damage = self:GetSpecialValueFor( "damage" )
-	local splash_radius = self:GetSpecialValueFor( "splash_radius" )
-	local duration = self:GetSpecialValueFor( "duration" )
-	local bonus_damage = self:GetSpecialValueFor( "bonus_damage" )
-	local front = self:GetCaster():GetForwardVector():Normalized()
-	local target_pos = self:GetCaster():GetOrigin() + front * splash_radius
+    if not IsServer() then return end
+    local caster = self:GetCaster()
+    local target_point = self:GetCursorPosition()
+    local caster_pos = caster:GetOrigin()
 
-	local direction = target_pos-self:GetCaster():GetOrigin()
-	direction.z = 0
-	direction = direction:Normalized()
-	local range = self:GetCaster():GetOrigin() + direction * splash_radius/2-120
-	
-	local enemies = FindUnitsInCone( self:GetCaster():GetTeamNumber(), target_pos, self:GetCaster():GetOrigin(), range, 150, 360, nil, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
-	
-	local damageTable = {
-		attacker = self:GetCaster(),
-		damage = damage,
-		damage_type = DAMAGE_TYPE_PURE,
-		ability = self,
-	}
-	
-	for _,enemy in pairs(enemies) do
-		damageTable.victim = enemy
-		ApplyDamage(damageTable)
-	end
-	
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_hero_fiddlesticks_harvest", {duration = duration}):SetStackCount(#enemies * bonus_damage)
-	
-	self:PlayEffects( direction )
-	EmitSoundOn( "Hero_Centaur.DoubleEdge", self:GetCaster() )
+    local damage = self:GetSpecialValueFor("damage")
+    local splash_radius = self:GetSpecialValueFor("splash_radius")
+    local duration = self:GetSpecialValueFor("duration")
+    local bonus_damage = self:GetSpecialValueFor("bonus_damage")
+    local start_width = 150
+    local end_width = 360
+
+    local direction = target_point - caster_pos
+    direction.z = 0
+    if direction:Length2D() == 0 then
+        direction = caster:GetForwardVector()
+    else
+        direction = direction:Normalized()
+    end
+
+    local vStartPos = caster_pos
+    local vEndPos = caster_pos + direction * splash_radius
+    local vCenterPos = caster_pos + direction * (splash_radius / 2)
+
+    local enemies = FindUnitsInCone(
+        caster:GetTeamNumber(),
+        vCenterPos,         -- vCenterPos
+        vStartPos,          -- vStartPos
+        vEndPos,            -- vEndPos
+        start_width,        -- fStartRadius
+        end_width,          -- fEndRadius
+        nil,                -- hCacheUnit
+        DOTA_UNIT_TARGET_TEAM_ENEMY,
+        DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+        FIND_CLOSEST,
+        false
+    )
+
+    local damageTable = {
+        attacker = caster,
+        damage = damage,
+        damage_type = DAMAGE_TYPE_PURE,
+        ability = self,
+    }
+
+    for _, enemy in pairs(enemies) do
+        damageTable.victim = enemy
+        ApplyDamage(damageTable)
+    end
+
+    if #enemies > 0 then
+        local modifier = caster:AddNewModifier(caster, self, "modifier_hero_fiddlesticks_harvest", { duration = duration })
+        if modifier then
+            modifier:SetStackCount(#enemies * bonus_damage)
+        end
+    end
+    self:PlayEffects(direction)
+    EmitSoundOn("Hero_Centaur.DoubleEdge", caster)
 end
 
 function FindUnitsInCone( nTeamNumber, vCenterPos, vStartPos, vEndPos, fStartRadius, fEndRadius, hCacheUnit, nTeamFilter, nTypeFilter, nFlagFilter, nOrderFilter, bCanGrowCache )
@@ -209,7 +238,6 @@ end
 ------------------------------------------------------------------------------------
 
 LinkLuaModifier("modifier_hero_fiddlesticks_chains", "heroes/hero_fiddlesticks/hero_fiddlesticks", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_hero_fiddlesticks_chains_effect", "heroes/hero_fiddlesticks/hero_fiddlesticks", LUA_MODIFIER_MOTION_NONE)
 
 hero_fiddlesticks_chains = class({})
 
@@ -274,31 +302,7 @@ function hero_fiddlesticks_chains:OnProjectileHitHandle(target, location)
 			ability = self,
 		})
 		target:AddNewModifier(self:GetCaster(), self, "modifier_hero_fiddlesticks_chains", { duration = self:GetSpecialValueFor("duration") })
-		target:AddNewModifier(self:GetCaster(), self, "modifier_hero_fiddlesticks_chains_effect", { duration = self:GetSpecialValueFor("duration_disarm") })
 	end
-end
-
----------------------------------------------------------------
-
-modifier_hero_fiddlesticks_chains_effect = class({})
-
-function modifier_hero_fiddlesticks_chains_effect:IsHidden()
-	return true
-end
-
-function modifier_hero_fiddlesticks_chains_effect:IsPurgable()
-	return false
-end
-
-function modifier_hero_fiddlesticks_chains_effect:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
-	}
-	return funcs
-end
-
-function modifier_hero_fiddlesticks_chains_effect:GetModifierPhysicalArmorBonus()
-	return -(self:GetParent():GetPhysicalArmorBaseValue() / 100 * self:GetAbility():GetSpecialValueFor( "disarm" ))
 end
 
 ---------------------------------------------------------------
@@ -322,6 +326,17 @@ function modifier_hero_fiddlesticks_chains:CheckState()
 		[MODIFIER_STATE_ROOTED] = true,
 	}
 	return state
+end
+
+function modifier_hero_fiddlesticks_chains:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_DISABLE_HEALING
+	}
+	return funcs
+end
+
+function modifier_hero_fiddlesticks_chains:GetDisableHealing()
+	return 1
 end
 
 function modifier_hero_fiddlesticks_chains:GetEffectName()
@@ -446,18 +461,123 @@ function modifier_hero_fiddlesticks_scythe_effect:GetEffectAttachType()
 end
 
 function modifier_hero_fiddlesticks_scythe_effect:OnRemoved()
-	if IsServer() then
-		local caster = self:GetCaster()
-		local target = self:GetParent()
-		local damage = caster:GetBaseDamageMin() + self:GetAbility():GetSpecialValueFor("damage")
-		
-		local heal = damage / 100 * self:GetAbility():GetSpecialValueFor( "lifesteal" )
-		
-		if target:IsAlive() and self:GetAbility() then
-			caster:Heal(heal, caster)
-			local actually_dmg = ApplyDamage({attacker = caster, victim = target, ability = self:GetAbility(), damage = damage, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-			SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, heal, nil)
-			SendOverheadEventMessage(nil, OVERHEAD_ALERT_DAMAGE, target, actually_dmg, nil)
-		end
-	end
+    if not IsServer() then return end
+    local caster = self:GetCaster()
+    local target = self:GetParent()
+    local ability = self:GetAbility()
+    if not ability or ability:IsNull() or not target:IsAlive() then return end
+    local damage_to_apply = ability:GetSpecialValueFor("damage")
+    local health_before = target:GetHealth()
+
+    ApplyDamage({
+        attacker = caster,
+        victim = target,
+        ability = ability,
+        damage = damage_to_apply,
+        damage_type = DAMAGE_TYPE_PURE,
+    })
+
+    local health_after = target:GetHealth()
+    local actual_damage_dealt = health_before - health_after
+
+    if actual_damage_dealt > 0 then
+		local heal = actual_damage_dealt / 100 * self:GetAbility():GetSpecialValueFor( "lifesteal" )
+		caster:Heal(heal, caster)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, heal, nil)
+        SendOverheadEventMessage(nil, OVERHEAD_ALERT_DAMAGE, target, actual_damage_dealt, nil)
+    end
+end
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+LinkLuaModifier("modifier_hero_fiddlesticks_armor", "heroes/hero_fiddlesticks/hero_fiddlesticks", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hero_fiddlesticks_armor_debuff", "heroes/hero_fiddlesticks/hero_fiddlesticks", LUA_MODIFIER_MOTION_NONE)
+
+hero_fiddlesticks_armor = class({})
+
+function hero_fiddlesticks_armor:GetIntrinsicModifierName()
+    return "modifier_hero_fiddlesticks_armor"
+end
+
+--------------------------------------------------------------------------------
+
+modifier_hero_fiddlesticks_armor = class({})
+
+function modifier_hero_fiddlesticks_armor:IsHidden() return false end
+function modifier_hero_fiddlesticks_armor:IsPermanent() return true end
+
+function modifier_hero_fiddlesticks_armor:OnCreated()
+    if not IsServer() then return end
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
+    self.dis_arm = self:GetAbility():GetSpecialValueFor("dis_arm")
+    self:StartIntervalThink(0.5)
+end
+
+function modifier_hero_fiddlesticks_armor:OnRefresh()
+	self.dis_arm = self:GetAbility():GetSpecialValueFor("dis_arm")
+end
+
+function modifier_hero_fiddlesticks_armor:OnIntervalThink()
+    if not IsServer() then return end
+    
+    local caster = self:GetParent()
+    local enemies = FindUnitsInRadius(
+        caster:GetTeamNumber(),
+        caster:GetAbsOrigin(),
+        nil,
+        self.radius,
+        DOTA_UNIT_TARGET_TEAM_ENEMY,
+        DOTA_UNIT_TARGET_BASIC,
+        DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+        FIND_ANY_ORDER,
+        false
+    )
+
+    local count = #enemies
+    self:SetStackCount(count * self.dis_arm )
+
+    for _, enemy in pairs(enemies) do
+        local debuff = enemy:FindModifierByName("modifier_hero_fiddlesticks_armor_debuff")
+        if debuff then
+            debuff:SetStackCount(count * self.dis_arm)
+        end
+    end
+end
+
+function modifier_hero_fiddlesticks_armor:IsAura() return true end
+function modifier_hero_fiddlesticks_armor:GetModifierAura() return "modifier_hero_fiddlesticks_armor_debuff" end
+function modifier_hero_fiddlesticks_armor:GetAuraRadius() return self.radius end
+function modifier_hero_fiddlesticks_armor:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
+function modifier_hero_fiddlesticks_armor:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
+
+--------------------------------------------------------------------------------
+
+modifier_hero_fiddlesticks_armor_debuff = class({})
+
+function modifier_hero_fiddlesticks_armor_debuff:IsHidden() return false end
+function modifier_hero_fiddlesticks_armor_debuff:IsDebuff() return true end
+
+function modifier_hero_fiddlesticks_armor_debuff:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+    }
+end
+
+function modifier_hero_fiddlesticks_armor_debuff:GetModifierPhysicalArmorBonus()
+    return -self:GetStackCount()
+end
+
+function modifier_hero_fiddlesticks_armor_debuff:GetModifierMagicalResistanceBonus()
+    return -self:GetStackCount()
+end
+
+
+function modifier_hero_fiddlesticks_armor_debuff:GetEffectName()
+    return "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+end
+
+function modifier_hero_fiddlesticks_armor_debuff:GetEffectAttachType()
+    return PATTACH_OVERHEAD_FOLLOW
 end

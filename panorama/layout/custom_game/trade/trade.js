@@ -10,36 +10,29 @@ trade_panel_sell.visible = false
 trade_panel_order.visible = false
 
 const DotaHUD = GameUI.CustomUIConfig().DotaHUD;
-DotaHUD.windowControllers["trade"] = {
-    is_open: false,
-    open: function(){
-        trade_panel_main.visible = true
-		open_back()
-    },
-    close: function(){
-        close()
-    }
-}
+
 DotaHUD.ListenToMouseEvent(
     DotaHUD.GetCloseWindowOnOutsideClick(trade_panel_main, "trade")
 );
 
-var tabs = ["head", "armor", "legs", "boots", "weapon", "shield"] //, "food", "jewell"]
+var tabs = ["head", "armor", "legs", "boots", "weapon", "shield"]
+
 const attributes = [
-	{key: "crit", name: "Crit. Damage"},
-	{key: "mkb", name: "Pierce"},
-	{key: "desolator", name: "Decrease Armor on Attacks"},
-	{key: "magic_desolator", name: "Magic Resistance Reduction on Attacks"},
-	{key: "mjolnir", name: "Mjollnir"},
-	{key: "mjolnir_armor", name: "Lightning Armor"},
-	{key: "hp_regen", name: "Restores Health Equal to % of Health"},
-	{key: "hp_regen_amp", name: "Health Regeneration Boost"},
-	{key: "lifesteal", name: "Lifesteal"},
-	{key: "magic_lifesteal", name: "Spell Lifesteal"},
-	{key: "damage_block", name: "Chance to Block Damage"},
-	{key: "reflect", name: "Reflect Ramage"},
-	{key: "multicast", name: "Multicast Chance"},
-	{key: "manacost", name: "Mana Cost Reduction"},
+	{key: "crit"},
+	{key: "mkb"},
+	{key: "desolator"},
+	{key: "magic_desolator"},
+	{key: "mjolnir"},
+	{key: "mjolnir_armor"},
+	{key: "hp_regen"},
+	{key: "hp_regen_amp"},
+	{key: "lifesteal"},
+	{key: "magic_lifesteal"},
+	{key: "damage_block"},
+	{key: "reflect"},
+	{key: "multicast"},
+	{key: "manacost"},
+	{key: "magic_crit"},
 ]
 
 function ActivateTrade(){
@@ -50,38 +43,71 @@ function DeactivateTrade(){
 	DotaHUD.WindowClose("trade");
 }
 
-function open_back(){
-	trade_panel_order.visible = false
-	trade_panel_start.visible = true
-	trade_panel_buy.visible = false
-	trade_panel_sell.visible = false
+DotaHUD.windowControllers["trade"] = {
+    is_open: false,
+    open: function(){
+        trade_panel_main.visible = true;
+        buy_open(); 
+    },
+    close: function(){
+        close();
+    }
+}
+
+function UpdateTabVisuals(activeTabId) {
+    var tradeHeader = $("#TabButtons");
+    if (!tradeHeader) return;
+    var children = tradeHeader.Children();
+    for (var i = 0; i < children.length; i++) {
+        var child = children[i];
+        
+        if (child.BHasClass("TabBtn")) {
+            if (child.id === activeTabId) {
+                child.AddClass("selected_tab");
+            } else {
+                child.RemoveClass("selected_tab");
+            }
+        }
+    }
 }
 
 function buy_open(){
-	// GameUI.CustomUIConfig.CloseInventory();
-	GameEvents.SendCustomGameEventToServer("get_trade_items", {type:'head'})
+    if (trade_panel_main.visible === false) {
+        trade_panel_main.visible = true;
+    }
+
+	UpdateTabVisuals("BuyTab");
 	
-	$("#trade_panel_content").RemoveAndDeleteChildren()
-	$("#trade_panel_sort").RemoveAndDeleteChildren()
-	
-	for (let i = 0; i < tabs.length; i++)
+    GameEvents.SendCustomGameEventToServer("get_trade_items", {type:'head'})
+    
+    $("#trade_panel_content").RemoveAndDeleteChildren()
+    $("#trade_panel_sort").RemoveAndDeleteChildren()
+    
+    for (let i = 0; i < tabs.length; i++)
     {
         CreateTab($("#trade_panel_sort"), tabs[i])
     }
-	
-	trade_panel_order.visible = false
-	trade_panel_start.visible = false
-	trade_panel_buy.visible = true
-	trade_panel_sell.visible = false
-	
-	let loading = $.CreatePanel("Panel", $("#trade_panel_content"), '');
-    loading.AddClass("trade_panel_element_item_loading");
+    
+    trade_panel_order.visible = false
+    trade_panel_start.visible = false
+    trade_panel_buy.visible = true
+    trade_panel_sell.visible = false
+    
+    // let loading = $.CreatePanel("Panel", $("#trade_panel_content"), '');
+    // loading.AddClass("trade_panel_element_item_loading");
 
-	DotaHUD.WindowCloseAnyway("inventory_hud")
+    DotaHUD.WindowCloseAnyway("inventory_hud")
+}
+
+function open_back(){
+    trade_panel_order.visible = false
+    trade_panel_start.visible = true
+    trade_panel_buy.visible = false
+    trade_panel_sell.visible = false
 }
 
 function sell_open(){
-	// GameUI.CustomUIConfig.CloseInventory();
+	UpdateTabVisuals("SellTab");
 	clear()
 	GameEvents.SendCustomGameEventToServer("get_inventory_for_sell", {})
 	trade_panel_order.visible = false
@@ -93,7 +119,7 @@ function sell_open(){
 }
 
 function order_open(){
-	// GameUI.CustomUIConfig.CloseInventory();
+	UpdateTabVisuals("OrderTab");
 	GameEvents.SendCustomGameEventToServer("get_order", {})
 	trade_panel_order.visible = true
 	trade_panel_start.visible = false
@@ -179,7 +205,7 @@ function _show_items(data, type) {
 			item_panel.FindChildTraverse("trade_panel_element_image").style.backgroundSize = "95%";
 			item_panel.FindChildTraverse("trade_panel_element_image").style.backgroundPosition = "center center";
 			item_panel.FindChildTraverse("trade_panel_element_image").AddClass("equipped_item_shadow_level_" + item.item.level)
-			item_panel.FindChildTraverse("trade_panel_element_item_name").text = $.Localize("#"+item.item.set_type+"_"+item.item.item_type);
+			item_panel.FindChildTraverse("trade_panel_element_item_name").text = $.Localize("#"+item.item.set_type+"_"+item.item.item_type) + " " + item.item.level;
 			item_panel.FindChildTraverse("trade_panel_element_item_seller").steamid = item.seller_steam_id;
 			item_panel.FindChildTraverse("name_data_label").text = $.Localize("#order_open") + " " + date_conv(item.created_at)
 			item_panel.FindChildTraverse("trade_panel_element_item_price_count").text = item.price;
@@ -197,7 +223,7 @@ function create_filters_toggle(){
 	$("#trade_panel_filter_sets").RemoveAndDeleteChildren()
 	$("#trade_panel_filter_bonuses").RemoveAndDeleteChildren()
 	$("#trade_panel_filter_stats").RemoveAndDeleteChildren()
-	for (let i = 1; i <= 5; i++)
+	for (let i = 1; i <= 6; i++)
     {
         let toggle = $.CreatePanel("ToggleButton", $("#trade_panel_filter_sets"), i)
 		toggle.AddClass("CheckBox")
@@ -207,11 +233,11 @@ function create_filters_toggle(){
 
         });
 		
-		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, "Set " + i )});
+		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, $.Localize("#set") + " " + i )});
 		toggle.SetPanelEvent("onmouseout", TipsOut)
 	}
 	
-	for (let i = 0; i <= 4; i++)
+	for (let i = 0; i <= 5; i++)
     {
         let toggle = $.CreatePanel("ToggleButton", $("#trade_panel_filter_bonuses"), i)
 		toggle.AddClass("CheckBox")
@@ -221,7 +247,7 @@ function create_filters_toggle(){
 
         });
 		
-		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, "Bonus count " + i )});
+		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, $.Localize("#bonus_count") + " " + i )});
 		toggle.SetPanelEvent("onmouseout", TipsOut)
 	}
 
@@ -234,14 +260,12 @@ function create_filters_toggle(){
 			show_items(current_filters.listings, current_filters.type)
         });
 		
-		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, attributes[i].name )});
+		toggle.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", toggle, $.Localize("#"+attributes[i].key +"_sort") )});
 		toggle.SetPanelEvent("onmouseout", TipsOut)
 	}
 }
 
 function filterAndSortData(data, sortByPrice = true) {
-	// $.Msg(data)
-	
     var tradePanelFilterSets = $("#trade_panel_filter_sets");
     var filterSetNumbers = [];
 
@@ -376,9 +400,6 @@ function UpdateInventoryItems(inventory_list)
             let item_info = inventory_list[inventory_key_slot]
             if (item_info != null)
             {
-                let item_name = item_info.name
-                let item_type = item_info.type
-                let item_attributes = item_info.attributes
                 let item_icon = item_info.set_type + "/" + item_info.item_type
                 
                 let find_slot = $("#trade_panel_content_inventory").FindChildTraverse("inventory_slot_"+inventory_key_slot)
@@ -415,18 +436,18 @@ var boost_attributes = CustomNetTables.GetTableValue( "boost_attributes", 'boost
 var textEntry;
 var textPrice;
 var price = 2
-var left_panel = $("#trade_panel_content_sell_left")
-var center_panel = $("#trade_panel_content_sell_center")
+var trade = $("#trade_panel_content_sell")
+// var center_panel = $("#trade_panel_content_sell_center")
 
 function clear(){
-	left_panel.RemoveAndDeleteChildren()
-	center_panel.RemoveAndDeleteChildren()	
+	trade.RemoveAndDeleteChildren()
+	// center_panel.RemoveAndDeleteChildren()	
 }
 
 function set_item_for_sale(number){
 	var data = inventory[number];
 
-    var percent = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast'];
+    var percent = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast', 'magic_crit'];
     var int_num = ['head', 'legs', 'weapon'];
 	
 	if (percent.includes(data.item_type)){
@@ -443,12 +464,12 @@ function set_item_for_sale(number){
 	clear()
 	// ------------------------------------- TARGET ---------------------------------
 	
-	var pan = $.CreatePanel("Panel", left_panel, '');
+	var pan = $.CreatePanel("Panel", trade, '');
 	pan.BLoadLayoutSnippet("sell_snippet");
 	
 	pan.FindChildTraverse('sell_item_panel_name').text = $.Localize("#"+data.set_type+"_"+data.item_type) + " " + data.level
 	pan.FindChildTraverse('sell_item_panel_image').SetImage('file://{resources}/images/sets/' + data.set_type + '/' + data.item_type + '.png');
-	pan.FindChildTraverse('sell_item_panel_base').text = $.Localize("#"+data.item_type+"_description") + (decription_attributes[[data.item_type]] * data.level * data.set_number) + perc
+	pan.FindChildTraverse('sell_item_panel_base').text = $.Localize("#"+data.item_type+"_description") + " " + (decription_attributes[[data.item_type]] * data.level * data.set_number) + perc
 	
 	var bonus_panel = pan.FindChildTraverse('sell_item_panel_bonus')
 	for (const attrKey in data.bonus_attribute) {
@@ -465,19 +486,20 @@ function set_item_for_sale(number){
 		}else{
 			num = 1
 		}
+
 		label.text = $.Localize("#"+attrKey+"_description") + " " + (decription_attributes[attrKey] * data.set_number +  boost_attributes[attrKey][data.set_number] * (data.level - 1)).toFixed(num) + perc  
+
 		let hr = $.CreatePanel("Panel", bonus_panel, "SourceValueLine") 
 	}	
 	
 	// ------------------------------------- DESCRIPTION ---------------------------------
 	
-	var pan_desc = $.CreatePanel("Panel", center_panel, 'descr');
-	pan_desc.BLoadLayoutSnippet("sell_item_desc");
-	textEntry = pan_desc.FindChildTraverse('buy_text_input')
-	textPrice = pan_desc.FindChildTraverse('sell_item_panel_price_label')
+
+	textEntry = pan.FindChildTraverse('buy_text_input')
+	textPrice = pan.FindChildTraverse('sell_item_panel_price_label')
 
 
-	pan_desc.FindChildTraverse('sell_item_panel_desc_button').SetPanelEvent("onmouseactivate", function() {sell_item_request(data, number)});
+	pan.FindChildTraverse('sell_item_panel_desc_button').SetPanelEvent("onmouseactivate", function() {sell_item_request(data, number)});
 }
 
 function sell_item_request(item , number){
@@ -505,7 +527,7 @@ function InputCount() {
 
 	if (Number.isNaN(textInt)) {
 		price = 0;
-		textPrice.text =  "= " + price;
+		textPrice.text = price;
 		return
 	}
 
@@ -521,7 +543,7 @@ function InputCount() {
 	price = Math.max(price, 0)
 	price = Math.min(price, 500)
 
-	textPrice.text =  "= " + price;
+	textPrice.text =  $.Localize("#give_coins_after_sell") + " " + price;
 }
 
 
@@ -614,7 +636,6 @@ function date_conv(dateString){
 }
 
 function show(type_name) {
-	// $.Msg("show")
 	loading = $.CreatePanel("Panel", $("#trade_panel_content"), 'loading');
     loading.AddClass("trade_panel_element_item_loading");
 	loading.visible = true
@@ -628,6 +649,19 @@ function show(type_name) {
 			  g[key].visible = false
 		}
 	}  
+
+	var sort_children = $("#trade_panel_sort").Children();
+	for (var i = 0; i < sort_children.length; i++) {
+		var child = sort_children[i];
+		
+		if (child.id === type_name) {
+			child.AddClass("selected");
+			// child.SetSelected(true); 
+		} else {
+			child.RemoveClass("selected");
+			// child.SetSelected(false);
+		}
+	}
 }
 
 function showTooltip(panel, data) {

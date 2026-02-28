@@ -33,11 +33,10 @@
 	</snippets>
 	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
 		<Panel id="Account" class="Account" hittest="false">
-			<Image class="openaccount" id="openaccount" onmouseactivate="openaccountButton()" onmouseover="TipsOver(&apos;account&apos;,&apos;openaccount&apos;)" onmouseout="TipsOut()" />
 			<Panel id="AccountPanel">
 				<Panel id="main" hittest="false">
 					<Panel id="main_content" />
-					<Image id="CloseButtonIcon" src="s2r://panorama/images/custom_game/closeicon.png" onmouseactivate="openaccountButton()" onmouseover="TipsOver(&apos;close&apos;,&apos;CloseButtonIcon&apos;)" onmouseout="TipsOut()" />
+					<Panel id="CloseButtonIcon" src="" onmouseactivate="openaccountButton()" onmouseover="TipsOver(&apos;close&apos;,&apos;CloseButtonIcon&apos;)" onmouseout="TipsOut()" />
 					<Panel id="TotalStatsInfo">
 						<Button id="StatInfoHeader" onactivate="switchStatsInfoVisibility()">
 							<Label class="StatInfoHeaderText" />
@@ -47,7 +46,7 @@
 			</Panel>
 			<Image id="ban" />
 			<Panel id="AcceptReset">
-				<Label class="AcceptResetDescription" text="Reset?" />
+				<Label class="AcceptResetDescription" text="#reset" />
 				<Label id="AcceptResetYes" text="#yes" />
 				<Label id="AcceptResetNo" text="#no" />
 			</Panel>

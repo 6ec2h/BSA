@@ -1,152 +1,97 @@
 <!-- xml reconstructed by Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
+		<include src="s2r://panorama/layout/custom_game/guild/animations.vcss_c" />
 		<include src="s2r://panorama/layout/custom_game/guild/guild.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/guildslist.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/createguildmodal/createguildmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/guildpanel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/topnav/topnav.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/chat/chat.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/maintab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/auditlogsmodal/auditlogsmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/joinrequestsmodal/joinrequestsmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/guildsettingsmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/namechangeconfirmmodal/namechangeconfirmmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildleavemodal/guildleavemodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/kickmembermodal/kickmembermodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/memberrow/memberrow.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/talentstab/talentstab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/speedrunstab/speedrunstab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/queststab/queststab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/eventstab/eventstab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/shoptab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/buyservicemodal/buyservicemodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/render/render.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="s2r://panorama/layout/custom_game/guild/override.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/constants.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/number.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/misc.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/image.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/collection.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/events.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/time.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/fast_elements.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/mouse.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/plural.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/bitfield.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/updatemanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/basemanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/membersmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/questsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/rolesmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/servicesmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/talentsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/joinrequestsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/auditlogsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/messagesmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/eventticketsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/guildsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/basestructure.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/settingsbitfield.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/deputypermissionsbitfield.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/guild.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/member.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/quest.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/role.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/service.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/speedruns.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/speedrunsstats.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/talent.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/joinrequest.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/auditlog.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/message.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/eventticket.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/guild/guild.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/guildslist.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/createguildmodal/createguildmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/guildpanel.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/topnav/topnav.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/chat/chat.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/maintab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/auditlogsmodal/auditlogsmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/joinrequestsmodal/joinrequestsmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/guildsettingsmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/namechangeconfirmmodal/namechangeconfirmmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildleavemodal/guildleavemodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/kickmembermodal/kickmembermodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/memberrow/memberrow.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/talentstab/talentstab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/speedrunstab/speedrunstab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/queststab/queststab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/eventstab/eventstab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/shoptab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/buyservicemodal/buyservicemodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/render/render.vjs_c" />
 	</scripts>
-	<snippets>
-		<snippet name="guild_list">
-			<Panel class="Guild_menu_container_list_card">
-				<Panel id="Guild_menu_container_list_icon" />
-				<Panel id="Guild_menu_container_list_icon_back" />
-				<Label class="Guild_menu_container_list_name" id="Guild_menu_container_list_name" text="" />
-				<Label class="Guild_menu_container_list_level" id="Guild_menu_container_list_level" text="Уровень: 8" />
-				<Label class="Guild_menu_container_list_count" id="Guild_menu_container_list_count" text="5/10" />
-				<Panel id="Guild_menu_container_list_card_button">
-					<Label class="Guild_menu_container_list_card_button_label" text="Вступить" />
-				</Panel>
-			</Panel>
-		</snippet>
-		<snippet name="guild_list_in_guild">
-			<Panel class="Guild_all_card">
-				<Panel id="icon_container">
-					<Panel id="Guild_all_icon" />
-					<Panel id="Guild_all_icon_back" />
-				</Panel>
-				<Panel id="desc_container">
-					<Label class="Guild_all_name" id="Guild_all_name" text="" />
-					<Label class="Guild_all_level" id="Guild_all_level" text="Уровень: 8" />
-				</Panel>
-				<Label class="Guild_all_count" id="Guild_all_count" text="5/10" />
-			</Panel>
-		</snippet>
-		<snippet name="member_list">
-			<Panel class="member_card">
-				<DOTAAvatarImage id="member_card_icon" steamid="" />
-				<DOTAUserName id="member_card_name" steamid="" />
-				<Label id="member_card_date" text="ц3" />
-				<Panel id="member_card_remove" />
-			</Panel>
-		</snippet>
-		<snippet name="reward_list">
-			<Panel class="Guild_menu_content_top_right_cart">
-				<Panel class="pass_cart_image_quest" id="pass_cart_image_quest" />
-				<Image class="pass_cart_image_quest_back" id="pass_cart_image_quest_back" src="" />
-				<Label class="pass_cart_label" id="pass_cart_label" text="" />
-			</Panel>
-		</snippet>
-		<snippet name="chat_list">
-			<Panel id="guild_chat_message">
-				<DOTAAvatarImage id="guild_chat_message_icon" class="guild_chat_message_icon" steamid="76561198353453074" />
-				<Label id="guild_chat_message_text" text="2sadaksjhfhsjasdasfsdhbsdkjndjdjsds" />
-			</Panel>
-		</snippet>
-	</snippets>
-	<Panel class="Guild_menu_root" hittest="false">
-		<Panel id="Guild_menu_open_button" onmouseactivate="open()" onmouseover="TipsOver(&apos;Guild_menu_open_button&apos;,&apos;Guild_menu_open_button&apos;)" onmouseout="TipsOut()" />
-		<Panel id="Guild_menu_container_list" hittest="false">
-			<Panel class="CloseGuild" onmouseactivate="closeButton()" />
-			<Panel id="Guild_menu_container_list_content_icon" />
-			<Panel id="Guild_menu_container_list_content" />
-			<Panel id="Guild_menu_container_list_create_button" onmouseactivate="create_guild()">
-				<Label id="Guild_menu_container_list_create_button_label" text="Создать гильдию" />
-			</Panel>
-		</Panel>
-		<Panel id="Guild_create_panel">
-			<Label class="Guild_create_panel_main_label" text="#create_guild_main" />
-			<Label class="Guild_create_panel_main_label2" text="#create_guild_main2" />
-			<Panel id="Guild_image_container">
-				<Panel id="PrevImage" onactivate="PrevImage()" />
-				<Panel id="Guild_image_contant" />
-				<Panel id="Guild_image_contant_back" />
-				<Panel id="NextImage" onactivate="NextImage()" />
-			</Panel>
-			<Panel id="guild_name">
-				<TextEntry id="guild_name_input" class="" maxchars="20" placeholder="" />
-			</Panel>
-			<Panel id="Guild_create_panel_ok" onmouseactivate="create_guild_request()">
-				<Label class="Guild_create_panel_label" text="Создать!" />
-			</Panel>
-			<Panel id="Guild_create_panel_close" onmouseactivate="create_guild()">
-				<Label class="Guild_create_panel_label" text="Отмена" />
-			</Panel>
-		</Panel>
-		<Panel id="Guild_menu_container" hittest="false">
-			<Panel id="Guild_panel_icon" hittest="false">
-				<Panel class="CloseGuild2" onmouseactivate="closeButton()" />
-			</Panel>
-			<Panel id="Guild_panel_all" class="Guild_panel_all" hittest="false" />
-			<Panel id="Guild_panel_all_button" onmouseactivate="ShowAll()" hittest="true" />
-			<Panel id="Guild_menu_content">
-				<Panel id="Guild_menu_content_top">
-					<Panel id="Guild_menu_content_top_left">
-						<Panel id="Guild_menu_icon" />
-						<Panel id="Guild_menu_icon_back" />
-						<Label id="Guild_menu_name" text="2" />
-						<Image class="Guild_menu_exp_icon" id="Guild_menu_exp_icon" src="s2r://panorama/images/guild/guild_progress_png.vtex" onmouseover="TipsOver(&apos;Guild_menu_exp_icon&apos;,&apos;Guild_menu_exp_icon&apos;)" onmouseout="TipsOut()" />
-						<Panel id="Guild_menu_icon_lvl">
-							<Label id="Guild_menu_icon_lvl_text" text="2" />
-						</Panel>
-						<Panel id="Guild_menu_icon_pr_bar" />
-						<Label id="members_count" text="20" />
-					</Panel>
-					<Panel id="Guild_menu_content_top_right" />
-				</Panel>
-				<Panel id="Guild_menu_member_buy_slots" onactivate="buy_slot()" onmouseover="TipsOver(&apos;Guild_menu_member_buy_slots&apos;,&apos;Guild_menu_member_buy_slots&apos;)" onmouseout="TipsOut()">
-					<Image class="buy_slots_image" src="s2r://panorama/images/guild/slots_png.vtex" />
-					<Image class="buy_slots_image_gem" src="s2r://panorama/images/guild/gem_png.vtex" />
-					<Label class="buy_slots_text" text="20" />
-				</Panel>
-				<Panel id="Guild_menu_reset" onactivate="reset()" onmouseover="TipsOver(&apos;Guild_menu_reset&apos;,&apos;Guild_menu_reset&apos;)" onmouseout="TipsOut()">
-					<Image class="buy_slots_image" src="s2r://panorama/images/guild/reset_png.vtex" />
-					<Image class="buy_slots_image_gem" src="s2r://panorama/images/guild/gem_png.vtex" />
-					<Label class="buy_slots_text" text="50" />
-				</Panel>
-				<Panel id="Guild_menu_member_list" />
-				<Panel id="Guild_menu_member_list_back" hittest="false" />
-				<Panel id="Guild_menu_member_leave" onactivate="leave_guild()">
-					<Label id="Guild_menu_member_leave_text" text="#Leave" />
-				</Panel>
-				<Panel id="Guild_menu_member_leave_accept">
-					<Panel id="Guild_menu_member_leave_yes" onactivate="leave_guild_yes()">
-						<Label class="Guild_menu_member_leave_label" text="#yes" />
-					</Panel>
-					<Panel id="Guild_menu_member_leave_no" onmouseactivate="leave_guild_no()">
-						<Label class="Guild_menu_member_leave_label" text="#no" />
-					</Panel>
-				</Panel>
-				<Panel id="guild_rune">
-					<Panel id="guild_rune_icon" onmouseover="TipsOver(&apos;guild_rune_icon&apos;,&apos;guild_rune_icon&apos;)" onmouseout="TipsOut()" />
-					<Panel id="guild_rune_button" onactivate="buy_guild_permanent_buff(&apos;rune&apos;)">
-						<Image class="guild_button_image" src="s2r://panorama/images/guild/gem_png.vtex" />
-						<Label class="guild_button_text" text="25" />
-					</Panel>
-				</Panel>
-				<Panel id="guild_aegis">
-					<Panel id="guild_aegis_icon" onmouseover="TipsOver(&apos;guild_aegis_icon&apos;,&apos;guild_aegis_icon&apos;)" onmouseout="TipsOut()" />
-					<Panel id="guild_aegis_button" onactivate="buy_guild_permanent_buff(&apos;aegis&apos;)">
-						<Image class="guild_button_image" src="s2r://panorama/images/guild/gem_png.vtex" />
-						<Label class="guild_button_text" text="25" />
-					</Panel>
-				</Panel>
-				<Panel id="guild_chat">
-					<Panel id="guild_chat_text" />
-					<TextEntry id="guild_chat_input" multiline="false" maxchars="100" placeholder="" oninputsubmit="SendChatMessage()" />
-				</Panel>
-				<Panel id="guild_chat_back" hittest="false" />
-			</Panel>
-		</Panel>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel class="main-layer" hittest="false" />
+		<Panel class="top-layer" hittest="false" />
 	</Panel>
 </root>

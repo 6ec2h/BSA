@@ -128,7 +128,7 @@ function modifier_venomancer_poison_sting_lua_debuff:OnCreated( kv )
 		damage = damage,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self:GetAbility(), --Optional.
-		damage_flags = DOTA_DAMAGE_FLAG_HPLOSS, --Optional.
+		damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN, --Optional.
 	}
 	self:StartIntervalThink( 1 )
 	self:OnIntervalThink()

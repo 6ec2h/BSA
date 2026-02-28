@@ -3,6 +3,10 @@ LinkLuaModifier( "modifier_dragon_fire_ball_lua_slow", "heroes/hero_dragon/drago
 
 dragon_fire_ball_lua = class({})
 
+function dragon_fire_ball_lua:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf", context )
+end
+
 function dragon_fire_ball_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
@@ -88,17 +92,11 @@ function modifier_dragon_fire_ball_lua_thinker:OnIntervalThink()
 end
 
 function modifier_dragon_fire_ball_lua_thinker:PlayEffects()
-	local effect_cast = ParticleManager:CreateParticle( "particles/dk.vpcf", PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
-	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 0, 0 ) )
-	self:AddParticle(
-		effect_cast,
-		false, -- bDestroyImmediately
-		false, -- bStatusEffect
-		-1, -- iPriority
-		false, -- bHeroEffect
-		false -- bOverheadEffect
-	)
+    self.pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf", PATTACH_WORLDORIGIN, nil)
+    ParticleManager:SetParticleControl(self.pfx, 0, self:GetParent():GetAbsOrigin())
+    ParticleManager:SetParticleControl(self.pfx, 1, self:GetParent():GetAbsOrigin() + self:GetParent():GetForwardVector())
+    ParticleManager:SetParticleControl(self.pfx, 2, Vector(self:GetDuration(), 0, 0))
+    self:AddParticle(self.pfx, false, false, -1, false, false)
 	EmitSoundOn("hero_jakiro.macropyre", self:GetParent() )
 end
 

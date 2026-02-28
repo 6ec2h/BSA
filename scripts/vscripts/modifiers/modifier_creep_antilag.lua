@@ -34,12 +34,11 @@ function modifier_creep_antilag:CheckState()
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
         [MODIFIER_STATE_INVISIBLE] = true,
         [MODIFIER_STATE_ATTACK_IMMUNE] = true,
-        [MODIFIER_STATE_STUNNED] = true,
+        -- [MODIFIER_STATE_STUNNED] = true,
         [MODIFIER_STATE_UNSELECTABLE] = true,
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_OUT_OF_GAME] = true
     }   
-
     return state
 end
 

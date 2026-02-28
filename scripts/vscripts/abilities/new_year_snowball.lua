@@ -15,6 +15,5 @@ end
 
 function new_year_snowball:OnProjectileHit(target)
 	if not target then return end
-
 	EmitSoundOn("Frostivus.Item.Snowball.Target", target)
- end 
+ end d 

@@ -9,7 +9,6 @@ BuyControl.visible = false
 ShowReward.visible = false
 var c = 0
 var timerId
-
 const DotaHUD = GameUI.CustomUIConfig().DotaHUD;
 DotaHUD.windowControllers["bp"] = {
     is_open: false,
@@ -48,6 +47,8 @@ function close(){
 function bp_init(t) {
 	quest = $("#BP_content_top_right");
     quest.RemoveAndDeleteChildren();
+
+    $.Msg(t.user_reward)
 	
 	const sortedQuestsData = Object.entries(t.quests_data);
 
@@ -115,6 +116,9 @@ function bp_init(t) {
 
     for (const i of Object.keys(t.rewards)) {
         const reward = t.rewards[i];
+
+        $.Msg(reward, i)
+
         var PassPanel = $.CreatePanel("Panel", panel, "Pass_Panel_" + i);
         PassPanel.BLoadLayoutSnippet("pass_container");
         PassPanel.FindChildInLayoutFile("pass_content_level_simple").text = i;
@@ -186,7 +190,6 @@ function AddEveryDayReward(count) {
 function TakeReward(reward, button, level) {
 	 button.ClearPanelEvent("onmouseactivate")
 	 button.RemoveClass('pass_content_back_simple')
-	 // $.Msg(reward, level)
 	 GameEvents.SendCustomGameEventToServer("TakeReward", {reward, level})
 }
 
@@ -320,6 +323,9 @@ function timer() {
 
 (function () {
 	GameEvents.Subscribe("Show_reward", Show_reward);
+    GameUI.LoopTime.Schedule(0.0, ()=>{
+		DotaHUD.CreateTopBarButton("file://{images}/bp/bpopen.png", "bp", open, "bp");
+	});
 })();
 
 

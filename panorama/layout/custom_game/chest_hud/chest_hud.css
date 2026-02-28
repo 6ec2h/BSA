@@ -4,9 +4,10 @@
 {
 	width: 980px;
 	height: 764px;
-	background-image: url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
-	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	align: center center;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 6px;
 }
 
 .ChestHudHeadBG
@@ -20,20 +21,30 @@
 
 .CloseChestHudIcon
 {
-	background-image: url("s2r://panorama/images/shop/close_png.vtex");
-	background-size: 100%;
-	width: 20px;
-	height: 20px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 70%;
+	background-position: center;
+	width: 32px;
+	height: 32px;
 	horizontal-align: right;
 	margin-top: 10px;
 	margin-right: 10px;
-	transition-property: pre-transform-scale2d;
-	transition-duration: 0.25s;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+}
+
+.CloseChestHudIcon:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
 }
 
 .CloseChestHudIcon:hover
 {
-	pre-transform-scale2d: 0.8;
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
 }
 
 .ChestName
@@ -101,23 +112,17 @@
 	margin-top: 270px;
 	width: 200px;
 	height: 35px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );
-	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
-	background-size: 300px 35px;
-	box-shadow: fill #002a6644 1px 1px 8px 1px;
-	border: 1px solid black;
-	transition-property: pre-transform-scale2d, brightness;
-	transition-duration: 0.2s;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	border-radius: 4px;
 }
 
 .OpenChestButton:hover
 {
-	brightness: 1.3;
-}
-
-.OpenChestButton:active
-{
-	pre-transform-scale2d: 0.8;
+	brightness: 1.8;
+	sound: "ui_select_arrow";
 }
 
 .OpenChestButtonLabel

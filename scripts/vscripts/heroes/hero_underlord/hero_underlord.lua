@@ -481,23 +481,16 @@ function modifier_lua_abyssal_underlord_atrophy_aura:OnDeath( params )
 	self:SetDuration( self.duration, true )
 end
 
-this_hero_creeps = {"satyr_soulstealer","satyr_hellcaller","npc_dota_creature_hellbear","npc_dota_creature_small_hellbear","npc_dota_creature_dire_hound","npc_dota_creature_dire_hound_boss",
-"forest_zombie","skeleton","npc_creep_crystal","apparat","tusk","icespider","white_walker","mirana","npc_dota_creature_large_ogre_seal","guard","npc_trap_visage","tank","undying","morf",
-"npc_blob","npc_slardar_unit","npc_shaker","npc_zone_jungle_1","npc_zone_jungle_2","npc_zone_jungle_3","npc_zone_jungle_4","npc_keeper_of_the_light","miner","small_hellbear","encha","treant",
-"npc_lifestealer","batr","warlock","pudge","npc_venom_creep","demon","npc_gyro","npc_enigma","npc_sniper","npc_disruptor","cher"}
-
 function IsMyKilledBadGuys(hero, params)
     if params.unit:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS then
         return false
     end
 	local attacker = params.attacker
-	local unit_name = params.unit:GetUnitName()
-		for _,current_name in pairs(this_hero_creeps) do
-			if current_name == unit_name and hero == attacker then
-			return true
-		end
-	end
-	return false
+	if hero ~= attacker or attacker:HasModifier("modifier_guild_event") then return false end
+	
+	if not _G.excludedUnitsLookup[params.unit:GetUnitName()] then return false end
+
+	return true
 end
 
 function modifier_lua_abyssal_underlord_atrophy_aura:GetModifierPreAttack_BonusDamage()
@@ -766,6 +759,31 @@ function modifier_lua_abyssal_underlord_dark_rift_effect:OnCreated( kv )
 	self.hr_regen = self:GetAbility():GetSpecialValueFor( "hr_regen" )
 	self.armor = self:GetAbility():GetSpecialValueFor( "armor" )
 	self.resist = self:GetAbility():GetSpecialValueFor( "resist" )
+	if not IsServer() then return end
+end
+
+
+function modifier_lua_abyssal_underlord_dark_rift_effect:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,	
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+	}
+	return funcs
+end
+
+function modifier_lua_abyssal_underlord_dark_rift_effect:GetModifierHealthRegenPercentage( params )
+	return self.hr_regen
+end
+
+function modifier_lua_abyssal_underlord_dark_rift_effect:GetModifierPhysicalArmorBonus( params )
+	return self.armor
+end
+
+function modifier_lua_abyssal_underlord_dark_rift_effect:GetModifierMagicalResistanceBonus( params )
+	return self.resist
+end
+SpecialValueFor( "resist" )
 	if not IsServer() then return end
 end
 

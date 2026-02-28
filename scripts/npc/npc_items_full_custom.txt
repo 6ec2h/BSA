@@ -1481,7 +1481,7 @@
 		"AbilityTextureName"	        "all/pipe_2"
 		"AbilityCooldown"				"60.0"
 		"AbilityManaCost"				"100"
-		"AbilityCastRange"				"1200"
+		"AbilityCastRange"				"700"
 		"ScriptFile"					"items/custom_items/item_pipe_lua"
 
 		"AbilityValues"
@@ -1522,7 +1522,7 @@
 		"AbilityTextureName"	        "all/pipe_3"
 		"AbilityCooldown"				"60.0"
 		"AbilityManaCost"				"100"
-		"AbilityCastRange"				"1200"
+		"AbilityCastRange"				"700"
 		"ScriptFile"					"items/custom_items/item_pipe_lua"
 
 		"AbilityValues"
@@ -1781,11 +1781,7 @@
 			"duration"				"0.5 1 1"
 		}
 	}
-	
-//======================================================================================================================================================================================================
 
-
-	
 //======================================================================================================================================================================================================
 
 "item_recipe_heart_lua1"
@@ -5479,6 +5475,17 @@
 		"ItemBaseLevel"					"3"
 		"AbilityCastRange"				"700"
 		"AbilityCooldown"				"60"
+		"AbilityValues"
+		{
+			"bonus_agility"         "25 50 75"
+			"crit_chance"        	"20 30 40"
+			"crit_damage"   		"200"
+			"damage"          		"40 80 120"
+			"duration"				"3"
+		}
+	}	
+	
+}n"				"60"
 		"AbilityValues"
 		{
 			"bonus_agility"         "25 50 75"

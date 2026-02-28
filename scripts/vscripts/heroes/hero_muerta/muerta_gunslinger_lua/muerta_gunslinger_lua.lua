@@ -1,6 +1,12 @@
 muerta_gunslinger_lua = class({})
 LinkLuaModifier( "modifier_muerta_gunslinger_lua", "heroes/hero_muerta/muerta_gunslinger_lua/muerta_gunslinger_lua", LUA_MODIFIER_MOTION_NONE )
 
+function muerta_gunslinger_lua:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_projectile_alternate.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_gunslinger.vpcf", context )
+end
+
 function muerta_gunslinger_lua:GetIntrinsicModifierName()
 	return "modifier_muerta_gunslinger_lua"
 end
@@ -118,14 +124,6 @@ function modifier_muerta_gunslinger_lua:GetModifierProjectileName()
 		return "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf"
 	else
 		return "particles/units/heroes/hero_muerta/muerta_ultimate_projectile_alternate.vpcf"
-	end
-end
-
-function modifier_muerta_gunslinger_lua:PlayEffects()
-	local particle_cast = "particles/units/heroes/hero_muerta/muerta_gunslinger.vpcf"
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-endrnate.vpcf"
 	end
 end
 

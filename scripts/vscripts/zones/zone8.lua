@@ -1,38 +1,56 @@
 function start_quest(data)
-	quest_system:StartQuest('main', 16)
+	quest_system:StartQuest('main', 14)
 end
 
+function spawn_creeps()
+	random_ability = passive[RandomInt(1,#passive)]
+	
+	local count = 0
+	local forest_waves = {
+		odd = {
+			"npc_dota_zone_8_unit_5",
+			"npc_dota_zone_8_unit_3",
+			"npc_dota_zone_8_unit_4", 
+			"npc_dota_zone_8_unit_4",
+			"npc_dota_zone_8_unit_2",
+			"npc_dota_zone_8_unit_6"
+		},
+		even = {
+			"npc_dota_zone_8_unit_5",
+			"npc_dota_zone_8_unit_4",
+			"npc_dota_zone_8_unit_3",
+			"npc_dota_zone_8_unit_2",
+			"npc_dota_zone_8_unit_2",
+			"npc_dota_zone_8_unit_6"
+		}
+	}
 
-function creep_spawn()
-	for i = 1, 4 do
-		local point = Entities:FindByName( nil, "tomb_spawn_"..i):GetAbsOrigin()
-		local unit = CreateUnitByName("lordTomb_"..i, point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+	Timers:CreateTimer(0, function()
+		count = count + 1
+		if count > 25 then return nil end
+		
+		local point = Entities:FindByName(nil, "for" .. count):GetAbsOrigin()
+
+		local current_wave = (count % 2 == 1) and forest_waves.odd or forest_waves.even
+
+		for _, unit_name in ipairs(current_wave) do
+			local unit = CreateUnitByName(unit_name, point + RandomVector(200), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			rules:aura_dif(unit, random_ability)
+		end
+
+		return 0.1
+	end)
+					
+	if _G.Game_Difficulty >= 12 then
+		Timers:CreateTimer(3, function()
+			Notifications:TopToAll({text="#usilenie", duration=3})
+			Notifications:TopToAll({text="#DOTA_Tooltip_ability_"..random_ability, duration=3})
+			rules:updateExtraAbility("creeps", random_ability)
+		end)
 	end
 	
-	random_ability = passive[RandomInt(1,#passive)]	
-	local count = 0
-	Timers:CreateTimer(0, function()
-		if count < 30 then
-			count = count + 1
-			if count % 2 == 1 then
-				local point = Entities:FindByName( nil, "doom"..count):GetAbsOrigin()
-				for i = 1, 5 do
-					if i == 1 then 
-						local unit = CreateUnitByName("warlock", point + RandomVector( RandomInt( 250, 250 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
-						rules:aura_dif(unit,random_ability)
-					elseif i == 2 or i == 3 then
-						local unit = CreateUnitByName("npc_lifestealer", point + RandomVector( RandomInt( 250, 250 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
-						rules:aura_dif(unit,random_ability)
-					else
-						local unit = CreateUnitByName("batr", point + RandomVector( RandomInt( 250, 250 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
-						rules:aura_dif(unit,random_ability)	
-					end	
-				end
-			else
-				local point = Entities:FindByName( nil, "doom"..count):GetAbsOrigin()
-				for i = 1, 5 do
-					if i == 1 or i == 2 then 
-						local unit = CreateUnitByName("warlock", point + RandomVector( RandomInt( 250, 250 )), true, nil, nil, DOTA_TEAM_NEUTRALS)
+	rules:clear_zone('for', 1, 25)
+endrue, nil, nil, DOTA_TEAM_NEUTRALS)
 						rules:aura_dif(unit,random_ability)
 					elseif i == 3 then
 						local unit = CreateUnitByName("npc_lifestealer", point + RandomVector( RandomInt( 250, 250 )), true, nil, nil, DOTA_TEAM_NEUTRALS)

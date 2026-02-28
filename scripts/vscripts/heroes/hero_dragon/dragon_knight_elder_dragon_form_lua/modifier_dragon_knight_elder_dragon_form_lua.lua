@@ -78,7 +78,7 @@ function modifier_dragon_knight_elder_dragon_form_lua:OnCreated( kv )
 
 	if not IsServer() then return end
 	-- set attack capability
-	-- TODO: Consider stacking other attack cap changing abilities
+
 	if not self.capabilityChanged then 
 		self.capabilityChanged = true
 		self.capabilityNative = self.parent:GetAttackCapability()
@@ -110,7 +110,7 @@ function modifier_dragon_knight_elder_dragon_form_lua:OnDestroy()
 	if not IsServer() then return end
 
 	-- revert unit cap
-	-- TODO: Consider stacking other attack cap changing abilities
+
 
 	
 	self.parent:SetAttackCapability( self.capabilityNative )
@@ -256,6 +256,7 @@ function modifier_dragon_knight_elder_dragon_form_lua:Splash( target, damage )
 				attacker = self.parent,
 				damage = damage * self.splash_pct,
 				damage_type = DAMAGE_TYPE_PHYSICAL,
+				damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 				ability = self:GetAbility(), --Optional.
 				-- damage_category = DOTA_DAMAGE_CATEGORY_ATTACK, --Optional.
 			}
@@ -301,4 +302,5 @@ function modifier_dragon_knight_elder_dragon_form_lua:PlayEffects()
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
+endcleManager:ReleaseParticleIndex( effect_cast )
 end
