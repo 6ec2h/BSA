@@ -331,7 +331,7 @@ function modifier_hidden_earth_boss_magnetize_lua:OnIntervalThink()
     local units = FindUnitsInRadius(
         caster:GetTeamNumber(),
         target:GetOrigin(),
-        nil,
+        target,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_BOTH,
         DOTA_UNIT_TARGET_ALL,

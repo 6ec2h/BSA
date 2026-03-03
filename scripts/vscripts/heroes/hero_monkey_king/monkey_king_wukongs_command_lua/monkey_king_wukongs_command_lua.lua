@@ -27,7 +27,7 @@ function monkey_king_wukongs_command_lua:OnSpellStart()
 	end
 	
     for i=1, count do
-        unit = CreateUnitByName("npc_dota_monkey_clone_hero", self:GetCaster():GetOrigin() + RandomVector( RandomInt( 0, 150 )), false, nil, nil, self:GetCaster():GetTeamNumber())
+        unit = CreateUnitByName("npc_dota_monkey_clone_hero", self:GetCaster():GetOrigin() + RandomVector( RandomInt( 0, 150 )), false, self:GetCaster(), self:GetCaster(), self:GetCaster():GetTeamNumber())
         unit:AddNewModifier(self:GetCaster(), self, "modifier_monkey_king_wukongs_command_lua_solider_status", {})
         unit:AddNewModifier(self:GetCaster(), self, "modifier_kill", {duration = duration})
 		FindClearSpaceForUnit(unit, self:GetCaster():GetOrigin() + RandomVector( RandomInt( 0, 150 )), false)

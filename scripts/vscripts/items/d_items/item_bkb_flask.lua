@@ -35,7 +35,7 @@ function item_bkb_flask:OnProjectileHit(target, location)
     local radius = self:GetSpecialValueFor("radius")
     local duration =  self:GetSpecialValueFor("duration")
 
-	local allies = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, target:GetOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false )
+	local allies = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, target:GetOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false )
 	for _,ally in pairs(allies) do
 		if not ally:HasModifier("modifier_immune_bkb_flask_cd") then
 			ally:AddNewModifier(target, nil, "modifier_magic_immune", {duration = duration} )

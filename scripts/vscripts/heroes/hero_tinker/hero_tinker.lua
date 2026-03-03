@@ -45,7 +45,7 @@ end
 
 
 function tinker_laser_lua:Refract( targets, jumps )
-	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), targets[jumps]:GetOrigin(), nil, 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), targets[jumps]:GetOrigin(), targets[jumps], 300, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)
 	local next_target = nil
 	for _,enemy in pairs(enemies) do
 		local candidate = true
@@ -188,7 +188,7 @@ function tinker_heat_seeking_missile_lua:OnSpellStart()
 	local enemies = FindUnitsInRadius(
 		caster:GetTeamNumber(),	-- int, your team number
 		caster:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		caster,	-- handle, cacheUnit. (not known)
 		radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_ALL,	-- int, type filter

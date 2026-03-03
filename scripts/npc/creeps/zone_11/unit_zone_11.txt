@@ -66,10 +66,6 @@
 				{
 					"Item"					"item_radiance_lua3"
 				}
-				"Assault"
-				{
-					"Item"					"item_sphere"
-				}
 				"PowerTreads"
 				{
 					"Item"					"item_guardian_greaves_lua3"
@@ -139,10 +135,6 @@
 				"PowerTreads"
 					{
 						"Item"					"item_black_king_bar_lua2"
-					}
-				"Assault"
-					{
-						"Item"					"item_sphere"
 					}
 				"blink"
 					{
@@ -224,10 +216,6 @@
 				}	
 			"item_bfury_lua1"
 				{
-					"Item"					"item_sphere"
-				}	
-			"item_bfury_lua1"
-				{
 					"Item"					"item_pipe_lua3"
 				}
 			"item_bfury_lua1"
@@ -296,10 +284,6 @@
 		{
 			"EquippedItems"
 			{
-				"Assault"
-				{
-					"Item"					"item_sphere"
-				}
 				"Shivas"
 				{
 					"Item"					"item_shivas_guard_lua1"
@@ -359,6 +343,13 @@
 
         "StatusHealth"              "100"
         "StatusHealthRegen"         "0.0"
+		
+        "VisionDaytimeRange"        "1800"
+        "VisionNighttimeRange"      "800"
+        "TeamName"                  "DOTA_TEAM_NEUTRALS"
+        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    }
+}        "0.0"
 		
         "VisionDaytimeRange"        "1800"
         "VisionNighttimeRange"      "800"

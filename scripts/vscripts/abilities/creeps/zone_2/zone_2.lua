@@ -109,7 +109,7 @@ end
 function modifier_zombie_spawn:OnIntervalThink()
 	if IsServer() then
 		if self:GetAbility():IsCooldownReady() and self:GetParent():IsAlive() then
-			local hEnemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, 1100, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+			local hEnemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), 1100, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
 			if #hEnemies > 0 then
 				local unit = CreateUnitByName("npc_dota_zone_2_unit_4", self:GetParent():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
 				unit:AddNewModifier(unit, nil, "modifier_kill", {duration = 10})
@@ -159,7 +159,7 @@ function modifier_zombie_heal:OnIntervalThink()
     local units = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetAbsOrigin(),
-        nil,
+        caster,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_FRIENDLY,
         DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,

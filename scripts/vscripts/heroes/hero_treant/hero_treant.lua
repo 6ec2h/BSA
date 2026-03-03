@@ -274,7 +274,7 @@ function modifier_treant_leech_seed_lua:OnIntervalThink()
 	
 	dealdamage(self:GetParent(), self.leech_damage * self.damage_interval, self:GetCaster(), self:GetAbility())
 	
-	local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.remnants_radius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self.remnants_radius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	for _, unit in pairs(units) do
 		if unit ~= self:GetParent() then
 
@@ -433,7 +433,7 @@ function modifier_treant_living_armor_lua_passive:OnIntervalThink()
 	if IsServer() then
 		local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_unique_treant_6")
 		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then		
-			local trees = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, 600, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_TREE, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
+			local trees = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 600, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_TREE, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
 			self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_treant_living_armor_lua_passive_effect", {}):SetStackCount(#trees)	
 		end
 	end
@@ -485,7 +485,7 @@ function treant_overgrowth_lua:OnSpellStart()
 	local cast_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
 	ParticleManager:ReleaseParticleIndex(cast_particle)
 	
-	local overgrowth_primary_enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, self:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
+	local overgrowth_primary_enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), self:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
 
 	
 	for _, enemy in pairs(overgrowth_primary_enemies) do

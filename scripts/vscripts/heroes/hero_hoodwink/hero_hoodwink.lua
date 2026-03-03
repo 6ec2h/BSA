@@ -75,7 +75,7 @@ end
 function hoodwink_acorn_shot_lua:CreateTree( location )
 	AddFOWViewer( self:GetCaster():GetTeamNumber(), location, self.tree_vision, self.tree_duration, false )
 	local tree = CreateTempTreeWithModel( location, self.tree_duration, "models/heroes/hoodwink/hoodwink_tree_model.vmdl" )
-	local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), location, nil, 100, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+	local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), location, self:GetCaster(), 100, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	for _,unit in pairs(units) do
 		FindClearSpaceForUnit( unit, unit:GetOrigin(), true )
 	end
@@ -263,7 +263,7 @@ function modifier_hoodwink_acorn_shot_lua_thinker:OnIntervalThink()
 		local enemies = FindUnitsInRadius(
 			self.caster:GetTeamNumber(),	-- int, your team number
 			self.target:GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
+			self.target,	-- handle, cacheUnit. (not known)
 			self.range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
@@ -499,17 +499,11 @@ function modifier_hoodwink_bushwhack_lua_thinker:OnCreated( kv )
 	self:PlayEffects1()
 end
 
-function modifier_hoodwink_bushwhack_lua_thinker:OnRefresh( kv )
-	
-end
-
-function modifier_hoodwink_bushwhack_lua_thinker:OnRemoved()
-end
 
 function modifier_hoodwink_bushwhack_lua_thinker:OnDestroy()
 	if not IsServer() then return end
 	AddFOWViewer( self.caster:GetTeamNumber(), self.location, self.radius, self.duration, false )
-	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.location, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.location, self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	if #enemies<1 then
 		self:PlayEffects2( false )
 		return
@@ -550,9 +544,6 @@ function modifier_hoodwink_bushwhack_lua_thinker:OnDestroy()
 	end
 	self:PlayEffects2( true )
 	UTIL_Remove( self:GetParent() )
-end
-
-function modifier_hoodwink_bushwhack_lua_thinker:OnIntervalThink()
 end
 
 function modifier_hoodwink_bushwhack_lua_thinker:PlayEffects1()
@@ -763,6 +754,15 @@ end
 -- end
 
 -- function modifier_hoodwink_sharpshooter_lua:GetModifierDisableTurning()
+	-- return 1
+-- end
+
+-- function modifier_hoodwink_sharpshooter_lua:CheckState()
+	-- local state = {
+		-- [MODIFIER_STATE_DISARMED] = true,
+	-- }
+	-- return state
+-- ending()
 	-- return 1
 -- end
 

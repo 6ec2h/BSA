@@ -87,7 +87,7 @@ function modifier_item_disperser_custom_lua_1:OnAttackLanded(params)
 	local target_n = params.target
 	if self.parent:FindAllModifiersByName("modifier_item_disperser_custom_lua_1")[1] ~= self then return end
 
-	local enemies = FindUnitsInRadius(params.attacker:GetTeamNumber(), target_n:GetAbsOrigin(), nil, self.burn_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_ANY_ORDER, false)
+	local enemies = FindUnitsInRadius(params.attacker:GetTeamNumber(), target_n:GetAbsOrigin(), target_n, self.burn_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_ANY_ORDER, false)
 	for i = 1, #enemies do
 		local target = enemies[i]
 		local manaBurn = self.feedback_mana_burn

@@ -94,6 +94,19 @@ function drow_cross_lua:OnSpellStart()
     caster:AddNewModifier(caster, self, "modifier_drow_cross_lua_active", {duration = duration})
 end
 
+function drow_cross_lua:OnProjectileHit_ExtraData(target, location, data)
+    if not target or target:IsInvulnerable() then return end
+    
+    if data.is_cross_pierce == 1 then
+        local caster = self:GetCaster()
+        local damage_pct = self:GetSpecialValueFor("pierce_damage_pct")
+        caster:AddNewModifier(caster, self, "modifier_drow_cross_damage_helper", { duration = 0.03, pct = damage_pct })
+        caster:PerformAttack(target, true, true, true, false, true, false, false)
+        caster:RemoveModifierByName("modifier_drow_cross_damage_helper")
+    end
+    return true
+end
+
 --------------------------------------------------------------------------------
 
 modifier_drow_cross_lua_active = class({})
@@ -122,7 +135,7 @@ end
 		
 function modifier_drow_cross_lua_active:DeclareFunctions()
     return {
-        MODIFIER_EVENT_ON_TAKEDAMAGE,
+        MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
     }
 end
@@ -131,56 +144,101 @@ function modifier_drow_cross_lua_active:GetModifierAttackSpeedBonus_Constant()
     return self:GetAbility():GetSpecialValueFor("attack_speed")
 end
 
-function drow_cross_lua:OnProjectileHit(target, location)
-    if not target or target:IsInvulnerable() then return end
-    local caster = self:GetCaster()
-    local damage_pct = self:GetSpecialValueFor("pierce_damage_pct")
-    caster:AddNewModifier(caster, self, "modifier_drow_cross_damage_helper", { duration = 0.03, pct = damage_pct })
-    caster:PerformAttack(target, true, true, true, false, false, false, false)
-    caster:RemoveModifierByName("modifier_drow_cross_damage_helper")
-    return true
-end
+-- function drow_cross_lua:OnProjectileHit(target, location)
+--     if not target or target:IsInvulnerable() then return end
+--     local caster = self:GetCaster()
+--     local damage_pct = self:GetSpecialValueFor("pierce_damage_pct")
+--     caster:AddNewModifier(caster, self, "modifier_drow_cross_damage_helper", { duration = 0.03, pct = damage_pct })
+--     caster:PerformAttack(target, true, true, true, false, false, false, false)
+--     caster:RemoveModifierByName("modifier_drow_cross_damage_helper")
+--     return true
+-- end
 
-function modifier_drow_cross_lua_active:OnTakeDamage(keys)
+function modifier_drow_cross_lua_active:OnAttackLanded(keys)
     if not IsServer() then return end
-    
     local parent = self:GetParent()
     local ability = self:GetAbility()
 
-    if keys.attacker ~= parent or keys.unit == parent then return end
-    if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end 
-    if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then return end
-    if parent:HasModifier("modifier_drow_cross_damage_helper") then return end
-
-    local target = keys.unit
-    local target_pos = target:GetAbsOrigin()
-    local parent_pos = parent:GetAbsOrigin()
+    if keys.attacker ~= parent or keys.target:IsOther() then return end
     
-    local direction = (target_pos - parent_pos):Normalized()
+    -- ГЛАВНАЯ ПРОВЕРКА: если у атаки есть специальный индекс, значит это уже сплит-атака
+    -- Мы не создаем новые стрелы от стрел, которые были созданы этой же способностью
+    if keys.no_attack_cooldown then return end 
+
+    local target = keys.target
+    local direction = (target:GetAbsOrigin() - parent:GetAbsOrigin()):Normalized()
     local pierce_range = ability:GetSpecialValueFor("pierce_range")
     local pierce_width = ability:GetSpecialValueFor("pierce_width")
+    local end_pos = target:GetAbsOrigin() + direction * pierce_range
 
-    local end_pos = target_pos + direction * pierce_range
-
-    local enemies = FindUnitsInLine(parent:GetTeamNumber(), target_pos, end_pos, nil, pierce_width, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0)
+    local enemies = FindUnitsInLine(
+        parent:GetTeamNumber(), 
+        target:GetAbsOrigin(), 
+        end_pos, 
+        nil, 
+        pierce_width, 
+        DOTA_UNIT_TARGET_TEAM_ENEMY, 
+        DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 
+        0
+    )
 
     for _, enemy in pairs(enemies) do
         if enemy ~= target then
-            local arrow_projectile = {
+            local info = {
                 Target = enemy,
                 Source = target,
                 Ability = ability,
                 iMoveSpeed = parent:GetProjectileSpeed(),
                 EffectName = parent:GetRangedProjectileName(),
                 bDodgeable = true,
-                bReplaceExisting = false,
-                flExpireTime = GameRules:GetGameTime() + 10,
-                bProvidesVision = false,
+                -- Передаем флаг в ExtraData, чтобы OnProjectileHit знал, что делать
+                ExtraData = { is_cross_pierce = 1 }
             }
-            ProjectileManager:CreateTrackingProjectile(arrow_projectile)
+            ProjectileManager:CreateTrackingProjectile(info)
         end
     end
 end
+
+-- function modifier_drow_cross_lua_active:OnTakeDamage(keys)
+--     if not IsServer() then return end
+    
+--     local parent = self:GetParent()
+--     local ability = self:GetAbility()
+
+--     if keys.attacker ~= parent or keys.unit == parent then return end
+--     if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end 
+--     if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then return end
+--     if parent:HasModifier("modifier_drow_cross_damage_helper") then return end
+
+--     local target = keys.unit
+--     local target_pos = target:GetAbsOrigin()
+--     local parent_pos = parent:GetAbsOrigin()
+    
+--     local direction = (target_pos - parent_pos):Normalized()
+--     local pierce_range = ability:GetSpecialValueFor("pierce_range")
+--     local pierce_width = ability:GetSpecialValueFor("pierce_width")
+
+--     local end_pos = target_pos + direction * pierce_range
+
+--     local enemies = FindUnitsInLine(parent:GetTeamNumber(), target_pos, end_pos, nil, pierce_width, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0)
+
+--     for _, enemy in pairs(enemies) do
+--         if enemy ~= target then
+--             local arrow_projectile = {
+--                 Target = enemy,
+--                 Source = target,
+--                 Ability = ability,
+--                 iMoveSpeed = parent:GetProjectileSpeed(),
+--                 EffectName = parent:GetRangedProjectileName(),
+--                 bDodgeable = true,
+--                 bReplaceExisting = false,
+--                 flExpireTime = GameRules:GetGameTime() + 10,
+--                 bProvidesVision = false,
+--             }
+--             ProjectileManager:CreateTrackingProjectile(arrow_projectile)
+--         end
+--     end
+-- end
 
 --------------------------------------------------------------------------------
 
@@ -406,14 +464,18 @@ end
 
 function modifier_drow_ranger_marksmanship_lua:OnAttackLanded(params)
     if not IsServer() or params.attacker ~= self:GetParent() then return end
+    
     if self:GetAbility().split then return end 
     
+    if params.attacker:HasModifier("modifier_drow_cross_damage_helper") then return end
+
     local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_drow_8")
+
     if talent and talent:GetLevel() > 0 then
         local enemies = FindUnitsInRadius(
             self:GetParent():GetTeamNumber(),
             params.target:GetOrigin(),
-            nil,
+            params.target,
             self.split_range,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

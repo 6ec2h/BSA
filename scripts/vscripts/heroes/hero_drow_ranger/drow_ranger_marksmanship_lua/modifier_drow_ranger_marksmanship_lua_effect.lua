@@ -147,7 +147,7 @@ function modifier_drow_ranger_marksmanship_lua_effect:GetModifierProcAttack_Feed
 	local enemies = FindUnitsInRadius(
 		self:GetParent():GetTeamNumber(),	-- int, your team number
 		params.target:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		params.target,	-- handle, cacheUnit. (not known)
 		self.split_range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
@@ -204,7 +204,7 @@ function modifier_drow_ranger_marksmanship_lua_effect:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
 		self:GetParent():GetTeamNumber(),	-- int, your team number
 		self:GetParent():GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		self:GetParent(),	-- handle, cacheUnit. (not known)
 		self.disable,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO,	-- int, type filter

@@ -201,7 +201,7 @@ function modifier_land_mines:OnCreated()
 end
 
 function modifier_land_mines:OnIntervalThink()
-	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.mine:GetAbsOrigin(), nil, self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.mine:GetAbsOrigin(), self.mine, self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	if #enemies > 0 and not self.mine:HasModifier("modifier_land_mines_explose_delay") then
 		local sound = CreateModifierThinker(self.caster, self.ability, "modifier_dummy_thinker", {duration = 0.5}, self.mine:GetAbsOrigin(), self.caster:GetTeamNumber(), false)
 		EmitSoundOnLocationWithCaster(sound:GetAbsOrigin(), "Hero_Techies.RemoteMine.Priming", sound)
@@ -214,7 +214,7 @@ function modifier_land_mines:OnDestroy()
 		local ampl = self:GetParent():GetOwner():GetSpellAmplification(false) + 1
 		mine_damage = self.ability:GetSpecialValueFor("damage") * ampl
 
-		local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.mine:GetAbsOrigin(), nil, self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.mine:GetAbsOrigin(), self.mine, self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do
 			ApplyDamage({victim = enemy, attacker = self.mine, damage = mine_damage, damage_type = self.ability:GetAbilityDamageType(), ability = self.ability})
 		end
@@ -252,7 +252,7 @@ function modifier_land_mines_explose_delay:OnDestroy()
 	self.small_radius = self:GetAbility():GetSpecialValueFor("small_radius")
 
 	if IsServer() then
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		if #enemies > 0 and self:GetElapsedTime() >= self:GetDuration() then
 			local buff = self:GetParent():FindModifierByName("modifier_land_mines")
 			if buff then

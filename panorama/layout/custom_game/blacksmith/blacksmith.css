@@ -8,8 +8,8 @@
 
 #blacksmith_panel_main
 {
-	height: 560px;
-	width: 700px;
+	height: 710px;
+	width: 900px;
 	vertical-align: center;
 	horizontal-align: center;
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
@@ -64,13 +64,12 @@
 	margin: 5px;
 	horizontal-align: center;
 	flow-children: right-wrap;
-	overflow: squish scroll;
 }
 
 .inventory_slot
 {
-	width: 45px;
-	height: 45px;
+	width: 46px;
+	height: 46px;
 	margin: 1px;
 	background-color: #0f1a2a;
 	border: 2px solid #3a4a5a;
@@ -93,8 +92,8 @@
 {
 	horizontal-align: center;
 	vertical-align: top;
-	height: 310px;
-	width:590px;
+	height: 460px;
+	width:790px;
 	margin-top:50px;
 	background-color: rgba(0, 0, 0, 0.61);
 	padding:15px;
@@ -116,8 +115,8 @@
 
 .blacksmith_up_panel
 {
-	height: 280px;
-	width: 200px;
+	height: 430px;
+	width: 300px;
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -204,11 +203,13 @@
 {
 	horizontal-align: center;
 	vertical-align: center;
+	width: 140px;
 }
 
 .blacksmith_up_panel_desc
 {
 	flow-children: down;
+	width: 140px;
 }
 
 #blacksmith_up_panel_desc_label_chance
@@ -227,10 +228,17 @@
 	margin-bottom: 15px;
 }
 
+#blacksmith_up_panel_price
+{
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 8px 15px;
+	border-radius: 6px;
+}
+
 #blacksmith_up_panel_price_image
 {
-	height: 45px;
-	width: 45px;
+	height: 35px;
+	width: 35px;
 	vertical-align: center;
 }
 
@@ -257,12 +265,6 @@
 	horizontal-align: center;
 	width: 100px;
 	height: 40px;
-	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
-	transition-property: brightness;
-	transition-duration: 0.1s;
-	border: 2px solid rgba(76, 175, 80, 0.6);
-	border-radius: 4px;
-	margin: 2px;
 }
 
 #blacksmith_up_panel_desc_button:hover
@@ -282,7 +284,7 @@
 	font-weight: bold;
 }
 
-#blacksmith_up_panel_desc_loading
+#blacksmith_up_panel_desc_loading,#blacksmith_merge_panel_desc_loading,#blacksmith_enchant_panel_desc_loading
 {
 	horizontal-align: center;
 	background-image:url("s2r://panorama/images/elements/loading_png.vtex");
@@ -290,7 +292,7 @@
 	background-size: 100%;
 	width: 40px;
 	height: 40px;
-	margin-top: -40px;
+	margin: 2px;
 	animation-name: spin;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
@@ -320,8 +322,8 @@
 {
 	horizontal-align: center;
 	vertical-align:bottom;
-	margin-bottom: 190px;
-	font-size: 14px;
+	margin-bottom: 240px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
@@ -363,8 +365,9 @@
 #DustPaneLabel
 {
 	vertical-align: center;
-	color: #ffd700;
+	color: #e5e0c5;
 	font-weight: bold;
+	font-size: 18px;
 }
 
 .equipped_item_shadow_level_1
@@ -420,5 +423,328 @@
 .equipped_item_shadow_level_11
 {
 	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
+}
+
+#BlacksmithTabSelector
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+.TabBtn
+{
+	padding: 6px 20px;
+	background-color: #0f1a2a;
+	border: 1px solid #3a4a5a;
+	border-radius: 4px;
+	margin: 0 5px;
+	width: 200px;
+}
+
+.TabBtn Label
+{
+	color: #808fa6;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.TabBtn.Active
+{
+	background-color: #4a5a7a;
+	border: 1px solid #64b5f6;
+}
+
+.TabBtn.Active Label
+{
+	color: #e5e0c5;
+}
+
+.TabBtn:hover
+{
+	border: 1px solid #64b5f6;
+	sound: "ui_select_arrow";
+}
+
+#Enchant_main_controls
+{
+	width: 150px;
+}
+
+.blacksmith_Enchant_panel
+{
+	flow-children: down;
+	padding: 5px;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+#Enchant_title
+{
+	font-size: 18px;
+	color: #ffd700;
+	font-weight: bold;
+	text-transform: uppercase;
+	horizontal-align: center;
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+#Enchant_count
+{
+	font-size: 14px;
+	color: #e5e0c5;
+	font-weight: bold;
+	horizontal-align: center;
+}
+
+.Enchant_price_row
+{
+	flow-children: right;
+	horizontal-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 8px 15px;
+	border-radius: 6px;
+	margin: 20px 0px;
+}
+
+.Enchant_price_row Image
+{
+	width: 35px;
+	height: 35px;
+	vertical-align: center;
+}
+
+.Enchant_price_row Label
+{
+	font-size: 24px;
+	color: #ff6b6b;
+	vertical-align: center;
+	margin-left: 8px;
+	white-space: nowrap;
+	text-overflow: shrink;
+	font-weight: bold;
+}
+
+#Enchant_button_container
+{
+	horizontal-align: center;
+	margin: 2px;
+}
+
+.Enchant_button
+{
+	width: 220px;
+	height: 44px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid #a5d6a7;
+	border-radius: 4px;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	padding: 5px;
+}
+
+.Enchant_button:hover
+{
+	brightness: 1.5;
+}
+
+.Enchant_button:active
+{
+	brightness: 0.8;
+	pre-transform-scale2d: 0.98;
+}
+
+.Enchant_button Label
+{
+	color: #e5e0c5;
+	font-size: 20px;
+	font-weight: bold;
+	horizontal-align: center;
+	vertical-align: center;
+	text-transform: uppercase;
+	text-overflow: shrink;
+}
+
+#Enchant_max_label
+{
+	margin-top: 10px;
+	font-size: 18px;
+	color: #ff6b6b;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.hidden
+{
+	visibility: collapse;
+}
+
+.dragImage
+{
+	width: 45px;
+	height: 45px;
+}
+
+#blacksmith_merge_altar
+{
+	width: 100%;
+	height: 100%;
+}
+
+#reforge_rules
+{
+	horizontal-align: left;
+	vertical-align: center;
+	max-width: 200px;
+	font-size: 14px;
+	color: #e5d1a0;
+}
+
+.blacksmith_merge_container
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	align: center center;
+	padding: 10px;
+	letter-spacing: 2px;
+}
+
+#MergeTitle
+{
+	font-size: 24px;
+	color: #e5d1a0;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 8px 2.0 #000000;
+	horizontal-align: center;
+	margin-bottom: 20px;
+	letter-spacing: 2px;
+}
+
+#MergeSlotsRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 10px;
+}
+
+.MergeSlotTarget
+{
+	width: 90px;
+	height: 90px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a1a1a ), to( #000000 ) );
+	border: 2px solid #444;
+	border-radius: 4px;
+	margin: 0px 10px;
+	box-shadow: inset 0px 0px 15px #000;
+	transition-property: border, box-shadow, transform;
+	transition-duration: 0.2s;
+}
+
+.MergeSlotTarget.drag_hover
+{
+	border: 2px solid #5e98d9;
+	box-shadow: 0px 0px 15px #5e98d955;
+}
+
+.MergeSlotTarget.Result
+{
+	width: 90px;
+	height: 90px;
+	border: 2px solid #e5d1a0;
+	box-shadow: 0px 0px 20px #e5d1a022;
+	margin-top: 5px;
+	horizontal-align: center;
+}
+
+#MergeArrow
+{
+	font-size: 32px;
+	color: #444;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+.MergePriceRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 20px;
+	vertical-align: middle;
+}
+
+.MergePriceRow Image
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+}
+
+.MergePriceRow Label
+{
+	font-size: 22px;
+	color: #e5e0c5;
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-shadow: 0px 0px 4px #000;
+}
+
+.MergeQuestionMark
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-size: 50px;
+	color: #e5d1a0;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 8px 2.0 #000000;
+}
+
+#MergeExecuteButton
+{
+	margin-top: 20px;
+	horizontal-align: center;
+	min-width: 250px;
+}
+
+#MergeExecuteButton:disabled
+{
+	saturation: 0.2;
+	brightness: 0.4;
+	opacity: 0.5;
+}
+
+.MergeSlotTarget Image
+{
+	width: 90%;
+	height: 90%;
+	align: center center;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.IsDragging
+{
+	opacity: 0.3;
+}
+
+.SlotLocked
+{
+	brightness: 0.2;
+	saturation: 0;
+	opacity: 0.5;
+	cursor: default;
+}
+
+.particle
+{
+	width: 90px;
+	height: 90px;
 }
 

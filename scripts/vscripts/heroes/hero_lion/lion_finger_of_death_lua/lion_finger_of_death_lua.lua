@@ -37,7 +37,7 @@ function lion_finger_of_death_lua:OnSpellStart()
 	local targets = {}
 	local ability = self:GetCaster():FindAbilityByName("special_bonus_lion_int11")
 	if ability ~= nil and ability:GetLevel() > 0 then 
-		targets = FindUnitsInRadius(caster:GetTeamNumber(), target:GetOrigin(), nil, search, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		targets = FindUnitsInRadius(caster:GetTeamNumber(), target:GetOrigin(), target, search, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	else
 		table.insert(targets,target)
 	end

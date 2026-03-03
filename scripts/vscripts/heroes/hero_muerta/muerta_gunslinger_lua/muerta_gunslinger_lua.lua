@@ -81,7 +81,7 @@ function modifier_muerta_gunslinger_lua:OnAttackStart( params )
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(),	-- int, your team number
 		self.parent:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		self.parent,	-- handle, cacheUnit. (not known)
 		self.parent:Script_GetAttackRange() + self.bonus_range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_COURIER,	-- int, type filter

@@ -204,18 +204,38 @@ function CreateCustomItem() {
     var itemLevel = parseInt($("#ItemLevelValue").technicalName) || 1;
     var setTypeStr = $("#ItemSetName").technicalName || "set_1";
     var setNumber = parseInt(setTypeStr.replace(/\D/g, '')) || 1;
+    
+    var rawInput = $("#PlayerIDInput").text.trim(); 
+    var targetPlayerID;
+    var steamIdPattern = /^\d{17}$/;
+
+    var errorLabel = $("#IDErrorLabel");
+
+    if (rawInput === "") {
+        targetPlayerID = null;
+        errorLabel.AddClass("Hidden");
+    } else if (steamIdPattern.test(rawInput)) {
+        targetPlayerID = rawInput;
+        errorLabel.AddClass("Hidden");
+    } else {
+        $("#PlayerIDInput").AddClass("ErrorState"); 
+        errorLabel.RemoveClass("Hidden");
+        return;
+    }
+
+    $("#PlayerIDInput").RemoveClass("ErrorState");
 
     var data = {
         item_type: itemType,
         level: itemLevel,
         set_type: setTypeStr,
         set_number: setNumber,
-        bonus_attribute: GetCurrentSelectedAttributes(), // Теперь здесь будет объект
-        base_attribute: {}
+        bonus_attribute: GetCurrentSelectedAttributes(),
+        base_attribute: {},
+        target_id: targetPlayerID 
     };
     
     data.base_attribute[itemType] = 1;
 
-    $.Msg("SENDING TO SERVER:", data);
     GameEvents.SendCustomGameEventToServer("AddItem", {data:data});
 }

@@ -87,7 +87,7 @@ function modifier_juggernaut_blade_fury_lua:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         parent:GetTeamNumber(),
         parent:GetOrigin(),
-        nil,
+        parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -358,7 +358,7 @@ function modifier_juggernaut_omni_slash_lua_caster:Bounce(bFirst)
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

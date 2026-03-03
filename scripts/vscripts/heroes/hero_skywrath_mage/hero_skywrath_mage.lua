@@ -39,7 +39,7 @@ function skywrath_mage_arcane_bolt_lua:OnSpellStart()
 		local enemies = FindUnitsInRadius(
 			caster:GetTeamNumber(),
 			target:GetOrigin(),
-			nil,
+			target,
 			radius,
 			DOTA_UNIT_TARGET_TEAM_ENEMY,
 			DOTA_UNIT_TARGET_BASIC,
@@ -112,7 +112,7 @@ function skywrath_mage_concussive_shot_lua:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetOrigin(),
-        nil,
+        caster,
         launch_radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -143,7 +143,7 @@ function skywrath_mage_concussive_shot_lua:OnSpellStart()
         local extra_enemies = FindUnitsInRadius(
             caster:GetTeamNumber(),
             target:GetOrigin(),
-            nil,
+            target,
             radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -452,7 +452,7 @@ end
 
 
 function modifier_skywrath_mage_mystic_flare_lua_thinker:OnIntervalThink()
-	local heroes = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY,	DOTA_UNIT_TARGET_ALL, 0, 0, false)
+	local heroes = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY,	DOTA_UNIT_TARGET_ALL, 0, 0, false)
 	if #heroes<1 then return end
 	for _,hero in pairs(heroes) do
 		self.damageTable.victim = hero

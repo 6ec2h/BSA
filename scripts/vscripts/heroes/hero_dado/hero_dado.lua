@@ -69,7 +69,7 @@ function modifier_dado_storm_lua_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self:GetCaster():GetTeamNumber(),
         self.current_target:GetOrigin(),
-        nil,
+        self.current_target,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -204,7 +204,7 @@ function modifier_dado_tp_in_thinker:OnIntervalThink()
     local center = self:GetParent():GetAbsOrigin()
     local pos = self:GetParent():GetAbsOrigin()
 
-    local units = FindUnitsInRadius(caster:GetTeamNumber(), pos, nil, 150, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+    local units = FindUnitsInRadius(caster:GetTeamNumber(), pos, self:GetParent(), 150, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
     for _, unit in pairs(units) do
         local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
         for _, thinker in pairs(thinkers) do
@@ -452,7 +452,7 @@ function modifier_dado_passive:OnAttackLanded(params)
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         target_pos,
-        nil,
+        target,
         range,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

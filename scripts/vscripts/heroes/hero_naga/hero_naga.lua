@@ -292,7 +292,7 @@ function modifier_naga_siren_rip_tide_lua:Proc()
     local enemies = FindUnitsInRadius(
         self.caster:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

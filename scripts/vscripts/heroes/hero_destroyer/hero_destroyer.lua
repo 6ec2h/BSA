@@ -52,7 +52,7 @@ function modifier_hero_destroyer_totem_thinker:OnIntervalThink()
 	local try_damage = self:GetCaster():GetStrength() *  damage_str / 100 + damage_base
     local radius = ability:GetSpecialValueFor( "radius" )
 
-	local all_units = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self.position, nil, radius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
+	local all_units = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self.position, self:GetParent(), radius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
 	for _,unit in pairs(all_units) do
 		if unit:GetTeamNumber() == self:GetCaster():GetTeamNumber() then
 			unit:Heal(unit:GetMaxHealth()/100 * regen, ability)
@@ -512,7 +512,7 @@ function modifier_hero_destroyer_overkill:OnTakeDamage(params)
         local enemies = FindUnitsInRadius(
             self:GetParent():GetTeamNumber(),
             target:GetAbsOrigin(),
-            nil,
+            target,
             radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,

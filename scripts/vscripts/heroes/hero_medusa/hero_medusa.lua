@@ -66,8 +66,10 @@ function modifier_medusa_poison_arrow_lua:OnRefresh( kv )
 end
 
 function modifier_medusa_poison_arrow_lua:OnIntervalThink()
-	self.damageTable.damage = self.damage / 2
-	ApplyDamage(self.damageTable)
+    if not IsServer() then return end
+    if self:GetParent():IsNull() or not self:GetParent():IsAlive() then return end
+    self.damageTable.damage = self.damage / 2
+    ApplyDamage(self.damageTable)
 end
 
 function modifier_medusa_poison_arrow_lua:GetEffectName()
@@ -223,7 +225,7 @@ function medusa_mystic_snake_lua:OnProjectileHit_ExtraData( target, location, Ex
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),	-- int, your team number
 		pos,	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		target,	-- handle, cacheUnit. (not known)
 		data.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
@@ -421,6 +423,15 @@ function modifier_medusa_mana_shield_lua:IsHidden() return true end
 function modifier_medusa_mana_shield_lua:IsPurgable() return false end
 function modifier_medusa_mana_shield_lua:RemoveOnDeath() return false end
 
+function modifier_medusa_mana_shield_lua:OnCreated()
+    self.absorption = self:GetAbility():GetSpecialValueFor("absorption")
+    self.damage_per_mana = self:GetAbility():GetSpecialValueFor("damage_per_mana")
+end
+
+function modifier_medusa_mana_shield_lua:OnRefresh()
+    self:OnCreated()
+end
+
 function modifier_medusa_mana_shield_lua:DeclareFunctions()
 	local decFuncs = {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
@@ -430,11 +441,6 @@ end
 
 function modifier_medusa_mana_shield_lua:GetModifierIncomingDamage_Percentage(params)
 	if not IsServer() then return end
-
-	self.absorption = self:GetAbility():GetSpecialValueFor("absorption")
-	self.damage_per_mana = self:GetAbility():GetSpecialValueFor("damage_per_mana")
-
-	absorb = -self.absorption
 	
 	local damage_to_absorb = params.damage * self.absorption / 100
     local manacost = damage_to_absorb * self.damage_per_mana
@@ -506,15 +512,16 @@ function modifier_medusa_split_shot_lua:GetPriority()
 end
 
 function modifier_medusa_split_shot_lua:OnCreated()
-	local ability = self:GetAbility()
-
-	self.damage = ability:GetSpecialValueFor("damage") - 100
-	self.count = ability:GetSpecialValueFor("arrow_count")
-	self.bonus_range = ability:GetSpecialValueFor("split_shot_bonus_range")
+    local ability = self:GetAbility()
+    self.damage = ability:GetSpecialValueFor("damage") - 100
+    self.count = ability:GetSpecialValueFor("arrow_count")
+    self.bonus_range = ability:GetSpecialValueFor("split_shot_bonus_range")
+    self.talent7 = self:GetParent():FindAbilityByName("special_bonus_unique_medusa_7")
+    self.talent8 = self:GetParent():FindAbilityByName("special_bonus_unique_medusa_8")
 end
 
 function modifier_medusa_split_shot_lua:OnRefresh()
-	self:OnCreated()
+    self:OnCreated()
 end
 
 function modifier_medusa_split_shot_lua:DeclareFunctions()
@@ -530,7 +537,7 @@ function modifier_medusa_split_shot_lua:GetSplitShotTargets()
 	return FindUnitsInRadius(
 		parent:GetTeamNumber(),
 		parent:GetAbsOrigin(),
-		nil,
+		parent,
 		parent:Script_GetAttackRange() + self.bonus_range,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_BASIC,
@@ -556,8 +563,7 @@ function modifier_medusa_split_shot_lua:OnAttack(keys)
 	if not ability:IsTrained() then return end
     if not ability:GetAutoCastState() then return end
 
-	local applyModifiersTalent = parent:FindAbilityByName("special_bonus_unique_medusa_8")
-	local applyModifiers = applyModifiersTalent and applyModifiersTalent:GetLevel() > 0 or false
+	local applyModifiers = self.talent8 and self.talent8:GetLevel() > 0 or false
 
 	local targets = self:GetSplitShotTargets()
 
@@ -586,9 +592,8 @@ function modifier_medusa_split_shot_lua:GetModifierDamageOutgoing_Percentage(key
 	if IsServer() then
 		if keys.attacker == self:GetParent() and keys.target and not self.split_shot_target then 
 			self:SetStackCount(0)
-			local doubleDamageTalent = self:GetParent():FindAbilityByName("special_bonus_unique_medusa_7")
 
-			if not doubleDamageTalent or doubleDamageTalent:GetLevel() < 1 then return end
+			if not self.talent7 or self.talent7:GetLevel() < 1 then return end
 
 			local targets = self:GetSplitShotTargets()
 

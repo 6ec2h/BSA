@@ -247,7 +247,7 @@ if not IsServer() then return end
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 	}
 
-	local enemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, keys.target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+	local enemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, keys.target:GetAbsOrigin(), keys.target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 	for _,enemy in pairs(enemies) do
 		if enemy ~= keys.target then
 			damage_table.victim = enemy
@@ -295,7 +295,7 @@ function triss_disguise:OnSpellStart()
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 	for _,enemy in pairs(enemies) do
 		damage_table.victim = enemy
 		ApplyDamage(damage_table)

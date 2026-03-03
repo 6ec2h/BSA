@@ -111,7 +111,7 @@ function modifier_item_blasting_shot_passive:OnAttackLanded(keys)
 
             damage_table.damage = keys.damage * multiplier
 
-            local unitsToDamage = {unpack(FindUnitsInRadius(parent:GetTeam(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 1, false), 2)}
+            local unitsToDamage = {unpack(FindUnitsInRadius(parent:GetTeam(), target:GetAbsOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 1, false), 2)}
 
             for _,v in ipairs(unitsToDamage) do
                 damage_table.victim = v

@@ -311,7 +311,7 @@ function sniper_granade:OnProjectileHit( target, vLocation )
         ParticleManager:SetParticleControl(particle, 1, Vector(300,0,0))
         target:EmitSound("Hero_Techies.RemoteMine.Detonate")
         AddFOWViewer( self:GetCaster():GetTeamNumber(), target:GetAbsOrigin(), 300, 1, false )
-        local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+        local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target:GetAbsOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
         for i,unit in ipairs(units) do
             ApplyDamage({ victim = unit, attacker = self:GetCaster(), damage = damage, damage_type = DAMAGE_TYPE_MAGICAL })
             unit:AddNewModifier( self:GetCaster(), self, "modifier_sniper_granade_debuff", { duration = duration } )

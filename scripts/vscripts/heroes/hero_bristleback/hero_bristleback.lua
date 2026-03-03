@@ -104,6 +104,21 @@ function modifier_bristleback_quill_spray_lua:IsHidden() return false end
 function modifier_bristleback_quill_spray_lua:IsDebuff() return true end
 function modifier_bristleback_quill_spray_lua:IsPurgable() return false end
 
+
+function modifier_bristleback_quill_spray_lua:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+    }
+end
+
+function modifier_bristleback_quill_spray_lua:GetModifierPhysicalArmorBonus()
+    local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_bristleback_8")
+	if talent and talent:GetLevel() > 0 then
+		return -self:GetStackCount()
+	end
+    return 0
+end
+
 --------------------------------------------------------------------------------
 
 modifier_bristleback_quill_spray_lua_stack = class({})
@@ -200,6 +215,14 @@ end
 function modifier_bristleback_bristleback_lua:OnTakeDamage(keys)
     if not IsServer() then return end
     if keys.unit ~= self.parent or self.parent:PassivesDisabled() then return end
+    
+    if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then 
+        return 
+    end
+
+    if not keys.attacker or keys.attacker:IsNull() then return end
+
+    if self.lock_quills then return end
 
     local attacker_vector = (keys.attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
     local facing_vector = self.parent:GetForwardVector()
@@ -211,14 +234,15 @@ function modifier_bristleback_bristleback_lua:OnTakeDamage(keys)
         local quill_ability = self.parent:FindAbilityByName("bristleback_quill_spray_lua")
         
         if quill_ability and quill_ability:GetLevel() > 0 then
-  
             if self:GetStackCount() >= self.threshold then
                 local current_time = GameRules:GetGameTime()
                 
                 if (current_time - self.last_proc_time) >= self.proc_cooldown then
+                    self.lock_quills = true
                     quill_ability:OnSpellStart()
                     self.last_proc_time = current_time
                     self:SetStackCount(self:GetStackCount() - self.threshold)
+                    self.lock_quills = false
                 else
                     self:SetStackCount(self.threshold)
                 end
@@ -308,28 +332,8 @@ function modifier_bristleback_warpath_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
         MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
     }
-end
-
-function modifier_bristleback_warpath_lua:OnAttackLanded( params )
-	if IsServer() then
-		if params.attacker == self:GetParent() and ( not self:GetParent():IsIllusion() ) then
-			if self:GetParent():PassivesDisabled() then
-				return 0
-			end
-            local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_bristleback_3")
-            if talent and talent:GetLevel() > 0 then 
-				local great_cleave_damage = self:GetStackCount() * 10
-				local target = params.target
-                if target ~= nil and target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
-                    local cleaveDamage = ( great_cleave_damage * params.damage ) / 100.0	
-                    DoCleaveAttack( self:GetParent(), target, self:GetAbility(), cleaveDamage, 150, 360, 300,"particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf" )
-                end
-			end
-		end
-	end
 end
 
 function modifier_bristleback_warpath_lua:GetModifierPreAttack_BonusDamage(keys)
@@ -371,6 +375,16 @@ function modifier_bristleback_warpath_lua:OnAbilityFullyCast(keys)
 				if #self.particle_table > 0 then
 					ParticleManager:DestroyParticle(self.particle_table[1], false)
 					ParticleManager:ReleaseParticleIndex(self.particle_table[1])
+					table.remove(self.particle_table, 1)
+				end
+			end
+		end)
+	end
+end
+
+function modifier_bristleback_warpath_lua:GetModifierModelScale()
+	return self:GetStackCount() * 5
+ende_table[1])
 					table.remove(self.particle_table, 1)
 				end
 			end

@@ -484,7 +484,7 @@ function modifier_centaur_stampede_lua:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),	-- int, your team number
 		self:GetParent():GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		self:GetParent(),	-- handle, cacheUnit. (not known)
 		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter

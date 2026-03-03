@@ -44,16 +44,6 @@ function leshrac_split_earth_lua:OnSpellStart()
 	
 	EmitSoundOn(sound_cast, caster)
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
-		target_point,
-		nil,
-		mini_blast_distance + mini_blast_radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE,
-		FIND_ANY_ORDER,
-		false)
-
 	for i = 1, mini_blast_count do
 	
 		local angle_gaps = 360 / mini_blast_count
@@ -76,7 +66,7 @@ function leshrac_split_earth_lua:OnSpellStart()
 
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
 			mini_blast_center,
-			nil,
+			caster,
 			mini_blast_radius,
 			DOTA_UNIT_TARGET_TEAM_ENEMY,
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -91,6 +81,18 @@ function leshrac_split_earth_lua:OnSpellStart()
 			self, -- ability source
 			"modifier_generic_stunned_lua", -- modifier name
 			{ duration = self.duration } -- kv
+	)
+	
+			local damageTable = {victim = enemy,
+									damage = self.damage,
+									damage_type = DAMAGE_TYPE_MAGICAL,
+									attacker = caster,
+									ability = ability
+									}
+				ApplyDamage(damageTable)
+		end
+	end
+endation = self.duration } -- kv
 	)
 	
 			local damageTable = {victim = enemy,

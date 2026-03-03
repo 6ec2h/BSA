@@ -28,7 +28,7 @@ function lua_slardar_slithereen_crush:OnSpellStart()
 	ParticleManager:SetParticleControl(particle_splash_fx, 0, caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_splash_fx, 1, Vector(1, 1, radius+100))
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	for _, enemy in pairs(enemies) do
 		if not enemy:IsMagicImmune() then
 			local particle_hit_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf", PATTACH_ABSORIGIN, enemy)
@@ -302,7 +302,7 @@ function lua_slardar_corrosive_haze:OnSpellStart()
 	
 	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_unique_slardar_7")
 	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
-		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), target, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do
 			enemy:AddNewModifier(caster, self, 'modifier_lua_corrosive_haze_debuff', {duration = duration * (1 - enemy:GetStatusResistance())})
 		end

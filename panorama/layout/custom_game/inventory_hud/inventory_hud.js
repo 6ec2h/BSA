@@ -34,7 +34,7 @@ var is_local_inventory = true // локальный ли инвентарь
 var ENABLE_VIEW_OTHER_INVENTORY = false // хз нужно ли видеть предметы игрока в инвентаре
 var EQUIP_ITEMS_TYPES_COLUMN_1 = ["head", "armor", "legs", "boots", "weapon", "shield"] // Первая колонка слотов, в которые можно надевать предметы
 var TABLE_HERO = null
-var GAME_DIFF = 1
+var HERO_LEVEL = 1
 var IS_OPEN_NOW = false
 
 const DotaHUD = GameUI.CustomUIConfig().DotaHUD;
@@ -123,21 +123,15 @@ function open_inv(t){
 
 function UpdateInventoryMain(t)
 {
-	
-    // if (!$("#InventoryPanel").BHasClass("CloseInventory"))
-   
+    $("#DustPaneLabel").text = t.data.dust
+    
 	TABLE_HERO = t.data
-	GAME_DIFF = t.diff
-	
-	// $.Msg(current_selected_player, 'sss')
-	// $.Msg(t.data.send_id, 'sssd')
+	HERO_LEVEL = t.diff
 	
 	if (current_selected_player != t.data.send_id){
 		return
 	}
-	// $.Msg(t.data.dust)
-	$("#DustPaneLabel").text = t.data.dust
-	
+
     let player_id = Entities.GetPlayerOwnerID(current_selected_player)
     if (player_id != Players.GetLocalPlayer())
     {
@@ -209,7 +203,7 @@ function update_description(){
 			for (const attrKey in attributes) {
 				const value = decription_attributes[attrKey]
 				
-				if (GAME_DIFF < can_use_sets[itemData.set_number.toString()].min) {
+				if (HERO_LEVEL < can_use_sets[itemData.set_number.toString()].min) {
                     continue;
                 }
 				
@@ -308,9 +302,6 @@ function UpdateInventoryItems(inventory_list) // Апдейт всех пред�
             let item_info = inventory_list[inventory_key_slot]
             if (item_info != null)
             {
-                let item_name = item_info.name
-                let item_type = item_info.type
-                let item_attributes = item_info.attributes
                 let item_icon = item_info.set_type + "/" + item_info.item_type
                 
                 let find_slot = $("#InventorySlots").FindChildTraverse("inventory_slot_"+inventory_key_slot)
@@ -516,11 +507,11 @@ function SwapItemsInventoryOnly(old_panel, new_panel, old_panel_item, new_panel_
             from_slot: old_slot_num,
             to_slot: new_slot_num,
         })
-        swapped_items.push({
-            item_id: new_item_info.id,
-            from_slot: old_slot_num,
-            to_slot: new_slot_num,
-        })
+        // swapped_items.push({
+        //     item_id: new_item_info.id,
+        //     from_slot: old_slot_num,
+        //     to_slot: new_slot_num,
+        // })
     } else if (old_item_info && old_item_info.id) {
         // Если только один предмет - это перемещение в пустой слот
         swapped_items.push({
@@ -737,6 +728,9 @@ function send_swap_inventory_items(swapped_items){
 
 
 function show_item_reward(data){
+
+    // var data = data.data
+    var data = data.data ? data.data : data;
 	
 	item_reward_panel.visible = true
 	
@@ -747,7 +741,7 @@ function show_item_reward(data){
 	panel.BLoadLayoutSnippet("reward")
 	panel.AddClass("content")
 	
-	
+	color = null
 	
 	if (data.level < 3){
 		color = "#b0c3d9"

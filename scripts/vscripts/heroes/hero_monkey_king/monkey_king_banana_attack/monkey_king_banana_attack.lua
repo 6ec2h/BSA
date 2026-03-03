@@ -57,7 +57,7 @@ function modifier_monkey_king_banana_attack:OnAttackLanded(data)
     if self:GetParent():PassivesDisabled() then return end
     if not self:GetAbility():IsCooldownReady() then return end
     if RollPercentage(self.chance) then
-        local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.radius,  DOTA_UNIT_TARGET_TEAM_ENEMY,  DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+        local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self.radius,  DOTA_UNIT_TARGET_TEAM_ENEMY,  DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
         for _,u in pairs(units) do
             if u ~= data.target then
                 ApplyDamage({

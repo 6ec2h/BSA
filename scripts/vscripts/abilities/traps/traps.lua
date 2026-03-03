@@ -109,14 +109,17 @@ function modifier_circle_trap_lua:IsPurgable()
 end
 
 function modifier_circle_trap_lua:OnCreated( kv )
-    if not IsServer() then return end
-    
     local caster = self:GetCaster()
     local pathLength = 300
     local particleName = "particles/trap_sunray.vpcf"
     local deltaTime = 0.03
 
     local possible_speeds = { -3.6, -3.2, -2.8, -2.4, -2.0, 2.0, 2.4, 2.8, 3.2, 3.6 }
+
+    if caster:GetName() == "npc_dota_first_circle_trap" then
+        possible_speeds = {-2.0, -1.6, -1.2, 1.2, 1.6, 2.0}
+    end
+
     local random_index = RandomInt(1, #possible_speeds)
     self.speed = possible_speeds[random_index]
 
@@ -129,6 +132,7 @@ function modifier_circle_trap_lua:OnCreated( kv )
         if not self.pfx then
             self.pfx = ParticleManager:CreateParticle( particleName, PATTACH_WORLDORIGIN, nil )
             self.attach_point = caster:ScriptLookupAttachment( "attach_head" )
+            self:AddParticle(self.pfx, false, false, -1, false, false)
         end
 
         local angle = caster:GetAngles()
@@ -418,7 +422,7 @@ function modifier_simple_roll_shot_thinker:PerformTick()
     local enemies = FindUnitsInRadius(
         self:GetCaster():GetTeamNumber(),
         current_pos,
-        nil,
+        parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -448,22 +452,7 @@ function modifier_simple_roll_shot_thinker:PlayEffects2()
     EmitSoundOn("Hero_Invoker.ChaosMeteor.Loop", self:GetParent())
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
--- function modifier_simple_roll_shot_thinker:PerformTick(pos)
---     local enemies = FindUnitsInRadius(
---         self.caster:GetTeamNumber(),
+ber(),
 --         pos,
 --         nil,
 --         self.radius,

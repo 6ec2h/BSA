@@ -38,7 +38,7 @@ end
 function modifier_creep_rocket_barrage_lua:OnIntervalThink()
 	if not self:GetParent():IsOutOfGame() then
 		self:GetParent():EmitSound("Hero_Gyrocopter.Rocket_Barrage.Launch")
-		self.enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
+		self.enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
 		if #self.enemies >= 1 then
 			for _, enemy in pairs(self.enemies) do
 				enemy:EmitSound("Hero_Gyrocopter.Rocket_Barrage.Impact")
@@ -92,7 +92,7 @@ function creep_homing_missile_lua:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(), 
         caster:GetOrigin(), 
-        nil, 
+        caster, 
         launch_radius, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -147,7 +147,7 @@ function creep_homing_missile_lua:OnProjectileHit(target, location)
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(), 
         target:GetOrigin(), 
-        nil, 
+        target, 
         radius, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -196,20 +196,9 @@ end
 
 function modifier_creep_headshot_lua:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
-
 	return funcs
-end
-
-function modifier_creep_headshot_lua:GetModifierProcAttack_BonusDamage_Physical( params )
-	if IsServer() then
-		if RandomInt(1,100) <= self.proc_chance then
-			params.target:AddNewModifier(self:GetParent(), self, "modifier_creep_headshot_lua_slow", {duration = self.slow_duration, slow = self.slow})
-			return self.damage
-		end
-	end
 end
 
 -------------------------------------------------------------------------------
@@ -243,9 +232,7 @@ function modifier_creep_headshot_lua_slow:DeclareFunctions()
 end
 
 function modifier_creep_headshot_lua_slow:GetModifierMoveSpeedBonus_Percentage()
-	if IsServer() then
-		return -self.slow
-	end
+    return -self.slow
 end
 
 function modifier_creep_headshot_lua_slow:GetEffectName()
@@ -369,7 +356,7 @@ function modifier_creep_sunstrike_lua:OnIntervalThink()
     local hEnemies = FindUnitsInRadius(
         caster_team, 
         caster:GetAbsOrigin(), 
-        nil, 
+        caster, 
         range, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO, 
@@ -415,7 +402,7 @@ function modifier_creep_sunstrike_lua:OnIntervalThink()
                         attacker = IsValidEntity(caster) and caster or nil,
                         damage = damage,
                         damage_type = DAMAGE_TYPE_PURE,
-                        ability = nil
+                        ability = ability
                     })
                 end
             end
@@ -534,7 +521,7 @@ function modifier_creep_meteor_lua_thinker:PerformTick()
     local enemies = FindUnitsInRadius(
         self.caster_team,
         current_pos,
-        nil,
+        parent,
         self.area_of_effect,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -632,7 +619,7 @@ function creep_echo_stomp_lua:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetAbsOrigin(),
-        nil,
+        caster,
         radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -825,17 +812,31 @@ function modifier_creep_bulwark_lua:GetModifierPhysical_ConstantBlock( params )
 
 	if angle_diff < self.angle_front then
 		reduction = self.reduction_front
-		self:PlayEffects( true, attacker_vector )
+		self:PlayEffects( true )
 
 	elseif angle_diff < self.angle_side then
 		reduction = self.reduction_side
-		self:PlayEffects( false, attacker_vector )
+		self:PlayEffects( false )
 	end
 	return reduction*params.damage/100
 end
 
 function modifier_creep_bulwark_lua:PlayEffects( front )
 	local particle_cast = "particles/units/heroes/hero_mars/mars_shield_of_mars.vpcf"
+	local sound_cast = "Hero_Mars.Shield.Block"
+
+	if not front then
+		particle_cast = "particles/units/heroes/hero_mars/mars_shield_of_mars_small.vpcf"
+		sound_cast = "Hero_Mars.Shield.BlockSmall"
+	end
+
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	EmitSoundOn( sound_cast, self:GetParent() )
+end
+
+
 	local sound_cast = "Hero_Mars.Shield.Block"
 
 	if not front then

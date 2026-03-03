@@ -211,7 +211,7 @@ function modifier_axe_counter_helix_lua:OnAttackLanded(params)
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(),
             caster:GetAbsOrigin(),
-            nil,
+            caster,
             radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

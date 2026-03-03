@@ -55,7 +55,7 @@ function luna_starfall:OnSpellStart()
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(),
             main_target:GetAbsOrigin(),
-            nil,
+            main_target,
             bounce_radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -141,7 +141,7 @@ function luna_moon_glaive_lua:OnProjectileHit_ExtraData(hTarget, vLocation, Extr
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(), 
         vLocation, 
-        nil, 
+        hTarget, 
         self:GetSpecialValueFor("range"), 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -192,7 +192,7 @@ function modifier_luna_moon_glaive_lua:GetModifierProcAttack_Feedback(keys)
     local enemies = FindUnitsInRadius(
         parent:GetTeamNumber(), 
         keys.target:GetAbsOrigin(), 
-        nil, 
+        keys.target, 
         self:GetAbility():GetSpecialValueFor("range"), 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -378,7 +378,7 @@ function modifier_luna_moon:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(), 
         caster:GetAbsOrigin(), 
-        nil, 
+        caster, 
         self.radius, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -406,7 +406,7 @@ function modifier_luna_moon:OnIntervalThink()
             local bounce_enemies = FindUnitsInRadius(
                 caster:GetTeamNumber(), 
                 target:GetAbsOrigin(), 
-                nil, 
+                target, 
                 bounce_range, 
                 DOTA_UNIT_TARGET_TEAM_ENEMY, 
                 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 

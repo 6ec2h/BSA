@@ -83,16 +83,6 @@ function modifier_ogre_magi_bloodlust_lua:OnCreated( kv )
 	self:StartIntervalThink( interval )
 end
 
-function modifier_ogre_magi_bloodlust_lua:OnRefresh( kv )
-	
-end
-
-function modifier_ogre_magi_bloodlust_lua:OnRemoved()
-end
-
-function modifier_ogre_magi_bloodlust_lua:OnDestroy()
-end
-
 function modifier_ogre_magi_bloodlust_lua:OnIntervalThink()
 	if not self.ability:GetAutoCastState() then return end
 	if not self.ability:IsFullyCastable() then return end
@@ -100,7 +90,7 @@ function modifier_ogre_magi_bloodlust_lua:OnIntervalThink()
 	local allies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(),	-- int, your team number
 		self.caster:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		self.caster,	-- handle, cacheUnit. (not known)
 		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_FRIENDLY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO,	-- int, type filter
@@ -189,6 +179,11 @@ end
 
 function modifier_ogre_magi_bloodlust_lua_buff:GetEffectName()
 	return "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+end
+
+function modifier_ogre_magi_bloodlust_lua_buff:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
 end
 
 function modifier_ogre_magi_bloodlust_lua_buff:GetEffectAttachType()

@@ -170,7 +170,7 @@ function modifier_item_doom_sword:OnAttackLanded( params )
 		if Attacker ~= nil and Attacker == self:GetParent() and Target ~= nil then
 			local full_heal = params.damage * self.lifesteal_pct / 100
 
-			local allies = FindUnitsInRadius( Attacker:GetTeamNumber(), self:GetCaster():GetOrigin(), nil, 450, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+			local allies = FindUnitsInRadius( Attacker:GetTeamNumber(), self:GetCaster():GetOrigin(), self:GetCaster(), 450, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 			
 			for i = #allies, 1, -1 do
                 if allies[i] == nil or not allies[i]:HasModifier( "modifier_item_doom_sword_effect" ) then

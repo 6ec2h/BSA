@@ -242,7 +242,7 @@ _G.All_ABILITY = {
     "vengefulspirit_nether_swap_lua",
     "vengefulspirit_wave_of_terror_lua",
     "venomancer_poison_nova_lua",
-    "venomancer_poison_sting_lua",
+    "venomancer_plague_ward_lua",
     "venomancer_poison_tick",
     "venomancer_venomous_gale_lua",
     "viper_corrosive_skin_lua",
@@ -390,3 +390,4 @@ BOSS_NAME_TO_HERO_NAME = {
 	["necrolyte_npc_dota_boss_medusa"] = "npc_dota_hero_medusa",
 	["necrolyte_npc_dota_boss_arc_warden"] = "npc_dota_hero_arc_warden",
 }
+

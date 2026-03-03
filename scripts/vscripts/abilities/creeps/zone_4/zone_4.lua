@@ -458,7 +458,7 @@ function modifier_creep_dispersion_lua:OnTakeDamage(params)
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         origin,
-        nil,
+        self.parent,
         self.max_radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

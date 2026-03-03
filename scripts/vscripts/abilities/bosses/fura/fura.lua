@@ -68,7 +68,7 @@ function modifier_boss_furion_custom_forest:OnIntervalThink()
         
         EmitSoundOn( "Hero_Leshrac.Split_Earth", ability )
         
-        local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, nil, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+        local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, caster, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
         for _, unit in ipairs(units) do
             ApplyDamage({
                 attacker = caster,
@@ -233,7 +233,7 @@ function modifier_furion_wrath_of_nature_thinker_lua:OnIntervalThink()
 end
 
 function modifier_furion_wrath_of_nature_thinker_lua:GetNextTarget()
-	local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+	local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetCaster(), FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	
 	local hClosestTarget = nil
 	local flClosestDist = 0.0
@@ -366,7 +366,7 @@ function modifier_custom_seed:OnIntervalThink()
 		ability 		= self:GetAbility()
 	})
 	
-	for _, unit in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.remnants_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
+	for _, unit in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self.remnants_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
 		ProjectileManager:CreateTrackingProjectile({
 			EffectName			= "particles/units/heroes/hero_treant/treant_leech_seed_projectile.vpcf",
 			Ability				= self:GetAbility(),

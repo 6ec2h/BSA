@@ -218,7 +218,7 @@ function tidehunter_anchor_smash_lua:OnSpellStart()
     local bonus_damage = self:GetSpecialValueFor("attack_damage")
 
     local enemies = FindUnitsInRadius(
-        caster:GetTeamNumber(), caster:GetOrigin(), nil, radius, 
+        caster:GetTeamNumber(), caster:GetOrigin(), caster, radius, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
         DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
     )

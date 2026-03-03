@@ -28,17 +28,22 @@ function modifier_difficult:SetupRewards(kv)
 	local max_damage = unit:GetBaseDamageMax()
 	local base_armor = unit:GetPhysicalArmorBaseValue()
 	local base_resist = unit:GetBaseMagicalResistanceValue()
-	
-	unit:SetBaseDamageMin(min_damage * (0.5 + ((_G.Game_Difficulty - 1) * 0.3)))
-	unit:SetBaseDamageMax(max_damage * (0.5 + ((_G.Game_Difficulty - 1) * 0.3)))
-	unit:SetPhysicalArmorBaseValue(base_armor * (0.5 + ((_G.Game_Difficulty - 1) * 0.2)))
-	unit:SetBaseMagicalResistanceValue(math.min(99, base_resist * (0.5 + ((_G.Game_Difficulty - 1) * 0.1))))
+
+	unit:SetBaseDamageMin(min_damage * (0.4 + ((_G.Game_Difficulty - 1) * 0.4)))
+	unit:SetBaseDamageMax(max_damage * (0.4 + ((_G.Game_Difficulty - 1) * 0.4)))
+	unit:SetPhysicalArmorBaseValue(base_armor * (0.4 + ((_G.Game_Difficulty - 1) * 0.3)))
+	unit:SetBaseMagicalResistanceValue(math.min(99, base_resist * (0.4 + ((_G.Game_Difficulty - 1) * 0.15))))
+
+	-- unit:SetBaseDamageMin(min_damage * (0.5 + ((_G.Game_Difficulty - 1) * 0.3)))
+	-- unit:SetBaseDamageMax(max_damage * (0.5 + ((_G.Game_Difficulty - 1) * 0.3)))
+	-- unit:SetPhysicalArmorBaseValue(base_armor * (0.5 + ((_G.Game_Difficulty - 1) * 0.2)))
+	-- unit:SetBaseMagicalResistanceValue(math.min(99, base_resist * (0.5 + ((_G.Game_Difficulty - 1) * 0.1))))
 		
 	self.cd = 100 - ((1.25 - _G.Game_Difficulty / 20) * 100)
 	self.speed = (_G.Game_Difficulty - 1) * 5
 
-	-- local set_health = start_health + (start_health * (((0.4 + (_G.Game_Difficulty * 2) / 10) * 100)-100)) / 100
-	local set_health = start_health * (0.5 + ((_G.Game_Difficulty - 1) * 0.3))
+	local set_health = start_health * (0.4 + ((_G.Game_Difficulty - 1) * 0.4))
+	-- local set_health = start_health * (0.5 + ((_G.Game_Difficulty - 1) * 0.3))
 	unit:SetMaxHealth(set_health)
 	unit:SetBaseMaxHealth(set_health)
 	unit:SetHealth(set_health)	

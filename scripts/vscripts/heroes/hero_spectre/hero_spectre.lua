@@ -177,7 +177,7 @@ function modifier_spectre_dispersion_lua:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

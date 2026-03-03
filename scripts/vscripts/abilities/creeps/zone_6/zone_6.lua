@@ -262,7 +262,7 @@ end
 function modifier_creep_blob_die_spawn_lua:OnDeath(keys)
 	if IsServer() then
 		if keys.unit == self:GetParent() then
-			local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+			local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 				for _, enemy in pairs(enemies) do			
 					enemy:AddNewModifier(enemy, nil, "modifier_creep_blob_die_spawn_lua_effect", { duration = self.duration})
 				end
@@ -282,11 +282,17 @@ end
 
 -----------------------------------------------------------------------------------------
 
-modifier_creep_blob_die_spawn_lua_effect = class({})				
-				
-function modifier_creep_blob_die_spawn_lua:IsHidden() return false end				
+modifier_creep_blob_die_spawn_lua_effect = class({})	
+			
+function modifier_creep_blob_die_spawn_lua_effect:IsHidden() return false end				
 function modifier_creep_blob_die_spawn_lua_effect:IsDebuff() return true end
 function modifier_creep_blob_die_spawn_lua_effect:IsPurgable() return false end
+
+function modifier_creep_blob_die_spawn_lua_effect:OnCreated()
+    if self:GetAbility() then
+        self.miss = self:GetAbility():GetSpecialValueFor("miss")
+    end
+end
 
 function modifier_creep_blob_die_spawn_lua_effect:DeclareFunctions()
 	return {
@@ -688,7 +694,7 @@ function modifier_creep_undercurrent_passive:GetModifierMagicalResistanceBonus()
     local enemies = FindUnitsInRadius(
         self:GetParent():GetTeamNumber(),
         self:GetParent():GetAbsOrigin(),
-        nil,
+        self:GetParent(),
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

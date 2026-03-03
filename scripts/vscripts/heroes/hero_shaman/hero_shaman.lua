@@ -18,7 +18,7 @@ function shadow_shaman_ether_shock_lua:OnSpellStart()
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),
 		target:GetAbsOrigin(),
-		nil,
+		target,
 		500,
 		self:GetAbilityTargetTeam(),
 		self:GetAbilityTargetType(),
@@ -148,7 +148,7 @@ function modifier_shaman_hex_logic:OnIntervalThink()
     local nearbyEnemies = FindUnitsInRadius(
         self.caster:GetTeamNumber(), 
         center, 
-        nil, 
+        self.parent, 
         activation_radius, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -168,7 +168,7 @@ function modifier_shaman_hex_logic:OnIntervalThink()
         local targets = FindUnitsInRadius(
             self.caster:GetTeamNumber(),
             center,
-            nil,
+            self.parent,
             damage_radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -228,7 +228,7 @@ function shaman_shackles:OnSpellStart()
         local extra_enemies = FindUnitsInRadius(
             caster:GetTeamNumber(),
             target:GetAbsOrigin(),
-            nil,
+            target,
             250,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

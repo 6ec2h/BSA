@@ -254,12 +254,18 @@ function TipsCustomOver(pos, num)
 		pos = pos.id;
 	}
 	
-	var stats = (50 + 30 * (num - 1)) + '%';
-	var armor = (50 + 20 * (num - 1)) + '%';
-	var resist = (50 + 10 * (num - 1)) + '%';
+	// var stats = (50 + 30 * (num - 1)) + '%';
+	// var armor = (50 + 20 * (num - 1)) + '%';
+	// var resist = (50 + 10 * (num - 1)) + '%';
+	// var cd = 100 - ((1.25 - num / 20) * 100)
+	// var as = (num - 1) * 5
+	
+	var stats = (40 + 40 * (num - 1)) + '%';
+	var armor = (40 + 30 * (num - 1)) + '%';
+	var resist = (40 + 15 * (num - 1)) + '%';
 	var cd = 100 - ((1.25 - num / 20) * 100)
 	var as = (num - 1) * 5
-	
+
 	var additional = '';
 	if(num >= 16){	
 		additional = $.Localize('#diff_add') + '<br>';

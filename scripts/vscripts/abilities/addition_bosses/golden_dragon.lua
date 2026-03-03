@@ -28,7 +28,7 @@ function golden_dragon_blinding_lua:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetOrigin(),
-        nil,
+        caster,
         radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -265,7 +265,7 @@ function golden_dragon_solar_wind:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster_pos,
-        nil,
+        caster,
         distance,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -371,7 +371,7 @@ function golden_dragon_vacuum_dash:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         cursor_position,
-        nil,
+        caster,
         radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

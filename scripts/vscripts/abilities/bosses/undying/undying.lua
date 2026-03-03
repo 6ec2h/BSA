@@ -93,7 +93,7 @@ end
 
 function modifier_undy_spray_lua:OnIntervalThink()
 	if not IsServer() then return end
-	local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0,	0, false)
+	local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0,	0, false)
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy
 		self.damageTable.damage = self.damage + self.diff_boost_damage

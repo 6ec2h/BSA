@@ -41,7 +41,7 @@ function item_dark_mist:OnSpellStart()
     if IsServer() then 
         EmitSoundOn ("Item.CrimsonGuard.Cast", self:GetCaster () )
 
-        local nearby_allied_units = FindUnitsInRadius (self:GetCaster ():GetTeam (), self:GetCaster ():GetAbsOrigin (), nil, self:GetSpecialValueFor("aura_radius"),
+        local nearby_allied_units = FindUnitsInRadius (self:GetCaster():GetTeam(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), self:GetSpecialValueFor("aura_radius"),
         DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)    
         
         for i, nearby_ally in ipairs (nearby_allied_units) do  

@@ -48,7 +48,7 @@ function modifier_hero_pangolier_ki_burst:OnDestroy()
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),
 		self:GetCaster():GetAbsOrigin(),
-		nil,
+		self:GetCaster(),
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,

@@ -65,7 +65,7 @@ function modifier_earthshaker_aftershock_lua:OnAbilityFullyCast( params )
 		local enemies = FindUnitsInRadius(
 			self:GetCaster():GetTeamNumber(),	-- int, your team number
 			self:GetCaster():GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
+			self:GetCaster(),	-- handle, cacheUnit. (not known)
 			self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter

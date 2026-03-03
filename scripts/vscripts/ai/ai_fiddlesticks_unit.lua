@@ -9,8 +9,9 @@ function NecroLordThink()
    
     if GameRules:IsGamePaused() == true then return 1 end
 
-    local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
-	if #enemies > 0 then 
+    local enemies = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), thisEntity, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+	
+    if #enemies > 0 then 
 		local enemy = enemies[1]
 		if enemy ~= nil then
 			return AttackMove(enemy)

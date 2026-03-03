@@ -39,7 +39,7 @@ function jakiro_liquid_fire_lua:OnOrbImpact( params )
 	local enemies = FindUnitsInRadius(
 		caster:GetTeamNumber(),	-- int, your team number
 		params.target:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		params.target,	-- handle, cacheUnit. (not known)
 		radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,	-- int, type filter

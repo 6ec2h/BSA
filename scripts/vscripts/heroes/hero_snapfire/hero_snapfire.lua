@@ -520,7 +520,7 @@ function lua_snapfire_mortimer_kisses:OnProjectileHit( target, location )
 		ability = self, --Optional.
 	}
 
-	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), location, nil, impact_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), location, target, impact_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	for _,enemy in pairs(enemies) do
 		damageTable.victim = enemy
 		ApplyDamage(damageTable)
@@ -568,7 +568,7 @@ end
 
 function modifier_lua_snapfire_mortimer_kisses_thinker:OnIntervalThink()
 	if IsServer() then
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _,enemy in pairs(enemies) do
 			ApplyDamage({attacker = self:GetCaster(), victim = enemy, damage = self.burn_damage * self.burn_interval, ability = self:GetAbility(), damage_type = DAMAGE_TYPE_MAGICAL})
 		end

@@ -11,6 +11,8 @@ function earthshaker_echo_slam_lua:OnSpellStart()
 	local echo_range = self:GetSpecialValueFor("echo_slam_echo_range")
 	local echo_damage = self:GetSpecialValueFor("echo_slam_echo_damage")
 
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_earthshaker_tal3")
+
 	-- precache projectile
 	local projectile_name = "particles/units/heroes/hero_earthshaker/earthshaker_echoslam.vpcf"
 	local projectile_speed = 600
@@ -33,7 +35,7 @@ function earthshaker_echo_slam_lua:OnSpellStart()
 	local enemies = FindUnitsInRadius(
 		caster:GetTeamNumber(),	-- int, your team number
 		caster:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		caster,	-- handle, cacheUnit. (not known)
 		init_range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
@@ -61,7 +63,7 @@ function earthshaker_echo_slam_lua:OnSpellStart()
 			}
 			ApplyDamage(damageTable)
 			
-			local talent = self:GetCaster():FindAbilityByName("special_bonus_earthshaker_tal3")
+			
 				if talent ~= nil and talent:GetLevel() > 0 then
 				enemy:AddNewModifier(
 						caster, -- player source
@@ -76,7 +78,7 @@ function earthshaker_echo_slam_lua:OnSpellStart()
 		local targets = FindUnitsInRadius(
 			caster:GetTeamNumber(),	-- int, your team number
 			enemy:GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
+			enemy,	-- handle, cacheUnit. (not known)
 			echo_range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter

@@ -222,7 +222,7 @@ function ancient_apparition_chilling_touch_lua:OnOrbImpact( keys )
 	count = 0
 	local talent8 = self:GetCaster():FindAbilityByName("special_bonus_unique_ancient_apparition_8")
 	if talent8 ~= nil and talent8:GetLevel() > 0 then 
-		local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), keys.target:GetOrigin(), nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
+		local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), keys.target:GetOrigin(), keys.target, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false )
 		if #enemies > 0 then
 			for _, enemy in pairs( enemies ) do
 				if enemy ~= keys.target then

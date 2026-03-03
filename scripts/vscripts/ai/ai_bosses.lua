@@ -1,13 +1,20 @@
 local THINK_INTERVAL = 0.3
 local RETREAT_DISTANCE = 1500
-local non_100_pct_cast = {
-    "item_guardian_greaves",
-    "item_satanic",
-    "item_bloodstone",
-    "item_crimson_guard",
-    "item_pipe",
-    "item_glimmer_cape"
+-- local non_100_pct_cast = {
+--     "item_guardian_greaves",
+--     "item_satanic",
+--     "item_bloodstone",
+--     "item_crimson_guard",
+--     "item_pipe",
+--     "item_glimmer_cape"
+-- }
+
+local LIMITED_CAST_SET = {
+    ["item_guardian_greaves"] = true, ["item_satanic"] = true, ["item_bloodstone"] = true,
+    ["item_crimson_guard"] = true, ["item_pipe"] = true, ["item_glimmer_cape"] = true,
+    ["creep_freezing_field_lua"] = true, ["creep_purification_lua"] = true
 }
+
 local CAST_HP_PCT = 80
 
 function Spawn(entityKeyValues)
@@ -161,42 +168,17 @@ function NeutralThink()
             local dist = (target:GetAbsOrigin() - thisEntity:GetAbsOrigin()):Length2D()
             
             if dist <= castRange then
-                local isLimited = false
-                for _, subString in ipairs(non_100_pct_cast) do
-                    if string.find(itemName, subString) then
-                        isLimited = true
-                        break
-                    end
-                end
-
                 local canCast = true
                 
-                if isLimited then
-                    if thisEntity:GetHealthPercent() >= CAST_HP_PCT then
-                        canCast = false
-                    end
-                end
-
-                if string.find(itemName, "item_octarine_core") and thisEntity.refresh < 4 then
-                    canCast = false
-                end
-
+                if LIMITED_CAST_SET[itemName] and thisEntity:GetHealthPercent() >= CAST_HP_PCT then canCast = false end
+                if itemName == "item_octarine_core" and thisEntity.refresh < 4 then canCast = false end
+            
                 if canCast then
                     table.insert(castables, item)
                 end
             end
         end
     end
-    -- for _, item in ipairs(thisEntity.items) do
-    --     if item and not item:IsNull() and item:IsFullyCastable() then
-    --         local castRange = item:GetCastRange(thisEntity:GetAbsOrigin(), target)
-    --         if castRange <= 0 then castRange = thisEntity:GetAcquisitionRange() end
-    --         local dist = (target:GetAbsOrigin() - thisEntity:GetAbsOrigin()):Length2D()
-    --         if dist <= castRange then
-    --             table.insert(castables, item)
-    --         end
-    --     end
-    -- end
 
     if #castables > 0 then
         local spell = castables[RandomInt(1, #castables)]
@@ -300,6 +282,25 @@ end
 function Retreat(target)
 	local vAwayFromEnemy = thisEntity:GetOrigin() - target:GetOrigin()
 	vAwayFromEnemy = vAwayFromEnemy:Normalized()
+	local vMoveToPos = thisEntity:GetOrigin() + vAwayFromEnemy * thisEntity:GetIdealSpeed()
+
+	local nAttempts = 0
+	while ( ( not GridNav:CanFindPath( thisEntity:GetOrigin(), vMoveToPos ) ) and ( nAttempts < 3 ) ) do
+		vMoveToPos = thisEntity:GetOrigin() + RandomVector( thisEntity:GetIdealSpeed() )
+		nAttempts = nAttempts + 1
+	end
+
+	thisEntity.fTimeOfLastRetreat = GameRules:GetGameTime()
+
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+		Position = vMoveToPos,
+	})
+
+	return THINK_INTERVAL * 2
+end
+ayFromEnemy = vAwayFromEnemy:Normalized()
 	local vMoveToPos = thisEntity:GetOrigin() + vAwayFromEnemy * thisEntity:GetIdealSpeed()
 
 	local nAttempts = 0

@@ -79,7 +79,7 @@ function modifier_generic_ring_lua:OnIntervalThink()
 	local targets = FindUnitsInRadius(
 		self:GetParent():GetTeamNumber(),	-- int, your team number
 		self:GetParent():GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		self:GetParent(),	-- handle, cacheUnit. (not known)
 		radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		self.target_team,	-- int, team filter
 		self.target_type,	-- int, type filter

@@ -85,7 +85,7 @@ function modifier_lua_abyssal_underlord_firestorm_thinker:OnIntervalThink()
 		return
 	end
 
-	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy
@@ -275,7 +275,7 @@ function modifier_lua_abyssal_underlord_pit_of_malice_thinker:OnDestroy()
 end
 
 function modifier_lua_abyssal_underlord_pit_of_malice_thinker:OnIntervalThink()
-	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	for _,enemy in pairs(enemies) do
 		local modifier = enemy:FindModifierByNameAndCaster( "modifier_lua_abyssal_underlord_pit_of_malice_cooldown", self:GetCaster() )
 		if not modifier then

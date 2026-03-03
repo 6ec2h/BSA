@@ -10,7 +10,7 @@ function Bolt(keys)
 		StartSoundEvent("Hero_Zuus.ArcLightning.Cast", caster)
 		print(final_damage)
 	for i=1, target_count do
-	local AllEnemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+	local AllEnemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, target:GetAbsOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 --	for i=1, #AllEnemies do
 		ApplyDamage({victim = AllEnemies[i], attacker = caster, damage = final_damage, damage_type = DAMAGE_TYPE_MAGICAL})
 				ParticleManager:CreateParticle("particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, AllEnemies[i]) 
@@ -28,7 +28,7 @@ function Bolt_leg(keys)
 	local final_damage = math.ceil(unit_max_mana*unit_damage_pct/100)
 		StartSoundEvent("Hero_Zuus.ArcLightning.Cast", caster)
 
-	local AllEnemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+	local AllEnemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, target:GetAbsOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 	for i=1, #AllEnemies do
 		ApplyDamage({victim = AllEnemies[i], attacker = caster, damage = final_damage, damage_type = DAMAGE_TYPE_MAGICAL})
 				ParticleManager:CreateParticle("particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, AllEnemies[i]) 

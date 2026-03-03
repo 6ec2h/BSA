@@ -25,7 +25,7 @@ function primal_beast_rock_throw_lua:OnProjectileHit(target, location)
     local attack_damage = self:GetSpecialValueFor("base_damage")
     local hit_pos = target:GetAbsOrigin()
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), hit_pos, nil, rock_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), hit_pos, target, rock_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
     for _, enemy in pairs(enemies) do
         ApplyDamage({
             victim = enemy,
@@ -188,7 +188,7 @@ end
 
 function modifier_primal_beast_trample_lua:Trample()
 	local pos = self.parent:GetOrigin()
-	local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), pos, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), pos, self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	local damage = self.base_damage + self.parent:GetAverageTrueAttackDamage(self.parent) * self.attack_damage
 	local damageTable = {
 		attacker = self.parent,
@@ -228,7 +228,7 @@ function primal_beast_uproar_lua:OnSpellStart()
 
 	caster:AddNewModifier(caster, self, "modifier_primal_beast_uproar_lua_buff",{duration = duration})
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	for _,enemy in pairs(enemies) do
 		enemy:AddNewModifier(caster, self, "modifier_primal_beast_uproar_lua_debuff", {duration = duration})
 	end

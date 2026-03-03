@@ -24,11 +24,15 @@ if IsInToolsMode() then
 	end
 end
 
+
+require("libraries/timers")
+
 require("overrides")
 -- require("debug_panel")
 
 require("talents_stats")
 require('libraries/notifications')
+
 require("libraries/timers")
 require("libraries/animations")
 require("libraries/table")
@@ -83,7 +87,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5)
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0)
 	GameRules:GetGameModeEntity():SetUnseenFogOfWarEnabled(not IsInToolsMode())
-	GameRules:GetGameModeEntity():SetFogOfWarDisabled(IsInToolsMode())
+	GameRules:GetGameModeEntity():SetFogOfWarDisabled( IsInToolsMode())
 	GameRules:SetUseBaseGoldBountyOnHeroes(true)
 	GameRules:SetStrategyTime(0)
 	GameRules:GetGameModeEntity():SetRuneSpawnFilter( Dynamic_Wrap( CAddonAdvExGameMode, "RuneSpawnFilter" ), self )
@@ -139,9 +143,9 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "1" and steamID == 393187346 then
-		while hero:GetLevel() < 30 do
-			hero:HeroLevelUp(false)
-		end
+		-- table.print(_G.Account_stats[steamID])
+		-- hero:SetAbsOrigin( Vector(-10636, 167, 400 ))
+		-- guild_events:StartSoloEvent(pid)
     end
 
 	if text == "2" and steamID == 393187346 then
@@ -466,18 +470,6 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 		-- end
 		for i=0, DOTA_MAX_TEAM_PLAYERS do
 			if PlayerResource:IsValidPlayer(i) then
-				
-				-----------------------------------------------------------------
-				-- if PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
-					-- local sid = PlayerResource:GetSteamAccountID(i)
-		
-					-- if not IsPlayerAllowed(sid) then
-						-- GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-						-- return
-					-- end
-				-- end
-				-------------------------------------------------------------------
-			
 				if PlayerResource:HasSelectedHero(i) == false then
 					local player = PlayerResource:GetPlayer(i)
 					player:MakeRandomHeroSelection()
@@ -884,8 +876,8 @@ local neutralBosses = {
 
 function HandleKilledUnit(killed_unit, killer, add_rp, add_exp, add_rating, win_status, boss, guild_exp, unit_name) 
 	if GameRules:IsCheatMode() and not IsInToolsMode() then return end
-	rules:SafeCall(function()
-		local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
+	rules:SafeCall(function() 
+		local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), killer, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
 			DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
 			FIND_ANY_ORDER, false)
 		for _, hero in pairs(heroes) do
@@ -931,8 +923,28 @@ end
 function CAddonAdvExGameMode:OnEntityKilled( keys )
     local killed_unit = EntIndexToHScript( keys.entindex_killed )
     local killer = keys.entindex_attacker and EntIndexToHScript( keys.entindex_attacker ) or nil
-	local unitName = killed_unit:GetUnitName()
+
+	if not killed_unit then return end
+    
+    local unitName = killed_unit:GetUnitName()
+
+	local entIndex = keys.entindex_killed
+	if not entIndex then return end
+	local prefix = entIndex .. "_"
+
+	for key in pairs(_G.MODIFIER_CACHE) do
+		if string.sub(key, 1, #prefix) == prefix then 
+			_G.MODIFIER_CACHE[key] = nil 
+		end
+	end
 	
+	for key in pairs(_G.GLOBAL_RADIUS_CACHE) do
+		if string.sub(key, 1, #prefix) == prefix then 
+			_G.GLOBAL_RADIUS_CACHE[key] = nil
+			_G.GLOBAL_RADIUS_TIME[key] = nil
+		end
+	end
+
 	if killer then
         pID = killer:GetPlayerOwnerID()
     end
@@ -998,7 +1010,7 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 			local baseGold = data[1]
     		local baseXP = data[2]
 
-			local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 1100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false ) 
+			local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), killer, 1100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false ) 
 			for i = 1, #heroes do
 				local playerID = heroes[i]:GetPlayerID()
 				if not _G.guild_events:IsAnyEventActiveForPlayer(heroes[i]) then
@@ -1048,7 +1060,7 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 			------------------------------------------------------ GOLDEN UNITS REWARDS -----------------------------------------------------------------------------------
 
 			if goldUnitNames[unitName] then
-				local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
+				local heroes = FindUnitsInRadius(killer:GetTeamNumber(), killed_unit:GetAbsOrigin(), killer, 2000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
 				DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD,
 				FIND_ANY_ORDER, false)
 				for _, hero in pairs(heroes) do

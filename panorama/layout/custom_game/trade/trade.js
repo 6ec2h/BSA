@@ -437,15 +437,16 @@ var textEntry;
 var textPrice;
 var price = 2
 var trade = $("#trade_panel_content_sell")
-// var center_panel = $("#trade_panel_content_sell_center")
+var current_selling_item = null
 
 function clear(){
 	trade.RemoveAndDeleteChildren()
-	// center_panel.RemoveAndDeleteChildren()	
 }
 
 function set_item_for_sale(number){
 	var data = inventory[number];
+
+    current_selling_item = data
 
     var percent = ['lifesteal', 'magic_lifesteal', 'reflect', 'spell_amplify', 'magic_desolator', 'hp_regen', 'legs', 'shield', 'manacost', 'hp_regen_amp', 'crit', 'multicast', 'magic_crit'];
     var int_num = ['head', 'legs', 'weapon'];
@@ -502,50 +503,70 @@ function set_item_for_sale(number){
 	pan.FindChildTraverse('sell_item_panel_desc_button').SetPanelEvent("onmouseactivate", function() {sell_item_request(data, number)});
 }
 
-function sell_item_request(item , number){
-	// Получаем ID предмета и номер слота
-	let item_id = item.id || item.item_id || null
-	let slot_number = parseInt(number)
-	let buyer_price = parseFloat(textEntry.text == "" ? "1" : textEntry.text)
+function sell_item_request(item, number) {
+    let item_id = item.id || item.item_id || null;
+    let slot_number = parseInt(number);
+    
+    let setNumber = item.set_number ? item.set_number : 1;
+    let minAllowed = MIN_PRICES_BY_SET[setNumber] || 2;
 
-	GameEvents.SendCustomGameEventToServer("sell_item", {
-		item_id: item_id,
-		slot_number: slot_number,
-		price: buyer_price
-	})
+    let currentInput = parseInt(textEntry.text);
+
+    let buyer_price = (Number.isNaN(currentInput) || currentInput < minAllowed) 
+                      ? minAllowed 
+                      : currentInput;
+
+    GameEvents.SendCustomGameEventToServer("sell_item", {
+        item_id: item_id,
+        slot_number: slot_number,
+        price: buyer_price
+    });
 }
+
+const MIN_PRICES_BY_SET = {
+    1: 2,
+    2: 5,
+    3: 10,
+    4: 15,
+    5: 20,
+    6: 25
+};
 
 function InputCount() {
-	let text = textEntry.text
+    let text = textEntry.text;
 
-	if (text.includes(".")) {
-		text = text.replaceAll(".", "")
-		textEntry.text = text;
-	}
+    if (text.includes(".")) {
+        text = text.replaceAll(".", "");
+        textEntry.text = text;
+    }
 
-	let textInt = parseInt(text)
+    let textInt = parseInt(text);
 
-	if (Number.isNaN(textInt)) {
-		price = 0;
-		textPrice.text = price;
-		return
-	}
+    let setNumber = (current_selling_item && current_selling_item.set_number) ? current_selling_item.set_number : 1;
+    let minAllowed = MIN_PRICES_BY_SET[setNumber] || 2;
 
-	if (textInt < 0) {
-		textInt = 1
-		textEntry.text = "1"
-	} else if (textInt > 500) {
-		textInt = 500
-		textEntry.text = "500";
-	}
+    if (Number.isNaN(textInt)) {
+        textInt = minAllowed; 
+    }
 
-	price = textInt - Math.ceil(textInt * 0.1)
-	price = Math.max(price, 0)
-	price = Math.min(price, 500)
+    if (textInt < minAllowed) {
+        textInt = minAllowed;
+        textEntry.text = String(minAllowed);
+    } else if (textInt > 1500) {
+        textInt = 1500;
+        textEntry.text = "1500";
+    }
 
-	textPrice.text =  $.Localize("#give_coins_after_sell") + " " + price;
+    if (textEntry.text == "") {
+        textEntry.text = String(minAllowed);
+    }
+
+    price = textInt - Math.ceil(textInt * 0.1);
+    price = Math.max(price, 0);
+    price = Math.min(price, 1500);
+
+    textPrice.text = $.Localize("#give_coins_after_sell") + " " + price;
 }
-
 
 ///////////////////////////////////////// ORDER //////////////////////////////////////////////////////////
 

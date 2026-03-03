@@ -41,7 +41,7 @@ function LightningJump(keys)
 		-- Checks if there are jumps left
 		if ability.jump_count[current] > 0 then
 			-- Finds units in the radius to jump to
-			local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
+			local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), target, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
 			local closest = radius
 			local new_target
 			for i,unit in ipairs(units) do

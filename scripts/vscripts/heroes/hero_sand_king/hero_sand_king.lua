@@ -18,7 +18,7 @@ function sand_stun:OnSpellStart()
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),
 		self:GetCaster():GetOrigin(),
-		nil,
+		self:GetCaster(),
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -158,7 +158,7 @@ function modifier_sand_king_sand_storm_lua:OnIntervalThink()
 	
 	if self.damage_counter == 16 then
 		self.damage_counter  = 0
-		local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetCaster():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0,	0, false)
+		local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetCaster():GetOrigin(), self:GetCaster(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0,	0, false)
 		for _,enemy in pairs(enemies) do
 			self.damageTable.victim = enemy
 			ApplyDamage( self.damageTable )
@@ -313,7 +313,7 @@ function modifier_sand_caustic_debuff:DealDamage(explosion)
 	if explosion then 
 		self.damage = self.damage * 2
 	end
-	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	local damageTable = {
 		attacker = self:GetCaster(),
 		damage = self.damage,
@@ -398,7 +398,7 @@ function modifier_sandking_custom_trembling_waves:OnIntervalThink()
 			ability = self,
 		}
 	
-		local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), point, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,0,false)
+		local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), point, self.caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,0,false)
 			
 		EmitSoundOn( "Ability.SandKing_Epicenter.spell", self.caster )
 		Timers:CreateTimer(0.1, function() 

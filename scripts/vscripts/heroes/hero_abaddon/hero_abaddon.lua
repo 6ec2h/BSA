@@ -459,7 +459,7 @@ function modifier_abaddon_borrowed_time_lua_active:OnIntervalThink()
 	if not IsServer() then return end
 	local ability = self:GetCaster():FindAbilityByName("abaddon_mist_coil_lua")
 	if ability then
-		local allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
+		local allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
 		for _,ally in pairs(allies) do
 			if ally ~= self:GetCaster() then
 				ability:OnSpellStart(ally, true)

@@ -277,7 +277,7 @@ function troll_warlord_whirling_axes_melee_lua:DoAxeStuff(index,range,caster_loc
 
 	local blind_duration = self:GetSpecialValueFor("blind_duration")
 	local blind_stacks = self:GetSpecialValueFor("blind_stacks")
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, nil, range, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, caster, range, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 	for _,enemy in ipairs(enemies) do
 		local was_hit = false
 		for _, stored_target in ipairs(self[index]) do

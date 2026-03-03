@@ -23,7 +23,7 @@ function ogre_magi_ignite_lua:OnSpellStart()
 	local enemies = FindUnitsInRadius(
 		caster:GetTeamNumber(),	-- int, your team number
 		caster:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		caster,	-- handle, cacheUnit. (not known)
 		self:GetCastRange( target:GetOrigin(), target ),	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter

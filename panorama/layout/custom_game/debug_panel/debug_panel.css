@@ -249,3 +249,40 @@
 	visibility: collapse;
 }
 
+.IDInput
+{
+	width: 100%;
+	background-color: #000;
+	border: 1px solid #444;
+	color: white;
+	font-size: 18px;
+	padding: 6px;
+	border-radius: 2px;
+}
+
+.IDInput:focus
+{
+	border: 1px solid #e5cf00;
+	background-color: #111;
+}
+
+.IDInput #Placeholder
+{
+	color: #444;
+}
+
+.ErrorText
+{
+	color: #ff4444;
+	font-size: 14px;
+	margin-top: 4px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px black;
+}
+
+.ErrorState
+{
+	border: 1px solid #ff4444 !important;
+	box-shadow: fill #ff444422 0px 0px 4px 0px;
+}
+

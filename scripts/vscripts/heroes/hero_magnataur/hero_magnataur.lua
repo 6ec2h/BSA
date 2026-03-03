@@ -388,7 +388,7 @@ function magnus_reverse_polarity_lua:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetOrigin(),
-        nil,
+        caster,
         radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

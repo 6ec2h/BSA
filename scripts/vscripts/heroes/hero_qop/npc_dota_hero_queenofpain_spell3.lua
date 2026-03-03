@@ -61,7 +61,7 @@ end
 
 function modifier_npc_dota_hero_queenofpain_spell3:OnIntervalThink()
     if not IsServer() then return end
-	local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("radius_flashback"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0,false)
+	local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self:GetAbility():GetSpecialValueFor("radius_flashback"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC, 0, 0,false)
     for _,unit in ipairs(units) do
         if unit ~= self:GetParent() and not unit:HasModifier("modifier_npc_dota_hero_queenofpain_spell3") then
             unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_npc_dota_hero_queenofpain_spell3", {duration = self.duration})

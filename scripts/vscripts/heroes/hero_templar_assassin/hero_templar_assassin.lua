@@ -377,7 +377,7 @@ function modifier_templar_assassin_trap_lua:OnDestroy()
     ParticleManager:SetParticleControl(explode, 61, Vector(1, 0, 0))
     ParticleManager:ReleaseParticleIndex(explode)
 
-    local enemies = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+    local enemies = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), parent, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
     
     for _, enemy in pairs(enemies) do
         enemy:AddNewModifier(caster, ability, "modifier_templar_assassin_trap_lua_slow", {duration = ability:GetSpecialValueFor("slow_duration")})
@@ -460,7 +460,7 @@ function templar_assassin_trap_lua_teleport:OnSpellStart()
         if unit:GetUnitName() == "npc_dota_templar_assassin_psionic_trap" and unit:IsAlive() then
             local target_pos = unit:GetAbsOrigin()
 
-            local enemies_origin = FindUnitsInRadius(caster:GetTeamNumber(), origin_pos, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+            local enemies_origin = FindUnitsInRadius(caster:GetTeamNumber(), origin_pos, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
             for _, enemy in pairs(enemies_origin) do
                 self:ApplyTrapEffects(enemy, caster, trap_ability, slow_dur)
             end

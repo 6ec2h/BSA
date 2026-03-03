@@ -168,7 +168,7 @@ function modifier_boss_slardar_torrential_waters:OnIntervalThink()
         
         EmitSoundOnLocationWithCaster(target_pos, "Ability.Torrent", caster)
         
-        local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, nil, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+        local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, caster, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
         for _, unit in ipairs(units) do
             ApplyDamage({
                 attacker = caster,

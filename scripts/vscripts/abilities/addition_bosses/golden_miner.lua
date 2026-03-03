@@ -456,7 +456,7 @@ function modifier_golden_miner_death_nova_pull:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         parent:GetTeamNumber(), 
         center, 
-        nil, 
+        parent, 
         self.radius, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 

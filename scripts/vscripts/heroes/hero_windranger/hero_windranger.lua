@@ -101,7 +101,7 @@ function windrunner_attack_triggers:FindAndBindNext(source, last_pos, ignore_tab
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), 
             source:GetAbsOrigin(), 
-            nil, 
+            source, 
             distance, 
             DOTA_UNIT_TARGET_TEAM_ENEMY, 
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -128,7 +128,7 @@ function windrunner_attack_triggers:FindAndBindNext(source, last_pos, ignore_tab
     end
 
     local dir_to_source = (source:GetAbsOrigin() - last_pos):Normalized()
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), source:GetAbsOrigin(), nil, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), source:GetAbsOrigin(), source, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
     
     for _, enemy in pairs(enemies) do
         if enemy ~= source and not ignore_table[enemy] then

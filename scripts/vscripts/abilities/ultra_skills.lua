@@ -16,7 +16,7 @@ function thundergod_ultra_lua:OnSpellStart()
         damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
     }
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _,enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             local point = enemy:GetAbsOrigin()
@@ -96,7 +96,7 @@ function sunstrike_ultra_lua:OnSpellStart()
         damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
     }
 	
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
 	for _,enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             local point = enemy:GetAbsOrigin()
@@ -133,7 +133,7 @@ function silence_ultra_lua:OnSpellStart()
     if not IsServer() then return end
     local caster = self:GetCaster()
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
 	for _,enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             enemy:AddNewModifier(caster, self, "modifier_silence_ultra_lua", {duration = 20})
@@ -191,7 +191,7 @@ function overgrowth_ultra_lua:OnSpellStart()
     if not IsServer() then return end
 	local caster = self:GetCaster()
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
 	for _,enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             enemy:AddNewModifier(caster, self, "modifier_overgrowth_ultra_lua", {duration = 5})
@@ -271,7 +271,7 @@ function mine_ultra_lua:OnSpellStart()
     if not IsServer() then return end
 	local caster = self:GetCaster()
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
 	for _,enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             local point = enemy:GetAbsOrigin()
@@ -322,7 +322,8 @@ function modifier_mine_ultra_lua_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -361,7 +362,7 @@ function modifier_mine_ultra_lua_thinker:Explode()
     ParticleManager:SetParticleControl(pfx, 2, Vector(self.radius, 1, 1))
     ParticleManager:ReleaseParticleIndex(pfx)
 
-    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), origin, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
+    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), origin, self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
 
     for _, enemy in pairs(enemies) do
         if not enemy:HasFlyMovementCapability() then
@@ -409,7 +410,7 @@ function roshan_ultra_lua:OnSpellStart()
 	if not IsServer() then return end
     local caster = self:GetCaster()
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _,enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             local point = enemy:GetAbsOrigin()
@@ -433,7 +434,7 @@ function stun_ultra_lua:OnSpellStart()
 	if not IsServer() then return end
     local caster = self:GetCaster()
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _,enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             local point = enemy:GetAbsOrigin()
@@ -492,7 +493,7 @@ function poison_ultra_lua:OnSpellStart()
     local start_radius = 150
     local end_radius = 450
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _, enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             if enemy:GetTeamNumber() ~= caster:GetTeamNumber() then
@@ -584,7 +585,7 @@ function blind_ultra_lua:OnSpellStart()
     local caster = self:GetCaster()
     local duration = 10
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _, enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             enemy:AddNewModifier(caster, self, "modifier_blind_ultra_lua", {duration = duration})
@@ -650,7 +651,7 @@ function resist_ultra_lua:OnSpellStart()
     local caster = self:GetCaster()
     local duration = 15
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _, enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             enemy:AddNewModifier(caster, self, "modifier_resist_ultra_lua", {duration = duration})
@@ -707,7 +708,7 @@ function ice_ultra_lua:OnSpellStart()
     local caster = self:GetCaster()
     local duration = 15
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _, enemy in pairs(enemies) do 
         if enemy:IsAlive() then 
             enemy:AddNewModifier(caster, self, "modifier_ice_ultra_lua", {duration = duration})

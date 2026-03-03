@@ -16,7 +16,7 @@ function terrorblade_reflection_lua:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetAbsOrigin(),
-        nil,
+        caster,
         range,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -287,7 +287,7 @@ function modifier_fear_thinker:OnIntervalThink()
 		self:StartIntervalThink(-1)
 		self:StartIntervalThink(FrameTime())
 	else
-		for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, math.min(self.speed * (self:GetElapsedTime() - self.spawn_delay), self.radius), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
+		for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), math.min(self.speed * (self:GetElapsedTime() - self.spawn_delay), self.radius), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
 			if not self.feared_units[enemy:entindex()] and (enemy:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D() >= math.min(self.speed * (self:GetElapsedTime() - self.spawn_delay), self.radius) - 50 then
 				enemy:EmitSound("Hero_Terrorblade.Metamorphosis.Fear")
 				self.fear_modifier = enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_terrorblade_fear", {duration = self.fear_duration})
@@ -498,7 +498,7 @@ function terrorblade_sunder_lua:OnSpellStart()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         point,
-        nil,
+        caster,
         radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_CREEP,

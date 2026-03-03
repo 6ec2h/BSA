@@ -9,7 +9,7 @@ end
 function npc_dota_hero_queenofpain_spell2:OnSpellStart()
 	EmitSoundOn( "Hero_QueenOfPain.ScreamOfPain", self:GetCaster() )
     if not IsServer() then return end
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, self:GetSpecialValueFor("scream_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0,false)
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), self:GetSpecialValueFor("scream_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0,false)
 
 		for _,enemy in pairs(enemies) do
 			ProjectileManager:CreateTrackingProjectile({

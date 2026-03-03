@@ -17,7 +17,8 @@ function NecroLordThink()
         return 1  
     end
 
-    local enemies = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil, 150, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+    local enemies = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), thisEntity, 150, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+   
     if #enemies > 0 and thisEntity:GetDayTimeVisionRange() < 1000 then
 	    thisEntity:SetDayTimeVisionRange(1500)
 		thisEntity:SetNightTimeVisionRange(1500)

@@ -71,7 +71,7 @@ end
 
 function modifier_stasis_trap:OnIntervalThink()
     if IsServer() then
-        local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+        local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
         if #enemies > 0 and not self:GetParent():HasModifier("modifier_stasis_trap_active_delay") and not self:GetParent():HasModifier("modifier_stasis_trap_explose_delay") then
             self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_trap_explose_delay", {duration = self:GetAbility():GetSpecialValueFor("explosion_delay")})
         end
@@ -97,7 +97,7 @@ function modifier_stasis_trap:OnDestroy()
 			self.duration = self.duration * 2
 		end	
 	
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do
 			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_rooted", {duration = self.duration})
 			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_trap_root_pfx", {duration = self.duration})
@@ -114,7 +114,7 @@ function modifier_stasis_trap_explose_delay:IsPurgeException() return false end
 
 function modifier_stasis_trap_explose_delay:OnDestroy()
 	if IsServer() then
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		if #enemies > 0 and self:GetElapsedTime() >= self:GetDuration() then
 			local buff = self:GetParent():FindModifierByName("modifier_stasis_trap")
 			if buff then

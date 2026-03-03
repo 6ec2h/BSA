@@ -3163,131 +3163,7 @@
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}	
-	
-	
-/////////////////////////////////////////////////////////////////
 
-"special_bonus_venomancer_1" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-				"ad_linked_abilities"		"venomancer_venomous_gale_lua"
-			}
-		}
-	}
-	
-	"special_bonus_venomancer_2" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-				"ad_linked_abilities"		"venomancer_poison_sting_lua"
-			}
-		}
-	}
-	
-	"special_bonus_venomancer_3" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1.5"
-				"ad_linked_abilities"		"venomancer_poison_tick"
-			}
-		}
-	}
-
-	"special_bonus_venomancer_4" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	}	
-	
-/////////////////////////////////////////////////////////////////
-
-	"special_bonus_vengefulspirit_1" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"175"
-				"ad_linked_abilities"		"vengefulspirit_magic_missile_lua"
-			}
-		}
-	}
-	
-	"special_bonus_vengefulspirit_2" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-				"ad_linked_abilities"		"vengefulspirit_command_aura_lua"
-			}
-		}
-	}
-	
-	"special_bonus_vengefulspirit_3" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-3"
-				"ad_linked_abilities"		"vengefulspirit_wave_of_terror_lua"
-			}
-		}
-	}
-
-	"special_bonus_vengefulspirit_4" 
-	{
-		"BaseClass"             		"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-				"ad_linked_abilities"		"vengefulspirit_nether_swap_lua"
-			}
-		}
-	}	
-	
 /////////////////////////////////////////////////////////////////
 
 	"special_bonus_brewmaster_1" 
@@ -3409,6 +3285,139 @@
 		"BaseClass"             		"special_bonus_undefined"
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"120"
+				"ad_linked_abilities"		"bloodseeker_blood_rite_lua"
+			}
+		}
+	}
+
+	"special_bonus_bloodseeker_5" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"80"
+				"ad_linked_abilities"		"bloodseeker_bloodrage_lua"
+			}
+		}
+	}
+
+	"special_bonus_bloodseeker_6" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+				"ad_linked_abilities"		"bloodseeker_bloodrage_lua"
+			}
+		}
+	}
+	
+	"special_bonus_bloodseeker_7" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"3"
+				"ad_linked_abilities"		"bloodseeker_mist"
+			}
+		}
+	}
+
+	"special_bonus_bloodseeker_8" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	
+/////////////////////////////////////////////////////////////////
+
+	"pango_1" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_2" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+				"ad_linked_abilities"		"hero_pangolier_runic_blade"
+			}
+		}
+	}
+	
+	"pango_3" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_blade_of_the_exile"
+			}
+		}
+	}
+
+	"pango_4" 
+	{
+		"BaseClass"             		"special_bonus_undefined"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+				"ad_linked_abilities"		"hero_pangolier_broken_wings"
+			}
+		}
+	}	
+}
+BEHAVIOR_PASSIVE"
 		"AbilitySpecial"
 		{
 			"01"

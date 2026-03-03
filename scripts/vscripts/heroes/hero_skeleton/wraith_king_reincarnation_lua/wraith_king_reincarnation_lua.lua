@@ -143,7 +143,7 @@ function modifier_wraith_king_reincarnation_lua:ReincarnateTime()
 		Timers:CreateTimer(3.1,function() 
 			unit:AddNewModifier( unit, self:GetAbility(), "modifier_invulnerable", { duration = 3 } )
 		end)
-		local enemies = FindUnitsInRadius(unit:GetTeamNumber(), unit:GetOrigin(), nil, self.slow_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		local enemies = FindUnitsInRadius(unit:GetTeamNumber(), unit:GetOrigin(), unit, self.slow_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _,enemy in pairs(enemies) do
 			enemy:AddNewModifier(
 				unit,

@@ -21,7 +21,7 @@ if not IsServer() then return end
 						damage = damage
 						}
 	
-	local hEnemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetCaster():GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+	local hEnemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetCaster():GetOrigin(), self:GetCaster(), range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
 	if #hEnemies > 0 then
 		for _, target in ipairs(hEnemies) do
 			local point = target:GetAbsOrigin()
@@ -123,7 +123,7 @@ function modifier_boos_doom_pit_lua_thinker:OnDestroy()
 end
 
 function modifier_boos_doom_pit_lua_thinker:OnIntervalThink()
-	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(),	nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(),	self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	for _,enemy in pairs(enemies) do
 		local modifier = enemy:FindModifierByNameAndCaster( "modifier_boos_doom_pit_lua_cooldown", self:GetCaster() )
 		if not modifier then

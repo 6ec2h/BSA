@@ -469,7 +469,7 @@ function creep_death_pulse_lua:OnSpellStart()
 
     caster:EmitSound("Hero_Necrolyte.DeathPulse")
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
     for _, enemy in pairs(enemies) do
         ProjectileManager:CreateTrackingProjectile({
             Target = enemy,
@@ -486,7 +486,7 @@ function creep_death_pulse_lua:OnSpellStart()
         })
     end
 
-    local allies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+    local allies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
     for _, ally in pairs(allies) do
         ProjectileManager:CreateTrackingProjectile({
             Target = ally,
@@ -686,15 +686,13 @@ function modifier_creep_reapers_scythe_lua:OnIntervalThink()
     local ability = self:GetAbility()
     local caster = self:GetCaster()
 
-    if not ability:IsCooldownReady() or caster:IsStunned() or caster:IsSilenced() or not caster:IsAlive() then 
-        return 
-    end
+    if not ability:IsCooldownReady() or caster:IsStunned() or caster:IsSilenced() or not caster:IsAlive() then return end
 
     local range = ability:GetSpecialValueFor("cast_range")
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetAbsOrigin(),
-        nil,
+        caster,
         range,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -999,4 +997,5 @@ end
 
 function modifier_creep_degen_aura_lua_effect:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
+endOW
 end

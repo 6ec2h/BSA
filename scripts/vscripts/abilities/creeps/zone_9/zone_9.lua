@@ -473,7 +473,7 @@ function modifier_creep_fireball_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.caster_team,
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -538,7 +538,7 @@ function creep_fatal_bonds_lua:OnSpellStart()
 	local nearbyUnits = FindUnitsInRadius(
 		caster:GetTeamNumber(),
 		target:GetAbsOrigin(),
-		nil,
+		target,
 		self:GetSpecialValueFor("search_aoe"),
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -602,7 +602,7 @@ end
 
 function modifier_creep_fatal_bonds_lua:OnCreated(keys)
 	if IsClient() then
-		self.damageSharePct = self:GetAbility():GetSpecialValueFor("damage_share_pct") + self:GetAbility():GetSpecialValueFor("diff_boost_damage")
+		self.damageSharePct = self:GetAbility():GetSpecialValueFor("damage_share_pct") + self:GetAbility():GetSpecialValueFor("diff_boost_damage") / 100
 	end
 
 	if IsServer() then
@@ -785,10 +785,10 @@ function creep_rain_of_chaos_lua:OnSpellStart()
 
 		golem:AddNewModifier(self:GetCaster(), self, "modifier_kill", { duration = self:GetSpecialValueFor("golem_duration") })
 
-        bonus_hp = self:GetSpecialValueFor("golem_hp") + (self:GetSpecialValueFor("golem_hp") * self:GetSpecialValueFor("diff_boost_damage")/100)
-        bonus_damage = self:GetSpecialValueFor("golem_dmg")+ (self:GetSpecialValueFor("golem_dmg") * self:GetSpecialValueFor("diff_boost_damage")/100)
-        bonus_armor = self:GetSpecialValueFor("golem_armor")+ (self:GetSpecialValueFor("golem_armor") * self:GetSpecialValueFor("diff_boost_damage")/100)
-        bonus_move_speed = self:GetSpecialValueFor("golem_movement_speed")
+        local bonus_hp = self:GetSpecialValueFor("golem_hp") + (self:GetSpecialValueFor("golem_hp") * self:GetSpecialValueFor("diff_boost_damage")/100)
+        local bonus_damage = self:GetSpecialValueFor("golem_dmg")+ (self:GetSpecialValueFor("golem_dmg") * self:GetSpecialValueFor("diff_boost_damage")/100)
+        local bonus_armor = self:GetSpecialValueFor("golem_armor")+ (self:GetSpecialValueFor("golem_armor") * self:GetSpecialValueFor("diff_boost_damage")/100)
+
         print(bonus_hp)
 		golem:SetBaseMaxHealth(bonus_hp)
 		golem:SetMaxHealth(bonus_hp)
@@ -840,7 +840,7 @@ if IsServer() then
             local enemies = FindUnitsInRadius(
                 caster:GetTeamNumber(),
                 keys.target:GetAbsOrigin(),
-                nil,
+                keys.target,
                 radius,
                 DOTA_UNIT_TARGET_TEAM_ENEMY,
                 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -1078,7 +1078,7 @@ end
 function modifier_spawn_tomb_units:OnIntervalThink()
 	if IsServer() then
 		if self:GetAbility():IsCooldownReady() and self:GetParent():IsAlive() then
-			local hEnemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, 1100, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+			local hEnemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), 1100, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
 			if #hEnemies > 0 then
 		
 				local unit = CreateUnitByName("npc_zone_9_tomb_minion", self:GetParent():GetAbsOrigin(), true, nil, nil, DOTA_TEAM_NEUTRALS)
@@ -1090,6 +1090,9 @@ function modifier_spawn_tomb_units:OnIntervalThink()
 				rules:aura_dif(unit,random_ability)
 				self:GetAbility():UseResources( false, false, false, true )
 			end	
+		end
+	end
+end
 		end
 	end
 end

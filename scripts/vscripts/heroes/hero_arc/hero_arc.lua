@@ -281,7 +281,7 @@ function modifier_ark_spark_lua_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         parent:GetAbsOrigin(),
-        nil,
+        parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

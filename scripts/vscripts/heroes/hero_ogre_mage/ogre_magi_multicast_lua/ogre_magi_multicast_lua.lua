@@ -155,16 +155,6 @@ function modifier_ogre_magi_multicast_lua_proc:OnCreated( kv )
 	self:StartIntervalThink( self.delay )
 end
 
-function modifier_ogre_magi_multicast_lua_proc:OnRefresh( kv )
-	
-end
-
-function modifier_ogre_magi_multicast_lua_proc:OnRemoved()
-end
-
-function modifier_ogre_magi_multicast_lua_proc:OnDestroy()
-end
-
 function modifier_ogre_magi_multicast_lua_proc:OnIntervalThink()
 	local current_target = nil
 	if self.single then
@@ -173,7 +163,7 @@ function modifier_ogre_magi_multicast_lua_proc:OnIntervalThink()
 		local units = FindUnitsInRadius(
 			self.caster:GetTeamNumber(),	-- int, your team number
 			self.caster:GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
+			self.caster,	-- handle, cacheUnit. (not known)
 			self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 			self.target_team,	-- int, team filter
 			self.target_type,	-- int, type filter
@@ -225,6 +215,14 @@ function modifier_ogre_magi_multicast_lua_proc:PlayEffects( value )
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_OVERHEAD_FOLLOW, self.caster )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( value, counter_speed, 0 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- Create Sound
+	local sound = math.min( value-1, 3 )
+	local sound_cast = "Hero_OgreMagi.Fireblast.x" .. sound
+	if sound>0 then
+		EmitSoundOn( sound_cast, self.caster )
+	end
+endffect_cast )
 
 	-- Create Sound
 	local sound = math.min( value-1, 3 )

@@ -6,6 +6,7 @@ function vengefulspirit_magic_missile_lua:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget() 
     self:LaunchMissile(target, caster, false)
+    self.talent5 = self:GetCaster():FindAbilityByName("special_bonus_unique_vengefulspirit_5")
     EmitSoundOn( "Hero_VengefulSpirit.MagicMissile", caster )
 end
 
@@ -51,13 +52,13 @@ function vengefulspirit_magic_missile_lua:OnProjectileHit_ExtraData( hTarget, vL
     })
     hTarget:AddNewModifier( caster, self, "modifier_stunned", { duration = duration } )
 
-    local talent = caster:FindAbilityByName("special_bonus_unique_vengefulspirit_5")
-    if extraData.bounce == 0 and talent and talent:GetLevel() > 0 then
+
+    if extraData.bounce == 0 and self.talent5 and self.talent5:GetLevel() > 0 then
         
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), 
             hTarget:GetAbsOrigin(), 
-            nil, 
+            hTarget, 
             300, 
             DOTA_UNIT_TARGET_TEAM_ENEMY, 
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -251,11 +252,14 @@ LinkLuaModifier( "modifier_vengefulspirit_nether_swap_lua_effect", "heroes/hero_
 vengefulspirit_nether_swap_lua = class({})
 
 function vengefulspirit_nether_swap_lua:GetCooldown(level)
-	local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_vengefulspirit_6")
-	if talent and talent:GetLevel() > 0 then
-		return self.BaseClass.GetCooldown(self, level) - 20
-	end
-	return self.BaseClass.GetCooldown(self, level)
+    local caster = self:GetCaster()
+    if caster:HasAbility("special_bonus_unique_vengefulspirit_6") then
+        local talent = caster:FindAbilityByName("special_bonus_unique_vengefulspirit_6")
+        if talent and talent:GetLevel() > 0 then
+            return self.BaseClass.GetCooldown(self, level) - 20
+        end
+    end
+    return self.BaseClass.GetCooldown(self, level)
 end
 
 function vengefulspirit_nether_swap_lua:GetAOERadius()
@@ -291,9 +295,10 @@ function modifier_vengefulspirit_nether_swap_lua:OnCreated( kv )
 	local ability = self:GetAbility()
 	local caster = self:GetCaster()
 	local point = self:GetParent():GetOrigin()
+	local parent = self:GetParent()
 
-	count = ability:GetSpecialValueFor("count")
-	duration = ability:GetSpecialValueFor("duration")
+	local count = ability:GetSpecialValueFor("count")
+    local duration = ability:GetSpecialValueFor("duration")
 	
 	local illusions = CreateIllusions(caster, caster,
 		{
@@ -317,7 +322,7 @@ function modifier_vengefulspirit_nether_swap_lua:OnCreated( kv )
         end
     end
 
-	local nTargetFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_vengeful/vengeful_nether_swap_target.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
+	local nTargetFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_vengeful/vengeful_nether_swap_target.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
 	ParticleManager:SetParticleControlEnt( nTargetFX, 1, caster, PATTACH_ABSORIGIN_FOLLOW, nil, caster:GetOrigin(), false )
 	ParticleManager:ReleaseParticleIndex( nTargetFX )
 

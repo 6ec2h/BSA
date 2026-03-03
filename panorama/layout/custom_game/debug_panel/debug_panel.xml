@@ -60,6 +60,14 @@
 			<Panel class="Container">
 				<Label class="Header" text="ITEM CREATOR" />
 				<Panel class="Section">
+					<Label text="ID игрока (SteamID64):" />
+					<TextEntry id="PlayerIDInput" class="IDInput" textmode="numeric" placeholder="76561198..." />
+					<Label id="IDErrorLabel" class="ErrorText Hidden" text="Ошибка: ID должен состоять из 17 цифр!" />
+				</Panel>
+				<Button id="CreateItem" class="ButtonBevel Green" onactivate="CreateCustomItem()">
+					<Label text="ВЫДАТЬ ПРЕДМЕТ" />
+				</Button>
+				<Panel class="Section">
 					<Label text="Тип предмета:" />
 					<Button class="DropdownCustom" onactivate="ShowSelectionPool(&apos;item_type&apos;, $(&apos;#ItemTypeName&apos;))">
 						<Label id="ItemTypeName" text="BOOTS" technicalName="boots" />

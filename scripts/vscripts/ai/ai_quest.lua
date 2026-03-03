@@ -17,9 +17,10 @@ function NeutralThink()
     if GameRules:IsGamePaused() == true then
         return 1 
     end
+
+    local enemies = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, thisEntity:GetOrigin(), thisEntity, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 	
-    local enemies = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, thisEntity:GetOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
-	if #enemies > 0 then
+    if #enemies > 0 then
 		local enemy = enemies[1]
         local away_vector = (thisEntity:GetOrigin() - enemy:GetOrigin()):Normalized()
         local angle_offset = -70 

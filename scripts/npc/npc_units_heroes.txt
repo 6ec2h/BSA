@@ -426,4 +426,58 @@
 
         "AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
     }	
+
+	"npc_dota_venomancer_plague_ward_1_custom"
+	{
+		"BaseClass"                 "npc_dota_creature"
+		"Model"                     "models/heroes/venomancer/venomancer_ward.vmdl"
+		"SoundSet"                  "Hero_VenomancerWard"
+		"Level"                     "1"
+		"ModelScale"                "0.8"
+		"SelectionGroup"            "Venomancer_Wards"
+		"UnitLabel"                 "plaguewards"
+		"wearable"                  "684"
+
+		"ArmorPhysical"             "0"
+		"MagicalResistance"         "0"
+
+		"AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"           "14"
+		"AttackDamageMax"           "18"
+		"AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"                "1.7"
+		"AttackAnimationPoint"      "0.3"
+		"AttackAcquisitionRange"    "600"
+		"AttackRange"               "600"
+		"ProjectileModel"           "particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf"
+		"ProjectileSpeed"           "1900"
+
+		"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"           "170"
+
+		"MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"             "0"
+		"MovementTurnRate"          "0.5"
+
+		"StatusHealth"              "150"
+		"StatusMana"        		"2000"
+
+		"TeamName"                  "DOTA_TEAM_GOODGUYS"
+		"UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+
+		"VisionDaytimeRange"        "800"
+		"VisionNighttimeRange"      "800"
+
+		"HasInventory"              "0"
+
+		"precache"
+		{
+			"particle" "particles/econ/events/anniversary_10th/anniversary_10th_hat_ambient_npc_dota_hero_venomancer_plague_ward.vpcf"
+		}
+		
+		"party_hat_effects"
+		{
+			"party_hat_effect_0" "particles/econ/events/anniversary_10th/anniversary_10th_hat_ambient_npc_dota_hero_venomancer_plague_ward.vpcf"
+		}
+	}
 }

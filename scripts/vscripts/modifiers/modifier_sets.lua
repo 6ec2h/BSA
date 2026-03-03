@@ -334,7 +334,7 @@ function modifier_sets:OnTakeDamageMjolnirArmor(keys)
 
 	if RandomInt(1, 100) >= 10 then return end
 
-	local nearbyUnits = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), nil, 700, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local nearbyUnits = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), parent, 700, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 	local nearbyUnitsLen = #nearbyUnits
 
 	local leftStaticStrikes = 3
@@ -470,7 +470,7 @@ function modifier_set_mjolnir_strike:OnIntervalThink()
 	
 	if self.current_unit and not self.current_unit:IsNull() and self.current_unit:IsAlive() and (self.unit_counter >= self.static_strikes and self.static_strikes > 0) or not self.zapped then
 
-		for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self.current_unit:GetAbsOrigin(), nil, self.static_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)) do
+		for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self.current_unit:GetAbsOrigin(), self.current_unit, self.static_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)) do
 			if not self.units_affected[enemy] and enemy ~= self.current_unit and enemy ~= self.previous_unit then
 				enemy:EmitSound("Hero_Zuus.ArcLightning.Target")
 				

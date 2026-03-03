@@ -13,6 +13,7 @@
 		"Ability1"					"creep_meat_hook_lua"				
 		"Ability2"					"creep_dismember_lua"
 		"Ability3"					"creep_rot_lua"
+		"Ability4"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"10"			
 		"MagicalResistance"         "10"
@@ -53,10 +54,6 @@
 				"urn"
 				{
 					"Item"					"item_bfury_lua2"
-				}
-				"item_sphere"
-				{
-					"Item"					"item_sphere"
 				}
 				"mkb"
 				{
@@ -169,10 +166,6 @@
 				{
 					"Item"					"item_skadi_lua2"
 				}
-				"item_sphere"
-				{
-					"Item"					"item_sphere"
-				}
 				"mkb"
 				{
 					"Item"					"item_monkey_king_bar_lua2"
@@ -245,10 +238,6 @@
 			}
 			"EquippedItems"
 			{
-				"item_sphere"
-				{
-					"Item"					"item_sphere"
-				}
 				"mkb"
 				{
 					"Item"					"item_monkey_king_bar_lua2"
@@ -351,6 +340,7 @@
 		"Ability1"					"creep_poison_sting_lua"
 		"Ability2"					"creep_spider_spray_lua"
 		"Ability3"					"neutral_spell_immunity"
+		"Ability4"					"necronomicon_warrior_sight"
 
 		"ArmorPhysical"				"10"
 		"MagicalResistance"			"10"
@@ -446,6 +436,9 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"							
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+}T_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}
 }

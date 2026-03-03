@@ -67,7 +67,7 @@ function modifier_boss_necro_firestorm_thinker:OnIntervalThink()
 		return
 	end
 
-	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy
 		ApplyDamage( self.damageTable )
@@ -294,7 +294,7 @@ function modifier_boss_necro_spike:OnIntervalThink()
         
         EmitSoundOnLocationWithCaster(target_pos, "Hero_Leshrac.Split_Earth", caster)
         
-        local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, nil, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+        local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, caster, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
         for _, unit in ipairs(units) do
             ApplyDamage({
                 attacker = caster,
@@ -377,7 +377,7 @@ if not IsServer() then return end
 
 				EmitSoundOn("Hero_Pugna.NetherBlast", self:GetCaster())
 				
-				local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target_point, nil, main_blast_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+				local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target_point, self:GetCaster(), main_blast_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 				for _,enemy in pairs(enemies) do
 					local damageTable = {
 						victim = enemy,

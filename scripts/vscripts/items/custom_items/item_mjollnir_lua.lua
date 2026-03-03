@@ -71,7 +71,7 @@ function modifier_item_mjollnir_active:OnTakeDamage(keys)
 
 	if RandomInt(1, 5) ~= 5 then return end
 
-	local nearbyUnits = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), nil, self.static_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local nearbyUnits = FindUnitsInRadius(parent:GetTeamNumber(), parent:GetAbsOrigin(), parent, self.static_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 	local nearbyUnitsLen = #nearbyUnits
 
 	local leftStaticStrikes = self.static_strikes
@@ -210,7 +210,7 @@ end
 function modifier_item_mjollnir_strike:OnIntervalThink()
 	self.zapped = false
 
-	for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self.current_unit:GetAbsOrigin(), nil, self.chain_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)) do
+	for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self.current_unit:GetAbsOrigin(), self.current_unit, self.chain_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)) do
 		if not self.units_affected[enemy] then
 			enemy:EmitSound("Item.Maelstrom.Chain_Lightning.Jump")
 			

@@ -39,7 +39,7 @@ if not IsServer() then return end
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 
-		local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetCaster():GetOrigin(), nil, self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+		local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetCaster():GetOrigin(), self:GetCaster(), self:GetAbility():GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 		for _,enemy in pairs(enemies) do
 			self.damageTable.victim = enemy
 			ApplyDamage( self.damageTable )
@@ -351,7 +351,7 @@ function modifier_creep_land_mines_lua_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
@@ -392,7 +392,7 @@ function modifier_creep_land_mines_lua_thinker:Explode()
     ParticleManager:SetParticleControl(pfx, 2, Vector(self.radius, 1, 1))
     ParticleManager:ReleaseParticleIndex(pfx)
 
-    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), origin, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), origin, self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
     for _, enemy in pairs(enemies) do
         ApplyDamage({
@@ -482,7 +482,7 @@ function modifier_creep_stasis_lua_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
@@ -521,7 +521,7 @@ function modifier_creep_stasis_lua_thinker:Explode()
     ParticleManager:SetParticleControl(pfx, 2, Vector(self.radius, 1, 1))
     ParticleManager:ReleaseParticleIndex(pfx)
 
-    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), origin, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), origin, self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
     for _, enemy in pairs(enemies) do
         if not enemy:HasFlyMovementCapability() then
@@ -608,7 +608,7 @@ function modifier_creep_suicide_lua_passive:OnTakeDamage(keys)
         local enemies = FindUnitsInRadius(
             parent:GetTeamNumber(),
             parent:GetAbsOrigin(),
-            nil,
+            parent,
             self:GetAbility():GetCastRange(parent:GetAbsOrigin(), nil),
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -696,11 +696,8 @@ end
 function modifier_creep_suicide_lua_movement:OnDestroy()
     if not IsServer() then return end
     FindClearSpaceForUnit(self.parent, self.position, true)
-    if self.BlastOffLanded then
-        self:BlastOffLanded()
-    end
+    self:BlastOffLanded()
 end
-
 
 function modifier_creep_suicide_lua_movement:BlastOffLanded()
     EmitSoundOn("Hero_Techies.Suicide", self.parent)
@@ -710,7 +707,7 @@ function modifier_creep_suicide_lua_movement:BlastOffLanded()
 
     GridNav:DestroyTreesAroundPoint(self.parent:GetAbsOrigin(), self.radius, true)
 
-    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 
     for _, enemy in pairs(enemies) do
         ApplyDamage({
@@ -759,11 +756,11 @@ function modifier_creep_cast_damage_immune_lua:IsHidden()
 end
 
 function modifier_creep_cast_damage_immune_lua:OnCreated()
-	self.phis = 0
-	self.mag = 1
-	self:StartIntervalThink(2)
+    self.phis = 0
+    self.mag = 1
+    if not IsServer() then return end
+    self:StartIntervalThink(2)
 end
-
 
 function modifier_creep_cast_damage_immune_lua:OnIntervalThink()
 if not IsServer() then return end
@@ -898,7 +895,7 @@ function modifier_creep_treant_seed_lua:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         parent:GetAbsOrigin(),
-        nil,
+        parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -947,7 +944,7 @@ function creep_overgrowth_lua:OnSpellStart()
     local cast_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
 	ParticleManager:ReleaseParticleIndex(cast_particle)
 	
-	local overgrowth_primary_enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, self:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
+	local overgrowth_primary_enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), self:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
 
 	for _, enemy in pairs(overgrowth_primary_enemies) do
 		enemy:Stop()
@@ -1031,7 +1028,7 @@ function modifier_treant_invis:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         parent:GetTeamNumber(),
         parent:GetAbsOrigin(),
-        nil,
+        parent,
         aggro_range,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO,
@@ -1042,11 +1039,13 @@ function modifier_treant_invis:OnIntervalThink()
 
     if #enemies > 0 then
         self.last_action_time = now
-        ExecuteOrderFromTable({
-            UnitIndex = parent:entindex(),
-            OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-            TargetIndex = enemies[1]:entindex(),
-        })
+        if not parent:IsAttacking() then
+            ExecuteOrderFromTable({
+                UnitIndex = parent:entindex(),
+                OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+                TargetIndex = enemies[1]:entindex(),
+            })
+        end
     end
 
     if not parent:IsAttacking() and (now - self.last_action_time) >= self.invis_delay then

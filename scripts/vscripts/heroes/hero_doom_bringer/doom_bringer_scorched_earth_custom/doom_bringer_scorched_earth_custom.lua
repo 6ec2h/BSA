@@ -55,7 +55,7 @@ end
 function modifier_doom_bringer_scorched_earth_custom:OnIntervalThink()
 	if not IsServer() then return end
 	if not self:GetParent():IsAlive() then return end
-	local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 	for _,enemy in pairs(enemies) do
 		if enemy:IsAlive() then
 			self.damageTable.victim = enemy

@@ -6,7 +6,7 @@ function pet_magic_block_aura:OnSpellStart()
 	if IsServer() then
 		EmitSoundOn("DOTA_Item.Pipe.Activate", self:GetCaster())
 		local duration = self:GetSpecialValueFor("duration")
-		local nearby_allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, 700, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		local nearby_allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 700, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		for _, ally in pairs(nearby_allies) do
 			ally:AddNewModifier(self:GetCaster(), self, "modifier_pet_magic_block_aura_passive", {duration = duration})
 		end

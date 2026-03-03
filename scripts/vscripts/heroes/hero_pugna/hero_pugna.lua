@@ -341,7 +341,7 @@ function modifier_pugna_nether_ward_lua:OnIntervalThink()
 	local enemy_list = FindUnitsInRadius(
 		caster:GetTeamNumber(),
 		parent:GetAbsOrigin(),
-		nil,
+		parent,
 		radius,
 		ability:GetAbilityTargetTeam(),
 		ability:GetAbilityTargetType(),

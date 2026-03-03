@@ -23,7 +23,7 @@ function legion_odds:OnSpellStart()
     ParticleManager:SetParticleControl(strike_pfx, 1, Vector(radius, radius, radius))
     ParticleManager:ReleaseParticleIndex(strike_pfx)
 
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 
     if #enemies > 0 then
         local buff = caster:AddNewModifier(caster, ability, "modifier_legion_odds_buff", { duration = duration })
@@ -130,7 +130,7 @@ function legion_press_the_attack:OnSpellStart()
 	if talent ~= nil and talent:GetLevel() > 0 then
 
 		local target_point = self:GetCursorPosition()
-		local units = FindUnitsInRadius(caster:GetTeamNumber(), target_point, nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
+		local units = FindUnitsInRadius(caster:GetTeamNumber(), target_point, caster, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
 		for _,unit in pairs(units) do
 			unit:Purge(false, true, false, false, false)
 			unit:AddNewModifier(caster, self, "modifier_legion_press_the_attack", {duration = duration})

@@ -112,7 +112,7 @@ function modifier_disruptor_thunder_strike_lua:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),
 		self:GetParent():GetOrigin(),
-		nil,
+		self:GetParent(),
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -231,7 +231,7 @@ function modifier_magnetic_collect_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.caster:GetTeamNumber(),
         self.parent:GetOrigin(),
-        nil,
+        self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -666,7 +666,7 @@ function modifier_disruptor_static_storm_lua:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),
 		self:GetParent():GetOrigin(),
-		nil,
+		self:GetParent(),
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

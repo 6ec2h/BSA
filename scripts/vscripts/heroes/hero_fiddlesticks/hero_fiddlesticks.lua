@@ -525,7 +525,7 @@ function modifier_hero_fiddlesticks_armor:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         caster:GetAbsOrigin(),
-        nil,
+        caster,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_BASIC,

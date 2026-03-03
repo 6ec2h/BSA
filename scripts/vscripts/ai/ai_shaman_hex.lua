@@ -10,7 +10,7 @@ function NecroLordThink()
     local enemies = FindUnitsInRadius(
         thisEntity:GetTeamNumber(),
         thisEntity:GetAbsOrigin(),
-        nil,
+        thisEntity,
         1000,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_BASIC,

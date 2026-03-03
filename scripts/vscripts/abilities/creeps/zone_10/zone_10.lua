@@ -595,7 +595,7 @@ function modifier_creep_rot_lua:OnIntervalThink()
     local units = FindUnitsInRadius(
         self.parent:GetTeamNumber(), 
         self.parent:GetAbsOrigin(), 
-        nil, 
+        self.parent, 
         self.rot_radius, 
         DOTA_UNIT_TARGET_TEAM_ENEMY, 
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
@@ -945,9 +945,9 @@ end
 function modifier_creep_midnight_lua_thinker:OnIntervalThink()
 	if not IsServer() then return end
 	local enemies = FindUnitsInRadius(
-		DOTA_TEAM_NEUTRALS,	-- int, your team number
+		self:GetCaster():GetTeamNumber(),	-- int, your team number
 		self:GetParent():GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		self:GetParent(),	-- handle, cacheUnit. (not known)
 		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
@@ -1056,7 +1056,7 @@ function modifier_creep_poison_sting_lua:GetModifierProcAttack_Feedback( params 
 		self.abilityTargetFlags,
 		self.team
 	)
-	if not filter==UF_SUCCESS then return end
+	if filter ~= UF_SUCCESS then return end
 
 	params.target:AddNewModifier(
 		self.caster, -- player source
@@ -1395,7 +1395,7 @@ end
 function modifier_creep_spider_spray_lua:OnDeath(keys)
 	if not IsServer() then return end
 	if self:GetParent() == keys.unit then
-	local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	local damageTable = {
 		attacker = self:GetParent(),
 		damage_type = DAMAGE_TYPE_PHYSICAL,
@@ -1413,7 +1413,7 @@ function modifier_creep_spider_spray_lua:OnDeath(keys)
 		ApplyDamage( damageTable )
 
 		if modifier == nil then
-			mod = enemy:AddNewModifier(self:GetParent(), self, "modifier_creep_spider_spray_lua_stack", {duration = self.duration})
+			local mod = enemy:AddNewModifier(self:GetParent(), self, "modifier_creep_spider_spray_lua_stack", {duration = self.duration})
 			mod:IncrementStackCount()
 		end
 		

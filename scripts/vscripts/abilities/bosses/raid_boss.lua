@@ -24,7 +24,7 @@ end
 
 function modifier_raid_aura:OnIntervalThink()
 	if IsServer() then
-		local heroes = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		local heroes = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 1500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		self:GetCaster():SetBaseMagicalResistanceValue(100 - 5 * #heroes)
 		self:GetCaster():SetPhysicalArmorBaseValue(250 - 30 * #heroes)
 	end
@@ -121,7 +121,7 @@ function fire_storm:OnSpellStart()
             local crashEffect = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_hit.vpcf", PATTACH_ABSORIGIN, hCaster)
             ParticleManager:SetParticleControl(crashEffect, 0, spot + Vector(0, 0, 200))
 
-            local unitTable = FindUnitsInRadius(hCaster:GetTeamNumber(), spot, nil, meteorRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+            local unitTable = FindUnitsInRadius(hCaster:GetTeamNumber(), spot, hCaster, meteorRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
             for k, unit in pairs(unitTable) do
                 local damageTable = {
                     victim = unit,

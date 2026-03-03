@@ -227,7 +227,7 @@ function modifier_dragon_knight_elder_dragon_form_lua:Splash( target, damage )
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(),	-- int, your team number
 		target:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		target,	-- handle, cacheUnit. (not known)
 		self.splash_radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
@@ -273,7 +273,7 @@ function modifier_dragon_knight_elder_dragon_form_lua:Frost( target )
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(),	-- int, your team number
 		target:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
+		target,	-- handle, cacheUnit. (not known)
 		self.frost_radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter

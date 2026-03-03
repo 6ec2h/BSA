@@ -136,7 +136,7 @@ function modifier_creep_sand_pack_call_lua:OnTakeDamage(params)
         local allies = FindUnitsInRadius(
             parent:GetTeamNumber(),
             parent:GetAbsOrigin(),
-            nil,
+            parent,
             radius,
             DOTA_UNIT_TARGET_TEAM_FRIENDLY,
             DOTA_UNIT_TARGET_BASIC,
@@ -222,41 +222,6 @@ function modifier_creep_sand_pack_buff_lua:GetEffectName() return "particles/uni
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
-LinkLuaModifier("modifier_creep_sand_ripper_passive", "abilities/creeps/zone_7/zone_7", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_creep_sand_ripper_inviz", "abilities/creeps/zone_7/zone_7", LUA_MODIFIER_MOTION_NONE)
-
---------------------------------------------------------------------------------
-
-creep_sand_impale_lua = class({})
-
-function creep_sand_impale_lua:GetIntrinsicModifierName()
-    return "modifier_creep_sand_ripper_passive"
-end
-
-function creep_sand_impale_lua:OnProjectileHit(target, location)
-    if target and not target:IsMagicImmune() then
-        local caster = self:GetCaster()
-        local damage = self:GetSpecialValueFor("impale_damage")
-        local boost = self:GetSpecialValueFor("diff_boost_damage") or 0
-        local stun = self:GetSpecialValueFor("stun_duration")
-
-        ApplyDamage({
-            victim = target,
-            attacker = caster,
-            damage = damage + boost,
-            damage_type = DAMAGE_TYPE_MAGICAL,
-            ability = self
-        })
-
-        target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun})
-        target:EmitSound("Hero_NyxAssassin.Impale.Target")
-    end
-    return false
-end
-
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
 LinkLuaModifier("modifier_creep_sand_impale_lua", "abilities/creeps/zone_7/zone_7", LUA_MODIFIER_MOTION_NONE)
 
 creep_sand_impale_lua = class({})
@@ -331,7 +296,7 @@ function modifier_creep_sand_impale_lua:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        nil,
+        self.parent,
         radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -653,7 +618,7 @@ function modifier_creep_sand_toss_lua:TossLand()
         damage_table.victim = self.parent
         ApplyDamage(damage_table)   
 
-        local victims = FindUnitsInRadius(caster:GetTeamNumber(), self.parent:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, 0, 1, false)
+        local victims = FindUnitsInRadius(caster:GetTeamNumber(), self.parent:GetAbsOrigin(), self.parent, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, 0, 1, false)
         for _, victim in pairs(victims) do
             if victim ~= self.parent then
                 damage_table.victim = victim
@@ -684,15 +649,15 @@ function modifier_creep_sand_toss_lua:GetEffectName()
 end
 
 function modifier_creep_sand_toss_lua:CheckState()
-	if IsServer() then
-		if self:GetCaster() ~= nil and self:GetParent() ~= nil then
-			if self:GetCaster():GetTeamNumber() ~= self:GetParent():GetTeamNumber() and ( not self:GetParent():IsMagicImmune() ) then
-				return {[MODIFIER_STATE_STUNNED] = true}
-			else
-				return {[MODIFIER_STATE_ROOTED] = true}
-			end
-		end
-	end
+	-- if IsServer() then
+    if self:GetCaster() ~= nil and self:GetParent() ~= nil then
+        if self:GetCaster():GetTeamNumber() ~= self:GetParent():GetTeamNumber() and ( not self:GetParent():IsMagicImmune() ) then
+            return {[MODIFIER_STATE_STUNNED] = true}
+        else
+            return {[MODIFIER_STATE_ROOTED] = true}
+        end
+    end
+	-- end
 	return {}
 end
 
@@ -829,7 +794,7 @@ function creep_sand_illusion_lua:OnSpellStart()
     local incoming = self:GetSpecialValueFor("incoming_damage") - 100
     local blind_duration = self:GetSpecialValueFor("blind_duration")
     
-    local illusions = CreateIllusions(caster, target, {
+    CreateIllusions(caster, target, {
         outgoing_damage = outgoing,
         incoming_damage = incoming,
         bFullHealth = true,
@@ -943,6 +908,49 @@ end
 function modifier_all_reduction_aura_passive:OnDeath(params)
     if not IsServer() then return end
     if params.unit == self:GetParent() then
+        if self.particle then
+            ParticleManager:DestroyParticle(self.particle, true)
+            ParticleManager:ReleaseParticleIndex(self.particle)
+            self.particle = nil
+        end
+    end
+end
+--------------------------------------------------------------------------------
+
+modifier_all_reduction_aura_debuff = class({})
+
+function modifier_all_reduction_aura_debuff:IsHidden()
+    return false
+end
+
+function modifier_all_reduction_aura_debuff:IsDebuff()
+    return true
+end
+
+function modifier_all_reduction_aura_debuff:OnCreated()
+    local ability = self:GetAbility()
+    if not ability then return end
+    
+    local base_reduction = ability:GetSpecialValueFor("reduction")
+    local diff_boost = ability:GetSpecialValueFor("diff_boost_damage")
+
+    self.total_armor_reduction = (base_reduction + diff_boost)
+end
+
+function modifier_all_reduction_aura_debuff:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+    }
+end
+
+function modifier_all_reduction_aura_debuff:GetModifierMagicalResistanceBonus()
+    return -self.total_armor_reduction
+end
+
+function modifier_all_reduction_aura_debuff:GetModifierPhysicalArmorBonus()
+    return -self.total_armor_reduction
+ends.unit == self:GetParent() then
         if self.particle then
             ParticleManager:DestroyParticle(self.particle, true)
             ParticleManager:ReleaseParticleIndex(self.particle)

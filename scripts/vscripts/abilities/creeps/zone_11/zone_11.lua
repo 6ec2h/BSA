@@ -9,11 +9,10 @@ function creep_black_hole_lua:Precache( context )
     PrecacheResource( "particle", "particles/items_fx/blink_dagger_start.vpcf", context )
     PrecacheResource( "particle", "particles/items_fx/blink_dagger_end.vpcf", context )
 end
+
 function creep_black_hole_lua:GetIntrinsicModifierName()
     return "modifier_boss_damage_boost"
 end
-
-creep_black_hole_lua = class({})
 
 function creep_black_hole_lua:OnSpellStart()
     if not IsServer() then return end
@@ -222,7 +221,7 @@ function creep_sun_nova_lua:SpawnEgg(position)
 
     local ground_location = GetGroundPosition(position, self:GetCaster())
 
-    egg = CreateUnitByName("npc_dota_zone_11_unit_5", ground_location, false, self:GetCaster(), self:GetCaster():GetOwner(), self:GetCaster():GetTeamNumber())
+    local egg = CreateUnitByName("npc_dota_zone_11_unit_5", ground_location, false, self:GetCaster(), self:GetCaster():GetOwner(), self:GetCaster():GetTeamNumber())
 
     if self:GetCaster().solo_event_player_id then
         egg.solo_event_player_id = self:GetCaster().solo_event_player_id
@@ -459,9 +458,9 @@ function modifier_creep_sun_nova_lua_sun:OnDestroy()
 		ParticleManager:SetParticleControl( pfx, 3, self:GetParent():GetAbsOrigin() )
 		ParticleManager:ReleaseParticleIndex(pfx)
 
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("aura_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self:GetAbility():GetSpecialValueFor("aura_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )
 		for _, enemy in pairs(enemies) do
-			enemy:AddNewModifier( self:GetCaster(), enemy, "modifier_stunned", {duration = self:GetAbility():GetSpecialValueFor("stun_duration")} )
+			enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_stunned", {duration = self:GetAbility():GetSpecialValueFor("stun_duration")} )
 		end
         self:GetCaster():RemoveModifierByName("modifier_creep_sun_nova_lua_reborn")
         self:GetCaster():SetHealth( self:GetCaster():GetMaxHealth())
@@ -475,7 +474,7 @@ function modifier_creep_sun_nova_lua_sun:OnIntervalThink()
 	
 	AddFOWViewer(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self.aura_radius, math.min(1, self:GetRemainingTime()), false)
 	
-	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("aura_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self:GetAbility():GetSpecialValueFor("aura_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
 	for _, enemy in pairs(enemies) do
 		local damageTable = {
 			victim = enemy,
@@ -644,10 +643,10 @@ function creep_thundergods_wrath_lua:OnSpellStart()
 		damage_table.attacker 		= self:GetCaster()
 		damage_table.ability 		= self
 		damage_table.damage_type 	= self:GetAbilityDamageType() 
-		damage_table.damage_flags	= damage_flags
+		damage_table.damage_flags	= DOTA_DAMAGE_FLAG_NONE
 		damage_table.damage	        = damage
 		
-        local hEnemies = FindUnitsInRadius(caster:GetTeamNumber(), position, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
+        local hEnemies = FindUnitsInRadius(caster:GetTeamNumber(), position, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false )
         for _,enemy in pairs(hEnemies) do 
             if enemy:IsAlive() then 
                 local target_point = enemy:GetAbsOrigin()
@@ -783,7 +782,6 @@ function modifier_creep_telekines_lua:EndTransition()
 
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		local ability = self:GetAbility()
 
 		SetUnitOnClearGround(parent)
 
@@ -791,9 +789,6 @@ function modifier_creep_telekines_lua:EndTransition()
 		parent:RemoveModifierByName("modifier_creep_telekines_lua_root")
 
 		local parent_pos = parent:GetAbsOrigin()
-
-		local ability = self:GetAbility()
-
 
 		parent:StopSound("Hero_Rubick.Telekinesis.Target")
 		parent:EmitSound("Hero_Rubick.Telekinesis.Target.Land")
@@ -989,16 +984,19 @@ function modifier_creep_thunder_strike_lua:OnIntervalThink()
 	ParticleManager:SetParticleControl(self.strike_particle_fx, 0, parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.strike_particle_fx, 1, parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.strike_particle_fx, 2, parent:GetAbsOrigin())
+    ParticleManager:ReleaseParticleIndex(self.strike_particle_fx)
+
 
     self.aoe_particle_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_thunder_strike_aoe.vpcf", PATTACH_ABSORIGIN, parent)
 	ParticleManager:SetParticleControl(self.aoe_particle_fx, 0, parent:GetAbsOrigin())
+    ParticleManager:ReleaseParticleIndex(self.aoe_particle_fx)
 
     parent:EmitSound("Hero_Disruptor.ThunderStrike.Damage")
 
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),
         parent:GetOrigin(),
-        nil,
+        parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

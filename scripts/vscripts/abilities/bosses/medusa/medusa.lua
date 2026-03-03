@@ -47,7 +47,7 @@ function modifier_boss_medusa_split_shot_lua:GetSplitShotTargets()
 	return FindUnitsInRadius(
 		parent:GetTeamNumber(),
 		parent:GetAbsOrigin(),
-		nil,
+		parent,
 		parent:Script_GetAttackRange() + self.bonus_range,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_BASIC,

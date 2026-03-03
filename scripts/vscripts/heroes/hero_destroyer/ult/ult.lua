@@ -64,7 +64,7 @@ function modifier_hero_destroyer_ult:IsPurgable() return true end
 
 function modifier_hero_destroyer_ult:OnCreated(kv)
 	if not IsServer() then return end
-		local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, 1000, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+		local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), 1000, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 		if #enemies > 1 then
 			self.target = enemies[2]
 			self:GetParent():SetForceAttackTargetAlly(self.target)
@@ -77,7 +77,7 @@ function modifier_hero_destroyer_ult:OnIntervalThink()
 	if self.target ~= nil and self.target:IsAlive() then
 		return
 	else
-		local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, 1000, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+		local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), 1000, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 		if #enemies > 1 then
 			self.target = enemies[2]
 			self:GetParent():SetForceAttackTargetAlly(self.target)

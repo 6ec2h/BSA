@@ -59,7 +59,7 @@ function outworld_devourer_arcane_orb_lua:OnOrbImpact( params )
 		ability = self, --Optional.
 	}
 
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), params.target:GetOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), params.target:GetOrigin(), params.target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 	for _,enemy in pairs(enemies) do
 		damageTable.victim = enemy
 		

@@ -66,7 +66,7 @@ end
 
 function modifier_outworld_devourer_astral_imprisonment_lua:OnDestroy()
 	if not IsServer() then return end
-	local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+	local enemies = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), self:GetParent(), self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
 
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy

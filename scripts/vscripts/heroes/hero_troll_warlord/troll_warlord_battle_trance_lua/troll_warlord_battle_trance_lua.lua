@@ -97,7 +97,7 @@ function modifier_troll_warlord_battle_trance_lua:OnIntervalThink()
 		return
 	end
 	
-	local non_hero_enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), nil, self.range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_CLOSEST, false)
+	local non_hero_enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.parent, self.range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_CLOSEST, false)
 	if #non_hero_enemies > 0 then
 		for enemy = 1, #non_hero_enemies do
 			self.parent:MoveToTargetToAttack(non_hero_enemies[enemy])
