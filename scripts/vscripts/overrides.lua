@@ -61,7 +61,7 @@ _G.FindUnitsInRadius = function(team, pos, cacheUnit, radius, tFilter, uFilter, 
     local cleanTable = {}
     for i = 1, #rawResults do
         local u = rawResults[i]
-        if u and not u:IsNull() and u:IsAlive() then
+        if u and not u:IsNull() then
             table.insert(cleanTable, u)
         end
     end
@@ -90,4 +90,5 @@ Timers:CreateTimer(30, function()
     _G.CACHE_STATS.misses = 0
 
     return 30
+end) return 30
 end)

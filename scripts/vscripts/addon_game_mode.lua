@@ -146,6 +146,7 @@ function CAddonAdvExGameMode:OnChat( event )
 		-- table.print(_G.Account_stats[steamID])
 		-- hero:SetAbsOrigin( Vector(-10636, 167, 400 ))
 		-- guild_events:StartSoloEvent(pid)
+		inventory:add_soul(pid)
     end
 
 	if text == "2" and steamID == 393187346 then

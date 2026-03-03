@@ -294,6 +294,8 @@ function OnMergeUpdate(tab) {
     LOCKED_SLOTS = []; 
     MERGE_ITEMS_DATA = { 1: null, 2: null, 3: null };
 
+    $.Msg(tab.result_id)
+
     const resultItem = Object.values(tab.hero_inventory).find(item => item && item.id === tab.result_id);
 
     UpdateInventoryUI(tab);
