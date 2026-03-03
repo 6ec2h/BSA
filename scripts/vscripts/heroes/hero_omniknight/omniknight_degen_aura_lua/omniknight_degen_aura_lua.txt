@@ -1,0 +1,23 @@
+"DOTAAbilities"
+{
+	"omniknight_degen_aura_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_omniknight/omniknight_degen_aura_lua/omniknight_degen_aura_lua"
+		"AbilityTextureName"			"omniknight_degen_aura"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+	{
+		"speed_bonus"	"-10 -18 -26 -34"
+			"attack_bonus_tooltip"	"-10 -18 -26 -34"
+			"radius"	"400"
+	}
+	}
+}

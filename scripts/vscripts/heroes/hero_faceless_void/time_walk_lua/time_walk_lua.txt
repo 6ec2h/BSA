@@ -1,0 +1,27 @@
+"DOTAAbilities"
+{
+	"time_walk_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_faceless_void/time_walk_lua/time_walk_lua"
+		"AbilityTextureName"			"faceless_void_time_walk"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"40 60 80 100"	
+
+		"AbilityValues"
+		{
+			"time"				"2"
+		}
+	}
+}

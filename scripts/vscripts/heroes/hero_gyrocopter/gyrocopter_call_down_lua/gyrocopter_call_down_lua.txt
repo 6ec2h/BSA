@@ -1,0 +1,38 @@
+"DOTAAbilities"
+{
+	"gyrocopter_call_down_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyrocopter/gyrocopter_call_down_lua/gyrocopter_call_down_lua"
+		"AbilityTextureName"			"gyrocopter_call_down"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Gyrocopter.CallDown.Fire"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastAnimation"			"ACT_INVALID"
+
+		"AbilityCooldown"				"90"		
+		
+		"AbilityManaCost"				"125 125 125"
+		
+		"AbilityValues"
+	{
+		"slow_duration_first"	"2"
+			"slow_duration_second"	"3"
+			"damage_first"	"250 350 450"
+			"damage_second"	"350 450 550"
+			"slow_first"	"30"
+			"slow_second"	"60"
+			"radius"	"500"			
+			"range_scepter"	"0"
+			"missile_delay_tooltip"	"2"
+	}
+	}
+}
