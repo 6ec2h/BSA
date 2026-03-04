@@ -99,7 +99,8 @@ function acceptBuy(price, data) {
     buyControl.visible = false;
 
     if (data.startsWith('exp_')) {
-        const product = parseInt(data.split('_')[1]);
+        const product = parseInt(data.split('_')[1]*4);
+        $.Msg(product)
         GameEvents.SendCustomGameEventToServer("buy_experience", { product });
     }else if (data == 'boost'){
         GameEvents.SendCustomGameEventToServer("buy_daily_boost", {});
