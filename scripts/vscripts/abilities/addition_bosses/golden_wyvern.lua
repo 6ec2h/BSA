@@ -180,13 +180,13 @@ function golden_wyvern_splinter_blast:OnSpellStart()
 			secondary_projectile_speed 	= secondary_projectile_speed,
 			split_radius 				= split_radius,
 			slow_duration 				= slow_duration,
-			slow						= slow,
-			attack_slow 				= attack_slow,
-			hero_cdr 					= hero_cdr,
-			cdr_units 					= cdr_units,
-			splinter_threshold 			= splinter_threshold,
-			splinter_dmg_efficiency 	= splinter_dmg_efficiency,
-			splinter_aoe_efficiency 	= splinter_aoe_efficiency,
+			slow						= nil,
+			attack_slow 				= nil,
+			hero_cdr 					= nil,
+			cdr_units 					= nil,
+			splinter_threshold 			= nil,
+			splinter_dmg_efficiency 	= nil,
+			splinter_aoe_efficiency 	= nil,
 			damage 						= damage,
 			splinter_proc 				= 0
 		});	
@@ -238,7 +238,7 @@ end
 
 function golden_wyvern_splinter_blast:OnTrackingProjectileHit(keys)
 
-	keys.target:AddNewModifier(keys.caster, keys.self, "modifier_silence", {duration = keys.slow_duration * (1 - keys.target:GetStatusResistance())});
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_silence", {duration = keys.slow_duration * (1 - keys.target:GetStatusResistance())});
 
 	local nearby_enemy_units = FindUnitsInRadius(
 		keys.caster:GetTeam(),
@@ -361,6 +361,10 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------
 
 
 

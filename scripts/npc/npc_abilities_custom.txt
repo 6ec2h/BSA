@@ -20,22 +20,22 @@
 
 //===============================================================================================================================================================
 
-"ability_capture_lua"
-{
-	"BaseClass"           			"ability_lua"
-	"ScriptFile"					"abilities/ability_capture"
-	"AbilityTextureName"			"ability_capture_lua"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-	"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
-	"AbilityTextureName" 			"ability_capture_lua"	
-	"IsOnCastBar"                   "0"
-	"MaxLevel"						"1"
-	"AbilityCastRange"				"150"
-}
-	
- "empty_0"
+	"ability_capture_lua"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/ability_capture"
+		"AbilityTextureName"			"ability_capture_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityTextureName" 			"ability_capture_lua"	
+		"IsOnCastBar"                   "0"
+		"MaxLevel"						"1"
+		"AbilityCastRange"				"150"
+	}
+		
+ 	"empty_0"
     {
         "BaseClass"					"ability_datadriven"
         "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -523,13 +523,7 @@
 
 #base "../npc/bosses/additional_bosses_ability.txt"
 
-
-
-
-
-
-
-//=====================================================================================================ARC WARDEN================================================================================================================================================
+===================================================================================================ARC WARDEN================================================================================================================================================
 image/abilities.txt"
 #base "../vscripts/heroes/hero_naga/abilities.txt"
 #base "../vscripts/heroes/hero_spectre/abilities.txt"

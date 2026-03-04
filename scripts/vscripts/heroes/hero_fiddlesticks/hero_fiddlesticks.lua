@@ -174,7 +174,7 @@ function hero_fiddlesticks_rise:OnSpellStart()
 			count = count - 1
 			
 			local random_position = GetRandomPositionSquare(bounds_min, bounds_max)
-			local unit = CreateUnitByName("npc_hero_fiddlesticks_rise_unit", random_position, true, nil, nil, self:GetCaster():GetTeamNumber())
+			local unit = CreateUnitByName("npc_hero_fiddlesticks_rise_unit", random_position, true, self:GetCaster(), self:GetCaster(), self:GetCaster():GetTeamNumber())
 			unit:AddNewModifier(self:GetCaster(), self, "modifier_hero_fiddlesticks_rise", {duration = duration})
 			unit:AddNewModifier(self:GetCaster(), self, "modifier_kill", {duration = duration})
 			unit:SetBaseDamageMin(self:GetCaster():GetBaseDamageMin() * damage / 100)

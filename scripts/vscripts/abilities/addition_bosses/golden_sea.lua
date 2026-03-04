@@ -374,15 +374,13 @@ function modifier_golden_sea_mirror_surface:OnTakeDamage(keys)
     if keys.unit ~= self:GetParent() then return end
     if keys.attacker == keys.unit then return end
 
-    if not attacker or attacker:IsNull() or attacker == keys.unit then return end
-
     local attacker_entindex = keys.attacker:GetEntityIndex()
-    
-    if not self.damage_storage[attacker] then
-        self.damage_storage[attacker] = 0
+
+    if not self.damage_storage[attacker_entindex] then
+        self.damage_storage[attacker_entindex] = 0
     end
-    
-    self.damage_storage[attacker] = self.damage_storage[attacker] + (keys.original_damage or 0)
+
+    self.damage_storage[attacker_entindex] = self.damage_storage[attacker_entindex] + (keys.original_damage or 0)
 end
 
 function modifier_golden_sea_mirror_surface:OnDestroy()
@@ -392,7 +390,8 @@ function modifier_golden_sea_mirror_surface:OnDestroy()
     
     if not ability or ability:IsNull() then return end
 
-    for hTarget, damage in pairs(self.damage_storage) do
+    for entindex, damage in pairs(self.damage_storage) do
+        local hTarget = EntIndexToHScript(entindex)
         if hTarget and not hTarget:IsNull() and hTarget:IsAlive() then
             local WaterProj = {
                 Target = hTarget,
@@ -507,4 +506,4 @@ function modifier_golden_sea_illusion:GetStatusEffectName()
     return "particles/status_fx/status_effect_dark_seer_illusion.vpcf"
 end
 
-end)
+end)nd)

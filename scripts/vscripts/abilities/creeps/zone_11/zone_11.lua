@@ -62,6 +62,16 @@ function modifier_creep_black_hole_lua_thinker:OnCreated()
     local pfx = ParticleManager:CreateParticle("particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5.vpcf", PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(pfx, 0, self:GetParent():GetOrigin())
     self:AddParticle(pfx, false, false, -1, false, false)
+
+    self:StartIntervalThink(0.1)
+end
+
+function modifier_creep_black_hole_lua_thinker:OnIntervalThink()
+    if not IsServer() then return end
+    local caster = self:GetCaster()
+    if not caster or caster:IsNull() or not caster:IsAlive() or caster:IsStunned() or caster:IsSilenced() then
+        self:Destroy()
+    end
 end
 
 function modifier_creep_black_hole_lua_thinker:OnDestroy()

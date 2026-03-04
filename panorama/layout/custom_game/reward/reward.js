@@ -94,7 +94,7 @@ function show_reward_notifications(t){
 		guild.visible = true
 		$("#guild_not_text").text = "+"+t.guild_exp
 	}
-	
+	Game.EmitSound("ui.trophy_levelup")
 	$.Schedule(3, function(){
 		show_reward_notification.visible = false
     });

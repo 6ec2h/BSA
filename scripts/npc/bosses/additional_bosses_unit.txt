@@ -393,10 +393,7 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"			
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-		"VisionDaytimeRange"		"1800"		
-		"VisionNighttimeRange"		"1800"		
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"	
 
 		"Creature"
 		{
@@ -718,11 +715,11 @@
 
 		"Ability1"					"boos_doom_solar_flare_lua"			
 		"Ability2"					"boos_doom_pit_lua"					
-		"Ability4"					"boos_doom_fire_ring_lua"
-		"Ability5"					"boos_doom_doom_lua"
-		"Ability6"					"armor_reduction_aura"
-		"Ability7"                  "necronomicon_warrior_sight"
-		"Ability18"					"boss_status_resist"
+		"Ability3"					"boos_doom_fire_ring_lua"
+		"Ability4"					"boos_doom_doom_lua"
+		"Ability5"					"armor_reduction_aura"
+		"Ability6"                  "necronomicon_warrior_sight"
+		"Ability7"					"boss_status_resist"
 
 		"ArmorPhysical"				"20"
 		"MagicalResistance"			"20"
@@ -1549,10 +1546,9 @@
 		"Ability2"					"golden_wyvern_aura"		
 		"Ability3"					"golden_wyvern_splinter_blast"
 		"Ability4"					"boss_lich_pull_enemy"
-		"Ability5"					"boss_lich_pull_enemy"
-		"Ability6"					"necronomicon_warrior_sight"
-		"Ability7"					"golden_passive"
-		"Ability8"					"boss_status_resist"
+		"Ability5"					"necronomicon_warrior_sight"
+		"Ability6"					"golden_passive"
+		"Ability7"					"boss_status_resist"
 
 		"ArmorPhysical"				"40"			
 		"MagicalResistance"			"40"	
@@ -1773,6 +1769,12 @@
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+	}
+
+}TA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 	
 		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"

@@ -113,9 +113,9 @@ function sunstrike_ultra_lua:OnSpellStart()
 				EmitSoundOn("Hero_Invoker.SunStrike.Ignite", enemy)
 				local units = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, damage_radius,  DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
 				for _, unit in ipairs(units) do
-					damage_table.damage = enemy:GetMaxHealth() * 2
-                    damage_table.victim = enemy
-                    ApplyDamage(damage_table)
+					damage_table.damage = unit:GetMaxHealth() * 2
+					damage_table.victim = unit
+					ApplyDamage(damage_table)
 				end
 			end)
 		end
@@ -322,7 +322,6 @@ function modifier_mine_ultra_lua_thinker:OnIntervalThink()
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
-        self.parent,
         self.parent,
         self.radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -737,8 +736,8 @@ function modifier_ice_ultra_lua:GetDisableHealing()
     return 1
 end
 
-function modifier_resist_ultra_lua:GetTexture()
-	return "elder_titan_natural_order"
+function modifier_ice_ultra_lua:GetTexture()
+	return "ancient_apparition_ice_blast"
 end
 
 function modifier_ice_ultra_lua:GetEffectName()
@@ -747,4 +746,5 @@ end
 
 function modifier_ice_ultra_lua:GetStatusEffectName()
     return "particles/status_fx/status_effect_frost.vpcf"
+endrn "particles/status_fx/status_effect_frost.vpcf"
 end

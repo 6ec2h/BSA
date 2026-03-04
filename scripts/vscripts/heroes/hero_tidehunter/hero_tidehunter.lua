@@ -264,7 +264,7 @@ function modifier_tidehunter_anchor_smash_lua:DeclareFunctions()
 end
 
 function modifier_tidehunter_anchor_smash_lua:GetModifierBaseDamageOutgoing_Percentage()
-    return self.reduction
+    return -self.reduction
 end
 
 --------------------------------------------------------------------------------

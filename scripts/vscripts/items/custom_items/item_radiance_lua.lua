@@ -157,7 +157,7 @@ function modifier_item_radiance_burn_lua:OnDestroy()
 end
 
 function modifier_item_radiance_burn_lua:OnIntervalThink()
-	ApplyDamage({attacker = self:GetCaster(), victim = self:GetParent(), damage = self.damage + self.bonus_damage, ability = self:GetAbility(), damage_type = DAMAGE_TYPE_MAGICAL + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN})
+	ApplyDamage({attacker = self:GetCaster(), victim = self:GetParent(), damage = self.damage + self.bonus_damage, ability = self:GetAbility(), damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN})
 end
 
 function modifier_item_radiance_burn_lua:DeclareFunctions()

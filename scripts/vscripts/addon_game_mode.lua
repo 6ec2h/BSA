@@ -1,5 +1,3 @@
--- pcall(require, "encrypt")
-
 if IsInToolsMode() then
 	LISTENER_IDS = LISTENER_IDS or {}
 
@@ -146,7 +144,7 @@ function CAddonAdvExGameMode:OnChat( event )
 		-- table.print(_G.Account_stats[steamID])
 		-- hero:SetAbsOrigin( Vector(-10636, 167, 400 ))
 		-- guild_events:StartSoloEvent(pid)
-		inventory:add_soul(pid)
+		-- inventory:add_soul(pid)
     end
 
 	if text == "2" and steamID == 393187346 then
@@ -238,7 +236,7 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 		unit = units["0"]
 	end
 	
-	if data.order_type == 6 then
+	if order == 6 then
 		 if target and target:GetName() == 'checkpoint' then
 			local distance = ( hero:GetOrigin() - target:GetOrigin() ):Length2D()
 			if distance < 400 then
@@ -249,7 +247,7 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 		end
 	end
 	
-	if data.order_type == DOTA_UNIT_ORDER_PICKUP_ITEM then
+	if order == DOTA_UNIT_ORDER_PICKUP_ITEM then
         if target then
             local item = target:GetContainedItem()
 			if item and item:GetAbilityName() == "item_tombstone" then
@@ -285,7 +283,7 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 		local quest108 = _G.players_quest_progress["additional"][108]
 		if quest108 and not quest108.completed then
 			hero.lastWardTime = hero.lastWardTime or 0
-			if ability:GetAbilityName() == 'item_ward_sentry' and (GameRules:GetGameTime() - hero.lastWardTime > 0.2) then
+			if ability and ability:GetAbilityName() == 'item_ward_sentry' and (GameRules:GetGameTime() - hero.lastWardTime > 0.2) then
 				hero.lastWardTime = GameRules:GetGameTime()
 				quest108.kill_count = (quest108.kill_count or 0) + 1
 				quest_system:UpdateQuest("additional", 108, quest108.kill_count)
@@ -365,8 +363,6 @@ function CAddonAdvExGameMode:onRuneActivated(keys)
 end
 
 --------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
 
 function CAddonAdvExGameMode:RuneSpawnFilter(kv)
 	local t = {0,1,2,4,5,6}
@@ -385,23 +381,6 @@ function CAddonAdvExGameMode:BountyFilter( kv )
 end
 
 --------------------------------------------------------------------------------------------------------------
--- local allowed_players = {
-    -- [1] = 117184155,
-    -- [2] = 169871211,
-    -- [3] = 393187346,
-    -- [4] = 317310657,
-    -- [5] = 1553194151,
-	
--- }
-
--- function IsPlayerAllowed(sid)
-    -- for _, allowedID in pairs(allowed_players) do
-        -- if allowedID == sid then
-            -- return true
-        -- end
-    -- end
-    -- return false
--- end
 
 start_defeat = false
 
@@ -409,8 +388,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 	local state = GameRules:State_Get()
 	
 	if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-		
-			
+					
 			-- web:init()
 			-- Shop:init()
 			-- Casino:init()
@@ -1191,6 +1169,22 @@ function CAddonAdvExGameMode:OnNpcInteract(data)
 	local hero = PlayerResource:GetSelectedHeroEntity(pid)
 	local unit = EntIndexToHScript(data.unit_id)
 	local name = data.name
+	local distance = 400
+	if (hero:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() < distance then
+		if name == "#blacksmith" then
+			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateBlacksmith",{})
+		elseif name == "#trade" then
+			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateTrade",{})
+		elseif name == "#dungeon_master" then
+			-- Shop:get_difficulty_data({PlayerID = pid})
+			-- Shop:get_booster_profile({PlayerID = pid})
+			Shop:get_booster_data({PlayerID = pid})
+		end
+	else
+		rules:DisplayError(pid, "#to_far_away")
+	end
+end
+local name = data.name
 	local distance = 400
 	if (hero:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() < distance then
 		if name == "#blacksmith" then

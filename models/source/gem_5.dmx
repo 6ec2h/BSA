@@ -1,14 +1,14 @@
 <!-- dmx encoding keyvalues2 4 format model 22 -->
 "DmElement"
 {
-    "id" "elementid" "21c12d33-abf9-4b3a-a3d4-49feb089611b"
+    "id" "elementid" "cc43ba0e-6510-4438-b158-6492248ede13"
     "name" "string" "root"
     "skeleton" "DmeModel"
     {
-        "id" "elementid" "6eb7e0ae-ec9c-43a8-a678-dee081ffe89f"
+        "id" "elementid" "a1d4274a-a89d-43a9-b817-25896ea51827"
         "transform" "DmeTransform"
         {
-            "id" "elementid" "c4a26c4a-650d-4fbd-823b-cc4bcbac3e93"
+            "id" "elementid" "c5a65322-2afb-476b-a92b-e3a7fe9a7dd4"
             "position" "vector3" "0 0 0"
             "orientation" "quaternion" "0 0 0 1"
         }
@@ -17,12 +17,12 @@
         [
             "DmeJoint"
             {
-                "id" "elementid" "79259465-643f-4c69-9bf5-51e6f18a9811"
+                "id" "elementid" "d1f477e3-8700-4f9c-a536-14df4ea87be4"
                 "name" "string" "Bone"
-                "transform" "element" "2856d83a-c003-4cfb-beb9-cce7303ae316"
+                "transform" "element" "d1189680-b60e-4f4b-91f3-b088b994f233"
                 "shape" "DmeMesh"
                 {
-                    "id" "elementid" "454ab3f0-ad2e-435e-892b-901f93e53e78"
+                    "id" "elementid" "8dfb7de6-d36a-4a23-9a71-c5b8a181b10b"
                     "visible" "bool" "1"
                     "baseStates" "element_array" [ ]
                     "deltaStates" "element_array" [ ]
@@ -38,7 +38,7 @@
         "baseStates" "element_array" [ ]
         "axisSystem" "DmeAxisSystem"
         {
-            "id" "elementid" "ff9d4306-db99-4e66-b675-e3a148d37b86"
+            "id" "elementid" "3505dfe4-54cb-42d8-be8a-fea99e57f1c4"
             "upAxis" "int" "3"
             "forwardParity" "int" "1"
             "coordSys" "int" "0"
@@ -46,15 +46,15 @@
     }
     "animationList" "DmeAnimationList"
     {
-        "id" "elementid" "ab030c08-99e1-4eee-b102-f552a8d8ff90"
+        "id" "elementid" "7ae3d8c9-109d-49d9-abf4-ec844bb5c20d"
         "animations" "element_array"
         [
             "DmeChannelsClip"
             {
-                "id" "elementid" "e025057e-cdb6-4c13-a66f-efed625ae687"
+                "id" "elementid" "fd889230-851e-4a45-9a98-6998ea40f4e8"
                 "timeFrame" "DmeTimeFrame"
                 {
-                    "id" "elementid" "b4e1750e-dfaa-44a7-bf1f-6605d5f04385"
+                    "id" "elementid" "18d18e6d-c467-43b3-9155-9553868a98fa"
                     "start" "time" "0"
                     "duration" "time" "1.5"
                     "offset" "time" "0"
@@ -69,23 +69,23 @@
                 [
                     "DmeChannel"
                     {
-                        "id" "elementid" "5073a43f-9694-4b24-ac88-44e9d821c316"
+                        "id" "elementid" "0eae3918-f0a4-4a23-ab1a-2762fc618a2a"
                         "name" "string" "Bone_p"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "2856d83a-c003-4cfb-beb9-cce7303ae316"
+                        "toElement" "element" "d1189680-b60e-4f4b-91f3-b088b994f233"
                         "toAttribute" "string" "position"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeVector3Log"
                         {
-                            "id" "elementid" "6e9ef764-aea0-4869-97b3-34bc7d128baa"
+                            "id" "elementid" "551951bb-c9bf-4ea8-91c6-a40fbf395263"
                             "name" "string" "vector3 log"
                             "layers" "element_array"
                             [
                                 "DmeVector3LogLayer"
                                 {
-                                    "id" "elementid" "a8c2991c-5475-490d-9402-739c6b1a72a2"
+                                    "id" "elementid" "4fd41d13-4d81-4f6b-86f2-53d171ec529d"
                                     "name" "string" "vector3 log"
                                     "times" "time_array" [ "-0.1", "-0.05", "0", "0.0416666", "0.0833333", "0.125", "0.1666666", "0.2083333", "0.25", "0.2916666", "0.3333333", "0.375", "0.4166666", "0.4583333", "0.5", "0.5416666", "0.5833333", "0.625", "0.6666666", "0.7083333", "0.75", "0.7916666", "0.8333333", "0.875", "0.9166666", "0.9583333", "1", "1.0416666", "1.0833333", "1.125", "1.1666666", "1.2083333", "1.25", "1.2916666", "1.3333333", "1.375", "1.4166666", "1.4583333", "1.5" ]
                                     "curvetypes" "int_array" [ ]
@@ -102,23 +102,23 @@
                     },
                     "DmeChannel"
                     {
-                        "id" "elementid" "50614b09-2b99-4dcd-a91b-568c562704f0"
+                        "id" "elementid" "3d59f31d-a7c0-4415-8919-20d1ae2a4ed6"
                         "name" "string" "Bone_o"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "2856d83a-c003-4cfb-beb9-cce7303ae316"
+                        "toElement" "element" "d1189680-b60e-4f4b-91f3-b088b994f233"
                         "toAttribute" "string" "orientation"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeQuaternionLog"
                         {
-                            "id" "elementid" "fe1a6ff4-d2b7-44e8-aa42-71aeae493674"
+                            "id" "elementid" "d2547d1a-c40f-4098-b49d-f0a9ed61b211"
                             "name" "string" "quaternion log"
                             "layers" "element_array"
                             [
                                 "DmeQuaternionLogLayer"
                                 {
-                                    "id" "elementid" "e03bf79d-fd49-4e56-bd61-993c9f7c529c"
+                                    "id" "elementid" "cf1a6192-7563-4f17-8566-1cc4098c9f10"
                                     "name" "string" "quaternion log"
                                     "times" "time_array" [ "0", "0.0416666", "0.0833333", "0.125", "0.1666666", "0.2083333", "0.25", "0.2916666", "0.3333333", "0.375", "0.4166666", "0.4583333", "0.5", "0.5416666", "0.5833333", "0.625", "0.6666666", "0.7083333", "0.75", "0.7916666", "0.8333333", "0.875", "0.9166666", "0.9583333", "1", "1.0416666", "1.0833333", "1.125", "1.1666666", "1.2083333", "1.25", "1.2916666", "1.3333333", "1.375", "1.4166666", "1.4583333", "1.5" ]
                                     "curvetypes" "int_array" [ ]
@@ -140,7 +140,7 @@
     }
     "exportTags" "DmeExportTags"
     {
-        "id" "elementid" "ee5e96c8-4584-4b37-a944-873d15f32e1f"
+        "id" "elementid" "d660fc7e-c44e-4436-86b1-70357ffc0f1d"
         "name" "string" "exportTags"
         "app" "string" "sfm"
         "source" "string" "Generated with Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io"
@@ -149,7 +149,7 @@
 
 "DmeTransform"
 {
-    "id" "elementid" "2856d83a-c003-4cfb-beb9-cce7303ae316"
+    "id" "elementid" "d1189680-b60e-4f4b-91f3-b088b994f233"
     "name" "string" "Bone"
     "position" "vector3" "-0 0 0"
     "orientation" "quaternion" "0.25440383 0.65975654 0.65975654 0.25440383"
