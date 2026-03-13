@@ -37,6 +37,7 @@ return function(context)
 			end
 		end
 
+		PrecacheUnitByNameSync( "npc_dota_weaver_swarm", context )
 
 		PrecacheResource( "model", "models/events/crownfall/survivors/undying_minion/undying_minion_enemy.vmdl", context )		
 		

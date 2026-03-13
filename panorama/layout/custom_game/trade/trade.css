@@ -595,6 +595,11 @@ ToggleButton:selected .TickBox,CycleButton:selected .TickBox,DOTASettingsCheckbo
 	letter-spacing: 1px;
 }
 
+#sell_item_panel_input_hint.input_hint_error
+{
+	color: #e05050;
+}
+
 #sell_item_panel_price
 {
 	horizontal-align: center;
@@ -642,6 +647,18 @@ ToggleButton:selected .TickBox,CycleButton:selected .TickBox,DOTASettingsCheckbo
 {
 	brightness: 0.8;
 	transform: scale3d(0.99, 0.99, 1.0);
+}
+
+#sell_item_panel_desc_button.sell_button_disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#555555), to(#333333));
+	brightness: 0.6;
+}
+
+#sell_item_panel_desc_button.sell_button_disabled:hover
+{
+	brightness: 0.6;
+	transform: none;
 }
 
 #sell_item_panel_desc_button #sell_item_panel_desc_button_label

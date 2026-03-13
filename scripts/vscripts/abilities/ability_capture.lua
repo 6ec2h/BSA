@@ -17,17 +17,10 @@ function ability_capture_lua:GetChannelAnimation()
 	return ACT_DOTA_TELEPORT
 end
 
-function ability_capture_lua:CastFilterResultLocation(pos)
-	if self.pos then return end
-
-	self.pos = pos
-end
-
 function ability_capture_lua:OnSpellStart(keys)
 	if not IsServer() then return end
 
-	self.respawnPos = self.pos
-	self.pos = nil
+	self.respawnPos = self:GetCursorPosition()
 
 	StartSoundEvent("Outpost.Channel", self:GetCaster())
 end
@@ -155,6 +148,10 @@ function modifier_magic_resist_lua:GetModifierOverrideAbilitySpecialValue(params
 
     local name = params.ability_special_value
     local level = ability:GetLevel() - 1
+    if level < 0 then level = 0 end
+
+    return 0.05 * self.fDifficulty
+end local level = ability:GetLevel() - 1
     if level < 0 then level = 0 end
 
     return 0.05 * self.fDifficulty

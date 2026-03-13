@@ -230,7 +230,19 @@ function box_spawn()
 
 	local Point = Entities:FindByName( nil, "zone_ice_point_"..RandomInt(1,3)):GetAbsOrigin()
 	local hUnit = CreateUnitByName("invis_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+
+	local Point = Entities:FindByName( nil, "zone_trap_point_"..RandomInt(1,2)):GetAbsOrigin()
+	local hUnit = CreateUnitByName("invis_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+
+	local Point = Entities:FindByName( nil, "zone_sea_point_"..RandomInt(1,2)):GetAbsOrigin()
+	local hUnit = CreateUnitByName("invis_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
 	
+	local Point = Entities:FindByName( nil, "zone_desert_point_1"):GetAbsOrigin()
+	local hUnit = CreateUnitByName("invis_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+
+	local Point = Entities:FindByName( nil, "zone_forest_point_"..RandomInt(1,2)):GetAbsOrigin()
+	local hUnit = CreateUnitByName("invis_box", Point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+
 	for i = 1, 8 do
 		local Point = Entities:FindByName( nil, "crate"..i):GetAbsOrigin()
 		for i = 1, 3 do
@@ -290,14 +302,14 @@ function dummy_spawn()
 	_G.npc_creeps_passives = CreateUnitByName("npc_creeps_passives",Vector(-4823,-14380, 384), false, nil, nil, DOTA_TEAM_NEUTRALS)
 	npc_creeps_passives:AddNewModifier(npc_creeps_passives, nil, "modifier_dummy", {})
 
-	local damage_challenge_spawn_pos = Vector(-13554, -14540, 512)
+	local damage_challenge_spawn_pos = Vector(-15352, -15430, 512)
 
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, damage_challenge_spawn_pos, 250, 3, false)
 
 	LinkLuaModifier( "modifier_damage_challenge", "modifiers/modifier_damage_challenge", LUA_MODIFIER_MOTION_NONE )--
 	local damage_challenge = CreateUnitByName("npc_unit_damage_challenge", damage_challenge_spawn_pos, false, nil, nil, DOTA_TEAM_NEUTRALS)
 	damage_challenge:AddNewModifier(damage_challenge, nil, "modifier_damage_challenge", {})
-	damage_challenge:SetAngles(0,-90,0)
+	damage_challenge:SetAngles(0, 20, 0)
 	_G.DamageChallengeEnt = damage_challenge
 
 	LinkLuaModifier("modifier_players_summary", "modifiers/modifier_players_summary", LUA_MODIFIER_MOTION_NONE)

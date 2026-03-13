@@ -141,14 +141,14 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "1" and steamID == 393187346 then
-		-- table.print(_G.Account_stats[steamID])
-		-- hero:SetAbsOrigin( Vector(-10636, 167, 400 ))
-		-- guild_events:StartSoloEvent(pid)
-		-- inventory:add_soul(pid)
-    end
+		-- LinkLuaModifier( "modifier_speed", "modifiers/modifier_speed", LUA_MODIFIER_MOTION_NONE )
+		-- hero:AddNewModifier( hero, nil, "modifier_speed", {} )
+		-- hero:AddNewModifier( hero, nil, "modifier_invulnerable", {} )
+		quest_system:StartQuest("main", 14, target)
+	end
 
 	if text == "2" and steamID == 393187346 then
-		guild_events:RestoreItems(hero)
+		-- guild_events:RestoreItems(hero)
 	end
 	
 	if IsAdmin(steamID) and text == "2434" then
@@ -279,21 +279,6 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 		end
 	end
 	
-	if order == 5 then
-		local quest108 = _G.players_quest_progress["additional"][108]
-		if quest108 and not quest108.completed then
-			hero.lastWardTime = hero.lastWardTime or 0
-			if ability and ability:GetAbilityName() == 'item_ward_sentry' and (GameRules:GetGameTime() - hero.lastWardTime > 0.2) then
-				hero.lastWardTime = GameRules:GetGameTime()
-				quest108.kill_count = (quest108.kill_count or 0) + 1
-				quest_system:UpdateQuest("additional", 108, quest108.kill_count)
-				if quest108.kill_count >= _G.quest_data["additional"][108].goal then
-					quest108.completed = true
-					quest_system:RemoveQuest("additional", 108, "success")
-				end
-			end
-		end
-	end
 
     return true
 end
@@ -612,7 +597,18 @@ end
 
 function CAddonAdvExGameMode:OnNPCSpawned(data)
 	npc = EntIndexToHScript(data.entindex)
-	
+	if npc:GetUnitName() == "npc_dota_sentry_wards" then
+		local quest108 = _G.players_quest_progress["additional"][108]
+		if quest108 and not quest108.completed then
+			quest108.kill_count = (quest108.kill_count or 0) + 1
+			quest_system:UpdateQuest("additional", 108, quest108.kill_count)
+			if quest108.kill_count >= _G.quest_data["additional"][108].goal then
+				quest108.completed = true
+				quest_system:RemoveQuest("additional", 108, "success")
+			end
+		end
+	end
+
 	if npc:IsRealHero() and npc.bFirstSpawned == nil and not npc:IsIllusion() and not npc:IsTempestDouble() and not npc:IsClone() and npc:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
 		npc.bFirstSpawned = true
 	end
@@ -1179,6 +1175,12 @@ function CAddonAdvExGameMode:OnNpcInteract(data)
 			-- Shop:get_difficulty_data({PlayerID = pid})
 			-- Shop:get_booster_profile({PlayerID = pid})
 			Shop:get_booster_data({PlayerID = pid})
+		end
+	else
+		rules:DisplayError(pid, "#to_far_away")
+	end
+end
+oster_data({PlayerID = pid})
 		end
 	else
 		rules:DisplayError(pid, "#to_far_away")

@@ -435,6 +435,8 @@ var boost_attributes = CustomNetTables.GetTableValue( "boost_attributes", 'boost
 
 var textEntry;
 var textPrice;
+var textHint;
+var sellButton;
 var price = 2
 var trade = $("#trade_panel_content_sell")
 var current_selling_item = null
@@ -498,6 +500,8 @@ function set_item_for_sale(number){
 
 	textEntry = pan.FindChildTraverse('buy_text_input')
 	textPrice = pan.FindChildTraverse('sell_item_panel_price_label')
+	textHint = pan.FindChildTraverse('sell_item_panel_input_hint')
+	sellButton = pan.FindChildTraverse('sell_item_panel_desc_button')
 
 
 	pan.FindChildTraverse('sell_item_panel_desc_button').SetPanelEvent("onmouseactivate", function() {sell_item_request(data, number)});
@@ -545,20 +549,29 @@ function InputCount() {
     let setNumber = (current_selling_item && current_selling_item.set_number) ? current_selling_item.set_number : 1;
     let minAllowed = MIN_PRICES_BY_SET[setNumber] || 2;
 
-    if (Number.isNaN(textInt)) {
-        textInt = minAllowed; 
-    }
-
-    if (textInt < minAllowed) {
+    if (Number.isNaN(textInt) || textInt < minAllowed) {
         textInt = minAllowed;
-        textEntry.text = String(minAllowed);
-    } else if (textInt > 1500) {
-        textInt = 1500;
-        textEntry.text = "1500";
-    }
-
-    if (textEntry.text == "") {
-        textEntry.text = String(minAllowed);
+        if (textHint) {
+            textHint.text = $.Localize("#min_price_hint") + " " + minAllowed;
+            textHint.AddClass("input_hint_error");
+        }
+        if (sellButton) {
+            sellButton.enabled = false;
+            sellButton.AddClass("sell_button_disabled");
+        }
+    } else {
+        if (textHint) {
+            textHint.text = $.Localize("#input_sell");
+            textHint.RemoveClass("input_hint_error");
+        }
+        if (sellButton) {
+            sellButton.enabled = true;
+            sellButton.RemoveClass("sell_button_disabled");
+        }
+        if (textInt > 1500) {
+            textInt = 1500;
+            textEntry.text = "1500";
+        }
     }
 
     price = textInt - Math.ceil(textInt * 0.1);

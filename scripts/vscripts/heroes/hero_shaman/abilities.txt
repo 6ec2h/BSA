@@ -23,7 +23,7 @@
 			"end_distance"				"500"
 			"targets"					
 			{
-				"value"					                    "1 2 3 4"
+				"value"					                    "2 3 4 5"
 				"special_bonus_unique_shadow_shaman_2"      "+3"
 			}	
 			"damage"					
@@ -43,7 +43,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"AbilityTextureName"			"shadow_shaman_voodoo"
-		"AbilityCooldown"				"30 24 18 12"
+		"AbilityCooldown"				"20 16 12 8"
 		"AbilityManaCost"				"80 100 120 140"
 		"AbilityValues"
 		{
@@ -78,7 +78,7 @@
 		"AbilityCastRange"				"400"
 		"AbilityCastPoint"				"0.3"
 		"AbilityChannelTime"			"3"
-		"AbilityCooldown"				"24 20 16 12"
+		"AbilityCooldown"				"16 13 10 7"
 		"AbilityManaCost"				"140 150 160 170"
 		
 		"AbilityValues"
@@ -103,7 +103,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
 		"AbilityCastRange"				"500"
-		"AbilityCooldown"				"100 90 80"
+		"AbilityCooldown"				"50 45 40"
 		"AbilityManaCost"				"200 350 500"
 		
 		"AbilityValues"
@@ -176,4 +176,5 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "BaseClass"                     "special_bonus_base"
     }
+}
 }

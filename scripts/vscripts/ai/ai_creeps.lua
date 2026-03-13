@@ -71,29 +71,47 @@ function NeutralThink()
     local retreat_enemy = nil
 
     for _, enemy in pairs(enemies) do
-        local unitName = enemy:GetUnitName()
-        if enemy:GetTeamNumber() == DOTA_TEAM_GOODGUYS and unitName ~= 'npc_dota_observer_wards' then
-            table.insert(filteredEnemiesForCast, enemy)
-        end
+        -- Проверяем, что сущность существует в движке и не была удалена
+        if enemy and not enemy:IsNull() and IsValidEntity(enemy) and enemy:IsAlive() then
+            local unitName = enemy:GetUnitName()
+            
+            -- Логика фильтрации для каста
+            if enemy:GetTeamNumber() == DOTA_TEAM_GOODGUYS and unitName ~= 'npc_dota_observer_wards' then
+                table.insert(filteredEnemiesForCast, enemy)
+            end
 
-        if thisEntity:IsRangedAttacker() and not retreat_enemy then
-            if (enemy:GetOrigin() - thisEntity:GetOrigin()):Length2D() < 400 then
-                if (not thisEntity.fTimeOfLastRetreat or (GameRules:GetGameTime() > thisEntity.fTimeOfLastRetreat + 4)) then
-                    retreat_enemy = enemy
+            -- Логика отступления для дальнего боя
+            if thisEntity:IsRangedAttacker() and not retreat_enemy then
+                if (enemy:GetOrigin() - thisEntity:GetOrigin()):Length2D() < 400 then
+                    local gameTime = GameRules:GetGameTime()
+                    if (not thisEntity.fTimeOfLastRetreat or (gameTime > thisEntity.fTimeOfLastRetreat + 4)) then
+                        retreat_enemy = enemy
+                    end
                 end
             end
         end
     end
-
+    
     if #enemies == 0 then
-        if not thisEntity:HasModifier('modifier_creep_antilag') then
-            thisEntity:AddNewModifier(thisEntity, nil, 'modifier_creep_antilag', {})
+        -- Проверка без кэша: кэш мог быть устаревшим (TTL 0.1с)
+        local realCheck = _G.OldFindUnitsInRadius(
+            thisEntity:GetTeamNumber(), thisEntity:GetOrigin(), nil,
+            SEARCH_DISTANCE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
+            FIND_CLOSEST, false
+        )
+        if #realCheck > 0 then
+            enemies = realCheck
+        else
+            if not thisEntity:HasModifier('modifier_creep_antilag') then
+                thisEntity:AddNewModifier(thisEntity, nil, 'modifier_creep_antilag', {})
+            end
+            if (thisEntity:GetAbsOrigin() - thisEntity.vInitialSpawnPos):Length2D() > 100 then return RetreatHome() end
+            return THINK_INTERVAL
         end
-        if (thisEntity:GetAbsOrigin() - thisEntity.vInitialSpawnPos):Length2D() > 100 then return RetreatHome() end
-        return THINK_INTERVAL
-    else
-        thisEntity:RemoveModifierByName('modifier_creep_antilag')
     end
+
+    thisEntity:RemoveModifierByName('modifier_creep_antilag')
 
     thisEntity.castables = {}
     if #filteredEnemiesForCast > 0 then

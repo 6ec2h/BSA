@@ -192,15 +192,11 @@ function modifier_magnus_empower_lua_aura:IsAura()
 end
 
 function modifier_magnus_empower_lua_aura:GetModifierAura()
-    self.radius = self:GetAbility():GetSpecialValueFor("aura_radius")
-end
-
-function modifier_magnus_empower_lua_aura:GetModifierAura()
     return "modifier_magnus_empower_lua"
 end
 
 function modifier_magnus_empower_lua_aura:GetAuraRadius()
-    return self.radius
+    return self:GetAbility():GetSpecialValueFor("aura_radius")
 end
 
 function modifier_magnus_empower_lua_aura:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
@@ -438,5 +434,7 @@ function magnus_reverse_polarity_lua:PlayEffects2( target, origin )
     local effect_cast = ParticleManager:CreateParticle( "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_ABSORIGIN_FOLLOW, target )
     ParticleManager:SetParticleControl( effect_cast, 1, origin )
     ParticleManager:ReleaseParticleIndex( effect_cast )
+    EmitSoundOn( "Hero_Magnataur.ReversePolarity.Stun", target )
+endParticleIndex( effect_cast )
     EmitSoundOn( "Hero_Magnataur.ReversePolarity.Stun", target )
 end
