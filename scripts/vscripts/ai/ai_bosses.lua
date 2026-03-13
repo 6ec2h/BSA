@@ -300,22 +300,3 @@ function Retreat(target)
 
 	return THINK_INTERVAL * 2
 end
-ayFromEnemy = vAwayFromEnemy:Normalized()
-	local vMoveToPos = thisEntity:GetOrigin() + vAwayFromEnemy * thisEntity:GetIdealSpeed()
-
-	local nAttempts = 0
-	while ( ( not GridNav:CanFindPath( thisEntity:GetOrigin(), vMoveToPos ) ) and ( nAttempts < 5 ) ) do
-		vMoveToPos = thisEntity:GetOrigin() + RandomVector( thisEntity:GetIdealSpeed() )
-		nAttempts = nAttempts + 1
-	end
-
-	thisEntity.fTimeOfLastRetreat = GameRules:GetGameTime()
-
-	ExecuteOrderFromTable({
-		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-		Position = vMoveToPos,
-	})
-
-	return THINK_INTERVAL * 2
-end

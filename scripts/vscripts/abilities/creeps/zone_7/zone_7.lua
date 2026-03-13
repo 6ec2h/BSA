@@ -950,47 +950,4 @@ end
 
 function modifier_all_reduction_aura_debuff:GetModifierPhysicalArmorBonus()
     return -self.total_armor_reduction
-ends.unit == self:GetParent() then
-        if self.particle then
-            ParticleManager:DestroyParticle(self.particle, true)
-            ParticleManager:ReleaseParticleIndex(self.particle)
-            self.particle = nil
-        end
-    end
-end
---------------------------------------------------------------------------------
-
-modifier_all_reduction_aura_debuff = class({})
-
-function modifier_all_reduction_aura_debuff:IsHidden()
-    return false
-end
-
-function modifier_all_reduction_aura_debuff:IsDebuff()
-    return true
-end
-
-function modifier_all_reduction_aura_debuff:OnCreated()
-    local ability = self:GetAbility()
-    if not ability then return end
-    
-    local base_reduction = ability:GetSpecialValueFor("reduction")
-    local diff_boost = ability:GetSpecialValueFor("diff_boost_damage")
-
-    self.total_armor_reduction = (base_reduction + diff_boost)
-end
-
-function modifier_all_reduction_aura_debuff:DeclareFunctions()
-    return {
-        MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
-    }
-end
-
-function modifier_all_reduction_aura_debuff:GetModifierMagicalResistanceBonus()
-    return -self.total_armor_reduction
-end
-
-function modifier_all_reduction_aura_debuff:GetModifierPhysicalArmorBonus()
-    return -self.total_armor_reduction
 end

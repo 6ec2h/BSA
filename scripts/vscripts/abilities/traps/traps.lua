@@ -452,26 +452,3 @@ function modifier_simple_roll_shot_thinker:PlayEffects2()
     EmitSoundOn("Hero_Invoker.ChaosMeteor.Loop", self:GetParent())
 end
 
-ber(),
---         pos,
---         nil,
---         self.radius,
---         DOTA_UNIT_TARGET_TEAM_ENEMY,
---         DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
---         DOTA_UNIT_TARGET_FLAG_NONE,
---         0,
---         false
---     )
-
---     for _, enemy in pairs(enemies) do
---         ApplyDamage({
---             victim = enemy,
---             attacker = self.caster,
---             damage = enemy:GetMaxHealth() * (self.ability.damage_prc / 100),
---             damage_type = DAMAGE_TYPE_MAGICAL, -- Укажи нужный тип
---             ability = self.ability
---         })
---     end
--- end
-
-

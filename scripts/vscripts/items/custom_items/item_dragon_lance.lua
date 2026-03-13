@@ -205,13 +205,3 @@ end
 function modifier_item_custom_dragon_lance3_reduced_damage:GetModifierDamageOutgoing_Percentage()
 	return -1 * (100 - self:GetAbility():GetSpecialValueFor("split_shot_damage"))
 end
-reduced_damage:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE
-	}
-	return funcs
-end
-
-function modifier_item_custom_dragon_lance3_reduced_damage:GetModifierDamageOutgoing_Percentage()
-	return -1*(100-self:GetAbility():GetSpecialValueFor("split_shot_damage"))
-end

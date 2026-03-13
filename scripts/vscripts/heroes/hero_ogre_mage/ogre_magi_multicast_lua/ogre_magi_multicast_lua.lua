@@ -222,12 +222,4 @@ function modifier_ogre_magi_multicast_lua_proc:PlayEffects( value )
 	if sound>0 then
 		EmitSoundOn( sound_cast, self.caster )
 	end
-endffect_cast )
-
-	-- Create Sound
-	local sound = math.min( value-1, 3 )
-	local sound_cast = "Hero_OgreMagi.Fireblast.x" .. sound
-	if sound>0 then
-		EmitSoundOn( sound_cast, self.caster )
-	end
 end

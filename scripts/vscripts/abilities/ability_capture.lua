@@ -151,8 +151,4 @@ function modifier_magic_resist_lua:GetModifierOverrideAbilitySpecialValue(params
     if level < 0 then level = 0 end
 
     return 0.05 * self.fDifficulty
-end local level = ability:GetLevel() - 1
-    if level < 0 then level = 0 end
-
-    return 0.05 * self.fDifficulty
 end

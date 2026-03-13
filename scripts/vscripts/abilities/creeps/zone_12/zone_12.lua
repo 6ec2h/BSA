@@ -836,17 +836,3 @@ function modifier_creep_bulwark_lua:PlayEffects( front )
 	EmitSoundOn( sound_cast, self:GetParent() )
 end
 
-
-	local sound_cast = "Hero_Mars.Shield.Block"
-
-	if not front then
-		particle_cast = "particles/units/heroes/hero_mars/mars_shield_of_mars_small.vpcf"
-		sound_cast = "Hero_Mars.Shield.BlockSmall"
-	end
-
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	EmitSoundOn( sound_cast, self:GetParent() )
-end
-

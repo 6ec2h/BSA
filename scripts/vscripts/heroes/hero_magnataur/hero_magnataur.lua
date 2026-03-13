@@ -435,6 +435,4 @@ function magnus_reverse_polarity_lua:PlayEffects2( target, origin )
     ParticleManager:SetParticleControl( effect_cast, 1, origin )
     ParticleManager:ReleaseParticleIndex( effect_cast )
     EmitSoundOn( "Hero_Magnataur.ReversePolarity.Stun", target )
-endParticleIndex( effect_cast )
-    EmitSoundOn( "Hero_Magnataur.ReversePolarity.Stun", target )
 end

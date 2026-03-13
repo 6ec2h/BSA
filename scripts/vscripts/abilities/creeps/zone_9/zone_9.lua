@@ -1093,6 +1093,3 @@ function modifier_spawn_tomb_units:OnIntervalThink()
 		end
 	end
 end
-		end
-	end
-end

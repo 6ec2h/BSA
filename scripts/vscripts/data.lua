@@ -390,4 +390,3 @@ BOSS_NAME_TO_HERO_NAME = {
 	["necrolyte_npc_dota_boss_medusa"] = "npc_dota_hero_medusa",
 	["necrolyte_npc_dota_boss_arc_warden"] = "npc_dota_hero_arc_warden",
 }
-

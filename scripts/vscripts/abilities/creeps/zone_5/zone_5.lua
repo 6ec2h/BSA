@@ -997,5 +997,4 @@ end
 
 function modifier_creep_degen_aura_lua_effect:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-endOW
 end

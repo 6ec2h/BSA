@@ -506,4 +506,4 @@ function modifier_golden_sea_illusion:GetStatusEffectName()
     return "particles/status_fx/status_effect_dark_seer_illusion.vpcf"
 end
 
-end)nd)
+end)

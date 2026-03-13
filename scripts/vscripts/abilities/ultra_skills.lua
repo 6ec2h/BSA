@@ -746,5 +746,4 @@ end
 
 function modifier_ice_ultra_lua:GetStatusEffectName()
     return "particles/status_fx/status_effect_frost.vpcf"
-endrn "particles/status_fx/status_effect_frost.vpcf"
 end

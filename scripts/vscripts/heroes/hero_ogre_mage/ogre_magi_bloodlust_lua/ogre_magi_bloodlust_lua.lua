@@ -183,9 +183,4 @@ end
 
 function modifier_ogre_magi_bloodlust_lua_buff:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-end"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
-end
-
-function modifier_ogre_magi_bloodlust_lua_buff:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
 end

@@ -1180,25 +1180,3 @@ function CAddonAdvExGameMode:OnNpcInteract(data)
 		rules:DisplayError(pid, "#to_far_away")
 	end
 end
-oster_data({PlayerID = pid})
-		end
-	else
-		rules:DisplayError(pid, "#to_far_away")
-	end
-end
-local name = data.name
-	local distance = 400
-	if (hero:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() < distance then
-		if name == "#blacksmith" then
-			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateBlacksmith",{})
-		elseif name == "#trade" then
-			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid),"ActivateTrade",{})
-		elseif name == "#dungeon_master" then
-			-- Shop:get_difficulty_data({PlayerID = pid})
-			-- Shop:get_booster_profile({PlayerID = pid})
-			Shop:get_booster_data({PlayerID = pid})
-		end
-	else
-		rules:DisplayError(pid, "#to_far_away")
-	end
-end

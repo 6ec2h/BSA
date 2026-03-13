@@ -384,14 +384,4 @@ end
 
 function modifier_bristleback_warpath_lua:GetModifierModelScale()
 	return self:GetStackCount() * 5
-ende_table[1])
-					table.remove(self.particle_table, 1)
-				end
-			end
-		end)
-	end
-end
-
-function modifier_bristleback_warpath_lua:GetModifierModelScale()
-	return self:GetStackCount() * 5
 end

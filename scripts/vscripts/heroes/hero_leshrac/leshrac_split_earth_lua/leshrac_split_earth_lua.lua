@@ -92,16 +92,4 @@ function leshrac_split_earth_lua:OnSpellStart()
 				ApplyDamage(damageTable)
 		end
 	end
-endation = self.duration } -- kv
-	)
-	
-			local damageTable = {victim = enemy,
-									damage = self.damage,
-									damage_type = DAMAGE_TYPE_MAGICAL,
-									attacker = caster,
-									ability = ability
-									}
-				ApplyDamage(damageTable)
-		end
-	end
 end
