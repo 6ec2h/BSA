@@ -239,7 +239,7 @@ function modifier_bristleback_bristleback_lua:OnTakeDamage(keys)
                 
                 if (current_time - self.last_proc_time) >= self.proc_cooldown then
                     self.lock_quills = true
-                    quill_ability:OnSpellStart()
+                    self.parent:CastAbilityImmediately(quill_ability, self.parent:GetPlayerOwnerID())
                     self.last_proc_time = current_time
                     self:SetStackCount(self:GetStackCount() - self.threshold)
                     self.lock_quills = false

@@ -334,7 +334,7 @@ tidehunter_ravage_lua = class({})
 function tidehunter_ravage_lua:GetCooldown( level ) 
     local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_tidehunter_6")
     if talent and talent:GetLevel() > 0 then
-        return self.BaseClass.GetCooldown( self, level ) - 90
+        return self.BaseClass.GetCooldown( self, level ) - 30
     end
     return self.BaseClass.GetCooldown( self, level )
 end
