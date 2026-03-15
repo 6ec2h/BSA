@@ -102,18 +102,17 @@ function rules:select_skill_lua(t)
 	_G.RewardPoints[t.PlayerID] = _G.RewardPoints[t.PlayerID] - 1
 
     local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
-    for _, ability_name in pairs(t) do
-		if string.sub(ability_name, 0,8) == "modifier" then
-			LinkLuaModifier( ability_name, "modifiers/boss_reward/"..ability_name, LUA_MODIFIER_MOTION_NONE )
-			hero:AddNewModifier(hero, nil, ability_name, {})
-			
-			local guildMod = hero:FindModifierByName("modifier_guild")
-			if guildMod and guildMod.doubleBuffChance > RandomInt(0, 100) then
-				hero:AddNewModifier(hero, nil, ability_name, {})
-			end
+    local ability_name = t.skill_name
+    if type(ability_name) == "string" and string.sub(ability_name, 0, 8) == "modifier" then
+        
+        hero:AddNewModifier(hero, nil, ability_name, {})
 
-			EmitSoundOn( "hud.equip.agh_shard", hero)
-		end	
+        local guildMod = hero:FindModifierByName("modifier_guild")
+        if guildMod and guildMod.doubleBuffChance > RandomInt(0, 100) then
+            hero:AddNewModifier(hero, nil, ability_name, {})
+        end
+
+        EmitSoundOn( "hud.equip.agh_shard", hero)
     end
 
 	if _G.RewardPoints[t.PlayerID] > 0 then

@@ -141,10 +141,18 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "1" and steamID == 393187346 then
-		-- LinkLuaModifier( "modifier_speed", "modifiers/modifier_speed", LUA_MODIFIER_MOTION_NONE )
-		-- hero:AddNewModifier( hero, nil, "modifier_speed", {} )
-		-- hero:AddNewModifier( hero, nil, "modifier_invulnerable", {} )
-		quest_system:StartQuest("main", 14, target)
+
+		local function SetHeroModel(hero, model_path)
+			for _, wearable in pairs(hero:GetChildren()) do
+				if wearable:GetClassname() == "dota_item_wearable" then
+					UTIL_Remove(wearable)
+				end
+			end
+			hero:SetModel(model_path)
+			hero:SetOriginalModel(model_path)
+			hero:SetModelScale(1.3)
+		end
+		SetHeroModel(hero, "models/madara/madara.vmdl")
 	end
 
 	if text == "2" and steamID == 393187346 then
