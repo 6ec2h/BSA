@@ -359,7 +359,7 @@ function magnus_reverse_polarity_lua:GetCooldown( level )
     local caster = self:GetCaster()
     local talent = caster:FindAbilityByName("special_bonus_unique_magnus_4")
     if talent and talent:GetLevel() > 0 then 
-        return self.BaseClass.GetCooldown( self, level ) - 15
+        return self.BaseClass.GetCooldown( self, level ) - 20
     end
     return self.BaseClass.GetCooldown( self, level )
 end

@@ -77,7 +77,7 @@ function modifier_weaver_shukuchi_custom:OnIntervalThink()
         end
     end
 
-    if (current_pos - self.last_pos):Length2D() > 50 then
+    if (current_pos - self.last_pos):Length2D() > 10 then
         self:CreateWallSegment(self.last_pos, current_pos)
         self.last_pos = current_pos
     end

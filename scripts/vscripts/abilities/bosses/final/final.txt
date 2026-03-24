@@ -38,6 +38,7 @@
 		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"	
 		"AbilityTextureName"     	"poison_raze"
 		"AbilityCooldown"			"16"
+		"AbilityManaCost"			"300"
 		"AbilityValues"
 		{
 			"damage" 				"2500"
@@ -94,6 +95,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"            "necro_glimps"
 		"AbilityCooldown"           	"11"
+		"AbilityManaCost"			"200"
 	}	
 	
 	"boss_necro_passive"
@@ -115,5 +117,6 @@
 		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"        "spawn_lua"
 		"AbilityCooldown"			"20"
+		"AbilityManaCost"			"400"
 	}	
 }

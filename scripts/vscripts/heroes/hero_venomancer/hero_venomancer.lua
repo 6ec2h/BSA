@@ -392,7 +392,7 @@ end
 function venomancer_poison_nova_lua:GetCooldown( level )
 	local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_venomancer_4")
 	if talent ~= nil and talent:GetLevel() > 0 then
-		return self.BaseClass.GetCooldown( self, level ) - 20
+		return self.BaseClass.GetCooldown( self, level ) - 40
 	end
 	return self.BaseClass.GetCooldown( self, level )
 end

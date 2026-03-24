@@ -270,7 +270,7 @@ function vengefulspirit_nether_swap_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
 
-	if hCaster == nil or hTarget == nil or hTarget:TriggerSpellAbsorb( this ) then
+	if hCaster == nil or hTarget == nil then
 		return
 	end
 

@@ -1,14 +1,14 @@
 <!-- dmx encoding keyvalues2 4 format model 22 -->
 "DmElement"
 {
-    "id" "elementid" "afdd6181-c43b-414f-8c40-9b636f09e0e6"
+    "id" "elementid" "b79a55f3-d15a-46dd-9c13-88b25dda8c32"
     "name" "string" "root"
     "skeleton" "DmeModel"
     {
-        "id" "elementid" "4286a8ae-8f6f-42f7-9257-2887236a1f7a"
+        "id" "elementid" "a814240b-db63-4216-917f-73973f02793f"
         "transform" "DmeTransform"
         {
-            "id" "elementid" "c25f87e9-aeb4-4d3d-a1a7-46d1e55a67a5"
+            "id" "elementid" "077aff13-68be-4275-8995-ad970585547f"
             "position" "vector3" "0 0 0"
             "orientation" "quaternion" "0 0 0 1"
         }
@@ -17,12 +17,12 @@
         [
             "DmeJoint"
             {
-                "id" "elementid" "8531ae45-7842-4790-9812-8c38ea457cc0"
+                "id" "elementid" "cadb27e2-bb3d-4e7c-b7e6-c1382cdefda7"
                 "name" "string" "door_root"
-                "transform" "element" "165342b8-0ee7-4529-b031-f5409fb889b0"
+                "transform" "element" "b7cf0dbd-7c58-4ccc-8f1d-e8f366c4eee9"
                 "shape" "DmeMesh"
                 {
-                    "id" "elementid" "4b823f60-6f16-4bda-9794-0e198134839e"
+                    "id" "elementid" "bcc2db89-7e38-4a29-a26d-67df539585c3"
                     "visible" "bool" "1"
                     "baseStates" "element_array" [ ]
                     "deltaStates" "element_array" [ ]
@@ -35,12 +35,12 @@
                 [
                     "DmeJoint"
                     {
-                        "id" "elementid" "b08ce77b-710e-4ed6-a5c5-369daeea3f11"
+                        "id" "elementid" "1eb3a748-6275-464d-832b-e8d79c9d314d"
                         "name" "string" "door_R_JNT"
-                        "transform" "element" "efe25760-5e0a-45bb-99f5-570ce9de0ca7"
+                        "transform" "element" "5716f241-e99b-4bd0-830e-476c3d39f000"
                         "shape" "DmeMesh"
                         {
-                            "id" "elementid" "8426b449-b3b2-4d04-9389-7f2b380e7bd3"
+                            "id" "elementid" "32cf83bb-158c-4c88-aeb9-65ddfe2e3d64"
                             "visible" "bool" "1"
                             "baseStates" "element_array" [ ]
                             "deltaStates" "element_array" [ ]
@@ -53,12 +53,12 @@
                     },
                     "DmeJoint"
                     {
-                        "id" "elementid" "989b8551-67fd-4592-9a56-1ee57a0a8297"
+                        "id" "elementid" "915e6230-af4b-4197-a3af-c69f19619f33"
                         "name" "string" "door_L_JNT"
-                        "transform" "element" "07785c16-8571-401b-81e0-9a0a84a6b4d8"
+                        "transform" "element" "239c45bb-7528-42ea-8625-64f698e02d69"
                         "shape" "DmeMesh"
                         {
-                            "id" "elementid" "f5635ce1-aa53-49cd-b623-cfb5d2e09789"
+                            "id" "elementid" "ae6e0d36-2f1d-4687-9ab6-30a0a2b98145"
                             "visible" "bool" "1"
                             "baseStates" "element_array" [ ]
                             "deltaStates" "element_array" [ ]
@@ -76,7 +76,7 @@
         "baseStates" "element_array" [ ]
         "axisSystem" "DmeAxisSystem"
         {
-            "id" "elementid" "b2854644-c14b-40a6-9c65-784b4542001f"
+            "id" "elementid" "4e91eae6-03f6-45df-b742-c48f8d53a53b"
             "upAxis" "int" "3"
             "forwardParity" "int" "1"
             "coordSys" "int" "0"
@@ -84,15 +84,15 @@
     }
     "animationList" "DmeAnimationList"
     {
-        "id" "elementid" "36ae1fa9-1dda-4823-8c14-837eca16a95c"
+        "id" "elementid" "d44a1a39-b7e5-4289-b90b-06c0ce1847ac"
         "animations" "element_array"
         [
             "DmeChannelsClip"
             {
-                "id" "elementid" "96c66b77-13a2-4dda-a8f0-cb04a6ca7f1e"
+                "id" "elementid" "fa1d9436-ae1f-46c7-802c-f030521c4d27"
                 "timeFrame" "DmeTimeFrame"
                 {
-                    "id" "elementid" "7cb3ea0e-3211-46c1-974b-3fa008057557"
+                    "id" "elementid" "8d1286d1-e0e7-4a80-af44-573ee459ac17"
                     "start" "time" "0"
                     "duration" "time" "0"
                     "offset" "time" "0"
@@ -107,23 +107,23 @@
                 [
                     "DmeChannel"
                     {
-                        "id" "elementid" "9639d32f-2d01-446e-9e77-d3fc9a145932"
+                        "id" "elementid" "d32dccc1-e1a9-4cf6-920b-a7087ecc09ad"
                         "name" "string" "door_root_p"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "165342b8-0ee7-4529-b031-f5409fb889b0"
+                        "toElement" "element" "b7cf0dbd-7c58-4ccc-8f1d-e8f366c4eee9"
                         "toAttribute" "string" "position"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeVector3Log"
                         {
-                            "id" "elementid" "a15ef5ff-2876-49cb-9c95-dae4cc01b392"
+                            "id" "elementid" "d0fae583-44b9-4d23-8c9d-46dca74275d9"
                             "name" "string" "vector3 log"
                             "layers" "element_array"
                             [
                                 "DmeVector3LogLayer"
                                 {
-                                    "id" "elementid" "02687646-f0be-463e-b8cd-afc20dc717f1"
+                                    "id" "elementid" "95c52b5c-35c5-4838-b37b-32538774f77a"
                                     "name" "string" "vector3 log"
                                     "times" "time_array" [ "-0.1", "-0.05", "0" ]
                                     "curvetypes" "int_array" [ ]
@@ -140,23 +140,23 @@
                     },
                     "DmeChannel"
                     {
-                        "id" "elementid" "87a65d89-3ed4-47eb-aa91-5f43fccfc656"
+                        "id" "elementid" "b3814bb1-25e6-4ad9-b771-2f0ab90cdfc7"
                         "name" "string" "door_root_o"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "165342b8-0ee7-4529-b031-f5409fb889b0"
+                        "toElement" "element" "b7cf0dbd-7c58-4ccc-8f1d-e8f366c4eee9"
                         "toAttribute" "string" "orientation"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeQuaternionLog"
                         {
-                            "id" "elementid" "a341504f-b1f5-46c5-8ff4-a2be3fd131bb"
+                            "id" "elementid" "adae6325-f972-4741-b44d-0d9aa12b0be9"
                             "name" "string" "quaternion log"
                             "layers" "element_array"
                             [
                                 "DmeQuaternionLogLayer"
                                 {
-                                    "id" "elementid" "113a16ed-df6d-4cb3-bb19-8bab51e31e9e"
+                                    "id" "elementid" "44a8665e-7c10-47cf-b6f7-71f5845d091a"
                                     "name" "string" "quaternion log"
                                     "times" "time_array" [ "0" ]
                                     "curvetypes" "int_array" [ ]
@@ -173,23 +173,23 @@
                     },
                     "DmeChannel"
                     {
-                        "id" "elementid" "2c9dbe65-4bc7-4011-b698-fffe94780e81"
+                        "id" "elementid" "4aff1c74-6a2d-4c93-97fb-d33c48cd2d69"
                         "name" "string" "door_R_JNT_p"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "efe25760-5e0a-45bb-99f5-570ce9de0ca7"
+                        "toElement" "element" "5716f241-e99b-4bd0-830e-476c3d39f000"
                         "toAttribute" "string" "position"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeVector3Log"
                         {
-                            "id" "elementid" "8c096bd5-1f35-4b85-a26f-5fff6d07f9e6"
+                            "id" "elementid" "c9ed451b-a5c6-4e40-9f3b-7d4e824f3d41"
                             "name" "string" "vector3 log"
                             "layers" "element_array"
                             [
                                 "DmeVector3LogLayer"
                                 {
-                                    "id" "elementid" "188a5d7d-d3c2-4edc-a17e-bac1202df999"
+                                    "id" "elementid" "f21f2ba0-40ce-48d7-9626-92444371ff43"
                                     "name" "string" "vector3 log"
                                     "times" "time_array" [ "-0.1", "-0.05", "0" ]
                                     "curvetypes" "int_array" [ ]
@@ -206,23 +206,23 @@
                     },
                     "DmeChannel"
                     {
-                        "id" "elementid" "cb5688bd-7a08-4a4e-86b7-97fb7931ded1"
+                        "id" "elementid" "a3a5a7fe-ce08-43a1-b1cf-15e502934c5a"
                         "name" "string" "door_R_JNT_o"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "efe25760-5e0a-45bb-99f5-570ce9de0ca7"
+                        "toElement" "element" "5716f241-e99b-4bd0-830e-476c3d39f000"
                         "toAttribute" "string" "orientation"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeQuaternionLog"
                         {
-                            "id" "elementid" "582a34e2-ca53-4464-a2be-f80e44cd17dd"
+                            "id" "elementid" "e7202b07-0e30-4861-a0b7-98b95160c844"
                             "name" "string" "quaternion log"
                             "layers" "element_array"
                             [
                                 "DmeQuaternionLogLayer"
                                 {
-                                    "id" "elementid" "b4b36ed3-a630-40ab-bc4e-6aa63953fd0f"
+                                    "id" "elementid" "ac28c199-48eb-40a8-9b22-5844444d2fef"
                                     "name" "string" "quaternion log"
                                     "times" "time_array" [ "0" ]
                                     "curvetypes" "int_array" [ ]
@@ -239,23 +239,23 @@
                     },
                     "DmeChannel"
                     {
-                        "id" "elementid" "f87e8523-5c0a-4daf-ac39-195a0f3f77df"
+                        "id" "elementid" "2a5e19b5-a2fe-4bb8-997d-e4e924d634b6"
                         "name" "string" "door_L_JNT_p"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "07785c16-8571-401b-81e0-9a0a84a6b4d8"
+                        "toElement" "element" "239c45bb-7528-42ea-8625-64f698e02d69"
                         "toAttribute" "string" "position"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeVector3Log"
                         {
-                            "id" "elementid" "af373d9a-d105-4265-b2ae-c8769d989bb2"
+                            "id" "elementid" "e2d7f7d0-47b3-43a8-9c33-7be4adf7b58f"
                             "name" "string" "vector3 log"
                             "layers" "element_array"
                             [
                                 "DmeVector3LogLayer"
                                 {
-                                    "id" "elementid" "faade7d1-7b76-4cc6-92da-100449e7b35b"
+                                    "id" "elementid" "2ff78533-1b74-4653-abc1-1b9963895b41"
                                     "name" "string" "vector3 log"
                                     "times" "time_array" [ "-0.1", "-0.05", "0" ]
                                     "curvetypes" "int_array" [ ]
@@ -272,23 +272,23 @@
                     },
                     "DmeChannel"
                     {
-                        "id" "elementid" "5c8cb3b8-11ef-458f-909e-6dddf433c10b"
+                        "id" "elementid" "38fe9266-0f86-4562-9b37-321405ce2140"
                         "name" "string" "door_L_JNT_o"
                         "fromAttribute" "string" ""
                         "fromIndex" "int" "0"
-                        "toElement" "element" "07785c16-8571-401b-81e0-9a0a84a6b4d8"
+                        "toElement" "element" "239c45bb-7528-42ea-8625-64f698e02d69"
                         "toAttribute" "string" "orientation"
                         "toIndex" "int" "0"
                         "mode" "int" "3"
                         "log" "DmeQuaternionLog"
                         {
-                            "id" "elementid" "aec14677-d534-466b-bb3a-1e89c5bdb72d"
+                            "id" "elementid" "30575085-e1ac-4a53-8a11-262fd9562a23"
                             "name" "string" "quaternion log"
                             "layers" "element_array"
                             [
                                 "DmeQuaternionLogLayer"
                                 {
-                                    "id" "elementid" "c9541329-da59-4fed-8734-a3ff21fe8b13"
+                                    "id" "elementid" "b6897cf8-ede4-4818-ace9-2b144aece507"
                                     "name" "string" "quaternion log"
                                     "times" "time_array" [ "0" ]
                                     "curvetypes" "int_array" [ ]
@@ -310,7 +310,7 @@
     }
     "exportTags" "DmeExportTags"
     {
-        "id" "elementid" "4150425e-8ea4-43f6-a495-c9f6ec542ef3"
+        "id" "elementid" "93a773b1-ce5a-4ac5-9e24-f436f1cc31e7"
         "name" "string" "exportTags"
         "app" "string" "sfm"
         "source" "string" "Generated with Source 2 Viewer 15.0.0.0 - https://valveresourceformat.github.io"
@@ -319,7 +319,7 @@
 
 "DmeTransform"
 {
-    "id" "elementid" "165342b8-0ee7-4529-b031-f5409fb889b0"
+    "id" "elementid" "b7cf0dbd-7c58-4ccc-8f1d-e8f366c4eee9"
     "name" "string" "door_root"
     "position" "vector3" "0 0 0"
     "orientation" "quaternion" "0.49999994 0.49999994 0.49999994 0.5000002"
@@ -327,7 +327,7 @@
 
 "DmeTransform"
 {
-    "id" "elementid" "efe25760-5e0a-45bb-99f5-570ce9de0ca7"
+    "id" "elementid" "5716f241-e99b-4bd0-830e-476c3d39f000"
     "name" "string" "door_R_JNT"
     "position" "vector3" "12.032414 177.66954 132.98186"
     "orientation" "quaternion" "0 0 0 1"
@@ -335,7 +335,7 @@
 
 "DmeTransform"
 {
-    "id" "elementid" "07785c16-8571-401b-81e0-9a0a84a6b4d8"
+    "id" "elementid" "239c45bb-7528-42ea-8625-64f698e02d69"
     "name" "string" "door_L_JNT"
     "position" "vector3" "12.368474 177.6699 -136.43752"
     "orientation" "quaternion" "-1.7763573E-15 1.7763573E-15 1 -4.3711392E-08"

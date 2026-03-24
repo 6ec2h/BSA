@@ -2233,7 +2233,7 @@
 		"AbilitySharedCooldown"			"item_octarine_core_lua1"
 		"AbilityValues"
 		{
-			"bonus_cooldown"        "12 16 20"
+			"bonus_cooldown"        "15 20 25"
 			"cast_range_bonus"      "250"
 			"bonus_health"          "400 700 1000"
 			"bonus_mana"            "700 1000 1300"
@@ -2254,7 +2254,7 @@
 		"AbilitySharedCooldown"			"item_octarine_core_lua1"
 		"AbilityValues"
 		{
-			"bonus_cooldown"        "12 16 20"
+			"bonus_cooldown"        "15 20 25"
 			"cast_range_bonus"      "250"
 			"bonus_health"          "400 700 1000"
 			"bonus_mana"            "700 1000 1300"
@@ -2275,7 +2275,7 @@
 		"AbilitySharedCooldown"			"item_octarine_core_lua1"
 		"AbilityValues"
 		{
-			"bonus_cooldown"        "12 16 20"
+			"bonus_cooldown"        "15 20 25"
 			"cast_range_bonus"      "250"
 			"bonus_health"          "400 700 1000"
 			"bonus_mana"            "700 1000 1300"
@@ -5483,6 +5483,1208 @@
 			"damage"          		"40 80 120"
 			"duration"				"3"
 		}
-	}	
-	
+	}
+
+
+"item_recipe_mana_burners_sting_1"
+	{
+		"AbilityTextureName"			"recipe"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"BaseClass"						"item_datadriven"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_mana_burners_sting_1"
+		"ItemRequirements"
+		{
+			"01"						"item_diffusal_blade;item_orchid"
+		}
+	}
+
+"item_recipe_mana_burners_sting_2"
+	{
+		"AbilityTextureName"			"recipe"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"BaseClass"						"item_datadriven"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_mana_burners_sting_2"
+		"ItemRequirements"
+		{
+			"01"						"item_mana_burners_sting_1;item_diffusal_blade;item_up_stone"
+		}
+	}
+
+"item_recipe_mana_burners_sting_3"
+	{
+		"AbilityTextureName"			"recipe"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"BaseClass"						"item_datadriven"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_mana_burners_sting_3"
+		"ItemRequirements"
+		{
+			"01"						"item_mana_burners_sting_2;item_mana_burners_sting_1;item_boss_soul"
+		}
+	}
+
+"item_mana_burners_sting_1"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"new/item_mana_burners_sting_1"
+		"ScriptFile"					"items/custom_items/item_mana_burners_sting"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"150"
+		"ItemBaseLevel"					"1"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"AbilityValues"
+		{
+			"bonus_agility"				"15 30 45"
+			"bonus_intellect"			"25 50 75"
+			"bonus_attack_speed"		"40 60 80"
+			"bonus_damage"				"10 20 30"
+			"bonus_mana_regen"			"3 6 9"
+			"bonus_health_regen"		"6 12 28"
+			"mana_burn"					"40 60 80"
+			"debuff_duration"			"5"
+			"burst_multiplier"			"1 2 3"
+		}
+	}
+
+"item_mana_burners_sting_2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"new/item_mana_burners_sting_2"
+		"ScriptFile"					"items/custom_items/item_mana_burners_sting"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"200"
+		"ItemBaseLevel"					"2"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"AbilityValues"
+		{
+			"bonus_agility"				"15 30 45"
+			"bonus_intellect"			"25 50 75"
+			"bonus_attack_speed"		"40 60 80"
+			"bonus_damage"				"10 20 30"
+			"bonus_mana_regen"			"3 6 9"
+			"bonus_health_regen"		"6 12 28"
+			"mana_burn"					"40 60 80"
+			"debuff_duration"			"5"
+			"burst_multiplier"			"1 2 3"
+		}
+	}
+
+"item_mana_burners_sting_3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"new/item_mana_burners_sting_3"
+		"ScriptFile"					"items/custom_items/item_mana_burners_sting"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"ItemBaseLevel"					"3"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"AbilityValues"
+		{
+			"bonus_agility"				"15 30 45"
+			"bonus_intellect"			"25 50 75"
+			"bonus_attack_speed"		"40 60 80"
+			"bonus_damage"				"10 20 30"
+			"bonus_mana_regen"			"3 6 9"
+			"bonus_health_regen"		"6 12 28"
+			"mana_burn"					"40 60 80"
+			"debuff_duration"			"5"
+			"burst_multiplier"			"1 2 3"
+		}
+	}
+
+"item_recipe_bloodletter_1"
+	{
+		"AbilityTextureName"			"recipe"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"BaseClass"						"item_datadriven"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_bloodletter_1"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator_lua1;item_mask_of_madness"
+		}
+	}
+
+"item_recipe_bloodletter_2"
+	{
+		"AbilityTextureName"			"recipe"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"BaseClass"						"item_datadriven"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_bloodletter_2"
+		"ItemRequirements"
+		{
+			"01"						"item_bloodletter_1;item_desolator_lua1;item_up_stone"
+		}
+	}
+
+"item_recipe_bloodletter_3"
+	{
+		"AbilityTextureName"			"recipe"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		"BaseClass"						"item_datadriven"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_bloodletter_3"
+		"ItemRequirements"
+		{
+			"01"						"item_bloodletter_2;item_bloodletter_1;item_boss_soul"
+		}
+	}
+
+"item_bloodletter_1"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"new/item_bloodletter_1"
+		"ScriptFile"					"items/custom_items/item_bloodletter"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ItemBaseLevel"					"1"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"AbilityCooldown"				"20"
+		"AbilityValues"
+		{
+			"bonus_damage"				"70 140 210"
+			"bonus_attack_speed"		"10 20 30"
+			"lifesteal"					"15 20 25"
+			"active_attack_speed"		"100 120 140"
+			"debuff_armor"				"8 12 16"
+			"stack_duration"			"3"
+			"hp_drain_pct"				"3 4 5"
+			"duration"					"5"
+		}
+	}
+
+"item_bloodletter_2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"new/item_bloodletter_2"
+		"ScriptFile"					"items/custom_items/item_bloodletter"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ItemBaseLevel"					"2"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"AbilityCooldown"				"20"
+		"AbilityValues"
+		{
+			"bonus_damage"				"70 140 210"
+			"bonus_attack_speed"		"10 20 30"
+			"lifesteal"					"15 20 25"
+			"active_attack_speed"		"100 120 140"
+			"debuff_armor"				"8 12 16"
+			"stack_duration"			"3"
+			"hp_drain_pct"				"3 4 5"
+			"duration"					"5"
+		}
+	}
+
+"item_bloodletter_3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"new/item_bloodletter_3"
+		"ScriptFile"					"items/custom_items/item_bloodletter"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ItemBaseLevel"					"3"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"AbilityCooldown"				"20"
+		"AbilityValues"
+		{
+			"bonus_damage"				"70 140 210"
+			"bonus_attack_speed"		"10 20 30"
+			"lifesteal"					"15 20 25"
+			"active_attack_speed"		"100 120 140"
+			"debuff_armor"				"8 12 16"
+			"stack_duration"			"3"
+			"hp_drain_pct"				"3 4 5"
+			"duration"					"5"
+		}
+	}
+
+
+"item_recipe_arcane_singularity_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_arcane_singularity_1"
+	"ItemRequirements"
+	{
+		"01"						"item_dagon_lua_1;item_ethereal_blade"
+	}
+}
+
+"item_recipe_arcane_singularity_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_arcane_singularity_2"
+	"ItemRequirements"
+	{
+		"01"						"item_arcane_singularity_1;item_dagon_lua_1;item_up_stone"
+	}
+}
+
+"item_recipe_arcane_singularity_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_arcane_singularity_3"
+	"ItemRequirements"
+	{
+		"01"						"item_arcane_singularity_2;item_arcane_singularity_1;item_boss_soul"
+	}
+}
+
+"item_arcane_singularity_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_arcane_singularity_1"
+	"ScriptFile"					"items/custom_items/item_arcane_singularity"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCastRange"				"700"
+	"AbilityCooldown"				"50"
+	"AbilityManaCost"				"200"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_all_stats"			"40 80 120"
+		"duration"					"3"
+		"radius"					"300"
+		"damage"					"400 800 1200"
+	}
+}
+
+"item_arcane_singularity_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_arcane_singularity_2"
+	"ScriptFile"					"items/custom_items/item_arcane_singularity"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCastRange"				"700"
+	"AbilityCooldown"				"50"
+	"AbilityManaCost"				"200"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_all_stats"			"40 80 120"
+		"duration"					"3"
+		"radius"					"300"
+		"damage"					"400 800 1200"
+	}
+}
+
+"item_arcane_singularity_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_arcane_singularity_3"
+	"ScriptFile"					"items/custom_items/item_arcane_singularity"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCastRange"				"700"
+	"AbilityCooldown"				"50"
+	"AbilityManaCost"				"200"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_all_stats"			"40 80 120"
+		"duration"					"3"
+		"radius"					"300"
+		"damage"					"400 800 1200"
+	}
+}
+
+"item_recipe_cosmic_focus_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_cosmic_focus_1"
+	"ItemRequirements"
+	{
+		"01"						"item_kaya_lua1;item_aether_lens"
+	}
+}
+
+"item_recipe_cosmic_focus_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_cosmic_focus_2"
+	"ItemRequirements"
+	{
+		"01"						"item_cosmic_focus_1;item_kaya_lua1;item_up_stone"
+	}
+}
+
+"item_recipe_cosmic_focus_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_cosmic_focus_3"
+	"ItemRequirements"
+	{
+		"01"						"item_cosmic_focus_2;item_cosmic_focus_1;item_boss_soul"
+	}
+}
+
+"item_cosmic_focus_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_cosmic_focus_1"
+	"ScriptFile"					"items/custom_items/item_cosmic_focus"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_mana"				"300 600 900"
+		"mana_regen"				"3 6 9"
+		"cast_range_bonus"			"200"
+		"bonus_intellect"			"16 48 80"
+		"spell_amp"					"16 32 48"
+		"mana_regen_multiplier"		"24 48 72"
+		"spell_lifesteal_amp"		"24 48 72"
+		"int_per_kill"				"0.1"
+	}
+}
+
+"item_cosmic_focus_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_cosmic_focus_2"
+	"ScriptFile"					"items/custom_items/item_cosmic_focus"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_mana"				"300 600 900"
+		"mana_regen"				"3 6 9"
+		"cast_range_bonus"			"200"
+		"bonus_intellect"			"16 48 80"
+		"spell_amp"					"16 32 48"
+		"mana_regen_multiplier"		"24 48 72"
+		"spell_lifesteal_amp"		"24 48 72"
+		"int_per_kill"				"0.1"
+	}
+}
+
+"item_cosmic_focus_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_cosmic_focus_3"
+	"ScriptFile"					"items/custom_items/item_cosmic_focus"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_mana"				"300 600 900"
+		"mana_regen"				"3 6 9"
+		"cast_range_bonus"			"200"
+		"bonus_intellect"			"16 48 80"
+		"spell_amp"					"16 32 48"
+		"mana_regen_multiplier"		"24 48 72"
+		"spell_lifesteal_amp"		"24 48 72"
+		"int_per_kill"				"0.1"
+	}
+}
+
+"item_recipe_emerald_shell_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_emerald_shell_1"
+	"ItemRequirements"
+	{
+		"01"						"item_sphere;item_black_king_bar_lua1"
+	}
+}
+
+"item_recipe_emerald_shell_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_emerald_shell_2"
+	"ItemRequirements"
+	{
+		"01"						"item_emerald_shell_1;item_black_king_bar_lua1;item_up_stone"
+	}
+}
+
+"item_recipe_emerald_shell_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_emerald_shell_3"
+	"ItemRequirements"
+	{
+		"01"						"item_emerald_shell_2;item_emerald_shell_1;item_boss_soul"
+	}
+}
+
+"item_emerald_shell_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_emerald_shell_1"
+	"ScriptFile"					"items/custom_items/item_emerald_shell"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"60"
+	"AbilityManaCost"				"100"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_strength"			"25 50 75"
+		"bonus_agility"				"15 30 45"
+		"bonus_intelligence"		"15 30 45"
+		"bonus_damage"				"25 50 75"
+		"bonus_health_regen"		"7 14 21"
+		"bonus_mana_regen"			"4 8 12"
+		"block_cooldown"			"15"
+		"duration"					"3"
+		"model_scale"				"30"
+	}
+}
+
+"item_emerald_shell_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_emerald_shell_2"
+	"ScriptFile"					"items/custom_items/item_emerald_shell"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"60"
+	"AbilityManaCost"				"100"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_strength"			"25 50 75"
+		"bonus_agility"				"15 30 45"
+		"bonus_intelligence"		"15 30 45"
+		"bonus_damage"				"25 50 75"
+		"bonus_health_regen"		"7 14 21"
+		"bonus_mana_regen"			"4 8 12"
+		"block_cooldown"			"15"
+		"duration"					"3"
+		"model_scale"				"30"
+	}
+}
+
+"item_emerald_shell_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_emerald_shell_3"
+	"ScriptFile"					"items/custom_items/item_emerald_shell"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"60"
+	"AbilityManaCost"				"100"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_strength"			"25 50 75"
+		"bonus_agility"				"15 30 45"
+		"bonus_intelligence"		"15 30 45"
+		"bonus_damage"				"25 50 75"
+		"bonus_health_regen"		"7 14 21"
+		"bonus_mana_regen"			"4 8 12"
+		"block_cooldown"			"15"
+		"duration"					"3"
+		"model_scale"				"30"
+	}
+}
+
+"item_recipe_eternal_unholy_strength_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_eternal_unholy_strength_1"
+	"ItemRequirements"
+	{
+		"01"						"item_armlet;item_heart_lua1"
+	}
+}
+
+"item_recipe_eternal_unholy_strength_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_eternal_unholy_strength_2"
+	"ItemRequirements"
+	{
+		"01"						"item_eternal_unholy_strength_1;item_heart_lua1;item_up_stone"
+	}
+}
+
+"item_recipe_eternal_unholy_strength_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_eternal_unholy_strength_3"
+	"ItemRequirements"
+	{
+		"01"						"item_eternal_unholy_strength_2;item_eternal_unholy_strength_1;item_boss_soul"
+	}
+}
+
+"item_eternal_unholy_strength_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_eternal_unholy_strength_1"
+	"ScriptFile"					"items/custom_items/item_eternal_unholy_strength"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"0.5"
+	"AbilityManaCost"				"0"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_strength"			"45 90 135"
+		"bonus_health"				"250 500 750"
+		"health_regen_pct"			"1.5 2.5 3.5"
+		"bonus_damage"				"15 30 45"
+		"bonus_attack_speed"		"25 50 75"
+		"bonus_armor"				"6 12 18"
+		"missing_hp_per_str"		"200"
+		"str_per_missing_stack"		"1 2 3"
+	}
+}
+
+"item_eternal_unholy_strength_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_eternal_unholy_strength_2"
+	"ScriptFile"					"items/custom_items/item_eternal_unholy_strength"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"0.5"
+	"AbilityManaCost"				"0"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_strength"			"45 90 135"
+		"bonus_health"				"250 500 750"
+		"health_regen_pct"			"1.5 2.5 3.5"
+		"bonus_damage"				"15 30 45"
+		"bonus_attack_speed"		"25 50 75"
+		"bonus_armor"				"6 12 18"
+		"missing_hp_per_str"		"200"
+		"str_per_missing_stack"		"1 2 3"
+	}
+}
+
+"item_eternal_unholy_strength_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_eternal_unholy_strength_3"
+	"ScriptFile"					"items/custom_items/item_eternal_unholy_strength"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"0.5"
+	"AbilityManaCost"				"0"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_strength"			"45 90 135"
+		"bonus_health"				"250 500 750"
+		"health_regen_pct"			"1.5 2.5 3.5"
+		"bonus_damage"				"15 30 45"
+		"bonus_attack_speed"		"25 50 75"
+		"bonus_armor"				"6 12 18"
+		"missing_hp_per_str"		"200"
+		"str_per_missing_stack"		"1 2 3"
+	}
+}
+
+"item_recipe_hallowed_ground_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_hallowed_ground_1"
+	"ItemRequirements"
+	{
+		"01"						"item_pipe_lua1;item_guardian_greaves_lua1"
+	}
+}
+
+"item_recipe_hallowed_ground_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_hallowed_ground_2"
+	"ItemRequirements"
+	{
+		"01"						"item_hallowed_ground_1;item_guardian_greaves_lua1;item_up_stone"
+	}
+}
+
+"item_recipe_hallowed_ground_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_hallowed_ground_3"
+	"ItemRequirements"
+	{
+		"01"						"item_hallowed_ground_2;item_hallowed_ground_1;item_boss_soul"
+	}
+}
+
+"item_hallowed_ground_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_hallowed_ground_1"
+	"ScriptFile"					"items/custom_items/item_hallowed_ground"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"50"
+	"AbilityManaCost"				"100"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_movement"			"50 75 100"
+		"bonus_mana"				"250 500 750"
+		"bonus_armor"				"4 8 12"
+		"health_regen"				"6 12 18"
+		"magic_resistance"			"25 30 35"
+		"aura_radius"				"700"
+		"aura_health_regen"			"3 6 9"
+		"aura_armor"				"3 6 9"
+		"aura_health_regen_bonus"	"16 32 48"
+		"aura_armor_bonus"			"10 15 20"
+		"aura_bonus_threshold"		"20"
+		"magic_resistance_aura"		"10 15 20"
+		"duration"					"8"
+		"radius"					"600"
+		"barrier_block"				"400 800 1200"
+		"regen_per_ally_pct"		"1.0 1.5 2.0"
+	}
+}
+
+"item_hallowed_ground_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_hallowed_ground_2"
+	"ScriptFile"					"items/custom_items/item_hallowed_ground"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"50"
+	"AbilityManaCost"				"100"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_movement"			"50 75 100"
+		"bonus_mana"				"250 500 750"
+		"bonus_armor"				"4 8 12"
+		"health_regen"				"6 12 18"
+		"magic_resistance"			"25 30 35"
+		"aura_radius"				"700"
+		"aura_health_regen"			"3 6 9"
+		"aura_armor"				"3 6 9"
+		"aura_health_regen_bonus"	"16 32 48"
+		"aura_armor_bonus"			"10 15 20"
+		"aura_bonus_threshold"		"20"
+		"magic_resistance_aura"		"10 15 20"
+		"duration"					"8"
+		"radius"					"600"
+		"barrier_block"				"400 800 1200"
+		"regen_per_ally_pct"		"1.0 1.5 2.0"
+	}
+}
+
+"item_hallowed_ground_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_hallowed_ground_3"
+	"ScriptFile"					"items/custom_items/item_hallowed_ground"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"50"
+	"AbilityManaCost"				"100"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	"AbilityValues"
+	{
+		"bonus_movement"			"50 75 100"
+		"bonus_mana"				"250 500 750"
+		"bonus_armor"				"4 8 12"
+		"health_regen"				"6 12 18"
+		"magic_resistance"			"25 30 35"
+		"aura_radius"				"700"
+		"aura_health_regen"			"3 6 9"
+		"aura_armor"				"3 6 9"
+		"aura_health_regen_bonus"	"16 32 48"
+		"aura_armor_bonus"			"10 15 20"
+		"aura_bonus_threshold"		"20"
+		"magic_resistance_aura"		"10 15 20"
+		"duration"					"8"
+		"radius"					"600"
+		"barrier_block"				"400 800 1200"
+		"regen_per_ally_pct"		"1.0 1.5 2.0"
+	}
+}
+
+"item_recipe_saintly_bulwark_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_saintly_bulwark_1"
+	"ItemRequirements"
+	{
+		"01"						"item_vanguard;item_wicked_locket"
+	}
+}
+
+"item_recipe_saintly_bulwark_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_saintly_bulwark_2"
+	"ItemRequirements"
+	{
+		"01"						"item_saintly_bulwark_1;item_wicked_locket;item_up_stone"
+	}
+}
+
+"item_recipe_saintly_bulwark_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_saintly_bulwark_3"
+	"ItemRequirements"
+	{
+		"01"						"item_saintly_bulwark_2;item_saintly_bulwark_1;item_boss_soul"
+	}
+}
+
+"item_saintly_bulwark_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_saintly_bulwark_1"
+	"ScriptFile"					"items/custom_items/item_saintly_bulwark"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"30"
+	"AbilityManaCost"				"0"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityCharges"				"0"
+	"AbilityChargeRestoreTime"		"0"
+	"AbilityValues"
+	{
+		"block_chance"				"50"
+		"max_charges"				"100"
+		"bonus_all_stats"			"15 30 45"
+		"bonus_health"				"250 500 750"
+		"bonus_health_regen"		"5 10 15"
+		"block_damage_melee"		"50 75 100"
+		"block_damage_ranged"		"25 50 75"
+		"heal_radius"				"600"
+		"heal_per_charge"			"25"
+		"mana_per_charge"			"25"
+	}
+}
+
+"item_saintly_bulwark_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_saintly_bulwark_2"
+	"ScriptFile"					"items/custom_items/item_saintly_bulwark"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"30"
+	"AbilityManaCost"				"0"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityCharges"				"0"
+	"AbilityChargeRestoreTime"		"0"
+	"AbilityValues"
+	{
+		"block_chance"				"50"
+		"max_charges"				"100"
+		"bonus_all_stats"			"15 30 45"
+		"bonus_health"				"250 500 750"
+		"bonus_health_regen"		"5 10 15"
+		"block_damage_melee"		"50 75 100"
+		"block_damage_ranged"		"25 50 75"
+		"heal_radius"				"600"
+		"heal_per_charge"			"25"
+		"mana_per_charge"			"25"
+	}
+}
+
+"item_saintly_bulwark_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_saintly_bulwark_3"
+	"ScriptFile"					"items/custom_items/item_saintly_bulwark"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityCooldown"				"30"
+	"AbilityManaCost"				"0"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityCharges"				"0"
+	"AbilityChargeRestoreTime"		"0"
+	"AbilityValues"
+	{
+		"block_chance"				"50"
+		"max_charges"				"100"
+		"bonus_all_stats"			"15 30 45"
+		"bonus_health"				"250 500 750"
+		"bonus_health_regen"		"5 10 15"
+		"block_damage_melee"		"50 75 100"
+		"block_damage_ranged"		"25 50 75"
+		"heal_radius"				"600"
+		"heal_per_charge"			"25"
+		"mana_per_charge"			"25"
+	}
+}
+
+"item_recipe_solar_flare_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_solar_flare_1"
+	"ItemRequirements"
+	{
+		"01"						"item_radiance_lua1;item_heart_lua1"
+	}
+}
+
+"item_recipe_solar_flare_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_solar_flare_2"
+	"ItemRequirements"
+	{
+		"01"						"item_solar_flare_1;item_heart_lua1;item_up_stone"
+	}
+}
+
+"item_recipe_solar_flare_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_solar_flare_3"
+	"ItemRequirements"
+	{
+		"01"						"item_solar_flare_2;item_solar_flare_1;item_boss_soul"
+	}
+}
+
+"item_solar_flare_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_solar_flare_1"
+	"ScriptFile"					"items/custom_items/item_solar_flare"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"AbilityCastRange"				"600"
+
+	"AbilityValues"
+	{
+		"bonus_damage"				"60 120 180"
+		"bonus_strength"			"45 90 135"
+		"bonus_health"				"250 500 750"
+		"health_regen_pct"			"1.5 2.5 3.5"
+		"aura_radius"				"600"
+	}
+}
+
+"item_solar_flare_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_solar_flare_2"
+	"ScriptFile"					"items/custom_items/item_solar_flare"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"AbilityCastRange"				"600"
+
+	"AbilityValues"
+	{
+		"bonus_damage"				"60 120 180"
+		"bonus_strength"			"45 90 135"
+		"bonus_health"				"250 500 750"
+		"health_regen_pct"			"1.5 2.5 3.5"
+		"aura_radius"				"600"
+	}
+}
+
+"item_solar_flare_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_solar_flare_3"
+	"ScriptFile"					"items/custom_items/item_solar_flare"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"AbilityCastRange"				"600"
+
+	"AbilityValues"
+	{
+		"bonus_damage"				"60 120 180"
+		"bonus_strength"			"45 90 135"
+		"bonus_health"				"250 500 750"
+		"health_regen_pct"			"1.5 2.5 3.5"
+		"aura_radius"				"600"
+	}
+}
+
+"item_recipe_trident_of_eternity_1"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_trident_of_eternity_1"
+	"ItemRequirements"
+	{
+		"01"						"item_octarine_core_lua1;item_trident_lua1"
+	}
+}
+
+"item_recipe_trident_of_eternity_2"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_trident_of_eternity_2"
+	"ItemRequirements"
+	{
+		"01"						"item_trident_of_eternity_1;item_trident_lua1;item_up_stone"
+	}
+}
+
+"item_recipe_trident_of_eternity_3"
+{
+	"AbilityTextureName"			"recipe"
+	"Model"							"models/props_gameplay/recipe.vmdl"
+	"BaseClass"						"item_datadriven"
+	"ItemRecipe"					"1"
+	"ItemResult"					"item_trident_of_eternity_3"
+	"ItemRequirements"
+	{
+		"01"						"item_trident_of_eternity_2;item_trident_of_eternity_1;item_boss_soul"
+	}
+}
+
+"item_trident_of_eternity_1"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_trident_of_eternity_1"
+	"ScriptFile"					"items/custom_items/item_trident_of_eternity"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"1"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_health"					"400 700 1000"
+		"bonus_mana"					"700 1000 1300"
+		"bonus_mana_regen"				"6 12 18"
+		"cast_range_bonus"				"200"
+		"bonus_cooldown"				"25 30 35"
+		"status_resistance"				"20 30 40"
+		"movement_speed_percent_bonus"	"12 18 24"
+		"spell_amp"						"16 32 48"
+		"mana_regen_multiplier"			"50 75 100"
+		"hp_regen_amp"					"22 33 44"
+		"spell_lifesteal_amp"			"30 40 50"
+		"bonus_attack_speed"			"20 40 60"
+		"max_stacks"					"10"
+		"regen_amp_per_stack"			"2"
+		"bonus_strength"				"24 48 72"
+		"bonus_intellect"				"24 48 72"
+		"bonus_agility"					"24 48 72"
+	}
+}
+
+"item_trident_of_eternity_2"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_trident_of_eternity_2"
+	"ScriptFile"					"items/custom_items/item_trident_of_eternity"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"2"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_health"					"400 700 1000"
+		"bonus_mana"					"700 1000 1300"
+		"bonus_mana_regen"				"6 12 18"
+		"cast_range_bonus"				"200"
+		"bonus_cooldown"				"25 30 35"
+		"status_resistance"				"20 30 40"
+		"movement_speed_percent_bonus"	"12 18 24"
+		"spell_amp"						"16 32 48"
+		"mana_regen_multiplier"			"50 75 100"
+		"hp_regen_amp"					"22 33 44"
+		"spell_lifesteal_amp"			"30 40 50"
+		"bonus_attack_speed"			"20 40 60"
+		"max_stacks"					"10"
+		"regen_amp_per_stack"			"2"
+		"bonus_strength"				"24 48 72"
+		"bonus_intellect"				"24 48 72"
+		"bonus_agility"					"24 48 72"
+	}
+}
+
+"item_trident_of_eternity_3"
+{
+	"BaseClass"						"item_lua"
+	"AbilityTextureName"			"new/item_trident_of_eternity_3"
+	"ScriptFile"					"items/custom_items/item_trident_of_eternity"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"ItemBaseLevel"					"3"
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+	"ItemDroppable"					"1"
+	"ItemKillable"					"1"
+	"AbilityValues"
+	{
+		"bonus_health"					"400 700 1000"
+		"bonus_mana"					"700 1000 1300"
+		"bonus_mana_regen"				"6 12 18"
+		"cast_range_bonus"				"200"
+		"bonus_cooldown"				"25 30 35"
+		"status_resistance"				"20 30 40"
+		"movement_speed_percent_bonus"	"12 18 24"
+		"spell_amp"						"16 32 48"
+		"mana_regen_multiplier"			"50 75 100"
+		"hp_regen_amp"					"22 33 44"
+		"spell_lifesteal_amp"			"30 40 50"
+		"bonus_attack_speed"			"20 40 60"
+		"max_stacks"					"10"
+		"regen_amp_per_stack"			"2"
+		"bonus_strength"				"24 48 72"
+		"bonus_intellect"				"24 48 72"
+		"bonus_agility"					"24 48 72"
+	}
+}
+
 }

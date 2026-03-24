@@ -40,7 +40,6 @@ return function(context)
 		PrecacheUnitByNameSync( "npc_dota_weaver_swarm", context )
 
 		PrecacheResource( "model", "models/events/crownfall/survivors/undying_minion/undying_minion_enemy.vmdl", context )		
-		PrecacheResource( "model", "models/particle/ice_shards.vmdl", context )		
 		
 		PrecacheItemByNameSync( "item_tombstone", context )
 		PrecacheItemByNameSync( "item_bag_of_gold", context )

@@ -127,6 +127,10 @@ function CAddonAdvExGameMode:InitGameMode()
 	end
 	
 	SendToServerConsole("dota_max_physical_items_purchase_limit 9999")
+
+	if IsInToolsMode() then
+		GameRules:SetStartingGold(99999)
+	end
 end
 
 function CAddonAdvExGameMode:OnChat( event )
@@ -141,18 +145,7 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "1" and steamID == 393187346 then
-
-		local function SetHeroModel(hero, model_path)
-			for _, wearable in pairs(hero:GetChildren()) do
-				if wearable:GetClassname() == "dota_item_wearable" then
-					UTIL_Remove(wearable)
-				end
-			end
-			hero:SetModel(model_path)
-			hero:SetOriginalModel(model_path)
-			hero:SetModelScale(1.3)
-		end
-		SetHeroModel(hero, "models/madara/madara.vmdl")
+		-- HandleKilledUnit(hero, hero, 10, 50, 25, 1, 1, 11, "npc_dota_boss_ursa")
 	end
 
 	if text == "2" and steamID == 393187346 then
@@ -224,12 +217,6 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 end
 
-
-
---------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
 function CAddonAdvExGameMode:GameEventsFilter(data)
@@ -286,8 +273,6 @@ function CAddonAdvExGameMode:GameEventsFilter(data)
 			end
 		end
 	end
-	
-
     return true
 end
 

@@ -71,16 +71,42 @@ function modifier_item_octarine_core_lua:DestroyOnExpire()
 	return false
 end
 
-function modifier_item_octarine_core_lua:RemoveOnDeath()	
-	return false 
+function modifier_item_octarine_core_lua:RemoveOnDeath()
+	return false
 end
 
 function modifier_item_octarine_core_lua:OnCreated()
-	self.bonus_mana = self:GetAbility():GetSpecialValueFor("bonus_mana")
-	self.bonus_health = self:GetAbility():GetSpecialValueFor("bonus_health")
-	self.bonus_mana_regen = self:GetAbility():GetSpecialValueFor("bonus_mana_regen")
-	self.bonus_cooldown = self:GetAbility():GetSpecialValueFor("bonus_cooldown")
-	self.cast_range_bonus = self:GetAbility():GetSpecialValueFor("cast_range_bonus")
+	local ability = self:GetAbility()
+	self.bonus_mana       = ability:GetSpecialValueFor("bonus_mana")
+	self.bonus_health     = ability:GetSpecialValueFor("bonus_health")
+	self.bonus_mana_regen = ability:GetSpecialValueFor("bonus_mana_regen")
+	self.bonus_cooldown   = ability:GetSpecialValueFor("bonus_cooldown")
+	self.cast_range_bonus = ability:GetSpecialValueFor("cast_range_bonus")
+	self._item_level      = ability:GetLevel()
+end
+
+function modifier_item_octarine_core_lua:OnRefresh()
+	self:OnCreated()
+end
+
+local function _unit_has_item(unit, name)
+	if not unit.GetItemInSlot then return false end
+	for i = 0, 5 do
+		local item = unit:GetItemInSlot(i)
+		if item and item:GetName() == name then return true end
+	end
+	return false
+end
+
+local function _has_trident(unit)
+	return unit:HasModifier("modifier_item_trident_of_eternity")
+end
+
+local function _has_higher_octarine(unit, level)
+	for lvl = level + 1, 3 do
+		if _unit_has_item(unit, "item_octarine_core_lua" .. lvl) then return true end
+	end
+	return false
 end
 
 function modifier_item_octarine_core_lua:DeclareFunctions()
@@ -106,6 +132,11 @@ function modifier_item_octarine_core_lua:GetModifierConstantManaRegen()
 end
 
 function modifier_item_octarine_core_lua:GetModifierPercentageCooldown()
+	local parent = self:GetParent()
+	if parent and not parent:IsNull() then
+		if _has_trident(parent) then return 0 end
+		if _has_higher_octarine(parent, self._item_level or 0) then return 0 end
+	end
 	return self.bonus_cooldown
 end
 

@@ -239,10 +239,18 @@ function modifier_bristleback_bristleback_lua:OnTakeDamage(keys)
                 
                 if (current_time - self.last_proc_time) >= self.proc_cooldown then
                     self.lock_quills = true
-                    self.parent:CastAbilityImmediately(quill_ability, self.parent:GetPlayerOwnerID())
+                    quill_ability:OnSpellStart()
                     self.last_proc_time = current_time
                     self:SetStackCount(self:GetStackCount() - self.threshold)
                     self.lock_quills = false
+
+                    local warpath_ability = self.parent:FindAbilityByName("bristleback_warpath_lua")
+                    if warpath_ability and warpath_ability:GetLevel() > 0 then
+                        local warpath_mod = self.parent:FindModifierByName("modifier_bristleback_warpath_lua")
+                        if warpath_mod then
+                            warpath_mod:AddStack()
+                        end
+                    end
                 else
                     self:SetStackCount(self.threshold)
                 end
@@ -384,4 +392,34 @@ end
 
 function modifier_bristleback_warpath_lua:GetModifierModelScale()
 	return self:GetStackCount() * 5
+end
+
+function modifier_bristleback_warpath_lua:AddStack()
+	if not IsServer() then return end
+	if self.parent:PassivesDisabled() then return end
+
+	self.max_stacks = self:GetAbility():GetSpecialValueFor("max_stacks")
+	self.counter = self.counter + 1
+	self:SetStackCount(math.min(self.counter, self.max_stacks))
+
+	if self:GetStackCount() < self.max_stacks then
+		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf", PATTACH_POINT_FOLLOW, self.parent)
+		ParticleManager:SetParticleControlEnt(particle, 3, self.caster, PATTACH_POINT_FOLLOW, "attach_attack1", self.caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(particle, 4, self.caster, PATTACH_POINT_FOLLOW, "attach_attack2", self.caster:GetAbsOrigin(), true)
+		table.insert(self.particle_table, particle)
+	end
+
+	self:SetDuration(self.stack_duration, true)
+
+	Timers:CreateTimer(self.stack_duration, function()
+		if self ~= nil and not self:IsNull() and not self.ability:IsNull() and not self.parent:IsNull() and not self.caster:IsNull() and self:GetStackCount() > 0 then
+			self.counter = self.counter - 1
+			self:SetStackCount(math.min(self.counter, self.max_stacks))
+			if #self.particle_table > 0 then
+				ParticleManager:DestroyParticle(self.particle_table[1], false)
+				ParticleManager:ReleaseParticleIndex(self.particle_table[1])
+				table.remove(self.particle_table, 1)
+			end
+		end
+	end)
 end

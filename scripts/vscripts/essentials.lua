@@ -8,8 +8,8 @@ function essentials:Init()
 
 	GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(essentials, 'OnEntityHurt'), self)
 	essentials.dmgtable = {}
-	for i=0, 4 do
-		essentials.dmgtable[i] = 0
+	for i = 0, 4 do
+		essentials.dmgtable[i] = { dealt = 0, received = 0 }
 	end
 
 	essentials.currentHpBar = false
@@ -28,10 +28,10 @@ function essentials:OnEntityHurt(t)
 					local hp = victim:GetHealth()
 					local dmg = 0
 					if attacker:IsAlive() then
-						if t.damagetype_const == DAMAGE_TYPE_MAGICAL then	
+						if t.damagetype_const == DAMAGE_TYPE_MAGICAL then
 							dmg = t.damage - victim:GetBaseMagicalResistanceValue()/100 * t.damage
 							if dmg > hp then
-								dmg = hp	
+								dmg = hp
 							end
 						elseif t.damagetype_const == DAMAGE_TYPE_PHYSICAL then
 							local armor = victim:GetPhysicalArmorValue(false)
@@ -39,7 +39,7 @@ function essentials:OnEntityHurt(t)
 							dmg = t.damage * factor
 							if dmg > hp then
 								dmg = hp
-							end							
+							end
 					   elseif t.damagetype_const == DAMAGE_TYPE_PURE then
 							dmg = t.damage
 							if dmg > hp then
@@ -47,19 +47,34 @@ function essentials:OnEntityHurt(t)
 							end
 						end
 					end
-					
+
 					if _G.player_quest[pid]['damage_quest'] == nil then
 						_G.player_quest[pid]['damage_quest'] = dmg
 					else
 						_G.player_quest[pid]['damage_quest'] = _G.player_quest[pid]['damage_quest'] + dmg
-					end	
-				end	
+					end
+
+					if essentials.dmgtable[pid] then
+						essentials.dmgtable[pid].dealt = essentials.dmgtable[pid].dealt + dmg
+					end
+				end
+			end
+
+			-- received damage: victim is a real hero
+			if victim:IsRealHero() then
+				local pid = victim:GetPlayerOwnerID()
+				if pid and pid >= 0 and essentials.dmgtable[pid] then
+					essentials.dmgtable[pid].received = essentials.dmgtable[pid].received + t.damage
+				end
 			end
 		end
 	end
 	return true
 end
 
+function essentials:ResetDmgTable(pid)
+	essentials.dmgtable[pid] = { dealt = 0, received = 0 }
+end
 
 function essentials:ShowNewLoc(name,name2,image,time)
 	CustomGameEventManager:Send_ServerToAllClients("showLoc", {name=name,name2=name2,image=image,time=time})

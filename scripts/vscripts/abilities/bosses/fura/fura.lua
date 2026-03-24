@@ -112,7 +112,7 @@ function boss_furion_custom_sprout:OnSpellStart()
 	for i = 1, 20 do
 		line_pos = RotatePosition(self:GetCaster():GetAbsOrigin(), QAngle(0, rotation_rate, 0), line_pos)
 		CreateTempTree(line_pos, self.duration)
-		if i % 4 == 0 then
+		if i % 5 == 0 then
 			local unit = CreateUnitByName(creeps[math.random(#creeps)], line_pos, true, nil, nil, DOTA_TEAM_NEUTRALS)
 			unit:SetMaximumGoldBounty(0)
 			unit:SetMinimumGoldBounty(0)
