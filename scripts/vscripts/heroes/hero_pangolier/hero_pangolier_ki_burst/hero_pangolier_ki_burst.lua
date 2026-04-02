@@ -42,7 +42,8 @@ function modifier_hero_pangolier_ki_burst:OnDestroy()
 	local smash = ParticleManager:CreateParticle(self.smash_particle, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(smash, 0, self:GetCaster():GetAbsOrigin())
 
-	EmitSoundOnLocationWithCaster(self:GetCaster():GetAbsOrigin(), self.smash_sound, self:GetCaster())
+	-- EmitSoundOnLocationWithCaster(self:GetCaster():GetAbsOrigin(), self.smash_sound, self:GetCaster())
+	EmitSoundOn(self.smash_sound, self:GetCaster())
 
 
 	local enemies = FindUnitsInRadius(

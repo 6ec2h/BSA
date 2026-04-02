@@ -56,8 +56,6 @@ function modifier_golden_passive:OnTakeDamage(keys)
 		local damage = keys.damage * 0.1
 		if attacker and attacker:GetTeamNumber() ~= parent:GetTeamNumber() and parent == target and not attacker:IsOther() and attacker:GetName() ~= "npc_dota_unit_undying_zombie" and not attacker:IsBuilding() then
 			
-			self:PlayEffects(attacker)
-			
 			ApplyDamage({
 				victim = attacker,
 				attacker = parent,
@@ -68,29 +66,6 @@ function modifier_golden_passive:OnTakeDamage(keys)
 			})
 		end
 	end
-end
-
-function modifier_golden_passive:PlayEffects( target )
-	local effect_cast = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_POINT_FOLLOW, target)
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		0,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		Vector(0,0,0),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		1,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		Vector(0,0,0),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
 
 function modifier_golden_passive:GetModifierProvidesFOWVision( params )

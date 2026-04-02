@@ -1,5 +1,32 @@
 CBaseEntity.SetAbsOrigin = CBaseEntity.SetOrigin
 
+function RotatePosition(origin, angles, point)
+    local p = point - origin
+    local pitch = math.rad(angles.x)
+    local yaw   = math.rad(angles.y)
+    local roll  = math.rad(angles.z)
+
+    -- yaw (Z-axis, most common)
+    local cy, sy = math.cos(yaw), math.sin(yaw)
+    local x1 = p.x * cy - p.y * sy
+    local y1 = p.x * sy + p.y * cy
+    local z1 = p.z
+
+    -- pitch (Y-axis)
+    local cp, sp = math.cos(pitch), math.sin(pitch)
+    local x2 =  x1 * cp + z1 * sp
+    local y2 =  y1
+    local z2 = -x1 * sp + z1 * cp
+
+    -- roll (X-axis)
+    local cr, sr = math.cos(roll), math.sin(roll)
+    local x3 = x2
+    local y3 = y2 * cr - z2 * sr
+    local z3 = y2 * sr + z2 * cr
+
+    return origin + Vector(x3, y3, z3)
+end
+
 _G.MODIFIER_CACHE = _G.MODIFIER_CACHE or {}
 _G.RADIUS_CACHE = _G.RADIUS_CACHE or {}
 _G.CACHE_TIME = _G.CACHE_TIME or {}

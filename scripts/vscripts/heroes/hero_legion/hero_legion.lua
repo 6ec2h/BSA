@@ -16,7 +16,9 @@ function legion_odds:OnSpellStart()
     local duration = ability:GetSpecialValueFor("duration")
     local damage = ability:GetSpecialValueFor("damage")
     
-    EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), "Hero_LegionCommander.Overwhelming.Location", caster)
+    local sound_cast = "Hero_LegionCommander.Overwhelming.Location"
+    -- EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
 
     local strike_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_odds_hero_arrow_group.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
     ParticleManager:SetParticleControl(strike_pfx, 0, caster:GetAbsOrigin())

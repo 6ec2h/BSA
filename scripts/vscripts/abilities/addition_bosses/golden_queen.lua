@@ -149,7 +149,9 @@ function golden_queen_field:PlayEffects( point, radius )
 	ParticleManager:SetParticleControl( effect_cast, 0, point )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, radius, radius ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-	EmitSoundOnLocationWithCaster( point, "Hero_Crystal.CrystalNova", self:GetCaster() )
+	local sound_cast = "Hero_Crystal.CrystalNova"
+	-- EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------------------------

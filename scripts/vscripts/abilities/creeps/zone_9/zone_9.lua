@@ -62,7 +62,9 @@ function creep_sticky_napalm_lua:OnProjectileHit(target, location)
     local radius = self:GetSpecialValueFor("radius")
     local duration = self:GetSpecialValueFor("duration")
 
-    EmitSoundOnLocationWithCaster(location, "Hero_Batrider.StickyNapalm.Impact", caster)
+    local sound_cast = "Hero_Batrider.StickyNapalm.Impact"
+    -- EmitSoundOnLocationWithCaster(location, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
     
     local pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_batrider/batrider_stickynapalm_impact.vpcf", PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(pfx, 0, location)
@@ -419,7 +421,9 @@ function creep_fireball_lua:OnProjectileThink_ExtraData(location, data)
 end
 
 function creep_fireball_lua:OnProjectileHit_ExtraData(target, location, data)
-	EmitSoundOnLocationWithCaster(location, "Hero_Batrider.Flamebreak.Impact", self:GetCaster())
+	local sound_cast = "Hero_Batrider.Flamebreak.Impact"
+	-- EmitSoundOnLocationWithCaster(location, sound_cast, self:GetCaster())
+	EmitSoundOn(sound_cast, self:GetCaster())
 
 	if data.flamebreak_dummy_entindex then
 		EntIndexToHScript(data.flamebreak_dummy_entindex):StopSound("Hero_Batrider.Flamebreak")
@@ -444,7 +448,9 @@ function creep_fireball_lua:OnProjectileHit_ExtraData(target, location, data)
         false
     )
     
-    EmitSoundOnLocationWithCaster(location, "Hero_DragonKnight.Fireball.Target", caster)
+    local sound_cast = "Hero_DragonKnight.Fireball.Target"
+    -- EmitSoundOnLocationWithCaster(location, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
 end
 
 --------------------------------------------------------------------------------

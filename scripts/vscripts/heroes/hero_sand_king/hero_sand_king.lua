@@ -76,7 +76,9 @@ function sand_stun:PlayEffects()
 	)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Leshrac.Split_Earth", self:GetCaster() )
+	local sound_cast = "Hero_Leshrac.Split_Earth"
+	-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------------------------------------------

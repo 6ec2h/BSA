@@ -115,7 +115,9 @@ function modifier_slark_dark_pact_custom:PlayEffects1()
 	local effect_cast = ParticleManager:CreateParticleForTeam( "particles/units/heroes/hero_slark/slark_dark_pact_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), self:GetParent():GetTeamNumber() )
 	ParticleManager:SetParticleControlEnt( effect_cast, 1, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitoc", self:GetParent():GetOrigin(), true)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-	EmitSoundOnLocationForAllies( self:GetParent():GetOrigin(), "Hero_Slark.DarkPact.PreCast", self:GetParent() )
+	local sound_cast = "Hero_Slark.DarkPact.PreCast"
+	-- EmitSoundOnLocationForAllies( self:GetParent():GetOrigin(), sound_cast, self:GetParent() )
+	EmitSoundOn(sound_cast, self:GetParent())
 end
 
 function modifier_slark_dark_pact_custom:PlayEffects2()

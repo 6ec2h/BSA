@@ -19,7 +19,8 @@ end
 function modifier_earthshaker_fissure_lua_thinker:OnDestroy( kv )
 	if IsServer() then
 		local sound_cast = "Hero_EarthShaker.FissureDestroy"
-		EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+		-- EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+		EmitSoundOn(sound_cast, self:GetCaster())
 		UTIL_Remove(self:GetParent())
 	end
 end

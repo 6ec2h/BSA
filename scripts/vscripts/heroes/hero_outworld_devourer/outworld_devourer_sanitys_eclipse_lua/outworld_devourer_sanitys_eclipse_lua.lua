@@ -59,5 +59,6 @@ function outworld_devourer_sanitys_eclipse_lua:PlayEffects( point, radius )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	EmitSoundOn( sound_cast1, self:GetCaster() )
-	EmitSoundOnLocationWithCaster( point, sound_cast2, self:GetCaster() )
+	-- EmitSoundOnLocationWithCaster( point, sound_cast2, self:GetCaster() )
+	EmitSoundOn(sound_cast2, self:GetCaster())
 end

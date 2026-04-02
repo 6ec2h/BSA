@@ -264,7 +264,8 @@ function hero_fiddlesticks_chains:FireShadowPoisonProjectile(origin_point, targe
 	local radius = 225
 	local speed = 600
 
-	EmitSoundOnLocationWithCaster(origin_point, projectile_sound, caster)
+	-- EmitSoundOnLocationWithCaster(origin_point, projectile_sound, caster)
+	EmitSoundOn(projectile_sound, caster)
 	local direction = (target_point - origin_point):Normalized()
 	
 	local shadow_projectile = {

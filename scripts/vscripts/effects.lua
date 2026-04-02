@@ -39,7 +39,9 @@ function effects:CastSpray(t)
 				_G.player_quest[t.PlayerID]['spray_quest'] = _G.player_quest[t.PlayerID]['spray_quest'] + 1
 			end
 
-			EmitSoundOnLocationWithCaster( point, "Spraywheel.Paint", hero )
+			local sound_cast = "Spraywheel.Paint"
+		-- EmitSoundOnLocationWithCaster( point, sound_cast, hero )
+		EmitSoundOn(sound_cast, hero)
 			self.spray[t.PlayerID] = spray
 		end
 	end

@@ -513,7 +513,10 @@ function modifier_creep_sun_nova_lua_sun:OnAttacked( keys )
 
 		StopSoundEvent("Hero_Phoenix.SuperNova.Begin", self:GetParent())
 		StopSoundEvent( "Hero_Phoenix.SuperNova.Cast", self:GetParent())
-		StartSoundEventFromPosition( "Hero_Phoenix.SuperNova.Death", self:GetParent():GetAbsOrigin())
+
+		-- StartSoundEventFromPosition( "Hero_Phoenix.SuperNova.Death", self:GetParent():GetAbsOrigin())
+        EmitSoundOn("Hero_Phoenix.SuperNova.Death", self:GetParent())
+
 		local pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_supernova_death.vpcf", PATTACH_WORLDORIGIN, nil )
 		local attach_point = self:GetCaster():ScriptLookupAttachment( "attach_hitloc" )
 		ParticleManager:SetParticleControl( pfx, 0, self:GetCaster():GetAttachmentOrigin(attach_point) )
@@ -598,7 +601,9 @@ function creep_lighting_bolt_lua:OnSpellStart()
 end
 
 function creep_lighting_bolt_lua:CreateLightningEffect(target_point, caster)
-    EmitSoundOnLocationWithCaster(target_point, "Hero_Zuus.LightningBolt", caster)
+    local sound_cast = "Hero_Zuus.LightningBolt"
+    -- EmitSoundOnLocationWithCaster(target_point, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_WORLDORIGIN, caster)
     ParticleManager:SetParticleControl(particle, 0, target_point)
     ParticleManager:SetParticleControl(particle, 1, target_point + Vector(0, 0, 1000))
@@ -646,8 +651,9 @@ function creep_thundergods_wrath_lua:OnSpellStart()
 		if self.thundergod_spell_cast then
 			ParticleManager:ReleaseParticleIndex(self.thundergod_spell_cast)
 		end
-
-		EmitSoundOnLocationForAllies(self:GetCaster():GetAbsOrigin(), "Hero_Zuus.GodsWrath", self:GetCaster())
+        local sound_cast = "Hero_Zuus.GodsWrath"
+		-- EmitSoundOnLocationForAllies(self:GetCaster():GetAbsOrigin(), "Hero_Zuus.GodsWrath", self:GetCaster())
+        EmitSoundOn(sound_cast, self:GetCaster())
 
 		local damage_table 			= {}
 		damage_table.attacker 		= self:GetCaster()

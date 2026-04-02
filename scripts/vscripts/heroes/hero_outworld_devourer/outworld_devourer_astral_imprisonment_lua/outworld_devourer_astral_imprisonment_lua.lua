@@ -89,7 +89,8 @@ function modifier_outworld_devourer_astral_imprisonment_lua:OnDestroy()
 	StopSoundOn( sound_loop, self:GetCaster() )
 
 	local sound_cast = "Hero_ObsidianDestroyer.AstralImprisonment.End"
-	EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+	-- EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function modifier_outworld_devourer_astral_imprisonment_lua:CheckState()

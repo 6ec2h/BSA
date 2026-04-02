@@ -151,8 +151,12 @@ function phantom_assassin_phantom_strike_lua:PlayEffects( origin )
 	local effect_cast_end = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf", PATTACH_WORLDORIGIN, self:GetCaster() )
 	ParticleManager:SetParticleControl( effect_cast_end, 0, self:GetCaster():GetOrigin() )
 	ParticleManager:ReleaseParticleIndex( effect_cast_end )
-	EmitSoundOnLocationWithCaster( origin, "Hero_PhantomAssassin.Strike.Start", self:GetCaster() )
-	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_PhantomAssassin.Strike.End", self:GetCaster() )
+	local sound_cast_1 = "Hero_PhantomAssassin.Strike.Start"
+	-- EmitSoundOnLocationWithCaster( origin, sound_cast_1, self:GetCaster() )
+	EmitSoundOn(sound_cast_1, self:GetCaster())
+	local sound_cast_2 = "Hero_PhantomAssassin.Strike.End"
+	-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast_2, self:GetCaster() )
+	EmitSoundOn(sound_cast_2, self:GetCaster())
 end
 
 -------------------------------------------------------------------------------

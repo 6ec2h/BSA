@@ -460,7 +460,9 @@ function triss_granade:OnProjectileThink_ExtraData(location, data)
 end
 
 function triss_granade:OnProjectileHit_ExtraData(target, location, data)	
-	EmitSoundOnLocationWithCaster(location, "Hero_Batrider.Flamebreak.Impact", self:GetCaster())
+	local sound_cast = "Hero_Batrider.Flamebreak.Impact"
+	-- EmitSoundOnLocationWithCaster(location, sound_cast, self:GetCaster())
+	EmitSoundOn(sound_cast, self:GetCaster())
 	
 	if data.flamebreak_dummy_entindex then
 		EntIndexToHScript(data.flamebreak_dummy_entindex):StopSound("Hero_Batrider.Flamebreak")

@@ -33,7 +33,9 @@ function zuus_thundergods_wrath_lua:OnSpellStart()
 		self.thundergod_spell_cast = nil
 	end
 
-	EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), "Hero_Zuus.GodsWrath", caster)
+	local sound_cast = "Hero_Zuus.GodsWrath"
+	-- EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), sound_cast, caster)
+	EmitSoundOn(sound_cast, caster)
 
 	-- Кэшируем таланты один раз
 	local talent2 = caster:FindAbilityByName("special_bonus_zuus_2")

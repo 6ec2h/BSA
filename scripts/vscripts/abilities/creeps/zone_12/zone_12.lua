@@ -373,7 +373,9 @@ function modifier_creep_sunstrike_lua:OnIntervalThink()
         ParticleManager:SetParticleControl(startFX, 1, Vector(damage_radius, 0, 0))
         ParticleManager:ReleaseParticleIndex(startFX)
 
-        EmitSoundOnLocationWithCaster(point, "Hero_Invoker.SunStrike.Charge", caster)
+        local sound_cast = "Hero_Invoker.SunStrike.Charge"
+        -- EmitSoundOnLocationWithCaster(point, sound_cast, caster)
+        EmitSoundOn(sound_cast, caster)
 
         Timers:CreateTimer(delay, function()
             local endFX = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", PATTACH_WORLDORIGIN, nil)
@@ -381,7 +383,9 @@ function modifier_creep_sunstrike_lua:OnIntervalThink()
             ParticleManager:SetParticleControl(endFX, 1, Vector(damage_radius, 0, 0))
             ParticleManager:ReleaseParticleIndex(endFX)
 
-            EmitSoundOnLocationWithCaster(point, "Hero_Invoker.SunStrike.Ignite", caster)
+            local sound_cast = "Hero_Invoker.SunStrike.Ignite"
+            -- EmitSoundOnLocationWithCaster(point, sound_cast, caster)
+            EmitSoundOn(sound_cast, caster)
 
             local units = FindUnitsInRadius(
                 caster_team, 
@@ -547,7 +551,9 @@ end
 function modifier_creep_meteor_lua_thinker:OnDestroy()
     if not IsServer() then return end
     StopSoundOn("Hero_Invoker.ChaosMeteor.Loop", self:GetParent())
-    EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), "Hero_Invoker.ChaosMeteor.Destroy", self.caster)
+    local sound_cast = "Hero_Invoker.ChaosMeteor.Destroy"
+    -- EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), sound_cast, self.caster)
+    EmitSoundOn(sound_cast, self.caster)
 end
 
 function modifier_creep_meteor_lua_thinker:PlayEffects1()
@@ -556,7 +562,9 @@ function modifier_creep_meteor_lua_thinker:PlayEffects1()
     ParticleManager:SetParticleControl(pfx, 1, self.parent_origin)
     ParticleManager:SetParticleControl(pfx, 2, Vector(self.land_time, 0, 0))
     ParticleManager:ReleaseParticleIndex(pfx)
-    EmitSoundOnLocationWithCaster(self.caster_origin, "Hero_Invoker.ChaosMeteor.Cast", self:GetCaster())
+    local sound_cast = "Hero_Invoker.ChaosMeteor.Cast"
+    -- EmitSoundOnLocationWithCaster(self.caster_origin, sound_cast, self:GetCaster())
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function modifier_creep_meteor_lua_thinker:PlayEffects2()
@@ -566,7 +574,9 @@ function modifier_creep_meteor_lua_thinker:PlayEffects2()
     ParticleManager:SetParticleControl(pfx, 1, self.direction * self.travel_speed)
     self:AddParticle(pfx, false, false, -1, false, false)
     
-    EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), "Hero_Invoker.ChaosMeteor.Impact", self:GetCaster())
+    local sound_cast = "Hero_Invoker.ChaosMeteor.Impact"
+    -- EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), sound_cast, self:GetCaster())
+    EmitSoundOn(sound_cast, self:GetCaster())
     EmitSoundOn("Hero_Invoker.ChaosMeteor.Loop", self:GetParent())
 end
 

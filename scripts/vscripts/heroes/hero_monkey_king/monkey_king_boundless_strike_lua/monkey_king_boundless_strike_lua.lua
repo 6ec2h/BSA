@@ -44,8 +44,12 @@ function monkey_king_boundless_strike_lua:OnSpellStart()
     self:GetCaster().cast_boundless_strike = false
     mod:Destroy()
 
-    EmitSoundOnLocationWithCaster(start_point, "Hero_MonkeyKing.Strike.Impact", self:GetCaster())
-	EmitSoundOnLocationWithCaster(end_point, "Hero_MonkeyKing.Strike.Impact.EndPos", self:GetCaster())
+    local sound_cast_1 = "Hero_MonkeyKing.Strike.Impact"
+    -- EmitSoundOnLocationWithCaster(start_point, sound_cast_1, self:GetCaster())
+    EmitSoundOn(sound_cast_1, self:GetCaster())
+	local sound_cast_2 = "Hero_MonkeyKing.Strike.Impact.EndPos"
+	-- EmitSoundOnLocationWithCaster(end_point, sound_cast_2, self:GetCaster())
+	EmitSoundOn(sound_cast_2, self:GetCaster())
 
 	local pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf", PATTACH_POINT, self:GetCaster())
 	ParticleManager:SetParticleControl(pfx, 1, end_point)

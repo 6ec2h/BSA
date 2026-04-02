@@ -49,7 +49,9 @@ function item_bkb_flask:OnProjectileHit(target, location)
     ParticleManager:SetParticleControl(explosion_pfx, 0, location)
     ParticleManager:ReleaseParticleIndex(explosion_pfx)
 
-    EmitSoundOnLocationWithCaster(location, "DOTA_Item.BlackKingBar.Activate", caster)
+    local sound_cast = "DOTA_Item.BlackKingBar.Activate"
+    -- EmitSoundOnLocationWithCaster(location, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
     UTIL_Remove(target)
    	if self:GetCurrentCharges() > 1 then
 		self:SetCurrentCharges(self:GetCurrentCharges() - 1)

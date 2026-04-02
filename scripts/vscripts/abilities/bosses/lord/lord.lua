@@ -84,7 +84,8 @@ function boos_doom_pit_lua:PlayEffects( point )
 	self.effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster(), self:GetCaster():GetTeamNumber() )
 	ParticleManager:SetParticleControl( self.effect_cast, 0, point )
 	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( radius, 1, 1 ) )
-	EmitSoundOnLocationForAllies( point, sound_cast, self:GetCaster() )
+	-- EmitSoundOnLocationForAllies( point, sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------------------------

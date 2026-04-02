@@ -18,7 +18,9 @@ function hero_destroyer_totem:OnSpellStart()
 end
 
 function hero_destroyer_totem:PlayEffects( point, duration )
-	EmitSoundOnLocationWithCaster( point, "Hero_EarthShaker.Attack", self:GetCaster() )
+	local sound_cast = "Hero_EarthShaker.Attack"
+	-- EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 ---------------------------------------------------------------------------------
@@ -86,7 +88,9 @@ function modifier_hero_destroyer_totem_thinker:OnIntervalThink()
 	ParticleManager:SetParticleControlEnt(ShieldParticle, 0, nil, PATTACH_POINT_FOLLOW, "attach_hitloc", self.position, true)
 	-- EmitSoundOnLocationWithCaster(self.position, "Hero_EarthShaker.Arcana.run_alt1", self:GetCaster() )
 
-    EmitSoundOnLocationWithCaster(self.position, "Hero_EarthShaker.Attack", self:GetCaster() )
+    local sound_cast = "Hero_EarthShaker.Attack"
+    -- EmitSoundOnLocationWithCaster(self.position, sound_cast, self:GetCaster() )
+    EmitSoundOn(sound_cast, self:GetCaster())
 	
 	self:StartIntervalThink(-1)
 	self:StartIntervalThink(1)

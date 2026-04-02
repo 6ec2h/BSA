@@ -16,7 +16,7 @@ modifier_item_trident_of_eternity = class({})
 function modifier_item_trident_of_eternity:IsHidden() return true end
 function modifier_item_trident_of_eternity:IsPurgable() return false end
 function modifier_item_trident_of_eternity:RemoveOnDeath() return false end
-function modifier_item_trident_of_eternity:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+-- function modifier_item_trident_of_eternity:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_item_trident_of_eternity:OnCreated()
     local ability = self:GetAbility()

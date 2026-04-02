@@ -366,7 +366,9 @@ function golden_dragon_vacuum_dash:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 1, Vector(radius, 1, 1))
     ParticleManager:ReleaseParticleIndex(particle)
     
-    EmitSoundOnLocationWithCaster(cursor_position, "Hero_DarkSeer.Vacuum", caster)
+    local sound_cast = "Hero_DarkSeer.Vacuum"
+    -- EmitSoundOnLocationWithCaster(cursor_position, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
 
     local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(),

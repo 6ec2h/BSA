@@ -97,7 +97,8 @@ function pugna_nether_blast_lua:OnSpellStart()
 	ParticleManager:SetParticleControl(particle_pre_blast_fx, 1, Vector(main_blast_radius, blast_delay, 1))
 	ParticleManager:ReleaseParticleIndex(particle_pre_blast_fx)
 
-	EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), sound_precast, caster)
+	-- EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), sound_precast, caster)
+	EmitSoundOn(sound_precast, caster)
 
 	-- Create a timer to delay the main blast
 	Timers:CreateTimer(blast_delay, function()

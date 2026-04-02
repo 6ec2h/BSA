@@ -39,7 +39,9 @@ function hidden_snow_boss_ice_torrent:OnSpellStart()
     end
 
     Timers:CreateTimer(delay, function()
-        EmitSoundOnLocationWithCaster(point, "Hero_Crystal.CrystalNova", caster)
+        local sound_cast = "Hero_Crystal.CrystalNova"
+        -- EmitSoundOnLocationWithCaster(point, sound_cast, caster)
+        EmitSoundOn(sound_cast, caster)
 
         AddFOWViewer(team, point, radius, vision_duration, false)
 

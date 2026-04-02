@@ -34,7 +34,9 @@ end
 
 function creep_blob_jump_lua:Smash()
 	if IsServer() then
-		EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Item.OgreSealTotem.Smash", self:GetCaster() )
+		local sound_cast = "Item.OgreSealTotem.Smash"
+		-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+		EmitSoundOn(sound_cast, self:GetCaster())
 
 		local nFXIndex = ParticleManager:CreateParticle( "particles/test_particle/ogre_melee_smash.vpcf", PATTACH_WORLDORIGIN,  self:GetCaster()  )
 		ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
@@ -602,7 +604,9 @@ function creep_torrent_lua:OnSpellStart()
     ParticleManager:SetParticleControl(fx_pre, 0, point)
     ParticleManager:SetParticleControl(fx_pre, 1, Vector(radius, 0, 0))
 
-    EmitSoundOnLocationWithCaster(point, "Ability.TorrentCast", caster)
+    local sound_cast = "Ability.TorrentCast"
+    -- EmitSoundOnLocationWithCaster(point, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
 
     Timers:CreateTimer(delay, function()
         ParticleManager:DestroyParticle(fx_pre, false)
@@ -613,7 +617,9 @@ function creep_torrent_lua:OnSpellStart()
         ParticleManager:SetParticleControl(fx_main, 1, Vector(radius, 0, 0))
         ParticleManager:ReleaseParticleIndex(fx_main)
 
-        EmitSoundOnLocationWithCaster(point, "Ability.Torrent", caster)
+        local sound_cast = "Ability.Torrent"
+        -- EmitSoundOnLocationWithCaster(point, sound_cast, caster)
+        EmitSoundOn(sound_cast, caster)
 
         local enemies = FindUnitsInRadius(
             team,

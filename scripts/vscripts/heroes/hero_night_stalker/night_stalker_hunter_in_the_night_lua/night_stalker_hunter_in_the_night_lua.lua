@@ -68,15 +68,18 @@ function modifier_night_stalker_hunter_in_the_night_lua_thinker:OnIntervalThink(
 			-- Night transform responses
 			-- Roll for rarest transform response
 			if RollPercentage(5) then
-				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_rarest_transform_response, self.caster)
+				-- EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_rarest_transform_response, self.caster)
+				EmitSoundOn(self.night_rarest_transform_response, self.caster)
 
 			-- Roll for rare transform response
 			elseif RollPercentage(15) then
-				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_rare_transform_response, self.caster)
+				-- EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_rare_transform_response, self.caster)
+				EmitSoundOn(self.night_rare_transform_response, self.caster)
 
 			-- Roll for normal transform response
 			elseif RollPercentage(75) then
-				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_transform_response[math.random(1, #self.night_transform_response)], self.caster)
+				-- EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_transform_response[math.random(1, #self.night_transform_response)], self.caster)
+				EmitSoundOn(self.night_transform_response[math.random(1, #self.night_transform_response)], self.caster)
 			end
 
 			-- Grant night buff
@@ -92,15 +95,18 @@ function modifier_night_stalker_hunter_in_the_night_lua_thinker:OnIntervalThink(
 			-- Day transformation responses
 			-- Roll for rarest transform response
 			if RollPercentage(5) then
-				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_rarest_transform_response, self.caster)
+				-- EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_rarest_transform_response, self.caster)
+				EmitSoundOn(self.day_rarest_transform_response, self.caster)
 
 			-- Roll for rare transform response
 			elseif RollPercentage(15) then
-				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_rare_transform_response, self.caster)
+				-- EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_rare_transform_response, self.caster)
+				EmitSoundOn(self.day_rare_transform_response, self.caster)
 
 			-- Play normal transform response
 			else
-				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_transform_response[math.random(1,#self.day_transform_response)], self.caster)
+				-- EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_transform_response[math.random(1,#self.day_transform_response)], self.caster)
+				EmitSoundOn(self.day_transform_response[math.random(1,#self.day_transform_response)], self.caster)
 			end
 
 			-- Remove night buff

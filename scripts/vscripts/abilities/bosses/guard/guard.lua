@@ -237,7 +237,9 @@ end
 function modifier_ogre_tank_melee_smash_thinker:OnDestroy()
 	if IsServer() then
 		if self:GetCaster() ~= nil and self:GetCaster():IsAlive() then
-			EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), "OgreTank.GroundSmash", self:GetCaster() )
+			local sound_cast = "OgreTank.GroundSmash"
+			-- EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+			EmitSoundOn(sound_cast, self:GetCaster())
 			local nFXIndex = ParticleManager:CreateParticle( "particles/test_particle/ogre_melee_smash.vpcf", PATTACH_WORLDORIGIN,  self:GetCaster()  )
 			ParticleManager:SetParticleControl( nFXIndex, 0, self:GetParent():GetOrigin() )
 			ParticleManager:SetParticleControl( nFXIndex, 1, Vector( self.impact_radius, self.impact_radius, self.impact_radius ) )

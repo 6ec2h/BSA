@@ -1,5 +1,6 @@
 LinkLuaModifier("modifier_boss_damage_boost", "abilities/bosses/modifier_boss_damage_boost", LUA_MODIFIER_MOTION_NONE)
 
+
 creep_ice_shards_lua = class({})
 
 function creep_ice_shards_lua:Precache( context )
@@ -424,7 +425,9 @@ function creep_crystal_nova_lua:PlayEffects( point, radius, duration )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, duration, radius ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	EmitSoundOnLocationWithCaster( point, "Hero_Crystal.CrystalNova", self:GetCaster() )
+	local sound_cast = "Hero_Crystal.CrystalNova"
+	-- EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 ------------------------------------------------------------------------------
@@ -628,7 +631,8 @@ function modifier_creep_freezing_field_lua:PlayEffects2( point )
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( effect_cast, 0, point )
 	local sound_cast = "hero_Crystal.freezingField.explosion"
-	EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+	-- EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function modifier_creep_freezing_field_lua:StopEffects1()

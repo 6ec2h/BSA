@@ -394,7 +394,9 @@ function tidehunter_ravage_lua:PlayEffectsCast( center, radius )
     end
     ParticleManager:ReleaseParticleIndex( effect )
 
-    EmitSoundOnLocationWithCaster( center, "Ability.Ravage", self:GetCaster() )
+    local sound_cast = "Ability.Ravage"
+    -- EmitSoundOnLocationWithCaster( center, sound_cast, self:GetCaster() )
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function tidehunter_ravage_lua:PlayEffectsHit( enemy )

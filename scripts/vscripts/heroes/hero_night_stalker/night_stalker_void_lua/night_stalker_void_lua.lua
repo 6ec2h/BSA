@@ -31,9 +31,11 @@ function night_stalker_void_lua:OnSpellStart()
 	local night_extend = ability:GetSpecialValueFor("night_extend")
 
 	if RollPercentage(5) then
-		EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), rare_cast_response, caster)
+		-- EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), rare_cast_response, caster)
+		EmitSoundOn(rare_cast_response, caster)
 	elseif RollPercentage(25) then
-		EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), cast_response[math.random(1,#cast_response)], caster)
+		-- EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), cast_response[math.random(1,#cast_response)], caster)
+		EmitSoundOn(cast_response[math.random(1,#cast_response)], caster)
 	end
 
 	-- Play sound cast

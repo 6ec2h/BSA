@@ -292,7 +292,9 @@ function modifier_boss_necro_spike:OnIntervalThink()
         ParticleManager:SetParticleControl(particle_blast_fx, 1, Vector(damage_radius, 0, 0))
         ParticleManager:ReleaseParticleIndex(particle_blast_fx)
         
-        EmitSoundOnLocationWithCaster(target_pos, "Hero_Leshrac.Split_Earth", caster)
+        local sound_cast = "Hero_Leshrac.Split_Earth"
+        -- EmitSoundOnLocationWithCaster(target_pos, sound_cast, caster)
+        EmitSoundOn(sound_cast, caster)
         
         local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, caster, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
         for _, unit in ipairs(units) do
@@ -360,8 +362,9 @@ if not IsServer() then return end
 			local blast_delay = 1
 			local damage = self:GetAbility():GetSpecialValueFor("damage") + self:GetAbility():GetSpecialValueFor("diff_boost_damage")
 			local main_blast_radius = 300
-				
-			EmitSoundOnLocationForAllies(self:GetCaster():GetAbsOrigin(), "Hero_Pugna.NetherBlastPreCast", self:GetCaster())
+			local sound_cast = "Hero_Pugna.NetherBlastPreCast"
+			-- EmitSoundOnLocationForAllies(self:GetCaster():GetAbsOrigin(), sound_cast, self:GetCaster())
+			EmitSoundOn(sound_cast, self:GetCaster())
 
 			local particle_pre_blast_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf", PATTACH_CUSTOMORIGIN, nil)
 			ParticleManager:SetParticleControl(particle_pre_blast_fx, 0, target_point)
@@ -478,7 +481,10 @@ function modifier_boss_necro_glimps:BeginGlimpse(target, new_position)
 			ParticleManager:SetParticleControl( nFXIndex3, 2, Vector( flDuration, flDuration, flDuration ) )
 			self:AddParticle( nFXIndex3, false, false, -1, false, false )
 			
-			EmitSoundOnLocationForAllies( new_position, "Hero_Disruptor.GlimpseNB2017.Destination", self:GetCaster() )
+			local sound_cast = "Hero_Disruptor.GlimpseNB2017.Destination"
+			-- EmitSoundOnLocationForAllies( new_position, sound_cast, self:GetCaster() )
+			EmitSoundOn(sound_cast, self:GetCaster())
+			
 							
 			self.time_glimps = flDuration
 			

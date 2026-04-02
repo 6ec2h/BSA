@@ -30,13 +30,33 @@ end
 function modifier_outpost_activation:OnCreated( kv )
     self.isProvidedByAura = kv.isProvidedByAura == 1
     if IsServer() and self.isProvidedByAura then
-        local npc_dota_watch_tower = Entities:FindByClassnameNearest("npc_dota_watch_tower", self:GetAuraOwner():GetOrigin(), 100)
+        local origin = self:GetAuraOwner():GetOrigin()
+        local npc_dota_watch_tower = nil
+        local ent = Entities:FindByClassname(nil, "npc_dota_watch_tower")
+        while ent do
+            if (ent:GetOrigin() - origin):Length() <= 100 then
+                npc_dota_watch_tower = ent
+                break
+            end
+            ent = Entities:FindByClassname(ent, "npc_dota_watch_tower")
+        end
         if npc_dota_watch_tower and npc_dota_watch_tower:IsOpposingTeam(self:GetParent():GetTeamNumber()) then
             npc_dota_watch_tower:ChangeTeam(DOTA_TEAM_GOODGUYS)
             StartSoundEvent("Outpost.Captured.Notification", self:GetAuraOwner())
         end
     end
 end
+
+-- function modifier_outpost_activation:OnCreated( kv )
+--     self.isProvidedByAura = kv.isProvidedByAura == 1
+--     if IsServer() and self.isProvidedByAura then
+--         local npc_dota_watch_tower = Entities:FindByClassnameNearest("npc_dota_watch_tower", self:GetAuraOwner():GetOrigin(), 100)
+--         if npc_dota_watch_tower and npc_dota_watch_tower:IsOpposingTeam(self:GetParent():GetTeamNumber()) then
+--             npc_dota_watch_tower:ChangeTeam(DOTA_TEAM_GOODGUYS)
+--             StartSoundEvent("Outpost.Captured.Notification", self:GetAuraOwner())
+--         end
+--     end
+-- end
 
 function modifier_outpost_activation:CheckState()
     if not self.isProvidedByAura then

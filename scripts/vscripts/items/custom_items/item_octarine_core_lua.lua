@@ -29,7 +29,9 @@ if not IsServer() then return end
     ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetOrigin(), true)
     ParticleManager:ReleaseParticleIndex(particle)
 
-    EmitSoundOnLocationWithCaster(caster:GetOrigin(), "DOTA_Item.Refresher.Activate", caster)
+    local sound_cast = "DOTA_Item.Refresher.Activate"
+    -- EmitSoundOnLocationWithCaster(caster:GetOrigin(), sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
 	
 	local abilityCount = caster:GetAbilityCount()
     for i = 0, abilityCount - 1 do

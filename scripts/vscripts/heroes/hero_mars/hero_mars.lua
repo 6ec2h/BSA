@@ -315,7 +315,9 @@ function mars_gods_rebuke_lua:PlayEffects1( caught, direction )
     ParticleManager:SetParticleControl( effect_cast, 0, self:GetCaster():GetOrigin() )
     ParticleManager:SetParticleControlForward( effect_cast, 0, direction )
     ParticleManager:ReleaseParticleIndex( effect_cast )
-    EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Mars.Shield.Cast", self:GetCaster() )
+    local sound_cast = "Hero_Mars.Shield.Cast"
+    -- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function mars_gods_rebuke_lua:PlayEffects2( target, origin, direction )

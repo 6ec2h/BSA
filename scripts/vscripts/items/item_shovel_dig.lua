@@ -12,7 +12,9 @@ function item_shovel_dig:OnSpellStart()
 		local nFXIndex = ParticleManager:CreateParticle( "particles/econ/events/ti9/shovel_dig.vpcf", PATTACH_CUSTOMORIGIN, nil )
 		ParticleManager:SetParticleControl( nFXIndex, 0, vTargetPosition )
 		ParticleManager:SetParticleControl( nFXIndex, 1, Vector( 0.0, r, 0.0 ) )
-		EmitSoundOnLocationWithCaster( vTargetPosition, "SeasonalConsumable.TI9.Shovel.Dig", self:GetCaster() )
+		local sound_cast = "SeasonalConsumable.TI9.Shovel.Dig"
+		-- EmitSoundOnLocationWithCaster( vTargetPosition, sound_cast, self:GetCaster() )
+		EmitSoundOn(sound_cast, self:GetCaster())
 		
 		Timers:CreateTimer({
 		endTime = 2, 

@@ -355,7 +355,9 @@ function boss_bristleback_goo_lua:OnProjectileHit_ExtraData(target, location, Ex
         false
     )
 
-    EmitSoundOnLocationWithCaster(location, "Hero_Bristleback.ViscousGoo.Target", self:GetCaster())
+    local sound_cast = "Hero_Bristleback.ViscousGoo.Target"
+    -- EmitSoundOnLocationWithCaster(location, sound_cast, self:GetCaster())
+    EmitSoundOn(sound_cast, self:GetCaster())
     return true
 end
 
@@ -613,5 +615,7 @@ function boss_bristleback_hairball_lua:PlayEffects(caster, location)
     )
     ParticleManager:SetParticleControl(effect_cast, 0, location)
     ParticleManager:ReleaseParticleIndex(effect_cast)
-    EmitSoundOnLocationWithCaster(location, "Hero_Bristleback.QuillSpray.Cast", caster)
+    local sound_cast = "Hero_Bristleback.QuillSpray.Cast"
+    -- EmitSoundOnLocationWithCaster(location, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
 end

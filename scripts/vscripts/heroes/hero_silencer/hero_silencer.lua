@@ -66,7 +66,8 @@ function silencer_arcane_curse_lua:PlayEffects2( point, radius )
     ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, 0, 0 ) )
     ParticleManager:ReleaseParticleIndex( effect_cast )
 
-    EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+    -- EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 -------------------------------------------------------------------------------------------

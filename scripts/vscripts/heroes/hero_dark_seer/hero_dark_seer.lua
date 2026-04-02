@@ -16,7 +16,9 @@ function lua_dark_seer_vacuum:OnSpellStart()
 	if not IsServer() then return end
 	
 	local position = self:GetCursorPosition()
-	EmitSoundOnLocationWithCaster(self:GetCursorPosition(), "Hero_Dark_Seer.Vacuum", self:GetCaster())
+	local sound_cast = "Hero_Dark_Seer.Vacuum"
+	-- EmitSoundOnLocationWithCaster(self:GetCursorPosition(), sound_cast, self:GetCaster())
+	EmitSoundOn(sound_cast, self:GetCaster())
 
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf", PATTACH_POINT, self:GetCaster())
 	ParticleManager:SetParticleControl(particle, 0, self:GetCursorPosition())
@@ -238,7 +240,9 @@ function lua_dark_seer_surge:OnSpellStart()
 	local allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), position, nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 
 	if #allies > 0 then
-		EmitSoundOnLocationWithCaster(self:GetCursorPosition(), "Hero_Dark_Seer.Surge", self:GetCaster())
+		local sound_cast = "Hero_Dark_Seer.Surge"
+		-- EmitSoundOnLocationWithCaster(self:GetCursorPosition(), sound_cast, self:GetCaster())
+		EmitSoundOn(sound_cast, self:GetCaster())
 	end
 
 	for _, ally in pairs(allies) do

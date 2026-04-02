@@ -499,7 +499,9 @@ function modifier_gyrocopter_call_down_lua_thinker:OnIntervalThink()
     self.impact_count = self.impact_count + 1
     
     local origin = self:GetParent():GetAbsOrigin()
-    EmitSoundOnLocationWithCaster(origin, "Hero_Gyrocopter.CallDown.Damage", self.caster)
+    local sound_cast = "Hero_Gyrocopter.CallDown.Damage"
+    -- EmitSoundOnLocationWithCaster(origin, sound_cast, self.caster)
+    EmitSoundOn(sound_cast, self.caster)
     
     local damage = (self.impact_count == 1) and self.damage_first or self.damage_second
     local slow_pct = (self.impact_count == 1) and self.slow_first or self.slow_second

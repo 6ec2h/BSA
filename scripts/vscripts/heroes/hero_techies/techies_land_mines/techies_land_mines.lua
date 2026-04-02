@@ -204,7 +204,9 @@ function modifier_land_mines:OnIntervalThink()
 	local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.mine:GetAbsOrigin(), self.mine, self.small_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	if #enemies > 0 and not self.mine:HasModifier("modifier_land_mines_explose_delay") then
 		local sound = CreateModifierThinker(self.caster, self.ability, "modifier_dummy_thinker", {duration = 0.5}, self.mine:GetAbsOrigin(), self.caster:GetTeamNumber(), false)
-		EmitSoundOnLocationWithCaster(sound:GetAbsOrigin(), "Hero_Techies.RemoteMine.Priming", sound)
+		local sound_cast = "Hero_Techies.RemoteMine.Priming"
+		-- EmitSoundOnLocationWithCaster(sound:GetAbsOrigin(), sound_cast, sound)
+		EmitSoundOn(sound_cast, sound)
 		self.mine:AddNewModifier(self.caster, self.ability, "modifier_land_mines_explose_delay", {duration = self.ability:GetSpecialValueFor("activation_time")})
 	end
 end

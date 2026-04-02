@@ -132,6 +132,8 @@ function earthshaker_fissure_lua:PlayEffects( start_pos, end_pos, duration )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( start_pos, sound_cast, caster )
-	EmitSoundOnLocationWithCaster( end_pos, sound_cast, caster )
+	-- EmitSoundOnLocationWithCaster( start_pos, sound_cast, caster )
+	EmitSoundOn(sound_cast, caster)
+	-- EmitSoundOnLocationWithCaster( end_pos, sound_cast, caster )
+	EmitSoundOn(sound_cast, caster)
 end

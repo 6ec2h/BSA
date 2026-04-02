@@ -32,7 +32,15 @@ function ability_capture_lua:OnChannelFinish( bInterrupted )
 	self.respawnPos = nil
 	
 	if not bInterrupted and pos then
-		local items_on_the_ground = Entities:FindAllByClassnameWithin("dota_item_drop", pos, 200)
+		local items_on_the_ground = {}
+		local ent = Entities:FindByClassname(nil, "dota_item_drop")
+		while ent do
+			if (ent:GetOrigin() - pos):Length() <= 200 then
+				table.insert(items_on_the_ground, ent)
+			end
+			ent = Entities:FindByClassname(ent, "dota_item_drop")
+		end
+
 		for _,item_ground in pairs(items_on_the_ground) do
 			if not item_ground or item_ground:IsNull() then
 				goto continue
@@ -66,6 +74,48 @@ function ability_capture_lua:OnChannelFinish( bInterrupted )
 	end
 	StopSoundEvent("Outpost.Channel", self:GetCaster())
 end
+
+-- function ability_capture_lua:OnChannelFinish( bInterrupted )
+-- 	if not IsServer() then return end
+
+-- 	local pos = self.respawnPos
+-- 	self.respawnPos = nil
+	
+-- 	if not bInterrupted and pos then
+-- 		local items_on_the_ground = Entities:FindAllByClassnameWithin("dota_item_drop", pos, 200)
+-- 		for _,item_ground in pairs(items_on_the_ground) do
+-- 			if not item_ground or item_ground:IsNull() then
+-- 				goto continue
+-- 			end
+
+-- 			local item = item_ground:GetContainedItem()
+-- 			if not item or item:IsNull() then
+-- 				goto continue
+-- 			end
+
+-- 			local item_name = item:GetAbilityName()
+-- 			if item_name ~= "item_tombstone" then
+-- 				goto continue
+-- 			end
+
+-- 			local hero = item:GetPurchaser()
+-- 			local point = pos
+-- 			local hRelay = Entities:FindByName( nil, "logic_teleport" )
+-- 			if hRelay then
+-- 				hRelay:Trigger(nil,nil)
+-- 			end
+-- 			hero:RespawnHero(false, false)
+-- 			hero:SetAbsOrigin( point )
+-- 			FindClearSpaceForUnit(hero, point, true) 
+-- 			hero:Stop()
+-- 			hero:RemoveModifierByName("modifier_fountain_invulnerability")
+-- 			UTIL_Remove(item_ground)
+
+-- 			::continue::
+-- 		end
+-- 	end
+-- 	StopSoundEvent("Outpost.Channel", self:GetCaster())
+-- end
 
 --------------------------
 

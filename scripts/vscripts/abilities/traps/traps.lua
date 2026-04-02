@@ -319,7 +319,9 @@ function modifier_spike_trap_thinker_lua:OnCreated( kv )
 	self.light_strike_array_delay_time = self:GetAbility():GetSpecialValueFor( "light_strike_array_delay_time" )
 	if IsServer() then
 		self:StartIntervalThink( self.light_strike_array_delay_time )
-		EmitSoundOnLocationForAllies( self:GetParent():GetOrigin(), "Ability.PreLightStrikeArray", self:GetCaster() )
+        local sound_cast = "Ability.PreLightStrikeArray"
+		-- EmitSoundOnLocationForAllies( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+        EmitSoundOn(sound_cast, self:GetCaster())
 	end
 end
 
@@ -344,7 +346,8 @@ function modifier_spike_trap_thinker_lua:OnIntervalThink()
 				end
 			end
 		end
-		EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), "Conquest.SpikeTrap.Activate.Generic", self:GetCaster() )
+		-- EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), "Conquest.SpikeTrap.Activate.Generic", self:GetCaster() )
+        EmitSoundOn("Conquest.SpikeTrap.Activate.Generic", self:GetCaster())
 		UTIL_Remove( self:GetParent() )
 	end
 end

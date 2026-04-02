@@ -12,7 +12,9 @@ if not IsServer() then return end
 	for _,ally in pairs(allies) do
 		ally:AddNewModifier( self:GetCaster(), self, "modifier_lycan_howl_lua_buff",  { duration = duration } )
 	end
-	EmitSoundOnLocationForAllies(self:GetCaster():GetAbsOrigin(), "Hero_Lycan.Howl", self:GetCaster())
+	local sound_cast = "Hero_Lycan.Howl"
+	-- EmitSoundOnLocationForAllies(self:GetCaster():GetAbsOrigin(), sound_cast, self:GetCaster())
+	EmitSoundOn(sound_cast, self:GetCaster())
 	
 	local particle_lycan_howl_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl(particle_lycan_howl_fx, 0 , self:GetCaster():GetAbsOrigin())

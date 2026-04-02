@@ -168,7 +168,9 @@ function boss_arc_spark_wraith:OnSpellStart()
 	self:GetCaster():EmitSound("Hero_ArcWarden.SparkWraith.Cast")
 	for i = 1, self:GetSpecialValueFor("count") do
 		local point = self:GetCaster():GetAbsOrigin() + RandomVector(RandomInt(RandomInt(500, 500), RandomInt(500, 500)))
-		EmitSoundOnLocationWithCaster(point, "Hero_ArcWarden.SparkWraith.Appear", self:GetCaster())
+		local sound_cast = "Hero_ArcWarden.SparkWraith.Appear"
+		-- EmitSoundOnLocationWithCaster(point, sound_cast, self:GetCaster())
+		EmitSoundOn(sound_cast, self:GetCaster())
 			
 		CreateModifierThinker(self:GetCaster(), self, "modifier_boss_arc_spark_wraith_thinker", {
 			duration = self:GetSpecialValueFor("duration")}, 

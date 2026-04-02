@@ -156,7 +156,9 @@ function modifier_disruptor_thunder_strike_lua:PlayEffects()
 	ParticleManager:SetParticleControl( effect_cast, 2, self:GetParent():GetOrigin() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), "Hero_Disruptor.ThunderStrike.Target", self:GetCaster() )
+	local sound_cast = "Hero_Disruptor.ThunderStrike.Target"
+	-- EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------------------------

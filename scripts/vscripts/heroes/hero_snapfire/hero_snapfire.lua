@@ -550,7 +550,8 @@ function lua_snapfire_mortimer_kisses:PlayEffects( loc )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	local sound_location = "Hero_Snapfire.MortimerBlob.Impact"
-	EmitSoundOnLocationWithCaster( loc, sound_location, self:GetCaster() )
+	-- EmitSoundOnLocationWithCaster( loc, sound_location, self:GetCaster() )
+	EmitSoundOn(sound_location, self:GetCaster())
 end
 
 --------------------------------------------------------------------------------
@@ -579,12 +580,3 @@ function modifier_lua_snapfire_mortimer_kisses_thinker:OnDestroy()
 	if not IsServer() then return end
 	UTIL_Remove( self:GetParent() )
 end
-
--- function modifier_lua_snapfire_mortimer_kisses_thinker:PlayEffects( time )
-	-- local particle_cast = "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf"
-	-- self.effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_CUSTOMORIGIN, self:GetCaster(), self:GetCaster():GetTeamNumber() )
-	-- ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
-	-- ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( self.radius, 0, -self.radius*(self.max_travel/time) ) )
-	-- ParticleManager:SetParticleControl( self.effect_cast, 2, Vector( time, 0, 0 ) )
--- end
-

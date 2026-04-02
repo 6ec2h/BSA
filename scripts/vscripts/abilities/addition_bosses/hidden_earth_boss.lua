@@ -68,7 +68,8 @@ function modifier_hidden_earth_boss_split_earth:PlayEffects()
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 0, 0 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-	EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+	-- EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 ----------------------------------------------------------------------------
@@ -194,7 +195,9 @@ function hidden_earth_boss_fissure_lua:PlayEffects( start_pos, end_pos, duration
     ParticleManager:SetParticleControl( effect_cast, 1, end_pos )
     ParticleManager:SetParticleControl( effect_cast, 2, Vector( duration, 0, 0 ) )
     ParticleManager:ReleaseParticleIndex( effect_cast )
-    EmitSoundOnLocationWithCaster( start_pos, "Hero_EarthShaker.Fissure", caster )
+    local sound_cast_fissure = "Hero_EarthShaker.Fissure"
+    -- EmitSoundOnLocationWithCaster( start_pos, sound_cast_fissure, caster )
+    EmitSoundOn(sound_cast_fissure, caster)
 end
 
 --------------------------------------------------------------------------------

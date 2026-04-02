@@ -61,7 +61,9 @@ function centaur_warrunner_hoof_stomp_lua:PlayEffects()
 		true -- unknown, true
 	)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Centaur.HoofStomp", self:GetCaster() )
+	local sound_cast = "Hero_Centaur.HoofStomp"
+	-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------

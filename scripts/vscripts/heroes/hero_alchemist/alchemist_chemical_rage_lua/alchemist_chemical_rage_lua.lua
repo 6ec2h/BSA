@@ -51,7 +51,8 @@ function alchemist_chemical_rage_lua:PlayEffects()
 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
+	-- EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
+	EmitSoundOn(sound_location, self:GetCaster())
 	EmitSoundOn( sound_target, target )
 end
 

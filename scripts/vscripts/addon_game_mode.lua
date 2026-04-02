@@ -145,7 +145,16 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "1" and steamID == 393187346 then
-		-- HandleKilledUnit(hero, hero, 10, 50, 25, 1, 1, 11, "npc_dota_boss_ursa")
+		if not hero or hero:IsNull() then return end
+		local children = hero:GetChildren()
+		for _, child in pairs(children) do
+			if child:GetClassname() == "dota_item_wearable" then
+				child:AddEffects(EF_NODRAW)
+			end
+		end
+		hero:SetModel("models/saske/saske.vmdl")
+		hero:SetOriginalModel("models/saske/saske.vmdl")
+		hero:SetModelScale(2)
 	end
 
 	if text == "2" and steamID == 393187346 then

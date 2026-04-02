@@ -475,5 +475,7 @@ function modifier_primal_beast_pulverize_lua:PlayEffects( origin, radius )
     ParticleManager:SetParticleControl( effect_cast, 0, origin )
     ParticleManager:SetParticleControl( effect_cast, 1, Vector(radius, radius, radius) )
     ParticleManager:ReleaseParticleIndex( effect_cast )
-    EmitSoundOnLocationWithCaster( origin, "Hero_PrimalBeast.Pulverize.Impact", self.caster )
+    local sound_cast = "Hero_PrimalBeast.Pulverize.Impact"
+    -- EmitSoundOnLocationWithCaster( origin, sound_cast, self.caster )
+    EmitSoundOn(sound_cast, self.caster)
 end

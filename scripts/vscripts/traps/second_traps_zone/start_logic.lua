@@ -510,24 +510,31 @@ function plate_room_shot(trigger)
     local button = triggerName .. "_button"
     local model = triggerName .. "_model"
     local npcs = Entities:FindAllByName(triggerName.."_npc")
-   
 
     for _, npc in ipairs(npcs) do
         local ability = npc:FindAbilityByName("simple_trap_shot")
         if ability then
+            local target = nil
+            local ent = Entities:FindByName(nil, triggerName.."_target")
+            while ent do
+                if (ent:GetOrigin() - npc:GetOrigin()):Length() <= 100 then
+                    target = ent
+                    break
+                end
+                ent = Entities:FindByName(ent, triggerName.."_target")
+            end
 
-            local target = Entities:FindByNameWithin(nil, triggerName.."_target", npc:GetOrigin(), 100)
-   
-            ability.damage_prc = 0
-            ability.shot_range = 1500
-            ability.damage = 8000
-            ability.particle = "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
-            ability.sound = "Conquest.PoisonTrap.Generic"
-            -- ability.damage_type = DAMAGE_TYPE_MAGICAL
+            if target then
+                ability.damage_prc = 0
+                ability.shot_range = 1500
+                ability.damage = 8000
+                ability.particle = "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+                ability.sound = "Conquest.PoisonTrap.Generic"
 
-            npc:CastAbilityOnPosition(target:GetOrigin(), ability, -1)
-            
-            DoEntFire(model, "SetAnimation", "fang_attack", 0.1, nil, nil)
+                npc:CastAbilityOnPosition(target:GetOrigin(), ability, -1)
+
+                DoEntFire(model, "SetAnimation", "fang_attack", 0.1, nil, nil)
+            end
         end
     end
 
@@ -541,6 +548,48 @@ function plate_room_shot(trigger)
         return nil
     end, 0.3)
 end
+
+-- function plate_room_shot(trigger)
+--     local triggerEnt = thisEntity
+--     local triggerName = thisEntity:GetName()
+
+--     if triggerEnt.bIsActive == false then return end
+--     triggerEnt.bIsActive = false
+
+--     local button = triggerName .. "_button"
+--     local model = triggerName .. "_model"
+--     local npcs = Entities:FindAllByName(triggerName.."_npc")
+   
+
+--     for _, npc in ipairs(npcs) do
+--         local ability = npc:FindAbilityByName("simple_trap_shot")
+--         if ability then
+
+--             local target = Entities:FindByNameWithin(nil, triggerName.."_target", npc:GetOrigin(), 100)
+   
+--             ability.damage_prc = 0
+--             ability.shot_range = 1500
+--             ability.damage = 8000
+--             ability.particle = "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+--             ability.sound = "Conquest.PoisonTrap.Generic"
+--             -- ability.damage_type = DAMAGE_TYPE_MAGICAL
+
+--             npc:CastAbilityOnPosition(target:GetOrigin(), ability, -1)
+            
+--             DoEntFire(model, "SetAnimation", "fang_attack", 0.1, nil, nil)
+--         end
+--     end
+
+--     DoEntFire(button, "SetAnimation", "ancient_trigger001_down", 0, nil, nil)
+--     DoEntFire(button, "SetAnimation", "ancient_trigger001_down_idle", 0.35, nil, nil)
+--     DoEntFire(button, "SetAnimation", "ancient_trigger001_up", 0.5, nil, nil)
+--     DoEntFire(button, "SetAnimation", "ancient_trigger001_idle", 0.6, nil, nil)
+
+--     triggerEnt:SetContextThink("ResetTrigger", function()
+--         triggerEnt.bIsActive = true
+--         return nil
+--     end, 0.3)
+-- end
 
 -----------------------------------------------------------------------
 

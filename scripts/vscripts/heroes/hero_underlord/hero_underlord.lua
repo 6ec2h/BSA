@@ -32,7 +32,9 @@ function lua_abyssal_underlord_firestorm:PlayEffects( point )
 	self.effect_cast = ParticleManager:CreateParticleForTeam( "particles/units/heroes/heroes_underlord/underlord_firestorm_pre.vpcf", PATTACH_WORLDORIGIN, self:GetCaster(), self:GetCaster():GetTeamNumber() )
 	ParticleManager:SetParticleControl( self.effect_cast, 0, point )
 	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( 2, 2, 2 ) )
-	EmitSoundOnLocationWithCaster( point, "Hero_AbyssalUnderlord.Firestorm.Start", self:GetCaster() )
+	local sound_cast = "Hero_AbyssalUnderlord.Firestorm.Start"
+	-- EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function lua_abyssal_underlord_firestorm:StopEffects()
@@ -228,7 +230,9 @@ function lua_abyssal_underlord_pit_of_malice:PlayEffects( point, bPlaySound )
 	ParticleManager:SetParticleControl( self.effect_cast, 0, point )
 	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( radius, 1, 1 ) )
 	if bPlaySound and bPlaySound == true then
-		EmitSoundOnLocationForAllies( point, "Hero_AbyssalUnderlord.PitOfMalice.Start", self:GetCaster() )
+		local sound_cast = "Hero_AbyssalUnderlord.PitOfMalice.Start"
+		-- EmitSoundOnLocationForAllies( point, sound_cast, self:GetCaster() )
+		EmitSoundOn(sound_cast, self:GetCaster())
 	end
 end
 

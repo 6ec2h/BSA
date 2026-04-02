@@ -65,7 +65,9 @@ function anakim_pulse:PlayEffects(position)
     ParticleManager:SetParticleControl(effect_cast, 5, position)
     ParticleManager:SetParticleControl(effect_cast, 6, position)
     ParticleManager:ReleaseParticleIndex(effect_cast)
-    EmitSoundOnLocationWithCaster(position, "Hero_Luna.LucentBeam.Target", self:GetCaster())
+    local sound_cast = "Hero_Luna.LucentBeam.Target"
+    -- EmitSoundOnLocationWithCaster(position, sound_cast, self:GetCaster())
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------------------

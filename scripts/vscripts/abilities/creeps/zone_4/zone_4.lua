@@ -193,7 +193,9 @@ function creep_flop_lua:TryToDamage()
 			end
 		end
 
-		EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Item.OgreSealTotem.Smash", self:GetCaster() )
+		local sound_cast = "Item.OgreSealTotem.Smash"
+		-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+		EmitSoundOn(sound_cast, self:GetCaster())
 		local nFXIndex = ParticleManager:CreateParticle( "particles/test_particle/ogre_melee_smash.vpcf", PATTACH_WORLDORIGIN,  self:GetCaster()  )
 		ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
 		ParticleManager:SetParticleControl( nFXIndex, 1, Vector( self.radius, self.radius, self.radius ) )
@@ -797,7 +799,9 @@ function creep_ring_shards_lua:OnSpellStart()
     local radius = self:GetSpecialValueFor("radius") 
     local count = self:GetSpecialValueFor("count")
 
-    EmitSoundOnLocationWithCaster(caster_pos, "Hero_Tusk.IceShards", caster)
+    local sound_cast = "Hero_Tusk.IceShards"
+    -- EmitSoundOnLocationWithCaster(caster_pos, sound_cast, caster)
+    EmitSoundOn(sound_cast, caster)
 
     for i = 1, count do
         local random_offset = RandomVector(RandomFloat(0, radius))

@@ -59,7 +59,9 @@ function marci_dispose_lua:PlayEffects()
 	)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Marci.Grapple.Stun", self:GetCaster() )
+	local sound_cast = "Hero_Marci.Grapple.Stun"
+	-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 -------------------------------------------------------------------------------
@@ -838,7 +840,8 @@ function modifier_marci_unleash_lua_fury:PlayEffects4( point, radius )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( point, sound_cast, self:GetParent() )
+	-- EmitSoundOnLocationWithCaster( point, sound_cast, self:GetParent() )
+	EmitSoundOn(sound_cast, self:GetParent())
 end
 
 

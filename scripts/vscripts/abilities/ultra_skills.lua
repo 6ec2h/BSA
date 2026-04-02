@@ -340,7 +340,9 @@ function modifier_mine_ultra_lua_thinker:OnIntervalThink()
     if has_target then
         if not self.triggered then
             self.triggered = true
-            EmitSoundOnLocationWithCaster(self.parent:GetAbsOrigin(), "Hero_Techies.RemoteMine.Priming", self.parent)
+            local sound_cast = "Hero_Techies.RemoteMine.Priming"
+            -- EmitSoundOnLocationWithCaster(self.parent:GetAbsOrigin(), sound_cast, self.parent)
+            EmitSoundOn(sound_cast, self.parent)
         end
         self.timer = self.timer + self.tick_interval
         if self.timer >= self.threshold then

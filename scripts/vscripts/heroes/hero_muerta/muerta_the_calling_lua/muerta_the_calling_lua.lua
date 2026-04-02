@@ -10,7 +10,9 @@ function muerta_the_calling_lua:OnSpellStart()
 	local duration = self:GetSpecialValueFor( "duration" )
 
 	local modifier = caster:AddNewModifier(caster, self,  "modifier_muerta_the_calling_lua_thinker",{ duration = duration })
-	EmitSoundOnLocationWithCaster(point, "Hero_Muerta.Revenants.Cast", caster)
+	local sound_cast = "Hero_Muerta.Revenants.Cast"
+	-- EmitSoundOnLocationWithCaster(point, sound_cast, caster)
+	EmitSoundOn(sound_cast, caster)
 end
 
 -------------------------------------------------------------------------------------------

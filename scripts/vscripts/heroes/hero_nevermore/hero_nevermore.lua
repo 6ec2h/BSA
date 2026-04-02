@@ -70,7 +70,9 @@ function shadowraze.PlayEffects(self, position, radius)
     ParticleManager:SetParticleControl(effect_cast, 0, position)
     ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, 1, 1))
     ParticleManager:ReleaseParticleIndex(effect_cast)
-    EmitSoundOnLocationWithCaster(position, "Hero_Nevermore.Shadowraze", self:GetCaster())
+    local sound_cast = "Hero_Nevermore.Shadowraze"
+    -- EmitSoundOnLocationWithCaster(position, sound_cast, self:GetCaster())
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------------------------

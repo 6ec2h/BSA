@@ -51,7 +51,9 @@ function boss_slardar_slithereen_crush_lua:PlayEffects()
 	ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
 	ParticleManager:SetParticleControl( nFXIndex, 1, Vector(radius, radius, radius) )
 	ParticleManager:ReleaseParticleIndex( nFXIndex )
-	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Slardar.Slithereen_Crush", self:GetCaster() )
+	local sound_cast = "Hero_Slardar.Slithereen_Crush"
+	-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 -------------------------------------------------------
@@ -166,7 +168,9 @@ function modifier_boss_slardar_torrential_waters:OnIntervalThink()
         ParticleManager:SetParticleControl(particle_blast_fx, 1, Vector(damage_radius, 0, 0))
         ParticleManager:ReleaseParticleIndex(particle_blast_fx)
         
-        EmitSoundOnLocationWithCaster(target_pos, "Ability.Torrent", caster)
+        local sound_cast = "Ability.Torrent"
+        -- EmitSoundOnLocationWithCaster(target_pos, sound_cast, caster)
+        EmitSoundOn(sound_cast, caster)
         
         local units = FindUnitsInRadius(caster:GetTeamNumber(), target_pos, caster, damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
         for _, unit in ipairs(units) do

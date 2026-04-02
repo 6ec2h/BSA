@@ -222,7 +222,9 @@ function modifier_boss_tiny_gavnina_lua_thinker:Burn()
             ability = self:GetAbility()
         })
     end
-    EmitSoundOnLocationWithCaster( self.parent_origin, "Hero_Invoker.ChaosMeteor.Impact", self:GetCaster() )
+    local sound_cast = "Hero_Invoker.ChaosMeteor.Impact"
+    -- EmitSoundOnLocationWithCaster( self.parent_origin, sound_cast, self:GetCaster() )
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function modifier_boss_tiny_gavnina_lua_thinker:PlayEffects1()
@@ -233,7 +235,9 @@ function modifier_boss_tiny_gavnina_lua_thinker:PlayEffects1()
     ParticleManager:SetParticleControl( effect_cast, 2, Vector( self.delay, 0, 0 ) )
     ParticleManager:ReleaseParticleIndex( effect_cast )
 
-    EmitSoundOnLocationWithCaster( self.caster_origin, "Hero_Invoker.ChaosMeteor.Cast", self:GetCaster() )
+    local sound_cast = "Hero_Invoker.ChaosMeteor.Cast"
+    -- EmitSoundOnLocationWithCaster( self.caster_origin, sound_cast, self:GetCaster() )
+    EmitSoundOn(sound_cast, self:GetCaster())
 
     self.indicator_pfx = ParticleManager:CreateParticle("particles/ui_mouseactions/range_display.vpcf", PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(self.indicator_pfx, 0, self.parent_origin)
@@ -303,7 +307,9 @@ function boss_tiny_stone_wall_lua:OnSpellStart()
             FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), true)
         end
     end
-    EmitSoundOnLocationWithCaster(caster_pos, "Hero_EarthShaker.Fissure", self:GetCaster())
+    local sound_cast = "Hero_EarthShaker.Fissure"
+    -- EmitSoundOnLocationWithCaster(caster_pos, sound_cast, self:GetCaster())
+    EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 function boss_tiny_stone_wall_lua:PlayEffects(spawn_pos, duration)
@@ -563,7 +569,9 @@ function boss_tiny_stone_sweep_lua:PlayEffects(radius)
 		true -- unknown, true
 	)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Centaur.HoofStomp", self:GetCaster() )
+	local sound_cast = "Hero_Centaur.HoofStomp"
+	-- EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
+	EmitSoundOn(sound_cast, self:GetCaster())
 end
 
 --------------------------------------------------------------------------------
