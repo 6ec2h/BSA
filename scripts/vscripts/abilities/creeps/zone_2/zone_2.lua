@@ -241,16 +241,12 @@ end
 
 function modifier_zombie_ice_hit:OnAttackLanded(keys)
     if not IsServer() then return end
-    
-    local attacker = keys.attacker
-    local target = keys.target
+    if keys.attacker ~= self:GetParent() then return end
+    if keys.attacker:IsIllusion() or not keys.target:IsAlive() then return end
 
-    if attacker == self:GetParent() and not attacker:IsIllusion() and target:IsAlive() then
-        local duration = self:GetAbility():GetSpecialValueFor("duration")
-        
-        target:AddNewModifier(attacker, self:GetAbility(), "modifier_movespeed_slow", {duration = duration})
-        target:EmitSound("Base.Hero_AncientApparition.ColdFootCast")
-    end
+    local duration = self:GetAbility():GetSpecialValueFor("duration")
+    keys.target:AddNewModifier(keys.attacker, self:GetAbility(), "modifier_movespeed_slow", {duration = duration})
+    keys.target:EmitSound("Base.Hero_AncientApparition.ColdFootCast")
 end
 
 --------------------------------------------------------------------------------
@@ -331,7 +327,6 @@ function modifier_fat_zombie_passive:DeclareFunctions()
     return {
         MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
         MODIFIER_EVENT_ON_DEATH,
-        MODIFIER_STATE_NO_UNIT_COLLISION
     }
 end
 

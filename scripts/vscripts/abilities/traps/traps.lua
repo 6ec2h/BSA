@@ -176,10 +176,7 @@ function modifier_circle_trap_lua:OnCreated( kv )
 end
 
 function modifier_circle_trap_lua:OnDestroy()
-      if self.pfx then
-        ParticleManager:DestroyParticle( self.pfx, false )
-        ParticleManager:ReleaseParticleIndex( self.pfx )
-    end
+    -- self.pfx managed by AddParticle — движок очищает автоматически
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

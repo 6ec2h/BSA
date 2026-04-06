@@ -59,6 +59,9 @@ return function(context)
 		PrecacheResource( "particle_folder", "particles/hny/", context )
 		PrecacheResource( "particle", "particles/econ/events/snowball/snowball_projectile.vpcf", context )
 		PrecacheResource( "particle", "particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_lich/lich_sinister_gaze.vpcf", context )
+		PrecacheResource( "particle", "particles/items_fx/dagon.vpcf", context )
 		
 		
 		PrecacheResource( "particle", "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf", context )
@@ -212,8 +215,6 @@ return function(context)
 		PrecacheResource( "soundfile", "soundevents/soundevents_conquest.vsndevts", context )
 		
 		PrecacheResource( "soundfile", "soundevents/game_sounds_custom.vsndevts", context )
-		-- PrecacheResource( "soundfile", "soundevents/game_sounds_dungeon.vsndevts", context )
-		-- PrecacheResource( "soundfile", "soundevents/game_sounds_dungeon_enemies.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/game_sounds_winter_2018.vsndevts", context )
 		
 		PrecacheResource( "soundfile", "sounds/music/stingers/quest_complete_01.vsnd", context )

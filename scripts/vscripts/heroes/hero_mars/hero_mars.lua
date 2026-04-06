@@ -87,6 +87,7 @@ function modifier_mars_lil:OnAttack( params )
 end
 
 function modifier_mars_lil:OnAttackLanded( params )
+    if params.attacker ~= self:GetParent() then return end
     if self.records[params.record] then
         params.target:AddNewModifier(
             self:GetParent(),
@@ -94,9 +95,8 @@ function modifier_mars_lil:OnAttackLanded( params )
             "modifier_mars_lil_debuff",
             { duration = self.slow }
         )
+        EmitSoundOn( "Hero_Snapfire.ExplosiveShellsBuff.Target", params.target )
     end
-
-    EmitSoundOn( "Hero_Snapfire.ExplosiveShellsBuff.Target", params.target )
 end
 
 function modifier_mars_lil:OnAttackRecordDestroy( params )

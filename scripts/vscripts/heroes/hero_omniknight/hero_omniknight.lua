@@ -110,7 +110,7 @@ LinkLuaModifier( "modifier_omniknight_repel_lua", "heroes/hero_omniknight/hero_o
 omniknight_repel_lua = class({})
 
 function omniknight_repel_lua:GetCooldown(level)
-    local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_omniknight_1")
+    local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_omniknight_2")
     if talent and talent:GetLevel() > 0 then
         return self.BaseClass.GetCooldown(self, level) - 5
     end

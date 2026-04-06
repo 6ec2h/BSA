@@ -157,6 +157,7 @@ end
 
 function modifier_templar_assassin_meld_lua:OnAttackLanded(keys)
     if not IsServer() then return end
+    if keys.attacker ~= self:GetParent() then return end
     if keys.record == self.meld_attack_id then
         local target = keys.target
         if target and target:IsAlive() then

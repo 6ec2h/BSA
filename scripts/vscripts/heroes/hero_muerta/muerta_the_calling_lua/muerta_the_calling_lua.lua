@@ -1,5 +1,4 @@
 muerta_the_calling_lua = class({})
-LinkLuaModifier( "modifier_generic_silenced_lua", "heroes/hero_muerta/muerta_the_calling_lua/muerta_the_calling_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_muerta_the_calling_lua_thinker", "heroes/hero_muerta/muerta_the_calling_lua/muerta_the_calling_lua", LUA_MODIFIER_MOTION_HORIZONTAL )
 LinkLuaModifier( "modifier_muerta_the_calling_lua_slow", "heroes/hero_muerta/muerta_the_calling_lua/muerta_the_calling_lua", LUA_MODIFIER_MOTION_NONE )
 

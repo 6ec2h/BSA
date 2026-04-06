@@ -88,7 +88,6 @@ function modifier_custom_blacksmith_aura:OnCreated(t)
 	if IsServer() then
 		self.pid = self:GetParent():GetPlayerOwnerID()
 		local sid = PlayerResource:GetSteamAccountID(self.pid)
-		print()
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"Upgrade_activate",{items = SearchForItems(self:GetParent()), shop = Shop.pShop[sid][2][14]})
 	end
 end

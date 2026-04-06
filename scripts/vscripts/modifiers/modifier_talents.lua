@@ -239,7 +239,7 @@ function modifier_talents:GetModifierProcAttack_Feedback( params )
 end
 
 function modifier_talents:GetModifierTotalDamageOutgoing_Percentage(keys)
-	bonus = 0
+	local bonus = 0
 
 	if self.values['bonus_int_8'] and self.values['bonus_int_8'] > 0 and keys.target:GetHealthPercent() < 20 and keys.damage_category == 0 then
 		bonus = bonus + 10
@@ -281,7 +281,7 @@ function modifier_talents:GetModifierConstantHealthRegen()
 end
 
 function modifier_talents:GetModifierSpellAmplify_Percentage()
-	bonus = 0
+	local bonus = 0
 	
 	if self.values['bonus_int_4'] and self.values['bonus_int_4'] > 0 then
 		bonus = self:GetCaster():GetLevel()
@@ -303,7 +303,7 @@ function modifier_talents:GetModifierSpellAmplify_Percentage()
 end
 
 function modifier_talents:GetModifierConstantManaRegen()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_int_1'] and self.values['bonus_int_1'] > 0 then
 		bonus = self:GetCaster():GetMaxMana() / 100 
 	end
@@ -326,7 +326,7 @@ function modifier_talents:GetModifierPercentageExpRateBoost()
 end
 
 function modifier_talents:GetModifierMagicalResistanceBonus()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_str_9'] and self.values['bonus_str_9'] > 0 and self:GetCaster():GetHealthPercent() < 15 then
 		bonus = 20
 	end
@@ -341,7 +341,7 @@ function modifier_talents:GetModifierMagicalResistanceBonus()
 end
 
 function modifier_talents:GetModifierPhysicalArmorBonus()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_str_4'] and self.values['bonus_str_4'] > 0 and self:GetCaster():GetHealthPercent() < 25 then
 		bonus = 20
 	end
@@ -352,7 +352,7 @@ function modifier_talents:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_talents:GetModifierPreAttack_BonusDamage()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_agi_3'] and self.values['bonus_agi_3'] > 0 and self:GetCaster():GetHealthPercent() < 20 then
 		bonus = 15 * self:GetStackCount() / 100
 	end
@@ -384,7 +384,7 @@ function modifier_talents:GetModifierEvasion_Constant()
 end
 
 function modifier_talents:GetModifierAttackSpeedBonus_Constant()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_agi_4'] and self.values['bonus_agi_4'] > 0 then
 		local max_health = self:GetParent():GetMaxHealth()
 		local current_health = self:GetParent():GetHealth()
@@ -410,7 +410,7 @@ function modifier_talents:GetModifierManaBonus()
 end
 
 function modifier_talents:GetModifierStatusResistanceStacking()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_str_10'] and self.values['bonus_str_10'] > 0 and self:GetCaster():GetHealthPercent() < 30 then
 		bonus = 30
 	end
@@ -421,7 +421,7 @@ function modifier_talents:GetModifierStatusResistanceStacking()
 end
 
 function modifier_talents:GetModifierHealthBonus()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_str_14'] and self.values['bonus_str_14'] > 0 then
 		bonus = 20 * self:GetCaster():GetPhysicalArmorValue(false)
 	end
@@ -432,7 +432,7 @@ function modifier_talents:GetModifierHealthBonus()
 end
 
 function modifier_talents:GetModifierMoveSpeedBonus_Percentage()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_agi_2'] and self.values['bonus_agi_2'] > 0 then
 		bonus = -15
 	end
@@ -449,7 +449,7 @@ function modifier_talents:GetModifierMoveSpeedBonus_Percentage()
 end
 
 function modifier_talents:GetModifierPercentageManacost()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_int_3'] and self.values['bonus_int_3'] > 0 then
 		bonus = 5
 	end
@@ -462,7 +462,7 @@ function modifier_talents:GetModifierPercentageManacost()
 end
 
 function modifier_talents:GetModifierHealthRegenPercentage()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_str_6'] and self.values['bonus_str_6'] > 0 then
 		bonus = 2
 	end
@@ -474,7 +474,7 @@ function modifier_talents:GetModifierHealthRegenPercentage()
 end
 
 function modifier_talents:GetModifierTotalPercentageManaRegen()
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_int_5'] and self.values['bonus_int_5'] > 0 and not self:GetParent():HasModifier('modifier_in_fight_lua') then
 		bonus = 3
 	end
@@ -484,7 +484,7 @@ end
 function modifier_talents:GetModifierIncomingDamage_Percentage(keys)
 	local damage = keys.damage
 
-	bonus = 0
+	local bonus = 0
 	if self.values['bonus_str_11'] and self.values['bonus_str_11'] > 0 and keys.damage_type == 1 then
 		bonus = bonus + (-5)
 	end
@@ -544,101 +544,91 @@ end
 	
 function modifier_talents:OnTakeDamage(keys)
 	if not IsServer() then return end
-
-	local attacker = keys.attacker
-	local target = keys.unit 
-	local damage = keys.damage
-
+	if keys.unit ~= self:GetParent() then return end
 	if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then return end
 
-	if self:GetParent() == target then
-		self:GetParent():AddNewModifier(self:GetParent(), self, "modifier_in_fight_lua", {duration = 10})
-		
-		if self.values['bonus_str_13'] and self.values['bonus_str_13'] > 0 then
-			local particle_return_fx = ParticleManager:CreateParticle(particle_return, PATTACH_ABSORIGIN, target)
-			ParticleManager:SetParticleControlEnt(particle_return_fx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(particle_return_fx, 1, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)
-			ParticleManager:ReleaseParticleIndex(particle_return_fx)
-			
-			local return_damage = target:GetBaseDamageMin()*0.05
-			if attacker:IsCreep() and keys.damage_type ~= 4 then
-				ApplyDamage({
-					victim = attacker,
-					attacker = target,
-					damage = return_damage,
-					damage_type = DAMAGE_TYPE_PURE,
-					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
-				})
-			end
+	local parent = self:GetParent()
+	local attacker = keys.attacker
+	local target = keys.unit
+
+	parent:AddNewModifier(parent, self, "modifier_in_fight_lua", {duration = 10})
+
+	if self.values['bonus_str_13'] and self.values['bonus_str_13'] > 0 then
+		local particle_return_fx = ParticleManager:CreateParticle(particle_return, PATTACH_ABSORIGIN, target)
+		ParticleManager:SetParticleControlEnt(particle_return_fx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(particle_return_fx, 1, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)
+		ParticleManager:ReleaseParticleIndex(particle_return_fx)
+
+		local return_damage = target:GetBaseDamageMin() * 0.05
+		if attacker:IsCreep() and keys.damage_type ~= 4 then
+			ApplyDamage({
+				victim = attacker,
+				attacker = target,
+				damage = return_damage,
+				damage_type = DAMAGE_TYPE_PURE,
+				damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
+			})
 		end
-	
-		if keys.damage_type == 2 and self.values['bonus_int_14'] and self.values['bonus_int_14'] > 0 then
-			self:GetParent():AddNewModifier(self:GetParent(), self, "modifier_bonus_int_14", {duration = 3})
-		end
-		
-		if self:GetParent():GetHealthPercent() < 20 and self.values['bonus_str_5'] and self.values['bonus_str_5'] > 0 and not self:GetParent():HasModifier('modifier_fear_lua') then
-			self:GetParent():AddNewModifier(self:GetParent(), self, "modifier_fear_lua", {duration = 120})
-			
-			local wave_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_terrorblade/terrorblade_scepter.vpcf", PATTACH_WORLDORIGIN, self:GetParent())
-			ParticleManager:SetParticleControl(wave_particle, 0, self:GetParent():GetAbsOrigin())
-			ParticleManager:SetParticleControl(wave_particle, 1, Vector(500, 500, 500))
-			ParticleManager:SetParticleControl(wave_particle, 2, Vector(500, 500, 500))
-			ParticleManager:ReleaseParticleIndex(wave_particle)
-			self:GetParent():EmitSound("Hero_Terrorblade.Metamorphosis.Fear")
-			for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), math.min(500 * (self:GetElapsedTime() -0.6), 500), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
-				if enemy:IsCreep() then
-					enemy:AddNewModifier(self:GetCaster(), self, "modifier_terrorblade_fear", {duration = 0.6})
-				end
+	end
+
+	if keys.damage_type == 2 and self.values['bonus_int_14'] and self.values['bonus_int_14'] > 0 then
+		parent:AddNewModifier(parent, self, "modifier_bonus_int_14", {duration = 3})
+	end
+
+	if parent:GetHealthPercent() < 20 and self.values['bonus_str_5'] and self.values['bonus_str_5'] > 0 and not parent:HasModifier('modifier_fear_lua') then
+		parent:AddNewModifier(parent, self, "modifier_fear_lua", {duration = 120})
+
+		local wave_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_terrorblade/terrorblade_scepter.vpcf", PATTACH_WORLDORIGIN, parent)
+		ParticleManager:SetParticleControl(wave_particle, 0, parent:GetAbsOrigin())
+		ParticleManager:SetParticleControl(wave_particle, 1, Vector(500, 500, 500))
+		ParticleManager:SetParticleControl(wave_particle, 2, Vector(500, 500, 500))
+		ParticleManager:ReleaseParticleIndex(wave_particle)
+		parent:EmitSound("Hero_Terrorblade.Metamorphosis.Fear")
+
+		for _, enemy in pairs(FindUnitsInRadius(self:GetCaster():GetTeamNumber(), parent:GetAbsOrigin(), parent, math.min(500 * (self:GetElapsedTime() - 0.6), 500), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
+			if enemy:IsCreep() then
+				enemy:AddNewModifier(self:GetCaster(), self, "modifier_terrorblade_fear", {duration = 0.6})
 			end
 		end
 	end
 end
 
 function modifier_talents:OnAttackLanded( params )
-	if IsServer() then
-		if self:GetParent()	== params.attacker then
-			local current_lifesteal = (table_data['lifesteal_1'] * (self.values['lifesteal_1'] or 0)) +
-										(table_data['lifesteal_2'] * (self.values['lifesteal_2'] or 0)) +
-										(table_data['lifesteal_3'] * (self.values['lifesteal_3'] or 0))
-		
-			local heal = params.damage * current_lifesteal / 100
-			if heal > 1 then
-				self:GetParent():Heal(heal, self)
-				self:PlayEffects(self:GetParent())
-			end	
-			
-			if self.values['bonus_agi_12'] and self.values['bonus_agi_12'] > 0 then
-				ApplyDamage({
-					victim = params.target,
-					attacker = params.attacker,
-					damage = self:GetParent():GetAttackDamage() * 0.05,
-					damage_type = DAMAGE_TYPE_PURE,
-					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
-				})
-				EmitSoundOn("Hero_Spectre.Desolate", self:GetParent())
-				
-			end
-		end
+	if not IsServer() then return end
+	local parent = self:GetParent()
+	if parent ~= params.attacker and parent ~= params.target then return end
 
-		if self.values['bonus_agi_11'] and self.values['bonus_agi_11'] > 0 then
-			if RandomInt(1,100) <= 10 then 
-				if params.target == self:GetParent() and params.attacker ~= params.target:GetTeamNumber() then
-					if (params.target:GetAbsOrigin() - params.attacker:GetAbsOrigin()):Length2D() < params.target:Script_GetAttackRange() then
-					
-						StartAnimation(self:GetParent(), {duration = 0.1, activity = ACT_DOTA_ATTACK_EVENT })
-						
-						params.target:PerformAttack(
-							params.attacker,
-							false,
-							true,
-							true,
-							false,
-							true,
-							false,
-							false
-						)
-						EmitSoundOn( "Hero_LegionCommander.Courage", self:GetParent() )
-					end
+	if parent == params.attacker then
+		local current_lifesteal = (table_data['lifesteal_1'] * (self.values['lifesteal_1'] or 0)) +
+									(table_data['lifesteal_2'] * (self.values['lifesteal_2'] or 0)) +
+									(table_data['lifesteal_3'] * (self.values['lifesteal_3'] or 0))
+		local heal = params.damage * current_lifesteal / 100
+		if heal > 1 then
+			self:GetParent():Heal(heal, self)
+			self:PlayEffects(self:GetParent())
+		end
+		if self.values['bonus_agi_12'] and self.values['bonus_agi_12'] > 0 then
+			ApplyDamage({
+				victim = params.target,
+				attacker = params.attacker,
+				damage = self:GetParent():GetAttackDamage() * 0.05,
+				damage_type = DAMAGE_TYPE_PURE,
+				damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
+			})
+			EmitSoundOn("Hero_Spectre.Desolate", self:GetParent())
+		end
+	end
+
+	if self.values['bonus_agi_11'] and self.values['bonus_agi_11'] > 0 then
+		if params.target == parent and params.attacker:GetTeamNumber() ~= params.target:GetTeamNumber() then
+			if RandomInt(1,100) <= 10 then
+				if (params.target:GetAbsOrigin() - params.attacker:GetAbsOrigin()):Length2D() < params.target:Script_GetAttackRange() then
+					StartAnimation(self:GetParent(), {duration = 0.1, activity = ACT_DOTA_ATTACK_EVENT })
+					params.target:PerformAttack(
+						params.attacker,
+						false, true, true, false, true, false, false
+					)
+					EmitSoundOn( "Hero_LegionCommander.Courage", self:GetParent() )
 				end
 			end
 		end
@@ -651,8 +641,6 @@ function modifier_talents:PlayEffects( target )
 	ParticleManager:SetParticleControl( effect_cast, 1, target:GetOrigin() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
-
-
 
 function modifier_talents:OnIntervalThink()
 	if IsServer() then
@@ -698,8 +686,6 @@ function modifier_talents:OnIntervalThink()
 		EmitSoundOn("DOTA_Item.BlackKingBar.Activate", self:GetParent())
 		self:GetParent():AddNewModifier(self:GetParent(), nil, 'modifier_talent_mag_resist_lua', {duration = 120})
 	end
-	
-	
 end
 
 

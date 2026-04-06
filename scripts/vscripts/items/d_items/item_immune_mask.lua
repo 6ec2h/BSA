@@ -80,7 +80,6 @@ function modifier_item_immune_mask:OnTakeDamage(keys)
   	if parent ~= keys.unit then return end
   if self:GetParent():IsHero() then
 	local R5 = RandomInt(1, 1000)
-	print(R5)
 	if R5 <= self.bkbchance then
 	self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_item_bkb", {duration = 1})
 	--self:GetParent():EmitSound("DOTA_Item.BlackKingBar.Activate")

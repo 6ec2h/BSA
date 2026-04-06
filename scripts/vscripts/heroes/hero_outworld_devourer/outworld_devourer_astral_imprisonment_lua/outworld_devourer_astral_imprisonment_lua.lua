@@ -1,11 +1,6 @@
 LinkLuaModifier( "modifier_outworld_devourer_astral_imprisonment_lua", "heroes/hero_outworld_devourer/outworld_devourer_astral_imprisonment_lua/outworld_devourer_astral_imprisonment_lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_outworld_devourer_astral_imprisonment_lua_charges", "heroes/hero_outworld_devourer/outworld_devourer_astral_imprisonment_lua/outworld_devourer_astral_imprisonment_lua", LUA_MODIFIER_MOTION_NONE )
 
 outworld_devourer_astral_imprisonment_lua = class({})
-
-function outworld_devourer_astral_imprisonment_lua:GetIntrinsicModifierName()
-	return "modifier_outworld_devourer_astral_imprisonment_lua_charges"
-end
 
 function outworld_devourer_astral_imprisonment_lua:OnSpellStart()
 	local caster = self:GetCaster()
@@ -134,95 +129,4 @@ function modifier_outworld_devourer_astral_imprisonment_lua:PlayEffects()
 	)
 	EmitSoundOn( sound_loop, self:GetCaster() )
 	--EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_loop, self:GetCaster() )
-end
-
-
------------------------------------------------------------------------------------------
-
-modifier_outworld_devourer_astral_imprisonment_lua_charges = class({})
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:IsHidden()
-	return false
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:IsDebuff()
-	return false
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:IsPurgable()
-	return false
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:DestroyOnExpire()
-	return false
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:OnCreated( kv )
-	self.max_charges = 1
-	local abil = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal1")
-	if abil ~= nil and abil:GetLevel() > 0 then 
-		self.max_charges = 2
-	end
-	
-	if IsServer() then
-		self:SetStackCount( self.max_charges )
-		self:CalculateCharge()
-	end
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:OnRefresh( kv )
-	self.max_charges = 1
-	local abil = self:GetCaster():FindAbilityByName("special_bonus_outworld_devourer_tal1")
-	if abil ~= nil and abil:GetLevel() > 0 then 
-		self.max_charges = 2
-	end
-	if IsServer() then
-		self:CalculateCharge()
-	end
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:OnDestroy( kv )
-
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
-	}
-	return funcs
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:OnAbilityFullyCast( params )
-	if IsServer() then
-		if params.unit~=self:GetParent() or params.ability~=self:GetAbility() then
-			return
-		end
-		self:DecrementStackCount()
-		--self:CalculateCharge()
-		self:OnRefresh()
-	end
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:OnIntervalThink()
-	self:IncrementStackCount()
-	self:StartIntervalThink(-1)
-	self:CalculateCharge()
-end
-
-function modifier_outworld_devourer_astral_imprisonment_lua_charges:CalculateCharge()
-	self:GetAbility():EndCooldown()
-	if self:GetStackCount()>=self.max_charges then
-		self:SetDuration( -1, false )
-		self:StartIntervalThink( -1 )
-	else
-		if self:GetRemainingTime() <= 0.05 then
-			local charge_time = self:GetAbility():GetCooldown( -1 )
-			self:StartIntervalThink( charge_time )
-			self:SetDuration( charge_time, true )
-		end
-
-		if self:GetStackCount()==0 then
-			self:GetAbility():StartCooldown( self:GetRemainingTime() )
-		end
-	end
 end

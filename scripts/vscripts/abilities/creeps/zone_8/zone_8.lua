@@ -806,14 +806,26 @@ end
 
 function modifier_creep_cast_damage_immune_lua:PlayEffects()
 	self.particle1 = ParticleManager:CreateParticle("particles/nyx_phisical.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-	ParticleManager:SetParticleControl(self.particle1, 1, Vector(150, 150, 150)) -- Arbitrary
-	self:AddParticle(self.particle1, false, false, -1, false, false)
+	ParticleManager:SetParticleControl(self.particle1, 1, Vector(150, 150, 150))
 end
 
 function modifier_creep_cast_damage_immune_lua:PlayEffects2()
 	self.particle2 = ParticleManager:CreateParticle("particles/nyx_magical.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-	ParticleManager:SetParticleControl(self.particle2, 1, Vector(150, 150, 150)) -- Arbitrary
-	self:AddParticle(self.particle2, false, false, -1, false, false)
+	ParticleManager:SetParticleControl(self.particle2, 1, Vector(150, 150, 150))
+end
+
+function modifier_creep_cast_damage_immune_lua:OnDestroy()
+	if not IsServer() then return end
+	if self.particle1 then
+		ParticleManager:DestroyParticle(self.particle1, true)
+		ParticleManager:ReleaseParticleIndex(self.particle1)
+		self.particle1 = nil
+	end
+	if self.particle2 then
+		ParticleManager:DestroyParticle(self.particle2, true)
+		ParticleManager:ReleaseParticleIndex(self.particle2)
+		self.particle2 = nil
+	end
 end
 
 --------------------------------------------------------------------------------

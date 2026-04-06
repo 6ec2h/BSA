@@ -1,5 +1,4 @@
 earthshaker_fissure_lua = class({})
-LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_earthshaker_fissure_lua_thinker", "heroes/hero_earthshaker/earthshaker_fissure_lua/modifier_earthshaker_fissure_lua_thinker", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
@@ -86,7 +85,7 @@ function earthshaker_fissure_lua:OnSpellStart()
 						unit:AddNewModifier(
 							caster, -- player source
 							self, -- ability source
-							"modifier_generic_stunned_lua", -- modifier name
+							"modifier_stunned", -- modifier name
 							{ duration = stun_duration } -- kv
 						)
 					end	
@@ -108,7 +107,7 @@ function earthshaker_fissure_lua:OnSpellStart()
 				unit:AddNewModifier(
 					caster, -- player source
 					self, -- ability source
-					"modifier_generic_stunned_lua", -- modifier name
+					"modifier_stunned", -- modifier name
 					{ duration = stun_duration } -- kv
 				)
 			end

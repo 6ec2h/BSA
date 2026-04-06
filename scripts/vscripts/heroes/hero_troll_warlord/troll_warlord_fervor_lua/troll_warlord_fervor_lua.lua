@@ -41,16 +41,9 @@ function modifier_troll_warlord_fervor_lua:DeclareFunctions()
 end
 
 function modifier_troll_warlord_fervor_lua:OnAttackLanded( params )
-	if IsServer() then
-		pass = false
-		if params.attacker==self:GetParent() then
-			pass = true
-		end
-
-		if pass then
-			self:AddStack(params.target, params.original_damage)
-		end
-	end
+	if not IsServer() then return end
+	if params.attacker ~= self:GetParent() then return end
+	self:AddStack(params.target, params.original_damage)
 end
 
 function modifier_troll_warlord_fervor_lua:AddStack(target, original_damage)

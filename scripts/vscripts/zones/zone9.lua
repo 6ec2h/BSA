@@ -86,7 +86,6 @@ function lord_quest(trigger)
 			end
 
 			if triggerName == 'candy3' then
-				print("!")
 				local unit_types = {"npc_dota_zone_9_unit_1", "npc_dota_zone_9_unit_2", "npc_dota_zone_9_unit_3"}
 				local modifiers_to_remove = {
 					"modifier_invulnerable",

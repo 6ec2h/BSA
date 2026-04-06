@@ -670,6 +670,7 @@ function creep_thundergods_wrath_lua:OnSpellStart()
                 ParticleManager:SetParticleControl(thundergod_strike_particle, 0, Vector(target_point.x, target_point.y, target_point.z + enemy:GetBoundingMaxs().z))
                 ParticleManager:SetParticleControl(thundergod_strike_particle, 1, Vector(target_point.x, target_point.y, 2000))
                 ParticleManager:SetParticleControl(thundergod_strike_particle, 2, Vector(target_point.x, target_point.y, target_point.z + enemy:GetBoundingMaxs().z))
+                ParticleManager:ReleaseParticleIndex(thundergod_strike_particle)
 
                 if not enemy:IsMagicImmune() and not enemy:IsInvisible() then
                     damage_table.victim  = enemy
@@ -875,7 +876,9 @@ function modifier_creep_telekines_lua:OnDestroy()
 		end
 	end
 	if self.pfx then
-	ParticleManager:DestroyParticle( self.pfx, false )
+		ParticleManager:DestroyParticle(self.pfx, false)
+		ParticleManager:ReleaseParticleIndex(self.pfx)
+		self.pfx = nil
 	end
 	StopSoundEvent( "Hero_Phoenix.SunRay.Beam", self:GetCaster() )
 end

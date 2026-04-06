@@ -1,5 +1,3 @@
-LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
-
 leshrac_split_earth_lua = class({})
 
 function leshrac_split_earth_lua:GetAOERadius()
@@ -79,7 +77,7 @@ function leshrac_split_earth_lua:OnSpellStart()
 			enemy:AddNewModifier(
 			caster, -- player source
 			self, -- ability source
-			"modifier_generic_stunned_lua", -- modifier name
+			"modifier_stunned", -- modifier name
 			{ duration = self.duration } -- kv
 	)
 	

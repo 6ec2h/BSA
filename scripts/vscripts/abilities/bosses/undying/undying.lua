@@ -320,7 +320,6 @@ function modifier_undy_skeletons_on_death_lua:SpawnSkeletons(position)
 
     for i = 1, count do
         local unit = CreateUnitByName("npc_dota_boss_undying_minion_"..i, position + RandomVector(100), true, caster, caster, caster:GetTeamNumber())
-        print(random_ability)
         rules:aura_dif(unit, random_ability)
         unit:AddNewModifier(caster, ability, "modifier_kill", {duration = 600})
     end

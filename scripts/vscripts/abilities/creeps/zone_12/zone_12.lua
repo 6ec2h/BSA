@@ -683,6 +683,11 @@ function creep_echo_stomp_lua:OnSpellStart()
                 enemy:AddNewModifier(caster, self, "modifier_creep_echo_stomp_sleep", { duration = duration })
             end
             
+            if self.combined_particle then
+                ParticleManager:DestroyParticle(self.combined_particle, false)
+                ParticleManager:ReleaseParticleIndex(self.combined_particle)
+                self.combined_particle = nil
+            end
             FindClearSpaceForUnit(caster, dummy:GetOrigin(), true)
             UTIL_Remove(dummy)
          end)
@@ -726,7 +731,6 @@ function modifier_creep_echo_stomp_sleep:OnRefresh()
     local ability = self:GetAbility()
     if ability then
         self.fDisarm = ability:GetSpecialValueFor("dis_arm") + ability:GetSpecialValueFor("diff_boost_additional")
-        print(self.fDisarm)
         self:SendBuffRefreshToClients()
     end
 end
@@ -753,6 +757,7 @@ function modifier_creep_echo_stomp_sleep:OnDestroy()
     if self.pfx then
         ParticleManager:DestroyParticle(self.pfx, false)
         ParticleManager:ReleaseParticleIndex(self.pfx)
+        self.pfx = nil
     end
 end
 

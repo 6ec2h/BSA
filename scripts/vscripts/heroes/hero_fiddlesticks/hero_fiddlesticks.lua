@@ -412,8 +412,10 @@ function modifier_hero_fiddlesticks_scythe:OnAttackLanded(params)
 			return nil
 		end
 
-		if params.attacker == self:GetCaster() and RandomInt(1,100) <= self.chance then
-			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_hero_fiddlesticks_scythe_effect", {duration = 0.03})
+		if params.attacker == self:GetCaster() then
+			if RandomInt(1,100) <= self.chance then
+				params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_hero_fiddlesticks_scythe_effect", {duration = 0.03})
+			end
 		end
 	end
 end

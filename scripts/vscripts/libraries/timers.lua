@@ -144,7 +144,6 @@ function Timers:Think()
 end
 
 function Timers:HandleEventError(name, event, err)
-  print(err)
 
   -- Ensure we have data
   name = tostring(name or 'unknown')
@@ -175,7 +174,7 @@ function Timers:CreateTimer(name, args)
     name = DoUniqueString("timer")
   end
   if not args.callback then
-    print("Invalid timer created: "..name)
+
     return
   end
 

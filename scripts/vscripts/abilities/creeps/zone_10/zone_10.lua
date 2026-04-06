@@ -402,8 +402,9 @@ function creep_dismember_lua:OnSpellStart()
 end
 
 function creep_dismember_lua:OnChannelFinish(bInterrupted)
+	local target_buff = nil
 	if self.target then
-		local target_buff = self.target:FindModifierByNameAndCaster("modifier_creep_dismember_lua", self:GetCaster())
+		target_buff = self.target:FindModifierByNameAndCaster("modifier_creep_dismember_lua", self:GetCaster())
 		if bInterrupted then
 			self.target:RemoveModifierByName("modifier_creep_dismember_lua")
 		end
@@ -417,6 +418,7 @@ function creep_dismember_lua:OnChannelFinish(bInterrupted)
 	if self.pfx then
 		ParticleManager:DestroyParticle(self.pfx, false)
 		ParticleManager:ReleaseParticleIndex(self.pfx)
+		self.pfx = nil
 	end
 end
 
@@ -573,14 +575,15 @@ function modifier_creep_rot_lua:OnCreated(kv)
     self.parent = self:GetParent()
     self.rot_radius = self.ability:GetSpecialValueFor("radius")
     self.rot_damage_pct = self.ability:GetSpecialValueFor("damage")
-    self.rot_tick = 0.2
+    self.rot_tick = 0.5
 
     if IsServer() then
+        self.damage_per_tick = (self.rot_damage_pct / 100) * self.rot_tick
         self.parent:EmitSound("Hero_Pudge.Rot")
-        
+
         self.pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_rot.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
         ParticleManager:SetParticleControl(self.pfx, 1, Vector(self.rot_radius, 1, self.rot_radius))
-        self:AddParticle(self.pfx, false, false, -1, false, false) 
+        self:AddParticle(self.pfx, false, false, -1, false, false)
 
         self:StartIntervalThink(self.rot_tick)
     end
@@ -590,7 +593,7 @@ function modifier_creep_rot_lua:OnIntervalThink()
     if not IsServer() then return end
     if not self.parent:IsAlive() then return end
 
-    local damage_per_tick = (self.rot_damage_pct / 100) * self.rot_tick
+    local damage_per_tick = self.damage_per_tick
 
     local units = FindUnitsInRadius(
         self.parent:GetTeamNumber(), 
@@ -718,7 +721,7 @@ function modifier_creep_spider_egg_lua:OnCreated( kv )
 		self.trigger_radius = self:GetAbility():GetSpecialValueFor( "trigger_radius" )
 		self.damage = self:GetAbility():GetSpecialValueFor( "damage" ) + self:GetAbility():GetSpecialValueFor( "diff_boost_damage" )
 		self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
-		self:StartIntervalThink(0.25)
+		self:StartIntervalThink(0.5)
 	end
 end
 
@@ -824,7 +827,7 @@ function modifier_creep_nightmare_lua:OnIntervalThink()
         local parent_pos = self.parent:GetAbsOrigin()
         local direction = target_pos - parent_pos
         direction.z = 0
-        
+
         if direction:Length2D() > 150 then
             direction = direction:Normalized()
             self.parent:SetAbsOrigin( parent_pos + direction * (self.pull_speed * 0.03) )

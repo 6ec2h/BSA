@@ -150,7 +150,8 @@ function modifier_item_mjollnir:DeclareFunctions()
 	return{
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 end
 
@@ -168,19 +169,20 @@ function modifier_item_mjollnir:OnIntervalThink()
 end
 
 function modifier_item_mjollnir:OnAttackLanded(keys)
-	-- Chain Lightning Logic
-	if keys.attacker == self:GetParent() and self:GetParent():IsAlive() and not self.prock and not self:GetParent():IsIllusion() and not keys.target:IsMagicImmune() and not keys.target:IsBuilding() and not keys.target:IsOther() and self:GetParent():GetTeamNumber() ~= keys.target:GetTeamNumber() and RandomInt(1, 5) == 5 then
-		
-		self:GetParent():EmitSound("Item.Maelstrom.Chain_Lightning")
-	
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_mjollnir_strike", {
-			starting_unit_entindex	= keys.target:entindex()
-		})
-		
-		self.bChainCooldown = true
-		
-		self:StartIntervalThink(0.2)
-	end
+	if keys.attacker ~= self:GetParent() then return end
+	if not self.prock then return end
+	if self:GetParent():IsIllusion() then return end
+	if keys.target:IsMagicImmune() or keys.target:IsBuilding() or keys.target:IsOther() then return end
+	if self:GetParent():GetTeamNumber() == keys.target:GetTeamNumber() then return end
+	if RandomInt(1, 5) ~= 5 then return end
+
+	self:GetParent():EmitSound("Item.Maelstrom.Chain_Lightning")
+	self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_mjollnir_strike", {
+		starting_unit_entindex = keys.target:entindex()
+	})
+
+	self.prock = nil
+	self:StartIntervalThink(0.2)
 end
 
 -----------------------------------------------------------------------------
@@ -191,14 +193,14 @@ function modifier_item_mjollnir_strike:IsHidden()		return true end
 function modifier_item_mjollnir_strike:IsPurgable()	return false end
 function modifier_item_mjollnir_strike:RemoveOnDeath()	return false end
 
-function modifier_item_mjollnir_strike:OnCreated()
+function modifier_item_mjollnir_strike:OnCreated(kv)
 	self.bonus_damage	= self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.chain_damage	= self:GetAbility():GetSpecialValueFor("chain_damage")
 	self.chain_strikes	= self:GetAbility():GetSpecialValueFor("chain_strikes")
 	self.chain_radius	= self:GetAbility():GetSpecialValueFor("chain_radius")
 	self.chain_delay	= self:GetAbility():GetSpecialValueFor("chain_delay")
 
-	self.starting_unit_entindex	= keys.starting_unit_entindex
+	self.starting_unit_entindex	= kv.starting_unit_entindex
 
 	self.units_affected			= {}
 	self.unit_counter			= 0

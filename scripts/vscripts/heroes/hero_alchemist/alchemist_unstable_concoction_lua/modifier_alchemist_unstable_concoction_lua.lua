@@ -101,7 +101,7 @@ function modifier_alchemist_unstable_concoction_lua:OnIntervalThink()
 		enemy:AddNewModifier(
 			self:GetCaster(), -- player source
 			self:GetAbility(), -- ability source
-			"modifier_generic_stunned_lua", -- modifier name
+			"modifier_stunned", -- modifier name
 			{ duration = self.max_stun } -- kv
 		)
 	end
@@ -115,7 +115,7 @@ function modifier_alchemist_unstable_concoction_lua:OnIntervalThink()
 		self:GetParent():AddNewModifier(
 			self:GetParent(), -- player source
 			self:GetAbility(), -- ability source
-			"modifier_generic_stunned_lua", -- modifier name
+			"modifier_stunned", -- modifier name
 			{ duration = self.max_stun } -- kv
 		)
 	end

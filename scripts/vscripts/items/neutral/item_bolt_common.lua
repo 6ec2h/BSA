@@ -8,7 +8,6 @@ function Bolt(keys)
 	local unit_damage_pct = ability:GetSpecialValueFor("lightnihg_damage_pct")
 	local final_damage = math.ceil(unit_max_mana*unit_damage_pct/100)
 		StartSoundEvent("Hero_Zuus.ArcLightning.Cast", caster)
-		print(final_damage)
 	for i=1, target_count do
 	local AllEnemies = FindUnitsInRadius(DOTA_UNIT_TARGET_TEAM_ENEMY, target:GetAbsOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
 --	for i=1, #AllEnemies do

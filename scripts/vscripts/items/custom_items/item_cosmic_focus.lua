@@ -15,7 +15,6 @@ modifier_item_cosmic_focus = class({})
 function modifier_item_cosmic_focus:IsHidden() return true end
 function modifier_item_cosmic_focus:IsPurgable() return false end
 function modifier_item_cosmic_focus:RemoveOnDeath() return false end
-function modifier_item_cosmic_focus:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 local function IsOwnItem(item, hero)
     local purchaser = item:GetPurchaser()
@@ -98,7 +97,7 @@ function modifier_item_cosmic_focus:DeclareFunctions()
     return {
         MODIFIER_PROPERTY_MANA_BONUS,
         MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-        MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+        MODIFIER_PROPERTY_CAST_RANGE_BONUS,
         MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
         MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
         MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE,
@@ -109,7 +108,7 @@ end
 
 function modifier_item_cosmic_focus:GetModifierManaBonus() return self.bonus_mana or 0 end
 function modifier_item_cosmic_focus:GetModifierConstantManaRegen() return self.mana_regen or 0 end
-function modifier_item_cosmic_focus:GetModifierCastRangeBonusStacking() return self.cast_range_bonus or 0 end
+function modifier_item_cosmic_focus:GetModifierCastRangeBonus() return self.cast_range_bonus or 0 end
 function modifier_item_cosmic_focus:GetModifierSpellAmplify_Percentage() return self.spell_amp or 0 end
 function modifier_item_cosmic_focus:GetModifierMPRegenAmplify_Percentage() return self.mana_regen_multiplier or 0 end
 function modifier_item_cosmic_focus:GetModifierSpellLifestealRegenAmplify_Percentage() return self.spell_lifesteal_amp or 0 end

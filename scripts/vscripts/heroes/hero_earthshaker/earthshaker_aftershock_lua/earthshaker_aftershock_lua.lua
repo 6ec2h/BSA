@@ -1,5 +1,4 @@
 earthshaker_aftershock_lua = class({})
-LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_earthshaker_aftershock_lua", "heroes/hero_earthshaker/earthshaker_aftershock_lua/modifier_earthshaker_aftershock_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------

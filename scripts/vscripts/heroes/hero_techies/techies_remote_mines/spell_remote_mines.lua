@@ -37,6 +37,11 @@ function techies_remote_mines_lua:OnAbilityPhaseInterrupted()
 end
 
 function techies_remote_mines_lua:OnSpellStart()
+	if self.pfx then
+		ParticleManager:DestroyParticle(self.pfx, true)
+		ParticleManager:ReleaseParticleIndex(self.pfx)
+		self.pfx = nil
+	end
 	local caster = self:GetCaster()
 	local pos = self:GetCursorPosition()
 	local mine = CreateUnitByName("npc_dota_techies_remote_mine", pos, true, caster, caster, caster:GetTeamNumber())
@@ -72,11 +77,7 @@ function modifier_remote_mines:OnDestroy()
 			dmg = dmg + 200
 		end	
 		
-		damage = dmg * ampl
-			
-
-		print(ampl)
-		
+		local damage = dmg * ampl
 		
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do

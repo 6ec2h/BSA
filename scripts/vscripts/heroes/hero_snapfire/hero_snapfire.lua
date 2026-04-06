@@ -358,6 +358,7 @@ function modifier_lua_snapfire_lil_shredder:OnAttack( params )
 end
 
 function modifier_lua_snapfire_lil_shredder:OnAttackLanded( params )
+	if params.attacker ~= self:GetParent() then return end
 	if self.records[params.record] then
 		EmitSoundOn( "Hero_Snapfire.ExplosiveShellsBuff.Target", params.target )
 	end

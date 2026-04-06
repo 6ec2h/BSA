@@ -284,7 +284,6 @@ function StartColorQuest()
     color_quest.quest_sequence = table.shuffle({1,2,3})
 
     for i, color_index in ipairs(color_quest.quest_sequence) do
-        print(i, color_index)
         local model = ""
         if color_index == 1 then
             model = "models/events/crownfall/match3/gems/gem_lina.vmdl"
@@ -301,7 +300,6 @@ function StartColorQuest()
             })
         table.insert(color_quest.quest_props, prop)
     end
-    table.print(color_quest.quest_sequence)
 end
 
 function restart_quest()

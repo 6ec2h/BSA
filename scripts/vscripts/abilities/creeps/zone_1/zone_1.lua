@@ -289,7 +289,7 @@ function creep_thunder_clap:GetIntrinsicModifierName()
     return "modifier_boss_damage_boost"
 end
 
-function creep_mana_burn:Precache( context )
+function creep_thunder_clap:Precache( context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_creeps.vsndevts", context )
 	PrecacheResource( "particle", "particles/neutral_fx/ursa_thunderclap.vpcf", context )
 end

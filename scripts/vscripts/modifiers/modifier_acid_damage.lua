@@ -28,7 +28,8 @@ function modifier_acid_damage:OnIntervalThink()
             damage_type = DAMAGE_TYPE_PURE,
 			damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
         }
-        ParticleManager:CreateParticle("particles/units/heroes/hero_venomancer/venomancer_loadout.vpcf", PATTACH_ABSORIGIN , self:GetParent()) 
+        local pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_venomancer/venomancer_loadout.vpcf", PATTACH_ABSORIGIN, self:GetParent())
+        ParticleManager:ReleaseParticleIndex(pfx)
         ApplyDamage(damageTable)
         end
     end

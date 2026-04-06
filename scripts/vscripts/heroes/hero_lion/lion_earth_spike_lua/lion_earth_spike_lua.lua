@@ -1,5 +1,4 @@
 lion_earth_spike_lua = class({})
-LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_knockback_lua", "heroes/generic/modifier_generic_knockback_lua", LUA_MODIFIER_MOTION_BOTH )
 LinkLuaModifier( "modifier_lion_soul_collector", "heroes/hero_lion/lion_soul_collector/lion_soul_collector", LUA_MODIFIER_MOTION_NONE)
 
@@ -145,7 +144,7 @@ function lion_earth_spike_lua:OnProjectileHit( target, location )
 	target:AddNewModifier(
 		self:GetCaster(), -- player source
 		self, -- ability source
-		"modifier_generic_stunned_lua", -- modifier name
+		"modifier_stunned", -- modifier name
 		{ duration = stun } -- kv
 	)
 

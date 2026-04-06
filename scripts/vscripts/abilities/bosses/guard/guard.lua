@@ -227,7 +227,6 @@ end
 function modifier_ogre_tank_melee_smash_thinker:OnIntervalThink()
 	if IsServer() then
 		if self:GetCaster() == nil or self:GetCaster():IsNull() or self:GetCaster():IsAlive() == false or self:GetCaster():IsStunned() then
-			--print( string.format( "Caster is nil, dead, or stunned, removing smash thinker" ) )
 			UTIL_Remove( self:GetParent() )
 			return -1
 		end

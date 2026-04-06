@@ -795,7 +795,6 @@ function creep_rain_of_chaos_lua:OnSpellStart()
         local bonus_damage = self:GetSpecialValueFor("golem_dmg")+ (self:GetSpecialValueFor("golem_dmg") * self:GetSpecialValueFor("diff_boost_damage")/100)
         local bonus_armor = self:GetSpecialValueFor("golem_armor")+ (self:GetSpecialValueFor("golem_armor") * self:GetSpecialValueFor("diff_boost_damage")/100)
 
-        print(bonus_hp)
 		golem:SetBaseMaxHealth(bonus_hp)
 		golem:SetMaxHealth(bonus_hp)
 		golem:SetHealth(golem:GetMaxHealth())

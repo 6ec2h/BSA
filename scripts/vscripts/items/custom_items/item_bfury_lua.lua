@@ -74,8 +74,6 @@ function modifier_item_bfury_lua:OnAttackLanded(keys)
     local damage = keys.damage
     local damageMod = ability:GetSpecialValueFor( "cleave_damage_percent" )
     local radius = ability:GetSpecialValueFor( "cleave_distance" ) + (keys.attacker:Script_GetAttackRange() * ability:GetSpecialValueFor( "bonus_cleave_distance" ))
-    local particle_cast = 'particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf'
-    
     damageMod = damageMod * 0.01
     damage = damage * damageMod
 	

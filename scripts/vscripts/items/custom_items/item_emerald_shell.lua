@@ -88,17 +88,21 @@ function modifier_item_emerald_shell:GetAbsorbSpell(event)
     local parent = self:GetParent()
     local ability = self:GetAbility()
 
-    if not parent:HasModifier("modifier_item_emerald_shell_block") then
+    if event.ability and event.ability:GetCaster():GetTeamNumber() ~= parent:GetTeamNumber() then
         
-        local pfx = ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
-        ParticleManager:ReleaseParticleIndex(pfx)
-        parent:EmitSound("DOTA_Item.LinkensSphere.Target")
+        if not parent:HasModifier("modifier_item_emerald_shell_block") then
+            
+            local pfx = ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
+            ParticleManager:ReleaseParticleIndex(pfx)
+            parent:EmitSound("DOTA_Item.LinkensSphere.Target")
 
-        parent:RemoveModifierByName("modifier_item_emerald_shell_ready")
-        parent:AddNewModifier(parent, ability, "modifier_item_emerald_shell_block", {duration = self.block_cooldown})
-        
-        return 1
+            parent:RemoveModifierByName("modifier_item_emerald_shell_ready")
+            parent:AddNewModifier(parent, ability, "modifier_item_emerald_shell_block", {duration = self.block_cooldown})
+            
+            return 1
+        end
     end
+
     return 0
 end
 

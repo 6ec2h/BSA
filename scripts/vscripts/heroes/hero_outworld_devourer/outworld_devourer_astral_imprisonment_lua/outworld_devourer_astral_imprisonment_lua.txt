@@ -22,16 +22,32 @@
 		"AbilityCastPoint"				"0.25 0.25 0.25 0.25"
 		"AbilityDuration"				"4.0"
 
-		"AbilityCooldown"				"22 18 14 10"
 		"AbilityManaCost"				"140 160 180 200"
 
 		"AbilityValues"
 		{
-			"prison_duration"		"2.0"
-			"damage"				"120 200 280 360"
-			"radius"				"300"
-			"cast_range_tooltip"	"450"
+			"prison_duration"					"2.0"
+			"damage"							"120 200 280 360"
+			"radius"							"300"
+			"cast_range_tooltip"				"450"
 			"ExtraIntelligenceDamage"			"0.2"
+			"AbilityChargeRestoreTime"      
+            {
+                "value"             			"22 18 14 10"
+            }
+			"AbilityCharges"        
+            {
+                "value" "1"
+				"special_bonus_unique_outworld_devourer_tal1" "+1"
+            }
 		}
+	}
+
+
+	"special_bonus_unique_outworld_devourer_tal1" 
+	{
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
 	}
 }

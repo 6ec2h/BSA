@@ -174,7 +174,7 @@ function UniversalTrapThinker()
 
     for _, trap in pairs(TRAP_SETTINGS) do
         if trap.npc_name == "zone_2_trap_7" and _G.Fast_shot == false then
-            -- print("off fast trap")
+            
         else
             if not trap.wait_until or GameRules:GetGameTime() >= trap.wait_until then
                 if trap.current_shots > 0 then

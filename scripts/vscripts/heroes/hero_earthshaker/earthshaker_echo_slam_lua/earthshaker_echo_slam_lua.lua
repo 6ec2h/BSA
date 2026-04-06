@@ -1,5 +1,3 @@
-LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
-
 earthshaker_echo_slam_lua = class({})
 
 function earthshaker_echo_slam_lua:OnSpellStart()
@@ -68,7 +66,7 @@ function earthshaker_echo_slam_lua:OnSpellStart()
 				enemy:AddNewModifier(
 						caster, -- player source
 						self, -- ability source
-						"modifier_generic_stunned_lua", -- modifier name
+						"modifier_stunned", -- modifier name
 						{ duration = 3 } -- kv
 					)
 				end	

@@ -20,7 +20,6 @@ end
 function modifier_sets:OnCreated(kv)
     if not IsServer() then return end
 	self:SetupRewards(kv)
-	-- table.print(kv)
 	self:SetHasCustomTransmitterData(true)
 	self.bChainCooldown = false
 end

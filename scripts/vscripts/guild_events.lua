@@ -470,7 +470,7 @@ function guild_events:ClearItems(hero)
     if not guild_events.items_storage[steamID] then
         guild_events.items_storage[steamID] = {}
         local item = hero:GetItemInSlot(15)
-        print(item:GetName())
+
         if item and item:GetName() == "item_tpscroll" then
             table.insert(guild_events.items_storage[steamID], {
                 name = item:GetAbilityName(),

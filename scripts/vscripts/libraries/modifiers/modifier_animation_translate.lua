@@ -408,8 +408,6 @@ function modifier_animation_translate:DeclareFunctions()
 end
 
 function modifier_animation_translate:GetActivityTranslationModifiers(...)
-  --print('TRANSLATE MODIFIER', IsServer())
-  --print(self.translate)
   return self.translate or 0
 end
 

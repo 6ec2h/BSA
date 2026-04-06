@@ -46,7 +46,6 @@ function modifier_pet_owner:OnCreated(data)
 	}
 	
     tab = find_boost_by_name(data.pet)
-	table.print(tab)
 	for _, stat in ipairs(tab) do
 		if base_stats[stat] then
 			self.pets_boosts[stat] = base_stats[stat]

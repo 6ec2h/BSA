@@ -97,6 +97,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	ListenToGameEvent("game_rules_state_change", Dynamic_Wrap( CAddonAdvExGameMode, "OnGameStateChanged" ), self )
 	ListenToGameEvent("dota_rune_activated_server",Dynamic_Wrap(CAddonAdvExGameMode,"onRuneActivated"),self)
 	CustomGameEventManager:RegisterListener("npc_interact", Dynamic_Wrap( CAddonAdvExGameMode, 'OnNpcInteract' ))
+	GameRules:SetStartingGold(600)
 	
 	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockAmount(0)
 
@@ -129,7 +130,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	SendToServerConsole("dota_max_physical_items_purchase_limit 9999")
 
 	if IsInToolsMode() then
-		GameRules:SetStartingGold(99999)
+		-- GameRules:SetStartingGold(99999)
 	end
 end
 

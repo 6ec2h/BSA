@@ -56,7 +56,7 @@ function modifier_item_hallowed_ground:OnCreated()
 
     if IsServer() then
         local parent = self:GetParent()
-        if parent and not parent:HasModifier("modifier_item_hallowed_ground_aura_emitter") then
+        if parent then
             parent:AddNewModifier(parent, ability, "modifier_item_hallowed_ground_aura_emitter", {})
         end
     end
@@ -190,7 +190,7 @@ end
 function modifier_item_hallowed_ground_aura:GetModifierPhysicalArmorBonus()
     local owner = self:GetParent()
     if owner and owner:IsRealHero() then
-        local bonus_power = (1 - math.max(owner:GetHealthPercent(), self.aura_bonus_threshold) * 0.01) / (1 - self.aura_bonus_threshold * 0.01)
+        local bonus_power = (1 - math.max(owner:GetHealthPercent() or 100, self.aura_bonus_threshold) * 0.01) / (1 - self.aura_bonus_threshold * 0.01)
         return self.aura_armor + (self.aura_armor_bonus - self.aura_armor) * bonus_power
     end
     return self.aura_armor
@@ -199,7 +199,7 @@ end
 function modifier_item_hallowed_ground_aura:GetModifierConstantHealthRegen()
     local owner = self:GetParent()
     if owner and owner:IsRealHero() then
-        local bonus_power = (1 - math.max(owner:GetHealthPercent(), self.aura_bonus_threshold) * 0.01) / (1 - self.aura_bonus_threshold * 0.01)
+        local bonus_power = (1 - math.max(owner:GetHealthPercent() or 100, self.aura_bonus_threshold) * 0.01) / (1 - self.aura_bonus_threshold * 0.01)
         return self.aura_health_regen + (self.aura_health_regen_bonus - self.aura_health_regen) * bonus_power
     end
     return self.aura_health_regen

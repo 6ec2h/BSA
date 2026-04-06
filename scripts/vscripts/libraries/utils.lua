@@ -317,7 +317,6 @@ function CDOTA_BaseNPC:RemoveSafely()
 	      if hAbility and hAbility.GetAbilityName then
 	      	local sAbilityName = hAbility:GetAbilityName()
 	      	if (not string.find(sAbilityName, "special_bonus")) and (not string.find(sAbilityName, "empty_")) then
-	      		--print(sAbilityName.." Not Safe")
 	            bSafe = false
 	         end
 	      end

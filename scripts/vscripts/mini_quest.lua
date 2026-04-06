@@ -1,7 +1,7 @@
 _G.shovel_event = false
 
 function mine_room_quest(trigger)
-local hero = trigger.activator
+	local hero = trigger.activator
 	if hero ~= nil then
 	local Key = hero:FindItemInInventory( "item_shovel" )
 		if Key ~= nil then
@@ -112,9 +112,9 @@ function mine_tp_out()
 							["npc_dota_creature"] = true,
 						}
 
-						local mineCenterPoint = Entities:FindByName(nil, "minepnt"):GetAbsOrigin()
+						local mineCenterPoint = Entities:FindByName(nil, "mine5"):GetAbsOrigin()
 
-						local entsInMine = Entities:FindAllInSphere(mineCenterPoint, 2500)
+						local entsInMine = Entities:FindAllInSphere(mineCenterPoint, 2000)
 
 						for _, ent in ipairs(entsInMine) do
 							local classname = ent:GetClassname()

@@ -256,10 +256,9 @@ function boss_ursa_roar_lua:OnSpellStart()
     end
 
     if furthest_enemy then
+        local target_pos = furthest_enemy:GetAbsOrigin()
         Timers:CreateTimer(0.5, function()
             if not caster:IsAlive() or not furthest_enemy:IsAlive() then return end
-            
-            local target_pos = furthest_enemy:GetAbsOrigin()
             
             FindClearSpaceForUnit(caster, target_pos, true)
             

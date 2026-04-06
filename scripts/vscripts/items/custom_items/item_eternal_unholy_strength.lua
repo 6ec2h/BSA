@@ -12,9 +12,19 @@ local function _active_name(level)
 	return "modifier_item_eternal_unholy_str_active_" .. level
 end
 
+local function _find_item_active(unit, name)
+	for slot = 0, 5 do
+		local item = unit:GetItemInSlot(slot)
+		if item and not item:IsNull() and item:GetName() == name then
+			return item
+		end
+	end
+	return nil
+end
+
 local function _has_higher_tier(unit, current_level)
 	for lvl = current_level + 1, 3 do
-		if unit:FindItemInInventory("item_eternal_unholy_strength_" .. lvl) then
+		if _find_item_active(unit, "item_eternal_unholy_strength_" .. lvl) then
 			return true
 		end
 	end
@@ -182,7 +192,7 @@ function modifier_item_eternal_unholy_str_active_1:OnIntervalThink()
 		return
 	end
 
-	if not parent:FindItemInInventory("item_eternal_unholy_strength_" .. (self._item_level or 1)) then
+	if not _find_item_active(parent, "item_eternal_unholy_strength_" .. (self._item_level or 1)) then
 		self:Destroy()
 		return
 	end

@@ -381,6 +381,7 @@ function modifier_boss_bristleback_goo_lua_thinker:OnDestroy()
     if self.pfx then
         ParticleManager:DestroyParticle(self.pfx, false)
         ParticleManager:ReleaseParticleIndex(self.pfx)
+        self.pfx = nil
     end
 end
 
@@ -495,7 +496,7 @@ function modifier_boss_bristleback_summon_swarm_passive:OnAttackLanded(params)
     
     if params.attacker == self:GetParent() then
         self.target = params.target
-        modifier = self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_boss_bristleback_summon_swarm_debuff", {duration = 2})
+        local modifier = self.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_boss_bristleback_summon_swarm_debuff", {duration = 2})
         modifier:IncrementStackCount()
     end
 end
@@ -599,7 +600,7 @@ function boss_bristleback_hairball_lua:OnProjectileHit(target, location)
                 attacker = caster,
                 damage = damage,
                 damage_type = DAMAGE_TYPE_PHYSICAL,
-                ability = ability
+                ability = self
             })
         end
         self:PlayEffects(caster, location)

@@ -28,7 +28,6 @@ function add_quest_3(trigger)
             quest_system:StartQuest("additional", 104, _G.quest_data["additional"][104].target[1])
             return
         else
-			print("!")
             rules:DisplayError(pid, "#fail_additional_quest")
 			return
         end
@@ -118,7 +117,6 @@ function quest_110(trigger)
 			quest_system:StartQuest('additional', 110, 'item_orb')
 			return
         else
-			print("!")
             rules:DisplayError(pid, "#fail_additional_quest")
 			return
         end

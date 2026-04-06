@@ -24,6 +24,7 @@ function thundergod_ultra_lua:OnSpellStart()
             ParticleManager:SetParticleControl(thundergod_strike_particle, 0, Vector(point.x, point.y, point.z + enemy:GetBoundingMaxs().z))
             ParticleManager:SetParticleControl(thundergod_strike_particle, 1, Vector(point.x, point.y, 2000))
             ParticleManager:SetParticleControl(thundergod_strike_particle, 2, Vector(point.x, point.y, point.z + enemy:GetBoundingMaxs().z))
+            ParticleManager:ReleaseParticleIndex(thundergod_strike_particle)
 
             damage_table.damage = enemy:GetMaxHealth() * 0.75
             damage_table.victim = enemy
@@ -107,9 +108,11 @@ function sunstrike_ultra_lua:OnSpellStart()
 
 			Timers:CreateTimer(delay, function()
 				ParticleManager:DestroyParticle(startFX, false)
+				ParticleManager:ReleaseParticleIndex(startFX)
 				local endFX = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", PATTACH_ABSORIGIN, enemy)
 				ParticleManager:SetParticleControl(endFX, 0, point)
 				ParticleManager:SetParticleControl(endFX, 1, Vector(damage_radius, 0, 0))
+				ParticleManager:ReleaseParticleIndex(endFX)
 				EmitSoundOn("Hero_Invoker.SunStrike.Ignite", enemy)
 				local units = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, damage_radius,  DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
 				for _, unit in ipairs(units) do
@@ -413,7 +416,7 @@ function roshan_ultra_lua:OnSpellStart()
 
     local enemies = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0), caster, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
     for _,enemy in pairs(enemies) do 
-        if enemy:IsAlive() then 
+        if enemy:IsAlive() and not enemy:HasModifier("modifier_guild_event") then 
             local point = enemy:GetAbsOrigin()
             local dummy = CreateUnitByName("npc_treasure_chest", point + RandomVector( RandomFloat( 150, 150 )), false, caster, caster, caster:GetTeamNumber())
             dummy:AddNewModifier(caster, self, "modifier_kill", {duration = 10})

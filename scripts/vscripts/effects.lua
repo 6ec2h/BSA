@@ -28,6 +28,7 @@ function effects:CastSpray(t)
 		if tab.spray ~= nil then
 			local effect = ParticleManager:CreateParticle( "particles/sprays/spray_placement.vpcf", PATTACH_WORLDORIGIN, nil )
 			ParticleManager:SetParticleControl( effect, 0, point )
+			ParticleManager:ReleaseParticleIndex( effect )
 
 			local spray = ParticleManager:CreateParticle( tab.spray, PATTACH_WORLDORIGIN, nil )
 			ParticleManager:SetParticleControl( spray, 0, point )

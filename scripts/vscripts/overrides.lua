@@ -116,5 +116,5 @@ Timers:CreateTimer(30, function()
     _G.CACHE_STATS.hits = 0
     _G.CACHE_STATS.misses = 0
 
-    return 30
+    return 20
 end)

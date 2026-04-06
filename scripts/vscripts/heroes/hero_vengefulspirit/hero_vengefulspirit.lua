@@ -253,11 +253,9 @@ vengefulspirit_nether_swap_lua = class({})
 
 function vengefulspirit_nether_swap_lua:GetCooldown(level)
     local caster = self:GetCaster()
-    if caster:HasAbility("special_bonus_unique_vengefulspirit_6") then
-        local talent = caster:FindAbilityByName("special_bonus_unique_vengefulspirit_6")
-        if talent and talent:GetLevel() > 0 then
-            return self.BaseClass.GetCooldown(self, level) - 20
-        end
+    local talent = caster:FindAbilityByName("special_bonus_unique_vengefulspirit_6")
+    if talent and talent:GetLevel() > 0 then
+        return self.BaseClass.GetCooldown(self, level) - 20
     end
     return self.BaseClass.GetCooldown(self, level)
 end
