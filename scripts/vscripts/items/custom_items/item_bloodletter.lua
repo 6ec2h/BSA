@@ -31,24 +31,18 @@ function item_bloodletter_1:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_item_bloodletter_prevention", { duration = 0.05 })
 
 	local active_name = _active_mod_name(_item_level(self))
-
-	if caster:HasModifier(active_name) then
-		caster:EmitSound("DOTA_Item.MaskOfMadness.Deactivate")
-		caster:RemoveModifierByName(active_name)
-	else
-		caster:EmitSound("DOTA_Item.MaskOfMadness.Activate")
-		caster:AddNewModifier(caster, self, active_name, {
-			duration = self:GetSpecialValueFor("duration")
-		})
-	end
+	caster:EmitSound("DOTA_Item.MaskOfMadness.Activate")
+	caster:AddNewModifier(caster, self, active_name, {
+		duration = self:GetSpecialValueFor("duration")
+	})
 end
 
 function item_bloodletter_1:GetAbilityTextureName()
 	local caster = self:GetCaster()
 	local level  = _item_level(self)
-	if caster and not caster:IsNull() and caster:HasModifier(_active_mod_name(level)) then
-		return "new/item_bloodletter_active"
-	end
+	-- if caster and not caster:IsNull() and caster:HasModifier(_active_mod_name(level)) then
+	-- 	return "new/item_bloodletter_active"
+	-- end
 	return "new/item_bloodletter_" .. level
 end
 
@@ -120,6 +114,10 @@ function modifier_item_bloodletter_active_1:OnCreated()
 	self.stack_duration      = ability:GetSpecialValueFor("stack_duration")
 	self.hp_drain_pct        = ability:GetSpecialValueFor("hp_drain_pct")
 	self.debuff_armor        = ability:GetSpecialValueFor("debuff_armor")
+end
+
+function modifier_item_bloodletter_active_1:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_item_bloodletter_active_1:DeclareFunctions()

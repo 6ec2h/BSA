@@ -51,6 +51,8 @@ function simple_trap_shot:OnProjectileHit(hTarget, vLocation)
     if not IsServer() then return end
     
     if hTarget ~= nil and (not hTarget:IsMagicImmune()) then
+        if hTarget:FindAbilityByName('sasori_red_secret_technique') then return false end
+
         local damage = 0
         local damage_type = DAMAGE_TYPE_PURE
 
@@ -162,13 +164,15 @@ function modifier_circle_trap_lua:OnCreated( kv )
         )
 
         for _, unit in pairs(units) do
-            ApplyDamage({
-                victim = unit,
-                attacker = caster,
-                ability = self:GetAbility(),
-                damage = unit:GetMaxHealth(),
-                damage_type = DAMAGE_TYPE_PURE
-            })
+            if not unit:FindAbilityByName('sasori_red_secret_technique') then
+                ApplyDamage({
+                    victim = unit,
+                    attacker = caster,
+                    ability = self:GetAbility(),
+                    damage = unit:GetMaxHealth(),
+                    damage_type = DAMAGE_TYPE_PURE
+                })
+            end
         end
 
         return deltaTime
@@ -329,17 +333,18 @@ function modifier_spike_trap_thinker_lua:OnIntervalThink()
 		if #enemies > 0 then
 			for _,enemy in pairs(enemies) do
 				if enemy ~= nil and ( not enemy:IsMagicImmune() ) and ( not enemy:IsInvulnerable() ) then
+					if not enemy:FindAbilityByName('sasori_red_secret_technique') then
+						local damage = {
+							victim = enemy,
+							attacker = self:GetCaster(),
+							damage = self.light_strike_array_damage,
+							damage_type = DAMAGE_TYPE_MAGICAL,
+							ability = self:GetAbility()
+						}
 
-					local damage = {
-						victim = enemy,
-						attacker = self:GetCaster(),
-						damage = self.light_strike_array_damage,
-						damage_type = DAMAGE_TYPE_MAGICAL,
-						ability = self:GetAbility()
-					}
-
-					ApplyDamage( damage )
-					enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_spike_trap_lua", { duration = self.light_strike_array_stun_duration } )
+						ApplyDamage( damage )
+						enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_spike_trap_lua", { duration = self.light_strike_array_stun_duration } )
+					end
 				end
 			end
 		end
@@ -430,7 +435,9 @@ function modifier_simple_roll_shot_thinker:PerformTick()
     )
     
     for _, enemy in pairs(enemies) do
-        enemy:Kill(nil, self:GetCaster())
+        if not enemy:FindAbilityByName('sasori_red_secret_technique') then
+            enemy:Kill(nil, self:GetCaster())
+        end
     end
 
     if (next_pos - self.parent_origin):Length2D() > self.shot_range then

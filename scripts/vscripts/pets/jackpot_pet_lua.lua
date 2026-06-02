@@ -1,6 +1,53 @@
 LinkLuaModifier("modifier_pet_passive_logic", "pets/jackpot_pet_lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_pet_stats_sync", "pets/jackpot_pet_lua", LUA_MODIFIER_MOTION_NONE)
 
+local _pet_exception_patterns = {
+    "jackpot_pet_lua",
+    "attribute_bonus",
+    "ability_capture_lua",
+    "terrorblade_",
+    "alchemist_greevils_greed_lua",
+    "legion_ult",
+    "ogre_magi_bloodlust_lua",
+    "lion_soul_collector",
+    "silencer_infinite_int_lua",
+    "techies_remote_mines_lua",
+    "wraith_king_sceleton",
+    "lua_abyssal_underlord_atrophy_aura",
+    "anakim_wisp",
+    "axe_blood_lua",
+    "bloodseeker_thirst_lua",
+    "broodmother_ult",
+    "mars_atrophy_aura_lua",
+    "shadow_fiend_necromastery_lua",
+    "hero_destroyer_",
+    "dado_",
+    "hero_fiddlesticks_armor",
+    "hero_rubick_ability",
+    "special_bonus_",
+    -- akatsuki
+    "pain_",
+    "itachi_",
+    "kisame_",
+    "hidan_",
+    "tobi_",
+    "zetsu_",
+    "deidara_",
+    "konan_",
+    "kakuzu_",
+    "sasori_",
+}
+
+local function is_pet_exception(ability_name)
+    if not ability_name or ability_name == "" then return true end
+    for _, pattern in ipairs(_pet_exception_patterns) do
+        if string.find(ability_name, pattern, 1, true) then
+            return true
+        end
+    end
+    return false
+end
+
 jackpot_pet_lua = class({})
 
 function jackpot_pet_lua:GetIntrinsicModifierName()
@@ -13,6 +60,18 @@ modifier_pet_passive_logic = class({})
 
 function modifier_pet_passive_logic:IsHidden() return true end
 
+function modifier_pet_passive_logic:GetStatusEffectName()
+	if self:GetParent():GetUnitName() == "jackpot_pet2" then
+		return "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold_lvl2.vpcf"
+	end
+end
+
+function modifier_pet_passive_logic:StatusEffectPriority()
+	if self:GetParent():GetUnitName() == "jackpot_pet2" then
+		return 10
+	end
+end
+
 function modifier_pet_passive_logic:OnCreated()
     if not IsServer() then return end
     self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_pet_stats_sync", {})
@@ -22,7 +81,6 @@ end
 
 function modifier_pet_passive_logic:OnIntervalThink()
     if not IsServer() then return end
-    
     local pet = self:GetParent()
     local owner = pet:GetOwner()
     if not owner or not owner:IsRealHero() or not owner:IsAlive() then
@@ -33,62 +91,48 @@ function modifier_pet_passive_logic:OnIntervalThink()
 
     pet:SetMaxMana(owner:GetMaxMana())
 
-    local exceptions = {
-        [self:GetAbility():GetAbilityName()] = true,
-        ["attribute_bonus"] = true,
-        ["ability_capture_lua"] = true,
-        ["terrorblade_reflection_lua"] = true,
-        ["terrorblade_sunder_lua"] = true,
-        ["terrorblade_conjure_image_lua"] = true,
-        ["alchemist_greevils_greed_lua"] = true,
-        ["legion_ult"] = true,
-        ["ogre_magi_bloodlust_lua"] = true,
-        ["lion_soul_collector"] = true,
-        ["silencer_infinite_int_lua"] = true,
-        ["techies_remote_mines_lua"] = true,
-        ["wraith_king_sceleton"] = true,
-        ["lua_abyssal_underlord_atrophy_aura"] = true,
-        ["anakim_wisp"] = true,
-        ["axe_blood_lua"] = true,
-        ["bloodseeker_thirst_lua"] = true,
-        ["broodmother_ult"] = true,
-        ["mars_atrophy_aura_lua"] = true,
-        ["shadow_fiend_necromastery_lua"] = true,
-        ["hero_destroyer_second_skill_armor"] = true,
-        ["hero_destroyer_second_skill_resist"] = true,
-        ["hero_destroyer_second_skill_hp"] = true,
-        ["dado_tp_in"] = true,
-        ["dado_tp_out"] = true,
-        ["dado_ampl"] = true,
-        ["hero_fiddlesticks_armor"] = true,
-    }
-
+    -- Собираем текущие скиллы хозяина
+    local owner_abilities = {}
     local abilityCount = owner:GetAbilityCount()
     for i = 0, abilityCount - 1 do
         local ability = owner:GetAbilityByIndex(i)
-        if ability then
+        if ability and not ability:IsNull() then
             local ability_name = ability:GetAbilityName()
-            if not exceptions[ability_name] then
-                local pet_ability = pet:FindAbilityByName(ability_name)
-                if not pet_ability then
-                    pet_ability = pet:AddAbility(ability_name)
-                end
-                if pet_ability and pet_ability:GetLevel() ~= ability:GetLevel() then
-                    pet_ability:SetLevel(ability:GetLevel())
-                end
+            if not is_pet_exception(ability_name) then
+                owner_abilities[ability_name] = ability:GetLevel()
             end
         end
     end
 
-    local dist = (owner:GetOrigin() - pet:GetOrigin()):Length2D()
+    -- Удаляем с пета скиллы которых больше нет у хозяина
+    for i = pet:GetAbilityCount() - 1, 0, -1 do
+        local pet_ability = pet:GetAbilityByIndex(i)
+        if pet_ability and not pet_ability:IsNull() then
+            local name = pet_ability:GetAbilityName()
+            if not is_pet_exception(name) and not owner_abilities[name] then
+                pet:RemoveAbility(name)
+            end
+        end
+    end
 
+    -- Добавляем/обновляем скиллы хозяина на пете
+    for ability_name, level in pairs(owner_abilities) do
+        local pet_ability = pet:FindAbilityByName(ability_name)
+        if not pet_ability then
+            pet_ability = pet:AddAbility(ability_name)
+        end
+        if pet_ability and pet_ability:GetLevel() ~= level then
+            pet_ability:SetLevel(level)
+        end
+    end
+
+    local dist = (owner:GetOrigin() - pet:GetOrigin()):Length2D()
     if dist > 1200 then
         self:BlinkToOwner(pet, owner)
         return
     end
 
     local owner_target = owner:GetAggroTarget()
- 
     if not owner_target or not owner_target:IsAlive() then
         pet:SetAcquisitionRange(0)
         if pet:GetAggroTarget() then

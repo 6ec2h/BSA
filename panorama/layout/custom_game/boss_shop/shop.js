@@ -236,7 +236,28 @@ function initShop(tab){
 							}
 							pan.FindChildTraverse('pet_panel_return').SetPanelEvent("onmouseactivate", returnItem(key, tovarKey, pan))
 							pan.FindChildTraverse('pet_panel_take').SetPanelEvent("onmouseactivate", give(key, tovarKey))
-							
+
+							// Кол-во и кнопка улучшения
+							var countBadge = pan.FindChildTraverse('pet_count_badge')
+							var countLbl = pan.FindChildTraverse('pet_count_label')
+							var upgradeBtn = pan.FindChildTraverse('pet_upgrade_btn')
+							if (countBadge) countBadge.visible = tovarValue.now > 0
+							if (countLbl) countLbl.text = String(tovarValue.now || 0)
+							var upgradeThreshold = tovarValue.itemname === 'item_jackpot_pet' ? 3 : 5
+							if (upgradeBtn) {
+								if ((tovarValue.level !== 'ancient' && tovarValue.now >= 5) || (tovarValue.itemname === 'item_jackpot_pet' && tovarValue.now >= 3)) {
+									upgradeBtn.visible = true
+									;(function(name) {
+										upgradeBtn.SetPanelEvent('onmouseactivate', function() {
+											Game.EmitSound("cas.item_has_been_sold")
+											GameEvents.SendCustomGameEventToServer('pet_upgrade', { item_name: name })
+										})
+									})(tovarValue.itemname)
+								} else {
+									upgradeBtn.visible = false
+								}
+							}
+
 							if (tovarValue.now > 0){
 								pan.FindChildTraverse('smart_toggle').visible = true
 								item = pan.FindChildTraverse('smart_toggle')

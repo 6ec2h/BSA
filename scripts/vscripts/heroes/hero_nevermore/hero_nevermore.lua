@@ -136,12 +136,7 @@ function modifier_shadow_fiend_necromastery_lua:DeathLogic( params )
 	
 	if unit ~= self:GetParent() or params.reincarnate then return end
 
-	local talent = caster:FindAbilityByName("special_bonus_unique_shadow_fiend_7")
-	if talent and talent:GetLevel() > 0 then
-        return
-    end
-
-	self:SetStackCount(math.max(1, math.floor(self:GetStackCount() / 100 * self:GetAbility():GetSpecialValueFor("soul_release"))))
+	self:SetStackCount(math.max(1, math.floor(self:GetStackCount() / 100 * (100 - self:GetAbility():GetSpecialValueFor("soul_release")))))
 end
 
 function modifier_shadow_fiend_necromastery_lua:KillLogic( params )

@@ -27,10 +27,16 @@ function modifier_outpost_activation:GetAuraDuration()
     return 0.5
 end
 
+function modifier_outpost_activation:GetAuraEntityReject(entity)
+    return entity:IsInvulnerable()
+end
+
 function modifier_outpost_activation:OnCreated( kv )
     self.isProvidedByAura = kv.isProvidedByAura == 1
     if IsServer() and self.isProvidedByAura then
-        local origin = self:GetAuraOwner():GetOrigin()
+        local auraOwner = self:GetAuraOwner()
+        if not auraOwner or auraOwner:IsNull() then return end
+        local origin = auraOwner:GetOrigin()
         local npc_dota_watch_tower = nil
         local ent = Entities:FindByClassname(nil, "npc_dota_watch_tower")
         while ent do

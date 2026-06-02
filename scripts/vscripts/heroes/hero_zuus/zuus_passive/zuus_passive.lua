@@ -30,7 +30,6 @@ end
 function modifier_zuus_passive:OnCreated(kv)
     if not IsServer() then return end
     Timers:CreateTimer(0, function()
-        if not self:GetCaster() or not self:GetCaster():IsAlive() then return end
         if self:IsNull() then return end
 
         local caster = self:GetCaster()
@@ -40,10 +39,10 @@ function modifier_zuus_passive:OnCreated(kv)
         local talent3 = caster:FindAbilityByName("special_bonus_zuus_3")
         local talent7 = caster:FindAbilityByName("special_bonus_zuus_7")
 
-        local cast_time = 3
-        if talent1 and talent1:GetLevel() > 0 then
-            cast_time = 2
-        end
+        local cast_time = (talent1 and talent1:GetLevel() > 0) and 2 or 3
+
+        if not caster:IsAlive() then return cast_time end
+
         ability:StartCooldown(cast_time)
 
         local damage_per_int = ability:GetSpecialValueFor("dmg_per_int")

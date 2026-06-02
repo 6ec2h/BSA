@@ -23,6 +23,16 @@ local unremovableAbilitiesMap = {
 	["hero_rubick_ability"] = true,
 	["ability_capture_lua"] = true,
 	["new_year_snowball"] = true,
+	["pain_six_paths_authority"] = true,
+	["itachi_crow_guard"] = true,
+	["kisame_samehada_hunger"] = true,
+	["hidan_ritual_of_blood"] = true,
+	["tobi_phantom_strike"] = true,
+	["zetsu_root_assimilation"] = true,
+	["deidara_unstable_art"] = true,
+	["konan_paper_dance"] = true,
+	["kakuzu_earth_grudge_fear"] = true,
+	["sasori_red_secret_technique"] = true,
 }
 
 local invalid_ability_names = {
@@ -37,6 +47,17 @@ local invalid_ability_names = {
     "abyssal_underlord_portal_warp",
 	"techies_focused_detonate_lua",
 	"techies_remote_mines_lua",
+    -- akatsuki
+    "hidan_",
+    "kakuzu_",
+    "konan_",
+    "sasori_",
+    "kisame_",
+    "itachi_",
+    "deidara_",
+    "zetsu_",
+    "tobi_",
+    "pain_",
 }
 
 function is_invalid_ability(ability_name)
@@ -88,31 +109,34 @@ function hero_rubick_ability:OnSpellStart()
 	end
 	
 	for i = 0, 2 do
+		if #ability_list == 0 then break end
 		local new_ability_name = nil
 		while true do
 			new_ability_name = table.shuffle(ability_list)[1]
+			if not new_ability_name then break end
 			local existing_ability = hero:FindAbilityByName(new_ability_name)
-			if not existing_ability then
-				break
-			end
+			if not existing_ability then break end
 		end
-		
 		if new_ability_name then
 			local new_ability = hero:AddAbility(new_ability_name)
 			if new_ability then
-				local level = self.ability_level[i+1] or 0 
+				local level = self.ability_level[i+1] or 0
 				new_ability:SetLevel(0)
 				new_ability:SetLevel(level)
 			end
 		end
 	end
-	
-	local new_ability_ult = table.shuffle(ability_list_ult)[1]
-	local new_ult = hero:AddAbility(new_ability_ult)
-	if new_ult then
-		local level = self.ability_level[4] or 0 
-		new_ult:SetLevel(0)
-		new_ult:SetLevel(level)
+
+	if #ability_list_ult > 0 then
+		local new_ability_ult = table.shuffle(ability_list_ult)[1]
+		if new_ability_ult then
+			local new_ult = hero:AddAbility(new_ability_ult)
+			if new_ult then
+				local level = self.ability_level[4] or 0
+				new_ult:SetLevel(0)
+				new_ult:SetLevel(level)
+			end
+		end
 	end
 end
 
@@ -198,29 +222,32 @@ function modifier_hero_rubick:OnIntervalThink()
 					end
 				end
 				for i = 0, 2 do
+					if #ability_list == 0 then break end
 					local new_ability_name = nil
 					while true do
 						new_ability_name = table.shuffle(ability_list)[1]
+						if not new_ability_name then break end
 						local existing_ability = caster:FindAbilityByName(new_ability_name)
-						if not existing_ability then
-							break
-						end
+						if not existing_ability then break end
 					end
-					
 					if new_ability_name then
 						local new_ability = caster:AddAbility(new_ability_name)
 						if new_ability then
-							local level = self.ability_level[i+1] or 0 
+							local level = self.ability_level[i+1] or 0
 							new_ability:SetLevel(level)
 						end
 					end
 				end
-				
-				local new_ability_ult = table.shuffle(ability_list_ult)[1]
-				local new_ult = caster:AddAbility(new_ability_ult)
-				if new_ult then
-					local level = self.ability_level[4] or 0 
-					new_ult:SetLevel(level)
+
+				if #ability_list_ult > 0 then
+					local new_ability_ult = table.shuffle(ability_list_ult)[1]
+					if new_ability_ult then
+						local new_ult = caster:AddAbility(new_ability_ult)
+						if new_ult then
+							local level = self.ability_level[4] or 0
+							new_ult:SetLevel(level)
+						end
+					end
 				end
 				ability:UseResources(false, false, false, true)
 			end

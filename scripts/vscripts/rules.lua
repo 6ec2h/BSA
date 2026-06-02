@@ -15,7 +15,12 @@ function rules:init()
 	CustomGameEventManager:RegisterListener("request_npc_interactions_data", Dynamic_Wrap( rules, 'request_npc_interactions_data'))
 	CustomGameEventManager:RegisterListener("adjust_damage_challenge_stats", Dynamic_Wrap( rules, 'adjust_damage_challenge_stats'))
 	CustomGameEventManager:RegisterListener("RequestDifficultData", Dynamic_Wrap(rules, "RequestDifficultData"))
+	CustomGameEventManager:RegisterListener("skin_equip",   Dynamic_Wrap(rules, "skin_equip"))
+	CustomGameEventManager:RegisterListener("skin_unequip", Dynamic_Wrap(rules, "skin_unequip"))
 end
+
+_G.player_original_model = {}
+_G.player_equipped_skin  = {}
 
 ------------------------------------------------------ ERROR LOGGER -------------------------------------------------
 
@@ -483,8 +488,150 @@ end
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
 
+LinkLuaModifier('modifier_skin_model_override', 'rules', LUA_MODIFIER_MOTION_NONE)
 
+modifier_skin_model_override = class({})
 
+function modifier_skin_model_override:IsHidden()      return true  end
+function modifier_skin_model_override:IsPurgable()    return false end
+function modifier_skin_model_override:RemoveOnDeath() return false end
+function modifier_skin_model_override:OnCreated(kv)
+    self._model = kv.model
+    self._scale = kv.scale
+end
+function modifier_skin_model_override:DeclareFunctions()
+    return { MODIFIER_PROPERTY_MODEL_CHANGE, MODIFIER_PROPERTY_MODEL_SCALE }
+end
+function modifier_skin_model_override:GetModifierModelChange()
+    return self._model or ""
+end
+function modifier_skin_model_override:GetModifierModelScale()
+    return (self._scale * 50) or 1.0
+end
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+local SKIN_DATA = {
+	pain    = { model = "models/naruto/pain/pain.vmdl",       scale = 2.0, attack = "melee",  ability = "pain_six_paths_authority"    },
+	itachi  = { model = "models/naruto/itachi/itachi.vmdl",   scale = 2.0, attack = "melee",  ability = "itachi_crow_guard"           },
+	kisame  = { model = "models/naruto/kisame/kisame.vmdl",   scale = 2.0, attack = "melee",  ability = "kisame_samehada_hunger"      },
+	hidan   = { model = "models/naruto/hidan/hidan.vmdl",     scale = 2.0, attack = "melee",  ability = "hidan_ritual_of_blood"       },
+	tobi    = { model = "models/naruto/tobi/tobi.vmdl",       scale = 2.0, attack = "melee",  ability = "tobi_phantom_strike"         },
+	zetsu   = { model = "models/naruto/zecu/zecu.vmdl",    	  scale = 2.0, attack = "ranged", ability = "zetsu_root_assimilation"     },
+	konan   = { model = "models/naruto/konan/konan.vmdl",     scale = 2.0, attack = "ranged", ability = "konan_paper_dance"           },
+	deidara = { model = "models/naruto/deidara/deidara.vmdl", scale = 2.0, attack = "ranged", ability = "deidara_unstable_art"        },
+	kakuzu  = { model = "models/naruto/kakuzu/kakuzu.vmdl",   scale = 2.0, attack = "ranged", ability = "kakuzu_earth_grudge_fear"    },
+	sasori  = { model = "models/naruto/sasori/sasori.vmdl",   scale = 2.0, attack = "ranged", ability = "sasori_red_secret_technique" },
+}
+
+function rules:skin_equip(t)
+	local pid  = t.PlayerID
+	local skin = SKIN_DATA[t.skin_id]
+	if not skin then return end
+
+	if _G.ability_mode then
+		rules:DisplayError(pid, "#skin_equip_ability_mode")
+		return
+	end
+
+	if GameRules:GetDOTATime(false, false) > 300 then
+		rules:DisplayError(pid, "#skin_equip_time_expired")
+		return
+	end
+
+	local hero = PlayerResource:GetSelectedHeroEntity(pid)
+	if not hero or hero:IsNull() then return end
+
+	local hero_attack = hero:IsRangedAttacker() and "ranged" or "melee"
+	if hero_attack ~= skin.attack then
+		rules:DisplayError(pid, "#skin_wrong_attack_type")
+		return
+	end
+
+	-- Сохраняем оригинальную модель перед заменой
+	if not _G.player_original_model[pid] then
+		_G.player_original_model[pid] = {
+			model = hero:GetModelName(),
+			scale = hero:GetModelScale(),
+		}
+	end
+
+	-- Удаляем способность предыдущего скина при прямой смене
+	local prev_skin_id = _G.player_equipped_skin[pid]
+	if prev_skin_id and prev_skin_id ~= t.skin_id then
+		local prev_skin = SKIN_DATA[prev_skin_id]
+		if prev_skin and prev_skin.ability ~= "" and hero:FindAbilityByName(prev_skin.ability) then
+			hero:RemoveAbility(prev_skin.ability)
+		end
+	end
+
+	-- -- Сбрасываем партиклы от предметов: снимаем и надеваем обратно
+	-- local saved_items = {}
+	-- for slot = 0, 14 do
+	-- 	local item = hero:GetItemInSlot(slot)
+	-- 	if item then
+	-- 		saved_items[slot] = item
+	-- 		hero:RemoveItem(item)
+	-- 	end
+	-- end
+
+	hero:RemoveModifierByName('modifier_skin_model_override')
+	hero:AddNewModifier(hero, nil, 'modifier_skin_model_override', { model = skin.model, scale = skin.scale })
+
+	-- for slot, item in pairs(saved_items) do
+	-- 	hero:AddItem(item)
+	-- end
+
+	if skin.ability ~= "" and not hero:FindAbilityByName(skin.ability) then
+		local ab        = hero:AddAbility(skin.ability)
+		local new_level = math.min(math.floor(hero:GetLevel() / 5) + 1, ab:GetMaxLevel())
+		ab:SetLevel(new_level)
+	end
+
+	_G.player_equipped_skin[pid] = t.skin_id
+
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(pid), "skin_state_update",
+		{ skin_id = t.skin_id, owned = 1, equipped = 1, expires = 0 }
+	)
+end
+
+function rules:skin_unequip(t)
+	local pid  = t.PlayerID
+	local skin = SKIN_DATA[t.skin_id]
+	if not skin then return end
+
+	local hero = PlayerResource:GetSelectedHeroEntity(pid)
+	if not hero or hero:IsNull() then return end
+
+	-- local saved_items = {}
+	-- for slot = 0, 14 do
+	-- 	local item = hero:GetItemInSlot(slot)
+	-- 	if item then
+	-- 		saved_items[slot] = item
+	-- 		hero:RemoveItem(item)
+	-- 	end
+	-- end
+
+	hero:RemoveModifierByName('modifier_skin_model_override')
+	_G.player_original_model[pid] = nil
+
+	-- for slot, item in pairs(saved_items) do
+	-- 	hero:AddItem(item)
+	-- end
+
+	if skin.ability ~= "" and hero:FindAbilityByName(skin.ability) then
+		hero:RemoveAbility(skin.ability)
+	end
+
+	_G.player_equipped_skin[pid] = nil
+
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(pid), "skin_state_update",
+		{ skin_id = t.skin_id, owned = 1, equipped = 0, expires = 0 }
+	)
+end
 
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------

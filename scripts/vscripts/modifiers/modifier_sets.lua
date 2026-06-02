@@ -311,7 +311,7 @@ function modifier_sets:OnTakeDamageReflect(keys)
 		victim = keys.attacker,
 		attacker = keys.unit,
 		damage = keys.damage * reflectPct / 100 * self.full_set,
-		damage_type = keys.damage_type,
+		damage_type = DAMAGE_TYPE_PURE, --keys.damage_type,
 		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN,
 	})
 end

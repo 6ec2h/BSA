@@ -62,6 +62,10 @@ return function(context)
 		PrecacheResource( "particle", "particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf", context )
 		PrecacheResource( "particle", "particles/units/heroes/hero_lich/lich_sinister_gaze.vpcf", context )
 		PrecacheResource( "particle", "particles/items_fx/dagon.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_antimage/antimage_blink_start.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_antimage/antimage_blink_end.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_antimage/antimage_blink_end.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_techies/techies_suicide_explosion.vpcf", context )
 		
 		
 		PrecacheResource( "particle", "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf", context )
@@ -72,6 +76,7 @@ return function(context)
 		PrecacheResource("particle", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf" , context)
 		PrecacheResource("particle", "particles/traps/temple_trap_arrow.vpcf", context)
 		PrecacheResource("particle", "particles/trap_sunray.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/phantom_lancer_spawn_illusion.vpcf", context)
 		
 		PrecacheResource("particle", "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf", context)
 		PrecacheResource("particle", "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf", context)
@@ -433,5 +438,17 @@ return function(context)
 		PrecacheResource( "soundfile", "soundevents/cas/item_has_been_sold.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/cas/casino_jackpot.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/cas/jackpot_win_notification.vsndevts", context )
+
+		-- Akatsuki skins
+		PrecacheResource( "model", "models/naruto/pain/pain.vmdl",       context )
+		PrecacheResource( "model", "models/naruto/itachi/itachi.vmdl",   context )
+		PrecacheResource( "model", "models/naruto/kisame/kisame.vmdl",   context )
+		PrecacheResource( "model", "models/naruto/hidan/hidan.vmdl",     context )
+		PrecacheResource( "model", "models/naruto/tobi/tobi.vmdl",       context )
+		PrecacheResource( "model", "models/naruto/zecu/zecu.vmdl",       context )
+		PrecacheResource( "model", "models/naruto/konan/konan.vmdl",     context )
+		PrecacheResource( "model", "models/naruto/deidara/deidara.vmdl", context )
+		PrecacheResource( "model", "models/naruto/kakuzu/kakuzu.vmdl",   context )
+		PrecacheResource( "model", "models/naruto/sasori/sasori.vmdl",   context )
 
 end		

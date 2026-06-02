@@ -33,3 +33,4 @@ LinkLuaModifier( "modifier_boss_damage_boost", "abilities/bosses/modifier_boss_d
 LinkLuaModifier( "modifier_hidden_room_effect", "modifiers/modifier_hidden_room_effect", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_dummy", "modifiers/modifier_dummy", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_event_buff", "modifiers/modifier_event_buff", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier('modifier_skin_model_override', 'rules', LUA_MODIFIER_MOTION_NONE)

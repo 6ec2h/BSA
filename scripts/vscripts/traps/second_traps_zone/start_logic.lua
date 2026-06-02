@@ -746,15 +746,17 @@ function Fire(trigger)
 	end
 
 	if heroHandle ~= nil then
-		local pendulumTrap = thisEntity:FindAbilityByName("pendulum_trap")
-		local killEffects = ParticleManager:CreateParticle( "particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_blood01.vpcf", PATTACH_POINT, heroHandle )
-		ParticleManager:SetParticleControlEnt( killEffects, 0, heroHandle, PATTACH_POINT, "attach_hitloc", heroHandle:GetAbsOrigin(), false )
-		heroHandle:Attribute_SetIntValue( "effectsID", killEffects )
-		EmitSoundOn( "Conquest.Pendulum.Target", heroHandle )
-		local killerEntity = thisEntity
-		if thisEntity.KillerToCredit ~= nil then
-			killerEntity = thisEntity.KillerToCredit
-		end
-		heroHandle:Kill( nil, killerEntity )
+        if not heroHandle:FindAbilityByName('sasori_red_secret_technique') then
+            local pendulumTrap = thisEntity:FindAbilityByName("pendulum_trap")
+            local killEffects = ParticleManager:CreateParticle( "particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_blood01.vpcf", PATTACH_POINT, heroHandle )
+            ParticleManager:SetParticleControlEnt( killEffects, 0, heroHandle, PATTACH_POINT, "attach_hitloc", heroHandle:GetAbsOrigin(), false )
+            heroHandle:Attribute_SetIntValue( "effectsID", killEffects )
+            EmitSoundOn( "Conquest.Pendulum.Target", heroHandle )
+            local killerEntity = thisEntity
+            if thisEntity.KillerToCredit ~= nil then
+                killerEntity = thisEntity.KillerToCredit
+            end
+            heroHandle:Kill( nil, killerEntity )
+        end
 	end
 end

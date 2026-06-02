@@ -208,7 +208,7 @@ spectre_haunt_lua = class({})
 function spectre_haunt_lua:GetCooldown(level)
 	local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_spectre_4")
 	if talent and talent:GetLevel() > 0 then
-		return self.BaseClass.GetCooldown(self, level) - 40
+		return self.BaseClass.GetCooldown(self, level) - 20
 	end
 	return self.BaseClass.GetCooldown(self, level)
 end

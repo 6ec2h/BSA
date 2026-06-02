@@ -1573,6 +1573,30 @@
 		"VisionNighttimeRange"		"0"		
 	}
 
+"jackpot_pet2"
+	{
+		//"vscripts"       			"pets/pets_ai.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/items/lone_druid/viciouskraitpanda/viciouskrait_panda.vmdl"			
+		"Level"						"10"
+		"ModelScale"				"0.5"
+		"Ability1"					"jackpot_pet_lua"		
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackAcquisitionRange"	"550"		
+		"AttackRange"				"100" 
+		"StatusHealth"				"100"		
+		"StatusMana"				"50000"			
+		"StatusManaRegen"			"5000"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"VisionDaytimeRange"		"0"		
+		"VisionNighttimeRange"		"0"		
+	}
+
 "mimic_pet"
 	{
 		"vscripts"       			"pets/pets_ai.lua"
@@ -1913,7 +1937,33 @@
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}
-}	
+
+//=======================================================ITACHI CROWS=====================================================================
+
+	"npc_itachi_crow"
+	{
+		"Model"						"models/events/crownfall/shmup_shooting/the_plague_burner_mount_shmup.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"ModelScale"				"0.35"
+		"Ability1"					"neutral_spell_immunity"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"280"
+		"MovementTurnRate"			"1"
+		"RingRadius"				"10"
+		"HealthBarOffset"			"-2000"
+		"StatusHealth"				"99999"
+		"StatusHealthRegen"			"99999"
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"ConsideredHero"			"0"
+	}
+
+}
 
 #base "../npc/npc_units_heroes.txt"
 #base "../npc/creeps/zone_1/unit_zone_1.txt"

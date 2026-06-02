@@ -11,7 +11,7 @@ end
 function modifier_pets:CheckState()
     local parent = self:GetParent()
     if not parent or parent:IsNull() then return {} end
-    local is_jackpot = parent:GetUnitName() == "jackpot_pet"
+    local is_jackpot = parent:GetUnitName() == "jackpot_pet" or parent:GetUnitName() == "jackpot_pet2"
 
     local state = {
         [MODIFIER_STATE_MAGIC_IMMUNE] = true,

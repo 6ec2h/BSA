@@ -6,7 +6,7 @@ _G.All_ABILITY = {
     "alchemist_acid_spray_lua",
     "alchemist_chemical_rage_lua",
     "alchemist_greevils_greed_lua",
-    "alchemist_unstable_concoction_lua",
+    "alchemist_unstable_concoction_throw_lua",
     "ancient_apparition_chilling_touch_lua",
     "ancient_apparition_cold_feet_lua",
     "ancient_apparition_ice_blast_lua",

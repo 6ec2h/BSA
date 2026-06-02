@@ -1,6 +1,5 @@
 
 LinkLuaModifier("modifier_gyrocopter_rocket_barrage_lua", "heroes/hero_gyrocopter/hero_gyrocopter", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression", "heroes/hero_gyrocopter/hero_gyrocopter", LUA_MODIFIER_MOTION_NONE)
 
 gyrocopter_rocket_barrage_lua = class({})
 
@@ -32,13 +31,6 @@ function gyrocopter_rocket_barrage_lua:OnProjectileHit(target, location)
         ability = self
     })
 
-    local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_gyrocopter_3")
-    if talent and talent:GetLevel() > 0 then
-        target:AddNewModifier(self:GetCaster(), self, "modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression", {
-            duration = self:GetSpecialValueFor("ballistic_duration") * (1 - target:GetStatusResistance())
-        })
-    end
-
     return true
 end
 
@@ -65,8 +57,6 @@ function modifier_gyrocopter_rocket_barrage_lua:OnCreated()
     self.rocket_damage = self.ability:GetSpecialValueFor("rocket_damage")
     self.damage_type = self.ability:GetAbilityDamageType()
     self.weapons = {"attach_attack1", "attach_attack2"}
-    
-    self.talent = self.caster:FindAbilityByName("special_bonus_gyrocopter_agi1")
     
     self:StartIntervalThink(1 / self.rockets_per_second)
 end
@@ -96,12 +86,6 @@ function modifier_gyrocopter_rocket_barrage_lua:OnIntervalThink()
         ParticleManager:SetParticleControlEnt(pfx, 0, self.parent, PATTACH_POINT_FOLLOW, self.weapons[RandomInt(1, #self.weapons)], self.parent:GetAbsOrigin(), true)
         ParticleManager:SetParticleControlEnt(pfx, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
         ParticleManager:ReleaseParticleIndex(pfx)
-        
-        if self.talent and self.talent:GetLevel() > 0 then 
-            enemy:AddNewModifier(self.caster, self.ability, "modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression", {
-                duration = self.ballistic_duration * (1 - enemy:GetStatusResistance())
-            })
-        end
         
         ApplyDamage({
             victim = enemy,
@@ -134,28 +118,6 @@ end
 
 function modifier_gyrocopter_rocket_barrage_lua:GetOverrideAnimation()
     return ACT_DOTA_OVERRIDE_ABILITY_1
-end
-
---------------------------------------------------------------------------------
-
-modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression = class({})
-
-function modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression:OnCreated()
-    if not IsServer() then return end
-    self:SetStackCount(1)
-end
-
-function modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression:OnRefresh()
-    if not IsServer() then return end
-    self:IncrementStackCount()
-end
-
-function modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression:DeclareFunctions()
-    return { MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS }
-end
-
-function modifier_gyrocopter_rocket_barrage_lua_ballistic_suppression:GetModifierMagicalResistanceBonus()
-    return self:GetStackCount() * -1
 end
 
 --------------------------------------------------------------------------------

@@ -46,9 +46,10 @@ function modifier_pet_owner:OnCreated(data)
 	}
 	
     tab = find_boost_by_name(data.pet)
+	local multiplier = (data.pet == "item_jackpot_pet2") and 1.25 or 1.0
 	for _, stat in ipairs(tab) do
 		if base_stats[stat] then
-			self.pets_boosts[stat] = base_stats[stat]
+			self.pets_boosts[stat] = base_stats[stat] * multiplier
 		end
 	end
     

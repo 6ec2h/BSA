@@ -621,10 +621,10 @@ end
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-lua_abyssal_underlord_dark_rift = lua_abyssal_underlord_dark_rift or class({})
+lua_abyssal_underlord_dark_rift = class({})
 
 function lua_abyssal_underlord_dark_rift:GetCooldown(level)
-	local talent self:GetCaster():FindAbilityByName("special_bonus_unique_underlord_8")
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_underlord_8")
 	if talent and talent:GetLevel() > 0 then 
 		return self.BaseClass.GetCooldown( self, level ) - 30
 	end

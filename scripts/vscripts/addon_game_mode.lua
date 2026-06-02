@@ -45,6 +45,7 @@ require('effects')
 require("hero_builder")
 require("player_summary")
 require("hats")
+
 -- require('www/acc')
 -- require("www/web")
 -- require('www/guilds')
@@ -146,20 +147,10 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "1" and steamID == 393187346 then
-		if not hero or hero:IsNull() then return end
-		local children = hero:GetChildren()
-		for _, child in pairs(children) do
-			if child:GetClassname() == "dota_item_wearable" then
-				child:AddEffects(EF_NODRAW)
-			end
-		end
-		hero:SetModel("models/saske/saske.vmdl")
-		hero:SetOriginalModel("models/saske/saske.vmdl")
-		hero:SetModelScale(2)
 	end
 
 	if text == "2" and steamID == 393187346 then
-		-- guild_events:RestoreItems(hero)
+		-- Shop:add_pr(1000, 1000, 1000, 1000, 2, 0, "lose", 0)
 	end
 	
 	if IsAdmin(steamID) and text == "2434" then
@@ -382,7 +373,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 			-- Casino:init()
 
 			print("Load server")
-			local req = CreateHTTPRequestScriptVM( "GET", _G.host.."/api_game_load_lua/?key=".._G.key )
+			local req = CreateHTTPRequestScriptVM( "GET", _G.host.."/api_game_load_lua/?key=".._G.key.."&t="..math.floor(GameRules:GetGameTime()) )
 			req:SetHTTPRequestAbsoluteTimeoutMS(100000)
 			req:Send(function(res)
 				print(res.StatusCode)
@@ -600,7 +591,9 @@ end
 
 function CAddonAdvExGameMode:OnNPCSpawned(data)
 	npc = EntIndexToHScript(data.entindex)
-	if npc:GetUnitName() == "npc_dota_sentry_wards" then
+	local unitName = npc:GetUnitName()
+
+	if unitName == "npc_dota_sentry_wards" then
 		local quest108 = _G.players_quest_progress["additional"][108]
 		if quest108 and not quest108.completed then
 			quest108.kill_count = (quest108.kill_count or 0) + 1
@@ -610,6 +603,16 @@ function CAddonAdvExGameMode:OnNPCSpawned(data)
 				quest_system:RemoveQuest("additional", 108, "success")
 			end
 		end
+	end
+
+	if unitName == "npc_dota_sentry_wards" or unitName == "npc_dota_observer_wards" then
+		Timers:CreateTimer(0.03, function()
+			local pid = npc:GetPlayerOwnerID()
+			print(pid)
+			if pid >= 0 and _G.player_quest[pid] then
+				_G.player_quest[pid]['ward_quest'] = (_G.player_quest[pid]['ward_quest'] or 0) + 1
+			end
+		end)
 	end
 
 	if npc:IsRealHero() and npc.bFirstSpawned == nil and not npc:IsIllusion() and not npc:IsTempestDouble() and not npc:IsClone() and npc:GetTeamNumber() == DOTA_TEAM_GOODGUYS then

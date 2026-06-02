@@ -269,36 +269,48 @@ LinkLuaModifier( "modifier_modifier_triss_disguise_immune", "heroes/hero_triss/h
 triss_disguise = class({})
 
 function triss_disguise:Precache(context)
-    PrecacheResource( "particle", "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", context )
+    PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_suicide_explosion.vpcf", context)
+    PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf",  context)
 end
 
 function triss_disguise:OnSpellStart()
-	local caster = self:GetCaster()
+	local caster   = self:GetCaster()
 	local duration = self:GetSpecialValueFor("duration")
-	caster:AddNewModifier( caster, self, "modifier_triss_disguise", {duration = duration})
-	
-	local damage = self:GetSpecialValueFor("damage")
-	local radius = self:GetSpecialValueFor("radius")
+	local damage   = self:GetSpecialValueFor("damage")
+	local radius   = self:GetSpecialValueFor("radius")
 
-	EmitSoundOn("Hero_TemplarAssassin.Meld", caster)
-	EmitSoundOn("Hero_Techies.Suicide", caster)
-	
-	local particle_explosion_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", PATTACH_WORLDORIGIN, caster)
-	ParticleManager:SetParticleControl(particle_explosion_fx, 0, caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle_explosion_fx, 1, caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle_explosion_fx, 2, Vector(radius, 1, 1))
-	ParticleManager:ReleaseParticleIndex(particle_explosion_fx)
+	caster:AddNewModifier(caster, self, "modifier_triss_disguise", {duration = duration})
 
-	damage_table = {
-		attacker = caster,
-		damage = damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-	}
+	-- Звук + взрыв на кастере
+	EmitSoundOn("Hero_TemplarAssassin.Meld",    caster)
+	EmitSoundOn("Hero_Techies.SuicideExplode",  caster)
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
-	for _,enemy in pairs(enemies) do
-		damage_table.victim = enemy
-		ApplyDamage(damage_table)
+	local exp_pfx = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_techies/techies_suicide_explosion.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(exp_pfx, 0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(exp_pfx, 1, Vector(radius, 1, 1))
+	ParticleManager:ReleaseParticleIndex(exp_pfx)
+
+	local enemies = FindUnitsInRadius(
+		caster:GetTeamNumber(), caster:GetAbsOrigin(), caster,
+		radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+		DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+
+	for _, enemy in pairs(enemies) do
+		ApplyDamage({
+			attacker    = caster,
+			victim      = enemy,
+			damage      = damage,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			ability     = self,
+		})
+
+		-- Звук и эффект на каждой цели
+		EmitSoundOn("Hero_Jakiro.LiquidFire", enemy)
+		local hit_pfx = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW, enemy)
+		ParticleManager:ReleaseParticleIndex(hit_pfx)
 	end
 end
 

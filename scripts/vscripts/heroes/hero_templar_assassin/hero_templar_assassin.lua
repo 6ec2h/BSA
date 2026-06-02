@@ -151,7 +151,11 @@ function modifier_templar_assassin_meld_lua:OnAttack(keys)
     if keys.attacker ~= self.parent or self.parent:IsIllusion() or self.parent:PassivesDisabled() then return end
     if self.ability:IsFullyCastable() and not keys.no_attack_cooldown and not keys.target:IsWard() then
         self.meld_attack_id = keys.record
-        self.ability:UseResources(true, true, true, true)
+        self.ability:UseResources(false, false, false, true)
+        local talent = self.caster:FindAbilityByName("special_bonus_unique_templar_assassin_8")
+        if talent and talent:GetLevel() > 0 then
+            self.ability:EndCooldown()
+        end
     end
 end
 
