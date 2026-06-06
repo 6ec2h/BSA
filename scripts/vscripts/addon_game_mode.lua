@@ -58,7 +58,7 @@ require("hats")
 
 
 
-_G.key = GetDedicatedServerKeyV3("BSAKEY")
+_G.key = GetDedicatedServerKeyV3("BSAKEY1")
 _G.host = "https://boss-survival-adventure.com"
 _G.Game_Difficulty = 1
 
@@ -157,7 +157,7 @@ function CAddonAdvExGameMode:OnChat( event )
 		local hero = PlayerResource:GetSelectedHeroEntity( pid )
 		-- hero:SetBaseIntellect(hero:GetBaseIntellect() + 10000)
 		hero:SetBaseAgility(hero:GetBaseAgility() + 10000)
-		hero:SetBaseStrength(hero:GetBaseStrength() + 11000)	
+		hero:SetBaseStrength(hero:GetBaseStrength() + 10000)	
 		LinkLuaModifier( "modifier_speed", "modifiers/modifier_speed", LUA_MODIFIER_MOTION_NONE )
 		hero:AddNewModifier( hero, nil, "modifier_speed", {} )
 	end

@@ -17,7 +17,8 @@ function modifier_speed:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_MAX
+		MODIFIER_PROPERTY_MOVESPEED_MAX,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
 
     }
     return funcs
@@ -36,5 +37,9 @@ function modifier_speed:GetModifierMoveSpeed_Max()
 end
 
 function modifier_speed:GetModifierMoveSpeed_Absolute()
+	return 1000
+end
+
+function modifier_speed:GetModifierSpellAmplify_Percentage()
 	return 1000
 end

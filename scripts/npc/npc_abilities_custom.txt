@@ -24,18 +24,18 @@
 
 	"pain_six_paths_authority"
 	{
-		"BaseClass"				"ability_lua"
-		"ScriptFile"			"heroes/akatsuki/pain"
-		"AbilityTextureName"	"pain_six_paths_authority"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"MaxLevel"				"5"
-		"AbilityCastRange"		"500"
+		"BaseClass"					"ability_lua"
+		"ScriptFile"				"heroes/akatsuki/pain"
+		"AbilityTextureName"		"pain_six_paths_authority"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"MaxLevel"					"5"
+		"AbilityCastRange"			"500"
 
 		"AbilityValues"
 		{
 			"aura_radius"			"500"
-			"dot_damage_pct"		"10 20 30 40 50"
+			"dot_damage_pct"		"20 30 40 50 60"
 			"meteor_radius"			"500"
 		}
 	}
@@ -203,9 +203,9 @@
 		"AbilityValues"
 		{
 			"poison_duration"			"6"
-			"max_poison_stacks"			"10"
-			"poison_dps_per_stack"		"15 20 25 30 35"
-			"heal_reduction_per_stack"	"15 20 25 30 35"
+			"max_poison_stacks"			"5"
+			"poison_dps_per_stack"		"10 15 20 25 30"
+			"heal_reduction_per_stack"	"10 15 20 25 30"
 		}
 	}
 

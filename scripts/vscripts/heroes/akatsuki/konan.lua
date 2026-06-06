@@ -51,7 +51,6 @@ function modifier_konan_paper_dance:OnDeath(params)
     if not IsServer() then return end
     local caster = self:GetParent()
     local unit   = params.unit
-
     -- Воскрешение союзника
     if unit:IsRealHero() and unit ~= caster and unit:GetTeamNumber() == caster:GetTeamNumber() then
         local dist = (unit:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
@@ -60,10 +59,9 @@ function modifier_konan_paper_dance:OnDeath(params)
 
         local revive_hp = self._revive_hp
         local death_pos = unit:GetAbsOrigin()
-
         Timers:CreateTimer(0.1, function()
             if not unit or unit:IsNull() then return end
-            unit:RespawnHero(false, false, false)
+            unit:RespawnHero(false, false)
             unit:SetAbsOrigin(death_pos)
             FindClearSpaceForUnit(unit, death_pos, true)
             unit:SetHealth(unit:GetMaxHealth() * revive_hp)
