@@ -644,44 +644,63 @@ end
 
 function modifier_talents:OnIntervalThink()
 	if IsServer() then
-		local allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
-		
 		if self:GetCaster():IsAlive() then
-			if self.values['bonus_str_1'] and self.values['bonus_str_1'] > 0 then
-				local mod = self:GetParent():FindModifierByName('modifier_bonus_str_1')
-				if mod then
-					mod:SetStackCount(#allies)
-				else
-					self:GetCaster():AddNewModifier(self:GetCaster(), nil, "modifier_bonus_str_1", {}):SetStackCount(#allies)
+			local needAllies  = (self.values['bonus_str_1'] or 0) > 0 or (self.values['bonus_str_2'] or 0) > 0
+			local needEnemies = (self.values['bonus_agi_6'] or 0) > 0
+			local changed = false
+
+			-- поиск союзников нужен только под таланты bonus_str_1 / bonus_str_2
+			if needAllies then
+				local allies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+				local n = #allies
+				if n ~= self._dms_lastAllies then
+					self._dms_lastAllies = n
+					changed = true
+					if (self.values['bonus_str_1'] or 0) > 0 then
+						if not self._dms_mod_str_1 or self._dms_mod_str_1:IsNull() then
+							self._dms_mod_str_1 = self:GetCaster():AddNewModifier(self:GetCaster(), nil, "modifier_bonus_str_1", {})
+						end
+						self._dms_mod_str_1:SetStackCount(n)
+					end
+					if (self.values['bonus_str_2'] or 0) > 0 then
+						if not self._dms_mod_str_2 or self._dms_mod_str_2:IsNull() then
+							self._dms_mod_str_2 = self:GetCaster():AddNewModifier(self:GetCaster(), nil, "modifier_bonus_str_2", {})
+						end
+						self._dms_mod_str_2:SetStackCount(n)
+					end
 				end
 			end
-			
-			if self.values['bonus_str_2'] and self.values['bonus_str_2'] > 0 then
-				local mod = self:GetParent():FindModifierByName('modifier_bonus_str_2')
-				if mod then
-					mod:SetStackCount(#allies)
-				else
-					self:GetCaster():AddNewModifier(self:GetCaster(), nil, "modifier_bonus_str_2", {}):SetStackCount(#allies)
+
+			-- поиск врагов нужен только под талант bonus_agi_6
+			if needEnemies then
+				local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+				local n = #enemies
+				if n ~= self._dms_lastEnemies then
+					self._dms_lastEnemies = n
+					changed = true
+					if not self._dms_mod_agi_6 or self._dms_mod_agi_6:IsNull() then
+						self._dms_mod_agi_6 = self:GetCaster():AddNewModifier(self:GetCaster(), nil, "modifier_bonus_agi_6", {})
+					end
+					self._dms_mod_agi_6:SetStackCount(n)
 				end
 			end
-			
-			if self.values['bonus_agi_6'] and self.values['bonus_agi_6'] > 0 then
-				local mod = self:GetParent():FindModifierByName('modifier_bonus_agi_6')
-				if mod then
-					mod:SetStackCount(#enemies)
-				else
-					self:GetCaster():AddNewModifier(self:GetCaster(), nil, "modifier_bonus_agi_6", {}):SetStackCount(#enemies)
-				end
+
+			-- self stack = базовый минимальный урон; обновляем только при изменении
+			local dmg = self:GetParent():GetBaseDamageMin()
+			if dmg ~= self._dms_lastBaseDmg then
+				self._dms_lastBaseDmg = dmg
+				self:SetStackCount(dmg)
+				changed = true
 			end
-			
-			self:SetStackCount(self:GetParent():GetBaseDamageMin())
-			
-			self:GetParent():CalculateStatBonus(true)
+
+			-- тяжёлый полный пересчёт стат — только если что-то реально поменялось
+			if changed then
+				self:GetParent():CalculateStatBonus(true)
+			end
 		end
 	end
-	
-	if GetManaPercentClient(self:GetParent()) < 10 and self.values['bonus_int_15'] and self.values['bonus_int_15'] > 0 and not self:GetParent():HasModifier('modifier_talent_mag_resist_lua') then
+
+	if self.values['bonus_int_15'] and self.values['bonus_int_15'] > 0 and GetManaPercentClient(self:GetParent()) < 10 and not self:GetParent():HasModifier('modifier_talent_mag_resist_lua') then
 		self:GetParent():AddNewModifier(self:GetParent(), nil, 'modifier_bonus_int_15', {duration = 3})
 		EmitSoundOn("DOTA_Item.BlackKingBar.Activate", self:GetParent())
 		self:GetParent():AddNewModifier(self:GetParent(), nil, 'modifier_talent_mag_resist_lua', {duration = 120})

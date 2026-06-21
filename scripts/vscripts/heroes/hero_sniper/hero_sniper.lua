@@ -572,7 +572,12 @@ function modifier_sniper_ult:OnIntervalThink()
 end
 
 function modifier_sniper_ult:GetModifierBaseAttackTimeConstant()
-	return self.base_attack_time
+	local bat = self.base_attack_time
+	local parent = self:GetParent()
+	if parent and parent.dms_bat_factor then
+		bat = bat * parent.dms_bat_factor
+	end
+	return bat
 end
 
 function modifier_sniper_ult:GetModifierMoveSpeed_Limit()

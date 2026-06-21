@@ -16,7 +16,7 @@ end
 
 function lua_slardar_slithereen_crush:OnSpellStart()
 	local caster = self:GetCaster()
-	local radius = self:GetSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("AbilityCastRange")
 	local stun_duration = self:GetSpecialValueFor("stun_duration")
 	local slow_duration = self:GetSpecialValueFor("slow_duration")
 	local damage = self:GetSpecialValueFor("damage")
@@ -38,7 +38,7 @@ function lua_slardar_slithereen_crush:OnSpellStart()
 			local damageTable = {victim = enemy,
 				attacker = caster,
 				damage = damage,
-				damage_type = DAMAGE_TYPE_PHYSICAL,
+				damage_type = DAMAGE_TYPE_MAGICAL,
 				ability = self}
 
 			ApplyDamage(damageTable)

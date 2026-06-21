@@ -809,31 +809,6 @@
 	color: #c9a030;
 }
 
-.pass_card_price_row
-{
-	horizontal-align: center;
-	flow-children: right;
-	height: 38px;
-	margin-bottom: 8px;
-}
-
-.pass_card_price_icon
-{
-	width: 28px;
-	height: 28px;
-	vertical-align: center;
-	margin-right: 6px;
-}
-
-.pass_card_price_val
-{
-	vertical-align: center;
-	font-size: 26px;
-	font-weight: bold;
-	color: #ffd700;
-	text-shadow: 0px 0px 4px black;
-}
-
 .pass_card_divider
 {
 	width: 100%;
@@ -842,37 +817,71 @@
 	margin-bottom: 10px;
 }
 
-.pass_card_btn
+.pass_card_buy_row
 {
-	width: 220px;
-	height: 36px;
+	width: 100%;
 	horizontal-align: center;
 	vertical-align: bottom;
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(30, 90, 150, 0.8)), to(rgba(20, 65, 110, 0.7)));
-	border: 1px solid rgba(60, 140, 220, 0.6);
-	border-radius: 4px;
+	flow-children: right;
+	height: 50px;
 }
 
-.pass_card_btn_prem
+.pass_card_pay_btn
+{
+	width: 118px;
+	height: 48px;
+	border-radius: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(30, 90, 150, 0.85)), to(rgba(20, 65, 110, 0.75)));
+	border: 1px solid rgba(60, 140, 220, 0.7);
+}
+
+.pass_card_pay_btn:not(:last-child)
+{
+	margin-right: 12px;
+}
+
+.pass_card_pay_btn:hover
+{
+	brightness: 1.45;
+	sound: "ui_select_arrow";
+}
+
+.pass_card_pay_rp
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(200, 120, 20, 0.85)), to(rgba(150, 80, 10, 0.75)));
+	border-color: rgba(255, 165, 40, 0.8);
+}
+
+.pass_card_pay_gems_prem
 {
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(140, 100, 20, 0.9)), to(rgba(90, 65, 10, 0.8)));
 	border-color: rgba(190, 150, 40, 0.9);
 }
 
-.pass_card_btn:hover
+.pass_card_pay_inner
 {
-	brightness: 1.4;
-	sound: "ui_select_arrow";
-}
-
-.pass_card_btn_label
-{
+	width: fit-children;
+	height: 100%;
 	horizontal-align: center;
 	vertical-align: center;
-	color: #e5e0c5;
-	font-size: 13px;
+	flow-children: right;
+}
+
+.pass_card_pay_icon
+{
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+	margin-right: 7px;
+}
+
+.pass_card_pay_price
+{
+	vertical-align: center;
+	font-size: 22px;
 	font-weight: bold;
-	text-align: center;
+	color: #ffd700;
+	text-shadow: 0px 0px 4px black;
 }
 
 #PassSelect_close_btn

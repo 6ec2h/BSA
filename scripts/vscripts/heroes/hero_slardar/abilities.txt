@@ -8,22 +8,19 @@
 		"AbilityTextureName"			"slardar_slithereen_crush"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"ScriptFile"					"heroes/hero_slardar/hero_slardar"
 		"MaxLevel"						"4"
 		"FightRecapLevel"				"1"
-
 		"AbilityCastPoint"				"0.35"
-
-		"AbilityCooldown"				"8"
-
-		"AbilityManaCost"				"80 95 105 115"
+		"AbilityCooldown"				"10 9 8 7"
+		"AbilityManaCost"				"80 90 100 110"
 
 		"AbilityValues"
 		{
-			"radius"
+			"AbilityCastRange"
 			{
 				"value"					"350"
 				"special_bonus_unique_slardar_1"   "+100"
@@ -34,7 +31,7 @@
 			"as_slow"				"10 15 20 25"
 			"damage"				
 			{
-				"value"					"80 140 200 260"
+				"value"					"80 160 240 320"
 				"special_bonus_unique_slardar_3"   "+120"
 			}
 		}
@@ -47,7 +44,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"slardar_sprint"
@@ -55,16 +51,16 @@
 		"MaxLevel"						"4"
 		"FightRecapLevel"				"1"
 		
-		"AbilityManaCost"				"25"
-		"AbilityCooldown"				"29 25 21 17"
+		"AbilityManaCost"				"25 40 55 70"
+		"AbilityCooldown"				"16 14 12 10"
 
 		"AbilityValues"
 		{
 			"ms_bonus_pct"			"8 14 20 26"
-			"as_bonus"				"15 25 35 45"
+			"as_bonus"				"15 30 45 60"
 			"duration"
 			{
-				"value"					"4"
+				"value"								"4"
 				"special_bonus_unique_slardar_2"   "+2"
 			}
 		}
@@ -89,22 +85,22 @@
 		{
 			"chance_pct"			
 			{
-				"value"					"10 12 14 16"
+				"value"								"12 16 20 24"
 				"special_bonus_unique_slardar_8"   "+8"
 			}
 			"damage"				
 			{
-				"value"					"80 120 160 200"
+				"value"								"60 120 180 240"
 				"special_bonus_unique_slardar_5"   "+60"
 			}
 			"duration"
 			{
-				"value"					"3"
+				"value"								"3"
 				"special_bonus_unique_slardar_4"   "+2"
 			}
 			"disarm"				
 			{
-				"value"					"2 3 4 5"
+				"value"								"2 4 6 8"
 				"special_bonus_unique_slardar_6"   "+3"
 			}
 		}
@@ -135,8 +131,8 @@
 
 		"AbilityValues"
 		{
-			"duration"				"12"
-			"armor_reduction"		"8 14 20"
+			"duration"					"12"
+			"armor_reduction"			"8 14 20"
 		}
 	}
 	

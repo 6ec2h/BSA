@@ -440,7 +440,12 @@ function modifier_terrorblade_metamorphosis_lua:GetModifierBaseAttack_BonusDamag
 end
 
 function modifier_terrorblade_metamorphosis_lua:GetModifierBaseAttackTimeConstant()
-	return self.bat
+	local bat = self.bat
+	local parent = self:GetParent()
+	if parent and parent.dms_bat_factor then
+		bat = bat * parent.dms_bat_factor
+	end
+	return bat
 end
 
 function modifier_terrorblade_metamorphosis_lua:GetModifierProjectileSpeedBonus()

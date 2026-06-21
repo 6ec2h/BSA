@@ -111,13 +111,20 @@
 						<Label class="pass_card_feature" text="#bp_std_feature_3" />
 						<Label class="pass_card_feature" text="#bp_std_feature_4" />
 					</Panel>
-					<Panel class="pass_card_price_row">
-						<Image class="pass_card_price_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
-						<Label class="pass_card_price_val" id="PassCard_std_price" text="100" />
-					</Panel>
 					<Panel class="pass_card_divider" />
-					<Panel class="pass_card_btn" id="PassCard_std_btn" onmouseactivate="buy(&apos;coins&apos;)">
-						<Label class="pass_card_btn_label" text="#bp_select_btn" />
+					<Panel class="pass_card_buy_row">
+						<Panel class="pass_card_pay_btn pass_card_pay_gems" id="PassCard_std_gems_btn" onmouseactivate="buy(&apos;standard&apos;,&apos;gems&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_std_price_gems" text="100" />
+							</Panel>
+						</Panel>
+						<Panel class="pass_card_pay_btn pass_card_pay_rp" id="PassCard_std_rp_btn" onmouseactivate="buy(&apos;standard&apos;,&apos;rp&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_std_price_rp" text="10000" />
+							</Panel>
+						</Panel>
 					</Panel>
 				</Panel>
 				<Panel class="pass_select_card pass_card_premium" id="PassCard_prem">
@@ -128,13 +135,20 @@
 						<Label class="pass_card_feature pass_card_feature_prem" text="#bp_prem_feature_3" />
 						<Label class="pass_card_feature pass_card_feature_prem" text="#bp_prem_feature_4" />
 					</Panel>
-					<Panel class="pass_card_price_row">
-						<Image class="pass_card_price_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
-						<Label class="pass_card_price_val" id="PassCard_prem_price" text="150" />
-					</Panel>
 					<Panel class="pass_card_divider" />
-					<Panel class="pass_card_btn pass_card_btn_prem" id="PassCard_prem_btn" onmouseactivate="buy(&apos;buy_premium&apos;)">
-						<Label class="pass_card_btn_label" text="#bp_select_btn" />
+					<Panel class="pass_card_buy_row">
+						<Panel class="pass_card_pay_btn pass_card_pay_gems pass_card_pay_gems_prem" id="PassCard_prem_gems_btn" onmouseactivate="buy(&apos;premium&apos;,&apos;gems&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_prem_price_gems" text="150" />
+							</Panel>
+						</Panel>
+						<Panel class="pass_card_pay_btn pass_card_pay_rp pass_card_pay_rp_prem" id="PassCard_prem_rp_btn" onmouseactivate="buy(&apos;premium&apos;,&apos;rp&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_prem_price_rp" text="15000" />
+							</Panel>
+						</Panel>
 					</Panel>
 				</Panel>
 			</Panel>

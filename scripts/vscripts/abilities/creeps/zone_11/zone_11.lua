@@ -204,6 +204,31 @@ function creep_sun_nova_lua:TriggerDive()
         target_point = GetGroundPosition(target_point, caster)
     end
 
+    -- обрезаем дистанцию по пути: идём от старта к цели шагами и останавливаемся
+    -- на первой непроходимой клетке или резком перепаде высот (ныряем ДО стены, не сквозь)
+    do
+        local dir2 = target_point - origin
+        dir2.z = 0
+        local total = dir2:Length2D()
+        if total > 1 then
+            dir2 = dir2:Normalized()
+            local step = 64
+            local d = step
+            while d < total do
+                local p = origin + dir2 * d
+                local gh = GetGroundHeight(p, caster)
+                if (not GridNav:IsTraversable(p)) or math.abs(gh - caster_height) > 35 then
+                    -- останавливаемся на шаг до препятствия
+                    local safe = origin + dir2 * math.max(d - step, 0)
+                    safe.z = GetGroundHeight(safe, caster)
+                    target_point = safe
+                    break
+                end
+                d = d + step
+            end
+        end
+    end
+
     local direction_to_target = (target_point - origin):Normalized()
     caster:SetForwardVector(direction_to_target)
     caster:FaceTowards(target_point)

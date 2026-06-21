@@ -94,7 +94,7 @@ function modifier_alchemist_chemical_rage_lua:OnCreated( kv )
 	end
 	
 	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi8")
-	if talent and talent:GetLevel() > 0 then 
+	if talent and talent:GetLevel() > 0 then
 		self.health_regen = self.health_regen + 150
 	end
 
@@ -118,10 +118,10 @@ function modifier_alchemist_chemical_rage_lua:OnRefresh( kv )
 	end
 
 	local talent = self:GetCaster():FindAbilityByName("special_bonus_alchemist_agi8")
-	if talent and talent:GetLevel() > 0 then 
+	if talent and talent:GetLevel() > 0 then
 		self.health_regen = self.health_regen + 150
 	end
-	
+
 	if not IsServer() then return end
 	ProjectileManager:ProjectileDodge( self:GetParent() )
 	self:GetParent():Purge( false, true, false, false, false )
@@ -160,14 +160,22 @@ function modifier_alchemist_chemical_rage_lua:DeclareFunctions()
 end
 
 function modifier_alchemist_chemical_rage_lua:GetModifierBaseAttackTimeConstant()
-	return self.bat
+	local bat = self.bat
+	local parent = self:GetParent()
+	if parent and parent.dms_bat_factor then
+		bat = bat * parent.dms_bat_factor
+	end
+	return bat
 end
+
 function modifier_alchemist_chemical_rage_lua:GetModifierConstantHealthRegen()
 	return self.health_regen
 end
+
 function modifier_alchemist_chemical_rage_lua:GetModifierConstantManaRegen()
 	return self.mana_regen
 end
+
 function modifier_alchemist_chemical_rage_lua:GetModifierMoveSpeedBonus_Constant()
 	return self.movespeed
 end

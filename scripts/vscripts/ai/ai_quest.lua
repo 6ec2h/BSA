@@ -27,5 +27,5 @@ function NeutralThink()
         local final_direction = RotatePosition(Vector(0,0,0), QAngle(0, angle_offset, 0), away_vector)
         thisEntity:SetForwardVector(final_direction)
         end
-	return 0.3
+	return 1.0
 end

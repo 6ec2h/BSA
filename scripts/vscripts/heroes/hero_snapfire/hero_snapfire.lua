@@ -408,7 +408,12 @@ end
 
 function modifier_lua_snapfire_lil_shredder:GetModifierBaseAttackTimeConstant()
 	if self:GetStackCount()<=0 then return end
-	return self.bat
+	local bat = self.bat
+	local parent = self:GetParent()
+	if parent and parent.dms_bat_factor then
+		bat = bat * parent.dms_bat_factor
+	end
+	return bat
 end
 
 function modifier_lua_snapfire_lil_shredder:PlayEffects()

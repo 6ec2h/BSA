@@ -10,7 +10,7 @@
 
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		
@@ -18,16 +18,16 @@
         "FightRecapLevel"               "1"
 		"AbilityCastRange"				"600"
 
-		"AbilityCooldown"				"17 16 15 14"
-		"AbilityManaCost"				"100 110 120 130"
+		"AbilityCooldown"				"16 15 14 13"
+		"AbilityManaCost"				"80 90 100 110"
 
 		"AbilityValues"
 		{
-			"radius"					"425"
+			"radius"					"400"
 			"wave_damage"				
 			{
-                "value" "30 50 70 90"
-                "special_bonus_unique_underlord_4" "+30"
+                "value" "30 60 90 120"
+                "special_bonus_unique_underlord_4" "+60"
             }
 			"wave_interval"				"1"
 			"wave_count"
@@ -49,7 +49,7 @@
 
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		
@@ -68,19 +68,19 @@
             }
             "pit_duration"
 			{
-                "value" "6"
-                "special_bonus_unique_underlord_6" "+3"
+                "value" "4"
+                "special_bonus_unique_underlord_6" "+2"
             }
             "pit_interval"              "1.5"
             "pit_damage"                
 			{
-                "value" "25 50 75 100"
-                "special_bonus_unique_underlord_3" "+25"
+                "value" "50 100 150 200"
+                "special_bonus_unique_underlord_3" "+100"
             }
             "ensnare_duration"
             {
                 "value" "0.2"
-                "special_bonus_unique_underlord_1" "+0.2"
+                "special_bonus_unique_underlord_1" "+0.1"
             }
         }
 	}
@@ -104,8 +104,8 @@
 			"radius"					"700"
 			"bonus_damage_from_creep"	
 			{
-                "value" "2 3 4 5"
-                "special_bonus_unique_underlord_7" "+2"
+                "value" "2 4 6 8"
+                "special_bonus_unique_underlord_7" "+4"
             }
 			"bonus_damage_duration"		"30"
 			"damage_reduction_pct"		"5 10 15 20"

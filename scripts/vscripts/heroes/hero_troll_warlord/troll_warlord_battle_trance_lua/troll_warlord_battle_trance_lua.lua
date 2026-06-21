@@ -211,7 +211,12 @@ function modifier_troll_warlord_battle_trance_lua:OnTooltip()
 end
 
 function modifier_troll_warlord_battle_trance_lua:GetModifierBaseAttackTimeConstant()
-	return self.bonus_bat
+	local bat = self.bonus_bat
+	local parent = self:GetParent()
+	if parent and parent.dms_bat_factor then
+		bat = bat * parent.dms_bat_factor
+	end
+	return bat
 end
 
 

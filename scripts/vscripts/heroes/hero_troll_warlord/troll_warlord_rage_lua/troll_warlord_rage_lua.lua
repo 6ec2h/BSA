@@ -124,7 +124,12 @@ function modifier_troll_warlord_rage_lua_melee:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_troll_warlord_rage_lua_melee:GetModifierBaseAttackTimeConstant()
-	return self:GetAbility():GetSpecialValueFor("base_attack_time")
+	local bat = self:GetAbility():GetSpecialValueFor("base_attack_time")
+	local parent = self:GetParent()
+	if parent and parent.dms_bat_factor then
+		bat = bat * parent.dms_bat_factor
+	end
+	return bat
 end
 
 function modifier_troll_warlord_rage_lua_melee:GetModifierHealthBonus()
@@ -167,68 +172,20 @@ function modifier_troll_warlord_rage_lua_ranged:RemoveOnDeath() return false end
 function modifier_troll_warlord_rage_lua_ranged:DeclareFunctions()
 	local decFuns =
 		{
-			-- MODIFIER_EVENT_ON_ATTACK_LANDED,
-			-- MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
-			-- MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
 		}
 	return decFuns
 end
 
--- function modifier_troll_warlord_rage_lua_ranged:GetModifierMoveSpeedBonus_Constant()
-	-- return self:GetCaster():FindTalentValue("special_bonus_imba_troll_warlord_1", "movespeed_pct")
--- end
-
--- function modifier_troll_warlord_rage_lua_ranged:GetModifierPhysicalArmorBonus()
-	-- return self:GetCaster():FindTalentValue("special_bonus_imba_troll_warlord_1", "armor")
--- end
-
 function modifier_troll_warlord_rage_lua_ranged:GetModifierBaseAttackTimeConstant()
-	return 1.5
+	local bat = 1.5
+	local parent = self:GetParent()
+	if parent and parent.dms_bat_factor then
+		bat = bat * parent.dms_bat_factor
+	end
+	return bat
 end
 
 function modifier_troll_warlord_rage_lua_ranged:GetPriority()
 	return 1
 end
-
--- function modifier_troll_warlord_rage_lua_ranged:OnAttackLanded( params )
-	-- if IsServer() then
-		-- local parent = self:GetParent()
-		-- if params.attacker:PassivesDisabled() then
-			-- return nil
-		-- end
-		-- if (parent == params.attacker) and (parent:IsRealHero() or parent:IsClone()) then
-			-- local ability = self:GetAbility()
-			-- if RollPseudoRandom(ability:GetSpecialValueFor("ensnare_chance"), ability) then
-				-- local hamstring_duration = ability:GetSpecialValueFor("hamstring_duration")
-				-- params.target:AddNewModifier(parent, ability, "modifier_imba_berserkers_rage_slow", {duration = hamstring_duration * (1 - params.target:GetStatusResistance())})
-				-- params.target:EmitSound("DOTA_Item.Daedelus.Crit")
-			-- end
-		-- end
-	-- end
--- end
-
--------------------------------------------
-
--- modifier_imba_berserkers_rage_slow = class({})
--- function modifier_imba_berserkers_rage_slow:IsDebuff() return true end
--- function modifier_imba_berserkers_rage_slow:IsHidden() return false end
--- function modifier_imba_berserkers_rage_slow:IsPurgable() return true end
--- function modifier_imba_berserkers_rage_slow:IsStunDebuff() return false end
--- function modifier_imba_berserkers_rage_slow:RemoveOnDeath() return true end
-
--- function modifier_imba_berserkers_rage_slow:DeclareFunctions()
-	-- local decFuns =
-		-- {
-			-- MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
-		-- }
-	-- return decFuns
--- end
-
--- function modifier_imba_berserkers_rage_slow:OnCreated()
-	-- self.slow = self:GetAbility():GetSpecialValueFor("hamstring_slow_pct") * (-1)
--- end
-
--- function modifier_imba_berserkers_rage_slow:GetModifierMoveSpeedBonus_Percentage()
-	-- return self.slow
--- end

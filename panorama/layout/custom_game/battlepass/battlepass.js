@@ -342,7 +342,8 @@ function buy_control() {
         $('#PassSelect_title').text       = $.Localize('#bp_upgrade_to_premium');
         $('#PassSelect_subtitle').text    = $.Localize('#bp_upgrade_subtitle');
         $('#PassCard_std').style.opacity        = '0';
-        $('#PassCard_prem_price').text           = '50';
+        $('#PassCard_prem_price_gems').text      = '50';
+        $('#PassCard_prem_price_rp').text        = '5000';
         PassSelectModal.visible = true;
     }
 }
@@ -357,19 +358,21 @@ function passSelectClose() {
     $('#PassSelect_title').text    = $.Localize('#bp_select_pass');
     $('#PassSelect_subtitle').text = $.Localize('#bp_select_subtitle');
     $('#PassCard_std').style.opacity   = '1';
-    $('#PassCard_prem_price').text     = '150';
+    $('#PassCard_prem_price_gems').text = '150';
+    $('#PassCard_prem_price_rp').text   = '15000';
 }
 
-// arg: 'coins'/'rp' из PassSelectModal (нет БП), 'upgrade' из BuyControl, или прямые значения
-function buy(arg) {
+// tier: 'standard' | 'premium' (что покупаем); currency: 'gems' | 'rp' (чем платим)
+function buy(tier, currency) {
     var action;
-    if      (current_tier === 'standard')  action = 'upgrade';
-    else if (arg === 'coins')              action = 'buy_standard';
-    else                                   action = arg;  // 'buy_premium'
+    if      (current_tier === 'standard')  action = 'upgrade';        // апгрейд до премиума
+    else if (tier === 'standard')          action = 'buy_standard';
+    else                                   action = 'buy_premium';
+    currency = currency || 'gems';
     BuyControl.visible      = false;
     PassSelectModal.visible = false;
     Game.EmitSound("cas.item_has_been_sold");
-    GameEvents.SendCustomGameEventToServer("bp_v2_buy", { action: action });
+    GameEvents.SendCustomGameEventToServer("bp_v2_buy", { action: action, currency: currency });
 }
 
 function buyLevels() {

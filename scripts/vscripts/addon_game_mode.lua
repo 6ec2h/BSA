@@ -37,6 +37,7 @@ require("libraries/table")
 require("libraries/utils")
 require("libraries/debounce")
 require("libraries/base_npc")
+-- require("profiler_temp")
 require('mini_quest')
 require('essentials')
 require('rules')
@@ -107,7 +108,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap( self, "GameEventsFilter"), self)
 	
-	GameModeEntity:SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 0.3)
+	GameModeEntity:SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 0.2)
 	
 	GameRules:SetShowcaseTime(0)
 	essentials:Init()
@@ -131,7 +132,7 @@ function CAddonAdvExGameMode:InitGameMode()
 	SendToServerConsole("dota_max_physical_items_purchase_limit 9999")
 
 	if IsInToolsMode() then
-		-- GameRules:SetStartingGold(99999)
+		GameRules:SetStartingGold(99999)
 	end
 end
 

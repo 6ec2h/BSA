@@ -169,7 +169,7 @@ function modifier_lua_abyssal_underlord_firestorm:OnCreated( kv )
 	self.damageTable = {
 		victim = self:GetParent(),
 		attacker = self:GetCaster(),
-		damage_type = DAMAGE_TYPE_MAGICAL,
+		damage_type = DAMAGE_TYPE_PURE,
 		damage = self:GetAbility():GetSpecialValueFor("wave_damage"),
 		ability = self:GetAbility(),
 	}
@@ -370,7 +370,7 @@ function modifier_lua_abyssal_underlord_pit_of_malice:OnCreated( kv )
 	ApplyDamage({
 		victim = self:GetParent(),
 		attacker = self:GetCaster(),
-		damage_type = DAMAGE_TYPE_MAGICAL,
+		damage_type = DAMAGE_TYPE_PURE,
 		damage = self:GetAbility():GetSpecialValueFor("pit_damage"),
 		ability = self:GetAbility(),
 	})

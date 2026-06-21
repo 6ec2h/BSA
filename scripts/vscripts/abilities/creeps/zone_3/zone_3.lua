@@ -521,6 +521,10 @@ function modifier_creep_freezing_field_lua:IsPurgable()
 	return false
 end
 
+function modifier_creep_freezing_field_lua:RemoveOnDeath()
+	return true
+end
+
 function modifier_creep_freezing_field_lua:IsAura()
 	return true
 end
@@ -583,6 +587,15 @@ end
 
 function modifier_creep_freezing_field_lua:OnIntervalThink()
     if not IsServer() then return end
+
+	-- если кастер умер (или исчез) — прекращаем каст: уничтожаем модификатор,
+	-- его OnDestroy остановит think, эффекты и ауру
+	local caster = self:GetCaster()
+	if not caster or caster:IsNull() or not caster:IsAlive() then
+		self:Destroy()
+		return
+	end
+
 	self.quartal = self.quartal+1
 	if self.quartal>3 then self.quartal = 0 end
 	local a = RandomInt(0,90) + self.quartal*90

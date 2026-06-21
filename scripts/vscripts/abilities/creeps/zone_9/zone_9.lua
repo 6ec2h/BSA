@@ -192,8 +192,23 @@ end
 
 LinkLuaModifier("modifier_creep_flaming_lasso_lua", "abilities/creeps/zone_9/zone_9", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_creep_flaming_lasso_self_lua", "abilities/creeps/zone_9/zone_9", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_creep_flaming_lasso_immune_lua", "abilities/creeps/zone_9/zone_9", LUA_MODIFIER_MOTION_NONE)
 
 creep_flaming_lasso_lua = class({})
+
+function creep_flaming_lasso_lua:CastFilterResultTarget(target)
+    if IsServer() and target and not target:IsNull() and target:HasModifier("modifier_creep_flaming_lasso_immune_lua") then
+        return UF_FAIL_CUSTOM
+    end
+    return UF_SUCCESS
+end
+
+function creep_flaming_lasso_lua:GetCustomCastErrorTarget(target)
+    if target and not target:IsNull() and target:HasModifier("modifier_creep_flaming_lasso_immune_lua") then
+        return "#creep_flaming_lasso_target_immune"
+    end
+    return ""
+end
 
 function creep_flaming_lasso_lua:Precache( context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_batrider/batrider_flaming_lasso.vpcf", context )
@@ -202,6 +217,11 @@ end
 function creep_flaming_lasso_lua:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
+    -- нельзя применить в цель, пока на ней висит маркер-иммунитет.
+    -- сбрасываем кулдаун и ману, чтобы крип не потратил КД впустую
+    if target:HasModifier("modifier_creep_flaming_lasso_immune_lua") then
+        return
+    end
     if target:TriggerSpellAbsorb(self) then return end
 
     local duration = self:GetSpecialValueFor("duration")
@@ -220,6 +240,11 @@ function creep_flaming_lasso_lua:OnSpellStart()
 
     target:AddNewModifier(caster, self, "modifier_creep_flaming_lasso_lua", { duration = duration })
     caster:AddNewModifier(caster, self, "modifier_creep_flaming_lasso_self_lua", { duration = duration })
+
+    -- маркер на цель: пока он есть (5 сек), лассо в неё применить нельзя
+    local immune_duration = self:GetSpecialValueFor("immune_duration")
+    if immune_duration <= 0 then immune_duration = 7 end
+    target:AddNewModifier(caster, self, "modifier_creep_flaming_lasso_immune_lua", { duration = immune_duration })
 end
 
 --------------------------------------------------------------------------------
@@ -330,6 +355,15 @@ end
 function modifier_creep_flaming_lasso_self_lua:GetOverrideAnimation()
     return ACT_DOTA_LASSO_LOOP
 end
+
+--------------------------------------------------------------------------------
+
+-- маркер-иммунитет на цели: пока висит, лассо в эту цель применить нельзя
+modifier_creep_flaming_lasso_immune_lua = class({})
+
+function modifier_creep_flaming_lasso_immune_lua:IsHidden() return false end
+function modifier_creep_flaming_lasso_immune_lua:IsDebuff() return false end
+function modifier_creep_flaming_lasso_immune_lua:IsPurgable() return false end
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

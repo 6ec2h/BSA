@@ -78,7 +78,11 @@ function modifier_treant_natures_grasp_lua_creation_thinker:OnCreated(keys)
 	if not self:GetAbility() then self:Destroy() return end
 
 	if not IsServer() then return end
-	
+
+	-- счётчик активной лозы на кастере (для пассивки living armor)
+	local caster = self:GetCaster()
+	if caster then caster.treant_vine_count = (caster.treant_vine_count or 0) + 1 end
+
 	self.latch_range	= self:GetAbility():GetSpecialValueFor("latch_range")
 	self.latch_vision	= self:GetAbility():GetSpecialValueFor("latch_vision")
 	self.damage_per_second	= self:GetAbility():GetSpecialValueFor("damage_per_second")
@@ -111,7 +115,12 @@ end
 
 function modifier_treant_natures_grasp_lua_creation_thinker:OnDestroy()
 	if not IsServer() then return end
-	
+
+	local caster = self:GetCaster()
+	if caster and caster.treant_vine_count then
+		caster.treant_vine_count = math.max(0, caster.treant_vine_count - 1)
+	end
+
 	self:GetParent():EmitSound("Hero_Treant.NaturesGrasp.Destroy")
 end
 
@@ -197,11 +206,9 @@ function modifier_treant_natures_grasp_lua_damage_bonus:OnCreated()
 		self:Destroy()
 	end
 	
-	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_unique_treant_7")
-	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
-		self.damage_per_second = self.damage_per_second * 2
-	end
-	
+	-- касание дерева всегда удваивает урон
+	self.damage_per_second = self.damage_per_second * 2
+
 	self.interval			= 0.25
 	self.damage_per_tick	= self.damage_per_second * self.interval
 	
@@ -353,10 +360,39 @@ function treant_living_armor_lua:GetIntrinsicModifierName()
 	return "modifier_treant_living_armor_lua_passive"
 end
 
+-- с талантом special_bonus_unique_treant_8 способность становится нотаргетной (AoE на союзников)
+function treant_living_armor_lua:GetBehavior()
+	local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_treant_8")
+	if talent ~= nil and talent:GetLevel() > 0 then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	end
+	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_POINT
+end
+
 function treant_living_armor_lua:OnSpellStart()
-	self:GetCaster():EmitSound("Hero_Treant.LivingArmor.Cast")
-	self:GetCursorTarget():EmitSound("Hero_Treant.LivingArmor.Target")
-	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_treant_living_armor_lua", {duration = self:GetSpecialValueFor("duration")})
+	local caster   = self:GetCaster()
+	local duration = self:GetSpecialValueFor("duration")
+	caster:EmitSound("Hero_Treant.LivingArmor.Cast")
+
+	local talent = caster:FindAbilityByName("special_bonus_unique_treant_8")
+	if talent ~= nil and talent:GetLevel() > 0 then
+		-- нотаргет: баф на всех союзников в радиусе 600
+		local allies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 600,
+			DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		for _, ally in pairs(allies) do
+			ally:EmitSound("Hero_Treant.LivingArmor.Target")
+			ally:AddNewModifier(caster, self, "modifier_treant_living_armor_lua", {duration = duration})
+		end
+	else
+		-- обычный каст: на цель (а при касте по земле — на себя)
+		local target = self:GetCursorTarget()
+		if not target or target:IsNull() then
+			target = caster
+		end
+		target:EmitSound("Hero_Treant.LivingArmor.Target")
+		target:AddNewModifier(caster, self, "modifier_treant_living_armor_lua", {duration = duration})
+	end
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -367,18 +403,7 @@ function modifier_treant_living_armor_lua:OnCreated()
 	self.total_heal		= self:GetAbility():GetSpecialValueFor("total_heal")
 	self.bonus_armor	= self:GetAbility():GetSpecialValueFor("bonus_armor")
 	self.duration		= self:GetAbility():GetSpecialValueFor("duration")
-	
-	
-	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_unique_treant_8")
-	if talent_ability ~= nil and talent_ability:GetLevel() > 0 then
-		self.remnants_damage_block_instances	= self:GetAbility():GetSpecialValueFor("remnants_damage_block_instances")
-		self.remnants_damage_block				= self:GetAbility():GetSpecialValueFor("remnants_damage_block")
-		self:SetStackCount(self.remnants_damage_block_instances)
-	else
-		self.remnants_damage_block_instances = 0
-		self.remnants_damage_block = 0
-	end
-	
+
 	self.heal_per_tick	= self.total_heal / self.duration
 	
 	if not IsServer() then return end
@@ -398,19 +423,11 @@ end
 function modifier_treant_living_armor_lua:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK
 	}
 end
 
 function modifier_treant_living_armor_lua:GetModifierPhysicalArmorBonus()
 	return self.bonus_armor
-end
-
-function modifier_treant_living_armor_lua:GetModifierTotal_ConstantBlock(keys)
-	if self:GetStackCount() >= 1 and keys.damage >= 5 and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) ~= DOTA_DAMAGE_FLAG_HPLOSS then
-		self:DecrementStackCount()
-		return self.remnants_damage_block
-	end
 end
 
 -----------------------------
@@ -430,12 +447,24 @@ function modifier_treant_living_armor_lua_passive:OnCreated( kv )
 end
 
 function modifier_treant_living_armor_lua_passive:OnIntervalThink()
-	if IsServer() then
-		local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_unique_treant_6")
-		if talent_ability ~= nil and talent_ability:GetLevel() > 0 then		
-			local trees = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), self:GetCaster(), 600, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_TREE, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
-			self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_treant_living_armor_lua_passive_effect", {}):SetStackCount(#trees)	
-		end
+	if not IsServer() then return end
+
+	local talent_ability = self:GetCaster():FindAbilityByName("special_bonus_unique_treant_6")
+	if talent_ability == nil or talent_ability:GetLevel() <= 0 then return end
+
+	-- стак за каждое дерево рядом (деревья — не юниты, ищем через GridNav)
+	local trees = GridNav:GetAllTreesAroundPoint(self:GetCaster():GetAbsOrigin(), 600, false)
+	local stacks = #trees
+
+	-- + пока на земле есть лоза Nature's Grasp (использован 1-й скил) → +10 стаков
+	if (self:GetCaster().treant_vine_count or 0) > 0 then
+		stacks = stacks + 10
+	end
+
+	if stacks > 0 then
+		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_treant_living_armor_lua_passive_effect", {}):SetStackCount(stacks)
+	elseif self:GetParent():HasModifier("modifier_treant_living_armor_lua_passive_effect") then
+		self:GetParent():RemoveModifierByName("modifier_treant_living_armor_lua_passive_effect")
 	end
 end
 
@@ -459,11 +488,11 @@ function modifier_treant_living_armor_lua_passive_effect:DeclareFunctions()
 end
 
 function modifier_treant_living_armor_lua_passive_effect:GetModifierConstantHealthRegen()
-	return 3 * self:GetStackCount()
+	return 5 * self:GetStackCount()
 end
 
 function modifier_treant_living_armor_lua_passive_effect:GetModifierPreAttack_BonusDamage()
-	return 5 * self:GetStackCount()
+	return 10 * self:GetStackCount()
 end
 
 --------------------------------------------------------------------------------------------------------------------------------------------

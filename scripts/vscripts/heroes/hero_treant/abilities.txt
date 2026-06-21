@@ -12,20 +12,17 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"AbilitySound"					"Hero_Treant.NaturesGuise.On"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		
 		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.2"
-
-		"AbilityCooldown"				"20 19 18 17"
-
+		"AbilityCooldown"				"16 14 12 10"
 		"AbilityManaCost"				"75 80 85 90"
 
 		"AbilityValues"
 		{
 			"damage_per_second"				
 			{
-				"value"					"15 30 45 60"
-				"special_bonus_unique_treant_2"   "+15"
+				"value"					"30 60 90 120"
+				"special_bonus_unique_treant_2"   "+60"
 			}
 			"movement_slow"					"10 15 20 25"
 			"vines_duration"
@@ -42,7 +39,6 @@
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
 
-
 "treant_leech_seed_lua"
 	{
 		"BaseClass"						"ability_lua"
@@ -56,12 +52,9 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Treant.LeechSeed.Cast"
-
 		"AbilityCastPoint"				"0.4"
 		"FightRecapLevel"				"1"
-		
-		"AbilityCooldown"				"18 16 14 12"
-
+		"AbilityCooldown"				"12 10 8 6"
 		"AbilityManaCost"				"110 120 130 140"
 
 		"AbilityValues"
@@ -69,10 +62,10 @@
 			"damage_interval"				"0.5"
 			"leech_damage"					
 			{
-				"value"					"16 32 48 64"
+				"value"						"32 64 96 128"
 				"special_bonus_unique_treant_5"   "+32"
 			}
-			"movement_slow"					"8 10 12 14"
+			"movement_slow"					"8 12 16 20"
 			"slow_duration"					"0.5"
 			"radius"						"700"
 			"duration"						"5"
@@ -80,7 +73,6 @@
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
-
 
 "treant_living_armor_lua"
 	{
@@ -97,24 +89,22 @@
 
 		"AbilityCastPoint"				"0.4"
 		"AbilityCastRange"				"700"
-		"AbilityCooldown"				"26 23 20 17"
-		"AbilityManaCost"				"50"
+		"AbilityCooldown"				"20 17 14 11"
+		"AbilityManaCost"				"50 60 70 80"
 
 		"AbilityValues"
 		{
 			"total_heal"				
 			{
-				"value"					"60 100 140 180"
-				"special_bonus_unique_treant_4"   "+120"
+				"value"							"120 240 360 480"
+				"special_bonus_unique_treant_4"   "+240"
 			}
 			"bonus_armor"				
 			{
-				"value"					"2 3 4 5"
-				"special_bonus_unique_treant_3"   "+3"
+				"value"					"4 6 8 10"
+				"special_bonus_unique_treant_3"   "+4"
 			}
-			"duration"					"10"
-			"remnants_damage_block_instances"	"5"
-			"remnants_damage_block"			"100"
+			"duration"					"5"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -124,28 +114,27 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_treant/hero_treant"
 		"AbilityTextureName"			"treant_overgrowth"
-		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"		
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Treant.Overgrowth.Cast"
-
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"				"0.5 0.5 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
-
 		"FightRecapLevel"				"2"
-		
 		"AbilityCooldown"				"60 50 40"
-
 		"AbilityManaCost"				"200 250 300"
 
 		"AbilityValues"
 		{
 			"duration"						"3 4 5"
 			"radius"						"800"
-			"damage"						"150"
+			"damage"						
+			{
+				"value"							"150 250 350"
+				"special_bonus_unique_treant_7"   "+250"
+			}
 		}
 	}
 	

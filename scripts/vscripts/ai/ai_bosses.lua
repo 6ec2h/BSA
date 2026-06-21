@@ -1,4 +1,4 @@
-local THINK_INTERVAL = 0.3
+local THINK_INTERVAL = 0.5
 local RETREAT_DISTANCE = 1500
 -- local non_100_pct_cast = {
 --     "item_guardian_greaves",

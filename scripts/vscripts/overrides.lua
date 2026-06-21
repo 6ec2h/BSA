@@ -63,8 +63,8 @@ _G.FindUnitsInRadius = function(team, pos, cacheUnit, radius, tFilter, uFilter, 
 
     -- Округляем позицию до 150 единиц. 
     -- Все юниты в радиусе 150 кучки будут использовать один кэш.
-    local gridX = math.floor(pos.x / 150)
-    local gridY = math.floor(pos.y / 150)
+    local gridX = math.floor(pos.x / 1500)
+    local gridY = math.floor(pos.y / 1500)
     
     -- Ключ теперь общий для области, а не для конкретного юнита
     local cacheKey = string.format("grid_%d_%d_%d_%d_%d_%d", 
