@@ -59,7 +59,7 @@ function modifier_troll_warlord_battle_trance_lua:OnCreated()
 	self.movement_speed	= self.ability:GetSpecialValueFor("movement_speed")
 	self.range			= self.ability:GetSpecialValueFor("range")
 	
-	self.bonus_bat = min(self.ability:GetSpecialValueFor("bonus_bat"), self.parent:GetBaseAttackTime())
+	self.bonus_bat = min(self.ability:GetSpecialValueFor("bonus_bat"), self.parent:GetBaseAttackTime(false))
 
 	if not IsServer() then return end
 	

@@ -370,10 +370,10 @@ function tp_necrolyte(event)
 
 	for _, status in pairs(_G.bosses_counter) do
 		if status == false then
-			Shop:ban()
+			Shop:ban("exploit: boss_skip_teleport")
 			break
 		end
-	end	
+	end
 	
 	if not necrolyteIsActivated then
 		necrolyteIsActivated = true

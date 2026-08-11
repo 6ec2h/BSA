@@ -47,7 +47,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastRange"				"700"
-		"AbilityCooldown"				"16 13 10 7" 
+		
 		"AbilityManaCost"				"70 80 90 100" 
 
 		"AbilityValues"
@@ -66,6 +66,11 @@
 			"vision_duration"		    "3.34"
 			"radius"		            "700"
 			"ExtraIntelligenceDamage"			"0.1"
+			"AbilityCooldown"				
+			{
+				"value"					                "16 13 10 7" 
+				"special_bonus_unique_skywrath_mage_4"   "-4"
+			}
 		}
 	}
 

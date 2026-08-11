@@ -322,7 +322,7 @@ function modifier_mine_ultra_lua_thinker:OnIntervalThink()
         return
     end
 
-    local enemies = FindUnitsInRadius(
+    local enemies = _G.OldFindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
         self.parent,
@@ -366,7 +366,7 @@ function modifier_mine_ultra_lua_thinker:Explode()
     ParticleManager:SetParticleControl(pfx, 2, Vector(self.radius, 1, 1))
     ParticleManager:ReleaseParticleIndex(pfx)
 
-    local enemies = FindUnitsInRadius(self.parent:GetTeamNumber(), origin, self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
+    local enemies = _G.OldFindUnitsInRadius(self.parent:GetTeamNumber(), origin, self.parent, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
 
     for _, enemy in pairs(enemies) do
         if not enemy:HasFlyMovementCapability() then

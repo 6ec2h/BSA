@@ -11,7 +11,6 @@ _G.reconnect_events = {}
 function rules:init()
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( rules, 'OnGameStateChanged' ), self )
 	ListenToGameEvent( "player_connect", Dynamic_Wrap( rules, 'OnPlayerConnect' ), self )
-	CustomGameEventManager:RegisterListener("select_skill_lua", Dynamic_Wrap( rules, 'select_skill_lua'))
 	CustomGameEventManager:RegisterListener("request_npc_interactions_data", Dynamic_Wrap( rules, 'request_npc_interactions_data'))
 	CustomGameEventManager:RegisterListener("adjust_damage_challenge_stats", Dynamic_Wrap( rules, 'adjust_damage_challenge_stats'))
 	CustomGameEventManager:RegisterListener("RequestDifficultData", Dynamic_Wrap(rules, "RequestDifficultData"))
@@ -46,37 +45,36 @@ function rules:SafeCall(callback)
 		print("all ok")
 	else
 		print("error")
-	end	
+	end
 end
 
------------------------------------------------------- BOSS REWARDS -------------------------------------------------
+------------------------------------------------------ BAN -------------------------------------------------
 
-boss_reward_modifiers = {
-	"modifier_agi_10","modifier_armor_5","modifier_as_30",
-	"modifier_attack_range_50","modifier_cd_5","modifier_damage_40",
-	"modifier_evasion_10","modifier_exp_3","modifier_hp_regen_10",
-	"modifier_int_10","modifier_mg_resist_5","modifier_mp_regen_10",
-	"modifier_ms_30","modifier_spell_10","modifier_str_10"
-}
+function rules:BanPlayers(playerIDs, reason)
+	if #playerIDs == 0 then return end
 
-function rules:skillsPreparation(t)
-    local result  = {}
-    local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
-    while #result < 3 do
-        local skill = boss_reward_modifiers[RandomInt(1,#boss_reward_modifiers)]
-        for i = 1, #result do
-		    if result[i] == skill then
-                break
-            end
-            if i == #result then
-                table.insert(result, skill)
-            end
-        end
-        if #result == 0 then
-            table.insert(result, skill)
-        end
-    end
-    return result
+	local players = {}
+	for _, pid in ipairs(playerIDs) do
+		players[tostring(pid)] = { sid = tostring(PlayerResource:GetSteamID(pid)) }
+	end
+
+	local arr = json.encode({ players = players, reason = reason })
+
+	local req = CreateHTTPRequestScriptVM("POST", _G.host .. "/api_ban/?key=" .. _G.key)
+	req:SetHTTPRequestGetOrPostParameter('arr', arr)
+	req:SetHTTPRequestAbsoluteTimeoutMS(100000)
+	req:Send(function(res)
+		if res.StatusCode == 200 and res.Body ~= nil then
+			for _, pid in ipairs(playerIDs) do
+				local hero = PlayerResource:GetSelectedHeroEntity(pid)
+				if hero and not hero:IsNull() then
+					hero:AddNewModifier(hero, nil, "modifier_ban", {})
+				end
+			end
+		else
+			print(res.StatusCode)
+		end
+	end)
 end
 
 function rules:getPlayerSkills(t)
@@ -93,37 +91,6 @@ function rules:getPlayerSkills(t)
         end
     end
     return result
-end
-
-function rules:show(t)
-    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( t.PlayerID ), "show_skills_js",  self:skillsPreparation(t))
-end
-
-function rules:select_skill_lua(t)	
-	if not _G.RewardPoints[t.PlayerID] or _G.RewardPoints[t.PlayerID] < 1 then
-		return
-	end
-
-	_G.RewardPoints[t.PlayerID] = _G.RewardPoints[t.PlayerID] - 1
-
-    local hero = PlayerResource:GetSelectedHeroEntity(t.PlayerID)
-    for _, ability_name in pairs(t) do
-		if string.sub(ability_name, 0,8) == "modifier" then
-			LinkLuaModifier( ability_name, "modifiers/boss_reward/"..ability_name, LUA_MODIFIER_MOTION_NONE )
-			hero:AddNewModifier(hero, nil, ability_name, {})
-			
-			local guildMod = hero:FindModifierByName("modifier_guild")
-			if guildMod and guildMod.doubleBuffChance > RandomInt(0, 100) then
-				hero:AddNewModifier(hero, nil, ability_name, {})
-			end
-
-			EmitSoundOn( "hud.equip.agh_shard", hero)
-		end	
-    end
-
-	if _G.RewardPoints[t.PlayerID] > 0 then
-		rules:show({ PlayerID = t.PlayerID })
-	end
 end
 
 ------------------------------------------------- CLEAR ZONE POINTS ---------------------------------------------------
@@ -549,6 +516,52 @@ function rules:skin_equip(t)
 		return
 	end
 
+	-- Владение скином проверяем на сервере: клиент может прислать skin_equip напрямую
+	if not Shop or not Shop.skin_ensure then
+		-- В инструментах магазин не подключён — разрешаем, чтобы можно было тестировать локально
+		if IsInToolsMode() then
+			rules:ApplySkin(pid, t.skin_id, 0)
+		else
+			rules:DisplayError(pid, "#skin_not_owned")
+		end
+		return
+	end
+
+	Shop:skin_ensure(pid, function(ok)
+		local expires = ok and Shop:skin_owned_expires(pid, t.skin_id) or nil
+		if not expires or expires <= 0 then
+			rules:DisplayError(pid, ok and "#skin_not_owned" or "#skin_check_failed")
+			-- Возвращаем клиенту актуальное состояние карточки
+			CustomGameEventManager:Send_ServerToPlayer(
+				PlayerResource:GetPlayer(pid), "skin_state_update",
+				{ skin_id = t.skin_id, owned = 0, equipped = 0, expires = 0 }
+			)
+			return
+		end
+		rules:ApplySkin(pid, t.skin_id, expires)
+	end)
+end
+
+-- Непосредственное надевание скина. Вызывается только после проверки владения.
+function rules:ApplySkin(pid, skin_id, expires)
+	local skin = SKIN_DATA[skin_id]
+	if not skin then return end
+
+	-- Проверки повторяем: между запросом и ответом бэкенда прошло время
+	if GameRules:GetDOTATime(false, false) > 300 then
+		rules:DisplayError(pid, "#skin_equip_time_expired")
+		return
+	end
+
+	local hero = PlayerResource:GetSelectedHeroEntity(pid)
+	if not hero or hero:IsNull() then return end
+
+	local hero_attack = hero:IsRangedAttacker() and "ranged" or "melee"
+	if hero_attack ~= skin.attack then
+		rules:DisplayError(pid, "#skin_wrong_attack_type")
+		return
+	end
+
 	-- Сохраняем оригинальную модель перед заменой
 	if not _G.player_original_model[pid] then
 		_G.player_original_model[pid] = {
@@ -559,7 +572,7 @@ function rules:skin_equip(t)
 
 	-- Удаляем способность предыдущего скина при прямой смене
 	local prev_skin_id = _G.player_equipped_skin[pid]
-	if prev_skin_id and prev_skin_id ~= t.skin_id then
+	if prev_skin_id and prev_skin_id ~= skin_id then
 		local prev_skin = SKIN_DATA[prev_skin_id]
 		if prev_skin and prev_skin.ability ~= "" and hero:FindAbilityByName(prev_skin.ability) then
 			hero:RemoveAbility(prev_skin.ability)
@@ -589,11 +602,11 @@ function rules:skin_equip(t)
 		ab:SetLevel(new_level)
 	end
 
-	_G.player_equipped_skin[pid] = t.skin_id
+	_G.player_equipped_skin[pid] = skin_id
 
 	CustomGameEventManager:Send_ServerToPlayer(
 		PlayerResource:GetPlayer(pid), "skin_state_update",
-		{ skin_id = t.skin_id, owned = 1, equipped = 1, expires = 0 }
+		{ skin_id = skin_id, owned = 1, equipped = 1, expires = expires or 0 }
 	)
 end
 
@@ -627,9 +640,11 @@ function rules:skin_unequip(t)
 
 	_G.player_equipped_skin[pid] = nil
 
+	local expires = (Shop and Shop.skin_owned_expires) and Shop:skin_owned_expires(pid, t.skin_id) or 0
+
 	CustomGameEventManager:Send_ServerToPlayer(
 		PlayerResource:GetPlayer(pid), "skin_state_update",
-		{ skin_id = t.skin_id, owned = 1, equipped = 0, expires = 0 }
+		{ skin_id = t.skin_id, owned = 1, equipped = 0, expires = expires or 0 }
 	)
 end
 
@@ -637,7 +652,37 @@ end
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
 
+local SKIN_ABILITY_NAMES = {}
+for _, skin in pairs(SKIN_DATA) do
+	if skin.ability ~= "" then
+		SKIN_ABILITY_NAMES[skin.ability] = true
+	end
+end
 
+function rules:CheckMultipleSkinAbilities()
+	local pl = {}
+
+	for pid = 0, DOTA_MAX_PLAYERS - 1 do
+		if PlayerResource:IsValidPlayerID(pid) then
+			local hero = PlayerResource:GetSelectedHeroEntity(pid)
+			if hero and not hero:IsNull() then
+				local count = 0
+				for i = 0, hero:GetAbilityCount() - 1 do
+					local ability = hero:GetAbilityByIndex(i)
+					if ability and SKIN_ABILITY_NAMES[ability:GetAbilityName()] then
+						count = count + 1
+					end
+				end
+
+				if count > 1 then
+					table.insert(pl, pid)
+				end
+			end
+		end
+	end
+
+	rules:BanPlayers(pl, "exploit: multiple_skin_abilities")
+end
 
 
 

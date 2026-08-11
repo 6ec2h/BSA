@@ -62,7 +62,7 @@ function modifier_item_dark_moon_shard:OnCreated()
 
 	if not IsServer() then return end
 
-	caster:SetBaseAttackTime(caster:GetBaseAttackTime() * caster.dms_bat_factor)
+	caster:SetBaseAttackTime(caster:GetBaseAttackTime(false) * caster.dms_bat_factor)
 end
 
 -------------------------------------------------------

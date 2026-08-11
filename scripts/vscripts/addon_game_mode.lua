@@ -151,7 +151,6 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "2" and steamID == 393187346 then
-		-- Shop:add_pr(1000, 1000, 1000, 1000, 2, 0, "lose", 0)
 	end
 	
 	if IsAdmin(steamID) and text == "2434" then
@@ -659,6 +658,7 @@ function CAddonAdvExGameMode:OnThink()
 			self:_CheckForDefeat()
 		end
 		quest_system:TimeThink()
+		rules:CheckMultipleSkinAbilities()
 	end
 	return 1
 end
@@ -1087,7 +1087,9 @@ function CAddonAdvExGameMode:OnEntityKilled( keys )
 				GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 			end)
 			Shop:booster_game_end("WIN")
-			guilds:SendSpeedrunRecord()
+			if not _G.ability_mode then
+				guilds:SendSpeedrunRecord()
+			end
 		end
 
 	---------------------------------------------------------------------------------
@@ -1131,7 +1133,7 @@ function respawn_heroes()
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 				_G.RewardPoints[nPlayerID] = _G.RewardPoints[nPlayerID] or 0
 				_G.RewardPoints[nPlayerID] = _G.RewardPoints[nPlayerID] + 1
-				rules:show({PlayerID = nPlayerID})
+				acc:show({PlayerID = nPlayerID})
 				if not hero:IsAlive() then
 					local point = hero:GetAbsOrigin()
 					local hRelay = Entities:FindByName( nil, "logic_teleport" )

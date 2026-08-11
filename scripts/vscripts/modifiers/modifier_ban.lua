@@ -9,6 +9,8 @@ function modifier_ban:IsPurgable()
 end
 
 function modifier_ban:OnCreated()
+    if not IsServer() then return end
+
     self.pid = self:GetParent():GetPlayerOwnerID()
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self.pid),"ban",{})
 end

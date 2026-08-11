@@ -141,7 +141,7 @@ function meepo_poof_lua:OnSpellStart()
 
     self.damage = base_damage + (main_stat * attr_pct)
 	
-	local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), caster:GetOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	local units = _G.OldFindUnitsInRadius(self:GetCaster():GetTeamNumber(), caster:GetOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
     for i,unit in ipairs(units) do
         ApplyDamage({ victim = unit, attacker = self:GetCaster(), damage = self.damage, damage_type = DAMAGE_TYPE_PURE, ability = self })
     end 
@@ -152,7 +152,7 @@ function meepo_poof_lua:OnSpellStart()
 	FindClearSpaceForUnit(caster, origin_target, true)
 
 	caster:Stop() 
-	local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), target:GetOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	local units = _G.OldFindUnitsInRadius(self:GetCaster():GetTeamNumber(), target:GetOrigin(), target, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
     for i,unit in ipairs(units) do
         ApplyDamage({ victim = unit, attacker = self:GetCaster(), damage = self.damage, damage_type = DAMAGE_TYPE_PURE, ability = self })
     end 
