@@ -366,9 +366,11 @@ end
 modifier_boss_bristleback_goo_lua_thinker = class({})
 
 function modifier_boss_bristleback_goo_lua_thinker:OnCreated()
+    -- Кеш до серверной проверки: GetAuraRadius зовётся и на клиенте.
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
     if not IsServer() then return end
-    local radius = self:GetAbility():GetSpecialValueFor("radius")
-    
+    local radius = self.radius
+
     self.pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(self.pfx, 0, self:GetParent():GetAbsOrigin())
     ParticleManager:SetParticleControl(self.pfx, 1, Vector(radius, 1, 1))
@@ -385,9 +387,13 @@ function modifier_boss_bristleback_goo_lua_thinker:OnDestroy()
     end
 end
 
+function modifier_boss_bristleback_goo_lua_thinker:OnRefresh()
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
+end
+
 function modifier_boss_bristleback_goo_lua_thinker:IsAura() return true end
 function modifier_boss_bristleback_goo_lua_thinker:GetModifierAura() return "modifier_boss_bristleback_goo_lua_debuff" end
-function modifier_boss_bristleback_goo_lua_thinker:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_boss_bristleback_goo_lua_thinker:GetAuraRadius() return self.radius end
 function modifier_boss_bristleback_goo_lua_thinker:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_boss_bristleback_goo_lua_thinker:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
 function modifier_boss_bristleback_goo_lua_thinker:GetAuraDuration() return 0.5 end

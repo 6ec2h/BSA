@@ -87,6 +87,13 @@ end
 function modifier_item_pipe_lua:OnCreated()
 	self.health_regen = self:GetAbility():GetSpecialValueFor("health_regen")
 	self.magic_resistance = self:GetAbility():GetSpecialValueFor("magic_resistance")
+	self.aura_radius = self:GetAbility():GetSpecialValueFor("aura_radius")
+end
+
+function modifier_item_pipe_lua:OnRefresh()
+	self.health_regen = self:GetAbility():GetSpecialValueFor("health_regen")
+	self.magic_resistance = self:GetAbility():GetSpecialValueFor("magic_resistance")
+	self.aura_radius = self:GetAbility():GetSpecialValueFor("aura_radius")
 end
 
 function modifier_item_pipe_lua:DeclareFunctions()
@@ -107,7 +114,7 @@ end
 function modifier_item_pipe_lua:IsAura()						return true end
 function modifier_item_pipe_lua:IsAuraActiveOnDeath() 			return false end
 
-function modifier_item_pipe_lua:GetAuraRadius()				return self:GetAbility():GetSpecialValueFor("aura_radius") end
+function modifier_item_pipe_lua:GetAuraRadius()				return self.aura_radius end
 function modifier_item_pipe_lua:GetAuraSearchFlags()			return DOTA_UNIT_TARGET_FLAG_NONE end
 function modifier_item_pipe_lua:GetAuraSearchTeam()			return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
 function modifier_item_pipe_lua:GetAuraSearchType()			return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end

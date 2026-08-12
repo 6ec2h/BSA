@@ -307,18 +307,24 @@ function modifier_creep_tag_team_lua:IsHidden() return false end
 function modifier_creep_tag_team_lua:IsPurgable() return false end
 
 function modifier_creep_tag_team_lua:OnCreated()
+    -- Кеш до серверной проверки: GetAuraRadius зовётся и на клиенте.
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
     if not IsServer() then return end
     local caster = self:GetParent()
-    local radius = self:GetAbility():GetSpecialValueFor("radius")
+    local radius = self.radius
 
     local pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_tag_team.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
     ParticleManager:SetParticleControl(pfx, 1, Vector(radius, radius, radius))
     self:AddParticle(pfx, false, false, -1, false, false)
 end
 
+function modifier_creep_tag_team_lua:OnRefresh()
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
+end
+
 function modifier_creep_tag_team_lua:IsAura() return true end
 function modifier_creep_tag_team_lua:GetModifierAura() return "modifier_creep_tag_team_lua_debuff" end
-function modifier_creep_tag_team_lua:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_creep_tag_team_lua:GetAuraRadius() return self.radius end
 function modifier_creep_tag_team_lua:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_creep_tag_team_lua:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
 

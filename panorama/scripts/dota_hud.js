@@ -957,7 +957,19 @@ function FixNeutralItemSlot() {
     })
 }
 
+function FindDotaHudElement(panel) {
+	return $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse(panel);
+}
+
 (function() {
+
+    let pShop = FindDotaHudElement("GridBasicItems");
+    pShop.RemoveAndDeleteChildren();
+
+    let pShop2 = FindDotaHudElement("GridUpgradeItems");
+    pShop2.RemoveAndDeleteChildren();
+
+
 	GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false)
 	
     GameEvents.Subscribe('mountain_dota_hud_show_hud_error', function(data) {

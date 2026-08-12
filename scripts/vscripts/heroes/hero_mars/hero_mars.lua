@@ -493,11 +493,13 @@ end
 function modifier_mars_atrophy_aura_lua:OnCreated()
     self.bonus = self:GetAbility():GetSpecialValueFor("bonus_damage_from_creep")
     self.duration = self:GetAbility():GetSpecialValueFor("bonus_damage_duration")
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function modifier_mars_atrophy_aura_lua:OnRefresh()
     self.bonus = self:GetAbility():GetSpecialValueFor("bonus_damage_from_creep")
     self.duration = self:GetAbility():GetSpecialValueFor("bonus_damage_duration")
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function modifier_mars_atrophy_aura_lua:OnDeath(params)
@@ -524,7 +526,7 @@ end
 
 function modifier_mars_atrophy_aura_lua:IsAura() return not self:GetParent():PassivesDisabled() end
 function modifier_mars_atrophy_aura_lua:GetModifierAura() return "modifier_mars_atrophy_aura_lua_debuff" end
-function modifier_mars_atrophy_aura_lua:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_mars_atrophy_aura_lua:GetAuraRadius() return self.radius end
 function modifier_mars_atrophy_aura_lua:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_mars_atrophy_aura_lua:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
 

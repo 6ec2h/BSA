@@ -920,12 +920,18 @@ modifier_creep_immolation_lua = class({})
 function modifier_creep_immolation_lua:IsHidden() return true end
 
 function modifier_creep_immolation_lua:OnCreated()
+    -- Кеш до серверной проверки: GetAuraRadius зовётся и на клиенте.
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
     if not IsServer() then return end
+end
+
+function modifier_creep_immolation_lua:OnRefresh()
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function modifier_creep_immolation_lua:IsAura() return not self:GetParent():PassivesDisabled() end
 function modifier_creep_immolation_lua:GetModifierAura() return "modifier_creep_immolation_lua_debuff" end
-function modifier_creep_immolation_lua:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_creep_immolation_lua:GetAuraRadius() return self.radius end
 function modifier_creep_immolation_lua:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_creep_immolation_lua:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
 

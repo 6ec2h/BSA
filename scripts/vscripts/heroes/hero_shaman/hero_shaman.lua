@@ -112,11 +112,16 @@ function modifier_shaman_hex_logic:IsPurgable() return false end
 
 function modifier_shaman_hex_logic:OnCreated()
     if IsServer() then
-        self:StartIntervalThink(0.03)
         self.caster = self:GetCaster()
         self.parent = self:GetParent()
         self.ability = self:GetAbility()
-        self.player = self.caster:GetOwner() 
+        self.player = self.caster:GetOwner()
+
+        -- Радиусы в KV одиночные, читаем один раз вместо каждого тика.
+        self.activation_radius = self.ability:GetSpecialValueFor("activation_radius")
+        self.damage_radius = self.ability:GetSpecialValueFor("damage_radius")
+
+        self:StartIntervalThink(0.1)
     end
 end
 
@@ -140,36 +145,36 @@ function modifier_shaman_hex_logic:OnIntervalThink()
     end
 
     local center = self.parent:GetAbsOrigin()
-    local activation_radius = self.ability:GetSpecialValueFor("activation_radius")
-    local damage_radius = self.ability:GetSpecialValueFor("damage_radius")
-    
-    local damage = self.ability:GetSpecialValueFor("damage") + self.caster:ExtraIntelligenceDamage() * self.ability:GetSpecialValueFor("ExtraIntelligenceDamage") 
-    
+
     local nearbyEnemies = FindUnitsInRadius(
-        self.caster:GetTeamNumber(), 
-        center, 
-        self.parent, 
-        activation_radius, 
-        DOTA_UNIT_TARGET_TEAM_ENEMY, 
-        DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
-        DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
-        FIND_ANY_ORDER, 
+        self.caster:GetTeamNumber(),
+        center,
+        self.parent,
+        self.activation_radius,
+        DOTA_UNIT_TARGET_TEAM_ENEMY,
+        DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+        FIND_ANY_ORDER,
         false
     )
 
     if #nearbyEnemies > 0 then
+        -- Урон считаем в момент взрыва, а не на каждом тике ожидания:
+        -- он зависит от текущего интеллекта, кешировать его нельзя.
+        local damage = self.ability:GetSpecialValueFor("damage") + self.caster:ExtraIntelligenceDamage() * self.ability:GetSpecialValueFor("ExtraIntelligenceDamage")
+
         EmitSoundOn("Hero_Techies.RemoteMine.Detonate", self.parent)
         local particle_explosion = "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
         local fx = ParticleManager:CreateParticle(particle_explosion, PATTACH_WORLDORIGIN, nil)
         ParticleManager:SetParticleControl(fx, 0, center)
-        ParticleManager:SetParticleControl(fx, 1, Vector(damage_radius, 1, 1))
+        ParticleManager:SetParticleControl(fx, 1, Vector(self.damage_radius, 1, 1))
         ParticleManager:ReleaseParticleIndex(fx)
 
         local targets = FindUnitsInRadius(
             self.caster:GetTeamNumber(),
             center,
             self.parent,
-            damage_radius,
+            self.damage_radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY,
             DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
             DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,

@@ -167,14 +167,21 @@ end
 function modifier_item_arcane_singularity_pull:OnCreated()
     if not IsServer() then return end
     self.pull_speed = 60
-    self:StartIntervalThink(0.03)
+    self.tick = 0.03
+    self.damage_interval = 0.25
+    self.damage_accum = 0
+
+    -- "damage" задаёт урон в секунду: раньше умножался на 0.03 и наносился
+    -- каждый кадр. Читаем KV один раз, а не на каждом тике.
+    self.damage_per_second = self:GetAbility():GetSpecialValueFor("damage")
+
+    self:StartIntervalThink(self.tick)
 end
 
 function modifier_item_arcane_singularity_pull:OnIntervalThink()
     if not IsServer() then return end
     local parent = self:GetParent()
-    local caster = self:GetCaster()
-    
+
     if parent:IsMagicImmune() then
         self:Destroy()
         return
@@ -185,23 +192,25 @@ function modifier_item_arcane_singularity_pull:OnIntervalThink()
 
     local center = thinker:GetOrigin()
     local parent_pos = parent:GetOrigin()
-    
+
     local direction = center - parent_pos
     local distance = direction:Length2D()
-    direction = direction:Normalized()
 
     if distance > 20 then
-        parent:SetOrigin(parent_pos + direction * self.pull_speed * 0.03)
+        parent:SetOrigin(parent_pos + direction:Normalized() * self.pull_speed * self.tick)
     end
 
-    local ability = self:GetAbility()
-    local damage_base = ability:GetSpecialValueFor("damage")
-
-    ApplyDamage({
-        victim = parent,
-        attacker = caster,
-        damage = damage_base*0.03,
-        damage_type = DAMAGE_TYPE_PURE,
-        ability = ability
-    })
+    -- Затягивание остаётся покадровым, урон копим и бьём пачкой: DPS тот же,
+    -- инстансов урона в ~8 раз меньше на каждую затянутую цель.
+    self.damage_accum = self.damage_accum + self.tick
+    if self.damage_accum >= self.damage_interval then
+        ApplyDamage({
+            victim = parent,
+            attacker = self:GetCaster(),
+            damage = self.damage_per_second * self.damage_accum,
+            damage_type = DAMAGE_TYPE_PURE,
+            ability = self:GetAbility()
+        })
+        self.damage_accum = 0
+    end
 end

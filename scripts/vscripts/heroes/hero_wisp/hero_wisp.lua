@@ -249,6 +249,13 @@ function modifier_wisp_spirits_lua:OnCreated(params)
     self.spirit_particles = {}
     self.start_time = GameRules:GetGameTime()
 
+    -- Переиспользуемые буферы под живые цели и их позиции: снимаем позицию
+    -- один раз за тик, а не заново для каждого спирита.
+    self.targets = {}
+    self.live_units = {}
+    self.live_pos = {}
+    self.targets_time = nil
+
     self:OnRefresh(params)
 
     EmitSoundOn("Hero_Wisp.Spirits.Loop", self.caster)
@@ -261,6 +268,7 @@ function modifier_wisp_spirits_lua:OnRefresh(params)
     self.max_spirits = self.ability:GetSpecialValueFor("num_spirits")
     self.spirit_turn_rate = self.ability:GetSpecialValueFor("spirit_turn_rate")
     self.collision_radius = self.ability:GetSpecialValueFor("collision_radius") or 100
+    self.creep_damage = self.ability:GetSpecialValueFor("creep_damage")
 
     local current_count = #self.spirit_particles
     if self.max_spirits > current_count then
@@ -295,23 +303,42 @@ function modifier_wisp_spirits_lua:OnIntervalThink()
     self.current_radius = self.current_radius or target_radius
     self.current_radius = self.current_radius + (target_radius - self.current_radius) * 0.1
 
-    local enemies = FindUnitsInRadius(
-        caster:GetTeamNumber(),
-        caster_pos,
-        caster,
-        self.current_radius + self.collision_radius,
-        DOTA_UNIT_TARGET_TEAM_ENEMY,
-        DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-        DOTA_UNIT_TARGET_FLAG_NONE,
-        FIND_ANY_ORDER,
-        false
-    )
+    -- Поиск целей — раз в 0.15с, а не каждый кадр: за это время цель смещается
+    -- заметно меньше collision_radius, так что попадания не теряются.
+    local now = GameRules:GetGameTime()
+    if self.targets_time == nil or (now - self.targets_time) >= 0.15 then
+        self.targets_time = now
+        self.targets = FindUnitsInRadius(
+            caster:GetTeamNumber(),
+            caster_pos,
+            caster,
+            self.current_radius + self.collision_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY,
+            DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_NONE,
+            FIND_ANY_ORDER,
+            false
+        )
+    end
 
     local spirit_count = #self.spirit_particles
     if spirit_count == 0 then return end
 
+    -- Отсеиваем мёртвых и снимаем позиции один раз за тик.
+    local live_units, live_pos = self.live_units, self.live_pos
+    local live_count = 0
+    for i = 1, #self.targets do
+        local enemy = self.targets[i]
+        if enemy and not enemy:IsNull() and enemy:IsAlive() then
+            live_count = live_count + 1
+            live_units[live_count] = enemy
+            live_pos[live_count] = enemy:GetAbsOrigin()
+        end
+    end
+
     local angle_offset = 360 / spirit_count
     local current_rotation = elapsed_time * self.spirit_turn_rate
+    local collision_sq = self.collision_radius * self.collision_radius
 
     for i, pfx in ipairs(self.spirit_particles) do
         local rotation_angle = current_rotation - angle_offset * (i - 1)
@@ -321,14 +348,18 @@ function modifier_wisp_spirits_lua:OnIntervalThink()
         local abs_pos = ground_pos + Vector(0, 0, 120)
 
         if pfx then
-            ParticleManager:SetParticleControl(pfx, 0, abs_pos) 
+            ParticleManager:SetParticleControl(pfx, 0, abs_pos)
             ParticleManager:SetParticleControl(pfx, 1, abs_pos)
         end
 
-        for _, enemy in pairs(enemies) do
-            if not enemy:IsNull() and enemy:IsAlive() then
-                local dist = (enemy:GetAbsOrigin() - abs_pos):Length2D()
-                if dist < self.collision_radius and not enemy:HasModifier("modifier_wisp_spirits_lua_creep_hit") then
+        -- Сравниваем квадраты расстояний: тот же результат без sqrt.
+        for j = 1, live_count do
+            local epos = live_pos[j]
+            local dx = epos.x - abs_pos.x
+            local dy = epos.y - abs_pos.y
+            if (dx * dx + dy * dy) < collision_sq then
+                local enemy = live_units[j]
+                if not enemy:HasModifier("modifier_wisp_spirits_lua_creep_hit") then
                     self:HitEnemy(enemy)
                 end
             end
@@ -341,7 +372,7 @@ function modifier_wisp_spirits_lua:HitEnemy(enemy)
     ApplyDamage({
         victim = enemy,
         attacker = self.caster,
-        damage = self.ability:GetSpecialValueFor("creep_damage"),
+        damage = self.creep_damage,
         damage_type = DAMAGE_TYPE_MAGICAL,
         ability = self.ability
     })

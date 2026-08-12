@@ -264,7 +264,8 @@ function modifier_creep_sand_impale_lua:OnCreated()
         caster:AddNewModifier(caster, self:GetAbility(), "modifier_boss_damage_boost", {})
     end
 
-    self:StartIntervalThink(0.1)
+    self.radius = self.ability:GetSpecialValueFor("radius")
+    self:StartIntervalThink(0.25)
 end
 
 function modifier_creep_sand_impale_lua:DeclareFunctions()
@@ -292,7 +293,7 @@ function modifier_creep_sand_impale_lua:OnIntervalThink()
 
     if self.parent:HasModifier("modifier_creep_sand_shift_motion") then return end
 
-    local radius = self.ability:GetSpecialValueFor("radius")
+    local radius = self.radius
     local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(),
         self.parent:GetAbsOrigin(),
@@ -354,15 +355,20 @@ function modifier_creep_sand_shift_lua:OnCreated()
     if not IsServer() then return end
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-    self:StartIntervalThink(0.1)
+
+    self.threshold = self.ability:GetSpecialValueFor("hp_threshold")
+    self.radius = self.ability:GetSpecialValueFor("radius")
+    self.speed = self.ability:GetSpecialValueFor("speed")
+
+    self:StartIntervalThink(0.25)
 end
 
 function modifier_creep_sand_shift_lua:OnIntervalThink()
     if not IsServer() then return end
     if not self.parent:IsAlive() or not self.ability:IsCooldownReady() then return end
 
-    local threshold = self.ability:GetSpecialValueFor("hp_threshold")
-    local radius = self.ability:GetSpecialValueFor("radius")
+    local threshold = self.threshold
+    local radius = self.radius
 
     if self.parent:GetHealthPercent() <= threshold then
         self.ability:UseResources(false, false, false, true)
@@ -373,7 +379,7 @@ function modifier_creep_sand_shift_lua:OnIntervalThink()
         local random_vec = RandomVector(RandomInt(300, radius))
         local target_point = origin + random_vec
         target_point.z = GetGroundHeight(target_point, nil)
-        local speed = self.ability:GetSpecialValueFor("speed")
+        local speed = self.speed
 
         local direction = (target_point - origin):Normalized()
         local distance = (target_point - origin):Length2D()

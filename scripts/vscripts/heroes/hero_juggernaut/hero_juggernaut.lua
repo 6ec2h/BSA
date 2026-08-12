@@ -149,12 +149,14 @@ function modifier_juggernaut_healing_ward_thinker_lua:IsPurgable()
 end
 
 function modifier_juggernaut_healing_ward_thinker_lua:OnCreated()
+    -- Кеш до серверной проверки: GetAuraRadius зовётся и на клиенте.
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
     if not IsServer() then return end
     local parent = self:GetParent()
     local caster = self:GetCaster()
 
     self.pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
-    ParticleManager:SetParticleControl(self.pfx, 1, Vector(self:GetAbility():GetSpecialValueFor("radius"), 1, 1))
+    ParticleManager:SetParticleControl(self.pfx, 1, Vector(self.radius, 1, 1))
     
     EmitSoundOn("Hero_Juggernaut.HealingWard.Loop", parent)
     self:StartIntervalThink(FrameTime())
@@ -185,9 +187,13 @@ end
 
 --------------------------------------------------------------------------------
 
+function modifier_juggernaut_healing_ward_thinker_lua:OnRefresh()
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
+end
+
 function modifier_juggernaut_healing_ward_thinker_lua:IsAura() return true end
 function modifier_juggernaut_healing_ward_thinker_lua:GetModifierAura() return "modifier_juggernaut_healing_ward_aura_buff_lua" end
-function modifier_juggernaut_healing_ward_thinker_lua:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_juggernaut_healing_ward_thinker_lua:GetAuraRadius() return self.radius end
 function modifier_juggernaut_healing_ward_thinker_lua:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
 function modifier_juggernaut_healing_ward_thinker_lua:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
 

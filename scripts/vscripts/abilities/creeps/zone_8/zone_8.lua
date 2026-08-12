@@ -739,15 +739,20 @@ function creep_cast_damage_immune_lua:Precache( context )
 	PrecacheResource( "particle", "particles/nyx_magical.vpcf", context )
 end
 
+CREEP_CAST_DAMAGE_IMMUNE_MAX_TARGETS = 4
+
 function creep_cast_damage_immune_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local target_loc = self:GetCursorPosition()
 	caster:EmitSound("DOTA_Item.VeilofDiscord.Activate")
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target_loc, nil, 1000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
+	local allies = FindUnitsInRadius(caster:GetTeamNumber(), target_loc, nil, 1000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
 
-	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, self, "modifier_creep_cast_damage_immune_lua", {duration = 6})
+	local applied = 0
+	for _, ally in pairs(allies) do
+		if applied >= CREEP_CAST_DAMAGE_IMMUNE_MAX_TARGETS then break end
+		ally:AddNewModifier(caster, self, "modifier_creep_cast_damage_immune_lua", {duration = 6})
+		applied = applied + 1
 	end
 end
 
@@ -768,7 +773,7 @@ end
 
 function modifier_creep_cast_damage_immune_lua:OnIntervalThink()
 if not IsServer() then return end
-	self:GetCaster():EmitSound("Hero_Necrolyte.SpiritForm.Cast")
+	self:GetParent():EmitSound("Hero_Necrolyte.SpiritForm.Cast")
 	if self.mag == 1 then
 		self.mag = 0
 		self.phis = 1

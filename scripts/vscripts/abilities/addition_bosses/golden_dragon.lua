@@ -152,9 +152,11 @@ end
 modifier_golden_dragon_greed_thinker = class({})
 
 function modifier_golden_dragon_greed_thinker:OnCreated()
+    -- Кеш до серверной проверки: GetAuraRadius зовётся и на клиенте.
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
     if not IsServer() then return end
-    local radius = self:GetAbility():GetSpecialValueFor("radius")
-    
+    local radius = self.radius
+
     self.pfx = ParticleManager:CreateParticle("particles/golden_dragon_ring.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.pfx, 0, self:GetParent():GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.pfx, 1, Vector(radius, radius, radius))
@@ -168,8 +170,12 @@ function modifier_golden_dragon_greed_thinker:OnDestroy()
     end
 end
 
+function modifier_golden_dragon_greed_thinker:OnRefresh()
+    self.radius = self:GetAbility():GetSpecialValueFor("radius")
+end
+
 function modifier_golden_dragon_greed_thinker:IsAura() return true end
-function modifier_golden_dragon_greed_thinker:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_golden_dragon_greed_thinker:GetAuraRadius() return self.radius end
 function modifier_golden_dragon_greed_thinker:GetModifierAura() return "modifier_golden_dragon_greed_buff" end
 function modifier_golden_dragon_greed_thinker:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
 function modifier_golden_dragon_greed_thinker:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO end
