@@ -148,6 +148,7 @@ function initShop(tab){
 	$("#DSContentPanel").RemoveAndDeleteChildren();
 	
 	if (shopinfo.link['fr']){
+		$.Msg("D")
 		don_panel.visible = true
 		var fr = $.CreatePanel("Panel", don_panel, "frsn");
         fr.BLoadLayoutSnippet("fr_snippet");
@@ -164,6 +165,7 @@ function initShop(tab){
 			})
 		}
 	} else {
+		$.Msg("D1")
 		// Скрываем кнопку, если ссылки нет
 		var addMoneyButton = $('#add_money_button')
 		if (addMoneyButton) {

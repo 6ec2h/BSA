@@ -481,110 +481,91 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 	end
 end
 
+local HERO_PASSIVE_ABILITY = {
+	npc_dota_hero_rubick       = 'hero_rubick_ability',
+	npc_dota_hero_dado         = 'dado_passive',
+	npc_dota_hero_fiddlesticks = 'hero_fiddlesticks_armor',
+	npc_dota_hero_triss        = 'triss_splash',
+	npc_dota_hero_anakim       = 'anakim_final_sacrifice',
+}
+
+local HERO_WITHOUT_WEARABLES = {
+	npc_dota_hero_anakim    = true,
+	npc_dota_hero_destroyer = true,
+	npc_dota_hero_dado      = true,
+	npc_dota_hero_triss     = true,
+}
+
 function InitPlayerHero(hHero, pid)
 	local sid = PlayerResource:GetSteamAccountID(pid)
-	
-	local tab = CustomNetTables:GetTableValue("effect", tostring(pid))
-	if tab then
-		if tab.effect ~= nil then
-			hHero:AddNewModifier(hHero, nil,"modifier_effect", {effect = tab.effect})
-		end
+	local hero_name = hHero:GetUnitName()
+	local pShop = Shop.pShop[sid]
+
+	local effect = CustomNetTables:GetTableValue("effect", tostring(pid))
+	if effect and effect.effect ~= nil then
+		hHero:AddNewModifier(hHero, nil, "modifier_effect", {effect = effect.effect})
 	end
-	
-	local tab = CustomNetTables:GetTableValue("pet", tostring(pid))
-	if tab then
-		if tab.pet ~= nil then
-			hHero:AddNewModifier(hHero, nil,"modifier_pet_owner", {pet = tab.pet})
-		end
+
+	local pet = CustomNetTables:GetTableValue("pet", tostring(pid))
+	if pet and pet.pet ~= nil then
+		hHero:AddNewModifier(hHero, nil, "modifier_pet_owner", {pet = pet.pet})
 	end
-	
+
 	acc:GetTalentsRequest(pid)
 	inventory:update_hero_inventory({PlayerID = pid})
-	
-	
-	if Shop.pShop[sid].ban_status then 
-		hHero:AddNewModifier( hHero, nil, "modifier_ban", {} )
-	end
-	
-	if Shop.pShop[sid].boost_game > 0 then
-		hHero:AddNewModifier( hHero, nil, "modifier_new_player", {}):SetStackCount(Shop.pShop[sid].boost_game - 1)
-	end
-	
-	local count = CAddonAdvExGameMode:ExpPlayerModifier()
-	hHero:AddNewModifier( hHero, nil, "modifier_player_exp",{}):SetStackCount(count)
 
-	local unitName = hHero:GetUnitName()
+	if pShop.ban_status then
+		hHero:AddNewModifier(hHero, nil, "modifier_ban", {})
+	end
+
+	if pShop.boost_game > 0 then
+		hHero:AddNewModifier(hHero, nil, "modifier_new_player", {}):SetStackCount(pShop.boost_game - 1)
+	end
+
+	hHero:AddNewModifier(hHero, nil, "modifier_player_exp", {}):SetStackCount(CAddonAdvExGameMode:ExpPlayerModifier())
 
 	if isNewYearNow() then
 		hHero:SetupHat(HAT_TYPE.NEW_YEAR)
-		
+
 		local snowballAbility = hHero:AddAbility("new_year_snowball")
 		if snowballAbility then
 			snowballAbility:SetLevel(1)
 		end
 	end
-	
-	if hHero:GetUnitName() == 'npc_dota_hero_rubick' and not _G.ability_mode then
+
+	local passive_name = HERO_PASSIVE_ABILITY[hero_name]
+	if passive_name and not _G.ability_mode then
 		Timers:CreateTimer(3, function()
-			local abil = hHero:FindAbilityByName('hero_rubick_ability')
-			if abil then
-				abil:SetLevel(1)
-			end
-		end)
-	end
-	
-	if hHero:GetUnitName() == 'npc_dota_hero_dado' and not _G.ability_mode then
-		Timers:CreateTimer(3, function()
-			local abil = hHero:FindAbilityByName('dado_passive')
+			local abil = hHero:FindAbilityByName(passive_name)
 			if abil then
 				abil:SetLevel(1)
 			end
 		end)
 	end
 
-	if hHero:GetUnitName() == 'npc_dota_hero_fiddlesticks' and not _G.ability_mode then
-		Timers:CreateTimer(3, function()
-			local abil = hHero:FindAbilityByName('hero_fiddlesticks_armor')
-			if abil then
-				abil:SetLevel(1)
-			end
-		end)
-	end
-	
-	if hHero:GetUnitName() == 'npc_dota_hero_triss' and not _G.ability_mode then
-		Timers:CreateTimer(3, function()
-			local abil = hHero:FindAbilityByName('triss_splash')
-			if abil then
-				abil:SetLevel(1)
-			end
-		end)
-	end
-
-	if hHero:GetUnitName() == 'npc_dota_hero_anakim' and not _G.ability_mode then
-		Timers:CreateTimer(3, function()
-			local abil = hHero:FindAbilityByName('anakim_final_sacrifice')
-			if abil then
-				abil:SetLevel(1)
-			end
-		end)
-	end
-	
 	local ability = hHero:AddAbility("ability_capture_lua")
 	ability:SetLevel(1)
-	
+
 	if _G.ability_mode then
 		HeroBuilder:InitPlayerHero(hHero)
 	end
-	
-	-- local hero_name = hHero:GetName()
-	-- if hero_name ~= 'npc_dota_hero_anakim' and 
-		-- hero_name ~= 'npc_dota_hero_destroyer' and 
-		-- hero_name ~= 'npc_dota_hero_dado' and 
-		-- hero_name ~= 'npc_dota_hero_triss' then 
-		-- pfx_overhead = ParticleManager:CreateParticle("particles/hny/anniversary_10th_hat_ambient_"..hero_name..".vpcf", PATTACH_OVERHEAD_FOLLOW, hHero)
-	-- end
-	
+
+	if HERO_WITHOUT_WEARABLES[hero_name] then
+		-- CAddonAdvExGameMode:RemoveWearables(hHero)
+	end
+
 	hHero.bInited = true
+end
+
+
+function CAddonAdvExGameMode:RemoveWearables(hUnit)
+    for i, child in ipairs(hUnit:GetChildren()) do
+        if IsValidEntity(child) and child:GetClassname() == "dota_item_wearable" then
+            if child:GetModelName() ~= "" then
+                UTIL_Remove(child)
+            end
+        end
+    end
 end
 
 ------------------------------------------------------------------------------------------------------------
