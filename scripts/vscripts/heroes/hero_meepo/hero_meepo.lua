@@ -163,10 +163,27 @@ end
 
 function meepo_poof_lua:PlayEffects(caster)
     caster:EmitSound("Hero_Meepo.Poof.End00")
-    local particle_index = ParticleManager:CreateParticle("particles/units/heroes/hero_meepo/meepo_poof_end.vpcf", PATTACH_ABSORIGIN, caster) 	
+    local particle_index = ParticleManager:CreateParticle("particles/units/heroes/hero_meepo/meepo_poof_end.vpcf", PATTACH_ABSORIGIN, caster)
     ParticleManager:SetParticleControl(particle_index, 0, caster:GetAbsOrigin())
     ParticleManager:SetParticleControl(particle_index, 1, Vector(375, 375, 375))
     ParticleManager:ReleaseParticleIndex(particle_index)
+end
+
+local POOF_FORBIDDEN_TARGETS = {
+    npc_dota_observer_wards = true,
+    npc_dota_sentry_wards   = true,
+    shadow_shaman_ward      = true,
+}
+
+function meepo_poof_lua:CastFilterResultTarget(target)
+    if target and (POOF_FORBIDDEN_TARGETS[target:GetUnitName()] or target:IsOther()) then
+        return UF_FAIL_CUSTOM
+    end
+    return UF_SUCCESS
+end
+
+function meepo_poof_lua:GetCustomCastErrorTarget(target)
+    return "#dota_hud_error_cant_cast_on_other"
 end
 
 --------------------------------------------------------------------------------
