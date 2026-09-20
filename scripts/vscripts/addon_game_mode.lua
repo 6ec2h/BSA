@@ -25,6 +25,10 @@ end
 
 require("libraries/timers")
 
+require("rooms/server_mode")
+require("rooms/connector")
+require("rooms/room_server")
+
 require("overrides")
 -- require("debug_panel")
 
@@ -80,6 +84,10 @@ function CAddonAdvExGameMode:InitGameMode()
 	GameRules:SetUseUniversalShopMode(true)
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
 	GameRules:SetCustomGameSetupAutoLaunchDelay(30)
+	if not IsDedicatedServer() and not IsInToolsMode() then
+		GameRules:SetCustomGameSetupAutoLaunchDelay(-1)
+		GameRules:SetCustomGameSetupTimeout(-1)
+	end
 	GameRules:GetGameModeEntity():SetHudCombatEventsDisabled( true )
 	GameRules:GetGameModeEntity():SetKillingSpreeAnnouncerDisabled(true)
 	GameRules:SetHeroSelectionTime(50)
@@ -135,6 +143,8 @@ function CAddonAdvExGameMode:InitGameMode()
 	if IsInToolsMode() then
 		GameRules:SetStartingGold(99999)
 	end
+
+	ServerMode:Boot("init")
 end
 
 function CAddonAdvExGameMode:OnChat( event )
@@ -149,6 +159,7 @@ function CAddonAdvExGameMode:OnChat( event )
 	end
 
 	if text == "1" and steamID == 393187346 then
+		FindClearSpaceForUnit(hero, Vector(-13440, -2880, 500), false)
 	end
 
 	if text == "2" and steamID == 393187346 then
@@ -364,34 +375,25 @@ end
 
 start_defeat = false
 
+-- fix outpost 27.05.2025. На своих серверах комната не заходит в CUSTOM_GAME_SETUP,
+-- поэтому зовётся ещё и в PRE_GAME; флаг не даёт создать точки дважды.
+function CAddonAdvExGameMode:FixOutposts()
+	if self.outposts_fixed then return end
+	self.outposts_fixed = true
+	for _, watch_tower in pairs(Entities:FindAllByClassname("npc_dota_watch_tower")) do
+		local activation_point = CreateUnitByName("npc_dota_watch_tower_activation_point", watch_tower:GetOrigin(), false, nil, nil, DOTA_TEAM_GOODGUYS)
+		activation_point:AddNewModifier(activation_point, nil, "modifier_outpost_activation", {})
+	end
+end
+
 function CAddonAdvExGameMode:OnGameStateChanged()
 	local state = GameRules:State_Get()
 	
 	if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 					
-			-- web:init()
-			-- Shop:init()
-			-- Casino:init()
+			ServerMode:Boot("setup")
 
-			print("Load server")
-			local req = CreateHTTPRequestScriptVM( "GET", _G.host.."/api_game_load_lua/?key=".._G.key.."&t="..math.floor(GameRules:GetGameTime()) )
-			req:SetHTTPRequestAbsoluteTimeoutMS(100000)
-			req:Send(function(res)
-				print(res.StatusCode)
-				if res.StatusCode == 200 then
-					load = loadstring(res.Body)
-					load()
-					web:init()
-					Shop:init()
-					Casino:init()
-				end
-			end)
-
-			-------------------------------------- fix outpost 27.05.2025
-			for _, watch_tower in pairs(Entities:FindAllByClassname("npc_dota_watch_tower")) do
-				local activation_point = CreateUnitByName("npc_dota_watch_tower_activation_point", watch_tower:GetOrigin(), false, nil, nil, DOTA_TEAM_GOODGUYS)
-				activation_point:AddNewModifier(activation_point, nil, "modifier_outpost_activation", {})
-			end
+			CAddonAdvExGameMode:FixOutposts()
 	end
 
 	if state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
@@ -436,6 +438,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 			end
 		end
 	elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
+		CAddonAdvExGameMode:FixOutposts()
 		for pid = 0, DOTA_MAX_TEAM_PLAYERS do
 			local hPlayer = PlayerResource:GetPlayer(pid)
 			if hPlayer then
@@ -466,6 +469,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 			return 60
 		end)
 	elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		if _G.RoomServer and RoomServer.bootstrapping then return end
 		if GameRules:IsCheatMode() and not IsInToolsMode() then
 			GameRules:SendCustomMessage("ИГРА ЗАПУЩЕНА С ЧИТАМИ!!! Игра будет окончена через 10 минут!!!", 0, 0)
 			Timers:CreateTimer(600, function()

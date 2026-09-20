@@ -35,3 +35,14 @@ boss_reward_modifiers = {"modifier_agi_10","modifier_armor_5","modifier_as_30","
 for _, skill in pairs(boss_reward_modifiers) do 
 	LinkLuaModifier( skill, "modifiers/boss_reward/"..skill, LUA_MODIFIER_MOTION_NONE )
 end
+
+ListenToGameEvent("bsa_connect", function(event)
+	local address = tostring(event.address or "")
+	if address == "" then return end
+	local ok, lid = pcall(function() return GetLocalPlayerID() end)
+	if ok and lid ~= nil and event.player_id ~= nil and tostring(lid) ~= tostring(event.player_id) then return end
+	print("[bsa_connect] переключаюсь на комнату")
+	if type(SendToConsole) == "function" then
+		pcall(SendToConsole, "connect " .. address)
+	end
+end, nil)

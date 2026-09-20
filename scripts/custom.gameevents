@@ -1,0 +1,10 @@
+"CustomEvents"
+{
+	// Сервер велит клиенту подключиться к комнате (rooms/connector.lua ->
+	// addon_game_mode_client.lua).
+	"bsa_connect"
+	{
+		"player_id"		"short"
+		"address"		"string"
+	}
+}
